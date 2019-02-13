@@ -4,28 +4,12 @@
 
 "use strict";
 
-var EXPORTED_SYMBOLS = ["MessagePort", "MessageListener"];
+var EXPORTED_SYMBOLS = ["MessagePort", "MessageListener", "RPMAccessMap"];
 
-const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "AsyncPrefs",
-  "resource://gre/modules/AsyncPrefs.jsm"
-);
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
-  "resource://gre/modules/PrivateBrowsingUtils.jsm"
-);
 ChromeUtils.defineModuleGetter(
   this,
   "PromiseUtils",
   "resource://gre/modules/PromiseUtils.jsm"
-);
-ChromeUtils.defineModuleGetter(
-  this,
-  "UpdateUtils",
-  "resource://gre/modules/UpdateUtils.jsm"
 );
 
 /*
@@ -35,152 +19,84 @@ ChromeUtils.defineModuleGetter(
  * Please note that prefs that one wants to update need to be
  * whitelisted within AsyncPrefs.jsm.
  */
-let RPMAccessManager = {
-  accessMap: {
-    "about:certerror": {
-      getFormatURLPref: ["app.support.baseURL"],
-      getBoolPref: [
-        "security.certerrors.mitm.priming.enabled",
-        "security.certerrors.permanentOverride",
-        "security.enterprise_roots.auto-enabled",
-        "security.certerror.hideAddException",
-        "security.ssl.errorReporting.automatic",
-        "security.ssl.errorReporting.enabled",
-      ],
-      setBoolPref: ["security.ssl.errorReporting.automatic"],
-      getIntPref: [
-        "services.settings.clock_skew_seconds",
-        "services.settings.last_update_seconds",
-      ],
-      getAppBuildID: ["yes"],
-      isWindowPrivate: ["yes"],
-      recordTelemetryEvent: ["yes"],
-      addToHistogram: ["yes"],
-    },
-    "about:neterror": {
-      getFormatURLPref: ["app.support.baseURL"],
-      getBoolPref: [
-        "security.certerror.hideAddException",
-        "security.ssl.errorReporting.automatic",
-        "security.ssl.errorReporting.enabled",
-        "security.tls.version.enable-deprecated",
-        "security.certerrors.tls.version.show-override",
-      ],
-      setBoolPref: ["security.ssl.errorReporting.automatic"],
-      addToHistogram: ["yes"],
-    },
-    "about:privatebrowsing": {
-      // "sendAsyncMessage": handled within AboutPrivateBrowsingHandler.jsm
-      getFormatURLPref: ["app.support.baseURL"],
-      isWindowPrivate: ["yes"],
-    },
-    "about:protections": {
-      getBoolPref: [
-        "browser.contentblocking.report.lockwise.enabled",
-        "browser.contentblocking.report.monitor.enabled",
-        "privacy.socialtracking.block_cookies.enabled",
-        "browser.contentblocking.report.proxy.enabled",
-        "privacy.trackingprotection.cryptomining.enabled",
-        "privacy.trackingprotection.fingerprinting.enabled",
-        "privacy.trackingprotection.enabled",
-        "privacy.trackingprotection.socialtracking.enabled",
-      ],
-      getStringPref: [
-        "browser.contentblocking.category",
-        "browser.contentblocking.report.lockwise.url",
-        "browser.contentblocking.report.monitor.url",
-        "browser.contentblocking.report.monitor.sign_in_url",
-        "browser.contentblocking.report.manage_devices.url",
-        "browser.contentblocking.report.proxy_extension.url",
-      ],
-      getIntPref: ["network.cookie.cookieBehavior"],
-      getFormatURLPref: [
-        "browser.contentblocking.report.monitor.how_it_works.url",
-        "browser.contentblocking.report.lockwise.how_it_works.url",
-        "browser.contentblocking.report.social.url",
-        "browser.contentblocking.report.cookie.url",
-        "browser.contentblocking.report.tracker.url",
-        "browser.contentblocking.report.fingerprinter.url",
-        "browser.contentblocking.report.cryptominer.url",
-      ],
-      recordTelemetryEvent: ["yes"],
-    },
-    "about:newinstall": {
-      getUpdateChannel: ["yes"],
-      getFxAccountsEndpoint: ["yes"],
-    },
+let RPMAccessMap = {
+  "about:certerror": {
+    RPMGetFormatURLPref: ["app.support.baseURL"],
+    RPMGetBoolPref: [
+      "security.certerrors.mitm.priming.enabled",
+      "security.certerrors.permanentOverride",
+      "security.enterprise_roots.auto-enabled",
+      "security.certerror.hideAddException",
+      "security.ssl.errorReporting.automatic",
+      "security.ssl.errorReporting.enabled",
+    ],
+    RPMSetBoolPref: [
+      "security.ssl.errorReporting.automatic",
+    ],
+    RPMGetIntPref: [
+      "services.settings.clock_skew_seconds",
+      "services.settings.last_update_seconds",
+    ],
+    RPMGetAppBuildID: true,
+    RPMAddToHistogram: true,
+    RPMIsWindowPrivate: true,
+    RPMRecordTelemetryEvent: true,
   },
-
-  checkAllowAccess(aDocument, aFeature, aValue) {
-    let principal = aDocument.nodePrincipal;
-    // if there is no content principal; deny access
-    if (!principal) {
-      return false;
-    }
-
-    let uri;
-    if (principal.isNullPrincipal || !principal.URI) {
-      // null principals have a null-principal URI, but for the sake of RPM we
-      // want to access the "real" document URI directly, e.g. if the about:
-      // page is sandboxed.
-      uri = aDocument.documentURIObject;
-    } else {
-      uri = principal.URI;
-    }
-
-    // Cut query params
-    let spec = uri.prePath + uri.filePath;
-
-    if (!uri.schemeIs("about")) {
-      Cu.reportError(
-        "RPMAccessManager does not allow access to Feature: " +
-          aFeature +
-          " for: " +
-          spec
-      );
-      return false;
-    }
-
-    // check if there is an entry for that requestying URI in the accessMap;
-    // if not, deny access.
-    let accessMapForURI = this.accessMap[spec];
-    if (!accessMapForURI) {
-      Cu.reportError(
-        "RPMAccessManager does not allow access to Feature: " +
-          aFeature +
-          " for: " +
-          spec
-      );
-      return false;
-    }
-
-    // check if the feature is allowed to be accessed for that URI;
-    // if not, deny access.
-    let accessMapForFeature = accessMapForURI[aFeature];
-    if (!accessMapForFeature) {
-      Cu.reportError(
-        "RPMAccessManager does not allow access to Feature: " +
-          aFeature +
-          " for: " +
-          spec
-      );
-      return false;
-    }
-
-    // if the actual value is in the whitelist for that feature;
-    // allow access
-    if (accessMapForFeature.includes(aValue)) {
-      return true;
-    }
-
-    // otherwise deny access
-    Cu.reportError(
-      "RPMAccessManager does not allow access to Feature: " +
-        aFeature +
-        " for: " +
-        spec
-    );
-    return false;
+  "about:neterror": {
+    RPMGetFormatURLPref: ["app.support.baseURL"],
+    RPMGetBoolPref: [
+      "security.certerror.hideAddException",
+      "security.ssl.errorReporting.automatic",
+      "security.ssl.errorReporting.enabled",
+      "security.tls.version.enable-deprecated",
+      "security.certerrors.tls.version.show-override",
+    ],
+    RPMSetBoolPref: [
+      "security.ssl.errorReporting.automatic"
+    ],
+    RPMAddToHistogram: true,
+  },
+  "about:privatebrowsing": {
+    // "sendAsyncMessage": handled within AboutPrivateBrowsingHandler.jsm
+    RPMGetFormatURLPref: ["app.support.baseURL"],
+    RPMIsWindowPrivate: true,
+  },
+  "about:protections": {
+    RPMGetBoolPref: [
+      "browser.contentblocking.report.lockwise.enabled",
+      "browser.contentblocking.report.monitor.enabled",
+      "privacy.socialtracking.block_cookies.enabled",
+      "browser.contentblocking.report.proxy.enabled",
+      "privacy.trackingprotection.cryptomining.enabled",
+      "privacy.trackingprotection.fingerprinting.enabled",
+      "privacy.trackingprotection.enabled",
+      "privacy.trackingprotection.socialtracking.enabled",
+    ],
+    RPMGetStringPref: [
+      "browser.contentblocking.category",
+      "browser.contentblocking.report.lockwise.url",
+      "browser.contentblocking.report.monitor.url",
+      "browser.contentblocking.report.monitor.sign_in_url",
+      "browser.contentblocking.report.manage_devices.url",
+      "browser.contentblocking.report.proxy_extension.url",
+    ],
+    RPMGetIntPref: [
+      "network.cookie.cookieBehavior"
+    ],
+    RPMGetFormatURLPref: [
+      "browser.contentblocking.report.monitor.how_it_works.url",
+      "browser.contentblocking.report.lockwise.how_it_works.url",
+      "browser.contentblocking.report.social.url",
+      "browser.contentblocking.report.cookie.url",
+      "browser.contentblocking.report.tracker.url",
+      "browser.contentblocking.report.fingerprinter.url",
+      "browser.contentblocking.report.cryptominer.url",
+    ],
+    RPMRecordTelemetryEvent: true,
+  },
+  "about:newinstall": {
+    RPMGetUpdateChannel: true,
+    RPMGetFxAccountsEndpoint: true,
   },
 };
 
@@ -300,7 +216,7 @@ class MessagePort {
 
   // Sends a request to the other process and returns a promise that completes
   // once the other process has responded to the request or some error occurs.
-  sendRequest(name, data = null) {
+  sendRequest(name, args) {
     if (this.destroyed) {
       return this.window.Promise.reject(
         new Error("Message port has been destroyed")
@@ -314,10 +230,10 @@ class MessagePort {
       portID: this.portID,
       requestID: this.requests.length - 1,
       name,
-      data,
+      args,
     });
 
-    return this.wrapPromise(deferred.promise);
+    return deferred.promise;
   }
 
   // Handles an IPC message to perform a request of some kind.
@@ -334,10 +250,10 @@ class MessagePort {
     try {
       data.resolve = await this.handleRequest(
         messagedata.name,
-        messagedata.data
+        messagedata.args
       );
     } catch (e) {
-      data.reject = e;
+      data.reject = "Request failed.";
     }
 
     this.messageManager.sendAsyncMessage("RemotePage:Response", data);
@@ -442,135 +358,5 @@ class MessagePort {
     this.portID = null;
     this.listener = null;
     this.requests = [];
-  }
-
-  wrapPromise(promise) {
-    return new this.window.Promise((resolve, reject) =>
-      promise.then(resolve, reject)
-    );
-  }
-
-  getAppBuildID() {
-    let doc = this.window.document;
-    if (!RPMAccessManager.checkAllowAccess(doc, "getAppBuildID", "yes")) {
-      throw new Error(
-        "RPMAccessManager does not allow access to getAppBuildID"
-      );
-    }
-    return Services.appinfo.appBuildID;
-  }
-
-  getIntPref(aPref, defaultValue) {
-    let doc = this.window.document;
-    if (!RPMAccessManager.checkAllowAccess(doc, "getIntPref", aPref)) {
-      throw new Error("RPMAccessManager does not allow access to getIntPref");
-    }
-    // Only call with a default value if it's defined, to be able to throw
-    // errors for non-existent prefs.
-    if (defaultValue !== undefined) {
-      return Services.prefs.getIntPref(aPref, defaultValue);
-    }
-    return Services.prefs.getIntPref(aPref);
-  }
-
-  getStringPref(aPref) {
-    let doc = this.window.document;
-    if (!RPMAccessManager.checkAllowAccess(doc, "getStringPref", aPref)) {
-      throw new Error(
-        "RPMAccessManager does not allow access to getStringPref"
-      );
-    }
-    return Services.prefs.getStringPref(aPref);
-  }
-
-  getBoolPref(aPref, defaultValue) {
-    let doc = this.window.document;
-    if (!RPMAccessManager.checkAllowAccess(doc, "getBoolPref", aPref)) {
-      throw new Error("RPMAccessManager does not allow access to getBoolPref");
-    }
-    // Only call with a default value if it's defined, to be able to throw
-    // errors for non-existent prefs.
-    if (defaultValue !== undefined) {
-      return Services.prefs.getBoolPref(aPref, defaultValue);
-    }
-    return Services.prefs.getBoolPref(aPref);
-  }
-
-  setBoolPref(aPref, aVal) {
-    return this.wrapPromise(AsyncPrefs.set(aPref, aVal));
-  }
-
-  getFormatURLPref(aFormatURL) {
-    let doc = this.window.document;
-    if (
-      !RPMAccessManager.checkAllowAccess(doc, "getFormatURLPref", aFormatURL)
-    ) {
-      throw new Error(
-        "RPMAccessManager does not allow access to getFormatURLPref"
-      );
-    }
-    return Services.urlFormatter.formatURLPref(aFormatURL);
-  }
-
-  isWindowPrivate() {
-    let doc = this.window.document;
-    if (!RPMAccessManager.checkAllowAccess(doc, "isWindowPrivate", "yes")) {
-      throw new Error(
-        "RPMAccessManager does not allow access to isWindowPrivate"
-      );
-    }
-    return PrivateBrowsingUtils.isContentWindowPrivate(this.window);
-  }
-
-  getUpdateChannel() {
-    let doc = this.window.document;
-    if (!RPMAccessManager.checkAllowAccess(doc, "getUpdateChannel", "yes")) {
-      throw new Error(
-        "RPMAccessManager does not allow access to getUpdateChannel"
-      );
-    }
-    return UpdateUtils.UpdateChannel;
-  }
-
-  getFxAccountsEndpoint(aEntrypoint) {
-    let doc = this.window.document;
-    if (
-      !RPMAccessManager.checkAllowAccess(doc, "getFxAccountsEndpoint", "yes")
-    ) {
-      throw new Error(
-        "RPMAccessManager does not allow access to getFxAccountsEndpoint"
-      );
-    }
-
-    return this.sendRequest("FxAccountsEndpoint", aEntrypoint);
-  }
-
-  recordTelemetryEvent(category, event, object, value, extra) {
-    let doc = this.window.document;
-    if (
-      !RPMAccessManager.checkAllowAccess(doc, "recordTelemetryEvent", "yes")
-    ) {
-      throw new Error(
-        "RPMAccessManager does not allow access to recordTelemetryEvent"
-      );
-    }
-    return Services.telemetry.recordEvent(
-      category,
-      event,
-      object,
-      value,
-      extra
-    );
-  }
-
-  addToHistogram(histID, bin) {
-    let doc = this.window.document;
-    if (!RPMAccessManager.checkAllowAccess(doc, "addToHistogram", "yes")) {
-      throw new Error(
-        "RPMAccessManager does not allow access to addToHistogram"
-      );
-    }
-
-    Services.telemetry.getHistogramById(histID).add(bin);
   }
 }
