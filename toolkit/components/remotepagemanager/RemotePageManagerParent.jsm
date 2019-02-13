@@ -20,7 +20,7 @@ var EXPORTED_SYMBOLS = ["RemotePages", "RemotePageManager"];
  */
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-const { MessageListener, MessagePort } = ChromeUtils.import(
+const { MessageListener, MessagePort, RPMAccessMap } = ChromeUtils.import(
   "resource://gre/modules/remotepagemanager/MessagePort.jsm"
 );
 ChromeUtils.defineModuleGetter(
@@ -191,6 +191,14 @@ function publicMessagePort(port) {
   return clean;
 }
 
+const RPMParentCapabilities = {
+  RPMGetFxAccountsEndpoint: {
+    execute(aEntryPoint) {
+      return FxAccounts.config.promiseConnectAccountURI(aEntryPoint);
+    },
+  },
+};
+
 // The chome side of a message port
 class ChromeMessagePort extends MessagePort {
   constructor(browser, portID, url) {
@@ -247,13 +255,48 @@ class ChromeMessagePort extends MessagePort {
     this.destroy();
   }
 
-  // Called when the content process is requesting some data.
-  async handleRequest(name, data) {
-    if (name == "FxAccountsEndpoint") {
-      return FxAccounts.config.promiseConnectAccountURI(data);
+  performParentCapability(aCapability, aArgs) {
+    if (!(this.url in RPMAccessMap)) {
+      throw new Error(`Access to ${aCapability} is denied for ${this.url}`);
     }
 
-    throw new Error(`Unknown request ${name}.`);
+    if (!(aCapability in RPMAccessMap[this.url])) {
+      throw new Error(`Access to ${aCapability} is denied for ${this.url}`);
+    }
+
+    if (!(aCapability in RPMParentCapabilities)) {
+      throw new Error(`Access to ${aCapability} is denied for ${this.url}`);
+    }
+
+    let filter = RPMAccessMap[this.url][aCapability];
+    let capability = RPMParentCapabilities[aCapability];
+
+    let allowed = !!filter;
+    if ("validate" in capability) {
+      allowed = capability.validate(filter, ...aArgs);
+    }
+
+    if (!allowed) {
+      throw new Error(`Access to ${aCapability} is denied for ${this.url}`);
+    }
+
+    return capability.execute.apply(this, aArgs);
+  }
+
+  // Called when the content process is requesting some data.
+  async handleRequest(name, args) {
+    if (name == "callCapability") {
+      if (args.length != 2) {
+        return Promise.reject(
+          "Incorrect number of arguments for 'callCapability'"
+        );
+      }
+
+      const [capability, callArguments] = args;
+      return this.performParentCapability(capability, callArguments);
+    }
+
+    return Promise.reject(`Unknown request ${name}.`);
   }
 
   // Called when a message is received from the message manager.

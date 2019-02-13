@@ -7,9 +7,177 @@
 var EXPORTED_SYMBOLS = ["ChildMessagePort"];
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-const { MessagePort } = ChromeUtils.import(
+const { MessagePort, RPMAccessMap } = ChromeUtils.import(
   "resource://gre/modules/remotepagemanager/MessagePort.jsm"
 );
+
+ChromeUtils.defineModuleGetter(
+  this,
+  "AsyncPrefs",
+  "resource://gre/modules/AsyncPrefs.jsm"
+);
+ChromeUtils.defineModuleGetter(
+  this,
+  "PrivateBrowsingUtils",
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
+ChromeUtils.defineModuleGetter(
+  this,
+  "UpdateUtils",
+  "resource://gre/modules/UpdateUtils.jsm"
+);
+
+/**
+ * Defines a set of capabilities that can be exposed to content pages. Each
+ * property of the object is a capability. Each capability is an object with an
+ * "execute" function or a remote property. The execute function is called to
+ * execute the capability in the child process. When run "this" will be the
+ * message port. When the capability has a remote property the request to run
+ * the capability is sent to the parent process, a Promise is returned that
+ * completes with the result. Optionally capabilities can include a "validate"
+ * function which is called with the access filter for the current caller and
+ * the arguments to be passed to execute, it should return true to allow the
+ * call to proceed.
+ */
+const RPMChildCapabilities = {
+  RPMGetAppBuildID: {
+    execute() {
+      return Services.appinfo.appBuildID;
+    },
+  },
+
+  RPMGetIntPref: {
+    validate: (aAccess, aPref) => aAccess.includes(aPref),
+    execute(aPref) {
+      return Services.prefs.getIntPref(aPref);
+    },
+  },
+
+  RPMGetStringPref: {
+    validate: (aAccess, aPref) => aAccess.includes(aPref),
+    execute(aPref) {
+      return Services.prefs.getStringPref(aPref);
+    },
+  },
+
+  RPMGetBoolPref: {
+    validate: (aAccess, aPref) => aAccess.includes(aPref),
+    execute(aPref) {
+      return Services.prefs.getBoolPref(aPref);
+    },
+  },
+
+  RPMSetBoolPref: {
+    // For now AsyncPrefs is resonsible for limiting the prefs that can be set.
+    validate: () => true,
+    execute: (aPref, aValue) => {
+      return AsyncPrefs.set(aPref, aValue);
+    },
+  },
+
+  RPMGetFormatURLPref: {
+    validate: (aAccess, aFormatURL) => aAccess.includes(aFormatURL),
+    execute(aFormatURL) {
+      return Services.urlFormatter.formatURLPref(aFormatURL);
+    },
+  },
+
+  RPMIsWindowPrivate: {
+    execute() {
+      return PrivateBrowsingUtils.isContentWindowPrivate(this.window);
+    },
+  },
+
+  RPMGetUpdateChannel: {
+    execute() {
+      return UpdateUtils.UpdateChannel;
+    },
+  },
+
+  RPMGetFxAccountsEndpoint: {
+    remote: true,
+  },
+
+  RPMRecordTelemetryEvent: {
+    execute(category, event, object, value, extra) {
+      return Services.telemetry.recordEvent(
+        category,
+        event,
+        object,
+        value,
+        extra
+      );
+    },
+  },
+
+  RPMAddToHistogram: {
+    execute(histID, bin) {
+      Services.telemetry.getHistogramById(histID).add(bin);
+    },
+  }
+};
+
+// Called to return the capabilities that a principal has access to.
+function getCapabilities(aPrincipal) {
+  // if there is no content principal; deny access to everything.
+  if (!aPrincipal || !aPrincipal.URI) {
+    return [];
+  }
+  let uri = aPrincipal.URI.asciiSpec;
+
+  if (!(uri in RPMAccessMap)) {
+    return [];
+  }
+
+  let capabilities = [];
+  for (let name of Object.keys(RPMAccessMap[uri])) {
+    if (name in RPMChildCapabilities) {
+      capabilities.push(name);
+    } else {
+      Cu.reportError(`Capability allowed for '${uri}' does not exist.`);
+    }
+  }
+
+  return capabilities;
+}
+
+function performChildCapability(aPrincipal, aCapability, aPort, aArgs) {
+  // if there is no content principal; deny access
+  if (!aPrincipal || !aPrincipal.URI) {
+    throw new Error(`Access to ${aCapability} is not allowed for this page.`);
+  }
+  let uri = aPrincipal.URI.asciiSpec;
+
+  if (!(uri in RPMAccessMap)) {
+    throw new Error(`Access to ${aCapability} is denied for ${uri}`);
+  }
+
+  if (!(aCapability in RPMAccessMap[uri])) {
+    throw new Error(`Access to ${aCapability} is denied for ${uri}`);
+  }
+
+  if (!(aCapability in RPMChildCapabilities)) {
+    throw new Error(`Access to ${aCapability} is denied for ${uri}`);
+  }
+
+  let filter = RPMAccessMap[uri][aCapability];
+  let capability = RPMChildCapabilities[aCapability];
+
+  let allowed = !!filter;
+  if ("validate" in capability) {
+    allowed = capability.validate(filter, ...aArgs);
+  }
+
+  if (!allowed) {
+    throw new Error(`Access to ${aCapability} is denied for ${uri}`);
+  }
+
+  if (capability.remote) {
+    return aPort.sendRequest("callCapability", [aCapability, aArgs]);
+  }
+
+  return capability.execute.apply(aPort, aArgs);
+}
 
 // The content side of a message port
 class ChildMessagePort extends MessagePort {
@@ -20,7 +188,7 @@ class ChildMessagePort extends MessagePort {
 
     this.window = window;
 
-    // Add functionality to the content page
+    // Maintained for pages not switched to capabilities.
     Cu.exportFunction(this.sendAsyncMessage.bind(this), window, {
       defineAs: "RPMSendAsyncMessage",
     });
@@ -32,35 +200,40 @@ class ChildMessagePort extends MessagePort {
       defineAs: "RPMRemoveMessageListener",
       allowCallbacks: true,
     });
-    Cu.exportFunction(this.getAppBuildID.bind(this), window, {
-      defineAs: "RPMGetAppBuildID",
-    });
-    Cu.exportFunction(this.getIntPref.bind(this), window, {
-      defineAs: "RPMGetIntPref",
-    });
-    Cu.exportFunction(this.getStringPref.bind(this), window, {
-      defineAs: "RPMGetStringPref",
-    });
-    Cu.exportFunction(this.getBoolPref.bind(this), window, {
-      defineAs: "RPMGetBoolPref",
-    });
-    Cu.exportFunction(this.setBoolPref.bind(this), window, {
-      defineAs: "RPMSetBoolPref",
-    });
-    Cu.exportFunction(this.getFormatURLPref.bind(this), window, {
-      defineAs: "RPMGetFormatURLPref",
-    });
-    Cu.exportFunction(this.isWindowPrivate.bind(this), window, {
-      defineAs: "RPMIsWindowPrivate",
-    });
-    Cu.exportFunction(this.getUpdateChannel.bind(this), window, {
-      defineAs: "RPMGetUpdateChannel",
-    });
-    Cu.exportFunction(this.getFxAccountsEndpoint.bind(this), window, {
-      defineAs: "RPMGetFxAccountsEndpoint",
-    });
-    Cu.exportFunction(this.recordTelemetryEvent.bind(this), window, {
-      defineAs: "RPMRecordTelemetryEvent",
+
+    let principal = window.document.nodePrincipal;
+    let capabilities = getCapabilities(principal);
+
+    capabilities.forEach(capability => {
+      Cu.exportFunction(
+        (...aArgs) => {
+          let result = performChildCapability(
+            principal,
+            capability,
+            this,
+            aArgs
+          );
+
+          const clone = obj => {
+            return Cu.cloneInto(obj, window);
+          };
+
+          // If the result was a promise then wrap it in a promise the content
+          // can access.
+          if (result && typeof result == "object" && "then" in result) {
+            return new window.Promise((resolve, reject) => {
+              result.then(
+                obj => resolve(clone(obj)),
+                obj => reject(clone(obj))
+              );
+            });
+          }
+
+          return clone(result);
+        },
+        window,
+        { defineAs: capability }
+      );
     });
     Cu.exportFunction(this.addToHistogram.bind(this), window, {
       defineAs: "RPMAddToHistogram",
