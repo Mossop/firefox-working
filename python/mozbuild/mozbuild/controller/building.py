@@ -14,6 +14,7 @@ import subprocess
 import sys
 import time
 import which
+import subprocess
 
 from collections import (
     Counter,
@@ -1275,6 +1276,25 @@ class BuildDriver(MozbuildObject):
 
         if status:
             return status
+
+        if self.substs['MOZ_ARTIFACT_BUILDS'] == '1':
+            artifact_json = mozpath.join(self.topobjdir, 'dist', 'artifact.json')
+            try:
+                with open(artifact_json, 'r') as fp:
+                    artifact = json.load(fp)
+                if 'revision' in artifact:
+                    files = []
+                    def line_handler(line):
+                        files.append(line.strip())
+
+                    hg = which.which('hg')
+                    self.run_process([hg, 'status', '--rev', artifact['revision'], '-n', '--include', 're:.*\\.(cpp|rs)$'], cwd=self.topsrcdir, line_handler=line_handler)
+                    if len(files) > 0:
+                        print('Binary sources have changed since the artifact was build, this may affect the functioning of your build.')
+                        print('The following files were changed:')
+                        print('\n'.join(files))
+            except:
+                pass
 
         if monitor.have_resource_usage:
             excessive, swap_in, swap_out = monitor.have_excessive_swapping()
