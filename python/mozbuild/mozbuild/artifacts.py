@@ -50,6 +50,7 @@ import tarfile
 import tempfile
 import urlparse
 import zipfile
+import json
 
 import pylru
 from taskgraph.util.taskcluster import (
@@ -1057,7 +1058,7 @@ see https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Source_Code
             return urls
         return None
 
-    def install_from_file(self, filename, distdir):
+    def install_from_file(self, filename, distdir, pushhead = None):
         self.log(logging.INFO, 'artifact',
                  {'filename': filename},
                  'Installing from {filename}')
@@ -1122,14 +1123,18 @@ see https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Source_Code
                     perms = info.external_attr >> 16  # See http://stackoverflow.com/a/434689.
                     perms |= stat.S_IWUSR | stat.S_IRUSR | stat.S_IRGRP | stat.S_IROTH  # u+w, a+r.
                     os.chmod(n, perms)
+
+        with FileAvoidWrite(mozpath.join(distdir, 'artifact.json')) as fh:
+            fh.write(json.dumps({ 'revision': pushhead }))
+
         return 0
 
-    def install_from_url(self, url, distdir):
+    def install_from_url(self, url, distdir, pushhead = None):
         self.log(logging.INFO, 'artifact',
                  {'url': url},
                  'Installing from {url}')
         filename = self._artifact_cache.fetch(url)
-        return self.install_from_file(filename, distdir)
+        return self.install_from_file(filename, distdir, pushhead)
 
     def _install_from_hg_pushheads(self, hg_pushheads, distdir):
         """Iterate pairs (hg_hash, {tree-set}) associating hg revision hashes
@@ -1151,7 +1156,7 @@ see https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Source_Code
                     urls = self.find_pushhead_artifacts(task_cache, self._job, tree, hg_hash)
                     if urls:
                         for url in urls:
-                            if self.install_from_url(url, distdir):
+                            if self.install_from_url(url, distdir, hg_hash):
                                 return 1
                         return 0
 
