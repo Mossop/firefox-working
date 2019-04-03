@@ -25,6 +25,7 @@ class ProcessChild : public ChildProcess {
 
  public:
   explicit ProcessChild(ProcessId aParentPid);
+  ProcessChild(ProcessId aParentPid, int aFd);
   virtual ~ProcessChild();
 
   virtual bool Init(int aArgc, char* aArgv[]) = 0;

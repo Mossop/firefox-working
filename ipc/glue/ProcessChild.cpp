@@ -29,6 +29,15 @@ ProcessChild::ProcessChild(ProcessId aParentPid)
   gProcessChild = this;
 }
 
+ProcessChild::ProcessChild(ProcessId aParentPid, int aFd)
+    : ChildProcess(new IOThreadChild(aFd)),
+      mUILoop(MessageLoop::current()),
+      mParentPid(aParentPid) {
+  MOZ_ASSERT(mUILoop, "UILoop should be created by now");
+  MOZ_ASSERT(!gProcessChild, "should only be one ProcessChild");
+  gProcessChild = this;
+}
+
 ProcessChild::~ProcessChild() { gProcessChild = nullptr; }
 
 /* static */

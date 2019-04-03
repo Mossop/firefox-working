@@ -196,6 +196,9 @@
 
 #include "InkCollector.h"
 
+#include <propvarutil.h>
+#include <propkey.h>
+
 // ERROR from wingdi.h (below) gets undefined by some code.
 // #define ERROR               0
 // #define RGN_ERROR ERROR
@@ -923,6 +926,7 @@ nsresult nsWindow::Create(nsIWidget* aParent, nsNativeWidget aNativeParent,
       ::PostMessage(mWnd, MOZ_WM_STARTA11Y, 0, 0);
     }
   }
+
   return NS_OK;
 }
 
@@ -3480,9 +3484,11 @@ void nsWindow::SetIcon(const nsAString& aIconSpec) {
   ResolveIconName(aIconSpec, NS_LITERAL_STRING(".ico"),
                   getter_AddRefs(iconFile));
   if (!iconFile) return;
+}
 
+void nsWindow::SetIcon(nsIFile* aFile) {
   nsAutoString iconPath;
-  iconFile->GetPath(iconPath);
+  aFile->GetPath(iconPath);
 
   // XXX this should use MZLU (see bug 239279)
 
@@ -3526,6 +3532,7 @@ void nsWindow::SetIcon(const nsAString& aIconSpec) {
   }
 #endif
 }
+
 
 /**************************************************************
  *

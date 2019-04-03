@@ -267,6 +267,7 @@ class nsBaseWidget : public nsIWidget, public nsSupportsWeakReference {
   }
   virtual bool HasPendingInputEvent() override;
   virtual void SetIcon(const nsAString& aIconSpec) override {}
+  virtual void SetIcon(nsIFile* aFile) override {}
   virtual void SetDrawsInTitlebar(bool aState) override {}
   virtual bool ShowsResizeIndicator(LayoutDeviceIntRect* aResizerRect) override;
   virtual void FreeNativeData(void* data, uint32_t aDataType) override {}

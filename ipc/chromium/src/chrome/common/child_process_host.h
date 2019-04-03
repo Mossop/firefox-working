@@ -36,6 +36,10 @@ class ChildProcessHost : public IPC::Channel::Listener {
   // Creates the IPC channel.  Returns true iff it succeeded.
   bool CreateChannel();
 
+#if defined(OS_POSIX)
+  bool CreateChannel(int aFd);
+#endif
+
   bool CreateChannel(mozilla::ipc::FileDescriptor& aFileDescriptor);
 
   // IPC::Channel::Listener implementation:

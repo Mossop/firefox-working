@@ -11,6 +11,8 @@ interface nsIRunnable;
 interface nsIPrincipal;
 interface nsIContentSecurityPolicy;
 interface nsIReferrerInfo;
+interface mozIDOMWindowProxy;
+interface nsIArray;
 
 webidl Node;
 
@@ -66,6 +68,10 @@ interface nsIWebBrowserChrome3 : nsIWebBrowserChrome2
                      in nsIContentSecurityPolicy aCsp);
 
   bool shouldLoadURIInThisProcess(in nsIURI aURI);
+
+  mozIDOMWindowProxy onBeforeOpenWindow(in mozIDOMWindowProxy parent,
+      in nsIURI uriToLoad, in AString name, in ACString features,
+      in nsIArray args, in bool calledFromJS, in bool isPopupSpam);
 
   /**
    * Attempts to load the currently loaded page into a fresh process to increase

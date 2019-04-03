@@ -89,6 +89,7 @@ nsIWidget* nsWebBrowser::EnsureWidget() {
   LayoutDeviceIntRect bounds(0, 0, 0, 0);
 
   mInternalWidget->SetWidgetListener(&mWidgetListenerDelegate);
+  printf("*** Creating webbrowser widget.\n");
   NS_ENSURE_SUCCESS(mInternalWidget->Create(nullptr, mParentNativeWindow,
                                             bounds, &widgetInit),
                     nullptr);

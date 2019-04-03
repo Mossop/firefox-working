@@ -106,6 +106,10 @@ class Bootstrap {
   virtual nsresult XRE_InitChildProcess(int argc, char* argv[],
                                         const XREChildData* aChildData) = 0;
 
+#ifdef XP_MACOSX
+  virtual nsresult XRE_InitPWAProcess(const char* uuid, int argc, char* argv[]) = 0;
+#endif
+
   virtual void XRE_EnableSameExecutableForContentProc() = 0;
 
 #ifdef MOZ_WIDGET_ANDROID

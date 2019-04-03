@@ -135,6 +135,11 @@
   list-style-image: url("chrome://browser/skin/bookmarks-toolbar.svg");
 }
 
+#appMenu-pwa-button {
+  list-style-image: url("chrome://browser/skin/pwa/pwa-button.png");
+}
+
+#appMenu-library-bookmarks-button,
 #panelMenuBookmarkThisPage {
   list-style-image: url("chrome://browser/skin/bookmark-hollow.svg");
 }

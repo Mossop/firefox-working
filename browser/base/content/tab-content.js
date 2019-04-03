@@ -19,6 +19,14 @@ ChromeUtils.defineModuleGetter(
   "BrowserUtils",
   "resource://gre/modules/BrowserUtils.jsm"
 );
+ChromeUtils.defineModuleGetter(
+  this,
+  "PWAService",
+  Services.appinfo.processType == Services.appinfo.PROCESS_TYPE_DEFAULT
+    ? "resource:///modules/PWAService.jsm"
+    : "resource:///modules/PWAServiceChild.jsm"
+);
+/* global PWAService */
 
 var { ActorManagerChild } = ChromeUtils.import(
   "resource://gre/modules/ActorManagerChild.jsm"
@@ -40,6 +48,16 @@ if (Services.prefs.getBoolPref("browser.translation.detectLanguage")) {
 
 var WebBrowserChrome = {
   onBeforeLinkTraversal(originalTarget, linkURI, linkNode, isAppTab) {
+    let target = PWAService.onBeforeLinkTraversal(
+      null,
+      originalTarget,
+      linkURI,
+      linkNode,
+      isAppTab
+    );
+    if (target != originalTarget) {
+      return target;
+    }
     return BrowserUtils.onBeforeLinkTraversal(
       originalTarget,
       linkURI,
@@ -57,7 +75,21 @@ var WebBrowserChrome = {
     aTriggeringPrincipal,
     aCsp
   ) {
-    if (!E10SUtils.shouldLoadURI(aDocShell, aURI, aHasPostData)) {
+    if (
+      !PWAService.shouldLoadURI(
+        null,
+        aDocShell,
+        aURI,
+        aReferrerInfo,
+        aHasPostData,
+        aTriggeringPrincipal,
+        aCsp
+      )
+    ) {
+      return false;
+    }
+
+    if (!E10SUtils.shouldLoadURI(aDocShell, aURI, aReferrerInfo, aHasPostData)) {
       E10SUtils.redirectLoad(
         aDocShell,
         aURI,
@@ -99,6 +131,41 @@ var WebBrowserChrome = {
     );
     return true;
   },
+
+  onBeforeOpenWindow(
+    parent,
+    uriToLoad,
+    name,
+    features,
+    args,
+    calledFromJS,
+    isPopupSpam
+  ) {
+    return PWAService.onBeforeOpenWindow(
+      null,
+      parent,
+      uriToLoad,
+      name,
+      features,
+      args,
+      calledFromJS,
+      isPopupSpam
+    );
+  },
+
+  loadURI(uri, where, flags, triggeringPrincipal) {
+    return PWAService.loadURI(
+      this._pwa,
+      uri,
+      where,
+      flags,
+      triggeringPrincipal
+    );
+  },
+
+  handleLoadError(uri, error, errorModule) {
+    return null;
+  },
 };
 
 if (Services.appinfo.processType == Services.appinfo.PROCESS_TYPE_CONTENT) {
@@ -107,6 +174,8 @@ if (Services.appinfo.processType == Services.appinfo.PROCESS_TYPE_CONTENT) {
     .getInterface(Ci.nsIBrowserChild);
   tabchild.webBrowserChrome = WebBrowserChrome;
 }
+
+docShell.loadURIDelegate = WebBrowserChrome;
 
 Services.obs.notifyObservers(this, "tab-content-frameloader-created");
 

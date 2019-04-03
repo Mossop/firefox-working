@@ -432,6 +432,7 @@ already_AddRefed<nsIWidget> nsBaseWidget::CreateChild(
     widget = nsIWidget::CreateChildWindow();
   }
 
+  printf("*** CreateChild.\n");
   if (widget &&
       NS_SUCCEEDED(widget->Create(parent, nativeParent, aRect, aInitData))) {
     return widget.forget();

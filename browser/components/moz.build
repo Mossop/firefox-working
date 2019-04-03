@@ -48,6 +48,7 @@ DIRS += [
     'privatebrowsing',
     'protections',
     'protocolhandler',
+    'pwa',
     'resistfingerprinting',
     'search',
     'sessionstore',

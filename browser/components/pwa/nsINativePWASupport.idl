@@ -1,0 +1,48 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "nsISupports.idl"
+
+interface nsIArray;
+interface nsIFile;
+interface nsIURI;
+
+[scriptable, uuid(3589588a-3869-4309-8873-ee1102eb0af2)]
+interface nsIPWAIcon: nsISupports
+{
+  readonly attribute AUTF8String src;
+  readonly attribute AUTF8String type;
+};
+
+[scriptable, uuid(9bd49bac-ad8e-4745-9e97-32fed1e69584)]
+interface nsIPWA: nsISupports
+{
+  readonly attribute AUTF8String id;
+
+  readonly attribute AUTF8String name;
+
+  readonly attribute nsIArray icons;
+};
+
+[scriptable, uuid(bb9465e8-1fac-4e74-bc5f-0e9dffedda6e)]
+interface nsIPWALoadInfo : nsISupports
+{
+  readonly attribute AUTF8String uri;
+};
+
+[scriptable, uuid(fb9b59db-5a91-4e67-92b6-35e7d6e6d3fd)]
+interface nsIPWAWindow : nsISupports
+{
+  void load(in nsIPWALoadInfo loadInfo);
+};
+
+[scriptable, uuid(2945439e-3f5f-44ce-9981-d993db25f4a0)]
+interface nsINativePWASupport : nsISupports
+{
+  [implicit_jscontext]
+  Promise install(in nsIPWA pwa, in nsIFile dir);
+
+  [implicit_jscontext]
+  Promise load(in nsIPWA pwa, in nsIFile dir, [optional] in nsIPWALoadInfo loadInfo);
+};

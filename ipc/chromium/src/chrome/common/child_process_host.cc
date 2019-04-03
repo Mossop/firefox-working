@@ -36,6 +36,18 @@ bool ChildProcessHost::CreateChannel() {
   return true;
 }
 
+#if defined(OS_POSIX)
+bool ChildProcessHost::CreateChannel(int aFd) {
+  channel_.reset(
+      new IPC::Channel(aFd, IPC::Channel::MODE_SERVER, &listener_));
+  if (!channel_->Connect()) return false;
+
+  opening_channel_ = true;
+
+  return true;
+}
+#endif
+
 bool ChildProcessHost::CreateChannel(FileDescriptor& aFileDescriptor) {
   if (channel_.get()) {
     channel_->Close();

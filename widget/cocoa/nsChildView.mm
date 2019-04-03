@@ -123,6 +123,8 @@ using namespace mozilla::layers;
 using namespace mozilla::gl;
 using namespace mozilla::widget;
 
+using mozilla::pwa::RemoteWindow;
+
 using mozilla::gfx::Matrix4x4;
 
 #undef DEBUG_UPDATE
@@ -171,14 +173,17 @@ static NSMutableDictionary* sNativeKeyEventsMap = [NSMutableDictionary dictionar
 
 // The view that will do our drawing or host our NSOpenGLContext or Core Animation layer.
 @interface PixelHostingView : NSView {
+ @private
+  CALayer* mLayer;
 }
 
+- (id)initWithFrame:(NSRect)aRect layer:(CALayer*)inLayer;
 @end
 
 @interface ChildView (Private)
 
 // sets up our view, attaching it to its owning gecko view
-- (id)initWithFrame:(NSRect)inFrame geckoChild:(nsChildView*)inChild;
+- (id)initWithFrame:(NSRect)inFrame geckoChild:(nsChildView*)inChild layer:(CALayer*)inLayer;
 
 // set up a gecko mouse event based on a cocoa mouse event
 - (void)convertCocoaMouseWheelEvent:(NSEvent*)aMouseEvent
@@ -415,16 +420,41 @@ nsresult nsChildView::Create(nsIWidget* aParent, nsNativeWidget aNativeParent,
     mParentView = reinterpret_cast<NSView*>(aNativeParent);
   }
 
+  RefPtr<RemoteWindow> remoteWindow = nullptr;
+  id windowDelegate = [[mParentView window] delegate];
+  if (windowDelegate && [windowDelegate isKindOfClass:[WindowDelegate class]]) {
+    RefPtr<nsCocoaWindow> parentWindow = [(WindowDelegate*)windowDelegate geckoWidget];
+    if (parentWindow) {
+      remoteWindow = parentWindow->GetRemoteWindow();
+    }
+  }
+
+  printf("*** Creating child %p %p\n", this, remoteWindow.get());
+
   // create our parallel NSView and hook it up to our parent. Recall
   // that NS_NATIVE_WIDGET is the NSView.
   CGFloat scaleFactor = nsCocoaUtils::GetBackingScaleFactor(mParentView);
   NSRect r = nsCocoaUtils::DevPixelsToCocoaPoints(mBounds, scaleFactor);
-  mView = [[ChildView alloc] initWithFrame:r geckoChild:this];
+
+  if (remoteWindow) {
+    CALayer* rootLayer = [CALayer layer];
+    [rootLayer setBounds:r];
+    [rootLayer setContentsScale:scaleFactor];
+    [rootLayer setContentsGravity:kCAGravityTopLeft];
+    mView = [[ChildView alloc] initWithFrame:r geckoChild:this layer:rootLayer];
+    mRemoteView = remoteWindow->CreateChildView(mBounds, rootLayer);
+  } else {
+    mView = [[ChildView alloc] initWithFrame:r geckoChild:this layer:nullptr];
+  }
 
   if (StaticPrefs::gfx_core_animation_enabled_AtStartup()) {
     mNativeLayerRoot = NativeLayerRootCA::CreateForCALayer([mView rootCALayer]);
     mNativeLayerRoot->SetBackingScale(scaleFactor);
   }
+
+  // if (remoteWindow) {
+  //   mRemoteView = remoteWindow->CreateChildView(mBounds, [mView rootCALayer]);
+  // }
 
   // If this view was created in a Gecko view hierarchy, the initial state
   // is hidden.  If the view is attached only to a native NSView but has
@@ -1412,6 +1442,9 @@ bool nsChildView::PaintWindow(LayoutDeviceIntRegion aRegion) {
   if (listener) {
     listener->DidPaintWindow();
   }
+//  if (mRemoteView) {
+//    Unused << mRemoteView->SendPaintWindow();
+//  }
 
   mIsDispatchPaint = oldDispatchPaint;
   return returnValue;
@@ -3108,7 +3141,7 @@ NSEvent* gLastDragMouseDownEvent = nil;  // [strong]
 }
 
 // initWithFrame:geckoChild:
-- (id)initWithFrame:(NSRect)inFrame geckoChild:(nsChildView*)inChild {
+- (id)initWithFrame:(NSRect)inFrame geckoChild:(nsChildView*)inChild layer:(CALayer*)inLayer {
   NS_OBJC_BEGIN_TRY_ABORT_BLOCK_NIL;
 
   if ((self = [super initWithFrame:inFrame])) {
@@ -3143,7 +3176,7 @@ NSEvent* gLastDragMouseDownEvent = nil;  // [strong]
     [self addSubview:mNonDraggableViewsContainer];
     [self addSubview:mVibrancyViewsContainer];
 
-    mPixelHostingView = [[PixelHostingView alloc] initWithFrame:[self bounds]];
+    mPixelHostingView = [[PixelHostingView alloc] initWithFrame:[self bounds] layer:inLayer];
     [mPixelHostingView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
 
     [self addSubview:mPixelHostingView];
@@ -6201,15 +6234,27 @@ nsresult nsChildView::GetSelectionAsPlaintext(nsAString& aResult) {
 
 @implementation PixelHostingView
 
-- (id)initWithFrame:(NSRect)aRect {
+- (id)initWithFrame:(NSRect)aRect layer:(CALayer*)inLayer {
   self = [super initWithFrame:aRect];
 
   if (StaticPrefs::gfx_core_animation_enabled_AtStartup()) {
     self.wantsLayer = YES;
+    if (inLayer) {
+      mLayer = [inLayer retain];
+    } else {
+      mLayer = nullptr;
+    }
     self.layerContentsRedrawPolicy = NSViewLayerContentsRedrawDuringViewResize;
   }
 
   return self;
+}
+
+- (CALayer*) layer {
+  if (mLayer) {
+    return mLayer;
+  }
+  return [super layer];
 }
 
 - (BOOL)isFlipped {

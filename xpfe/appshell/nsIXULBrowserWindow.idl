@@ -16,6 +16,8 @@ interface nsIPrincipal;
 interface mozIDOMWindowProxy;
 interface nsIContentSecurityPolicy;
 interface nsIReferrerInfo;
+interface mozIDOMWindowProxy;
+interface nsIArray;
 
 webidl Element;
 webidl Node;
@@ -74,6 +76,11 @@ interface nsIXULBrowserWindow : nsISupports
                      in boolean                  aHasPostData,
                      in nsIPrincipal             aTriggeringPrincipal,
                      in nsIContentSecurityPolicy aCsp);
+
+  mozIDOMWindowProxy onBeforeOpenWindow(in mozIDOMWindowProxy parent,
+      in nsIURI uriToLoad, in AString name, in ACString features,
+      in nsIArray args, in bool calledFromJS, in bool isPopupSpam);
+
   /**
    * Show/hide a tooltip (when the user mouses over a link, say).
    */

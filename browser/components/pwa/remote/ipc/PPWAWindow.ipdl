@@ -1,0 +1,27 @@
+/* -*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+include protocol PPWA;
+include protocol PPWAChildView;
+
+using LayoutDeviceIntRect from "Units.h";
+
+namespace mozilla {
+namespace pwa {
+
+async protocol PPWAWindow
+{
+  manager PPWA;
+  manages PPWAChildView;
+
+child:
+  async PPWAChildView(LayoutDeviceIntRect bounds, uint32_t layerContextId);
+  async __delete__();
+
+  async SetTitle(nsString title);
+};
+
+} // namespace pwa
+} // namespace mozilla

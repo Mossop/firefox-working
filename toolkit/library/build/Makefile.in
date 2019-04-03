@@ -18,3 +18,11 @@ PGO_LDFLAGS += -ORDER:@$(topsrcdir)/build/win64/orderfile.txt
 endif
 endif
 endif
+
+ifeq (cocoa,$(MOZ_WIDGET_TOOLKIT))
+libs:: XUL
+	install_name_tool -change @executable_path/libmozglue.dylib @loader_path/libmozglue.dylib \
+	                  -change @executable_path/libnss3.dylib @loader_path/libnss3.dylib \
+	                  -change @executable_path/liblgpllibs.dylib @loader_path/liblgpllibs.dylib \
+	                  XUL
+endif

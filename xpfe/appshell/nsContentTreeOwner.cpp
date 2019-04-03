@@ -378,6 +378,23 @@ NS_IMETHODIMP nsContentTreeOwner::ShouldLoadURI(
   return NS_OK;
 }
 
+NS_IMETHODIMP nsContentTreeOwner::OnBeforeOpenWindow(
+      mozIDOMWindowProxy* aParent, nsIURI* aUriToLoad, const nsAString& aName,
+      const nsACString& aFeatures, nsIArray* aArgs, bool aCalledFromJS,
+      bool aIsPopupSpam, mozIDOMWindowProxy** aRetVal) {
+  NS_ENSURE_STATE(mXULWindow);
+
+  nsCOMPtr<nsIXULBrowserWindow> xulBrowserWindow;
+  mXULWindow->GetXULBrowserWindow(getter_AddRefs(xulBrowserWindow));
+
+  if (xulBrowserWindow) {
+    return xulBrowserWindow->OnBeforeOpenWindow(aParent, aUriToLoad, aName,
+        aFeatures, aArgs, aCalledFromJS, aIsPopupSpam, aRetVal);
+  }
+
+  return NS_OK;
+}
+
 NS_IMETHODIMP nsContentTreeOwner::ShouldLoadURIInThisProcess(nsIURI* aURI,
                                                              bool* aRetVal) {
   MOZ_ASSERT_UNREACHABLE("Should only be called in child process.");

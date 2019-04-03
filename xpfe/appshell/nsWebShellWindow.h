@@ -84,7 +84,7 @@ class nsWebShellWindow final : public nsXULWindow,
                       int32_t aInitialHeight, bool aIsHiddenWindow,
                       nsIRemoteTab* aOpeningTab,
                       mozIDOMWindowProxy* aOpenerWIndow,
-                      nsWidgetInitData& widgetInitData);
+                      nsWidgetInitData& widgetInitData, uint32_t aRemoteId);
 
   nsresult Toolbar();
 

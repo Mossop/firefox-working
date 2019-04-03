@@ -42,6 +42,7 @@
 #include "nsIURI.h"
 #include "nsIWebBrowser.h"
 #include "nsIWebBrowserChrome.h"
+#include "nsIWebBrowserChrome3.h"
 #include "nsIWebNavigation.h"
 #include "nsIWindowCreator.h"
 #include "nsIXPConnect.h"
@@ -408,7 +409,7 @@ static bool CheckUserContextCompatibility(nsIDocShell* aDocShell) {
   return subjectPrincipal->GetUserContextId() == userContextId;
 }
 nsresult nsWindowWatcher::CreateChromeWindow(
-    const nsACString& aFeatures, nsIWebBrowserChrome* aParentChrome,
+    uint32_t aRemoteId, const nsACString& aFeatures, nsIWebBrowserChrome* aParentChrome,
     uint32_t aChromeFlags, nsIRemoteTab* aOpeningBrowserParent,
     mozIDOMWindowProxy* aOpener, uint64_t aNextRemoteTabId,
     nsIWebBrowserChrome** aResult) {
@@ -419,7 +420,7 @@ nsresult nsWindowWatcher::CreateChromeWindow(
   bool cancel = false;
   nsCOMPtr<nsIWebBrowserChrome> newWindowChrome;
   nsresult rv = mWindowCreator->CreateChromeWindow(
-      aParentChrome, aChromeFlags, aOpeningBrowserParent, aOpener,
+      aParentChrome, aRemoteId, aChromeFlags, aOpeningBrowserParent, aOpener,
       aNextRemoteTabId, &cancel, getter_AddRefs(newWindowChrome));
 
   if (NS_SUCCEEDED(rv) && cancel) {
@@ -532,7 +533,7 @@ nsWindowWatcher::OpenWindowWithRemoteTab(
   nsCOMPtr<nsIWebBrowserChrome> parentChrome(do_GetInterface(parentTreeOwner));
   nsCOMPtr<nsIWebBrowserChrome> newWindowChrome;
 
-  CreateChromeWindow(aFeatures, parentChrome, chromeFlags,
+  CreateChromeWindow(0, aFeatures, parentChrome, chromeFlags,
                      aForceNoOpener ? nullptr : aRemoteTab, nullptr,
                      aNextRemoteTabId, getter_AddRefs(newWindowChrome));
 
@@ -643,8 +644,25 @@ nsresult nsWindowWatcher::OpenWindowInternal(
     features.SetIsVoid(true);
   }
 
-  RefPtr<BrowsingContext> parentBC(
-      parentWindow ? parentWindow->GetBrowsingContext() : nullptr);
+  // Call the chrome window to ask if it can supply a window to use.
+  // TODO XXX
+
+  nsCOMPtr<mozIDOMWindowProxy> suppliedWindow;
+  nsCOMPtr<nsIWebBrowserChrome3> parentChrome(do_GetInterface(parentTreeOwner));
+  if (parentChrome) {
+    rv = parentChrome->OnBeforeOpenWindow(aParent, uriToLoad, name, features, aArgv, aCalledFromJS, aIsPopupSpam, getter_AddRefs(suppliedWindow));
+    if (rv == NS_ERROR_ABORT) {
+      return NS_OK;
+    }
+    NS_ENSURE_SUCCESS(rv, rv);
+  }
+
+  RefPtr<BrowsingContext> parentBC(nullptr);
+  if (suppliedWindow) {
+    parentBC = nsPIDOMWindowOuter::From(suppliedWindow)->GetBrowsingContext();
+  } else if (parentWindow) {
+    parentBC = parentWindow->GetBrowsingContext();
+  }
 
   // Return null for any attempt to trigger a load from a discarded browsing
   // context. The spec is non-normative, and doesn't specify what should happen
@@ -720,6 +738,7 @@ nsresult nsWindowWatcher::OpenWindowInternal(
 
   SizeSpec sizeSpec;
   CalcSizeSpec(features, sizeSpec);
+  uint32_t remoteId = GetRemoteId(features);
 
   // XXXbz Why is an AutoJSAPI good enough here?  Wouldn't AutoEntryScript (so
   // we affect the entry global) make more sense?  Or do we just want to affect
@@ -840,9 +859,6 @@ nsresult nsWindowWatcher::OpenWindowInternal(
     windowIsNew = true;
     isNewToplevelWindow = true;
 
-    nsCOMPtr<nsIWebBrowserChrome> parentChrome(
-        do_GetInterface(parentTreeOwner));
-
     // is the parent (if any) modal? if so, we must be, too.
     bool weAreModal = (chromeFlags & nsIWebBrowserChrome::CHROME_MODAL) != 0;
     newWindowShouldBeModal = weAreModal;
@@ -903,7 +919,7 @@ nsresult nsWindowWatcher::OpenWindowInternal(
          that the downstream consumer can treat the indicator to mean simply
          that the new window is subject to popup control. */
       mozIDOMWindowProxy* openerWindow = aForceNoOpener ? nullptr : aParent;
-      rv = CreateChromeWindow(features, parentChrome, chromeFlags, nullptr,
+      rv = CreateChromeWindow(remoteId, features, parentChrome, chromeFlags, nullptr,
                               openerWindow, 0, getter_AddRefs(newChrome));
 
       if (parentTopInnerWindow) {
@@ -2028,6 +2044,17 @@ already_AddRefed<BrowsingContext> nsWindowWatcher::GetBrowsingContextByName(
   }
 
   return foundContext.forget();
+}
+
+// static
+uint32_t nsWindowWatcher::GetRemoteId(const nsACString& aFeatures) {
+  bool present = false;
+  uint32_t remoteId = WinHasOption(aFeatures, "remoteid", 0, &present);
+  if (present) {
+    return remoteId;
+  } else {
+    return 0;
+  }
 }
 
 // static
