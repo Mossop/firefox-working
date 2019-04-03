@@ -418,6 +418,12 @@ bin/libfreebl_64int_3.so
 #endif
 #endif
 
+#ifdef XP_MACOSX
+; [ PWA support ]
+;
+@BINPATH@/libpwa.dylib
+#endif
+
 ; [ Ping Sender ]
 ;
 @BINPATH@/pingsender@BIN_SUFFIX@

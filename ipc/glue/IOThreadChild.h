@@ -19,7 +19,12 @@ class IOThreadChild : public ChildThread {
  public:
   IOThreadChild()
       : ChildThread(base::Thread::Options(MessageLoop::TYPE_IO,
-                                          0))  // stack size
+                                          0), -1)  // stack size
+  {}
+
+  explicit IOThreadChild(int aFd)
+      : ChildThread(base::Thread::Options(MessageLoop::TYPE_IO,
+                                          0), aFd)  // stack size
   {}
 
   ~IOThreadChild() {}

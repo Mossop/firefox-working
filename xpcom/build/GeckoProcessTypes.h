@@ -38,3 +38,5 @@ GECKO_PROCESS_TYPE(RDD, "rdd", RDD, Self)
 GECKO_PROCESS_TYPE(Socket, "socket", Socket, Self)
 GECKO_PROCESS_TYPE(RemoteSandboxBroker, "sandboxbroker", RemoteSandboxBroker,
                    PluginContainer)
+// PWAs
+GECKO_PROCESS_TYPE(PWA, "pwa", PWA, PluginContainer)

@@ -151,6 +151,7 @@ class nsWindow final : public nsBaseWidget {
   virtual void* GetNativeData(uint32_t aDataType) override;
   virtual nsresult SetTitle(const nsAString& aTitle) override;
   virtual void SetIcon(const nsAString& aIconSpec) override;
+  virtual void SetIcon(nsIFile* aFile) override;
   virtual void SetWindowClass(const nsAString& xulWinType) override;
   virtual LayoutDeviceIntPoint WidgetToScreenOffset() override;
   virtual void CaptureMouse(bool aCapture) override;

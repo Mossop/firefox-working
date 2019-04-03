@@ -101,7 +101,7 @@ nsresult nsWebShellWindow::Initialize(
     nsIXULWindow* aParent, nsIXULWindow* aOpener, nsIURI* aUrl,
     int32_t aInitialWidth, int32_t aInitialHeight, bool aIsHiddenWindow,
     nsIRemoteTab* aOpeningTab, mozIDOMWindowProxy* aOpenerWindow,
-    nsWidgetInitData& widgetInitData) {
+    nsWidgetInitData& widgetInitData, uint32_t aRemoteId) {
   nsresult rv;
   nsCOMPtr<nsIWidget> parentWidget;
 
@@ -136,6 +136,10 @@ nsresult nsWebShellWindow::Initialize(
   // Create top level window
   if (gfxPlatform::IsHeadless()) {
     mWindow = nsIWidget::CreateHeadlessWidget();
+#ifdef XP_MACOSX
+  } else if (aRemoteId) {
+    mWindow = nsIWidget::CreateRemoteWidget(aRemoteId);
+#endif
   } else {
     mWindow = nsIWidget::CreateTopLevelWindow();
   }

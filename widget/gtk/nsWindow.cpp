@@ -1982,6 +1982,17 @@ void nsWindow::SetIcon(const nsAString& aIconSpec) {
   }
 }
 
+void nsWindow::SetIcon(nsIFile* aFile) {
+  aFile->GetNativePath(path);
+  GdkPixbuf *icon = gdk_pixbuf_new_from_file(path.get(), nullptr);
+  if (icon) {
+    gtk_icon_theme_add_builtin_icon(path.get(),
+                                    gdk_pixbuf_get_height(icon), icon);
+    g_object_unref(icon);
+    gtk_window_set_icon_name(GTK_WINDOW(mShell), path.get());
+  }
+}
+
 LayoutDeviceIntPoint nsWindow::WidgetToScreenOffset() {
   gint x = 0, y = 0;
 

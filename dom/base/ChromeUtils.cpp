@@ -694,6 +694,7 @@ static WebIDLProcType ProcTypeToWebIDL(mozilla::ProcType aType) {
     PROCTYPE_TO_WEBIDL_CASE(Socket, Socket);
     PROCTYPE_TO_WEBIDL_CASE(RemoteSandboxBroker, RemoteSandboxBroker);
     PROCTYPE_TO_WEBIDL_CASE(Unknown, Unknown);
+    PROCTYPE_TO_WEBIDL_CASE(PWA, Pwa);
   }
 
   MOZ_ASSERT(false, "Unhandled case in ProcTypeToWebIDL");

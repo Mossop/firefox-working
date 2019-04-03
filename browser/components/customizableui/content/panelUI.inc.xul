@@ -327,6 +327,11 @@
                          tooltip="dynamic-shortcut-tooltip"/>
         </toolbaritem>
         <toolbarseparator/>
+        <toolbarbutton id="appMenu-pwa-button"
+                       class="subviewbutton subviewbutton-iconic subviewbutton-nav"
+                       label="Web Applications"
+                       closemenu="none"
+                       oncommand="PWAHandler.showList(this, event);"/>
         <toolbarbutton id="appMenu-library-button"
                        class="subviewbutton subviewbutton-iconic subviewbutton-nav"
                        label="&places.library.title;"
@@ -633,6 +638,10 @@
 
     <panelview id="PanelUI-containers" flex="1">
       <vbox id="PanelUI-containersItems"/>
+    </panelview>
+
+    <panelview id="PanelUI-pwa" class="PanelUI-subView">
+      <vbox id="pwa-list" class="panel-subview-body"/>
     </panelview>
 
     <panelview id="PanelUI-helpView" flex="1" class="PanelUI-subView">

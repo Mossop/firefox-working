@@ -208,7 +208,7 @@ bool WinTaskbar::GetAppUserModelID(nsAString& aDefaultGroupId) {
   bool useProfile = Preferences::GetBool("taskbar.grouping.useprofile", false);
   if (useProfile) {
     nsCOMPtr<nsIFile> profileDir;
-    NS_GetSpecialDirectory(NS_APP_USER_PROFILE_50_DIR,
+    NS_GetSpecialDirectory(NS_APP_PROFILE_DIR_STARTUP,
                            getter_AddRefs(profileDir));
     bool exists = false;
     if (profileDir && NS_SUCCEEDED(profileDir->Exists(&exists)) && exists) {
@@ -263,8 +263,6 @@ bool WinTaskbar::GetAppUserModelID(nsAString& aDefaultGroupId) {
   }
 
   return !aDefaultGroupId.IsEmpty();
-
-  return true;
 }
 
 NS_IMETHODIMP

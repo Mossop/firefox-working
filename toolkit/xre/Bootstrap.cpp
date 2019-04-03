@@ -67,6 +67,12 @@ class BootstrapImpl final : public Bootstrap {
     return ::XRE_InitChildProcess(argc, argv, aChildData);
   }
 
+#ifdef XP_MACOSX
+  virtual nsresult XRE_InitPWAProcess(const char* uuid, int argc, char* argv[]) override {
+    return ::XRE_InitPWAProcess(uuid, argc, argv);
+  }
+#endif
+
   virtual void XRE_EnableSameExecutableForContentProc() override {
     ::XRE_EnableSameExecutableForContentProc();
   }

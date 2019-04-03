@@ -35,6 +35,7 @@ enum class ProcType {
   RDD,
   Socket,
   RemoteSandboxBroker,
+  PWA,
   // Unknown type of process
   Unknown,
   Max = Unknown,

@@ -17,7 +17,7 @@ class ResourceDispatcher;
 class ChildThread : public IPC::Channel::Listener, public base::Thread {
  public:
   // Creates the thread.
-  explicit ChildThread(Thread::Options options);
+  explicit ChildThread(Thread::Options options, int fd = -1);
   virtual ~ChildThread();
 
  protected:
@@ -48,6 +48,7 @@ class ChildThread : public IPC::Channel::Listener, public base::Thread {
   mozilla::UniquePtr<IPC::Channel> channel_;
 
   Thread::Options options_;
+  int fd_;
 
   DISALLOW_EVIL_CONSTRUCTORS(ChildThread);
 };

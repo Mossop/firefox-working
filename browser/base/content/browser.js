@@ -57,6 +57,7 @@ XPCOMUtils.defineLazyModuleGetters(this, {
   PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
   ProcessHangMonitor: "resource:///modules/ProcessHangMonitor.jsm",
   PromiseUtils: "resource://gre/modules/PromiseUtils.jsm",
+  PWAService: "resource:///modules/PWAService.jsm",
   // TODO (Bug 1529552): Remove once old urlbar code goes away.
   ReaderMode: "resource://gre/modules/ReaderMode.jsm",
   ReaderParent: "resource:///modules/ReaderParent.jsm",
@@ -4147,6 +4148,66 @@ var newWindowButtonObserver = {
     }
   },
 };
+
+var PWAHandler = {
+  manifests: new WeakMap(),
+  tabIcons: new WeakMap(),
+  richIcons: new WeakMap(),
+
+  showList(node, triggerEvent) {
+    let list = document.getElementById("pwa-list");
+    while (list.lastElementChild) {
+      list.lastElementChild.remove();
+    }
+
+    let pwas = PWAService.list();
+    pwas.forEach(pwa => {
+      let icon = pwa.getIcon(48);
+
+      let button = document.createXULElement("toolbarbutton");
+      button.className = "subviewbutton";
+      button.setAttribute("label", pwa.name);
+      if (icon) {
+        button.classList.add("subviewbutton-iconic");
+        button.setAttribute("image", icon);
+      }
+      list.appendChild(button);
+      button.addEventListener("command", () => {
+        pwa.open();
+      });
+    });
+
+    PanelUI.showSubView("PanelUI-pwa", node, triggerEvent);
+  },
+
+  getBrowserInfo(browser) {
+    return {
+      url: this.manifests.get(browser),
+      tabIcon: this.tabIcons.get(browser),
+      richIcon: this.richIcons.get(browser),
+    };
+  },
+
+  registerManifest(browser, manifestURL) {
+    this.manifests.set(browser, manifestURL);
+  },
+
+  setIcon(browser, iconURL, canUseForTab) {
+    let map = canUseForTab ? this.tabIcons : this.richIcons;
+
+    // Only record the first found icon for the page.
+    if (!map.has(browser)) {
+      map.set(browser, iconURL);
+    }
+  },
+
+  onLocationChange(browser) {
+    this.manifests.delete(browser);
+    this.tabIcons.delete(browser);
+    this.richIcons.delete(browser);
+  },
+};
+
 const DOMEventHandler = {
   init() {
     let mm = window.messageManager;
@@ -4154,6 +4215,7 @@ const DOMEventHandler = {
     mm.addMessageListener("Link:SetIcon", this);
     mm.addMessageListener("Link:SetFailedIcon", this);
     mm.addMessageListener("Link:AddSearch", this);
+    mm.addMessageListener("Link:Manifest", this);
   },
 
   receiveMessage(aMsg) {
@@ -4184,6 +4246,10 @@ const DOMEventHandler = {
       case "Link:AddSearch":
         this.addSearch(aMsg.target, aMsg.data.engine, aMsg.data.url);
         break;
+
+      case "Link:Manifest":
+        PWAHandler.registerManifest(aMsg.target, aMsg.data.href);
+        break;
     }
   },
 
@@ -4211,6 +4277,8 @@ const DOMEventHandler = {
     if (!tab) {
       return;
     }
+
+    PWAHandler.setIcon(aBrowser, aIconURL, aCanUseForTab);
 
     if (aCanUseForTab) {
       this.clearPendingIcon(aBrowser);
@@ -5402,6 +5470,16 @@ var XULBrowserWindow = {
 
   // Called before links are navigated to to allow us to retarget them if needed.
   onBeforeLinkTraversal(originalTarget, linkURI, linkNode, isAppTab) {
+    let target = PWAService.onBeforeLinkTraversal(
+      null,
+      originalTarget,
+      linkURI,
+      linkNode,
+      isAppTab
+    );
+    if (target != originalTarget) {
+      return target;
+    }
     return BrowserUtils.onBeforeLinkTraversal(
       originalTarget,
       linkURI,
@@ -5419,6 +5497,20 @@ var XULBrowserWindow = {
     aTriggeringPrincipal,
     aCsp
   ) {
+    if (
+      !PWAService.shouldLoadURI(
+        null,
+        aDocShell,
+        aURI,
+        aReferrer,
+        aHasPostData,
+        aTriggeringPrincipal,
+        aCsp
+      )
+    ) {
+      return false;
+    }
+
     if (!gMultiProcessBrowser) {
       return true;
     }
@@ -5453,6 +5545,27 @@ var XULBrowserWindow = {
     }
 
     return true;
+  },
+
+  onBeforeOpenWindow(
+    parent,
+    uriToLoad,
+    name,
+    features,
+    args,
+    calledFromJS,
+    isPopupSpam
+  ) {
+    return PWAService.onBeforeOpenWindow(
+      null,
+      parent,
+      uriToLoad,
+      name,
+      features,
+      args,
+      calledFromJS,
+      isPopupSpam
+    );
   },
 
   onProgressChange(
@@ -6272,6 +6385,8 @@ var TabsProgressListener = {
     gBrowser.getNotificationBox(aBrowser).removeTransientNotifications();
 
     FullZoom.onLocationChange(aLocationURI, false, aBrowser);
+
+    PWAHandler.onLocationChange(aBrowser);
   },
 
   onLinkIconAvailable(browser, dataURI, iconURI) {
@@ -6362,6 +6477,7 @@ nsBrowserAccess.prototype = {
     aTriggeringPrincipal,
     aCsp
   ) {
+    console.log("createContentWindow", aURI.spec);
     return this.getContentWindowOrOpenURI(
       null,
       aOpener,
@@ -6374,6 +6490,7 @@ nsBrowserAccess.prototype = {
   },
 
   openURI(aURI, aOpener, aWhere, aFlags, aTriggeringPrincipal, aCsp) {
+    console.log("openURI", aURI.spec);
     if (!aURI) {
       Cu.reportError("openURI should only be called with a valid URI");
       throw Cr.NS_ERROR_FAILURE;
@@ -6587,6 +6704,7 @@ nsBrowserAccess.prototype = {
     aNextRemoteTabId,
     aName
   ) {
+    console.log("openURIInFrame", aURI.spec);
     return this.getContentWindowOrOpenURIInFrame(
       aURI,
       aParams,

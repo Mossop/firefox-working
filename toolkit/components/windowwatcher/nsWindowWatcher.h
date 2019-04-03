@@ -98,6 +98,8 @@ class nsWindowWatcher : public nsIWindowWatcher,
                               int32_t aDefault, bool* aPresenceFlag);
   /* Compute the right SizeSpec based on aFeatures */
   static void CalcSizeSpec(const nsACString& aFeatures, SizeSpec& aResult);
+  static uint32_t GetRemoteId(const nsACString& aFeatures);
+
   static void SizeOpenedWindow(
       nsIDocShellTreeOwner* aTreeOwner, mozIDOMWindowProxy* aParent,
       bool aIsCallerChrome, const SizeSpec& aSizeSpec,
@@ -108,7 +110,7 @@ class nsWindowWatcher : public nsIWindowWatcher,
                                  nsIDocShellTreeOwner** aResult);
 
  private:
-  nsresult CreateChromeWindow(const nsACString& aFeatures,
+  nsresult CreateChromeWindow(uint32_t aRemoteId, const nsACString& aFeatures,
                               nsIWebBrowserChrome* aParentChrome,
                               uint32_t aChromeFlags,
                               nsIRemoteTab* aOpeningBrowserParent,

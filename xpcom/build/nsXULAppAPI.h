@@ -419,6 +419,10 @@ class GMPLoader;
 XRE_API(nsresult, XRE_InitChildProcess,
         (int aArgc, char* aArgv[], const XREChildData* aChildData))
 
+#ifdef XP_MACOSX
+XRE_API(nsresult, XRE_InitPWAProcess, (const char* uuid, int argc, char* argv[]))
+#endif
+
 XRE_API(GeckoProcessType, XRE_GetProcessType, ())
 
 /**

@@ -1350,10 +1350,19 @@ class nsIWidget : public nsISupports {
    * Must be called after Create.
    *
    * @param aIconSpec string specifying the icon to use; convention is to
-   *                  pass a resource: URL from which a platform-dependent
-   *                  resource file name will be constructed
+   *                  pass an icon id which either identifies a platform icon
+   *                  or will be used to search for an icon from the built-in
+   *                  icon locations.
    */
   virtual void SetIcon(const nsAString& aIconSpec) = 0;
+
+  /**
+   * Set the widget's icon.
+   * Must be called after Create.
+   *
+   * @param aFile A file to use for the widget's icon.
+   */
+  virtual void SetIcon(nsIFile* aFile) = 0;
 
   /**
    * Return this widget's origin in screen coordinates.
@@ -1932,6 +1941,10 @@ class nsIWidget : public nsISupports {
    */
   static already_AddRefed<nsIWidget> CreatePuppetWidget(
       BrowserChild* aBrowserChild);
+
+#ifdef XP_MACOSX
+  static already_AddRefed<nsIWidget> CreateRemoteWidget(uint32_t aRemoteId);
+#endif
 
   static already_AddRefed<nsIWidget> CreateHeadlessWidget();
 

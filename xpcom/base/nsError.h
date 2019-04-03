@@ -15,6 +15,7 @@
 #include "mozilla/Likely.h"
 
 #include <stdint.h>
+#include <ostream>
 
 #define NS_ERROR_SEVERITY_SUCCESS 0
 #define NS_ERROR_SEVERITY_ERROR 1

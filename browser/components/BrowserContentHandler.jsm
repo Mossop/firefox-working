@@ -14,6 +14,7 @@ const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 const { AppConstants } = ChromeUtils.import(
   "resource://gre/modules/AppConstants.jsm"
 );
+const { PWAService } = ChromeUtils.import("resource:///modules/PWAService.jsm");
 
 XPCOMUtils.defineLazyModuleGetters(this, {
   BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
@@ -403,6 +404,16 @@ nsBrowserContentHandler.prototype = {
 
   /* nsICommandLineHandler */
   handle: function bch_handle(cmdLine) {
+    let pwaId = cmdLine.handleFlagWithParam("pwa", false);
+    if (pwaId) {
+      let pwa = PWAService.list().find(p => p.id == pwaId);
+      if (pwa) {
+        pwa.open();
+        cmdLine.preventDefault = true;
+        return;
+      }
+    }
+
     if (cmdLine.handleFlag("kiosk", false)) {
       gKiosk = true;
     }

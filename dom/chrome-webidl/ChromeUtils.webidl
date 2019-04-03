@@ -455,6 +455,7 @@ enum WebIDLProcType {
  "rdd",
  "socket",
  "remoteSandboxBroker",
+ "pwa",
  "unknown",
 };
 

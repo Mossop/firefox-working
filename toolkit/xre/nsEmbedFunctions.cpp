@@ -47,6 +47,8 @@
 #if defined(XP_MACOSX)
 #  include "nsVersionComparator.h"
 #  include "chrome/common/mach_ipc_mac.h"
+#  include <sys/socket.h>
+#  include <sys/un.h>
 #endif
 #include "nsX11ErrorHandler.h"
 #include "nsGDKErrorHandler.h"
@@ -83,6 +85,10 @@
 #if defined(XP_WIN)
 #  include "mozilla/WindowsConsole.h"
 #  include "mozilla/WindowsDllBlocklist.h"
+#endif
+
+#ifdef XP_MACOSX
+#  include "../../browser/components/pwa/remote/child/PWARuntime.h"
 #endif
 
 #include "GMPProcessChild.h"
@@ -782,6 +788,87 @@ nsresult XRE_InitChildProcess(int aArgc, char* aArgv[],
 
   return XRE_DeinitCommandLine();
 }
+
+#ifdef XP_MACOSX
+nsresult XRE_InitPWAProcess(const char* uuid, int aArgc, char* aArgv[]) {
+  printf("XRE_InitPWAProcess\n");
+  XRE_SetProcessType("pwa");
+  // Set up the main thread.
+  NS_LogInit();
+  NS_SetCurrentThreadName("MainThread");
+
+  // Set up logging or we crash on shutdown.
+  mozilla::LogModule::Init(aArgc, aArgv);
+
+  AUTO_BASE_PROFILER_LABEL("XRE_InitPWAProcess (around Gecko Profiler)",
+                           OTHER);
+  AUTO_PROFILER_INIT;
+  AUTO_PROFILER_LABEL("XRE_InitPWAProcess", OTHER);
+
+  // Needed for async IPC to work.
+  AbstractThread::InitTLS();
+
+  gArgv = aArgv;
+  gArgc = aArgc;
+
+  base::AtExitManager exitManager;
+
+  nsresult rv = XRE_InitCommandLine(aArgc, aArgv);
+  if (NS_FAILED(rv)) {
+    return NS_ERROR_FAILURE;
+  }
+
+  int parent = socket(AF_UNIX, SOCK_STREAM, 0);
+  if (parent == -1) {
+    perror("Creating socket");
+    return NS_ERROR_FAILURE;
+  }
+
+  sockaddr_un addr;
+  memset(&addr, 0, sizeof(struct sockaddr_un));
+  addr.sun_family = AF_UNIX;
+  strncpy(addr.sun_path, "/Users/dave/Library/Caches/Firefox/pwa.sock", sizeof(addr.sun_path) - 1);
+
+  if (connect(parent, (const struct sockaddr *)&addr, sizeof(sockaddr_un)) == -1) {
+    perror("Connecting");
+    return NS_ERROR_FAILURE;
+  }
+
+  uint32_t len = strlen(uuid) + 1;
+  if (write(parent, uuid, sizeof(len)) == -1) {
+    perror("Sending uuid length");
+    return NS_ERROR_FAILURE;
+  }
+
+  if (write(parent, uuid, len) == -1) {
+    perror("Sending uuid");
+    return NS_ERROR_FAILURE;
+  }
+
+  pid_t processId;
+  if (read(parent, &processId, sizeof(pid_t)) == -1) {
+    perror("Reading pid");
+    return NS_ERROR_FAILURE;
+  }
+
+  {
+    MessageLoop uiMessageLoop(MessageLoop::TYPE_UI);
+
+    nsAutoPtr<mozilla::pwa::PWAProcessChild> process;
+    process = new mozilla::pwa::PWAProcessChild(processId, parent);
+    if (!process->Init(aArgc, aArgv)) {
+      return NS_ERROR_FAILURE;
+    }
+
+    uiMessageLoop.MessageLoop::Run();
+
+    process->CleanUp();
+    mozilla::Omnijar::CleanUp();
+  }
+
+  return XRE_DeinitCommandLine();
+}
+#endif
 
 MessageLoop* XRE_GetIOMessageLoop() {
   if (sChildProcessType == GeckoProcessType_Default) {

@@ -164,6 +164,10 @@ class LinkHandlerChild extends ActorChild {
             }
           }
           break;
+        case "manifest":
+          this.mm.sendAsyncMessage("Link:Manifest", {
+            href: link.href,
+          });
       }
     }
   }

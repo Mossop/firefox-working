@@ -1,0 +1,45 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+EXTRA_JS_MODULES += [
+    'PWACommon.jsm',
+    'PWAService.jsm',
+    'PWAServiceChild.jsm',
+]
+
+JAR_MANIFESTS += ['jar.mn']
+
+XPIDL_MODULE = 'pwa'
+
+XPIDL_SOURCES += [
+    'nsINativePWASupport.idl',
+]
+
+XPCOM_MANIFESTS += [
+    'components.conf',
+]
+
+FINAL_LIBRARY = 'xul'
+
+SOURCES += [
+    'PWASupportUtils.cpp',
+]
+
+if CONFIG['MOZ_WIDGET_TOOLKIT'] == 'windows':
+    UNIFIED_SOURCES += [
+        'nsWinPWASupport.cpp',
+    ]
+elif CONFIG['MOZ_WIDGET_TOOLKIT'] == 'cocoa':
+    UNIFIED_SOURCES += [
+        'nsOSXPWASupport.cpp',
+    ]
+
+    DIRS += [
+        'macapp',
+        'remote',
+    ]
+else:
+    UNIFIED_SOURCES += [
+        'nsDefaultPWASupport.cpp',
+    ]

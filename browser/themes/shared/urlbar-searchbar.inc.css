@@ -300,6 +300,11 @@
   fill: var(--toolbarbutton-icon-fill-attention);
 }
 
+#pageAction-panel-pwa,
+#pageAction-urlbar-pwa {
+  list-style-image: url("chrome://browser/skin/pwa/pwa-button.png");
+}
+
 #pocket-button,
 #pageAction-panel-pocket {
   list-style-image: url("chrome://browser/skin/pocket-outline.svg");

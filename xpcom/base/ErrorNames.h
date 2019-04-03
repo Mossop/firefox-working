@@ -21,4 +21,7 @@ void GetErrorName(nsresult rv, nsACString& name);
 
 }  // namespace mozilla
 
+// MOZ_DBG support
+std::ostream& operator<<(std::ostream& aOut, const nsresult aRv);
+
 #endif  // mozilla_ErrorNames_h

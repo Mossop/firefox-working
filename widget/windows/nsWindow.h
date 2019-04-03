@@ -174,6 +174,7 @@ class nsWindow final : public nsWindowBase {
   virtual void FreeNativeData(void* data, uint32_t aDataType) override;
   virtual nsresult SetTitle(const nsAString& aTitle) override;
   virtual void SetIcon(const nsAString& aIconSpec) override;
+  virtual void SetIcon(nsIFile* aFile) override;
   virtual LayoutDeviceIntPoint WidgetToScreenOffset() override;
   virtual LayoutDeviceIntSize ClientToWindowSize(
       const LayoutDeviceIntSize& aClientSize) override;

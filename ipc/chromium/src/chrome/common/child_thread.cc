@@ -11,10 +11,11 @@
 #include "chrome/common/child_process.h"
 #include "chrome/common/chrome_switches.h"
 
-ChildThread::ChildThread(Thread::Options options)
+ChildThread::ChildThread(Thread::Options options, int fd)
     : Thread("Chrome_ChildThread"),
       owner_loop_(MessageLoop::current()),
-      options_(options) {
+      options_(options),
+      fd_(fd) {
   DCHECK(owner_loop_);
   channel_name_ = CommandLine::ForCurrentProcess()->GetSwitchValue(
       switches::kProcessChannelID);
@@ -39,8 +40,17 @@ ChildThread* ChildThread::current() {
 }
 
 void ChildThread::Init() {
-  channel_ = mozilla::MakeUnique<IPC::Channel>(channel_name_,
-                                               IPC::Channel::MODE_CLIENT, this);
+
+  if (fd_ == -1) {
+    channel_ = mozilla::MakeUnique<IPC::Channel>(channel_name_,
+                                                IPC::Channel::MODE_CLIENT, this);
+#if defined(OS_POSIX)
+  } else {
+    channel_ = mozilla::MakeUnique<IPC::Channel>(fd_,
+                                                IPC::Channel::MODE_CLIENT, this);
+    printf("Connected to fd %d\n", fd_);
+#endif
+  }
 }
 
 void ChildThread::CleanUp() {

@@ -41,6 +41,7 @@ const PanelUI = {
       mainView: "appMenu-mainView",
       multiView: "appMenu-multiView",
       helpView: "PanelUI-helpView",
+      pwaView: "PanelUI-subView",
       libraryView: "appMenu-libraryView",
       libraryRecentHighlights: "appMenu-library-recentHighlights",
       menuButton: "PanelUI-menu-button",

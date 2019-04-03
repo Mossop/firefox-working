@@ -65,6 +65,13 @@ void GetErrorName(nsresult rv, nsACString& name) {
 
 }  // namespace mozilla
 
+// MOZ_DBG support
+std::ostream& operator<<(std::ostream& aOut, const nsresult aRv) {
+  nsCString name;
+  mozilla::GetErrorName(aRv, name);
+  return aOut << name;
+}
+
 extern "C" {
 
 // This is an extern "C" binding for the GetErrorName method which is used by

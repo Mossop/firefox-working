@@ -27,6 +27,7 @@
 #include "mozilla/UniquePtr.h"
 #include "mozilla/webrender/WebRenderTypes.h"
 #include "mozilla/gfx/MacIOSurface.h"
+#include "mozilla/pwa/RemoteView.h"
 
 #include "nsString.h"
 #include "nsIDragService.h"
@@ -39,6 +40,8 @@
 
 class nsChildView;
 class nsCocoaWindow;
+
+using mozilla::pwa::RemoteView;
 
 namespace {
 class GLPresenter;
@@ -340,6 +343,8 @@ class nsChildView final : public nsBaseWidget {
  private:
   typedef nsBaseWidget Inherited;
   typedef mozilla::layers::IAPZCTreeManager IAPZCTreeManager;
+
+  RefPtr<RemoteView> mRemoteView;
 
  public:
   nsChildView();
