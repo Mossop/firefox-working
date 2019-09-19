@@ -131,10 +131,8 @@ static void RollUpPopups() {
   rollupListener->Rollup(0, true, nullptr, nullptr);
 }
 
-nsCocoaWindow::nsCocoaWindow(already_AddRefed<RemotePWA> aPWA)
-    : mPWA(aPWA),
-      mPWAWindow(nullptr),
-      mParent(nullptr),
+nsCocoaWindow::nsCocoaWindow()
+    : mParent(nullptr),
       mAncestorLink(nullptr),
       mWindow(nil),
       mDelegate(nil),
@@ -160,7 +158,6 @@ nsCocoaWindow::nsCocoaWindow(already_AddRefed<RemotePWA> aPWA)
       mAspectRatioLocked(false),
       mNumModalDescendents(0),
       mWindowAnimationBehavior(NSWindowAnimationBehaviorDefault) {
-  printf("*** Creating nsCocoaWindow: %p %p\n", this, mPWA.get());
   if ([NSWindow respondsToSelector:@selector(setAllowsAutomaticWindowTabbing:)]) {
     // Disable automatic tabbing on 10.12. We need to do this before we
     // orderFront any of our windows.
@@ -326,7 +323,7 @@ nsresult nsCocoaWindow::Create(nsIWidget* aParent, nsNativeWidget aNativeParent,
     return CreatePopupContentView(devRect, aInitData);
   }
 
-  mIsAnimationSuppressed = aInitData->mIsAnimationSuppressed;
+  mIsAnimationSuppressed = aInitData ? aInitData->mIsAnimationSuppressed : false;
 
   return NS_OK;
 
@@ -365,7 +362,6 @@ nsresult nsCocoaWindow::CreateNativeWindow(const NSRect& aRect, nsBorderStyle aB
                                            bool aRectIsFrameRect) {
   NS_OBJC_BEGIN_TRY_ABORT_BLOCK_NSRESULT;
 
-  printf("*** Creating native window %p %p %p.\n", this, mPWA.get(), mPWAWindow.get());
   // We default to NSBorderlessWindowMask, add features if needed.
   unsigned int features = NSBorderlessWindowMask;
 
@@ -510,10 +506,6 @@ nsresult nsCocoaWindow::CreateNativeWindow(const NSRect& aRect, nsBorderStyle aB
 
   [[WindowDataMap sharedWindowDataMap] ensureDataForWindow:mWindow];
   mWindowMadeHere = true;
-
-  if (mPWA) {
-    mPWAWindow = mPWA->CreateRemoteWindow();
-  }
 
   return NS_OK;
 
@@ -1705,10 +1697,6 @@ nsresult nsCocoaWindow::SetTitle(const nsAString& aTitle) {
     [mWindow setTitle:title];
   }
 
-  if (mPWAWindow) {
-    Unused << mPWAWindow->SendSetTitle(PromiseFlatString(aTitle));
-  }
-
   return NS_OK;
 
   NS_OBJC_END_TRY_ABORT_BLOCK_NSRESULT;
@@ -2279,7 +2267,7 @@ void nsCocoaWindow::GetEditCommands(NativeKeyBindingsType aType, const WidgetKey
 }
 
 already_AddRefed<nsIWidget> nsIWidget::CreateTopLevelWindow() {
-  nsCOMPtr<nsIWidget> window = new nsCocoaWindow(nullptr);
+  nsCOMPtr<nsIWidget> window = new nsCocoaWindow();
   return window.forget();
 }
 

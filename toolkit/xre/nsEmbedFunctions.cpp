@@ -854,15 +854,15 @@ nsresult XRE_InitPWAProcess(const char* uuid, int aArgc, char* aArgv[]) {
   {
     MessageLoop uiMessageLoop(MessageLoop::TYPE_UI);
 
-    nsAutoPtr<mozilla::pwa::PWAProcessChild> process;
-    process = new mozilla::pwa::PWAProcessChild(processId, parent);
-    if (!process->Init(aArgc, aArgv)) {
+    RefPtr<mozilla::pwa::PWARuntime> runtime;
+    runtime = new mozilla::pwa::PWARuntime(processId, parent);
+    if (!runtime->Init(aArgc, aArgv)) {
       return NS_ERROR_FAILURE;
     }
 
     uiMessageLoop.MessageLoop::Run();
 
-    process->CleanUp();
+    runtime->CleanUp();
     mozilla::Omnijar::CleanUp();
   }
 

@@ -17,8 +17,7 @@ class PWAChild : public PPWAChild {
   friend class PPWAChild;
 
  protected:
-  virtual PPWAWindowChild* AllocPPWAWindowChild() = 0;
-  virtual bool DeallocPPWAWindowChild(PPWAWindowChild* aActor) = 0;
+  virtual PPWAWindowChild* AllocPPWAWindowChild(DesktopIntRect outerBounds, LayoutDeviceIntRect innerBounds, nsBorderStyle borderStyle) = 0;
 };
 
 }  // namespace gmp

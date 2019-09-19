@@ -9,7 +9,6 @@
 #include "mozilla/UniquePtr.h"
 #include "nsThreadUtils.h"
 #include "nsIWidget.h"
-#include "../../../../../widget/cocoa/nsCocoaWindow.h"
 #include "nsIObserverService.h"
 
 #include <sys/socket.h>
@@ -49,8 +48,7 @@ RefPtr<RemotePWAManager> sManager;
 
 NS_IMPL_ISUPPORTS(RemotePWAManager, nsIObserver)
 
-RemotePWAManager::RemotePWAManager()
-    : mLastId(0) {
+RemotePWAManager::RemotePWAManager() {
   StartListen();
 
   nsCOMPtr<nsIObserverService> observerService =
@@ -80,18 +78,6 @@ RemotePWAManager::Observe(nsISupports* aSubject, const char* aTopic,
   }
 
   return NS_OK;
-}
-
-already_AddRefed<RemotePWA>
-RemotePWAManager::GetPWA(uint32_t remoteId) {
-  for (size_t i = 0; i < mPWAs.Length(); i++) {
-    if (mPWAs[i]->GetRemoteId() == remoteId) {
-      RefPtr<RemotePWA> pwa = mPWAs[i];
-      return pwa.forget();
-    }
-  }
-
-  return nullptr;
 }
 
 // Starts a thread to wait for a new connection.
@@ -164,7 +150,7 @@ RemotePWAManager::Listen() {
     }
 
     printf("*** Creating new parent.\n");
-    mPWAs.AppendElement(new RemotePWA(uuid, ++mLastId, child));
+    mPWAs.AppendElement(new RemotePWA(uuid, child));
   }
 
   printf("*** Exiting listener.\n");
@@ -180,11 +166,4 @@ NS_InitPWAManager() {
   }
 
   mozilla::pwa::sManager = new mozilla::pwa::RemotePWAManager();
-}
-
-already_AddRefed<nsIWidget> nsIWidget::CreateRemoteWidget(uint32_t aRemoteId) {
-  RefPtr<mozilla::pwa::RemotePWA> pwa = mozilla::pwa::sManager->GetPWA(aRemoteId);
-
-  nsCOMPtr<nsIWidget> window = new nsCocoaWindow(pwa.forget());
-  return window.forget();
 }

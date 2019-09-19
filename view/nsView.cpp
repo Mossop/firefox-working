@@ -543,7 +543,6 @@ nsresult nsView::CreateWidget(nsWidgetInitData* aWidgetInitData,
 
   // XXX: using aForceUseIWidgetParent=true to preserve previous
   // semantics.  It's not clear that it's actually needed.
-  printf("*** nsView 1\n");
   mWindow = parentWidget->CreateChild(trect, aWidgetInitData, true);
   if (!mWindow) {
     return NS_ERROR_FAILURE;
@@ -569,7 +568,6 @@ nsresult nsView::CreateWidgetForParent(nsIWidget* aParentWidget,
 
   LayoutDeviceIntRect trect = CalcWidgetBounds(aWidgetInitData->mWindowType);
 
-  printf("*** nsView 2\n");
   mWindow = aParentWidget->CreateChild(trect, aWidgetInitData);
   if (!mWindow) {
     return NS_ERROR_FAILURE;
@@ -598,7 +596,6 @@ nsresult nsView::CreateWidgetForPopup(nsWidgetInitData* aWidgetInitData,
   if (aParentWidget) {
     // XXX: using aForceUseIWidgetParent=true to preserve previous
     // semantics.  It's not clear that it's actually needed.
-    printf("*** nsView 3\n");
     mWindow = aParentWidget->CreateChild(trect, aWidgetInitData, true);
   } else {
     nsIWidget* nearestParent =
@@ -609,7 +606,6 @@ nsresult nsView::CreateWidgetForPopup(nsWidgetInitData* aWidgetInitData,
       return NS_ERROR_FAILURE;
     }
 
-    printf("*** nsView 4\n");
     mWindow = nearestParent->CreateChild(trect, aWidgetInitData);
   }
   if (!mWindow) {

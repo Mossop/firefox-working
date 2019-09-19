@@ -1942,10 +1942,6 @@ class nsIWidget : public nsISupports {
   static already_AddRefed<nsIWidget> CreatePuppetWidget(
       BrowserChild* aBrowserChild);
 
-#ifdef XP_MACOSX
-  static already_AddRefed<nsIWidget> CreateRemoteWidget(uint32_t aRemoteId);
-#endif
-
   static already_AddRefed<nsIWidget> CreateHeadlessWidget();
 
   /**

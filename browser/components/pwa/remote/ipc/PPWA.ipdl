@@ -5,10 +5,14 @@
 
 include protocol PPWAWindow;
 
+using nsBorderStyle from "PWATraits.h";
+using mozilla::DesktopIntRect from "Units.h";
+using mozilla::LayoutDeviceIntRect from "Units.h";
+
 namespace mozilla {
 namespace pwa {
 
-intr protocol PPWA
+intr refcounted protocol PPWA
 {
   manages PPWAWindow;
 
@@ -16,7 +20,7 @@ parent:
   async ChildConnected();
 
 child:
-  async PPWAWindow();
+  async PPWAWindow(DesktopIntRect outerBounds, LayoutDeviceIntRect innerBounds, nsBorderStyle borderStyle);
 };
 
 } // namespace pwa

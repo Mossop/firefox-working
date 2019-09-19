@@ -10,24 +10,19 @@
 #include "mozilla/pwa/PWAParent.h"
 #include "RemoteWindow.h"
 #include "RemotePWAManager.h"
+#include "nsIXULWindow.h"
 
 namespace mozilla {
 namespace pwa {
 
 class RemotePWA : public PWAParent {
  public:
-  RemotePWA(nsACString& uuid, uint32_t remoteId, int child);
-  NS_INLINE_DECL_THREADSAFE_REFCOUNTING(RemotePWA)
+  RemotePWA(nsACString& uuid, int child);
+  NS_INLINE_DECL_THREADSAFE_REFCOUNTING(RemotePWA, final)
 
   void Shutdown();
 
-  already_AddRefed<RemoteWindow> CreateRemoteWindow();
-  uint32_t GetRemoteId() { return mRemoteId; };
-
  protected:
-  PPWAWindowParent* AllocPPWAWindowParent() override;
-  bool DeallocPPWAWindowParent(PPWAWindowParent* aActor) override;
-
   mozilla::ipc::IPCResult RecvChildConnected() override;
 
  private:
@@ -37,9 +32,9 @@ class RemotePWA : public PWAParent {
   void Connect();
 
   nsCString mUuid;
-  uint32_t mRemoteId;
   PWAProcessHost mHost;
   nsTArray<RefPtr<RemoteWindow>> mWindows;
+  nsCOMPtr<nsIXULWindow> mWindow;
 };
 
 } // namespace pwa

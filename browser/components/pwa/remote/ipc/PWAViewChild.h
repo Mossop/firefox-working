@@ -6,15 +6,19 @@
 #ifndef PWAChildViewChild_h_
 #define PWAChildViewChild_h_
 
-#include "mozilla/pwa/PPWAChildViewChild.h"
+#include "mozilla/pwa/PPWAViewChild.h"
 
 namespace mozilla {
 namespace pwa {
 
 using mozilla::ipc::IPCResult;
 
-class PWAChildViewChild : public PPWAChildViewChild {
-  friend class PPWAChildViewChild;
+class PWAViewChild : public PPWAViewChild {
+  friend class PPWAViewChild;
+
+protected:
+  virtual IPCResult RecvShow(bool state) = 0;
+  virtual IPCResult RecvDestroy() = 0;
 };
 
 }  // namespace pwa

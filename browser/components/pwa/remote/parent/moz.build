@@ -16,6 +16,10 @@ EXPORTS.mozilla.pwa += [
   'RemoteWindow.h',
 ]
 
+LOCAL_INCLUDES += [
+  '/xpfe/appshell',
+]
+
 FINAL_LIBRARY = 'xul'
 
 include('/ipc/chromium/chromium-config.mozbuild')

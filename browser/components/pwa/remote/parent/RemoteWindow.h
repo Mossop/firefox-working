@@ -7,35 +7,93 @@
 #ifndef RemoteWindow_h_
 #define RemoteWindow_h_
 
-#include "mozilla/pwa/PWAWindowParent.h"
-#include "RemoteView.h"
-
 #import <Cocoa/Cocoa.h>
-#import <QuartzCore/CALayer.h>
+#include "mozilla/pwa/PWAWindowParent.h"
+#include "nsBaseWidget.h"
 
 namespace mozilla {
 namespace pwa{
 
 class RemotePWA;
 using mozilla::ipc::IPCResult;
+using mozilla::widget::InputContext;
 
-class RemoteWindow : public PWAWindowParent {
+class RemoteWindow final : public nsBaseWidget, public PWAWindowParent {
  public:
-  NS_INLINE_DECL_THREADSAFE_REFCOUNTING(RemoteWindow)
+  explicit RemoteWindow(RemotePWA* aPWA);
+  NS_INLINE_DECL_REFCOUNTING_INHERITED(RemoteWindow, nsBaseWidget)
 
-  explicit RemoteWindow();
-
-  RemoteView* CreateChildView(mozilla::LayoutDeviceIntRect bounds, CALayer* layer);
+  CGFloat GetBackingScaleFactor();
 
  protected:
-  PPWAChildViewParent* AllocPPWAChildViewParent(mozilla::LayoutDeviceIntRect bounds, uint32_t layerContextId) override;
-  bool DeallocPPWAChildViewParent(PPWAChildViewParent* aActor) override;
+  typedef mozilla::LayoutDeviceIntRect LayoutDeviceIntRect;
+  typedef mozilla::DesktopIntRect DesktopIntRect;
+
+  virtual IPCResult RecvUpdateState(DesktopIntRect aOuterBounds, LayoutDeviceIntRect aInnerBounds, bool aIsVisible) override;
+  virtual IPCResult RecvRequestClose() override;
+  virtual IPCResult RecvActivated() override;
+  virtual IPCResult RecvDeactivated() override;
+  virtual PPWAViewParent* AllocPPWAViewParent(LayoutDeviceIntRect aBounds, uint32_t aContextId) override;
+  virtual void DeallocPPWAViewParent(PPWAViewParent* parent) override;
 
  private:
   ~RemoteWindow();
 
-  RemotePWA* remotePWA();
-  nsTArray<RefPtr<RemoteView>> mViews;
+  RefPtr<RemotePWA> mPWA;
+  InputContext mInputContext;
+  LayoutDeviceIntRect mInnerBounds;
+  DesktopIntRect mOuterBounds;
+  bool mIsVisible;
+
+  // nsIWidget interface
+ public:
+  virtual MOZ_MUST_USE nsresult Create(nsIWidget* aParent,
+      nsNativeWidget aNativeParent, const LayoutDeviceIntRect& aRect,
+      nsWidgetInitData* aInitData = nullptr) override;
+
+  virtual MOZ_MUST_USE nsresult Create(nsIWidget* aParent,
+      nsNativeWidget aNativeParent, const DesktopIntRect& aRect,
+      nsWidgetInitData* aInitData) override;
+
+  virtual already_AddRefed<nsIWidget> CreateChild(
+      const LayoutDeviceIntRect& aRect, nsWidgetInitData* aInitData = nullptr,
+      bool aForceUseIWidgetParent = false) override;
+
+  virtual void Show(bool aState) override;
+  virtual bool IsVisible() const override;
+  virtual void Move(double aX, double aY) override;
+  virtual void Resize(double aWidth, double aHeight, bool aRepaint) override;
+  virtual void Resize(double aX, double aY, double aWidth, double aHeight,
+                      bool aRepaint) override;
+  virtual void Enable(bool aState) override;
+  virtual bool IsEnabled() const override;
+
+  virtual void SetFocus(Raise) override;
+
+  virtual nsresult ConfigureChildren(
+      const nsTArray<Configuration>& aConfigurations) override;
+
+  virtual void Invalidate(const LayoutDeviceIntRect& aRect) override;
+
+  virtual void* GetNativeData(uint32_t aDataType) override;
+
+  virtual nsresult SetTitle(const nsAString& aTitle) override;
+
+  virtual LayoutDeviceIntRect GetBounds() override;
+  virtual LayoutDeviceIntRect GetScreenBounds() override;
+  virtual LayoutDeviceIntRect GetClientBounds() override;
+  virtual LayoutDeviceIntPoint WidgetToScreenOffset() override;
+
+  virtual nsresult DispatchEvent(mozilla::WidgetGUIEvent* event,
+      nsEventStatus& aStatus) override;
+
+  virtual void SetInputContext(const InputContext& aContext,
+      const InputContextAction& aAction) override;
+  virtual InputContext GetInputContext() override;
+
+  virtual void Destroy() override;
+  virtual double GetDefaultScaleInternal() override;
+  virtual mozilla::DesktopToLayoutDeviceScale GetDesktopToDeviceScale() override;
 };
 
 } // namespace pwa

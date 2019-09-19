@@ -38,7 +38,7 @@ class nsAppShellService final : public nsIAppShellService, public nsIObserver {
   void EnsureHiddenWindow();
 
   nsresult JustCreateTopWindow(nsIXULWindow* aParent, nsIURI* aUrl,
-                               uint32_t aRemoteId, uint32_t aChromeMask, int32_t aInitialWidth,
+                               uint32_t aChromeMask, int32_t aInitialWidth,
                                int32_t aInitialHeight, bool aIsHiddenWindow,
                                nsIRemoteTab* aOpeningTab,
                                mozIDOMWindowProxy* aOpenerWindow,

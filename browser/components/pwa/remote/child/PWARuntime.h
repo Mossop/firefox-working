@@ -13,31 +13,22 @@
 namespace mozilla {
 namespace pwa {
 
-class PWARuntime : public PWAChild {
-  friend class PWAProcessChild;
-
+class PWARuntime final : public PWAChild, public mozilla::ipc::ProcessChild {
  public:
-  PWARuntime();
+  PWARuntime(base::ProcessId aParentPid, int aFd);
+  NS_INLINE_DECL_THREADSAFE_REFCOUNTING(PWARuntime, final)
 
+  bool Init(int aArgc, char* aArgv[]) override;
   bool Init(base::ProcessId aParentPid, MessageLoop* aIOLoop, IPC::Channel* aChannel);
 
   void ActorDestroy(ActorDestroyReason aWhy) override;
-
- protected:
-  PPWAWindowChild* AllocPPWAWindowChild() override;
-  bool DeallocPPWAWindowChild(PPWAWindowChild* aActor) override;
-};
-
-class PWAProcessChild final : public mozilla::ipc::ProcessChild {
- public:
-  explicit PWAProcessChild(ProcessId aParentPid, int aFd);
-
-  bool Init(int aArgc, char* aArgv[]) override;
   void CleanUp() override;
 
+ protected:
+  PPWAWindowChild* AllocPPWAWindowChild(DesktopIntRect aOuterBounds, LayoutDeviceIntRect aInnerBounds, nsBorderStyle aBorderStyle) override;
+
  private:
-  PWARuntime mChild;
-  DISALLOW_COPY_AND_ASSIGN(PWAProcessChild);
+  ~PWARuntime() = default;
 };
 
 } // namespace pwa

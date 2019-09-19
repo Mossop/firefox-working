@@ -5,15 +5,26 @@
 
 include protocol PPWAWindow;
 
+using mozilla::LayoutDeviceIntRect from "Units.h";
+
 namespace mozilla {
 namespace pwa {
 
-async protocol PPWAChildView
+async protocol PPWAView
 {
   manager PPWAWindow;
 
+parent:
+  async UpdateState(LayoutDeviceIntRect bounds, bool visible);
+  async UpdateLayer();
+  async LiveResizeStarted();
+  async LiveResizeEnded();
+
 child:
   async __delete__();
+
+  async Show(bool state);
+  async Destroy();
 };
 
 } // namespace pwa

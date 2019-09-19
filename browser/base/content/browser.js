@@ -88,6 +88,10 @@ XPCOMUtils.defineLazyModuleGetters(this, {
   ZoomUI: "resource:///modules/ZoomUI.jsm",
 });
 
+window.addEventListener("resize", () => {
+  dump(`*** Window rezised: ${window.innerWidth} ${window.innerHeight}\n`);
+});
+
 if (AppConstants.MOZ_CRASHREPORTER) {
   ChromeUtils.defineModuleGetter(
     this,

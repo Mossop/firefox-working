@@ -43,7 +43,6 @@ interface nsIWindowCreator : nsISupports {
       @return the new window. Will be null if canceled or an error occurred.
   */
   nsIWebBrowserChrome createChromeWindow(in nsIWebBrowserChrome parent,
-                                         in uint32_t remoteId,
                                          in uint32_t chromeFlags,
                                          in nsIRemoteTab aOpeningTab,
                                          in mozIDOMWindowProxy aOpener,

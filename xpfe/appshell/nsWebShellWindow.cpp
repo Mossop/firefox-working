@@ -101,7 +101,28 @@ nsresult nsWebShellWindow::Initialize(
     nsIXULWindow* aParent, nsIXULWindow* aOpener, nsIURI* aUrl,
     int32_t aInitialWidth, int32_t aInitialHeight, bool aIsHiddenWindow,
     nsIRemoteTab* aOpeningTab, mozIDOMWindowProxy* aOpenerWindow,
-    nsWidgetInitData& widgetInitData, uint32_t aRemoteId) {
+    nsWidgetInitData& widgetInitData) {
+
+  nsCOMPtr<nsIWidget> window;
+  if (gfxPlatform::IsHeadless()) {
+    window = nsIWidget::CreateHeadlessWidget();
+  } else {
+    window = nsIWidget::CreateTopLevelWindow();
+  }
+  if (!window) {
+    return NS_ERROR_FAILURE;
+  }
+
+  return InitializeWithWidget(aParent, aOpener, aUrl, aInitialWidth,
+      aInitialHeight, aIsHiddenWindow, aOpeningTab, aOpenerWindow,
+      widgetInitData, window);
+}
+
+nsresult nsWebShellWindow::InitializeWithWidget(
+    nsIXULWindow* aParent, nsIXULWindow* aOpener, nsIURI* aUrl,
+    int32_t aInitialWidth, int32_t aInitialHeight, bool aIsHiddenWindow,
+    nsIRemoteTab* aOpeningTab, mozIDOMWindowProxy* aOpenerWindow,
+    nsWidgetInitData& widgetInitData, nsIWidget* aWidget) {
   nsresult rv;
   nsCOMPtr<nsIWidget> parentWidget;
 
@@ -133,19 +154,7 @@ nsresult nsWebShellWindow::Initialize(
   // Doesn't come from prefs... will come from CSS/XUL/RDF
   DesktopIntRect deskRect(initialX, initialY, aInitialWidth, aInitialHeight);
 
-  // Create top level window
-  if (gfxPlatform::IsHeadless()) {
-    mWindow = nsIWidget::CreateHeadlessWidget();
-#ifdef XP_MACOSX
-  } else if (aRemoteId) {
-    mWindow = nsIWidget::CreateRemoteWidget(aRemoteId);
-#endif
-  } else {
-    mWindow = nsIWidget::CreateTopLevelWindow();
-  }
-  if (!mWindow) {
-    return NS_ERROR_FAILURE;
-  }
+  mWindow = aWidget;
 
   /* This next bit is troublesome. We carry two different versions of a pointer
      to our parent window. One is the parent window's widget, which is passed

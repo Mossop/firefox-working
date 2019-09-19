@@ -6,13 +6,19 @@
 #ifndef PWAChildViewParent_h_
 #define PWAChildViewParent_h_
 
-#include "mozilla/pwa/PPWAChildViewParent.h"
+#include "mozilla/pwa/PPWAViewParent.h"
 
 namespace mozilla {
 namespace pwa {
 
-class PWAChildViewParent : public PPWAChildViewParent {
-  friend class PPWAChildViewParent;
+class PWAViewParent : public PPWAViewParent {
+  friend class PPWAViewParent;
+
+ protected:
+  virtual IPCResult RecvUpdateState(LayoutDeviceIntRect aBounds, bool aIsVisible) = 0;
+  virtual IPCResult RecvUpdateLayer() = 0;
+  virtual IPCResult RecvLiveResizeStarted() = 0;
+  virtual IPCResult RecvLiveResizeEnded() = 0;
 };
 
 }  // namespace pwa

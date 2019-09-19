@@ -8,10 +8,24 @@
 #define PWAWindow_h_
 
 #include "mozilla/pwa/PWAWindowChild.h"
-
 #import <Cocoa/Cocoa.h>
 
-@interface RemoteWindow : NSWindow
+namespace mozilla {
+namespace pwa {
+  class PWAWindow;
+}
+}
+
+@interface Delegate : NSObject <NSWindowDelegate> {
+ @private
+  mozilla::pwa::PWAWindow* mWindow;
+}
+@end
+
+@interface PWANSWindow : NSWindow {
+ @private
+  mozilla::pwa::PWAWindow* mWindow;
+}
 @end
 
 namespace mozilla {
@@ -19,16 +33,24 @@ namespace pwa {
 
 class PWAWindow : public PWAWindowChild {
  public:
-  explicit PWAWindow();
+  explicit PWAWindow(DesktopIntRect aOuterBounds, LayoutDeviceIntRect aInnerBounds, nsBorderStyle aBorderStyle);
+  NS_INLINE_DECL_THREADSAFE_REFCOUNTING(PWAWindow, final)
+
+  void UpdateState();
 
  protected:
-  PPWAChildViewChild* AllocPPWAChildViewChild(mozilla::LayoutDeviceIntRect bounds, uint32_t layerContextId) override;
-  bool DeallocPPWAChildViewChild(PPWAChildViewChild* aActor) override;
+  virtual PPWAViewChild* AllocPPWAViewChild(mozilla::LayoutDeviceIntRect bounds, uint32_t layerContextId) override;
+  virtual void DeallocPPWAViewChild(PPWAViewChild* aChild) override;
 
   IPCResult RecvSetTitle(nsString title) override;
+  IPCResult RecvShow(bool state) override;
+  IPCResult RecvDestroy() override;
 
  private:
-  RemoteWindow* mWindow;
+  ~PWAWindow() = default;
+
+  PWANSWindow* mWindow;
+  Delegate* mDelegate;
 };
 
 } // namespace pwa
