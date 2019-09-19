@@ -22,7 +22,7 @@ XPCOM_MANIFESTS += [
 
 FINAL_LIBRARY = 'xul'
 
-SOURCES += [
+UNIFIED_SOURCES += [
     'PWASupportUtils.cpp',
 ]
 

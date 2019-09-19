@@ -16,16 +16,10 @@
 #include "nsCocoaUtils.h"
 #include "nsTouchBar.h"
 
-#include "mozilla/pwa/RemoteWindow.h"
-#include "mozilla/pwa/RemotePWA.h"
-
 class nsCocoaWindow;
 class nsChildView;
 class nsMenuBarX;
 @class ChildView;
-
-using mozilla::pwa::RemotePWA;
-using mozilla::pwa::RemoteWindow;
 
 typedef struct _nsCocoaWindowList {
   _nsCocoaWindowList() : prev(nullptr), window(nullptr) {}
@@ -213,7 +207,7 @@ class nsCocoaWindow final : public nsBaseWidget, public nsPIWidgetCocoa {
   typedef nsBaseWidget Inherited;
 
  public:
-  explicit nsCocoaWindow(already_AddRefed<RemotePWA> aPWA);
+  explicit nsCocoaWindow();
 
   NS_DECL_ISUPPORTS_INHERITED
   NS_DECL_NSPIWIDGETCOCOA
@@ -323,9 +317,6 @@ class nsCocoaWindow final : public nsBaseWidget, public nsPIWidgetCocoa {
 
   bool HasModalDescendents() { return mNumModalDescendents > 0; }
   NSWindow* GetCocoaWindow() { return mWindow; }
-  RemoteWindow* GetRemoteWindow() {
-    return mPWAWindow.get();
-  }
 
   void SetMenuBar(nsMenuBarX* aMenuBar);
   nsMenuBarX* GetMenuBar();
@@ -362,9 +353,6 @@ class nsCocoaWindow final : public nsBaseWidget, public nsPIWidgetCocoa {
   virtual already_AddRefed<nsIWidget> AllocateChildPopupWidget() override {
     return nsIWidget::CreateTopLevelWindow();
   }
-
-  RefPtr<RemotePWA> mPWA;
-  RefPtr<RemoteWindow> mPWAWindow;
 
   nsIWidget* mParent;         // if we're a popup, this is our parent [WEAK]
   nsIWidget* mAncestorLink;   // link to traverse ancestors [WEAK]

@@ -1990,7 +1990,7 @@ NS_IMETHODIMP nsXULWindow::CreateNewChromeWindow(int32_t aChromeFlags,
   // Just do a normal create of a window and return.
   nsCOMPtr<nsIXULWindow> newWindow;
   appShell->CreateTopLevelWindow(
-      this, nullptr, 0, aChromeFlags, nsIAppShellService::SIZE_TO_CONTENT,
+      this, nullptr, aChromeFlags, nsIAppShellService::SIZE_TO_CONTENT,
       nsIAppShellService::SIZE_TO_CONTENT, aOpeningTab, aOpener,
       getter_AddRefs(newWindow));
 
@@ -2036,7 +2036,7 @@ NS_IMETHODIMP nsXULWindow::CreateNewContentWindow(int32_t aChromeFlags,
     // We actually want this toplevel window which we are creating to have a
     // null opener, as we will be creating the content xul:browser window inside
     // of it, so we pass nullptr as our aOpener.
-    appShell->CreateTopLevelWindow(this, uri, 0, aChromeFlags, 615, 480,
+    appShell->CreateTopLevelWindow(this, uri, aChromeFlags, 615, 480,
                                    aOpeningTab, nullptr,
                                    getter_AddRefs(newWindow));
     NS_ENSURE_TRUE(newWindow, NS_ERROR_FAILURE);

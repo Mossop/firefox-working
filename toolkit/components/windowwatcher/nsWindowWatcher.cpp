@@ -409,7 +409,7 @@ static bool CheckUserContextCompatibility(nsIDocShell* aDocShell) {
   return subjectPrincipal->GetUserContextId() == userContextId;
 }
 nsresult nsWindowWatcher::CreateChromeWindow(
-    uint32_t aRemoteId, const nsACString& aFeatures, nsIWebBrowserChrome* aParentChrome,
+    const nsACString& aFeatures, nsIWebBrowserChrome* aParentChrome,
     uint32_t aChromeFlags, nsIRemoteTab* aOpeningBrowserParent,
     mozIDOMWindowProxy* aOpener, uint64_t aNextRemoteTabId,
     nsIWebBrowserChrome** aResult) {
@@ -420,7 +420,7 @@ nsresult nsWindowWatcher::CreateChromeWindow(
   bool cancel = false;
   nsCOMPtr<nsIWebBrowserChrome> newWindowChrome;
   nsresult rv = mWindowCreator->CreateChromeWindow(
-      aParentChrome, aRemoteId, aChromeFlags, aOpeningBrowserParent, aOpener,
+      aParentChrome, aChromeFlags, aOpeningBrowserParent, aOpener,
       aNextRemoteTabId, &cancel, getter_AddRefs(newWindowChrome));
 
   if (NS_SUCCEEDED(rv) && cancel) {
@@ -533,7 +533,7 @@ nsWindowWatcher::OpenWindowWithRemoteTab(
   nsCOMPtr<nsIWebBrowserChrome> parentChrome(do_GetInterface(parentTreeOwner));
   nsCOMPtr<nsIWebBrowserChrome> newWindowChrome;
 
-  CreateChromeWindow(0, aFeatures, parentChrome, chromeFlags,
+  CreateChromeWindow(aFeatures, parentChrome, chromeFlags,
                      aForceNoOpener ? nullptr : aRemoteTab, nullptr,
                      aNextRemoteTabId, getter_AddRefs(newWindowChrome));
 
@@ -738,7 +738,6 @@ nsresult nsWindowWatcher::OpenWindowInternal(
 
   SizeSpec sizeSpec;
   CalcSizeSpec(features, sizeSpec);
-  uint32_t remoteId = GetRemoteId(features);
 
   // XXXbz Why is an AutoJSAPI good enough here?  Wouldn't AutoEntryScript (so
   // we affect the entry global) make more sense?  Or do we just want to affect
@@ -919,7 +918,7 @@ nsresult nsWindowWatcher::OpenWindowInternal(
          that the downstream consumer can treat the indicator to mean simply
          that the new window is subject to popup control. */
       mozIDOMWindowProxy* openerWindow = aForceNoOpener ? nullptr : aParent;
-      rv = CreateChromeWindow(remoteId, features, parentChrome, chromeFlags, nullptr,
+      rv = CreateChromeWindow(features, parentChrome, chromeFlags, nullptr,
                               openerWindow, 0, getter_AddRefs(newChrome));
 
       if (parentTopInnerWindow) {
@@ -2044,17 +2043,6 @@ already_AddRefed<BrowsingContext> nsWindowWatcher::GetBrowsingContextByName(
   }
 
   return foundContext.forget();
-}
-
-// static
-uint32_t nsWindowWatcher::GetRemoteId(const nsACString& aFeatures) {
-  bool present = false;
-  uint32_t remoteId = WinHasOption(aFeatures, "remoteid", 0, &present);
-  if (present) {
-    return remoteId;
-  } else {
-    return 0;
-  }
 }
 
 // static

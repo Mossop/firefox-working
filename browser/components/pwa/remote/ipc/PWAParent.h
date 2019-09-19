@@ -22,9 +22,6 @@ class PWAParent : public PPWAParent{
  protected:
   ~PWAParent() {}
 
-  virtual PPWAWindowParent* AllocPPWAWindowParent() = 0;
-  virtual bool DeallocPPWAWindowParent(PPWAWindowParent* aActor) = 0;
-
   virtual mozilla::ipc::IPCResult RecvChildConnected() = 0;
 };
 

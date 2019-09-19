@@ -14,25 +14,14 @@
 namespace mozilla {
 namespace pwa {
 
-PWAProcessChild::PWAProcessChild(ProcessId aParentPid, int aFd)
+PWARuntime::PWARuntime(base::ProcessId aParentPid, int aFd)
     : ProcessChild(aParentPid, aFd) {
-  printf("*** PWAProcessChild started.\n");
+  printf("*** PWARuntime started.\n");
 }
 
 bool
-PWAProcessChild::Init(int aArgc, char* aArgv[]) {
-  return mChild.Init(ParentPid(), ipc::IOThreadChild::message_loop(), ipc::IOThreadChild::channel());
-}
-
-void
-PWAProcessChild::CleanUp() {}
-
-PWARuntime::PWARuntime() {
-}
-
-bool
-PWARuntime::Init(base::ProcessId aParentPid, MessageLoop* aIOLoop, IPC::Channel* aChannel) {
-  if (!Open(aChannel, aParentPid, aIOLoop)) {
+PWARuntime::Init(int aArgc, char* aArgv[]) {
+  if (!Open(ipc::IOThreadChild::channel(), ParentPid(), ipc::IOThreadChild::message_loop())) {
     printf("*** Failed to open channel.\n");
     return false;
   }
@@ -60,12 +49,12 @@ PWARuntime::ActorDestroy(ActorDestroyReason aWhy) {
   XRE_ShutdownChildProcess();
 }
 
-PPWAWindowChild* PWARuntime::AllocPPWAWindowChild() {
-  return new PWAWindow();
-}
+void
+PWARuntime::CleanUp() {}
 
-bool PWARuntime::DeallocPPWAWindowChild(PPWAWindowChild* aActor) {
-  return true;
+PPWAWindowChild*
+PWARuntime::AllocPPWAWindowChild(DesktopIntRect aOuterBounds, LayoutDeviceIntRect aInnerBounds, nsBorderStyle aBorderStyle) {
+  return new PWAWindow(aOuterBounds, aInnerBounds, aBorderStyle);
 }
 
 } // namespace pwa

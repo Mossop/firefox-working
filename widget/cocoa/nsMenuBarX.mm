@@ -148,7 +148,7 @@ nsresult nsMenuBarX::Create(nsIWidget* aParent, Element* aContent) {
   }
 
   // Give this to the parent window. The parent takes ownership.
-  static_cast<nsCocoaWindow*>(mParentWindow)->SetMenuBar(this);
+  // static_cast<nsCocoaWindow*>(mParentWindow)->SetMenuBar(this);
 
   return NS_OK;
 }

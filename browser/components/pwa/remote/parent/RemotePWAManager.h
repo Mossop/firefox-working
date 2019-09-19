@@ -38,8 +38,6 @@ class RemotePWAManager final : public nsIObserver {
   NS_DECL_NSIOBSERVER
 
   RemotePWAManager();
-
-  already_AddRefed<RemotePWA> GetPWA(uint32_t remoteId);
  private:
   ~RemotePWAManager();
 
@@ -47,7 +45,6 @@ class RemotePWAManager final : public nsIObserver {
   void Listen();
 
   nsTArray<RefPtr<RemotePWA>> mPWAs;
-  uint32_t mLastId;
   int mListenerSocket;
 };
 

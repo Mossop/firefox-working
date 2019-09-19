@@ -4,23 +4,32 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 include protocol PPWA;
-include protocol PPWAChildView;
+include protocol PPWAView;
 
-using LayoutDeviceIntRect from "Units.h";
+using mozilla::LayoutDeviceIntRect from "Units.h";
+using mozilla::DesktopIntRect from "Units.h";
 
 namespace mozilla {
 namespace pwa {
 
-async protocol PPWAWindow
+async refcounted protocol PPWAWindow
 {
   manager PPWA;
-  manages PPWAChildView;
+  manages PPWAView;
+
+parent:
+  async UpdateState(DesktopIntRect outerBounds, LayoutDeviceIntRect innerBounds, bool visible);
+  async RequestClose();
+  async Activated();
+  async Deactivated();
 
 child:
-  async PPWAChildView(LayoutDeviceIntRect bounds, uint32_t layerContextId);
+  async PPWAView(LayoutDeviceIntRect innerBounds, uint32_t layerContextId);
   async __delete__();
 
   async SetTitle(nsString title);
+  async Show(bool state);
+  async Destroy();
 };
 
 } // namespace pwa

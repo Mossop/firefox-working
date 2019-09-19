@@ -2428,7 +2428,6 @@ nsresult nsDocumentViewer::MakeWindow(const nsSize& aSize,
       rv = view->AttachToTopLevelWidget(mParentWidget);
       mAttachedToParent = true;
     } else if (!aContainerView && mParentWidget) {
-      printf("*** nsDocumentViewer.\n");
       rv = view->CreateWidgetForParent(mParentWidget, initDataPtr, true, false);
     } else {
       rv = view->CreateWidget(initDataPtr, true, false);

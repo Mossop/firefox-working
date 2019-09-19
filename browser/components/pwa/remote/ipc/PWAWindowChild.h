@@ -17,10 +17,12 @@ class PWAWindowChild : public PPWAWindowChild {
   friend class PPWAWindowChild;
 
  protected:
-  virtual PPWAChildViewChild* AllocPPWAChildViewChild(mozilla::LayoutDeviceIntRect bounds, uint32_t layerContextId) = 0;
-  virtual bool DeallocPPWAChildViewChild(PPWAChildViewChild* aActor) = 0;
+  virtual PPWAViewChild* AllocPPWAViewChild(mozilla::LayoutDeviceIntRect bounds, uint32_t layerContextId) = 0;
+  virtual void DeallocPPWAViewChild(PPWAViewChild* aChild) = 0;
 
   virtual IPCResult RecvSetTitle(nsString title) = 0;
+  virtual IPCResult RecvShow(bool state) = 0;
+  virtual IPCResult RecvDestroy() = 0;
 };
 
 }  // namespace pwa

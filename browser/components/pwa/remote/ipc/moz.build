@@ -6,15 +6,19 @@
 
 IPDL_SOURCES += [
     'PPWA.ipdl',
-    'PPWAChildView.ipdl',
+    'PPWAView.ipdl',
     'PPWAWindow.ipdl',
+]
+
+EXPORTS += [
+    'PWATraits.h',
 ]
 
 EXPORTS.mozilla.pwa += [
     'PWAChild.h',
-    'PWAChildViewChild.h',
-    'PWAChildViewParent.h',
     'PWAParent.h',
+    'PWAViewChild.h',
+    'PWAViewParent.h',
     'PWAWindowChild.h',
     'PWAWindowParent.h',
 ]

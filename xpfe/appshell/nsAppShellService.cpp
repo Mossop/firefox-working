@@ -135,7 +135,7 @@ nsAppShellService::CreateHiddenWindow() {
 
   RefPtr<nsWebShellWindow> newWindow;
   rv =
-      JustCreateTopWindow(nullptr, url, 0, chromeMask, initialWidth, initialHeight,
+      JustCreateTopWindow(nullptr, url, chromeMask, initialWidth, initialHeight,
                           true, nullptr, nullptr, getter_AddRefs(newWindow));
   NS_ENSURE_SUCCESS(rv, rv);
 
@@ -166,7 +166,7 @@ nsAppShellService::DestroyHiddenWindow() {
  */
 NS_IMETHODIMP
 nsAppShellService::CreateTopLevelWindow(
-    nsIXULWindow* aParent, nsIURI* aUrl, uint32_t aRemoteId, uint32_t aChromeMask,
+    nsIXULWindow* aParent, nsIURI* aUrl, uint32_t aChromeMask,
     int32_t aInitialWidth, int32_t aInitialHeight, nsIRemoteTab* aOpeningTab,
     mozIDOMWindowProxy* aOpenerWindow, nsIXULWindow** aResult)
 
@@ -176,7 +176,7 @@ nsAppShellService::CreateTopLevelWindow(
   StartupTimeline::RecordOnce(StartupTimeline::CREATE_TOP_LEVEL_WINDOW);
 
   RefPtr<nsWebShellWindow> newWindow;
-  rv = JustCreateTopWindow(aParent, aUrl, aRemoteId, aChromeMask, aInitialWidth,
+  rv = JustCreateTopWindow(aParent, aUrl, aChromeMask, aInitialWidth,
                            aInitialHeight, false, aOpeningTab, aOpenerWindow,
                            getter_AddRefs(newWindow));
   newWindow.forget(aResult);
@@ -555,7 +555,7 @@ static bool CheckForFullscreenWindow() {
  * Just do the window-making part of CreateTopLevelWindow
  */
 nsresult nsAppShellService::JustCreateTopWindow(
-    nsIXULWindow* aParent, nsIURI* aUrl, uint32_t aRemoteId, uint32_t aChromeMask,
+    nsIXULWindow* aParent, nsIURI* aUrl, uint32_t aChromeMask,
     int32_t aInitialWidth, int32_t aInitialHeight, bool aIsHiddenWindow,
     nsIRemoteTab* aOpeningTab, mozIDOMWindowProxy* aOpenerWindow,
     nsWebShellWindow** aResult) {
@@ -681,7 +681,7 @@ nsresult nsAppShellService::JustCreateTopWindow(
 
   nsresult rv = window->Initialize(
       parent, center ? aParent : nullptr, aUrl, aInitialWidth, aInitialHeight,
-      aIsHiddenWindow, aOpeningTab, aOpenerWindow, widgetInitData, aRemoteId);
+      aIsHiddenWindow, aOpeningTab, aOpenerWindow, widgetInitData);
 
   NS_ENSURE_SUCCESS(rv, rv);
 

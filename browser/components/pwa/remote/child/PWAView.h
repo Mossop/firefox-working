@@ -7,19 +7,42 @@
 #ifndef PWAView_h_
 #define PWAView_h_
 
-#include "mozilla/pwa/PWAChildViewChild.h"
+#include "mozilla/pwa/PWAViewChild.h"
 #include "CocoaPrivate.h"
 
 namespace mozilla {
 namespace pwa {
+  class PWAView;
+}
+}
 
-class PWAView : public PWAChildViewChild {
+@interface PWANSView : NSView {
+ @private
+  mozilla::pwa::PWAView* mPWAView;
+  NSDate* mLastUpdate;
+}
+@end
+
+namespace mozilla {
+namespace pwa {
+
+class PWAView : public PWAViewChild {
  public:
-  explicit PWAView(NSView* parentView, mozilla::LayoutDeviceIntRect bounds, uint32_t layerContextId);
+  explicit PWAView(PWAWindow* aWindow, NSView* view, mozilla::LayoutDeviceIntRect bounds, uint32_t layerContextId);
+
+  void UpdateState();
 
  private:
-  NSView* mView;
+  ~PWAView() = default;
+
+  RefPtr<PWAWindow> mWindow;
   CALayerHost* mRemoteLayer;
+  PWANSView* mView;
+  bool mVisible;
+
+ protected:
+  IPCResult RecvShow(bool state) override;
+  IPCResult RecvDestroy() override;
 };
 
 } // namespace pwa

@@ -575,7 +575,6 @@ nsAppStartup::GetInterrupted(bool* aInterrupted) {
 
 NS_IMETHODIMP
 nsAppStartup::CreateChromeWindow(nsIWebBrowserChrome* aParent,
-                                 uint32_t aRemoteId,
                                  uint32_t aChromeFlags,
                                  nsIRemoteTab* aOpeningTab,
                                  mozIDOMWindowProxy* aOpener,
@@ -627,7 +626,7 @@ nsAppStartup::CreateChromeWindow(nsIWebBrowserChrome* aParent,
     if (!appShell) return NS_ERROR_FAILURE;
 
     appShell->CreateTopLevelWindow(
-        0, 0, aRemoteId, aChromeFlags, nsIAppShellService::SIZE_TO_CONTENT,
+        0, 0, aChromeFlags, nsIAppShellService::SIZE_TO_CONTENT,
         nsIAppShellService::SIZE_TO_CONTENT, aOpeningTab, aOpener,
         getter_AddRefs(newWindow));
   }

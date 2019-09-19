@@ -212,6 +212,7 @@ module.exports = {
     }
 
     let scriptText = scriptLines.join("\n") + "\n";
+    console.log(`Returning script block ${JSON.stringify(scriptText)}`);
     return [scriptText];
   },
 
