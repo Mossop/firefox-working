@@ -22,6 +22,7 @@ XPCOMUtils.defineLazyModuleGetters(this, {
   HeadlessShell: "resource:///modules/HeadlessShell.jsm",
   HomePage: "resource:///modules/HomePage.jsm",
   FirstStartup: "resource://gre/modules/FirstStartup.jsm",
+  FxAccounts: "resource://gre/modules/FxAccounts.jsm",
   LaterRun: "resource:///modules/LaterRun.jsm",
   PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
   SessionStartup: "resource:///modules/sessionstore/SessionStartup.jsm",
@@ -102,6 +103,9 @@ let gRemoteInstallPage = null;
 function getNewInstallPage() {
   if (!gRemoteInstallPage) {
     gRemoteInstallPage = new RemotePages(NEWINSTALL_PAGE);
+    gRemoteInstallPage.registerCapability("RPMGetFxAccountsEndpoint", data => {
+      return FxAccounts.config.promiseConnectAccountURI(data);
+    });
   }
 
   return NEWINSTALL_PAGE;

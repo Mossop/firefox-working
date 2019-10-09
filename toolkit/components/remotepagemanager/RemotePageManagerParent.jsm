@@ -23,11 +23,6 @@ const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 const { MessageListener, MessagePort, RPMAccessMap } = ChromeUtils.import(
   "resource://gre/modules/remotepagemanager/MessagePort.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FxAccounts",
-  "resource://gre/modules/FxAccounts.jsm"
-);
 
 /**
  * Creates a RemotePages object which listens for new remote pages of some
@@ -44,6 +39,7 @@ class RemotePages {
 
     this.portCreated = this.portCreated.bind(this);
     this.portMessageReceived = this.portMessageReceived.bind(this);
+    this.capabilities = {};
 
     for (const url of this.urls) {
       RemotePageManager.addRemotePageListener(url, this.portCreated);
@@ -64,6 +60,17 @@ class RemotePages {
     this.destroyed = true;
   }
 
+  registerCapability(name, callback, validator = undefined) {
+    this.capabilities[name] = {
+      callback,
+      validator,
+    };
+
+    for (let port of this.messagePorts.values()) {
+      port.registerCapability(name, callback, validator);
+    }
+  }
+
   // Called when a page matching one of the urls has loaded in a frame.
   portCreated(port) {
     this.messagePorts.add(port);
@@ -74,6 +81,10 @@ class RemotePages {
 
     for (let name of this.listener.keys()) {
       this.registerPortListener(port, name);
+    }
+
+    for (let [name, capability] of Object.entries(this.capabilities)) {
+      port.registerCapability(name, capability.callback, capability.validator);
     }
 
     this.listener.callListeners({ target: port, name: "RemotePage:Init" });
@@ -157,6 +168,7 @@ function publicMessagePort(port) {
     "addMessageListener",
     "removeMessageListener",
     "sendAsyncMessage",
+    "registerCapability",
     "destroy",
   ];
 
@@ -191,13 +203,7 @@ function publicMessagePort(port) {
   return clean;
 }
 
-const RPMParentCapabilities = {
-  RPMGetFxAccountsEndpoint: {
-    execute(aEntryPoint) {
-      return FxAccounts.config.promiseConnectAccountURI(aEntryPoint);
-    },
-  },
-};
+const RPMParentCapabilities = {};
 
 // The chome side of a message port
 class ChromeMessagePort extends MessagePort {
@@ -213,6 +219,7 @@ class ChromeMessagePort extends MessagePort {
 
     this.swapBrowsers = this.swapBrowsers.bind(this);
     this._browser.addEventListener("SwapDocShells", this.swapBrowsers);
+    this.registeredCapabilities = {};
   }
 
   get browser() {
@@ -221,6 +228,13 @@ class ChromeMessagePort extends MessagePort {
 
   get url() {
     return this._url;
+  }
+
+  registerCapability(name, callback, validator = undefined) {
+    this.registeredCapabilities[name] = {
+      validate: validator,
+      execute: (...args) => callback(...args),
+    };
   }
 
   // Called when the docshell is being swapped with another browser. We have to
@@ -264,15 +278,18 @@ class ChromeMessagePort extends MessagePort {
       throw new Error(`Access to ${aCapability} is denied for ${this.url}`);
     }
 
-    if (!(aCapability in RPMParentCapabilities)) {
+    let filter = RPMAccessMap[this.url][aCapability];
+    let capability;
+    if (aCapability in RPMParentCapabilities) {
+      capability = RPMParentCapabilities[aCapability];
+    } else if (aCapability in this.registeredCapabilities) {
+      capability = this.registeredCapabilities[aCapability];
+    } else {
       throw new Error(`Access to ${aCapability} is denied for ${this.url}`);
     }
 
-    let filter = RPMAccessMap[this.url][aCapability];
-    let capability = RPMParentCapabilities[aCapability];
-
     let allowed = !!filter;
-    if ("validate" in capability) {
+    if ("validate" in capability && capability.validate) {
       allowed = capability.validate(filter, ...aArgs);
     }
 
