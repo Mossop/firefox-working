@@ -61,6 +61,7 @@ EXPORTS.mozilla += [
     'TextComposition.h',
     'VirtualKeyCodeList.h',
     'WheelHandlingHelper.h',
+    'WindowKeyboardShortcut.h',
 ]
 
 EXPORTS.mozilla.dom += [
@@ -159,6 +160,7 @@ UNIFIED_SOURCES += [
     'UIEvent.cpp',
     'WheelEvent.cpp',
     'WheelHandlingHelper.cpp',
+    'WindowKeyboardShortcut.cpp',
     'XULCommandEvent.cpp',
 ]
 

@@ -66,6 +66,7 @@ WEBIDL_FILES = [
     'WebExtensionContentScript.webidl',
     'WebExtensionPolicy.webidl',
     'WindowGlobalActors.webidl',
+    'WindowKeyboardShortcut.webidl',
     'XULFrameElement.webidl',
     'XULMenuElement.webidl',
     'XULTextElement.webidl',

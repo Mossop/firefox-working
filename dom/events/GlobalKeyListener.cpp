@@ -469,6 +469,86 @@ bool GlobalKeyListener::HasHandlerForEvent(KeyboardEvent* aEvent,
   return WalkHandlersInternal(aEvent, false, aOutReservedForChrome);
 }
 
+JSGlobalKeyListener::JSGlobalKeyListener(EventTarget* aTarget)
+    : GlobalKeyListener(aTarget) {
+  EventListenerManager* manager = aTarget->GetOrCreateListenerManager();
+  if (!manager) {
+    return;
+  }
+
+  InstallKeyboardEventListenersTo(manager);
+}
+
+JSGlobalKeyListener::~JSGlobalKeyListener() {
+  if (mHandler) {
+    delete mHandler;
+  }
+}
+
+JSKeyEventHandler*
+JSGlobalKeyListener::Register(const mozilla::dom::WindowKeyboardShortcutInfo& aInfo,
+    mozilla::dom::WindowKeyboardShortcutCallback& aCallback) {
+  JSKeyEventHandler* handler = new JSKeyEventHandler(aInfo, aCallback);
+  if (!mHandler) {
+    mHandler = handler;
+  } else {
+    KeyEventHandler* previous = mHandler;
+    while (previous->GetNextHandler()) {
+      previous = previous->GetNextHandler();
+    }
+    previous->SetNextHandler(handler);
+  }
+
+  return handler;
+}
+
+void
+JSGlobalKeyListener::Unregister(JSKeyEventHandler* aHandler) {
+  if (mHandler == aHandler) {
+    mHandler = aHandler->GetNextHandler();
+  } else {
+    KeyEventHandler* previous = mHandler;
+    while (previous && previous->GetNextHandler() != aHandler) {
+      previous = previous->GetNextHandler();
+    }
+
+    // Already unregistered? Probably shouldn't ever happen.
+    if (!previous) {
+      return;
+    }
+
+    previous->SetNextHandler(aHandler->GetNextHandler());
+  }
+
+  aHandler->SetNextHandler(nullptr);
+  delete aHandler;
+}
+
+bool JSGlobalKeyListener::CanHandle(KeyEventHandler* aHandler,
+                                    bool aWillExecute) const {
+  JSKeyEventHandler* handler = static_cast<JSKeyEventHandler*>(aHandler);
+  return !handler->Disabled();
+}
+
+bool JSGlobalKeyListener::IsReservedKey(WidgetKeyboardEvent* aKeyEvent,
+    KeyEventHandler* aHandler) {
+  JSKeyEventHandler* handler = static_cast<JSKeyEventHandler*>(aHandler);
+
+  ReservedKey reserved = handler->GetIsReserved();
+  // reserved="true" means that the key is always reserved. reserved="false"
+  // means that the key is never reserved. Otherwise, we check site-specific
+  // permissions.
+  if (reserved == ReservedKey_False) {
+    return false;
+  }
+
+  if (reserved == ReservedKey_True) {
+    return true;
+  }
+
+  return nsContentUtils::ShouldBlockReservedKeys(aKeyEvent);
+}
+
 //
 // AttachGlobalKeyHandler
 //

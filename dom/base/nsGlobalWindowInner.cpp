@@ -26,6 +26,7 @@
 #include "mozilla/dom/DocumentInlines.h"
 #include "mozilla/dom/DOMJSProxyHandler.h"
 #include "mozilla/dom/EventTarget.h"
+#include "mozilla/dom/WindowKeyboardShortcutBinding.h"
 #include "mozilla/dom/LocalStorage.h"
 #include "mozilla/dom/LocalStorageCommon.h"
 #include "mozilla/dom/LSObject.h"
@@ -250,6 +251,9 @@
 
 #include "AccessCheck.h"
 #include "SessionStorageCache.h"
+
+#include "mozilla/GlobalKeyListener.h"
+#include "mozilla/WindowKeyboardShortcut.h"
 
 #ifdef ANDROID
 #  include <android/log.h>
@@ -7105,6 +7109,40 @@ void nsGlobalWindowInner::StorageAccessGranted() {
   if (mDoc) {
     mDoc->ClearActiveStoragePrincipal();
   }
+}
+
+already_AddRefed<Promise> nsGlobalWindowInner::RegisterKeyboardShortcut(
+    JSContext* aCx, const nsAString& aId,
+    const mozilla::dom::WindowKeyboardShortcutInfo& aInfo,
+    mozilla::dom::WindowKeyboardShortcutCallback& aCallback, ErrorResult& aError) {
+  RefPtr<Promise> promise = Promise::Create(this, aError);
+
+  if (NS_WARN_IF(aError.Failed())) {
+    return nullptr;
+  }
+
+  if ((!aInfo.mKey.WasPassed() || aInfo.mKey.Value().IsEmpty()) &&
+      (!aInfo.mKeyCode.WasPassed() || aInfo.mKeyCode.Value().IsEmpty())) {
+    promise->MaybeRejectWithUndefined();
+    return promise.forget();
+  }
+
+  if (!mJSKeyListeners) {
+    mJSKeyListeners = new JSGlobalKeyListener(this);
+  }
+
+  JSKeyEventHandler* handler = mJSKeyListeners->Register(aInfo, aCallback);
+  RefPtr<WindowKeyboardShortcut> shortcut = new WindowKeyboardShortcut(this, mJSKeyListeners, handler);
+
+  JS::Rooted<JS::Value> shortcutValue(aCx);
+  if (!ToJSValue(aCx, shortcut, &shortcutValue)) {
+    promise->MaybeRejectWithUndefined();
+    return promise.forget();
+  }
+
+  promise->MaybeResolveWithClone(aCx, shortcutValue);
+
+  return promise.forget();
 }
 
 mozilla::dom::TabGroup* nsPIDOMWindowInner::TabGroup() {

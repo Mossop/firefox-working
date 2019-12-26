@@ -126,6 +126,26 @@ class KeyEventHandler {
   RefPtr<nsAtom> mEventName;  // The type of the event, e.g., "keypress"
 };
 
+class JSKeyEventHandler final : public KeyEventHandler {
+ public:
+  explicit JSKeyEventHandler(
+    const mozilla::dom::WindowKeyboardShortcutInfo& aInfo,
+    mozilla::dom::WindowKeyboardShortcutCallback& aCallback);
+
+  bool Disabled();
+  void SetDisabled(bool aDisabled);
+
+  MOZ_CAN_RUN_SCRIPT
+  virtual nsresult ExecuteHandler(EventTarget* aTarget, Event* aEvent) override;
+
+  ReservedKey GetIsReserved() { return mReserved; }
+
+ protected:
+  bool mDisabled;
+  RefPtr<mozilla::dom::WindowKeyboardShortcutCallback> mCallback;
+  ReservedKey mReserved;
+};
+
 class XULKeyEventHandler final : public KeyEventHandler {
  public:
   explicit XULKeyEventHandler(Element* aKeyElement);

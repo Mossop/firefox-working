@@ -319,13 +319,76 @@ size_t KeyEventHandler::SizeOfIncludingThis(MallocSizeOf aMallocSizeOf) const {
   return n;
 }
 
+JSKeyEventHandler::JSKeyEventHandler(
+    const mozilla::dom::WindowKeyboardShortcutInfo& aInfo,
+    mozilla::dom::WindowKeyboardShortcutCallback& aCallback)
+    : KeyEventHandler(),
+      mDisabled(false),
+      mCallback(&aCallback),
+      mReserved(ReservedKey_Unset) {
+  mDetail = -1;
+  mMisc = 0;
+  mKeyMask = cAllModifiers;
+  mEventName = nsGkAtoms::keypress;
+
+  if (aInfo.mModifiers.WasPassed()) {
+    for (auto modifier : aInfo.mModifiers.Value()) {
+      if (modifier == WindowKeyboardShortcutModifier::Shift) {
+        mKeyMask |= cShift | cShiftMask;
+      } else if (modifier == WindowKeyboardShortcutModifier::Alt) {
+        mKeyMask |= cAlt | cAltMask;
+      } else if (modifier == WindowKeyboardShortcutModifier::Meta) {
+        mKeyMask |= cMeta | cMetaMask;
+      } else if (modifier == WindowKeyboardShortcutModifier::Os) {
+        mKeyMask |= cOS | cOSMask;
+      } else if (modifier == WindowKeyboardShortcutModifier::Control) {
+        mKeyMask |= cControl | cControlMask;
+      } else if (modifier == WindowKeyboardShortcutModifier::Accel) {
+        mKeyMask |= AccelKeyMask();
+      } else if (modifier == WindowKeyboardShortcutModifier::Access) {
+        mKeyMask |= KeyToMask(kMenuAccessKey);
+      }
+    }
+  }
+
+  if (aInfo.mReserved.WasPassed()) {
+    mReserved = aInfo.mReserved.Value() ? ReservedKey_True : ReservedKey_False;
+  }
+
+  if (aInfo.mKey.WasPassed() && !aInfo.mKey.Value().IsEmpty()) {
+    nsString key(aInfo.mKey.Value());
+    ToLowerCase(key);
+
+    // We have a charcode.
+    mMisc = 1;
+    mDetail = key[0];
+
+    // TODO report key conflict.
+  } else if (aInfo.mKeyCode.WasPassed() && !aInfo.mKeyCode.Value().IsEmpty()) {
+    mDetail = GetMatchingKeyCode(aInfo.mKeyCode.Value());
+  }
+}
+
+bool JSKeyEventHandler::Disabled() {
+  return mDisabled;
+}
+
+void JSKeyEventHandler::SetDisabled(bool aDisabled) {
+  mDisabled = aDisabled;
+}
+
+nsresult JSKeyEventHandler::ExecuteHandler(EventTarget* aTarget, Event* aEvent) {
+  mCallback->Call();
+  return NS_OK;
+}
+
 XULKeyEventHandler::XULKeyEventHandler(Element* aKeyElement)
     : KeyEventHandler(),
       mHandlerElement(nullptr),
       mReserved(ReservedKey_Unset) {
   mDetail = -1;
   mMisc = 0;
-  mKeyMask = 0;
+  mKeyMask = cAllModifiers;
   nsAutoString modifiers;
 
   nsWeakPtr weak = do_GetWeakReference(aKeyElement);
@@ -360,9 +423,6 @@ XULKeyEventHandler::XULKeyEventHandler(Element* aKeyElement)
   }
 
   if (!key.IsEmpty()) {
-    if (mKeyMask == 0) {
-      mKeyMask = cAllModifiers;
-    }
     ToLowerCase(key);
 
     // We have a charcode.
@@ -387,9 +447,6 @@ XULKeyEventHandler::XULKeyEventHandler(Element* aKeyElement)
     aKeyElement->GetAttr(kNameSpaceID_None, nsGkAtoms::keycode, key);
 
     if (!key.IsEmpty()) {
-      if (mKeyMask == 0) {
-        mKeyMask = cAllModifiers;
-      }
       mDetail = GetMatchingKeyCode(key);
     }
   }
