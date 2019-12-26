@@ -95,6 +95,7 @@ class PromiseDocumentFlushedResolver;
 
 namespace mozilla {
 class AbstractThread;
+class JSGlobalKeyListener;
 namespace dom {
 class BarProp;
 class BrowsingContext;
@@ -113,6 +114,8 @@ class IdleRequestCallback;
 class IncrementalRunnable;
 class InstallTriggerImpl;
 class IntlUtils;
+class WindowKeyboardShortcutCallback;
+struct WindowKeyboardShortcutInfo;
 class Location;
 class MediaQueryList;
 class OwningExternalOrWindowProxy;
@@ -1235,6 +1238,12 @@ class nsGlobalWindowInner final : public mozilla::dom::EventTarget,
 
   void SetActiveLoadingState(bool aIsLoading) override;
 
+  already_AddRefed<mozilla::dom::Promise> RegisterKeyboardShortcut(
+      JSContext* aCx, const nsAString& aId,
+      const mozilla::dom::WindowKeyboardShortcutInfo& aInfo,
+      mozilla::dom::WindowKeyboardShortcutCallback& aCallback,
+      mozilla::ErrorResult& aError);
+
  protected:
   // Window offline status. Checked to see if we need to fire offline event
   bool mWasOffline : 1;
@@ -1420,6 +1429,8 @@ class nsGlobalWindowInner final : public mozilla::dom::EventTarget,
 
   nsTArray<mozilla::UniquePtr<PromiseDocumentFlushedResolver>>
       mDocumentFlushedResolvers;
+
+  RefPtr<mozilla::JSGlobalKeyListener> mJSKeyListeners;
 
   static InnerWindowByIdTable* sInnerWindowsById;
 

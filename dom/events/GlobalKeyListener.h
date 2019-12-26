@@ -9,6 +9,7 @@
 
 #include "mozilla/EventForwards.h"
 #include "mozilla/layers/KeyboardMap.h"
+#include "mozilla/dom/WindowKeyboardShortcutBinding.h"
 #include "nsIDOMEventListener.h"
 #include "nsIWeakReferenceUtils.h"
 
@@ -33,6 +34,7 @@ using namespace dom;
 
 class KeyEventHandler;
 class XULKeyEventHandler;
+class JSKeyEventHandler;
 
 /**
  * A generic listener for key events.
@@ -105,6 +107,25 @@ class GlobalKeyListener : public nsIDOMEventListener {
   EventTarget* mTarget;  // weak ref;
 
   KeyEventHandler* mHandler;  // Linked list of event handlers.
+};
+
+class JSGlobalKeyListener final : public GlobalKeyListener {
+ public:
+  explicit JSGlobalKeyListener(EventTarget* aTarget);
+
+  JSKeyEventHandler* Register(const mozilla::dom::WindowKeyboardShortcutInfo& aInfo,
+    mozilla::dom::WindowKeyboardShortcutCallback& aCallback);
+  void Unregister(JSKeyEventHandler* aHandler);
+
+  virtual bool CanHandle(KeyEventHandler* aHandler,
+                         bool aWillExecute) const override;
+
+ protected:
+  virtual ~JSGlobalKeyListener();
+
+  virtual void EnsureHandlers() override {}
+
+  virtual bool IsReservedKey(WidgetKeyboardEvent* aKeyEvent, KeyEventHandler* aHandler) override;
 };
 
 /**

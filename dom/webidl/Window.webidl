@@ -788,3 +788,8 @@ partial interface Window {
 dictionary WindowPostMessageOptions : PostMessageOptions {
   USVString targetOrigin = "/";
 };
+
+partial interface Window {
+  [Throws, Func="nsGlobalWindowInner::IsPrivilegedChromeWindow"]
+  Promise<WindowKeyboardShortcut> registerKeyboardShortcut(DOMString id, WindowKeyboardShortcutInfo info, WindowKeyboardShortcutCallback callback);
+};
