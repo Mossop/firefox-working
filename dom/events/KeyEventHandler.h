@@ -46,26 +46,9 @@ enum ReservedKey : uint8_t {
   ReservedKey_Unset = 2,
 };
 
-class KeyEventHandler final {
+class KeyEventHandler {
  public:
-  // This constructor is used only by XUL key handlers (e.g., <key>)
-  explicit KeyEventHandler(Element* aHandlerElement, ReservedKey aReserved);
-
-  // This constructor is used for keyboard handlers for browser, editor, input
-  // and textarea elements.
-  explicit KeyEventHandler(ShortcutKeyData* aKeyData);
-
-  ~KeyEventHandler();
-
-  /**
-   * Try and convert this XBL handler into an APZ KeyboardShortcut for handling
-   * key events on the compositor thread. This only works for XBL handlers that
-   * represent scroll commands.
-   *
-   * @param aOut the converted KeyboardShortcut, must be non null
-   * @return whether the handler was converted into a KeyboardShortcut
-   */
-  bool TryConvertToKeyboardShortcut(layers::KeyboardShortcut* aOut) const;
+  virtual ~KeyEventHandler();
 
   bool EventTypeEquals(nsAtom* aEventType) const {
     return mEventName == aEventType;
@@ -76,23 +59,20 @@ class KeyEventHandler final {
   bool KeyEventMatched(KeyboardEvent* aDomKeyboardEvent, uint32_t aCharCode,
                        const IgnoreModifierState& aIgnoreModifierState);
 
-  already_AddRefed<Element> GetHandlerElement();
-
-  ReservedKey GetIsReserved() { return mReserved; }
-
   KeyEventHandler* GetNextHandler() { return mNextHandler; }
   void SetNextHandler(KeyEventHandler* aHandler) { mNextHandler = aHandler; }
 
   MOZ_CAN_RUN_SCRIPT
-  nsresult ExecuteHandler(EventTarget* aTarget, Event* aEvent);
+  virtual nsresult ExecuteHandler(EventTarget* aTarget, Event* aEvent) = 0;
 
-  size_t SizeOfIncludingThis(mozilla::MallocSizeOf aMallocSizeOf) const;
+  virtual size_t SizeOfIncludingThis(mozilla::MallocSizeOf aMallocSizeOf) const;
 
  public:
   static uint32_t gRefCnt;
 
  protected:
-  void Init() {
+  KeyEventHandler()
+   : mNextHandler(nullptr) {
     ++gRefCnt;
     if (gRefCnt == 1) {
       // Get the primary accelerator key.
@@ -100,26 +80,11 @@ class KeyEventHandler final {
     }
   }
 
-  already_AddRefed<nsIController> GetController(EventTarget* aTarget);
-
   inline int32_t GetMatchingKeyCode(const nsAString& aKeyName);
-  void ConstructPrototype(Element* aKeyElement,
-                          const char16_t* aEvent = nullptr,
-                          const char16_t* aCommand = nullptr,
-                          const char16_t* aKeyCode = nullptr,
-                          const char16_t* aCharCode = nullptr,
-                          const char16_t* aModifiers = nullptr);
   void BuildModifiers(nsAString& aModifiers);
 
-  void ReportKeyConflict(const char16_t* aKey, const char16_t* aModifiers,
-                         Element* aKeyElement, const char* aMessageName);
-  void GetEventType(nsAString& aEvent);
   bool ModifiersMatchMask(UIEvent* aEvent,
                           const IgnoreModifierState& aIgnoreModifierState);
-  MOZ_CAN_RUN_SCRIPT
-  nsresult DispatchXBLCommand(EventTarget* aTarget, Event* aEvent);
-  MOZ_CAN_RUN_SCRIPT
-  nsresult DispatchXULKeyCommand(Event* aEvent);
 
   Modifiers GetModifiers() const;
   Modifiers GetModifiersMask() const;
@@ -145,20 +110,9 @@ class KeyEventHandler final {
   static const int32_t cAllModifiers;
 
  protected:
-  union {
-    nsIWeakReference*
-        mHandlerElement;  // For XUL <key> element handlers. [STRONG]
-    char16_t* mCommand;   // For built-in shortcuts the command to execute.
-  };
-
-  // The following four values make up 32 bits.
-  bool mIsXULKey;  // This handler is either for a XUL <key> element or it is
-                   // a command dispatcher.
   uint8_t mMisc;   // Miscellaneous extra information.  For key events,
                    // stores whether or not we're a key code or char code.
                    // For mouse events, stores the clickCount.
-
-  ReservedKey mReserved;  // <key> is reserved for chrome. Not used by handlers.
 
   int32_t mKeyMask;  // Which modifier keys this event handler expects to have
                      // down in order to be matched.
@@ -170,6 +124,51 @@ class KeyEventHandler final {
   // Prototype handlers are chained. We own the next handler in the chain.
   KeyEventHandler* mNextHandler;
   RefPtr<nsAtom> mEventName;  // The type of the event, e.g., "keypress"
+};
+
+class XULKeyEventHandler final : public KeyEventHandler {
+ public:
+  explicit XULKeyEventHandler(Element* aKeyElement);
+  virtual ~XULKeyEventHandler() override;
+
+  already_AddRefed<Element> GetHandlerElement();
+  void GetEventType(nsAString& aEvent);
+  MOZ_CAN_RUN_SCRIPT
+  virtual nsresult ExecuteHandler(EventTarget* aTarget, Event* aEvent) override;
+
+  void ReportKeyConflict(const char16_t* aKey, const char16_t* aModifiers,
+                         Element* aKeyElement, const char* aMessageName);
+
+  ReservedKey GetIsReserved() { return mReserved; }
+
+ protected:
+  nsIWeakReference* mHandlerElement;
+  ReservedKey mReserved;
+};
+
+class ShortcutKeyEventHandler final : public KeyEventHandler {
+ public:
+  explicit ShortcutKeyEventHandler(ShortcutKeyData* aKeyData);
+  virtual ~ShortcutKeyEventHandler() override;
+
+  already_AddRefed<nsIController> GetController(EventTarget* aTarget);
+  MOZ_CAN_RUN_SCRIPT
+  virtual nsresult ExecuteHandler(EventTarget* aTarget, Event* aEvent) override;
+
+  /**
+   * Try and convert this Shortcut handler into an APZ KeyboardShortcut for
+   * handling key events on the compositor thread. This only works for handlers
+   * that represent scroll commands.
+   *
+   * @param aOut the converted KeyboardShortcut, must be non null
+   * @return whether the handler was converted into a KeyboardShortcut
+   */
+  bool TryConvertToKeyboardShortcut(layers::KeyboardShortcut* aOut) const;
+
+  virtual size_t SizeOfIncludingThis(mozilla::MallocSizeOf aMallocSizeOf) const override;
+
+ protected:
+  char16_t* mCommand;
 };
 
 }  // namespace mozilla

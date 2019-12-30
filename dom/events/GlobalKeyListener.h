@@ -32,6 +32,7 @@ class KeyboardEvent;
 using namespace dom;
 
 class KeyEventHandler;
+class XULKeyEventHandler;
 
 /**
  * A generic listener for key events.
@@ -87,7 +88,9 @@ class GlobalKeyListener : public nsIDOMEventListener {
 
   // Returns true if the key would be reserved for the given handler. A reserved
   // key is not sent to a content process or single-process equivalent.
-  bool IsReservedKey(WidgetKeyboardEvent* aKeyEvent, KeyEventHandler* aHandler);
+  virtual bool IsReservedKey(WidgetKeyboardEvent* aKeyEvent, KeyEventHandler* aHandler) {
+    return false;
+  }
 
   // lazily load the handlers. Overridden to handle being attached
   // to a particular element rather than the document
@@ -98,11 +101,6 @@ class GlobalKeyListener : public nsIDOMEventListener {
   }
 
   virtual bool IsDisabled() const { return false; }
-
-  virtual already_AddRefed<EventTarget> GetHandlerTarget(
-      KeyEventHandler* aHandler) {
-    return do_AddRef(mTarget);
-  }
 
   EventTarget* mTarget;  // weak ref;
 
@@ -136,8 +134,6 @@ class XULKeySetGlobalKeyListener final : public GlobalKeyListener {
   virtual bool CanHandle(KeyEventHandler* aHandler,
                          bool aWillExecute) const override;
   virtual bool IsDisabled() const override;
-  virtual already_AddRefed<EventTarget> GetHandlerTarget(
-      KeyEventHandler* aHandler) override;
 
   /**
    * GetElementForHandler() retrieves an element for the handler.  The element
@@ -148,7 +144,7 @@ class XULKeySetGlobalKeyListener final : public GlobalKeyListener {
    *                           this.
    * @return                   true if the handler is valid.  Otherwise, false.
    */
-  bool GetElementForHandler(KeyEventHandler* aHandler,
+  bool GetElementForHandler(XULKeyEventHandler* aHandler,
                             Element** aElementForHandler) const;
 
   /**
@@ -156,6 +152,8 @@ class XULKeySetGlobalKeyListener final : public GlobalKeyListener {
    * Otherwise, false. aElement should be a command element or a key element.
    */
   bool IsExecutableElement(Element* aElement) const;
+
+  virtual bool IsReservedKey(WidgetKeyboardEvent* aKeyEvent, KeyEventHandler* aHandler) override;
 
   // Using weak pointer to the DOM Element.
   nsWeakPtr mWeakPtrForElement;
