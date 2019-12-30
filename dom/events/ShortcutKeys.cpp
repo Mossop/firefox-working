@@ -40,7 +40,7 @@ nsresult ShortcutKeys::Observe(nsISupports* aSubject, const char* aTopic,
 }
 
 /* static */
-KeyEventHandler* ShortcutKeys::GetHandlers(HandlerType aType) {
+ShortcutKeyEventHandler* ShortcutKeys::GetHandlers(HandlerType aType) {
   if (!sInstance) {
     sInstance = new ShortcutKeys();
   }
@@ -71,9 +71,9 @@ nsAtom* ShortcutKeys::ConvertEventToDOMEventType(
   return nullptr;
 }
 
-KeyEventHandler* ShortcutKeys::EnsureHandlers(HandlerType aType) {
+ShortcutKeyEventHandler* ShortcutKeys::EnsureHandlers(HandlerType aType) {
   ShortcutKeyData* keyData;
-  KeyEventHandler** cache;
+  ShortcutKeyEventHandler** cache;
 
   switch (aType) {
     case HandlerType::eBrowser:
@@ -100,9 +100,9 @@ KeyEventHandler* ShortcutKeys::EnsureHandlers(HandlerType aType) {
     return *cache;
   }
 
-  KeyEventHandler* lastHandler = nullptr;
+  ShortcutKeyEventHandler* lastHandler = nullptr;
   while (keyData->event) {
-    KeyEventHandler* handler = new KeyEventHandler(keyData);
+    ShortcutKeyEventHandler* handler = new ShortcutKeyEventHandler(keyData);
     if (lastHandler) {
       lastHandler->SetNextHandler(handler);
     } else {

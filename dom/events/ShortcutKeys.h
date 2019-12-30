@@ -10,7 +10,7 @@
 class nsAtom;
 
 namespace mozilla {
-class KeyEventHandler;
+class ShortcutKeyEventHandler;
 class WidgetKeyboardEvent;
 
 typedef struct {
@@ -34,7 +34,7 @@ class ShortcutKeys : public nsIObserver {
   NS_DECL_NSIOBSERVER
 
   // Returns a pointer to the first handler for the given type.
-  static KeyEventHandler* GetHandlers(HandlerType aType);
+  static ShortcutKeyEventHandler* GetHandlers(HandlerType aType);
 
   // Gets the event type for a widget keyboard event.
   static nsAtom* ConvertEventToDOMEventType(
@@ -45,7 +45,7 @@ class ShortcutKeys : public nsIObserver {
   virtual ~ShortcutKeys();
 
   // Returns a pointer to the first handler for the given type.
-  KeyEventHandler* EnsureHandlers(HandlerType aType);
+  ShortcutKeyEventHandler* EnsureHandlers(HandlerType aType);
 
   // Maintains a strong reference to the only instance.
   static StaticRefPtr<ShortcutKeys> sInstance;
@@ -57,10 +57,10 @@ class ShortcutKeys : public nsIObserver {
   static ShortcutKeyData sTextAreaHandlers[];
 
   // Cached event handlers generated from the above data.
-  KeyEventHandler* mBrowserHandlers;
-  KeyEventHandler* mEditorHandlers;
-  KeyEventHandler* mInputHandlers;
-  KeyEventHandler* mTextAreaHandlers;
+  ShortcutKeyEventHandler* mBrowserHandlers;
+  ShortcutKeyEventHandler* mEditorHandlers;
+  ShortcutKeyEventHandler* mInputHandlers;
+  ShortcutKeyEventHandler* mTextAreaHandlers;
 };
 
 }  // namespace mozilla

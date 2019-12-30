@@ -64,17 +64,7 @@ static void BuildHandlerChain(nsIContent* aContent, KeyEventHandler** aResult) {
       continue;
     }
 
-    // reserved="pref" is the default for <key> elements.
-    ReservedKey reserved = ReservedKey_Unset;
-    if (keyElement->AttrValueIs(kNameSpaceID_None, nsGkAtoms::reserved,
-                                nsGkAtoms::_true, eCaseMatters)) {
-      reserved = ReservedKey_True;
-    } else if (keyElement->AttrValueIs(kNameSpaceID_None, nsGkAtoms::reserved,
-                                       nsGkAtoms::_false, eCaseMatters)) {
-      reserved = ReservedKey_False;
-    }
-
-    KeyEventHandler* handler = new KeyEventHandler(keyElement, reserved);
+    KeyEventHandler* handler = new XULKeyEventHandler(keyElement);
 
     handler->SetNextHandler(*aResult);
     *aResult = handler;
@@ -432,11 +422,15 @@ bool GlobalKeyListener::WalkHandlersAndExecute(
       return false;
     }
 
-    nsCOMPtr<EventTarget> target = GetHandlerTarget(handler);
+    // XUL handlers and commands shouldn't be triggered by non-trusted
+    // events.
+    if (!aKeyEvent->IsTrusted()) {
+      return true;
+    }
 
     // XXX Do we execute only one handler even if the handler neither stops
     //     propagation nor prevents default of the event?
-    nsresult rv = handler->ExecuteHandler(target, aKeyEvent);
+    nsresult rv = handler->ExecuteHandler(mTarget, aKeyEvent);
     if (NS_SUCCEEDED(rv)) {
       return true;
     }
@@ -456,23 +450,6 @@ bool GlobalKeyListener::WalkHandlersAndExecute(
 #endif
 
   return false;
-}
-
-bool GlobalKeyListener::IsReservedKey(WidgetKeyboardEvent* aKeyEvent,
-                                      KeyEventHandler* aHandler) {
-  ReservedKey reserved = aHandler->GetIsReserved();
-  // reserved="true" means that the key is always reserved. reserved="false"
-  // means that the key is never reserved. Otherwise, we check site-specific
-  // permissions.
-  if (reserved == ReservedKey_False) {
-    return false;
-  }
-
-  if (reserved == ReservedKey_True) {
-    return true;
-  }
-
-  return nsContentUtils::ShouldBlockReservedKeys(aKeyEvent);
 }
 
 bool GlobalKeyListener::HasHandlerForEvent(KeyboardEvent* aEvent,
@@ -597,7 +574,7 @@ bool XULKeySetGlobalKeyListener::IsDisabled() const {
 }
 
 bool XULKeySetGlobalKeyListener::GetElementForHandler(
-    KeyEventHandler* aHandler, Element** aElementForHandler) const {
+    XULKeyEventHandler* aHandler, Element** aElementForHandler) const {
   MOZ_ASSERT(aElementForHandler);
   *aElementForHandler = nullptr;
 
@@ -658,20 +635,30 @@ bool XULKeySetGlobalKeyListener::IsExecutableElement(Element* aElement) const {
   return !value.IsEmpty();
 }
 
-already_AddRefed<EventTarget> XULKeySetGlobalKeyListener::GetHandlerTarget(
+bool XULKeySetGlobalKeyListener::IsReservedKey(WidgetKeyboardEvent* aKeyEvent,
     KeyEventHandler* aHandler) {
-  nsCOMPtr<Element> commandElement;
-  if (!GetElementForHandler(aHandler, getter_AddRefs(commandElement))) {
-    return nullptr;
+  XULKeyEventHandler* handler = static_cast<XULKeyEventHandler*>(aHandler);
+
+  ReservedKey reserved = handler->GetIsReserved();
+  // reserved="true" means that the key is always reserved. reserved="false"
+  // means that the key is never reserved. Otherwise, we check site-specific
+  // permissions.
+  if (reserved == ReservedKey_False) {
+    return false;
   }
 
-  return commandElement.forget();
+  if (reserved == ReservedKey_True) {
+    return true;
+  }
+
+  return nsContentUtils::ShouldBlockReservedKeys(aKeyEvent);
 }
 
 bool XULKeySetGlobalKeyListener::CanHandle(KeyEventHandler* aHandler,
                                            bool aWillExecute) const {
+  XULKeyEventHandler* handler = static_cast<XULKeyEventHandler*>(aHandler);
   nsCOMPtr<Element> commandElement;
-  if (!GetElementForHandler(aHandler, getter_AddRefs(commandElement))) {
+  if (!GetElementForHandler(handler, getter_AddRefs(commandElement))) {
     return false;
   }
 
@@ -700,8 +687,9 @@ layers::KeyboardMap RootWindowGlobalKeyListener::CollectKeyboardShortcuts() {
 
   for (KeyEventHandler* handler = handlers; handler;
        handler = handler->GetNextHandler()) {
+    ShortcutKeyEventHandler* shortcutHandler = static_cast<ShortcutKeyEventHandler*>(handler);
     KeyboardShortcut shortcut;
-    if (handler->TryConvertToKeyboardShortcut(&shortcut)) {
+    if (shortcutHandler->TryConvertToKeyboardShortcut(&shortcut)) {
       shortcuts.AppendElement(shortcut);
     }
   }
