@@ -64,3 +64,13 @@ module.exports = {
     "var-only-at-top-level": require("../lib/rules/var-only-at-top-level"),
   },
 };
+
+const thisChecker = require("../lib/rules/no-global-this");
+for (let use of thisChecker.known) {
+  module.exports.rules[
+    `no-this-in-${use.replace(/\\./g, "-")}`
+  ] = thisChecker.checkFor(use);
+}
+
+module.exports.rules["no-this-property-assign"] = thisChecker.checkAssignment();
+module.exports.rules["no-global-this"] = thisChecker.checkUnknown();

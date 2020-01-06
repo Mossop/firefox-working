@@ -60,6 +60,8 @@ module.exports = {
       files: ["**/*.jsm", "**/*.jsm.js"],
       rules: {
         "mozilla/mark-exported-symbols-as-used": "error",
+        "mozilla/no-global-this": "error",
+        "mozilla/no-this-property-assign": "error",
         // TODO: Bug 1575506 turn `builtinGlobals` on here.
         // We can enable builtinGlobals for jsms due to their scopes.
         "no-redeclare": ["error", { builtinGlobals: false }],
@@ -300,3 +302,10 @@ module.exports = {
     "html/xml-extensions": [".xhtml"],
   },
 };
+
+const thisChecker = require("../rules/no-global-this");
+for (let use of thisChecker.known) {
+  module.exports.overrides[0].rules[
+    `mozilla/no-this-in-${use.replace(/\\./g, "-")}`
+  ] = "error";
+}
