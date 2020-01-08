@@ -14,81 +14,76 @@ ChromeUtils.import("resource://gre/modules/NotificationDB.jsm");
 
 // lazy module getters
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  AMTelemetry: "resource://gre/modules/AddonManager.jsm",
-  NewTabPagePreloading: "resource:///modules/NewTabPagePreloading.jsm",
-  BrowserUsageTelemetry: "resource:///modules/BrowserUsageTelemetry.jsm",
-  BrowserUtils: "resource://gre/modules/BrowserUtils.jsm",
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
-  CFRPageActions: "resource://activity-stream/lib/CFRPageActions.jsm",
-  CharsetMenu: "resource://gre/modules/CharsetMenu.jsm",
-  Color: "resource://gre/modules/Color.jsm",
-  ContentSearch: "resource:///modules/ContentSearch.jsm",
-  ContextualIdentityService:
-    "resource://gre/modules/ContextualIdentityService.jsm",
-  CustomizableUI: "resource:///modules/CustomizableUI.jsm",
-  Deprecated: "resource://gre/modules/Deprecated.jsm",
-  DownloadsCommon: "resource:///modules/DownloadsCommon.jsm",
-  DownloadUtils: "resource://gre/modules/DownloadUtils.jsm",
-  E10SUtils: "resource://gre/modules/E10SUtils.jsm",
-  ExtensionsUI: "resource:///modules/ExtensionsUI.jsm",
-  HomePage: "resource:///modules/HomePage.jsm",
-  LightweightThemeConsumer:
-    "resource://gre/modules/LightweightThemeConsumer.jsm",
-  Log: "resource://gre/modules/Log.jsm",
-  LoginHelper: "resource://gre/modules/LoginHelper.jsm",
-  LoginManagerParent: "resource://gre/modules/LoginManagerParent.jsm",
-  MigrationUtils: "resource:///modules/MigrationUtils.jsm",
-  NetUtil: "resource://gre/modules/NetUtil.jsm",
-  NewTabUtils: "resource://gre/modules/NewTabUtils.jsm",
-  OpenInTabsUtils: "resource:///modules/OpenInTabsUtils.jsm",
-  PageActions: "resource:///modules/PageActions.jsm",
-  PageThumbs: "resource://gre/modules/PageThumbs.jsm",
-  PanelMultiView: "resource:///modules/PanelMultiView.jsm",
-  PanelView: "resource:///modules/PanelMultiView.jsm",
-  PermitUnloader: "resource://gre/actors/BrowserElementParent.jsm",
-  PictureInPicture: "resource://gre/modules/PictureInPicture.jsm",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.jsm",
-  PlacesUIUtils: "resource:///modules/PlacesUIUtils.jsm",
-  PlacesTransactions: "resource://gre/modules/PlacesTransactions.jsm",
-  PluralForm: "resource://gre/modules/PluralForm.jsm",
-  Pocket: "chrome://pocket/content/Pocket.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-  ProcessHangMonitor: "resource:///modules/ProcessHangMonitor.jsm",
-  PromiseUtils: "resource://gre/modules/PromiseUtils.jsm",
-  // TODO (Bug 1529552): Remove once old urlbar code goes away.
-  ReaderMode: "resource://gre/modules/ReaderMode.jsm",
-  ReaderParent: "resource:///modules/ReaderParent.jsm",
-  RFPHelper: "resource://gre/modules/RFPHelper.jsm",
-  SafeBrowsing: "resource://gre/modules/SafeBrowsing.jsm",
-  Sanitizer: "resource:///modules/Sanitizer.jsm",
-  SessionStartup: "resource:///modules/sessionstore/SessionStartup.jsm",
-  SessionStore: "resource:///modules/sessionstore/SessionStore.jsm",
-  ShortcutUtils: "resource://gre/modules/ShortcutUtils.jsm",
-  SimpleServiceDiscovery: "resource://gre/modules/SimpleServiceDiscovery.jsm",
-  SiteDataManager: "resource:///modules/SiteDataManager.jsm",
-  SitePermissions: "resource:///modules/SitePermissions.jsm",
-  SiteSpecificBrowser: "resource:///modules/SiteSpecificBrowserService.jsm",
-  SiteSpecificBrowserService:
-    "resource:///modules/SiteSpecificBrowserService.jsm",
-  TabModalPrompt: "chrome://global/content/tabprompts.jsm",
-  TabCrashHandler: "resource:///modules/ContentCrashHandlers.jsm",
-  TelemetryEnvironment: "resource://gre/modules/TelemetryEnvironment.jsm",
-  Translation: "resource:///modules/translation/Translation.jsm",
-  UITour: "resource:///modules/UITour.jsm",
-  UpdateUtils: "resource://gre/modules/UpdateUtils.jsm",
-  UrlbarInput: "resource:///modules/UrlbarInput.jsm",
-  UrlbarPrefs: "resource:///modules/UrlbarPrefs.jsm",
-  UrlbarTokenizer: "resource:///modules/UrlbarTokenizer.jsm",
-  UrlbarUtils: "resource:///modules/UrlbarUtils.jsm",
-  UrlbarValueFormatter: "resource:///modules/UrlbarValueFormatter.jsm",
-  Weave: "resource://services-sync/main.js",
-  WebNavigationFrames: "resource://gre/modules/WebNavigationFrames.jsm",
-  fxAccounts: "resource://gre/modules/FxAccounts.jsm",
-  webrtcUI: "resource:///modules/webrtcUI.jsm",
-  ZoomUI: "resource:///modules/ZoomUI.jsm",
-});
+const { AddonManager } = XPCOMUtils.lazyImport("resource://gre/modules/AddonManager.jsm");
+const { AMTelemetry } = XPCOMUtils.lazyImport("resource://gre/modules/AddonManager.jsm");
+const { NewTabPagePreloading } = XPCOMUtils.lazyImport("resource:///modules/NewTabPagePreloading.jsm");
+const { BrowserUsageTelemetry } = XPCOMUtils.lazyImport("resource:///modules/BrowserUsageTelemetry.jsm");
+const { BrowserUtils } = XPCOMUtils.lazyImport("resource://gre/modules/BrowserUtils.jsm");
+const { BrowserWindowTracker } = XPCOMUtils.lazyImport("resource:///modules/BrowserWindowTracker.jsm");
+const { CFRPageActions } = XPCOMUtils.lazyImport("resource://activity-stream/lib/CFRPageActions.jsm");
+const { CharsetMenu } = XPCOMUtils.lazyImport("resource://gre/modules/CharsetMenu.jsm");
+const { Color } = XPCOMUtils.lazyImport("resource://gre/modules/Color.jsm");
+const { ContentSearch } = XPCOMUtils.lazyImport("resource:///modules/ContentSearch.jsm");
+const { ContextualIdentityService } = XPCOMUtils.lazyImport("resource://gre/modules/ContextualIdentityService.jsm");
+const { CustomizableUI } = XPCOMUtils.lazyImport("resource:///modules/CustomizableUI.jsm");
+const { Deprecated } = XPCOMUtils.lazyImport("resource://gre/modules/Deprecated.jsm");
+const { DownloadsCommon } = XPCOMUtils.lazyImport("resource:///modules/DownloadsCommon.jsm");
+const { DownloadUtils } = XPCOMUtils.lazyImport("resource://gre/modules/DownloadUtils.jsm");
+const { E10SUtils } = XPCOMUtils.lazyImport("resource://gre/modules/E10SUtils.jsm");
+const { ExtensionsUI } = XPCOMUtils.lazyImport("resource:///modules/ExtensionsUI.jsm");
+const { HomePage } = XPCOMUtils.lazyImport("resource:///modules/HomePage.jsm");
+const { LightweightThemeConsumer } = XPCOMUtils.lazyImport("resource://gre/modules/LightweightThemeConsumer.jsm");
+const { Log } = XPCOMUtils.lazyImport("resource://gre/modules/Log.jsm");
+const { LoginHelper } = XPCOMUtils.lazyImport("resource://gre/modules/LoginHelper.jsm");
+const { LoginManagerParent } = XPCOMUtils.lazyImport("resource://gre/modules/LoginManagerParent.jsm");
+const { MigrationUtils } = XPCOMUtils.lazyImport("resource:///modules/MigrationUtils.jsm");
+const { NetUtil } = XPCOMUtils.lazyImport("resource://gre/modules/NetUtil.jsm");
+const { NewTabUtils } = XPCOMUtils.lazyImport("resource://gre/modules/NewTabUtils.jsm");
+const { OpenInTabsUtils } = XPCOMUtils.lazyImport("resource:///modules/OpenInTabsUtils.jsm");
+const { PageActions } = XPCOMUtils.lazyImport("resource:///modules/PageActions.jsm");
+const { PageThumbs } = XPCOMUtils.lazyImport("resource://gre/modules/PageThumbs.jsm");
+const { PanelMultiView } = XPCOMUtils.lazyImport("resource:///modules/PanelMultiView.jsm");
+const { PanelView } = XPCOMUtils.lazyImport("resource:///modules/PanelMultiView.jsm");
+const { PermitUnloader } = XPCOMUtils.lazyImport("resource://gre/actors/BrowserElementParent.jsm");
+const { PictureInPicture } = XPCOMUtils.lazyImport("resource://gre/modules/PictureInPicture.jsm");
+const { PlacesUtils } = XPCOMUtils.lazyImport("resource://gre/modules/PlacesUtils.jsm");
+const { PlacesUIUtils } = XPCOMUtils.lazyImport("resource:///modules/PlacesUIUtils.jsm");
+const { PlacesTransactions } = XPCOMUtils.lazyImport("resource://gre/modules/PlacesTransactions.jsm");
+const { PluralForm } = XPCOMUtils.lazyImport("resource://gre/modules/PluralForm.jsm");
+const { Pocket } = XPCOMUtils.lazyImport("chrome://pocket/content/Pocket.jsm");
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport("resource://gre/modules/PrivateBrowsingUtils.jsm");
+const { ProcessHangMonitor } = XPCOMUtils.lazyImport("resource:///modules/ProcessHangMonitor.jsm");
+const { PromiseUtils } = XPCOMUtils.lazyImport("resource://gre/modules/PromiseUtils.jsm");
+// TODO (Bug 1529552): Remove once old urlbar code goes away.
+const { ReaderMode } = XPCOMUtils.lazyImport("resource://gre/modules/ReaderMode.jsm");
+const { ReaderParent } = XPCOMUtils.lazyImport("resource:///modules/ReaderParent.jsm");
+const { RFPHelper } = XPCOMUtils.lazyImport("resource://gre/modules/RFPHelper.jsm");
+const { SafeBrowsing } = XPCOMUtils.lazyImport("resource://gre/modules/SafeBrowsing.jsm");
+const { Sanitizer } = XPCOMUtils.lazyImport("resource:///modules/Sanitizer.jsm");
+const { SessionStartup } = XPCOMUtils.lazyImport("resource:///modules/sessionstore/SessionStartup.jsm");
+const { SessionStore } = XPCOMUtils.lazyImport("resource:///modules/sessionstore/SessionStore.jsm");
+const { ShortcutUtils } = XPCOMUtils.lazyImport("resource://gre/modules/ShortcutUtils.jsm");
+const { SimpleServiceDiscovery } = XPCOMUtils.lazyImport("resource://gre/modules/SimpleServiceDiscovery.jsm");
+const { SiteDataManager } = XPCOMUtils.lazyImport("resource:///modules/SiteDataManager.jsm");
+const { SitePermissions } = XPCOMUtils.lazyImport("resource:///modules/SitePermissions.jsm");
+const { SiteSpecificBrowser } = XPCOMUtils.lazyImport("resource:///modules/SiteSpecificBrowserService.jsm");
+const { SiteSpecificBrowserService } = XPCOMUtils.lazyImport("resource:///modules/SiteSpecificBrowserService.jsm");
+const { TabModalPrompt } = XPCOMUtils.lazyImport("chrome://global/content/tabprompts.jsm");
+const { TabCrashHandler } = XPCOMUtils.lazyImport("resource:///modules/ContentCrashHandlers.jsm");
+const { TelemetryEnvironment } = XPCOMUtils.lazyImport("resource://gre/modules/TelemetryEnvironment.jsm");
+const { Translation } = XPCOMUtils.lazyImport("resource:///modules/translation/Translation.jsm");
+const { UITour } = XPCOMUtils.lazyImport("resource:///modules/UITour.jsm");
+const { UpdateUtils } = XPCOMUtils.lazyImport("resource://gre/modules/UpdateUtils.jsm");
+const { UrlbarInput } = XPCOMUtils.lazyImport("resource:///modules/UrlbarInput.jsm");
+const { UrlbarPrefs } = XPCOMUtils.lazyImport("resource:///modules/UrlbarPrefs.jsm");
+const { UrlbarTokenizer } = XPCOMUtils.lazyImport("resource:///modules/UrlbarTokenizer.jsm");
+const { UrlbarUtils } = XPCOMUtils.lazyImport("resource:///modules/UrlbarUtils.jsm");
+const { UrlbarValueFormatter } = XPCOMUtils.lazyImport("resource:///modules/UrlbarValueFormatter.jsm");
+const { Weave } = XPCOMUtils.lazyImport("resource://services-sync/main.js");
+const { WebNavigationFrames } = XPCOMUtils.lazyImport("resource://gre/modules/WebNavigationFrames.jsm");
+const { fxAccounts } = XPCOMUtils.lazyImport("resource://gre/modules/FxAccounts.jsm");
+const { webrtcUI } = XPCOMUtils.lazyImport("resource:///modules/webrtcUI.jsm");
+const { ZoomUI } = XPCOMUtils.lazyImport("resource:///modules/ZoomUI.jsm");
 
 if (AppConstants.MOZ_CRASHREPORTER) {
   ChromeUtils.defineModuleGetter(
