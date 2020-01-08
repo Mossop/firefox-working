@@ -85,7 +85,54 @@ function redefine(object, prop, value) {
   return value;
 }
 
+const IMPORTS = new Map();
+
 var XPCOMUtils = {
+  lazyImport: function(uri) {
+    if (IMPORTS.has(uri)) {
+      return IMPORTS.get(uri);
+    }
+
+    let module = null;
+    const getModule = () => {
+      if (!module) {
+        module = ChromeUtils.import(uri);
+        IMPORTS.set(uri, module);
+      }
+
+      return module;
+    }
+
+    function propertyProxy(name) {
+      return new Proxy(class {}, {
+        get(target, property) {
+          return getModule()[name][property];
+        },
+
+        construct(target, args) {
+          return new (getModule()[name])(...args);
+        },
+
+        apply(target, thisArg, args) {
+          getModule()[name].apply(thisArg, args);
+        },
+      });
+    }
+
+    let proxy = new Proxy({}, {
+      get(target, property) {
+        if (module) {
+          return module[property];
+        }
+
+        return propertyProxy(property);
+      },
+    });
+
+    IMPORTS.set(uri, proxy);
+    return proxy;
+  },
+
   /**
    * Generate a NSGetFactory function given an array of components.
    */
@@ -272,6 +319,11 @@ var XPCOMUtils = {
                                    aObject, aName, aResource, aSymbol,
                                    aPreLambda, aPostLambda, aProxy)
   {
+    if (!aProxy && !aPostLambda && !aPreLambda) {
+      aObject[aName] = this.lazyImport(aResource)[aSymbol || aName];
+      return;
+    }
+
     if (arguments.length == 3) {
       return ChromeUtils.defineModuleGetter(aObject, aName, aResource);
     }
