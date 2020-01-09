@@ -85,7 +85,228 @@ function redefine(object, prop, value) {
   return value;
 }
 
+const IMPORTS = new Map();
+const CONTRACTS = new Map();
+let LazyCount = 0;
+
 var XPCOMUtils = {
+  lazyImport: function(uri) {
+    let moduleProxy = IMPORTS.get(uri);
+    if (moduleProxy) {
+      return moduleProxy;
+    }
+
+    LazyCount++;
+
+    let module = null;
+    const getModule = () => {
+      if (!module) {
+        module = ChromeUtils.import(uri);
+        IMPORTS.set(uri, module);
+        LazyCount--;
+        //console.log(`Remaining lazy modules: ${LazyCount}`);
+      }
+
+      return module;
+    }
+
+    const PROPERTIES = new Map();
+
+    function propertyProxy(name) {
+      let proxy = PROPERTIES.get(name);
+      if (proxy) {
+        return proxy;
+      }
+
+      if (module) {
+        return module[name];
+      }
+
+      let filled = false;
+      let target = class {};
+
+      const ensureProperty = () => {
+        let prop = getModule()[name];
+
+        if (filled) {
+          return prop;
+        }
+
+        Object.setPrototypeOf(target, Object.getPrototypeOf(prop));
+
+        filled = true;
+        return prop;
+      }
+
+      const rebind = (item, realThis) => {
+        if (typeof item != "function") {
+          return item;
+        }
+
+        return new Proxy(item, {
+          apply(target, thisArg, args) {
+            return item.apply(thisArg == proxy ? realThis : thisArg, args);
+          }
+        });
+      };
+
+      proxy = new Proxy(target, {
+        getPrototypeOf(target) {
+          return Object.getPrototypeOf(ensureProperty());
+        },
+
+        setPrototypeOf(target, proto) {
+          let prop = getModule()[name];
+          Object.getPrototypeOf(prop, proto);
+
+          if (filled) {
+            Object.setPrototypeOf(target, proto);
+          } else {
+            ensureProperty();
+          }
+
+          return true;
+        },
+
+        isExtensible(target) {
+          return Object.isExtensible(ensureProperty());
+        },
+
+        preventExtensions(target) {
+          Object.preventExtensions(ensureProperty());
+          return true;
+        },
+
+        getOwnPropertyDescriptor(target, property) {
+          let realTarget = ensureProperty();
+          let descriptor = Object.getOwnPropertyDescriptor(realTarget, property);
+          if (!descriptor) {
+              return descriptor;
+          }
+
+          if ("value" in descriptor) {
+            descriptor.value = rebind(descriptor.value, realTarget);
+          } else {
+            if ("get" in descriptor) {
+              descriptor.get = rebind(descriptor.get, realTarget);
+            }
+
+            if ("set" in descriptor) {
+              descriptor.set = rebind(descriptor.set, realTarget);
+            }
+          }
+
+          return descriptor;
+        },
+
+        defineProperty(target, key, descriptor) {
+          console.warn(`defineProperty on ${uri} ${name} ${key}`);
+          Object.defineProperty(ensureProperty(), key, descriptor);
+          return true;
+        },
+
+        has(target, property) {
+          return property in ensureProperty();
+        },
+
+        get(target, property) {
+          let prop = ensureProperty();
+          return rebind(prop[property], prop);
+        },
+
+        set(target, property, value) {
+          ensureProperty()[property] = value;
+          return true;
+        },
+
+        deleteProperty(target, property) {
+          let prop = ensureProperty();
+          delete prop[property];
+          return true;
+        },
+
+        ownKeys(target) {
+          return Reflect.ownKeys(ensureProperty());
+        },
+
+        construct(target, args) {
+          return new (ensureProperty())(...args);
+        },
+
+        apply(target, thisArg, args) {
+          if (!ensureProperty() || typeof ensureProperty() != 'function') {
+            console.log(`Bad function call on ${uri} ${name}`);
+          }
+
+          ensureProperty().apply(thisArg, args);
+        },
+      });
+
+      PROPERTIES.set(name, proxy);
+      return proxy;
+    }
+
+    moduleProxy = new Proxy({}, {
+      get(target, property) {
+        return propertyProxy(property);
+      },
+    });
+
+    IMPORTS.set(uri, moduleProxy);
+    return moduleProxy;
+  },
+
+  lazyService: function(contract, iface = undefined) {
+    const query = (service) => {
+      if (iface) {
+        return service.QueryInterface(Ci[iface]);
+      }
+      return service;
+    };
+
+    let cached = CONTRACTS.get(contract);
+    if (cached) {
+      if (cached.service) {
+        return query(cached.service);
+      }
+      if (iface) {
+        cached.interfaces.add(iface);
+      }
+      return cached.proxy;
+    }
+
+    const getService = () => {
+      if (cached.service) {
+        return cached.service;
+      }
+
+      cached.service = Cc[contract].getService();
+      for (let iface of cached.interfaces.values()) {
+        cached.service.QueryInterface(Ci[iface]);
+      }
+
+      return cached.service;
+    };
+
+    cached = {
+      service: null,
+      interfaces: new Set(iface ? [iface] : []),
+      proxy: new Proxy({}, {
+        get(target, property) {
+          return getService()[property];
+        },
+
+        set(target, property, value) {
+          getService()[property] = value;
+          return true;
+        },
+      }),
+    };
+
+    CONTRACTS.set(contract, cached);
+    return cached.proxy;
+  },
+
   /**
    * Generate a NSGetFactory function given an array of components.
    */
