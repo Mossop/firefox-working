@@ -60,6 +60,7 @@ module.exports = {
       files: ["**/*.jsm", "**/*.jsm.js"],
       rules: {
         "mozilla/mark-exported-symbols-as-used": "error",
+        "mozilla/no-define-module-getter": "error",
         // TODO: Bug 1575506 turn `builtinGlobals` on here.
         // We can enable builtinGlobals for jsms due to their scopes.
         "no-redeclare": ["error", { builtinGlobals: false }],
