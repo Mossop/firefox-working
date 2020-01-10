@@ -17,13 +17,14 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  sss: ["@mozilla.org/ssservice;1", "nsISiteSecurityService"],
-  certOverrideService: [
-    "@mozilla.org/security/certoverride;1",
-    "nsICertOverrideService",
-  ],
-});
+const sss = XPCOMUtils.lazyService(
+  "@mozilla.org/ssservice;1",
+  "nsISiteSecurityService"
+);
+const certOverrideService = XPCOMUtils.lazyService(
+  "@mozilla.org/security/certoverride;1",
+  "nsICertOverrideService"
+);
 
 const CERT_PINNING_ENFORCEMENT_PREF = "security.cert_pinning.enforcement_level";
 const HSTS_PRELOAD_LIST_PREF = "network.stricttransportsecurity.preloadlist";

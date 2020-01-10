@@ -9,20 +9,17 @@ const { AppConstants } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "EventDispatcher",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { EventDispatcher } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Messaging.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesUtils",
+const { PlacesUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PlacesUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
 

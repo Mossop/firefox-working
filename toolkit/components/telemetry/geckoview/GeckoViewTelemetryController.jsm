@@ -11,11 +11,15 @@ const { GeckoViewUtils } = ChromeUtils.import(
   "resource://gre/modules/GeckoViewUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  EventDispatcher: "resource://gre/modules/Messaging.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-  TelemetryUtils: "resource://gre/modules/TelemetryUtils.jsm",
-});
+const { EventDispatcher } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Messaging.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { TelemetryUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryUtils.jsm"
+);
 
 const { debug, warn } = GeckoViewUtils.initLogging(
   "GeckoView.TelemetryController"

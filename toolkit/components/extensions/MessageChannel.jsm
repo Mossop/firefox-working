@@ -109,9 +109,10 @@ const { ExtensionUtils } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "MessageManagerProxy",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { MessageManagerProxy } = XPCOMUtils.lazyImport(
   "resource://gre/modules/MessageManagerProxy.jsm"
 );
 

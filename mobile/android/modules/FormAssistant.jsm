@@ -9,11 +9,15 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  FormHistory: "resource://gre/modules/FormHistory.jsm",
-  GeckoViewUtils: "resource://gre/modules/GeckoViewUtils.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-});
+const { FormHistory } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FormHistory.jsm"
+);
+const { GeckoViewUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/GeckoViewUtils.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
 
 var FormAssistant = {
   // Weak-ref used to keep track of the currently focused element.

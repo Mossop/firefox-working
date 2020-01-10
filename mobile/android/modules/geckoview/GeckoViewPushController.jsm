@@ -14,9 +14,7 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "PushNotifier",
+const PushNotifier = XPCOMUtils.lazyService(
   "@mozilla.org/push/Notifier;1",
   "nsIPushNotifier"
 );

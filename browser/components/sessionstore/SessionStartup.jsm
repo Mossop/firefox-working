@@ -35,24 +35,19 @@ var EXPORTED_SYMBOLS = ["SessionStartup"];
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "SessionFile",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { SessionFile } = XPCOMUtils.lazyImport(
   "resource:///modules/sessionstore/SessionFile.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "StartupPerformance",
+const { StartupPerformance } = XPCOMUtils.lazyImport(
   "resource:///modules/sessionstore/StartupPerformance.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "CrashMonitor",
+const { CrashMonitor } = XPCOMUtils.lazyImport(
   "resource://gre/modules/CrashMonitor.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
 

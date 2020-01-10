@@ -9,12 +9,14 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  Log: "resource://gre/modules/Log.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { Log } = XPCOMUtils.lazyImport("resource://gre/modules/Log.jsm");
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["TextDecoder", "XMLHttpRequest"]);
 

@@ -7,12 +7,18 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  EveryWindow: "resource:///modules/EveryWindow.jsm",
-  ToolbarPanelHub: "resource://activity-stream/lib/ToolbarPanelHub.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-});
+const { EveryWindow } = XPCOMUtils.lazyImport(
+  "resource:///modules/EveryWindow.jsm"
+);
+const { ToolbarPanelHub } = XPCOMUtils.lazyImport(
+  "resource://activity-stream/lib/ToolbarPanelHub.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
 
 const {
   setInterval,

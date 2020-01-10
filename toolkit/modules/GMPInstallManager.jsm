@@ -29,14 +29,13 @@ var EXPORTED_SYMBOLS = [
   "GMPAddon",
 ];
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "CertUtils",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { CertUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/CertUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "UpdateUtils",
+const { UpdateUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/UpdateUtils.jsm"
 );
 

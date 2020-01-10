@@ -6,9 +6,10 @@
 
 var EXPORTED_SYMBOLS = ["ExtFindChild"];
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "FindContent",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { FindContent } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FindContent.jsm"
 );
 

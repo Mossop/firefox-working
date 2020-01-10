@@ -15,18 +15,26 @@ const { RemotePages } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  fxAccounts: "resource://gre/modules/FxAccounts.jsm",
-  FXA_PWDMGR_HOST: "resource://gre/modules/FxAccountsCommon.js",
-  FXA_PWDMGR_REALM: "resource://gre/modules/FxAccountsCommon.js",
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  LoginBreaches: "resource:///modules/LoginBreaches.jsm",
-  LoginHelper: "resource://gre/modules/LoginHelper.jsm",
-});
+const { fxAccounts } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FxAccounts.jsm"
+);
+const { FXA_PWDMGR_HOST } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FxAccountsCommon.js"
+);
+const { FXA_PWDMGR_REALM } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FxAccountsCommon.js"
+);
+const { AddonManager } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { LoginBreaches } = XPCOMUtils.lazyImport(
+  "resource:///modules/LoginBreaches.jsm"
+);
+const { LoginHelper } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/LoginHelper.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "TrackingDBService",
+const TrackingDBService = XPCOMUtils.lazyService(
   "@mozilla.org/tracking-db-service;1",
   "nsITrackingDBService"
 );

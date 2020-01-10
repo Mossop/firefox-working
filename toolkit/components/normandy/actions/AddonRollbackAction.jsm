@@ -11,13 +11,21 @@ const { BaseAction } = ChromeUtils.import(
   "resource://normandy/actions/BaseAction.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  ActionSchemas: "resource://normandy/actions/schemas/index.js",
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  AddonRollouts: "resource://normandy/lib/AddonRollouts.jsm",
-  TelemetryEnvironment: "resource://gre/modules/TelemetryEnvironment.jsm",
-  TelemetryEvents: "resource://normandy/lib/TelemetryEvents.jsm",
-});
+const { ActionSchemas } = XPCOMUtils.lazyImport(
+  "resource://normandy/actions/schemas/index.js"
+);
+const { AddonManager } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { AddonRollouts } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/AddonRollouts.jsm"
+);
+const { TelemetryEnvironment } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryEnvironment.jsm"
+);
+const { TelemetryEvents } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/TelemetryEvents.jsm"
+);
 
 var EXPORTED_SYMBOLS = ["AddonRollbackAction"];
 

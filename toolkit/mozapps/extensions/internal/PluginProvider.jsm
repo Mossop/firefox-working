@@ -13,9 +13,10 @@ const { AddonManager, AddonManagerPrivate } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "Blocklist",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { Blocklist } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Blocklist.jsm"
 );
 

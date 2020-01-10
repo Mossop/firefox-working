@@ -9,24 +9,30 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  setTimeout: "resource://gre/modules/Timer.jsm",
-  Downloads: "resource://gre/modules/Downloads.jsm",
-  OfflineAppCacheHelper: "resource://gre/modules/offlineAppCache.jsm",
-  ServiceWorkerCleanUp: "resource://gre/modules/ServiceWorkerCleanUp.jsm",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.jsm",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { setTimeout } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Timer.jsm"
+);
+const { Downloads } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Downloads.jsm"
+);
+const { OfflineAppCacheHelper } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/offlineAppCache.jsm"
+);
+const { ServiceWorkerCleanUp } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ServiceWorkerCleanUp.jsm"
+);
+const { PlacesUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesUtils.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "sas",
+const sas = XPCOMUtils.lazyService(
   "@mozilla.org/storage/activity-service;1",
   "nsIStorageActivityService"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "TrackingDBService",
+const TrackingDBService = XPCOMUtils.lazyService(
   "@mozilla.org/tracking-db-service;1",
   "nsITrackingDBService"
 );

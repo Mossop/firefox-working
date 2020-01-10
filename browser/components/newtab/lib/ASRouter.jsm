@@ -8,35 +8,66 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 XPCOMUtils.defineLazyGlobalGetters(this, ["fetch"]);
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  UITour: "resource:///modules/UITour.jsm",
-  FxAccounts: "resource://gre/modules/FxAccounts.jsm",
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-  BookmarkPanelHub: "resource://activity-stream/lib/BookmarkPanelHub.jsm",
-  SnippetsTestMessageProvider:
-    "resource://activity-stream/lib/SnippetsTestMessageProvider.jsm",
-  PanelTestProvider: "resource://activity-stream/lib/PanelTestProvider.jsm",
-  ToolbarBadgeHub: "resource://activity-stream/lib/ToolbarBadgeHub.jsm",
-  ToolbarPanelHub: "resource://activity-stream/lib/ToolbarPanelHub.jsm",
-  ASRouterTargeting: "resource://activity-stream/lib/ASRouterTargeting.jsm",
-  QueryCache: "resource://activity-stream/lib/ASRouterTargeting.jsm",
-  ASRouterPreferences: "resource://activity-stream/lib/ASRouterPreferences.jsm",
-  TARGETING_PREFERENCES:
-    "resource://activity-stream/lib/ASRouterPreferences.jsm",
-  ASRouterTriggerListeners:
-    "resource://activity-stream/lib/ASRouterTriggerListeners.jsm",
-  GroupsConfigurationProvider:
-    "resource://activity-stream/lib/GroupsConfigurationProvider.jsm",
-  KintoHttpClient: "resource://services-common/kinto-http-client.js",
-  Downloader: "resource://services-settings/Attachments.jsm",
-  RemoteL10n: "resource://activity-stream/lib/RemoteL10n.jsm",
-  MigrationUtils: "resource:///modules/MigrationUtils.jsm",
-});
-XPCOMUtils.defineLazyServiceGetters(this, {
-  BrowserHandler: ["@mozilla.org/browser/clh;1", "nsIBrowserHandler"],
-});
+const { AddonManager } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { UITour } = XPCOMUtils.lazyImport("resource:///modules/UITour.jsm");
+const { FxAccounts } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FxAccounts.jsm"
+);
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { BookmarkPanelHub } = XPCOMUtils.lazyImport(
+  "resource://activity-stream/lib/BookmarkPanelHub.jsm"
+);
+const { SnippetsTestMessageProvider } = XPCOMUtils.lazyImport(
+  "resource://activity-stream/lib/SnippetsTestMessageProvider.jsm"
+);
+const { PanelTestProvider } = XPCOMUtils.lazyImport(
+  "resource://activity-stream/lib/PanelTestProvider.jsm"
+);
+const { ToolbarBadgeHub } = XPCOMUtils.lazyImport(
+  "resource://activity-stream/lib/ToolbarBadgeHub.jsm"
+);
+const { ToolbarPanelHub } = XPCOMUtils.lazyImport(
+  "resource://activity-stream/lib/ToolbarPanelHub.jsm"
+);
+const { ASRouterTargeting } = XPCOMUtils.lazyImport(
+  "resource://activity-stream/lib/ASRouterTargeting.jsm"
+);
+const { QueryCache } = XPCOMUtils.lazyImport(
+  "resource://activity-stream/lib/ASRouterTargeting.jsm"
+);
+const { ASRouterPreferences } = XPCOMUtils.lazyImport(
+  "resource://activity-stream/lib/ASRouterPreferences.jsm"
+);
+const { TARGETING_PREFERENCES } = XPCOMUtils.lazyImport(
+  "resource://activity-stream/lib/ASRouterPreferences.jsm"
+);
+const { ASRouterTriggerListeners } = XPCOMUtils.lazyImport(
+  "resource://activity-stream/lib/ASRouterTriggerListeners.jsm"
+);
+const { GroupsConfigurationProvider } = XPCOMUtils.lazyImport(
+  "resource://activity-stream/lib/GroupsConfigurationProvider.jsm"
+);
+const { KintoHttpClient } = XPCOMUtils.lazyImport(
+  "resource://services-common/kinto-http-client.js"
+);
+const { Downloader } = XPCOMUtils.lazyImport(
+  "resource://services-settings/Attachments.jsm"
+);
+const { RemoteL10n } = XPCOMUtils.lazyImport(
+  "resource://activity-stream/lib/RemoteL10n.jsm"
+);
+const { MigrationUtils } = XPCOMUtils.lazyImport(
+  "resource:///modules/MigrationUtils.jsm"
+);
+const BrowserHandler = XPCOMUtils.lazyService(
+  "@mozilla.org/browser/clh;1",
+  "nsIBrowserHandler"
+);
 const {
   ASRouterActions: ra,
   actionTypes: at,

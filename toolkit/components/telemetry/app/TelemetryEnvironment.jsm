@@ -24,34 +24,23 @@ const { AddonManager, AddonManagerPrivate } = ChromeUtils.import(
   "resource://gre/modules/AddonManager.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AttributionCode",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { AttributionCode } = XPCOMUtils.lazyImport(
   "resource:///modules/AttributionCode.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ctypes",
-  "resource://gre/modules/ctypes.jsm"
-);
-ChromeUtils.defineModuleGetter(
-  this,
-  "ProfileAge",
+const { ctypes } = XPCOMUtils.lazyImport("resource://gre/modules/ctypes.jsm");
+const { ProfileAge } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ProfileAge.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "WindowsRegistry",
+const { WindowsRegistry } = XPCOMUtils.lazyImport(
   "resource://gre/modules/WindowsRegistry.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "UpdateUtils",
+const { UpdateUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/UpdateUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "fxAccounts",
+const { fxAccounts } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FxAccounts.jsm"
 );
 

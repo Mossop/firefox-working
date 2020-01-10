@@ -22,10 +22,11 @@ const { ManifestIcons } = ChromeUtils.import(
   "resource://gre/modules/ManifestIcons.jsm"
 );
 
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "JSONFile",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { JSONFile } = XPCOMUtils.lazyImport(
   "resource://gre/modules/JSONFile.jsm"
 );
 

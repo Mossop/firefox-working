@@ -15,17 +15,12 @@ const EXPORTED_SYMBOLS = ["LoginImport"];
 
 // Globals
 
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "Sqlite",
-  "resource://gre/modules/Sqlite.jsm"
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "NetUtil",
-  "resource://gre/modules/NetUtil.jsm"
-);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { Sqlite } = XPCOMUtils.lazyImport("resource://gre/modules/Sqlite.jsm");
+const { NetUtil } = XPCOMUtils.lazyImport("resource://gre/modules/NetUtil.jsm");
 
 // LoginImport
 

@@ -17,31 +17,21 @@ const { XPCOMUtils } = ChromeUtils.import(
 
 var PushServiceWebSocket, PushServiceHttp2;
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gPushNotifier",
+const gPushNotifier = XPCOMUtils.lazyService(
   "@mozilla.org/push/Notifier;1",
   "nsIPushNotifier"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "eTLDService",
+const eTLDService = XPCOMUtils.lazyService(
   "@mozilla.org/network/effective-tld-service;1",
   "nsIEffectiveTLDService"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "pushBroadcastService",
+const { pushBroadcastService } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PushBroadcastService.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PushCrypto",
+const { PushCrypto } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PushCrypto.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PushServiceAndroidGCM",
+const { PushServiceAndroidGCM } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PushServiceAndroidGCM.jsm"
 );
 

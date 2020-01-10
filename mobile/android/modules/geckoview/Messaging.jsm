@@ -10,9 +10,7 @@ const { XPCOMUtils } = ChromeUtils.import(
 
 var EXPORTED_SYMBOLS = ["EventDispatcher"];
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "UUIDGen",
+const UUIDGen = XPCOMUtils.lazyService(
   "@mozilla.org/uuid-generator;1",
   "nsIUUIDGenerator"
 );

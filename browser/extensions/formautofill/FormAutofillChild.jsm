@@ -7,29 +7,22 @@
 var EXPORTED_SYMBOLS = ["FormAutofillChild"];
 
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "setTimeout",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { setTimeout } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Timer.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FormAutofill",
+const { FormAutofill } = XPCOMUtils.lazyImport(
   "resource://formautofill/FormAutofill.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FormAutofillContent",
+const { FormAutofillContent } = XPCOMUtils.lazyImport(
   "resource://formautofill/FormAutofillContent.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FormAutofillUtils",
+const { FormAutofillUtils } = XPCOMUtils.lazyImport(
   "resource://formautofill/FormAutofillUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "AutoCompleteChild",
+const { AutoCompleteChild } = XPCOMUtils.lazyImport(
   "resource://gre/actors/AutoCompleteChild.jsm"
 );
 

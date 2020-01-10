@@ -17,10 +17,8 @@ const { AppConstants } = ChromeUtils.import(
   "resource://gre/modules/AppConstants.jsm"
 );
 
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { Services } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Services.jsm"
 );
 

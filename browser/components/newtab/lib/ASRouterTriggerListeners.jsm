@@ -8,10 +8,12 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-  EveryWindow: "resource:///modules/EveryWindow.jsm",
-});
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
+const { EveryWindow } = XPCOMUtils.lazyImport(
+  "resource:///modules/EveryWindow.jsm"
+);
 
 const FEW_MINUTES = 15 * 60 * 1000; // 15 mins
 const MATCH_PATTERN_OPTIONS = { ignorePath: true };

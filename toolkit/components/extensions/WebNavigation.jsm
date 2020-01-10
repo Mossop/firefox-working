@@ -11,24 +11,19 @@ const { AppConstants } = ChromeUtils.import(
   "resource://gre/modules/AppConstants.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "BrowserWindowTracker",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { BrowserWindowTracker } = XPCOMUtils.lazyImport(
   "resource:///modules/BrowserWindowTracker.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "UrlbarUtils",
+const { UrlbarUtils } = XPCOMUtils.lazyImport(
   "resource:///modules/UrlbarUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ClickHandlerParent",
+const { ClickHandlerParent } = XPCOMUtils.lazyImport(
   "resource:///actors/ClickHandlerParent.jsm"
 );
 

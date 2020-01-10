@@ -5,9 +5,10 @@
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AppConstants",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { AppConstants } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AppConstants.jsm"
 );
 
@@ -16,79 +17,49 @@ ChromeUtils.defineModuleGetter(
 const { actionCreators: ac, actionTypes: at } = ChromeUtils.import(
   "resource://activity-stream/common/Actions.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "AboutPreferences",
+const { AboutPreferences } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/AboutPreferences.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "DefaultPrefs",
+const { DefaultPrefs } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/ActivityStreamPrefs.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "NewTabInit",
+const { NewTabInit } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/NewTabInit.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "SectionsFeed",
+const { SectionsFeed } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/SectionsManager.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesFeed",
+const { PlacesFeed } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/PlacesFeed.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrefsFeed",
+const { PrefsFeed } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/PrefsFeed.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Store",
+const { Store } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/Store.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "SystemTickFeed",
+const { SystemTickFeed } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/SystemTickFeed.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryFeed",
+const { TelemetryFeed } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/TelemetryFeed.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FaviconFeed",
+const { FaviconFeed } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/FaviconFeed.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TopSitesFeed",
+const { TopSitesFeed } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/TopSitesFeed.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TopStoriesFeed",
+const { TopStoriesFeed } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/TopStoriesFeed.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "HighlightsFeed",
+const { HighlightsFeed } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/HighlightsFeed.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ASRouterFeed",
+const { ASRouterFeed } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/ASRouterFeed.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "DiscoveryStreamFeed",
+const { DiscoveryStreamFeed } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/DiscoveryStreamFeed.jsm"
 );
 

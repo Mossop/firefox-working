@@ -16,14 +16,10 @@ const { ExtensionUtils } = ChromeUtils.import(
   "resource://gre/modules/ExtensionUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "ExtensionParent",
+const { ExtensionParent } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ExtensionParent.jsm"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "ProxyService",
+const ProxyService = XPCOMUtils.lazyService(
   "@mozilla.org/network/protocol-proxy-service;1",
   "nsIProtocolProxyService"
 );

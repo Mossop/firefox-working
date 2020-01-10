@@ -11,44 +11,28 @@ const { XPCOMUtils } = ChromeUtils.import(
 const { BaseAction } = ChromeUtils.import(
   "resource://normandy/actions/BaseAction.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ActionSchemas",
+const { ActionSchemas } = XPCOMUtils.lazyImport(
   "resource://normandy/actions/schemas/index.js"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "BrowserWindowTracker",
+const { BrowserWindowTracker } = XPCOMUtils.lazyImport(
   "resource:///modules/BrowserWindowTracker.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ClientEnvironment",
+const { ClientEnvironment } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/ClientEnvironment.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Heartbeat",
+const { Heartbeat } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/Heartbeat.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ShellService",
+const { ShellService } = XPCOMUtils.lazyImport(
   "resource:///modules/ShellService.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Storage",
+const { Storage } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/Storage.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "UpdateUtils",
+const { UpdateUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/UpdateUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "NormandyUtils",
+const { NormandyUtils } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/NormandyUtils.jsm"
 );
 

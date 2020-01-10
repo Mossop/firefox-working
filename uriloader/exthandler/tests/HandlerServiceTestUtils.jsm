@@ -17,21 +17,15 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 const { Assert } = ChromeUtils.import("resource://testing-common/Assert.jsm");
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gExternalProtocolService",
+const gExternalProtocolService = XPCOMUtils.lazyService(
   "@mozilla.org/uriloader/external-protocol-service;1",
   "nsIExternalProtocolService"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gMIMEService",
+const gMIMEService = XPCOMUtils.lazyService(
   "@mozilla.org/mime;1",
   "nsIMIMEService"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gHandlerService",
+const gHandlerService = XPCOMUtils.lazyService(
   "@mozilla.org/uriloader/handler-service;1",
   "nsIHandlerService"
 );

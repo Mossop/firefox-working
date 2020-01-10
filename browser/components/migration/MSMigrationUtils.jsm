@@ -19,21 +19,13 @@ const { MigrationUtils } = ChromeUtils.import(
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["FileReader"]);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesUtils",
+const { PlacesUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PlacesUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "WindowsRegistry",
+const { WindowsRegistry } = XPCOMUtils.lazyImport(
   "resource://gre/modules/WindowsRegistry.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ctypes",
-  "resource://gre/modules/ctypes.jsm"
-);
+const { ctypes } = XPCOMUtils.lazyImport("resource://gre/modules/ctypes.jsm");
 
 const EDGE_COOKIE_PATH_OPTIONS = ["", "#!001\\", "#!002\\"];
 const EDGE_COOKIES_SUFFIX = "MicrosoftEdge\\Cookies";

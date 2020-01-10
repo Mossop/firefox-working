@@ -4,9 +4,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm", this);
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  SessionStore: "resource:///modules/sessionstore/SessionStore.jsm",
-});
+const { SessionStore } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/SessionStore.jsm"
+);
 
 function UpdateSessionStore(aBrowser, aFlushId, aIsFinal, aEpoch, aData) {
   return SessionStoreFuncInternal.updateSessionStore(

@@ -12,9 +12,10 @@ ChromeUtils.import("resource://gre/modules/Timer.jsm", this);
 ChromeUtils.import("resource://services-common/observers.js", this);
 ChromeUtils.import("resource://gre/modules/TelemetryUtils.jsm", this);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetrySend",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { TelemetrySend } = XPCOMUtils.lazyImport(
   "resource://gre/modules/TelemetrySend.jsm"
 );
 

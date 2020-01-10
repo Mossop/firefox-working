@@ -7,24 +7,19 @@
 const { BaseStudyAction } = ChromeUtils.import(
   "resource://normandy/actions/BaseStudyAction.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Sampling",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { Sampling } = XPCOMUtils.lazyImport(
   "resource://gre/modules/components-utils/Sampling.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ActionSchemas",
+const { ActionSchemas } = XPCOMUtils.lazyImport(
   "resource://normandy/actions/schemas/index.js"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ClientEnvironment",
+const { ClientEnvironment } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/ClientEnvironment.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PreferenceExperiments",
+const { PreferenceExperiments } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/PreferenceExperiments.jsm"
 );
 

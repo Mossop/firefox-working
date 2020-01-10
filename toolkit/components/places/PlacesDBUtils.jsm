@@ -9,12 +9,14 @@ const BYTES_PER_MEBIBYTE = 1048576;
 const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
-XPCOMUtils.defineLazyModuleGetters(this, {
-  Services: "resource://gre/modules/Services.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.jsm",
-  Sqlite: "resource://gre/modules/Sqlite.jsm",
-});
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { PlacesUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesUtils.jsm"
+);
+const { Sqlite } = XPCOMUtils.lazyImport("resource://gre/modules/Sqlite.jsm");
 
 var EXPORTED_SYMBOLS = ["PlacesDBUtils"];
 

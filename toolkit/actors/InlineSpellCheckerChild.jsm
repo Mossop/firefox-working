@@ -8,9 +8,10 @@
 
 var EXPORTED_SYMBOLS = ["InlineSpellCheckerChild"];
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "InlineSpellCheckerContent",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { InlineSpellCheckerContent } = XPCOMUtils.lazyImport(
   "resource://gre/modules/InlineSpellCheckerContent.jsm"
 );
 

@@ -10,34 +10,22 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AppConstants",
+const { AppConstants } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AppConstants.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Downloads",
+const { Downloads } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Downloads.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "DownloadsCommon",
+const { DownloadsCommon } = XPCOMUtils.lazyImport(
   "resource:///modules/DownloadsCommon.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "DownloadsViewUI",
+const { DownloadsViewUI } = XPCOMUtils.lazyImport(
   "resource:///modules/DownloadsViewUI.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FileUtils",
+const { FileUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FileUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesUtils",
+const { PlacesUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PlacesUtils.jsm"
 );
 

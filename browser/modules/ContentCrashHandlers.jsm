@@ -11,18 +11,33 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
-  clearTimeout: "resource://gre/modules/Timer.jsm",
-  CrashSubmit: "resource://gre/modules/CrashSubmit.jsm",
-  E10SUtils: "resource://gre/modules/E10SUtils.jsm",
-  PluralForm: "resource://gre/modules/PluralForm.jsm",
-  RemotePages:
-    "resource://gre/modules/remotepagemanager/RemotePageManagerParent.jsm",
-  SessionStore: "resource:///modules/sessionstore/SessionStore.jsm",
-  setTimeout: "resource://gre/modules/Timer.jsm",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { BrowserWindowTracker } = XPCOMUtils.lazyImport(
+  "resource:///modules/BrowserWindowTracker.jsm"
+);
+const { clearTimeout } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Timer.jsm"
+);
+const { CrashSubmit } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/CrashSubmit.jsm"
+);
+const { E10SUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/E10SUtils.jsm"
+);
+const { PluralForm } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PluralForm.jsm"
+);
+const { RemotePages } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/remotepagemanager/RemotePageManagerParent.jsm"
+);
+const { SessionStore } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/SessionStore.jsm"
+);
+const { setTimeout } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Timer.jsm"
+);
 
 XPCOMUtils.defineLazyGetter(this, "gNavigatorBundle", function() {
   const url = "chrome://browser/locale/browser.properties";

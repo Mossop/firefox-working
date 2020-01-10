@@ -27,29 +27,19 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AddonManager",
+const { AddonManager } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AddonManager.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "BrowserUtils",
+const { BrowserUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/BrowserUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "CustomizableUI",
+const { CustomizableUI } = XPCOMUtils.lazyImport(
   "resource:///modules/CustomizableUI.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ExtensionSettingsStore",
+const { ExtensionSettingsStore } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ExtensionSettingsStore.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
 

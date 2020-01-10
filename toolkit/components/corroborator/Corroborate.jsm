@@ -14,9 +14,10 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  gCertDB: ["@mozilla.org/security/x509certdb;1", "nsIX509CertDB"],
-});
+const gCertDB = XPCOMUtils.lazyService(
+  "@mozilla.org/security/x509certdb;1",
+  "nsIX509CertDB"
+);
 
 var EXPORTED_SYMBOLS = ["Corroborate"];
 

@@ -138,46 +138,30 @@ const { FormAutofill } = ChromeUtils.import(
   "resource://formautofill/FormAutofill.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "CreditCard",
+const { CreditCard } = XPCOMUtils.lazyImport(
   "resource://gre/modules/CreditCard.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "JSONFile",
+const { JSONFile } = XPCOMUtils.lazyImport(
   "resource://gre/modules/JSONFile.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FormAutofillNameUtils",
+const { FormAutofillNameUtils } = XPCOMUtils.lazyImport(
   "resource://formautofill/FormAutofillNameUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FormAutofillUtils",
+const { FormAutofillUtils } = XPCOMUtils.lazyImport(
   "resource://formautofill/FormAutofillUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "OSKeyStore",
+const { OSKeyStore } = XPCOMUtils.lazyImport(
   "resource://formautofill/OSKeyStore.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PhoneNumber",
+const { PhoneNumber } = XPCOMUtils.lazyImport(
   "resource://formautofill/phonenumberutils/PhoneNumber.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "cryptoSDR",
+const cryptoSDR = XPCOMUtils.lazyService(
   "@mozilla.org/login-manager/crypto/SDR;1",
   Ci.nsILoginManagerCrypto
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gUUIDGenerator",
+const gUUIDGenerator = XPCOMUtils.lazyService(
   "@mozilla.org/uuid-generator;1",
   "nsIUUIDGenerator"
 );

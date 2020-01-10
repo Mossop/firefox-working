@@ -27,33 +27,39 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  DownloadHistory: "resource://gre/modules/DownloadHistory.jsm",
-  E10SUtils: "resource://gre/modules/E10SUtils.jsm",
-  FileUtils: "resource://gre/modules/FileUtils.jsm",
-  NetUtil: "resource://gre/modules/NetUtil.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-  PromiseUtils: "resource://gre/modules/PromiseUtils.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { DownloadHistory } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/DownloadHistory.jsm"
+);
+const { E10SUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/E10SUtils.jsm"
+);
+const { FileUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FileUtils.jsm"
+);
+const { NetUtil } = XPCOMUtils.lazyImport("resource://gre/modules/NetUtil.jsm");
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
+const { PromiseUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PromiseUtils.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gExternalAppLauncher",
+const gExternalAppLauncher = XPCOMUtils.lazyService(
   "@mozilla.org/uriloader/external-helper-app-service;1",
   Ci.nsPIExternalAppLauncher
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gExternalHelperAppService",
+const gExternalHelperAppService = XPCOMUtils.lazyService(
   "@mozilla.org/uriloader/external-helper-app-service;1",
   Ci.nsIExternalHelperAppService
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gPrintSettingsService",
+const gPrintSettingsService = XPCOMUtils.lazyService(
   "@mozilla.org/gfx/printsettings-service;1",
   Ci.nsIPrintSettingsService
 );

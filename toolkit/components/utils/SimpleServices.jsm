@@ -18,20 +18,12 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "NetUtil",
-  "resource://gre/modules/NetUtil.jsm"
-);
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
+const { NetUtil } = XPCOMUtils.lazyImport("resource://gre/modules/NetUtil.jsm");
+const { Services } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Services.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "streamConv",
+const streamConv = XPCOMUtils.lazyService(
   "@mozilla.org/streamConverters;1",
   "nsIStreamConverterService"
 );

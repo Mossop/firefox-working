@@ -16,29 +16,22 @@ var EXPORTED_SYMBOLS = [
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AppConstants",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { AppConstants } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AppConstants.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "AsyncShutdown",
+const { AsyncShutdown } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AsyncShutdown.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "BinarySearch",
+const { BinarySearch } = XPCOMUtils.lazyImport(
   "resource://gre/modules/BinarySearch.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "SiteSpecificBrowserService",
+const { SiteSpecificBrowserService } = XPCOMUtils.lazyImport(
   "resource:///modules/SiteSpecificBrowserService.jsm"
 );
 

@@ -12,9 +12,7 @@ const { PrivateBrowsingUtils } = ChromeUtils.import(
 
 /* eslint-disable block-scoped-var, no-var */
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "LoginHelper",
+const { LoginHelper } = XPCOMUtils.lazyImport(
   "resource://gre/modules/LoginHelper.jsm"
 );
 

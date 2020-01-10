@@ -9,24 +9,37 @@ const { LogManager } = ChromeUtils.import(
   "resource://normandy/lib/LogManager.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonRollbackAction: "resource://normandy/actions/AddonRollbackAction.jsm",
-  AddonRolloutAction: "resource://normandy/actions/AddonRolloutAction.jsm",
-  AddonStudyAction: "resource://normandy/actions/AddonStudyAction.jsm",
-  BranchedAddonStudyAction:
-    "resource://normandy/actions/BranchedAddonStudyAction.jsm",
-  ConsoleLogAction: "resource://normandy/actions/ConsoleLogAction.jsm",
-  PreferenceExperimentAction:
-    "resource://normandy/actions/PreferenceExperimentAction.jsm",
-  PreferenceRollbackAction:
-    "resource://normandy/actions/PreferenceRollbackAction.jsm",
-  PreferenceRolloutAction:
-    "resource://normandy/actions/PreferenceRolloutAction.jsm",
-  ShowHeartbeatAction: "resource://normandy/actions/ShowHeartbeatAction.jsm",
-  SinglePreferenceExperimentAction:
-    "resource://normandy/actions/SinglePreferenceExperimentAction.jsm",
-  Uptake: "resource://normandy/lib/Uptake.jsm",
-});
+const { AddonRollbackAction } = XPCOMUtils.lazyImport(
+  "resource://normandy/actions/AddonRollbackAction.jsm"
+);
+const { AddonRolloutAction } = XPCOMUtils.lazyImport(
+  "resource://normandy/actions/AddonRolloutAction.jsm"
+);
+const { AddonStudyAction } = XPCOMUtils.lazyImport(
+  "resource://normandy/actions/AddonStudyAction.jsm"
+);
+const { BranchedAddonStudyAction } = XPCOMUtils.lazyImport(
+  "resource://normandy/actions/BranchedAddonStudyAction.jsm"
+);
+const { ConsoleLogAction } = XPCOMUtils.lazyImport(
+  "resource://normandy/actions/ConsoleLogAction.jsm"
+);
+const { PreferenceExperimentAction } = XPCOMUtils.lazyImport(
+  "resource://normandy/actions/PreferenceExperimentAction.jsm"
+);
+const { PreferenceRollbackAction } = XPCOMUtils.lazyImport(
+  "resource://normandy/actions/PreferenceRollbackAction.jsm"
+);
+const { PreferenceRolloutAction } = XPCOMUtils.lazyImport(
+  "resource://normandy/actions/PreferenceRolloutAction.jsm"
+);
+const { ShowHeartbeatAction } = XPCOMUtils.lazyImport(
+  "resource://normandy/actions/ShowHeartbeatAction.jsm"
+);
+const { SinglePreferenceExperimentAction } = XPCOMUtils.lazyImport(
+  "resource://normandy/actions/SinglePreferenceExperimentAction.jsm"
+);
+const { Uptake } = XPCOMUtils.lazyImport("resource://normandy/lib/Uptake.jsm");
 
 var EXPORTED_SYMBOLS = ["ActionsManager"];
 

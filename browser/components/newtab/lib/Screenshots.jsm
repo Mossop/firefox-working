@@ -7,24 +7,19 @@ const EXPORTED_SYMBOLS = ["Screenshots"];
 
 Cu.importGlobalProperties(["fetch"]);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "BackgroundPageThumbs",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { BackgroundPageThumbs } = XPCOMUtils.lazyImport(
   "resource://gre/modules/BackgroundPageThumbs.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PageThumbs",
+const { PageThumbs } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PageThumbs.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
+const { Services } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Services.jsm"
 );
 

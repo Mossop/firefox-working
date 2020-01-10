@@ -13,10 +13,12 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  EventDispatcher: "resource://gre/modules/Messaging.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-});
+const { EventDispatcher } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Messaging.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
 
 // Based on the "Tab" prototype from mobile/android/chrome/content/browser.js
 class Tab {

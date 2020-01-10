@@ -36,9 +36,7 @@ var { XPCOMUtils } = ChromeUtils.import(
 /**
  * The native service holding the implementation of the functions.
  */
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "Internals",
+const Internals = XPCOMUtils.lazyService(
   "@mozilla.org/toolkit/osfile/native-internals;1",
   "nsINativeOSFileInternalsService"
 );

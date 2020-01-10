@@ -19,19 +19,16 @@ const { ActorChild } = ChromeUtils.import(
   "resource://gre/modules/ActorChild.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "ManifestObtainer",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { ManifestObtainer } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ManifestObtainer.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ManifestFinder",
+const { ManifestFinder } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ManifestFinder.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ManifestIcons",
+const { ManifestIcons } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ManifestIcons.jsm"
 );
 

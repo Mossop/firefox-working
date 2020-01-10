@@ -8,14 +8,13 @@
 
 const EXPORTED_SYMBOLS = ["ProfilerGetSymbols"];
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "setTimeout",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { setTimeout } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Timer.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "clearTimeout",
+const { clearTimeout } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Timer.jsm"
 );
 

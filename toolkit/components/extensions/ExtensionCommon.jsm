@@ -22,18 +22,24 @@ const { XPCOMUtils } = ChromeUtils.import(
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["fetch"]);
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  ConsoleAPI: "resource://gre/modules/Console.jsm",
-  MessageChannel: "resource://gre/modules/MessageChannel.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-  Schemas: "resource://gre/modules/Schemas.jsm",
-  SchemaRoot: "resource://gre/modules/Schemas.jsm",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { ConsoleAPI } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Console.jsm"
+);
+const { MessageChannel } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/MessageChannel.jsm"
+);
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
+const { Schemas } = XPCOMUtils.lazyImport("resource://gre/modules/Schemas.jsm");
+const { SchemaRoot } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Schemas.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "styleSheetService",
+const styleSheetService = XPCOMUtils.lazyService(
   "@mozilla.org/content/style-sheet-service;1",
   "nsIStyleSheetService"
 );

@@ -9,19 +9,39 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonRollouts: "resource://normandy/lib/AddonRollouts.jsm",
-  AddonStudies: "resource://normandy/lib/AddonStudies.jsm",
-  CleanupManager: "resource://normandy/lib/CleanupManager.jsm",
-  LogManager: "resource://normandy/lib/LogManager.jsm",
-  NormandyMigrations: "resource://normandy/NormandyMigrations.jsm",
-  PreferenceExperiments: "resource://normandy/lib/PreferenceExperiments.jsm",
-  PreferenceRollouts: "resource://normandy/lib/PreferenceRollouts.jsm",
-  RecipeRunner: "resource://normandy/lib/RecipeRunner.jsm",
-  ShieldPreferences: "resource://normandy/lib/ShieldPreferences.jsm",
-  TelemetryUtils: "resource://gre/modules/TelemetryUtils.jsm",
-  TelemetryEvents: "resource://normandy/lib/TelemetryEvents.jsm",
-});
+const { AddonRollouts } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/AddonRollouts.jsm"
+);
+const { AddonStudies } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/AddonStudies.jsm"
+);
+const { CleanupManager } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/CleanupManager.jsm"
+);
+const { LogManager } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/LogManager.jsm"
+);
+const { NormandyMigrations } = XPCOMUtils.lazyImport(
+  "resource://normandy/NormandyMigrations.jsm"
+);
+const { PreferenceExperiments } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/PreferenceExperiments.jsm"
+);
+const { PreferenceRollouts } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/PreferenceRollouts.jsm"
+);
+const { RecipeRunner } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/RecipeRunner.jsm"
+);
+const { ShieldPreferences } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/ShieldPreferences.jsm"
+);
+const { TelemetryUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryUtils.jsm"
+);
+const { TelemetryEvents } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/TelemetryEvents.jsm"
+);
 
 var EXPORTED_SYMBOLS = ["Normandy"];
 

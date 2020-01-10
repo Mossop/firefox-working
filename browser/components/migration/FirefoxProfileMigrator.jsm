@@ -18,25 +18,20 @@ const { MigrationUtils, MigratorPrototype } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesBackups",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { PlacesBackups } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PlacesBackups.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "SessionMigration",
+const { SessionMigration } = XPCOMUtils.lazyImport(
   "resource:///modules/sessionstore/SessionMigration.jsm"
 );
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "FileUtils",
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { FileUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FileUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ProfileAge",
+const { ProfileAge } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ProfileAge.jsm"
 );
 

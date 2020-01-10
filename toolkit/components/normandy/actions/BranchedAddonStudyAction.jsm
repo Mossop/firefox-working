@@ -18,19 +18,39 @@ const { BaseStudyAction } = ChromeUtils.import(
   "resource://normandy/actions/BaseStudyAction.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  ActionSchemas: "resource://normandy/actions/schemas/index.js",
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  AddonStudies: "resource://normandy/lib/AddonStudies.jsm",
-  ClientEnvironment: "resource://normandy/lib/ClientEnvironment.jsm",
-  NormandyApi: "resource://normandy/lib/NormandyApi.jsm",
-  NormandyUtils: "resource://normandy/lib/NormandyUtils.jsm",
-  PromiseUtils: "resource://gre/modules/PromiseUtils.jsm",
-  Sampling: "resource://gre/modules/components-utils/Sampling.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-  TelemetryEnvironment: "resource://gre/modules/TelemetryEnvironment.jsm",
-  TelemetryEvents: "resource://normandy/lib/TelemetryEvents.jsm",
-});
+const { ActionSchemas } = XPCOMUtils.lazyImport(
+  "resource://normandy/actions/schemas/index.js"
+);
+const { AddonManager } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { AddonStudies } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/AddonStudies.jsm"
+);
+const { ClientEnvironment } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/ClientEnvironment.jsm"
+);
+const { NormandyApi } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/NormandyApi.jsm"
+);
+const { NormandyUtils } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/NormandyUtils.jsm"
+);
+const { PromiseUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PromiseUtils.jsm"
+);
+const { Sampling } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/components-utils/Sampling.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { TelemetryEnvironment } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryEnvironment.jsm"
+);
+const { TelemetryEvents } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/TelemetryEvents.jsm"
+);
 
 var EXPORTED_SYMBOLS = ["BranchedAddonStudyAction"];
 

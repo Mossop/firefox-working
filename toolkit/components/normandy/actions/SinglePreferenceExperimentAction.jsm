@@ -7,14 +7,13 @@
 const { PreferenceExperimentAction } = ChromeUtils.import(
   "resource://normandy/actions/PreferenceExperimentAction.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ActionSchemas",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { ActionSchemas } = XPCOMUtils.lazyImport(
   "resource://normandy/actions/schemas/index.js"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "JsonSchemaValidator",
+const { JsonSchemaValidator } = XPCOMUtils.lazyImport(
   "resource://gre/modules/components-utils/JsonSchemaValidator.jsm"
 );
 

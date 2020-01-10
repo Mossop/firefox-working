@@ -13,19 +13,16 @@ const { RemoteSettings } = ChromeUtils.import(
   "resource://services-settings/remote-settings.js"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesUtils",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { PlacesUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PlacesUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
+const { Services } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Services.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "NewTabUtils",
+const { NewTabUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/NewTabUtils.jsm"
 );
 

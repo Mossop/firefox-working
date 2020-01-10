@@ -50,20 +50,40 @@ const { ExtensionUtils } = ChromeUtils.import(
   "resource://gre/modules/ExtensionUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  BulkKeyBundle: "resource://services-sync/keys.js",
-  CollectionKeyManager: "resource://services-sync/record.js",
-  CommonUtils: "resource://services-common/utils.js",
-  CryptoUtils: "resource://services-crypto/utils.js",
-  ExtensionCommon: "resource://gre/modules/ExtensionCommon.jsm",
-  fxAccounts: "resource://gre/modules/FxAccounts.jsm",
-  KintoHttpClient: "resource://services-common/kinto-http-client.js",
-  Kinto: "resource://services-common/kinto-offline-client.js",
-  FirefoxAdapter: "resource://services-common/kinto-storage-adapter.js",
-  Observers: "resource://services-common/observers.js",
-  Utils: "resource://services-sync/util.js",
-});
+const { AddonManager } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { BulkKeyBundle } = XPCOMUtils.lazyImport(
+  "resource://services-sync/keys.js"
+);
+const { CollectionKeyManager } = XPCOMUtils.lazyImport(
+  "resource://services-sync/record.js"
+);
+const { CommonUtils } = XPCOMUtils.lazyImport(
+  "resource://services-common/utils.js"
+);
+const { CryptoUtils } = XPCOMUtils.lazyImport(
+  "resource://services-crypto/utils.js"
+);
+const { ExtensionCommon } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionCommon.jsm"
+);
+const { fxAccounts } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FxAccounts.jsm"
+);
+const { KintoHttpClient } = XPCOMUtils.lazyImport(
+  "resource://services-common/kinto-http-client.js"
+);
+const { Kinto } = XPCOMUtils.lazyImport(
+  "resource://services-common/kinto-offline-client.js"
+);
+const { FirefoxAdapter } = XPCOMUtils.lazyImport(
+  "resource://services-common/kinto-storage-adapter.js"
+);
+const { Observers } = XPCOMUtils.lazyImport(
+  "resource://services-common/observers.js"
+);
+const { Utils } = XPCOMUtils.lazyImport("resource://services-sync/util.js");
 
 XPCOMUtils.defineLazyPreferenceGetter(
   this,

@@ -31,54 +31,41 @@ const { EventEmitter } = ChromeUtils.import(
 );
 const { OS } = ChromeUtils.import("resource://gre/modules/osfile.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AMTelemetry",
+const { AMTelemetry } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AddonManager.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ExtensionTestCommon",
+const { ExtensionTestCommon } = XPCOMUtils.lazyImport(
   "resource://testing-common/ExtensionTestCommon.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Management",
+const { Management } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Extension.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ExtensionAddonObserver",
+const { ExtensionAddonObserver } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Extension.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "FileTestUtils",
+const { FileTestUtils } = XPCOMUtils.lazyImport(
   "resource://testing-common/FileTestUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "HttpServer",
+const { HttpServer } = XPCOMUtils.lazyImport(
   "resource://testing-common/httpd.js"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "MockRegistrar",
+const { MockRegistrar } = XPCOMUtils.lazyImport(
   "resource://testing-common/MockRegistrar.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  aomStartup: [
-    "@mozilla.org/addons/addon-manager-startup;1",
-    "amIAddonManagerStartup",
-  ],
-  proxyService: [
-    "@mozilla.org/network/protocol-proxy-service;1",
-    "nsIProtocolProxyService",
-  ],
-  uuidGen: ["@mozilla.org/uuid-generator;1", "nsIUUIDGenerator"],
-});
+const aomStartup = XPCOMUtils.lazyService(
+  "@mozilla.org/addons/addon-manager-startup;1",
+  "amIAddonManagerStartup"
+);
+const proxyService = XPCOMUtils.lazyService(
+  "@mozilla.org/network/protocol-proxy-service;1",
+  "nsIProtocolProxyService"
+);
+const uuidGen = XPCOMUtils.lazyService(
+  "@mozilla.org/uuid-generator;1",
+  "nsIUUIDGenerator"
+);
 
 XPCOMUtils.defineLazyGetter(this, "AppInfo", () => {
   let AppInfo = {};

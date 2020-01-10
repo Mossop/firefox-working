@@ -33,19 +33,25 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  ManifestObtainer: "resource://gre/modules/ManifestObtainer.jsm",
-  ManifestProcessor: "resource://gre/modules/ManifestProcessor.jsm",
-  KeyValueService: "resource://gre/modules/kvstore.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-  ImageTools: "resource:///modules/ssb/ImageTools.jsm",
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-});
+const { ManifestObtainer } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ManifestObtainer.jsm"
+);
+const { ManifestProcessor } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ManifestProcessor.jsm"
+);
+const { KeyValueService } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/kvstore.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { ImageTools } = XPCOMUtils.lazyImport(
+  "resource:///modules/ssb/ImageTools.jsm"
+);
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
 
 if (AppConstants.platform == "win") {
-  ChromeUtils.defineModuleGetter(
-    this,
-    "WindowsSupport",
+  const { WindowsSupport } = XPCOMUtils.lazyImport(
     "resource:///modules/ssb/WindowsSupport.jsm"
   );
 }

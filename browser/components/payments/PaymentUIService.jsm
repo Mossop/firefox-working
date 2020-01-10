@@ -22,15 +22,11 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "BrowserWindowTracker",
+const { BrowserWindowTracker } = XPCOMUtils.lazyImport(
   "resource:///modules/BrowserWindowTracker.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "paymentSrv",
+const paymentSrv = XPCOMUtils.lazyService(
   "@mozilla.org/dom/payments/payment-request-service;1",
   "nsIPaymentRequestService"
 );

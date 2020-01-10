@@ -7,24 +7,19 @@
 var EXPORTED_SYMBOLS = ["MessagePort", "MessageListener"];
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "AsyncPrefs",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { AsyncPrefs } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AsyncPrefs.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PromiseUtils",
+const { PromiseUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PromiseUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "UpdateUtils",
+const { UpdateUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/UpdateUtils.jsm"
 );
 

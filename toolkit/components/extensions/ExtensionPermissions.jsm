@@ -9,11 +9,13 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  ExtensionParent: "resource://gre/modules/ExtensionParent.jsm",
-  JSONFile: "resource://gre/modules/JSONFile.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-});
+const { ExtensionParent } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionParent.jsm"
+);
+const { JSONFile } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/JSONFile.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
 
 XPCOMUtils.defineLazyGetter(
   this,

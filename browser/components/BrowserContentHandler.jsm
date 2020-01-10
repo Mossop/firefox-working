@@ -15,30 +15,40 @@ const { AppConstants } = ChromeUtils.import(
   "resource://gre/modules/AppConstants.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AboutPrivateBrowsingHandler:
-    "resource:///modules/aboutpages/AboutPrivateBrowsingHandler.jsm",
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
-  HeadlessShell: "resource:///modules/HeadlessShell.jsm",
-  HomePage: "resource:///modules/HomePage.jsm",
-  FirstStartup: "resource://gre/modules/FirstStartup.jsm",
-  LaterRun: "resource:///modules/LaterRun.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-  SessionStartup: "resource:///modules/sessionstore/SessionStartup.jsm",
-  ShellService: "resource:///modules/ShellService.jsm",
-  UpdatePing: "resource://gre/modules/UpdatePing.jsm",
-  RemotePages:
-    "resource://gre/modules/remotepagemanager/RemotePageManagerParent.jsm",
-});
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "WindowsUIUtils",
+const { AboutPrivateBrowsingHandler } = XPCOMUtils.lazyImport(
+  "resource:///modules/aboutpages/AboutPrivateBrowsingHandler.jsm"
+);
+const { BrowserWindowTracker } = XPCOMUtils.lazyImport(
+  "resource:///modules/BrowserWindowTracker.jsm"
+);
+const { HeadlessShell } = XPCOMUtils.lazyImport(
+  "resource:///modules/HeadlessShell.jsm"
+);
+const { HomePage } = XPCOMUtils.lazyImport("resource:///modules/HomePage.jsm");
+const { FirstStartup } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FirstStartup.jsm"
+);
+const { LaterRun } = XPCOMUtils.lazyImport("resource:///modules/LaterRun.jsm");
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
+const { SessionStartup } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/SessionStartup.jsm"
+);
+const { ShellService } = XPCOMUtils.lazyImport(
+  "resource:///modules/ShellService.jsm"
+);
+const { UpdatePing } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/UpdatePing.jsm"
+);
+const { RemotePages } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/remotepagemanager/RemotePageManagerParent.jsm"
+);
+const WindowsUIUtils = XPCOMUtils.lazyService(
   "@mozilla.org/windows-ui-utils;1",
   "nsIWindowsUIUtils"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "UpdateManager",
+const UpdateManager = XPCOMUtils.lazyService(
   "@mozilla.org/updates/update-manager;1",
   "nsIUpdateManager"
 );

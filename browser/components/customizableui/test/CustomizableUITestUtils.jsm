@@ -18,9 +18,10 @@ const { TestUtils } = ChromeUtils.import(
   "resource://testing-common/TestUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "CustomizableUI",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { CustomizableUI } = XPCOMUtils.lazyImport(
   "resource:///modules/CustomizableUI.jsm"
 );
 

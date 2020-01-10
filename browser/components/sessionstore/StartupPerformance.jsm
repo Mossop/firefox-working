@@ -6,19 +6,16 @@
 
 var EXPORTED_SYMBOLS = ["StartupPerformance"];
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Services.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "setTimeout",
+const { setTimeout } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Timer.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "clearTimeout",
+const { clearTimeout } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Timer.jsm"
 );
 

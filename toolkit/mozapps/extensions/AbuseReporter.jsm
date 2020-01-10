@@ -26,13 +26,21 @@ const MIN_MS_BETWEEN_SUBMITS = 30000;
 // The addon types currently supported by the integrated abuse report panel.
 const SUPPORTED_ADDON_TYPES = ["extension", "theme"];
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  AMTelemetry: "resource://gre/modules/AddonManager.jsm",
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  ClientID: "resource://gre/modules/ClientID.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-});
+const { AddonManager } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { AMTelemetry } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { ClientID } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ClientID.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
 
 XPCOMUtils.defineLazyPreferenceGetter(
   this,

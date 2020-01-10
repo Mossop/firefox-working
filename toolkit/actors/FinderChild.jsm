@@ -6,11 +6,10 @@
 
 var EXPORTED_SYMBOLS = ["FinderChild"];
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "Finder",
-  "resource://gre/modules/Finder.jsm"
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
 );
+const { Finder } = XPCOMUtils.lazyImport("resource://gre/modules/Finder.jsm");
 
 class FinderChild extends JSWindowActorChild {
   get finder() {

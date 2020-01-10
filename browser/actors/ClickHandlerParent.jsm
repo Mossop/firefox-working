@@ -9,19 +9,16 @@ var EXPORTED_SYMBOLS = ["ClickHandlerParent"];
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesUIUtils",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { PlacesUIUtils } = XPCOMUtils.lazyImport(
   "resource:///modules/PlacesUIUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "E10SUtils",
+const { E10SUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/E10SUtils.jsm"
 );
 

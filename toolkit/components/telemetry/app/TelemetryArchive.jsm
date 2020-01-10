@@ -14,9 +14,10 @@ ChromeUtils.import("resource://gre/modules/TelemetryUtils.jsm", this);
 const LOGGER_NAME = "Toolkit.Telemetry";
 const LOGGER_PREFIX = "TelemetryArchive::";
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryStorage",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { TelemetryStorage } = XPCOMUtils.lazyImport(
   "resource://gre/modules/TelemetryStorage.jsm"
 );
 

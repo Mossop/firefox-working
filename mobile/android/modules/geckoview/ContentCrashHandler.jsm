@@ -13,13 +13,17 @@ const { GeckoViewUtils } = ChromeUtils.import(
   "resource://gre/modules/GeckoViewUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  EventDispatcher: "resource://gre/modules/Messaging.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { EventDispatcher } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Messaging.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
 
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
 
 const { debug, warn } = GeckoViewUtils.initLogging("ContentCrashHandler"); // eslint-disable-line no-unused-vars
 

@@ -17,25 +17,17 @@ const LoginInfo = new Components.Constructor(
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["URL"]);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "LoginHelper",
+const { LoginHelper } = XPCOMUtils.lazyImport(
   "resource://gre/modules/LoginHelper.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PasswordGenerator",
+const { PasswordGenerator } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PasswordGenerator.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "prompterSvc",
+const prompterSvc = XPCOMUtils.lazyService(
   "@mozilla.org/login-manager/prompter;1",
   Ci.nsILoginManagerPrompter
 );

@@ -10,35 +10,26 @@
 
 var EXPORTED_SYMBOLS = ["TelemetryHealthPing"];
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryController",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { TelemetryController } = XPCOMUtils.lazyImport(
   "resource://gre/modules/TelemetryController.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "setTimeout",
+const { setTimeout } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Timer.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "clearTimeout",
+const { clearTimeout } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Timer.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryUtils",
+const { TelemetryUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/TelemetryUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
+const { Services } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Services.jsm"
 );
-ChromeUtils.defineModuleGetter(this, "Log", "resource://gre/modules/Log.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "Preferences",
+const { Log } = XPCOMUtils.lazyImport("resource://gre/modules/Log.jsm");
+const { Preferences } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Preferences.jsm"
 );
 

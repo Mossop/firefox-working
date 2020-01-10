@@ -12,9 +12,7 @@ const { XPCOMUtils } = ChromeUtils.import(
 const { ExtensionUtils } = ChromeUtils.import(
   "resource://gre/modules/ExtensionUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ExtensionParent",
+const { ExtensionParent } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ExtensionParent.jsm"
 );
 XPCOMUtils.defineLazyGetter(this, "tabTracker", () => {

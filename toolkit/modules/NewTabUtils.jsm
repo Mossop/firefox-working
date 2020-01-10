@@ -26,35 +26,21 @@ try {
   // The test failed to import these files
 }
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesUtils",
+const { PlacesUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PlacesUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PageThumbs",
+const { PageThumbs } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PageThumbs.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "BinarySearch",
+const { BinarySearch } = XPCOMUtils.lazyImport(
   "resource://gre/modules/BinarySearch.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "pktApi",
-  "chrome://pocket/content/pktApi.jsm"
-);
+const { pktApi } = XPCOMUtils.lazyImport("chrome://pocket/content/pktApi.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "Pocket",
-  "chrome://pocket/content/Pocket.jsm"
-);
+const { Pocket } = XPCOMUtils.lazyImport("chrome://pocket/content/Pocket.jsm");
 
 XPCOMUtils.defineLazyGetter(this, "gCryptoHash", function() {
   return Cc["@mozilla.org/security/hash;1"].createInstance(Ci.nsICryptoHash);

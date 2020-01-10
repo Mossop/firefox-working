@@ -10,9 +10,7 @@ const { XPCOMUtils } = ChromeUtils.import(
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 const { Log } = ChromeUtils.import("resource://gre/modules/Log.jsm");
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "IdentityCryptoService",
+const IdentityCryptoService = XPCOMUtils.lazyService(
   "@mozilla.org/identity/crypto-service;1",
   "nsIIdentityCryptoService"
 );

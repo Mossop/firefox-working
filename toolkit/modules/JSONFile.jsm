@@ -36,27 +36,17 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AsyncShutdown",
+const { AsyncShutdown } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AsyncShutdown.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "DeferredTask",
+const { DeferredTask } = XPCOMUtils.lazyImport(
   "resource://gre/modules/DeferredTask.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FileUtils",
+const { FileUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FileUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "NetUtil",
-  "resource://gre/modules/NetUtil.jsm"
-);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { NetUtil } = XPCOMUtils.lazyImport("resource://gre/modules/NetUtil.jsm");
 
 XPCOMUtils.defineLazyGetter(this, "gTextDecoder", function() {
   return new TextDecoder();

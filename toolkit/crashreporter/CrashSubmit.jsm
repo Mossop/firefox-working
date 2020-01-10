@@ -18,7 +18,7 @@ XPCOMUtils.defineLazyGlobalGetters(this, [
   "XMLHttpRequest",
 ]);
 
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
 
 var EXPORTED_SYMBOLS = ["CrashSubmit"];
 

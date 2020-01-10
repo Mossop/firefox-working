@@ -17,19 +17,16 @@ const { Download, DownloadError } = ChromeUtils.import(
   "resource://gre/modules/DownloadCore.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "DownloadCombinedList",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { DownloadCombinedList } = XPCOMUtils.lazyImport(
   "resource://gre/modules/DownloadList.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "DownloadList",
+const { DownloadList } = XPCOMUtils.lazyImport(
   "resource://gre/modules/DownloadList.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "DownloadSummary",
+const { DownloadSummary } = XPCOMUtils.lazyImport(
   "resource://gre/modules/DownloadList.jsm"
 );
 

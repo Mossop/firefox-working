@@ -6,9 +6,7 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "FileUtils",
+const { FileUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FileUtils.jsm"
 );
 

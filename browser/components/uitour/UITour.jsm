@@ -19,44 +19,28 @@ const { XPCOMUtils } = ChromeUtils.import(
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["URL"]);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "CustomizableUI",
+const { CustomizableUI } = XPCOMUtils.lazyImport(
   "resource:///modules/CustomizableUI.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "fxAccounts",
+const { fxAccounts } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FxAccounts.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FxAccounts",
+const { FxAccounts } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FxAccounts.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PageActions",
+const { PageActions } = XPCOMUtils.lazyImport(
   "resource:///modules/PageActions.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ProfileAge",
+const { ProfileAge } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ProfileAge.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ReaderParent",
+const { ReaderParent } = XPCOMUtils.lazyImport(
   "resource:///modules/ReaderParent.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ResetProfile",
+const { ResetProfile } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ResetProfile.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "UpdateUtils",
+const { UpdateUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/UpdateUtils.jsm"
 );
 

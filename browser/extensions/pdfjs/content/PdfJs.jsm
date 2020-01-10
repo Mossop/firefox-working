@@ -45,14 +45,10 @@ XPCOMUtils.defineLazyServiceGetter(
   "@mozilla.org/uriloader/handler-service;1",
   "nsIHandlerService"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PdfjsChromeUtils",
+const { PdfjsChromeUtils } = XPCOMUtils.lazyImport(
   "resource://pdf.js/PdfjsChromeUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PdfJsDefaultPreferences",
+const { PdfJsDefaultPreferences } = XPCOMUtils.lazyImport(
   "resource://pdf.js/PdfJsDefaultPreferences.jsm"
 );
 

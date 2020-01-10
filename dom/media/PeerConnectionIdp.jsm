@@ -5,9 +5,10 @@
 
 var EXPORTED_SYMBOLS = ["PeerConnectionIdp"];
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "IdpSandbox",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { IdpSandbox } = XPCOMUtils.lazyImport(
   "resource://gre/modules/media/IdpSandbox.jsm"
 );
 

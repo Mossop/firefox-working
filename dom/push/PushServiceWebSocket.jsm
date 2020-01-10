@@ -18,14 +18,10 @@ const { PushCrypto } = ChromeUtils.import(
   "resource://gre/modules/PushCrypto.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "pushBroadcastService",
+const { pushBroadcastService } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PushBroadcastService.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ObjectUtils",
+const { ObjectUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ObjectUtils.jsm"
 );
 

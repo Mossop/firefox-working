@@ -14,9 +14,9 @@ const { GeckoViewUtils } = ChromeUtils.import(
   "resource://gre/modules/GeckoViewUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  EventDispatcher: "resource://gre/modules/Messaging.jsm",
-});
+const { EventDispatcher } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Messaging.jsm"
+);
 
 XPCOMUtils.defineLazyGetter(this, "LoginInfo", () =>
   Components.Constructor(

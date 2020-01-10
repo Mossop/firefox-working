@@ -13,15 +13,27 @@ const { AppConstants } = ChromeUtils.import(
   "resource://gre/modules/AppConstants.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  AddonManagerPrivate: "resource://gre/modules/AddonManager.jsm",
-  SearchWidgetTracker: "resource:///modules/SearchWidgetTracker.jsm",
-  CustomizableWidgets: "resource:///modules/CustomizableWidgets.jsm",
-  PanelMultiView: "resource:///modules/PanelMultiView.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-  ShortcutUtils: "resource://gre/modules/ShortcutUtils.jsm",
-});
+const { AddonManager } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { AddonManagerPrivate } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { SearchWidgetTracker } = XPCOMUtils.lazyImport(
+  "resource:///modules/SearchWidgetTracker.jsm"
+);
+const { CustomizableWidgets } = XPCOMUtils.lazyImport(
+  "resource:///modules/CustomizableWidgets.jsm"
+);
+const { PanelMultiView } = XPCOMUtils.lazyImport(
+  "resource:///modules/PanelMultiView.jsm"
+);
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
+const { ShortcutUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ShortcutUtils.jsm"
+);
 
 XPCOMUtils.defineLazyGetter(this, "gWidgetsBundle", function() {
   const kUrl =
@@ -29,9 +41,7 @@ XPCOMUtils.defineLazyGetter(this, "gWidgetsBundle", function() {
   return Services.strings.createBundle(kUrl);
 });
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gELS",
+const gELS = XPCOMUtils.lazyService(
   "@mozilla.org/eventlistenerservice;1",
   "nsIEventListenerService"
 );

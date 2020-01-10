@@ -9,11 +9,15 @@ var EXPORTED_SYMBOLS = ["UrlbarView"];
 const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
-XPCOMUtils.defineLazyModuleGetters(this, {
-  UrlbarPrefs: "resource:///modules/UrlbarPrefs.jsm",
-  UrlbarTokenizer: "resource:///modules/UrlbarTokenizer.jsm",
-  UrlbarUtils: "resource:///modules/UrlbarUtils.jsm",
-});
+const { UrlbarPrefs } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarPrefs.jsm"
+);
+const { UrlbarTokenizer } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarTokenizer.jsm"
+);
+const { UrlbarUtils } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarUtils.jsm"
+);
 
 // Stale rows are removed on a timer with this timeout.  Tests can override this
 // by setting UrlbarView.removeStaleRowsTimeout.

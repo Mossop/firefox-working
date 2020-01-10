@@ -24,17 +24,13 @@ const { XPCOMUtils } = ChromeUtils.import(
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["fetch"]);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "Downloads",
+const { Downloads } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Downloads.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FileUtils",
+const { FileUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FileUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
 
 const CLOUD_SERVICES_PREF = "cloud.services.";
 const CLOUD_PROVIDERS_URI = "resource://cloudstorage/providers.json";

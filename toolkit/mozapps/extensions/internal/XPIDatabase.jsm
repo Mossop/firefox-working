@@ -20,26 +20,55 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  AddonManagerPrivate: "resource://gre/modules/AddonManager.jsm",
-  AddonRepository: "resource://gre/modules/addons/AddonRepository.jsm",
-  AddonSettings: "resource://gre/modules/addons/AddonSettings.jsm",
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  DeferredTask: "resource://gre/modules/DeferredTask.jsm",
-  ExtensionUtils: "resource://gre/modules/ExtensionUtils.jsm",
-  FileUtils: "resource://gre/modules/FileUtils.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-  PermissionsUtils: "resource://gre/modules/PermissionsUtils.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-
-  Blocklist: "resource://gre/modules/Blocklist.jsm",
-  UpdateChecker: "resource://gre/modules/addons/XPIInstall.jsm",
-  XPIInstall: "resource://gre/modules/addons/XPIInstall.jsm",
-  XPIInternal: "resource://gre/modules/addons/XPIProvider.jsm",
-  XPIProvider: "resource://gre/modules/addons/XPIProvider.jsm",
-  verifyBundleSignedState: "resource://gre/modules/addons/XPIInstall.jsm",
-});
+const { AddonManager } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { AddonManagerPrivate } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { AddonRepository } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/addons/AddonRepository.jsm"
+);
+const { AddonSettings } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/addons/AddonSettings.jsm"
+);
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { DeferredTask } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/DeferredTask.jsm"
+);
+const { ExtensionUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionUtils.jsm"
+);
+const { FileUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FileUtils.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { PermissionsUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PermissionsUtils.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { Blocklist } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Blocklist.jsm"
+);
+const { UpdateChecker } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/addons/XPIInstall.jsm"
+);
+const { XPIInstall } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/addons/XPIInstall.jsm"
+);
+const { XPIInternal } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/addons/XPIProvider.jsm"
+);
+const { XPIProvider } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/addons/XPIProvider.jsm"
+);
+const { verifyBundleSignedState } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/addons/XPIInstall.jsm"
+);
 
 XPCOMUtils.defineLazyPreferenceGetter(
   this,

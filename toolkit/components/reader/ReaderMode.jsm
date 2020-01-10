@@ -38,30 +38,20 @@ const { XPCOMUtils } = ChromeUtils.import(
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["XMLHttpRequest", "XMLSerializer"]);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "CommonUtils",
+const { CommonUtils } = XPCOMUtils.lazyImport(
   "resource://services-common/utils.js"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "EventDispatcher",
+const { EventDispatcher } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Messaging.jsm"
 );
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "ReaderWorker",
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { ReaderWorker } = XPCOMUtils.lazyImport(
   "resource://gre/modules/reader/ReaderWorker.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "LanguageDetector",
+const { LanguageDetector } = XPCOMUtils.lazyImport(
   "resource:///modules/translation/LanguageDetector.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Readerable",
+const { Readerable } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Readerable.jsm"
 );
 

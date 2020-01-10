@@ -9,10 +9,12 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-  setTimeout: "resource://gre/modules/Timer.jsm",
-});
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
+const { setTimeout } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Timer.jsm"
+);
 
 class PageInfoChild extends JSWindowActorChild {
   async receiveMessage(message) {

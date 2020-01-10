@@ -8,21 +8,18 @@ const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
 const DEFAULT_THEME_ID = "default-theme@mozilla.org";
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AppConstants",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { AppConstants } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AppConstants.jsm"
 );
 // Get the theme variables from the app resource directory.
 // This allows per-app variables.
-ChromeUtils.defineModuleGetter(
-  this,
-  "ThemeContentPropertyList",
+const { ThemeContentPropertyList } = XPCOMUtils.lazyImport(
   "resource:///modules/ThemeVariableMap.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ThemeVariableMap",
+const { ThemeVariableMap } = XPCOMUtils.lazyImport(
   "resource:///modules/ThemeVariableMap.jsm"
 );
 

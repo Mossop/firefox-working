@@ -10,14 +10,15 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-});
+const { AsyncShutdown } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AsyncShutdown.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  uuidGen: ["@mozilla.org/uuid-generator;1", "nsIUUIDGenerator"],
-});
+const uuidGen = XPCOMUtils.lazyService(
+  "@mozilla.org/uuid-generator;1",
+  "nsIUUIDGenerator"
+);
 
 const { UnsupportedError } = ChromeUtils.import(
   "chrome://remote/content/Error.jsm"

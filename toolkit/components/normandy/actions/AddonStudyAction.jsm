@@ -11,10 +11,12 @@ const { BranchedAddonStudyAction } = ChromeUtils.import(
   "resource://normandy/actions/BranchedAddonStudyAction.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  ActionSchemas: "resource://normandy/actions/schemas/index.js",
-  AddonStudies: "resource://normandy/lib/AddonStudies.jsm",
-});
+const { ActionSchemas } = XPCOMUtils.lazyImport(
+  "resource://normandy/actions/schemas/index.js"
+);
+const { AddonStudies } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/AddonStudies.jsm"
+);
 
 var EXPORTED_SYMBOLS = ["AddonStudyAction"];
 

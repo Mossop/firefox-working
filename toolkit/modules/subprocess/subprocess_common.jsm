@@ -9,14 +9,13 @@
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AsyncShutdown",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { AsyncShutdown } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AsyncShutdown.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "setTimeout",
+const { setTimeout } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Timer.jsm"
 );
 

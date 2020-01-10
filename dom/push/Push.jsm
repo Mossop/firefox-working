@@ -20,9 +20,7 @@ XPCOMUtils.defineLazyGetter(this, "console", () => {
   });
 });
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "PushService",
+const PushService = XPCOMUtils.lazyService(
   "@mozilla.org/push/Service;1",
   "nsIPushService"
 );

@@ -18,9 +18,7 @@ const { UnsupportedError } = ChromeUtils.import(
   "chrome://remote/content/Error.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "uuidGen",
+const uuidGen = XPCOMUtils.lazyService(
   "@mozilla.org/uuid-generator;1",
   "nsIUUIDGenerator"
 );

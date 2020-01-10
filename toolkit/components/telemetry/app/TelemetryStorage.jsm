@@ -36,14 +36,10 @@ XPCOMUtils.defineLazyGetter(this, "gPingsArchivePath", function() {
 XPCOMUtils.defineLazyGetter(this, "gAbortedSessionFilePath", function() {
   return OS.Path.join(gDataReportingDir, ABORTED_SESSION_FILE_NAME);
 });
-ChromeUtils.defineModuleGetter(
-  this,
-  "CommonUtils",
+const { CommonUtils } = XPCOMUtils.lazyImport(
   "resource://services-common/utils.js"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryHealthPing",
+const { TelemetryHealthPing } = XPCOMUtils.lazyImport(
   "resource://gre/modules/HealthPing.jsm"
 );
 // Maxmimum time, in milliseconds, archive pings should be retained.

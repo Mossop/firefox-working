@@ -17,9 +17,7 @@ const TLS_ERROR_REPORT_TELEMETRY_SUCCESS = 6;
 const TLS_ERROR_REPORT_TELEMETRY_FAILURE = 7;
 const HISTOGRAM_ID = "TLS_ERROR_REPORT_UI";
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "UpdateUtils",
+const { UpdateUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/UpdateUtils.jsm"
 );
 

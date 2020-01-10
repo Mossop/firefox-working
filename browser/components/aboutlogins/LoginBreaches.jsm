@@ -16,11 +16,15 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  LoginHelper: "resource://gre/modules/LoginHelper.jsm",
-  RemoteSettings: "resource://services-settings/remote-settings.js",
-  RemoteSettingsClient: "resource://services-settings/RemoteSettingsClient.jsm",
-});
+const { LoginHelper } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/LoginHelper.jsm"
+);
+const { RemoteSettings } = XPCOMUtils.lazyImport(
+  "resource://services-settings/remote-settings.js"
+);
+const { RemoteSettingsClient } = XPCOMUtils.lazyImport(
+  "resource://services-settings/RemoteSettingsClient.jsm"
+);
 
 this.LoginBreaches = {
   REMOTE_SETTINGS_COLLECTION: "fxmonitor-breaches",

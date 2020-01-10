@@ -10,14 +10,10 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "ClientID",
+const { ClientID } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ClientID.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ContextualIdentityService",
+const { ContextualIdentityService } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ContextualIdentityService.jsm"
 );
 

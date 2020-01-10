@@ -34,16 +34,10 @@ const { PersistentCache } = ChromeUtils.import(
   "resource://activity-stream/lib/PersistentCache.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "perfService",
+const { perfService } = XPCOMUtils.lazyImport(
   "resource://activity-stream/common/PerfService.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "pktApi",
-  "chrome://pocket/content/pktApi.jsm"
-);
+const { pktApi } = XPCOMUtils.lazyImport("chrome://pocket/content/pktApi.jsm");
 
 const STORIES_UPDATE_TIME = 30 * 60 * 1000; // 30 minutes
 const TOPICS_UPDATE_TIME = 3 * 60 * 60 * 1000; // 3 hours

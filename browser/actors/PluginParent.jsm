@@ -15,21 +15,15 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gPluginHost",
+const gPluginHost = XPCOMUtils.lazyService(
   "@mozilla.org/plugin/host;1",
   "nsIPluginHost"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "BrowserUtils",
+const { BrowserUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/BrowserUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "CrashSubmit",
+const { CrashSubmit } = XPCOMUtils.lazyImport(
   "resource://gre/modules/CrashSubmit.jsm"
 );
 

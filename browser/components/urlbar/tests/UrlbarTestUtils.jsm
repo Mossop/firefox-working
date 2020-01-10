@@ -9,12 +9,18 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  BrowserTestUtils: "resource://testing-common/BrowserTestUtils.jsm",
-  UrlbarController: "resource:///modules/UrlbarController.jsm",
-  UrlbarUtils: "resource:///modules/UrlbarUtils.jsm",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { BrowserTestUtils } = XPCOMUtils.lazyImport(
+  "resource://testing-common/BrowserTestUtils.jsm"
+);
+const { UrlbarController } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarController.jsm"
+);
+const { UrlbarUtils } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarUtils.jsm"
+);
 
 var UrlbarTestUtils = {
   /**

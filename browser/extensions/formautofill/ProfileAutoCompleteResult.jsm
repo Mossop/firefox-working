@@ -12,14 +12,10 @@ const { XPCOMUtils } = ChromeUtils.import(
 const { FormAutofill } = ChromeUtils.import(
   "resource://formautofill/FormAutofill.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FormAutofillUtils",
+const { FormAutofillUtils } = XPCOMUtils.lazyImport(
   "resource://formautofill/FormAutofillUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "CreditCard",
+const { CreditCard } = XPCOMUtils.lazyImport(
   "resource://gre/modules/CreditCard.jsm"
 );
 

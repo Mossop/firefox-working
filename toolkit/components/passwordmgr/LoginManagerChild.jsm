@@ -34,50 +34,32 @@ const { CreditCard } = ChromeUtils.import(
   "resource://gre/modules/CreditCard.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "DeferredTask",
+const { DeferredTask } = XPCOMUtils.lazyImport(
   "resource://gre/modules/DeferredTask.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FormLikeFactory",
+const { FormLikeFactory } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FormLikeFactory.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "LoginFormFactory",
+const { LoginFormFactory } = XPCOMUtils.lazyImport(
   "resource://gre/modules/LoginFormFactory.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "LoginRecipesContent",
+const { LoginRecipesContent } = XPCOMUtils.lazyImport(
   "resource://gre/modules/LoginRecipes.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "LoginHelper",
+const { LoginHelper } = XPCOMUtils.lazyImport(
   "resource://gre/modules/LoginHelper.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "InsecurePasswordUtils",
+const { InsecurePasswordUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/InsecurePasswordUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ContentDOMReference",
+const { ContentDOMReference } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ContentDOMReference.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "AutoCompleteChild",
+const { AutoCompleteChild } = XPCOMUtils.lazyImport(
   "resource://gre/actors/AutoCompleteChild.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gFormFillService",
+const gFormFillService = XPCOMUtils.lazyService(
   "@mozilla.org/satchel/form-fill-controller;1",
   "nsIFormFillController"
 );

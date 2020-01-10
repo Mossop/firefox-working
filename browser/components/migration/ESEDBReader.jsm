@@ -21,7 +21,7 @@ XPCOMUtils.defineLazyGetter(this, "log", () => {
   return new ConsoleAPI(consoleOptions);
 });
 
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
 
 // We have a globally unique identifier for ESE instances. A new one
 // is used for each different database opened.

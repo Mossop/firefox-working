@@ -15,54 +15,35 @@ const { ExtensionUtils } = ChromeUtils.import(
   "resource://gre/modules/ExtensionUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "MockFilePicker",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { MockFilePicker } = XPCOMUtils.lazyImport(
   "resource://specialpowers/MockFilePicker.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "MockColorPicker",
+const { MockColorPicker } = XPCOMUtils.lazyImport(
   "resource://specialpowers/MockColorPicker.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "MockPermissionPrompt",
+const { MockPermissionPrompt } = XPCOMUtils.lazyImport(
   "resource://specialpowers/MockPermissionPrompt.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "SpecialPowersSandbox",
+const { SpecialPowersSandbox } = XPCOMUtils.lazyImport(
   "resource://specialpowers/SpecialPowersSandbox.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "WrapPrivileged",
+const { WrapPrivileged } = XPCOMUtils.lazyImport(
   "resource://specialpowers/WrapPrivileged.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "NetUtil",
-  "resource://gre/modules/NetUtil.jsm"
-);
-ChromeUtils.defineModuleGetter(
-  this,
-  "AppConstants",
+const { NetUtil } = XPCOMUtils.lazyImport("resource://gre/modules/NetUtil.jsm");
+const { AppConstants } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AppConstants.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PerTestCoverageUtils",
+const { PerTestCoverageUtils } = XPCOMUtils.lazyImport(
   "resource://testing-common/PerTestCoverageUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ContentTaskUtils",
+const { ContentTaskUtils } = XPCOMUtils.lazyImport(
   "resource://testing-common/ContentTaskUtils.jsm"
 );
 

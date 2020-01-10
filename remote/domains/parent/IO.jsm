@@ -10,9 +10,7 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  OS: "resource://gre/modules/osfile.jsm",
-});
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
 
 const { Domain } = ChromeUtils.import(
   "chrome://remote/content/domains/Domain.jsm"

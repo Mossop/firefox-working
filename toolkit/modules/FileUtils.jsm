@@ -9,9 +9,7 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gDirService",
+const gDirService = XPCOMUtils.lazyService(
   "@mozilla.org/file/directory_service;1",
   "nsIProperties"
 );

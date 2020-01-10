@@ -10,15 +10,27 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  BrowserUsageTelemetry: "resource:///modules/BrowserUsageTelemetry.jsm",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.jsm",
-  UrlbarPrefs: "resource:///modules/UrlbarPrefs.jsm",
-  UrlbarProvidersManager: "resource:///modules/UrlbarProvidersManager.jsm",
-  UrlbarUtils: "resource:///modules/UrlbarUtils.jsm",
-  URLBAR_SELECTED_RESULT_TYPES: "resource:///modules/BrowserUsageTelemetry.jsm",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { BrowserUsageTelemetry } = XPCOMUtils.lazyImport(
+  "resource:///modules/BrowserUsageTelemetry.jsm"
+);
+const { PlacesUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesUtils.jsm"
+);
+const { UrlbarPrefs } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarPrefs.jsm"
+);
+const { UrlbarProvidersManager } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarProvidersManager.jsm"
+);
+const { UrlbarUtils } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarUtils.jsm"
+);
+const { URLBAR_SELECTED_RESULT_TYPES } = XPCOMUtils.lazyImport(
+  "resource:///modules/BrowserUsageTelemetry.jsm"
+);
 
 const TELEMETRY_1ST_RESULT = "PLACES_AUTOCOMPLETE_1ST_RESULT_TIME_MS";
 const TELEMETRY_6_FIRST_RESULTS = "PLACES_AUTOCOMPLETE_6_FIRST_RESULTS_TIME_MS";

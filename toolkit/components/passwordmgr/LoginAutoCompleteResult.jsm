@@ -15,35 +15,23 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "BrowserUtils",
+const { BrowserUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/BrowserUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "InsecurePasswordUtils",
+const { InsecurePasswordUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/InsecurePasswordUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "LoginFormFactory",
+const { LoginFormFactory } = XPCOMUtils.lazyImport(
   "resource://gre/modules/LoginFormFactory.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "LoginHelper",
+const { LoginHelper } = XPCOMUtils.lazyImport(
   "resource://gre/modules/LoginHelper.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "LoginManagerChild",
+const { LoginManagerChild } = XPCOMUtils.lazyImport(
   "resource://gre/modules/LoginManagerChild.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "formFillController",
+const formFillController = XPCOMUtils.lazyService(
   "@mozilla.org/satchel/form-fill-controller;1",
   Ci.nsIFormFillController
 );

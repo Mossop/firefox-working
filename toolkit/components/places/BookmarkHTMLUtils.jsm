@@ -73,9 +73,7 @@ const { PlacesUtils } = ChromeUtils.import(
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["XMLHttpRequest"]);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesBackups",
+const { PlacesBackups } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PlacesBackups.jsm"
 );
 

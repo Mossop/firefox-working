@@ -15,14 +15,10 @@ const { PromptUtils } = ChromeUtils.import(
 
 /* eslint-disable block-scoped-var, no-var */
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "LoginHelper",
+const { LoginHelper } = XPCOMUtils.lazyImport(
   "resource://gre/modules/LoginHelper.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "LoginManagerPrompter",
+const { LoginManagerPrompter } = XPCOMUtils.lazyImport(
   "resource://gre/modules/LoginManagerPrompter.jsm"
 );
 

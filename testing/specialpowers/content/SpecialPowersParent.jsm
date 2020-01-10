@@ -11,14 +11,24 @@ var { XPCOMUtils } = ChromeUtils.import(
 );
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  ExtensionData: "resource://gre/modules/Extension.jsm",
-  ExtensionTestCommon: "resource://testing-common/ExtensionTestCommon.jsm",
-  PerTestCoverageUtils: "resource://testing-common/PerTestCoverageUtils.jsm",
-  ServiceWorkerCleanUp: "resource://gre/modules/ServiceWorkerCleanUp.jsm",
-  SpecialPowersSandbox: "resource://specialpowers/SpecialPowersSandbox.jsm",
-  HiddenFrame: "resource://gre/modules/HiddenFrame.jsm",
-});
+const { ExtensionData } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Extension.jsm"
+);
+const { ExtensionTestCommon } = XPCOMUtils.lazyImport(
+  "resource://testing-common/ExtensionTestCommon.jsm"
+);
+const { PerTestCoverageUtils } = XPCOMUtils.lazyImport(
+  "resource://testing-common/PerTestCoverageUtils.jsm"
+);
+const { ServiceWorkerCleanUp } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ServiceWorkerCleanUp.jsm"
+);
+const { SpecialPowersSandbox } = XPCOMUtils.lazyImport(
+  "resource://specialpowers/SpecialPowersSandbox.jsm"
+);
+const { HiddenFrame } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/HiddenFrame.jsm"
+);
 
 class SpecialPowersError extends Error {
   get name() {

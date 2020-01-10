@@ -20,49 +20,29 @@ const { XPCOMUtils } = ChromeUtils.import(
 // Windowless browsers can create documents that rely on XUL Custom Elements:
 ChromeUtils.import("resource://gre/modules/CustomElementsListener.jsm", null);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AddonManager",
+const { AddonManager } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AddonManager.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "AddonTestUtils",
+const { AddonTestUtils } = XPCOMUtils.lazyImport(
   "resource://testing-common/AddonTestUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ContentTask",
+const { ContentTask } = XPCOMUtils.lazyImport(
   "resource://testing-common/ContentTask.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ExtensionTestCommon",
+const { ExtensionTestCommon } = XPCOMUtils.lazyImport(
   "resource://testing-common/ExtensionTestCommon.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FileUtils",
+const { FileUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FileUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "MessageChannel",
+const { MessageChannel } = XPCOMUtils.lazyImport(
   "resource://gre/modules/MessageChannel.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Schemas",
-  "resource://gre/modules/Schemas.jsm"
-);
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
+const { Schemas } = XPCOMUtils.lazyImport("resource://gre/modules/Schemas.jsm");
+const { Services } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Services.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TestUtils",
+const { TestUtils } = XPCOMUtils.lazyImport(
   "resource://testing-common/TestUtils.jsm"
 );
 

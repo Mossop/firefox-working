@@ -29,27 +29,17 @@ XPCOMUtils.defineLazyGetter(this, "gTextEncoder", function() {
   return new TextEncoder();
 });
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AsyncShutdown",
+const { AsyncShutdown } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AsyncShutdown.jsm"
 );
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "DeferredTask",
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { DeferredTask } = XPCOMUtils.lazyImport(
   "resource://gre/modules/DeferredTask.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FileUtils",
+const { FileUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FileUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "NetUtil",
-  "resource://gre/modules/NetUtil.jsm"
-);
+const { NetUtil } = XPCOMUtils.lazyImport("resource://gre/modules/NetUtil.jsm");
 
 function _TabRemovalObserver(resolver, remoteTabIds) {
   this._resolver = resolver;

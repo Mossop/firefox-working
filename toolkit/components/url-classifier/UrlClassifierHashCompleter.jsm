@@ -18,16 +18,12 @@ const { XPCOMUtils } = ChromeUtils.import(
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gDbService",
+const gDbService = XPCOMUtils.lazyService(
   "@mozilla.org/url-classifier/dbservice;1",
   "nsIUrlClassifierDBService"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gUrlUtil",
+const gUrlUtil = XPCOMUtils.lazyService(
   "@mozilla.org/url-classifier/utils;1",
   "nsIUrlClassifierUtils"
 );

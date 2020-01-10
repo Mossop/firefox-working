@@ -10,13 +10,21 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  EveryWindow: "resource:///modules/EveryWindow.jsm",
-  PluralForm: "resource://gre/modules/PluralForm.jsm",
-  Preferences: "resource://gre/modules/Preferences.jsm",
-  RemoteSettings: "resource://services-settings/remote-settings.js",
-  Services: "resource://gre/modules/Services.jsm",
-});
+const { EveryWindow } = XPCOMUtils.lazyImport(
+  "resource:///modules/EveryWindow.jsm"
+);
+const { PluralForm } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PluralForm.jsm"
+);
+const { Preferences } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Preferences.jsm"
+);
+const { RemoteSettings } = XPCOMUtils.lazyImport(
+  "resource://services-settings/remote-settings.js"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
 
 const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 const STYLESHEET = "chrome://browser/content/fxmonitor/FirefoxMonitor.css";

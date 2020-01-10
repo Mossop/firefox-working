@@ -6,39 +6,28 @@
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "NormandyApi",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { NormandyApi } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/NormandyApi.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ClientEnvironmentBase",
+const { ClientEnvironmentBase } = XPCOMUtils.lazyImport(
   "resource://gre/modules/components-utils/ClientEnvironment.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PreferenceExperiments",
+const { PreferenceExperiments } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/PreferenceExperiments.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PreferenceRollouts",
+const { PreferenceRollouts } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/PreferenceRollouts.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "AddonStudies",
+const { AddonStudies } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/AddonStudies.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "AddonRollouts",
+const { AddonRollouts } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/AddonRollouts.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "NormandyUtils",
+const { NormandyUtils } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/NormandyUtils.jsm"
 );
 

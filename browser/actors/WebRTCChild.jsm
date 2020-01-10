@@ -16,9 +16,7 @@ const { ActorChild } = ChromeUtils.import(
 const { AppConstants } = ChromeUtils.import(
   "resource://gre/modules/AppConstants.jsm"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "MediaManagerService",
+const MediaManagerService = XPCOMUtils.lazyService(
   "@mozilla.org/mediaManagerService;1",
   "nsIMediaManagerService"
 );

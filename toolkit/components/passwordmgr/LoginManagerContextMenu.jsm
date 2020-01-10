@@ -11,14 +11,10 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "LoginHelper",
+const { LoginHelper } = XPCOMUtils.lazyImport(
   "resource://gre/modules/LoginHelper.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "LoginManagerParent",
+const { LoginManagerParent } = XPCOMUtils.lazyImport(
   "resource://gre/modules/LoginManagerParent.jsm"
 );
 XPCOMUtils.defineLazyGetter(this, "log", () => {

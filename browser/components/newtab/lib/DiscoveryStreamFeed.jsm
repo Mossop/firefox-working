@@ -6,41 +6,32 @@
 const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "NewTabUtils",
+const { NewTabUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/NewTabUtils.jsm"
 );
 const { setTimeout, clearTimeout } = ChromeUtils.import(
   "resource://gre/modules/Timer.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
+const { Services } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Services.jsm"
 );
 XPCOMUtils.defineLazyGlobalGetters(this, ["fetch"]);
-ChromeUtils.defineModuleGetter(
-  this,
-  "perfService",
+const { perfService } = XPCOMUtils.lazyImport(
   "resource://activity-stream/common/PerfService.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "UserDomainAffinityProvider",
+const { UserDomainAffinityProvider } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/UserDomainAffinityProvider.jsm"
 );
 const { actionTypes: at, actionCreators: ac } = ChromeUtils.import(
   "resource://activity-stream/common/Actions.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PersistentCache",
+const { PersistentCache } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/PersistentCache.jsm"
 );
-XPCOMUtils.defineLazyServiceGetters(this, {
-  gUUIDGenerator: ["@mozilla.org/uuid-generator;1", "nsIUUIDGenerator"],
-});
+const gUUIDGenerator = XPCOMUtils.lazyService(
+  "@mozilla.org/uuid-generator;1",
+  "nsIUUIDGenerator"
+);
 
 const CACHE_KEY = "discovery_stream";
 const LAYOUT_UPDATE_TIME = 30 * 60 * 1000; // 30 minutes

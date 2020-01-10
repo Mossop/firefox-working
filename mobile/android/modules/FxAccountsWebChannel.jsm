@@ -44,19 +44,11 @@ XPCOMUtils.defineLazyGetter(this, "strings", () =>
   )
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "Snackbars",
+const { Snackbars } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Snackbars.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Prompt",
-  "resource://gre/modules/Prompt.jsm"
-);
-ChromeUtils.defineModuleGetter(
-  this,
-  "UITelemetry",
+const { Prompt } = XPCOMUtils.lazyImport("resource://gre/modules/Prompt.jsm");
+const { UITelemetry } = XPCOMUtils.lazyImport(
   "resource://gre/modules/UITelemetry.jsm"
 );
 

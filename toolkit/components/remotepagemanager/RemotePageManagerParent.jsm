@@ -23,9 +23,10 @@ const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 const { MessageListener, MessagePort } = ChromeUtils.import(
   "resource://gre/modules/remotepagemanager/MessagePort.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FxAccounts",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { FxAccounts } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FxAccounts.jsm"
 );
 

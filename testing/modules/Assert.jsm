@@ -18,11 +18,10 @@ const { ObjectUtils } = ChromeUtils.import(
   "resource://gre/modules/ObjectUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "Promise",
-  "resource://gre/modules/Promise.jsm"
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
 );
+const { Promise } = XPCOMUtils.lazyImport("resource://gre/modules/Promise.jsm");
 /**
  * 1. The assert module provides functions that throw AssertionError's when
  * particular conditions are not met.

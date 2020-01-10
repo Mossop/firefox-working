@@ -5,25 +5,20 @@
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "CommonUtils",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { CommonUtils } = XPCOMUtils.lazyImport(
   "resource://services-common/utils.js"
 );
-ChromeUtils.defineModuleGetter(this, "Log", "resource://gre/modules/Log.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "PromiseUtils",
+const { Log } = XPCOMUtils.lazyImport("resource://gre/modules/Log.jsm");
+const { PromiseUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PromiseUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ServiceRequest",
+const { ServiceRequest } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ServiceRequest.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "UpdateUtils",
+const { UpdateUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/UpdateUtils.jsm"
 );
 

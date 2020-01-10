@@ -7,29 +7,22 @@
 const { BaseAction } = ChromeUtils.import(
   "resource://normandy/actions/BaseAction.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryEnvironment",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { TelemetryEnvironment } = XPCOMUtils.lazyImport(
   "resource://gre/modules/TelemetryEnvironment.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PreferenceRollouts",
+const { PreferenceRollouts } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/PreferenceRollouts.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrefUtils",
+const { PrefUtils } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/PrefUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ActionSchemas",
+const { ActionSchemas } = XPCOMUtils.lazyImport(
   "resource://normandy/actions/schemas/index.js"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryEvents",
+const { TelemetryEvents } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/TelemetryEvents.jsm"
 );
 

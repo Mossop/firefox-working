@@ -9,10 +9,10 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  Prompt: "resource://gre/modules/Prompt.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-});
+const { Prompt } = XPCOMUtils.lazyImport("resource://gre/modules/Prompt.jsm");
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
 
 var InputWidgetHelper = {
   _uiBusy: false,

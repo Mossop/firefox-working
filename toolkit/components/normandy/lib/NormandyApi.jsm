@@ -12,9 +12,7 @@ const { LogManager } = ChromeUtils.import(
   "resource://normandy/lib/LogManager.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "CanonicalJSON",
+const { CanonicalJSON } = XPCOMUtils.lazyImport(
   "resource://gre/modules/CanonicalJSON.jsm"
 );
 

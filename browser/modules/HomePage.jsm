@@ -10,14 +10,21 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  ExtensionParent: "resource://gre/modules/ExtensionParent.jsm",
-  ExtensionPreferencesManager:
-    "resource://gre/modules/ExtensionPreferencesManager.jsm",
-  IgnoreLists: "resource://gre/modules/IgnoreLists.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-});
+const { ExtensionParent } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionParent.jsm"
+);
+const { ExtensionPreferencesManager } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionPreferencesManager.jsm"
+);
+const { IgnoreLists } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/IgnoreLists.jsm"
+);
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
 
 const kPrefName = "browser.startup.homepage";
 const kDefaultHomePage = "about:home";

@@ -14,24 +14,19 @@ const { ReaderMode } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AsyncPrefs",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { AsyncPrefs } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AsyncPrefs.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "NarrateControls",
+const { NarrateControls } = XPCOMUtils.lazyImport(
   "resource://gre/modules/narrate/NarrateControls.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "UITelemetry",
+const { UITelemetry } = XPCOMUtils.lazyImport(
   "resource://gre/modules/UITelemetry.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PluralForm",
+const { PluralForm } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PluralForm.jsm"
 );
 

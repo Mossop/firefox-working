@@ -17,11 +17,10 @@
 var EXPORTED_SYMBOLS = ["UIState"];
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "Weave",
-  "resource://services-sync/main.js"
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
 );
+const { Weave } = XPCOMUtils.lazyImport("resource://services-sync/main.js");
 
 const TOPICS = [
   "weave:connected",

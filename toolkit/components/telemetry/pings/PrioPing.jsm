@@ -13,14 +13,15 @@ var EXPORTED_SYMBOLS = ["TelemetryPrioPing"];
 
 ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm", this);
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  TelemetryController: "resource://gre/modules/TelemetryController.jsm",
-  Log: "resource://gre/modules/Log.jsm",
-});
+const { TelemetryController } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryController.jsm"
+);
+const { Log } = XPCOMUtils.lazyImport("resource://gre/modules/Log.jsm");
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  Telemetry: ["@mozilla.org/base/telemetry;1", "nsITelemetry"],
-});
+const Telemetry = XPCOMUtils.lazyService(
+  "@mozilla.org/base/telemetry;1",
+  "nsITelemetry"
+);
 
 const { TelemetryUtils } = ChromeUtils.import(
   "resource://gre/modules/TelemetryUtils.jsm"

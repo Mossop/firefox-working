@@ -11,16 +11,30 @@ const { BaseAction } = ChromeUtils.import(
   "resource://normandy/actions/BaseAction.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  ActionSchemas: "resource://normandy/actions/schemas/index.js",
-  AddonRollouts: "resource://normandy/lib/AddonRollouts.jsm",
-  NormandyAddonManager: "resource://normandy/lib/NormandyAddonManager.jsm",
-  NormandyApi: "resource://normandy/lib/NormandyApi.jsm",
-  NormandyUtils: "resource://normandy/lib/NormandyUtils.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-  TelemetryEnvironment: "resource://gre/modules/TelemetryEnvironment.jsm",
-  TelemetryEvents: "resource://normandy/lib/TelemetryEvents.jsm",
-});
+const { ActionSchemas } = XPCOMUtils.lazyImport(
+  "resource://normandy/actions/schemas/index.js"
+);
+const { AddonRollouts } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/AddonRollouts.jsm"
+);
+const { NormandyAddonManager } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/NormandyAddonManager.jsm"
+);
+const { NormandyApi } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/NormandyApi.jsm"
+);
+const { NormandyUtils } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/NormandyUtils.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { TelemetryEnvironment } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryEnvironment.jsm"
+);
+const { TelemetryEvents } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/TelemetryEvents.jsm"
+);
 
 var EXPORTED_SYMBOLS = ["AddonRolloutAction"];
 

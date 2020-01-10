@@ -13,11 +13,15 @@ const { GeckoViewUtils } = ChromeUtils.import(
   "resource://gre/modules/GeckoViewUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  DeferredTask: "resource://gre/modules/DeferredTask.jsm",
-  FormLikeFactory: "resource://gre/modules/FormLikeFactory.jsm",
-  LoginManagerChild: "resource://gre/modules/LoginManagerChild.jsm",
-});
+const { DeferredTask } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/DeferredTask.jsm"
+);
+const { FormLikeFactory } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FormLikeFactory.jsm"
+);
+const { LoginManagerChild } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/LoginManagerChild.jsm"
+);
 
 const { debug, warn } = GeckoViewUtils.initLogging("Autofill"); // eslint-disable-line no-unused-vars
 

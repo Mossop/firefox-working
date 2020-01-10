@@ -7,9 +7,10 @@
 
 var EXPORTED_SYMBOLS = ["ExtensionTelemetry", "getTrimmedString"];
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Services.jsm"
 );
 

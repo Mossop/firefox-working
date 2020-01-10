@@ -11,14 +11,13 @@ const TOPIC_GATHER_TELEMETRY = "gather-telemetry";
 const MAINTENANCE_INTERVAL_SECONDS = 7 * 86400;
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesUtils",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { PlacesUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PlacesUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesDBUtils",
+const { PlacesDBUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PlacesDBUtils.jsm"
 );
 

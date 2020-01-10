@@ -11,16 +11,8 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "Color",
-  "resource://gre/modules/Color.jsm"
-);
-ChromeUtils.defineModuleGetter(
-  this,
-  "Rect",
-  "resource://gre/modules/Geometry.jsm"
-);
+const { Color } = XPCOMUtils.lazyImport("resource://gre/modules/Color.jsm");
+const { Rect } = XPCOMUtils.lazyImport("resource://gre/modules/Geometry.jsm");
 XPCOMUtils.defineLazyGetter(this, "kDebug", () => {
   const kDebugPref = "findbar.modalHighlight.debug";
   return (

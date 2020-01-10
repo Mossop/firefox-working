@@ -111,11 +111,7 @@ XPCOMUtils.defineLazyGetter(this, "gTextDecoder", () => {
   return new TextDecoder();
 });
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "NetUtil",
-  "resource://gre/modules/NetUtil.jsm"
-);
+const { NetUtil } = XPCOMUtils.lazyImport("resource://gre/modules/NetUtil.jsm");
 
 // Options for wiping data during a sync
 const SYNC_RESET_CLIENT = "resetClient";

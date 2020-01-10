@@ -23,9 +23,7 @@ XPCOMUtils.defineLazyPreferenceGetter(
   30 * 1000 // Default of 30 seconds.
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AsyncShutdown",
+const { AsyncShutdown } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AsyncShutdown.jsm"
 );
 

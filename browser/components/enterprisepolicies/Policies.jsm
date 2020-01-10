@@ -12,19 +12,33 @@ const { AppConstants } = ChromeUtils.import(
   "resource://gre/modules/AppConstants.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  gCertDB: ["@mozilla.org/security/x509certdb;1", "nsIX509CertDB"],
-  gXulStore: ["@mozilla.org/xul/xulstore;1", "nsIXULStore"],
-});
+const gCertDB = XPCOMUtils.lazyService(
+  "@mozilla.org/security/x509certdb;1",
+  "nsIX509CertDB"
+);
+const gXulStore = XPCOMUtils.lazyService(
+  "@mozilla.org/xul/xulstore;1",
+  "nsIXULStore"
+);
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  BookmarksPolicies: "resource:///modules/policies/BookmarksPolicies.jsm",
-  CustomizableUI: "resource:///modules/CustomizableUI.jsm",
-  FileUtils: "resource://gre/modules/FileUtils.jsm",
-  ProxyPolicies: "resource:///modules/policies/ProxyPolicies.jsm",
-  WebsiteFilter: "resource:///modules/policies/WebsiteFilter.jsm",
-});
+const { AddonManager } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { BookmarksPolicies } = XPCOMUtils.lazyImport(
+  "resource:///modules/policies/BookmarksPolicies.jsm"
+);
+const { CustomizableUI } = XPCOMUtils.lazyImport(
+  "resource:///modules/CustomizableUI.jsm"
+);
+const { FileUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FileUtils.jsm"
+);
+const { ProxyPolicies } = XPCOMUtils.lazyImport(
+  "resource:///modules/policies/ProxyPolicies.jsm"
+);
+const { WebsiteFilter } = XPCOMUtils.lazyImport(
+  "resource:///modules/policies/WebsiteFilter.jsm"
+);
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["File", "FileReader"]);
 

@@ -94,18 +94,12 @@ const { AppConstants } = ChromeUtils.import(
   "resource://gre/modules/AppConstants.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "uuidService",
+const uuidService = XPCOMUtils.lazyService(
   "@mozilla.org/uuid-generator;1",
   "nsIUUIDGenerator"
 );
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "Sqlite",
-  "resource://gre/modules/Sqlite.jsm"
-);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { Sqlite } = XPCOMUtils.lazyImport("resource://gre/modules/Sqlite.jsm");
 
 const DB_SCHEMA_VERSION = 4;
 const DAY_IN_MS = 86400000; // 1 day in milliseconds

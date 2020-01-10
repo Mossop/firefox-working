@@ -18,10 +18,11 @@ const { SCORE_INCREMENT_XLARGE } = ChromeUtils.import(
   "resource://services-sync/constants.js"
 );
 
-ChromeUtils.defineModuleGetter(this, "Log", "resource://gre/modules/Log.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "formAutofillStorage",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { Log } = XPCOMUtils.lazyImport("resource://gre/modules/Log.jsm");
+const { formAutofillStorage } = XPCOMUtils.lazyImport(
   "resource://formautofill/FormAutofillStorage.jsm"
 );
 

@@ -13,17 +13,16 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "E10SUtils",
+const { E10SUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/E10SUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  ContentBlockingAllowList:
-    "resource://gre/modules/ContentBlockingAllowList.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-});
+const { ContentBlockingAllowList } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ContentBlockingAllowList.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
 
 // eslint-disable-next-line no-unused-vars
 const { debug, warn } = GeckoViewUtils.initLogging(

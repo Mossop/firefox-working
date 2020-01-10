@@ -19,15 +19,11 @@ const { HomePage } = ChromeUtils.import("resource:///modules/HomePage.jsm");
 
 const PREF_SSL_IMPACT_ROOTS = ["security.tls.version.", "security.ssl3."];
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "BrowserUtils",
+const { BrowserUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/BrowserUtils.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gSerializationHelper",
+const gSerializationHelper = XPCOMUtils.lazyService(
   "@mozilla.org/network/serialization-helper;1",
   "nsISerializationHelper"
 );

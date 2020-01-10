@@ -17,16 +17,27 @@ const { AppConstants } = ChromeUtils.import(
   "resource://gre/modules/AppConstants.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  PanelView: "resource:///modules/PanelMultiView.jsm",
-  RecentlyClosedTabsAndWindowsMenuUtils:
-    "resource:///modules/sessionstore/RecentlyClosedTabsAndWindowsMenuUtils.jsm",
-  ShortcutUtils: "resource://gre/modules/ShortcutUtils.jsm",
-  CharsetMenu: "resource://gre/modules/CharsetMenu.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-  Sanitizer: "resource:///modules/Sanitizer.jsm",
-  SyncedTabs: "resource://services-sync/SyncedTabs.jsm",
-});
+const { PanelView } = XPCOMUtils.lazyImport(
+  "resource:///modules/PanelMultiView.jsm"
+);
+const { RecentlyClosedTabsAndWindowsMenuUtils } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/RecentlyClosedTabsAndWindowsMenuUtils.jsm"
+);
+const { ShortcutUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ShortcutUtils.jsm"
+);
+const { CharsetMenu } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/CharsetMenu.jsm"
+);
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
+const { Sanitizer } = XPCOMUtils.lazyImport(
+  "resource:///modules/Sanitizer.jsm"
+);
+const { SyncedTabs } = XPCOMUtils.lazyImport(
+  "resource://services-sync/SyncedTabs.jsm"
+);
 
 XPCOMUtils.defineLazyGetter(this, "CharsetBundle", function() {
   const kCharsetBundle = "chrome://global/locale/charsetMenu.properties";

@@ -17,14 +17,10 @@ const { MigrationUtils, MigratorPrototype } = ChromeUtils.import(
 const { MSMigrationUtils } = ChromeUtils.import(
   "resource:///modules/MSMigrationUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesUtils",
+const { PlacesUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PlacesUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ESEDBReader",
+const { ESEDBReader } = XPCOMUtils.lazyImport(
   "resource:///modules/ESEDBReader.jsm"
 );
 

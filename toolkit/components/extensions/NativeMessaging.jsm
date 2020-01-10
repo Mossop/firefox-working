@@ -15,17 +15,31 @@ const { EventEmitter } = ChromeUtils.import(
   "resource://gre/modules/EventEmitter.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.jsm",
-  ExtensionChild: "resource://gre/modules/ExtensionChild.jsm",
-  NativeManifests: "resource://gre/modules/NativeManifests.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-  Subprocess: "resource://gre/modules/Subprocess.jsm",
-  clearTimeout: "resource://gre/modules/Timer.jsm",
-  setTimeout: "resource://gre/modules/Timer.jsm",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { AsyncShutdown } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AsyncShutdown.jsm"
+);
+const { ExtensionChild } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionChild.jsm"
+);
+const { NativeManifests } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/NativeManifests.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { Subprocess } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Subprocess.jsm"
+);
+const { clearTimeout } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Timer.jsm"
+);
+const { setTimeout } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Timer.jsm"
+);
 
 // For a graceful shutdown (i.e., when the extension is unloaded or when it
 // explicitly calls disconnect() on a native port), how long we give the native

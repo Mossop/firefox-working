@@ -14,14 +14,10 @@ function debug(msg) {
   Services.console.logStringMessage("SessionStoreContent: " + msg);
 }
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "ContentRestore",
+const { ContentRestore } = XPCOMUtils.lazyImport(
   "resource:///modules/sessionstore/ContentRestore.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "SessionHistory",
+const { SessionHistory } = XPCOMUtils.lazyImport(
   "resource://gre/modules/sessionstore/SessionHistory.jsm"
 );
 

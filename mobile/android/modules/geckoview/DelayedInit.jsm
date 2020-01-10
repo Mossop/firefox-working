@@ -11,9 +11,7 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "MessageLoop",
+const MessageLoop = XPCOMUtils.lazyService(
   "@mozilla.org/message-loop;1",
   "nsIMessageLoop"
 );

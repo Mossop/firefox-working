@@ -9,14 +9,8 @@ var EXPORTED_SYMBOLS = ["Utils"];
 ChromeUtils.import("resource://gre/modules/Services.jsm", this);
 ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm", this);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "NetUtil",
-  "resource://gre/modules/NetUtil.jsm"
-);
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "eTLDService",
+const { NetUtil } = XPCOMUtils.lazyImport("resource://gre/modules/NetUtil.jsm");
+const eTLDService = XPCOMUtils.lazyService(
   "@mozilla.org/network/effective-tld-service;1",
   "nsIEffectiveTLDService"
 );

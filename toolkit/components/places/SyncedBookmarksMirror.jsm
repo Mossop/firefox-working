@@ -58,13 +58,15 @@ const { XPCOMUtils } = ChromeUtils.import(
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["URL"]);
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  Async: "resource://services-common/async.js",
-  Log: "resource://gre/modules/Log.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-  PlacesSyncUtils: "resource://gre/modules/PlacesSyncUtils.jsm",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.jsm",
-});
+const { Async } = XPCOMUtils.lazyImport("resource://services-common/async.js");
+const { Log } = XPCOMUtils.lazyImport("resource://gre/modules/Log.jsm");
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { PlacesSyncUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesSyncUtils.jsm"
+);
+const { PlacesUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesUtils.jsm"
+);
 
 XPCOMUtils.defineLazyGetter(this, "MirrorLog", () =>
   Log.repository.getLogger("Sync.Engine.Bookmarks.Mirror")

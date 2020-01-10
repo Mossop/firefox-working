@@ -12,18 +12,24 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  ExtensionProcessScript: "resource://gre/modules/ExtensionProcessScript.jsm",
-  ExtensionTelemetry: "resource://gre/modules/ExtensionTelemetry.jsm",
-  LanguageDetector: "resource:///modules/translation/LanguageDetector.jsm",
-  MessageChannel: "resource://gre/modules/MessageChannel.jsm",
-  Schemas: "resource://gre/modules/Schemas.jsm",
-  WebNavigationFrames: "resource://gre/modules/WebNavigationFrames.jsm",
-});
+const { ExtensionProcessScript } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionProcessScript.jsm"
+);
+const { ExtensionTelemetry } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionTelemetry.jsm"
+);
+const { LanguageDetector } = XPCOMUtils.lazyImport(
+  "resource:///modules/translation/LanguageDetector.jsm"
+);
+const { MessageChannel } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/MessageChannel.jsm"
+);
+const { Schemas } = XPCOMUtils.lazyImport("resource://gre/modules/Schemas.jsm");
+const { WebNavigationFrames } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/WebNavigationFrames.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "styleSheetService",
+const styleSheetService = XPCOMUtils.lazyService(
   "@mozilla.org/content/style-sheet-service;1",
   "nsIStyleSheetService"
 );

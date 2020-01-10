@@ -12,9 +12,10 @@ var EXPORTED_SYMBOLS = ["SearchWidgetTracker"];
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "CustomizableUI",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { CustomizableUI } = XPCOMUtils.lazyImport(
   "resource:///modules/CustomizableUI.jsm"
 );
 

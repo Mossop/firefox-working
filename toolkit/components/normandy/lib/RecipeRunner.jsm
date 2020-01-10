@@ -12,28 +12,45 @@ const { LogManager } = ChromeUtils.import(
   "resource://normandy/lib/LogManager.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "timerManager",
+const timerManager = XPCOMUtils.lazyService(
   "@mozilla.org/updates/timer-manager;1",
   "nsIUpdateTimerManager"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  RemoteSettings: "resource://services-settings/remote-settings.js",
-  FeatureGate: "resource://featuregates/FeatureGate.jsm",
-  Storage: "resource://normandy/lib/Storage.jsm",
-  FilterExpressions:
-    "resource://gre/modules/components-utils/FilterExpressions.jsm",
-  NormandyApi: "resource://normandy/lib/NormandyApi.jsm",
-  ClientEnvironment: "resource://normandy/lib/ClientEnvironment.jsm",
-  CleanupManager: "resource://normandy/lib/CleanupManager.jsm",
-  Uptake: "resource://normandy/lib/Uptake.jsm",
-  ActionsManager: "resource://normandy/lib/ActionsManager.jsm",
-  Kinto: "resource://services-common/kinto-offline-client.js",
-  clearTimeout: "resource://gre/modules/Timer.jsm",
-  setTimeout: "resource://gre/modules/Timer.jsm",
-});
+const { RemoteSettings } = XPCOMUtils.lazyImport(
+  "resource://services-settings/remote-settings.js"
+);
+const { FeatureGate } = XPCOMUtils.lazyImport(
+  "resource://featuregates/FeatureGate.jsm"
+);
+const { Storage } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/Storage.jsm"
+);
+const { FilterExpressions } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/components-utils/FilterExpressions.jsm"
+);
+const { NormandyApi } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/NormandyApi.jsm"
+);
+const { ClientEnvironment } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/ClientEnvironment.jsm"
+);
+const { CleanupManager } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/CleanupManager.jsm"
+);
+const { Uptake } = XPCOMUtils.lazyImport("resource://normandy/lib/Uptake.jsm");
+const { ActionsManager } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/ActionsManager.jsm"
+);
+const { Kinto } = XPCOMUtils.lazyImport(
+  "resource://services-common/kinto-offline-client.js"
+);
+const { clearTimeout } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Timer.jsm"
+);
+const { setTimeout } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Timer.jsm"
+);
 
 var EXPORTED_SYMBOLS = ["RecipeRunner"];
 

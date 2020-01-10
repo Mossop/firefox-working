@@ -6,11 +6,8 @@
 
 var EXPORTED_SYMBOLS = ["BrowserElementParent", "PermitUnloader"];
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
-  "resource://gre/modules/Services.jsm"
-);
+const { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
+const { Services } = XPCOMUtils.lazyImport("resource://gre/modules/Services.jsm");
 
 let { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"

@@ -9,13 +9,19 @@ var EXPORTED_SYMBOLS = ["UrlbarEventBufferer"];
 const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  clearTimeout: "resource://gre/modules/Timer.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-  setTimeout: "resource://gre/modules/Timer.jsm",
-  Log: "resource://gre/modules/Log.jsm",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { clearTimeout } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Timer.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { setTimeout } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Timer.jsm"
+);
+const { Log } = XPCOMUtils.lazyImport("resource://gre/modules/Log.jsm");
 
 XPCOMUtils.defineLazyGetter(this, "logger", () =>
   Log.repository.getLogger("Urlbar.EventBufferer")

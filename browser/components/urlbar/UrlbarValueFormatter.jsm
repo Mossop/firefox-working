@@ -10,13 +10,21 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-  UrlbarPrefs: "resource:///modules/UrlbarPrefs.jsm",
-  UrlbarUtils: "resource:///modules/UrlbarUtils.jsm",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { UrlbarPrefs } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarPrefs.jsm"
+);
+const { UrlbarUtils } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarUtils.jsm"
+);
 
 /**
  * Applies URL highlighting and other styling to the text in the urlbar input,

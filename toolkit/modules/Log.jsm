@@ -9,9 +9,7 @@ var EXPORTED_SYMBOLS = ["Log"];
 const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
+const { Services } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Services.jsm"
 );
 const INTERNAL_FIELDS = new Set(["_level", "_message", "_time", "_namespace"]);

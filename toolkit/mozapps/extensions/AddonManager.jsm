@@ -72,11 +72,15 @@ var { AsyncShutdown } = ChromeUtils.import(
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["Element"]);
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonRepository: "resource://gre/modules/addons/AddonRepository.jsm",
-  AbuseReporter: "resource://gre/modules/AbuseReporter.jsm",
-  Extension: "resource://gre/modules/Extension.jsm",
-});
+const { AddonRepository } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/addons/AddonRepository.jsm"
+);
+const { AbuseReporter } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AbuseReporter.jsm"
+);
+const { Extension } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Extension.jsm"
+);
 
 XPCOMUtils.defineLazyPreferenceGetter(
   this,

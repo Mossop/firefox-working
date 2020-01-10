@@ -10,9 +10,10 @@ const { Preferences } = ChromeUtils.import(
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 const { OS } = ChromeUtils.import("resource://gre/modules/osfile.jsm");
 const { Assert } = ChromeUtils.import("resource://testing-common/Assert.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "FileTestUtils",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { FileTestUtils } = XPCOMUtils.lazyImport(
   "resource://testing-common/FileTestUtils.jsm"
 );
 

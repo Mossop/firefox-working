@@ -28,18 +28,20 @@ const { TestUtils } = ChromeUtils.import(
 );
 const { OS } = ChromeUtils.import("resource://gre/modules/osfile.jsm");
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
-  ContentTask: "resource://testing-common/ContentTask.jsm",
-  E10SUtils: "resource://gre/modules/E10SUtils.jsm",
-});
+const { BrowserWindowTracker } = XPCOMUtils.lazyImport(
+  "resource:///modules/BrowserWindowTracker.jsm"
+);
+const { ContentTask } = XPCOMUtils.lazyImport(
+  "resource://testing-common/ContentTask.jsm"
+);
+const { E10SUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/E10SUtils.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  ProtocolProxyService: [
-    "@mozilla.org/network/protocol-proxy-service;1",
-    "nsIProtocolProxyService",
-  ],
-});
+const ProtocolProxyService = XPCOMUtils.lazyService(
+  "@mozilla.org/network/protocol-proxy-service;1",
+  "nsIProtocolProxyService"
+);
 
 const PROCESSSELECTOR_CONTRACTID = "@mozilla.org/ipc/processselector;1";
 const OUR_PROCESSSELECTOR_CID = Components.ID(

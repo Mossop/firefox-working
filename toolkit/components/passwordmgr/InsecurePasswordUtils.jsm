@@ -14,21 +14,15 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gContentSecurityManager",
+const gContentSecurityManager = XPCOMUtils.lazyService(
   "@mozilla.org/contentsecuritymanager;1",
   "nsIContentSecurityManager"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gScriptSecurityManager",
+const gScriptSecurityManager = XPCOMUtils.lazyService(
   "@mozilla.org/scriptsecuritymanager;1",
   "nsIScriptSecurityManager"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "LoginHelper",
+const { LoginHelper } = XPCOMUtils.lazyImport(
   "resource://gre/modules/LoginHelper.jsm"
 );
 

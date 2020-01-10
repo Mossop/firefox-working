@@ -5,14 +5,13 @@
 
 "use strict";
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryController",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { TelemetryController } = XPCOMUtils.lazyImport(
   "resource://gre/modules/TelemetryController.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryEnvironment",
+const { TelemetryEnvironment } = XPCOMUtils.lazyImport(
   "resource://gre/modules/TelemetryEnvironment.jsm"
 );
 

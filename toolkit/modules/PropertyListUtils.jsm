@@ -63,14 +63,8 @@ const { XPCOMUtils } = ChromeUtils.import(
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["DOMParser", "File", "FileReader"]);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "ctypes",
-  "resource://gre/modules/ctypes.jsm"
-);
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
+const { ctypes } = XPCOMUtils.lazyImport("resource://gre/modules/ctypes.jsm");
+const { Services } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Services.jsm"
 );
 

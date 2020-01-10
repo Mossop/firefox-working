@@ -12,17 +12,33 @@ const { EventEmitter } = ChromeUtils.import(
   "resource://gre/modules/EventEmitter.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  AddonManagerPrivate: "resource://gre/modules/AddonManager.jsm",
-  AMTelemetry: "resource://gre/modules/AddonManager.jsm",
-  AppMenuNotifications: "resource://gre/modules/AppMenuNotifications.jsm",
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
-  ExtensionData: "resource://gre/modules/Extension.jsm",
-  ExtensionPermissions: "resource://gre/modules/ExtensionPermissions.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-});
+const { AddonManager } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { AddonManagerPrivate } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { AMTelemetry } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { AppMenuNotifications } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppMenuNotifications.jsm"
+);
+const { BrowserWindowTracker } = XPCOMUtils.lazyImport(
+  "resource:///modules/BrowserWindowTracker.jsm"
+);
+const { ExtensionData } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Extension.jsm"
+);
+const { ExtensionPermissions } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionPermissions.jsm"
+);
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
 
 XPCOMUtils.defineLazyPreferenceGetter(
   this,

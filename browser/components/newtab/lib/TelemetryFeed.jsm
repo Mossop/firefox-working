@@ -19,59 +19,40 @@ const { classifySite } = ChromeUtils.import(
   "resource://activity-stream/lib/SiteClassifier.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "ASRouterPreferences",
+const { ASRouterPreferences } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/ASRouterPreferences.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "perfService",
+const { perfService } = XPCOMUtils.lazyImport(
   "resource://activity-stream/common/PerfService.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PingCentre",
+const { PingCentre } = XPCOMUtils.lazyImport(
   "resource:///modules/PingCentre.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "UTEventReporting",
+const { UTEventReporting } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/UTEventReporting.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "UpdateUtils",
+const { UpdateUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/UpdateUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "HomePage",
-  "resource:///modules/HomePage.jsm"
-);
-ChromeUtils.defineModuleGetter(
-  this,
-  "ExtensionSettingsStore",
+const { HomePage } = XPCOMUtils.lazyImport("resource:///modules/HomePage.jsm");
+const { ExtensionSettingsStore } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ExtensionSettingsStore.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ClientID",
+const { ClientID } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ClientID.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  gUUIDGenerator: ["@mozilla.org/uuid-generator;1", "nsIUUIDGenerator"],
-  aboutNewTabService: [
-    "@mozilla.org/browser/aboutnewtab-service;1",
-    "nsIAboutNewTabService",
-  ],
-});
+const gUUIDGenerator = XPCOMUtils.lazyService(
+  "@mozilla.org/uuid-generator;1",
+  "nsIUUIDGenerator"
+);
+const aboutNewTabService = XPCOMUtils.lazyService(
+  "@mozilla.org/browser/aboutnewtab-service;1",
+  "nsIAboutNewTabService"
+);
 
 const ACTIVITY_STREAM_ID = "activity-stream";
 const DOMWINDOW_OPENED_TOPIC = "domwindowopened";

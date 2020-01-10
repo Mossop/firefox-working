@@ -17,7 +17,7 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(this, "Log", "resource://gre/modules/Log.jsm");
+const { Log } = XPCOMUtils.lazyImport("resource://gre/modules/Log.jsm");
 XPCOMUtils.defineLazyGetter(this, "logger", () =>
   Log.repository.getLogger("Urlbar.Tokenizer")
 );

@@ -12,9 +12,7 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  Normandy: "resource://normandy/Normandy.jsm",
-});
+const { Normandy } = XPCOMUtils.lazyImport("resource://normandy/Normandy.jsm");
 
 const PREF_TIMEOUT = "first-startup.timeout";
 const PROBE_NAME = "firstStartup";

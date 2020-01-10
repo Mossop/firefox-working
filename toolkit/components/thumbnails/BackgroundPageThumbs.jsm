@@ -60,9 +60,7 @@ XPCOMUtils.defineConstant(
   TEL_CAPTURE_DONE_IMAGE_ZERO_DIMENSION
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "ContextualIdentityService",
+const { ContextualIdentityService } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ContextualIdentityService.jsm"
 );
 const global = this;

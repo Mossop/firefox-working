@@ -9,24 +9,14 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "BrowserUtils",
+const { BrowserUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/BrowserUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PageActions",
+const { PageActions } = XPCOMUtils.lazyImport(
   "resource:///modules/PageActions.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Pocket",
-  "chrome://pocket/content/Pocket.jsm"
-);
-ChromeUtils.defineModuleGetter(
-  this,
-  "ReaderMode",
+const { Pocket } = XPCOMUtils.lazyImport("chrome://pocket/content/Pocket.jsm");
+const { ReaderMode } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ReaderMode.jsm"
 );
 

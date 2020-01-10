@@ -11,11 +11,13 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  PlacesUtils: "resource://gre/modules/PlacesUtils.jsm",
-  BookmarkJSONUtils: "resource://gre/modules/BookmarkJSONUtils.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-});
+const { PlacesUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesUtils.jsm"
+);
+const { BookmarkJSONUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/BookmarkJSONUtils.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
 
 XPCOMUtils.defineLazyGetter(
   this,

@@ -9,19 +9,16 @@ const { actionCreators: ac, actionTypes: at } = ChromeUtils.import(
   "resource://activity-stream/common/Actions.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "NewTabUtils",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { NewTabUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/NewTabUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesUtils",
+const { PlacesUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PlacesUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
 

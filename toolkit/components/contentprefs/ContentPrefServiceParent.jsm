@@ -11,9 +11,7 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "_methodsCallableFromChild",
+const { _methodsCallableFromChild } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ContentPrefUtils.jsm"
 );
 

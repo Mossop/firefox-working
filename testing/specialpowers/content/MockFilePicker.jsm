@@ -8,9 +8,10 @@ const Cm = Components.manager;
 
 const CONTRACT_ID = "@mozilla.org/filepicker;1";
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "FileUtils",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { FileUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FileUtils.jsm"
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");

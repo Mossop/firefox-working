@@ -16,15 +16,14 @@ var EXPORTED_SYMBOLS = [
 
 const { Logger } = ChromeUtils.import("resource://tps/logger.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "formAutofillStorage",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { formAutofillStorage } = XPCOMUtils.lazyImport(
   "resource://formautofill/FormAutofillStorage.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "OSKeyStore",
+const { OSKeyStore } = XPCOMUtils.lazyImport(
   "resource://formautofill/OSKeyStore.jsm"
 );
 

@@ -11,19 +11,29 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  BrowserUtils: "resource://gre/modules/BrowserUtils.jsm",
-  EventDispatcher: "resource://gre/modules/Messaging.jsm",
-  GeckoViewUtils: "resource://gre/modules/GeckoViewUtils.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-  Snackbars: "resource://gre/modules/Snackbars.jsm",
-  UITelemetry: "resource://gre/modules/UITelemetry.jsm",
-});
+const { BrowserUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/BrowserUtils.jsm"
+);
+const { EventDispatcher } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Messaging.jsm"
+);
+const { GeckoViewUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/GeckoViewUtils.jsm"
+);
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { Snackbars } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Snackbars.jsm"
+);
+const { UITelemetry } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/UITelemetry.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "ParentalControls",
+const ParentalControls = XPCOMUtils.lazyService(
   "@mozilla.org/parental-controls-service;1",
   "nsIParentalControlsService"
 );

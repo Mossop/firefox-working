@@ -10,27 +10,53 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  BrowserUtils: "resource://gre/modules/BrowserUtils.jsm",
-  ExtensionSearchHandler: "resource://gre/modules/ExtensionSearchHandler.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-  ReaderMode: "resource://gre/modules/ReaderMode.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-  UrlbarController: "resource:///modules/UrlbarController.jsm",
-  UrlbarEventBufferer: "resource:///modules/UrlbarEventBufferer.jsm",
-  UrlbarPrefs: "resource:///modules/UrlbarPrefs.jsm",
-  UrlbarProvidersManager: "resource:///modules/UrlbarProvidersManager.jsm",
-  UrlbarQueryContext: "resource:///modules/UrlbarUtils.jsm",
-  UrlbarTokenizer: "resource:///modules/UrlbarTokenizer.jsm",
-  UrlbarUtils: "resource:///modules/UrlbarUtils.jsm",
-  UrlbarValueFormatter: "resource:///modules/UrlbarValueFormatter.jsm",
-  UrlbarView: "resource:///modules/UrlbarView.jsm",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { BrowserUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/BrowserUtils.jsm"
+);
+const { ExtensionSearchHandler } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionSearchHandler.jsm"
+);
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
+const { ReaderMode } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ReaderMode.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { UrlbarController } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarController.jsm"
+);
+const { UrlbarEventBufferer } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarEventBufferer.jsm"
+);
+const { UrlbarPrefs } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarPrefs.jsm"
+);
+const { UrlbarProvidersManager } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarProvidersManager.jsm"
+);
+const { UrlbarQueryContext } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarUtils.jsm"
+);
+const { UrlbarTokenizer } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarTokenizer.jsm"
+);
+const { UrlbarUtils } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarUtils.jsm"
+);
+const { UrlbarValueFormatter } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarValueFormatter.jsm"
+);
+const { UrlbarView } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarView.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "ClipboardHelper",
+const ClipboardHelper = XPCOMUtils.lazyService(
   "@mozilla.org/widget/clipboardhelper;1",
   "nsIClipboardHelper"
 );

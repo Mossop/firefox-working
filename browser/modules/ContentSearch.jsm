@@ -12,19 +12,13 @@ const { XPCOMUtils } = ChromeUtils.import(
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["XMLHttpRequest"]);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "FormHistory",
+const { FormHistory } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FormHistory.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "SearchSuggestionController",
+const { SearchSuggestionController } = XPCOMUtils.lazyImport(
   "resource://gre/modules/SearchSuggestionController.jsm"
 );
 

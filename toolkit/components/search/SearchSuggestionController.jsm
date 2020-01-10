@@ -24,9 +24,7 @@ const BROWSER_SUGGEST_PRIVATE_PREF = "browser.search.suggest.enabled.private";
 const REMOTE_TIMEOUT_PREF = "browser.search.suggest.timeout";
 const REMOTE_TIMEOUT_DEFAULT = 500; // maximum time (ms) to wait before giving up on a remote suggestions
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "UUIDGenerator",
+const UUIDGenerator = XPCOMUtils.lazyService(
   "@mozilla.org/uuid-generator;1",
   "nsIUUIDGenerator"
 );

@@ -16,24 +16,17 @@ var EXPORTED_SYMBOLS = ["ExtensionPageChild"];
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "ExtensionChildDevToolsUtils",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { ExtensionChildDevToolsUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ExtensionChildDevToolsUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ExtensionProcessScript",
+const { ExtensionProcessScript } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ExtensionProcessScript.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Schemas",
-  "resource://gre/modules/Schemas.jsm"
-);
-ChromeUtils.defineModuleGetter(
-  this,
-  "WebNavigationFrames",
+const { Schemas } = XPCOMUtils.lazyImport("resource://gre/modules/Schemas.jsm");
+const { WebNavigationFrames } = XPCOMUtils.lazyImport(
   "resource://gre/modules/WebNavigationFrames.jsm"
 );
 

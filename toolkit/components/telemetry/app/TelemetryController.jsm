@@ -51,34 +51,60 @@ const PING_TYPE_DELETION_REQUEST = "deletion-request";
 const REASON_GATHER_PAYLOAD = "gather-payload";
 const REASON_GATHER_SUBSESSION_PAYLOAD = "gather-subsession-payload";
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "Telemetry",
+const Telemetry = XPCOMUtils.lazyService(
   "@mozilla.org/base/telemetry;1",
   "nsITelemetry"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  ClientID: "resource://gre/modules/ClientID.jsm",
-  CoveragePing: "resource://gre/modules/CoveragePing.jsm",
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.jsm",
-  TelemetryStorage: "resource://gre/modules/TelemetryStorage.jsm",
-  TelemetryEnvironment: "resource://gre/modules/TelemetryEnvironment.jsm",
-  TelemetryArchive: "resource://gre/modules/TelemetryArchive.jsm",
-  TelemetrySession: "resource://gre/modules/TelemetrySession.jsm",
-  TelemetrySend: "resource://gre/modules/TelemetrySend.jsm",
-  TelemetryReportingPolicy:
-    "resource://gre/modules/TelemetryReportingPolicy.jsm",
-  TelemetryModules: "resource://gre/modules/ModulesPing.jsm",
-  TelemetryUntrustedModulesPing:
-    "resource://gre/modules/UntrustedModulesPing.jsm",
-  UpdatePing: "resource://gre/modules/UpdatePing.jsm",
-  TelemetryHealthPing: "resource://gre/modules/HealthPing.jsm",
-  TelemetryEventPing: "resource://gre/modules/EventPing.jsm",
-  EcosystemTelemetry: "resource://gre/modules/EcosystemTelemetry.jsm",
-  TelemetryPrioPing: "resource://gre/modules/PrioPing.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-});
+const { ClientID } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ClientID.jsm"
+);
+const { CoveragePing } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/CoveragePing.jsm"
+);
+const { AsyncShutdown } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AsyncShutdown.jsm"
+);
+const { TelemetryStorage } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryStorage.jsm"
+);
+const { TelemetryEnvironment } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryEnvironment.jsm"
+);
+const { TelemetryArchive } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryArchive.jsm"
+);
+const { TelemetrySession } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetrySession.jsm"
+);
+const { TelemetrySend } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetrySend.jsm"
+);
+const { TelemetryReportingPolicy } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryReportingPolicy.jsm"
+);
+const { TelemetryModules } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ModulesPing.jsm"
+);
+const { TelemetryUntrustedModulesPing } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/UntrustedModulesPing.jsm"
+);
+const { UpdatePing } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/UpdatePing.jsm"
+);
+const { TelemetryHealthPing } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/HealthPing.jsm"
+);
+const { TelemetryEventPing } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/EventPing.jsm"
+);
+const { EcosystemTelemetry } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/EcosystemTelemetry.jsm"
+);
+const { TelemetryPrioPing } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrioPing.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
 
 /**
  * Setup Telemetry logging. This function also gets called when loggin related

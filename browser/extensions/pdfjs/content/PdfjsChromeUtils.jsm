@@ -25,9 +25,7 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PdfJsDefaultPreferences",
+const { PdfJsDefaultPreferences } = XPCOMUtils.lazyImport(
   "resource://pdf.js/PdfJsDefaultPreferences.jsm"
 );
 

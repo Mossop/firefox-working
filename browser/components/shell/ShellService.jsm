@@ -13,9 +13,7 @@ const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "WindowsRegistry",
+const { WindowsRegistry } = XPCOMUtils.lazyImport(
   "resource://gre/modules/WindowsRegistry.jsm"
 );
 

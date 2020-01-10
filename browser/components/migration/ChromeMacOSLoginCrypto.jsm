@@ -17,9 +17,7 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gKeychainUtils",
+const gKeychainUtils = XPCOMUtils.lazyService(
   "@mozilla.org/profile/migrator/keychainmigrationutils;1",
   "nsIKeychainMigrationUtils"
 );
