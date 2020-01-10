@@ -11,12 +11,11 @@ const { clearTimeout, setTimeout } = ChromeUtils.import(
   "resource://gre/modules/Timer.jsm"
 );
 
-ChromeUtils.defineModuleGetter(this, "NLP", "resource://gre/modules/NLP.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "Rect",
-  "resource://gre/modules/Geometry.jsm"
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
 );
+const { NLP } = XPCOMUtils.lazyImport("resource://gre/modules/NLP.jsm");
+const { Rect } = XPCOMUtils.lazyImport("resource://gre/modules/Geometry.jsm");
 
 const kDebug = false;
 const kIterationSizeMax = 100;

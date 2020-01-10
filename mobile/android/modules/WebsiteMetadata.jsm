@@ -6,9 +6,10 @@
 
 var EXPORTED_SYMBOLS = ["WebsiteMetadata"];
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "EventDispatcher",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { EventDispatcher } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Messaging.jsm"
 );
 

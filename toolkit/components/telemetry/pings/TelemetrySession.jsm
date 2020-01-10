@@ -13,17 +13,30 @@ const { AppConstants } = ChromeUtils.import(
   "resource://gre/modules/AppConstants.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonManagerPrivate: "resource://gre/modules/AddonManager.jsm",
-  TelemetryController: "resource://gre/modules/TelemetryController.jsm",
-  TelemetryStorage: "resource://gre/modules/TelemetryStorage.jsm",
-  UITelemetry: "resource://gre/modules/UITelemetry.jsm",
-  GCTelemetry: "resource://gre/modules/GCTelemetry.jsm",
-  TelemetryEnvironment: "resource://gre/modules/TelemetryEnvironment.jsm",
-  TelemetryReportingPolicy:
-    "resource://gre/modules/TelemetryReportingPolicy.jsm",
-  TelemetryScheduler: "resource://gre/modules/TelemetryScheduler.jsm",
-});
+const { AddonManagerPrivate } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { TelemetryController } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryController.jsm"
+);
+const { TelemetryStorage } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryStorage.jsm"
+);
+const { UITelemetry } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/UITelemetry.jsm"
+);
+const { GCTelemetry } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/GCTelemetry.jsm"
+);
+const { TelemetryEnvironment } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryEnvironment.jsm"
+);
+const { TelemetryReportingPolicy } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryReportingPolicy.jsm"
+);
+const { TelemetryScheduler } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryScheduler.jsm"
+);
 
 const Utils = TelemetryUtils;
 
@@ -62,9 +75,10 @@ const IS_UNIFIED_TELEMETRY = Services.prefs.getBoolPref(
 
 var gWasDebuggerAttached = false;
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  Telemetry: ["@mozilla.org/base/telemetry;1", "nsITelemetry"],
-});
+const Telemetry = XPCOMUtils.lazyService(
+  "@mozilla.org/base/telemetry;1",
+  "nsITelemetry"
+);
 
 function generateUUID() {
   let str = Cc["@mozilla.org/uuid-generator;1"]

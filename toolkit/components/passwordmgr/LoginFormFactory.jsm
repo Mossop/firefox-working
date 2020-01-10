@@ -15,14 +15,10 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "FormLikeFactory",
+const { FormLikeFactory } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FormLikeFactory.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "LoginHelper",
+const { LoginHelper } = XPCOMUtils.lazyImport(
   "resource://gre/modules/LoginHelper.jsm"
 );
 

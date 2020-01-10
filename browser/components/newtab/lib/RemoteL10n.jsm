@@ -15,12 +15,16 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  L10nRegistry: "resource://gre/modules/L10nRegistry.jsm",
-  FileSource: "resource://gre/modules/L10nRegistry.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-});
+const { L10nRegistry } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/L10nRegistry.jsm"
+);
+const { FileSource } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/L10nRegistry.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
 
 class _RemoteL10n {
   constructor() {

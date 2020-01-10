@@ -14,24 +14,16 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AppConstants",
+const { AppConstants } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AppConstants.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PluralForm",
+const { PluralForm } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PluralForm.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "SitePermissions",
+const { SitePermissions } = XPCOMUtils.lazyImport(
   "resource:///modules/SitePermissions.jsm"
 );
 
@@ -41,9 +33,7 @@ XPCOMUtils.defineLazyGetter(this, "gBrandBundle", function() {
   );
 });
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "OSPermissions",
+const OSPermissions = XPCOMUtils.lazyService(
   "@mozilla.org/ospermissionrequest;1",
   "nsIOSPermissionRequest"
 );

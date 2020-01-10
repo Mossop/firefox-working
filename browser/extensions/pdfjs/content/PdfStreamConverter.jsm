@@ -29,33 +29,21 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "NetUtil",
-  "resource://gre/modules/NetUtil.jsm"
-);
+const { NetUtil } = XPCOMUtils.lazyImport("resource://gre/modules/NetUtil.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "NetworkManager",
+const { NetworkManager } = XPCOMUtils.lazyImport(
   "resource://pdf.js/PdfJsNetwork.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PdfJsTelemetry",
+const { PdfJsTelemetry } = XPCOMUtils.lazyImport(
   "resource://pdf.js/PdfJsTelemetry.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PdfjsContentUtils",
+const { PdfjsContentUtils } = XPCOMUtils.lazyImport(
   "resource://pdf.js/PdfjsContentUtils.jsm"
 );
 

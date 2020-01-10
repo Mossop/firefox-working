@@ -43,31 +43,67 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  AddonManagerPrivate: "resource://gre/modules/AddonManager.jsm",
-  AddonSettings: "resource://gre/modules/addons/AddonSettings.jsm",
-  AMTelemetry: "resource://gre/modules/AddonManager.jsm",
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.jsm",
-  E10SUtils: "resource://gre/modules/E10SUtils.jsm",
-  ExtensionPermissions: "resource://gre/modules/ExtensionPermissions.jsm",
-  ExtensionProcessScript: "resource://gre/modules/ExtensionProcessScript.jsm",
-  ExtensionStorage: "resource://gre/modules/ExtensionStorage.jsm",
-  ExtensionStorageIDB: "resource://gre/modules/ExtensionStorageIDB.jsm",
-  ExtensionTelemetry: "resource://gre/modules/ExtensionTelemetry.jsm",
-  FileSource: "resource://gre/modules/L10nRegistry.jsm",
-  L10nRegistry: "resource://gre/modules/L10nRegistry.jsm",
-  LightweightThemeManager: "resource://gre/modules/LightweightThemeManager.jsm",
-  Localization: "resource://gre/modules/Localization.jsm",
-  Log: "resource://gre/modules/Log.jsm",
-  MessageChannel: "resource://gre/modules/MessageChannel.jsm",
-  NetUtil: "resource://gre/modules/NetUtil.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-  PluralForm: "resource://gre/modules/PluralForm.jsm",
-  Schemas: "resource://gre/modules/Schemas.jsm",
-  XPIProvider: "resource://gre/modules/addons/XPIProvider.jsm",
-});
+const { AddonManager } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { AddonManagerPrivate } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { AddonSettings } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/addons/AddonSettings.jsm"
+);
+const { AMTelemetry } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { AsyncShutdown } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AsyncShutdown.jsm"
+);
+const { E10SUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/E10SUtils.jsm"
+);
+const { ExtensionPermissions } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionPermissions.jsm"
+);
+const { ExtensionProcessScript } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionProcessScript.jsm"
+);
+const { ExtensionStorage } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionStorage.jsm"
+);
+const { ExtensionStorageIDB } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionStorageIDB.jsm"
+);
+const { ExtensionTelemetry } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionTelemetry.jsm"
+);
+const { FileSource } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/L10nRegistry.jsm"
+);
+const { L10nRegistry } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/L10nRegistry.jsm"
+);
+const { LightweightThemeManager } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/LightweightThemeManager.jsm"
+);
+const { Localization } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Localization.jsm"
+);
+const { Log } = XPCOMUtils.lazyImport("resource://gre/modules/Log.jsm");
+const { MessageChannel } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/MessageChannel.jsm"
+);
+const { NetUtil } = XPCOMUtils.lazyImport("resource://gre/modules/NetUtil.jsm");
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { PluralForm } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PluralForm.jsm"
+);
+const { Schemas } = XPCOMUtils.lazyImport("resource://gre/modules/Schemas.jsm");
+const { XPIProvider } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/addons/XPIProvider.jsm"
+);
 
 // This is used for manipulating jar entry paths, which always use Unix
 // separators.
@@ -93,14 +129,18 @@ const { ExtensionUtils } = ChromeUtils.import(
   "resource://gre/modules/ExtensionUtils.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  aomStartup: [
-    "@mozilla.org/addons/addon-manager-startup;1",
-    "amIAddonManagerStartup",
-  ],
-  spellCheck: ["@mozilla.org/spellchecker/engine;1", "mozISpellCheckingEngine"],
-  uuidGen: ["@mozilla.org/uuid-generator;1", "nsIUUIDGenerator"],
-});
+const aomStartup = XPCOMUtils.lazyService(
+  "@mozilla.org/addons/addon-manager-startup;1",
+  "amIAddonManagerStartup"
+);
+const spellCheck = XPCOMUtils.lazyService(
+  "@mozilla.org/spellchecker/engine;1",
+  "mozISpellCheckingEngine"
+);
+const uuidGen = XPCOMUtils.lazyService(
+  "@mozilla.org/uuid-generator;1",
+  "nsIUUIDGenerator"
+);
 
 XPCOMUtils.defineLazyPreferenceGetter(
   this,

@@ -6,9 +6,10 @@ this.UrlClassifierSkipListService = function() {};
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "RemoteSettings",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { RemoteSettings } = XPCOMUtils.lazyImport(
   "resource://services-settings/remote-settings.js"
 );
 

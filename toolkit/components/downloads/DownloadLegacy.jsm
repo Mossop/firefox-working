@@ -14,9 +14,10 @@
 
 "use strict";
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "Downloads",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { Downloads } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Downloads.jsm"
 );
 

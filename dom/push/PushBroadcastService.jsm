@@ -9,9 +9,7 @@ const { OS } = ChromeUtils.import("resource://gre/modules/osfile.jsm");
 const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "JSONFile",
+const { JSONFile } = XPCOMUtils.lazyImport(
   "resource://gre/modules/JSONFile.jsm"
 );
 
@@ -27,9 +25,7 @@ XPCOMUtils.defineLazyGetter(this, "console", () => {
     prefix: "BroadcastService",
   });
 });
-ChromeUtils.defineModuleGetter(
-  this,
-  "PushService",
+const { PushService } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PushService.jsm"
 );
 

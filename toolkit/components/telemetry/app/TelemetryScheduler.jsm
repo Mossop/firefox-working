@@ -29,9 +29,10 @@ const { TelemetryPrioPing } = ChromeUtils.import(
   "resource://gre/modules/PrioPing.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  idleService: ["@mozilla.org/widget/idleservice;1", "nsIIdleService"],
-});
+const idleService = XPCOMUtils.lazyService(
+  "@mozilla.org/widget/idleservice;1",
+  "nsIIdleService"
+);
 
 const MIN_SUBSESSION_LENGTH_MS =
   Services.prefs.getIntPref("toolkit.telemetry.minSubsessionLength", 5 * 60) *

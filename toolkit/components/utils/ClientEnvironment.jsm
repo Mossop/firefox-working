@@ -6,45 +6,32 @@
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "ShellService",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { ShellService } = XPCOMUtils.lazyImport(
   "resource:///modules/ShellService.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "AddonManager",
+const { AddonManager } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AddonManager.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryArchive",
+const { TelemetryArchive } = XPCOMUtils.lazyImport(
   "resource://gre/modules/TelemetryArchive.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryEnvironment",
+const { TelemetryEnvironment } = XPCOMUtils.lazyImport(
   "resource://gre/modules/TelemetryEnvironment.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "UpdateUtils",
+const { UpdateUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/UpdateUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "AppConstants",
+const { AppConstants } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AppConstants.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FirstStartup",
+const { FirstStartup } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FirstStartup.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AttributionCode",
+const { AttributionCode } = XPCOMUtils.lazyImport(
   "resource:///modules/AttributionCode.jsm"
 );
 

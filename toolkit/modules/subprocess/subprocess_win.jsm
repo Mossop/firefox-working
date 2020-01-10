@@ -22,9 +22,7 @@ const { BaseProcess, PromiseWorker } = ChromeUtils.import(
   "resource://gre/modules/subprocess/subprocess_common.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "env",
+const env = XPCOMUtils.lazyService(
   "@mozilla.org/process/environment;1",
   "nsIEnvironment"
 );

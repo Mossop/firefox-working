@@ -33,19 +33,13 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "ExtensionSettingsStore",
+const { ExtensionSettingsStore } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ExtensionSettingsStore.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Preferences",
+const { Preferences } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Preferences.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ExtensionCommon",
+const { ExtensionCommon } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ExtensionCommon.jsm"
 );
 

@@ -15,15 +15,11 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "fxAccounts",
+const { fxAccounts } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FxAccounts.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "EnsureFxAccountsWebChannel",
+const { EnsureFxAccountsWebChannel } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FxAccountsWebChannel.jsm"
 );
 

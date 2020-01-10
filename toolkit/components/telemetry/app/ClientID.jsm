@@ -20,12 +20,10 @@ const LOGGER_PREFIX = "ClientID::";
 // Must match ID in TelemetryUtils
 const CANARY_CLIENT_ID = "c0ffeec0-ffee-c0ff-eec0-ffeec0ffeec0";
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "CommonUtils",
+const { CommonUtils } = XPCOMUtils.lazyImport(
   "resource://services-common/utils.js"
 );
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
 
 XPCOMUtils.defineLazyGetter(this, "CryptoHash", () => {
   return Components.Constructor(

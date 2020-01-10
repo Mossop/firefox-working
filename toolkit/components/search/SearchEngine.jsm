@@ -8,17 +8,25 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-  SearchUtils: "resource://gre/modules/SearchUtils.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { SearchUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/SearchUtils.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  gEnvironment: ["@mozilla.org/process/environment;1", "nsIEnvironment"],
-  gChromeReg: ["@mozilla.org/chrome/chrome-registry;1", "nsIChromeRegistry"],
-});
+const gEnvironment = XPCOMUtils.lazyService(
+  "@mozilla.org/process/environment;1",
+  "nsIEnvironment"
+);
+const gChromeReg = XPCOMUtils.lazyService(
+  "@mozilla.org/chrome/chrome-registry;1",
+  "nsIChromeRegistry"
+);
 
 const BinaryInputStream = Components.Constructor(
   "@mozilla.org/binaryinputstream;1",

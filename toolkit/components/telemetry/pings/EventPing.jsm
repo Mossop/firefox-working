@@ -13,34 +13,29 @@ var EXPORTED_SYMBOLS = ["TelemetryEventPing"];
 
 ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm", this);
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  TelemetrySession: "resource://gre/modules/TelemetrySession.jsm",
-  TelemetryController: "resource://gre/modules/TelemetryController.jsm",
-  Log: "resource://gre/modules/Log.jsm",
-});
+const { TelemetrySession } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetrySession.jsm"
+);
+const { TelemetryController } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryController.jsm"
+);
+const { Log } = XPCOMUtils.lazyImport("resource://gre/modules/Log.jsm");
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  Telemetry: ["@mozilla.org/base/telemetry;1", "nsITelemetry"],
-});
+const Telemetry = XPCOMUtils.lazyService(
+  "@mozilla.org/base/telemetry;1",
+  "nsITelemetry"
+);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "setTimeout",
+const { setTimeout } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Timer.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "clearTimeout",
+const { clearTimeout } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Timer.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryUtils",
+const { TelemetryUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/TelemetryUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
+const { Services } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Services.jsm"
 );
 

@@ -10,23 +10,24 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.jsm",
-  FormHistory: "resource://gre/modules/FormHistory.jsm",
-  ContextualIdentityService:
-    "resource://gre/modules/ContextualIdentityService.jsm",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { PlacesUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesUtils.jsm"
+);
+const { FormHistory } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FormHistory.jsm"
+);
+const { ContextualIdentityService } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ContextualIdentityService.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "quotaManagerService",
+const quotaManagerService = XPCOMUtils.lazyService(
   "@mozilla.org/dom/quota-manager-service;1",
   "nsIQuotaManagerService"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "serviceWorkerManager",
+const serviceWorkerManager = XPCOMUtils.lazyService(
   "@mozilla.org/serviceworkers/manager;1",
   "nsIServiceWorkerManager"
 );

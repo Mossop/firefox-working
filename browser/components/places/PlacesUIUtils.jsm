@@ -15,17 +15,31 @@ const { clearTimeout, setTimeout } = ChromeUtils.import(
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["Element"]);
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
-  OpenInTabsUtils: "resource:///modules/OpenInTabsUtils.jsm",
-  PlacesTransactions: "resource://gre/modules/PlacesTransactions.jsm",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.jsm",
-  PluralForm: "resource://gre/modules/PluralForm.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-  PromiseUtils: "resource://gre/modules/PromiseUtils.jsm",
-  Weave: "resource://services-sync/main.js",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { BrowserWindowTracker } = XPCOMUtils.lazyImport(
+  "resource:///modules/BrowserWindowTracker.jsm"
+);
+const { OpenInTabsUtils } = XPCOMUtils.lazyImport(
+  "resource:///modules/OpenInTabsUtils.jsm"
+);
+const { PlacesTransactions } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesTransactions.jsm"
+);
+const { PlacesUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesUtils.jsm"
+);
+const { PluralForm } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PluralForm.jsm"
+);
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
+const { PromiseUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PromiseUtils.jsm"
+);
+const { Weave } = XPCOMUtils.lazyImport("resource://services-sync/main.js");
 
 XPCOMUtils.defineLazyGetter(this, "bundle", function() {
   return Services.strings.createBundle(

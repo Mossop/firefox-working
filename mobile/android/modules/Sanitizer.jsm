@@ -10,22 +10,30 @@ const { Integration } = ChromeUtils.import(
   "resource://gre/modules/Integration.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  Accounts: "resource://gre/modules/Accounts.jsm",
-  Downloads: "resource://gre/modules/Downloads.jsm",
-  EventDispatcher: "resource://gre/modules/Messaging.jsm",
-  FormHistory: "resource://gre/modules/FormHistory.jsm",
-  OfflineAppCacheHelper: "resource://gre/modules/offlineAppCache.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-  ServiceWorkerCleanUp: "resource://gre/modules/ServiceWorkerCleanUp.jsm",
-});
+const { Accounts } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Accounts.jsm"
+);
+const { Downloads } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Downloads.jsm"
+);
+const { EventDispatcher } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Messaging.jsm"
+);
+const { FormHistory } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FormHistory.jsm"
+);
+const { OfflineAppCacheHelper } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/offlineAppCache.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { ServiceWorkerCleanUp } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ServiceWorkerCleanUp.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  quotaManagerService: [
-    "@mozilla.org/dom/quota-manager-service;1",
-    "nsIQuotaManagerService",
-  ],
-});
+const quotaManagerService = XPCOMUtils.lazyService(
+  "@mozilla.org/dom/quota-manager-service;1",
+  "nsIQuotaManagerService"
+);
 
 /* global DownloadIntegration */
 Integration.downloads.defineModuleGetter(

@@ -11,9 +11,10 @@ const { clearTimeout, setTimeout } = ChromeUtils.import(
   "resource://gre/modules/Timer.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AppMenuNotifications",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { AppMenuNotifications } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AppMenuNotifications.jsm"
 );
 

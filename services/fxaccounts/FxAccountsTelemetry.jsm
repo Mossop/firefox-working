@@ -13,13 +13,15 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  log: "resource://gre/modules/FxAccountsCommon.js",
-  // We use this observers module because we leverage its support for richer
-  // "subject" data.
-  Observers: "resource://services-common/observers.js",
-  Services: "resource://gre/modules/Services.jsm",
-});
+const { log } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FxAccountsCommon.js"
+);
+const { Observers } = XPCOMUtils.lazyImport(
+  "resource://services-common/observers.js"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
 
 class FxAccountsTelemetry {
   constructor(fxai) {

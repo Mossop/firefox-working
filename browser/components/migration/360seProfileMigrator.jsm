@@ -16,16 +16,10 @@ const { MigrationUtils, MigratorPrototype } = ChromeUtils.import(
   "resource:///modules/MigrationUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesUtils",
+const { PlacesUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PlacesUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Sqlite",
-  "resource://gre/modules/Sqlite.jsm"
-);
+const { Sqlite } = XPCOMUtils.lazyImport("resource://gre/modules/Sqlite.jsm");
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["URL"]);
 

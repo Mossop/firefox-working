@@ -14,17 +14,11 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "GetClipboardSearchString",
+const { GetClipboardSearchString } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Finder.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "Rect",
-  "resource://gre/modules/Geometry.jsm"
-);
+const { Rect } = XPCOMUtils.lazyImport("resource://gre/modules/Geometry.jsm");
 
 const kPrefLetterboxing = "privacy.resistFingerprinting.letterboxing";
 

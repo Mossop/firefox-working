@@ -44,9 +44,10 @@ const EXPORTED_SYMBOLS = ["LoginStore"];
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "JSONFile",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { JSONFile } = XPCOMUtils.lazyImport(
   "resource://gre/modules/JSONFile.jsm"
 );
 

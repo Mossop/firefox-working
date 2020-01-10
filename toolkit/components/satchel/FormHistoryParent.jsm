@@ -6,9 +6,10 @@
 
 var EXPORTED_SYMBOLS = ["FormHistoryParent"];
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "FormHistory",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { FormHistory } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FormHistory.jsm"
 );
 

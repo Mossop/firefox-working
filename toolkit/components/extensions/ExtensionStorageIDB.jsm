@@ -13,17 +13,21 @@ const { IndexedDB } = ChromeUtils.import(
   "resource://gre/modules/IndexedDB.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  ExtensionStorage: "resource://gre/modules/ExtensionStorage.jsm",
-  ExtensionUtils: "resource://gre/modules/ExtensionUtils.jsm",
-  getTrimmedString: "resource://gre/modules/ExtensionTelemetry.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-});
+const { ExtensionStorage } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionStorage.jsm"
+);
+const { ExtensionUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionUtils.jsm"
+);
+const { getTrimmedString } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionTelemetry.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "quotaManagerService",
+const quotaManagerService = XPCOMUtils.lazyService(
   "@mozilla.org/dom/quota-manager-service;1",
   "nsIQuotaManagerService"
 );

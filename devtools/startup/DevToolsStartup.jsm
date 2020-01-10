@@ -36,39 +36,25 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "ActorManagerParent",
+const { ActorManagerParent } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ActorManagerParent.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
+const { Services } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Services.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "AppConstants",
+const { AppConstants } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AppConstants.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "CustomizableUI",
+const { CustomizableUI } = XPCOMUtils.lazyImport(
   "resource:///modules/CustomizableUI.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "CustomizableWidgets",
+const { CustomizableWidgets } = XPCOMUtils.lazyImport(
   "resource:///modules/CustomizableWidgets.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ProfilerMenuButton",
+const { ProfilerMenuButton } = XPCOMUtils.lazyImport(
   "resource://devtools/client/performance-new/popup/menu-button.jsm.js"
 );
 

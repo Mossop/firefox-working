@@ -18,29 +18,22 @@ const PREF_UPDATE_REQUIREBUILTINCERTS = "extensions.update.requireBuiltInCerts";
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AddonManager",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { AddonManager } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AddonManager.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "AddonManagerPrivate",
+const { AddonManagerPrivate } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AddonManager.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Blocklist",
+const { Blocklist } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Blocklist.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "CertUtils",
+const { CertUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/CertUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ServiceRequest",
+const { ServiceRequest } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ServiceRequest.jsm"
 );
 

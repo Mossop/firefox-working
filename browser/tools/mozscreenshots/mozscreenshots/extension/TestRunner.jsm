@@ -23,15 +23,14 @@ const { setTimeout } = ChromeUtils.import("resource://gre/modules/Timer.jsm");
 const { OS } = ChromeUtils.import("resource://gre/modules/osfile.jsm");
 const { Rect } = ChromeUtils.import("resource://gre/modules/Geometry.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "BrowserTestUtils",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { BrowserTestUtils } = XPCOMUtils.lazyImport(
   "resource://testing-common/BrowserTestUtils.jsm"
 );
 // Screenshot.jsm must be imported this way for xpcshell tests to work
-ChromeUtils.defineModuleGetter(
-  this,
-  "Screenshot",
+const { Screenshot } = XPCOMUtils.lazyImport(
   "resource://mozscreenshots/Screenshot.jsm"
 );
 

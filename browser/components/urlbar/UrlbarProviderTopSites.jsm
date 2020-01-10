@@ -10,18 +10,31 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AboutNewTab: "resource:///modules/AboutNewTab.jsm",
-  Log: "resource://gre/modules/Log.jsm",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.jsm",
-  PlacesSearchAutocompleteProvider:
-    "resource://gre/modules/PlacesSearchAutocompleteProvider.jsm",
-  UrlbarPrefs: "resource:///modules/UrlbarPrefs.jsm",
-  UrlbarProvider: "resource:///modules/UrlbarUtils.jsm",
-  UrlbarProviderOpenTabs: "resource:///modules/UrlbarProviderOpenTabs.jsm",
-  UrlbarResult: "resource:///modules/UrlbarResult.jsm",
-  UrlbarUtils: "resource:///modules/UrlbarUtils.jsm",
-});
+const { AboutNewTab } = XPCOMUtils.lazyImport(
+  "resource:///modules/AboutNewTab.jsm"
+);
+const { Log } = XPCOMUtils.lazyImport("resource://gre/modules/Log.jsm");
+const { PlacesUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesUtils.jsm"
+);
+const { PlacesSearchAutocompleteProvider } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesSearchAutocompleteProvider.jsm"
+);
+const { UrlbarPrefs } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarPrefs.jsm"
+);
+const { UrlbarProvider } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarUtils.jsm"
+);
+const { UrlbarProviderOpenTabs } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarProviderOpenTabs.jsm"
+);
+const { UrlbarResult } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarResult.jsm"
+);
+const { UrlbarUtils } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarUtils.jsm"
+);
 
 XPCOMUtils.defineLazyGetter(this, "logger", () =>
   Log.repository.getLogger("Urlbar.Provider.TopSites")

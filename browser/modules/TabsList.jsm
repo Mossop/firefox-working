@@ -4,9 +4,10 @@
 
 "use strict";
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PanelMultiView",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { PanelMultiView } = XPCOMUtils.lazyImport(
   "resource:///modules/PanelMultiView.jsm"
 );
 

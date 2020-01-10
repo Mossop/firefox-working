@@ -14,9 +14,10 @@ function debug(aStr) {
 var EXPORTED_SYMBOLS = ["DateTimePickerParent"];
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "DateTimePickerPanel",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { DateTimePickerPanel } = XPCOMUtils.lazyImport(
   "resource://gre/modules/DateTimePickerPanel.jsm"
 );
 

@@ -9,14 +9,14 @@ const { XPCOMUtils } = ChromeUtils.import(
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 XPCOMUtils.defineLazyGlobalGetters(this, ["fetch"]);
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-  RemoteL10n: "resource://activity-stream/lib/RemoteL10n.jsm",
-});
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
+const { RemoteL10n } = XPCOMUtils.lazyImport(
+  "resource://activity-stream/lib/RemoteL10n.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "TrackingDBService",
+const TrackingDBService = XPCOMUtils.lazyService(
   "@mozilla.org/tracking-db-service;1",
   "nsITrackingDBService"
 );

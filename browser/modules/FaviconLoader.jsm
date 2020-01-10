@@ -13,14 +13,10 @@ const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["Blob", "FileReader"]);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "DeferredTask",
+const { DeferredTask } = XPCOMUtils.lazyImport(
   "resource://gre/modules/DeferredTask.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PromiseUtils",
+const { PromiseUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PromiseUtils.jsm"
 );
 

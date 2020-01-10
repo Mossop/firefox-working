@@ -9,14 +9,13 @@ const { clearTimeout, setTimeout } = ChromeUtils.import(
   "resource://gre/modules/Timer.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "ControllerStateMachine",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { ControllerStateMachine } = XPCOMUtils.lazyImport(
   "resource://gre/modules/presentation/ControllerStateMachine.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ReceiverStateMachine",
+const { ReceiverStateMachine } = XPCOMUtils.lazyImport(
   "resource://gre/modules/presentation/ReceiverStateMachine.jsm"
 );
 

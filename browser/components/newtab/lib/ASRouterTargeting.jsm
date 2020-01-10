@@ -10,19 +10,36 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  ASRouterPreferences: "resource://activity-stream/lib/ASRouterPreferences.jsm",
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  NewTabUtils: "resource://gre/modules/NewTabUtils.jsm",
-  ProfileAge: "resource://gre/modules/ProfileAge.jsm",
-  ShellService: "resource:///modules/ShellService.jsm",
-  TelemetryEnvironment: "resource://gre/modules/TelemetryEnvironment.jsm",
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  AttributionCode: "resource:///modules/AttributionCode.jsm",
-  FilterExpressions:
-    "resource://gre/modules/components-utils/FilterExpressions.jsm",
-  fxAccounts: "resource://gre/modules/FxAccounts.jsm",
-});
+const { ASRouterPreferences } = XPCOMUtils.lazyImport(
+  "resource://activity-stream/lib/ASRouterPreferences.jsm"
+);
+const { AddonManager } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { NewTabUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/NewTabUtils.jsm"
+);
+const { ProfileAge } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ProfileAge.jsm"
+);
+const { ShellService } = XPCOMUtils.lazyImport(
+  "resource:///modules/ShellService.jsm"
+);
+const { TelemetryEnvironment } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryEnvironment.jsm"
+);
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { AttributionCode } = XPCOMUtils.lazyImport(
+  "resource:///modules/AttributionCode.jsm"
+);
+const { FilterExpressions } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/components-utils/FilterExpressions.jsm"
+);
+const { fxAccounts } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FxAccounts.jsm"
+);
 
 XPCOMUtils.defineLazyPreferenceGetter(
   this,
@@ -96,9 +113,7 @@ XPCOMUtils.defineLazyPreferenceGetter(
   "browser.newtabpage.activity-stream.feeds.snippets",
   true
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "TrackingDBService",
+const TrackingDBService = XPCOMUtils.lazyService(
   "@mozilla.org/tracking-db-service;1",
   "nsITrackingDBService"
 );

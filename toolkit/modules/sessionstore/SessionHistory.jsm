@@ -11,14 +11,10 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "E10SUtils",
+const { E10SUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/E10SUtils.jsm"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "uuidGenerator",
+const uuidGenerator = XPCOMUtils.lazyService(
   "@mozilla.org/uuid-generator;1",
   "nsIUUIDGenerator"
 );

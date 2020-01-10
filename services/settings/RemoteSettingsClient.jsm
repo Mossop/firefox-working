@@ -11,44 +11,28 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "Kinto",
+const { Kinto } = XPCOMUtils.lazyImport(
   "resource://services-common/kinto-offline-client.js"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "KintoHttpClient",
+const { KintoHttpClient } = XPCOMUtils.lazyImport(
   "resource://services-common/kinto-http-client.js"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "UptakeTelemetry",
+const { UptakeTelemetry } = XPCOMUtils.lazyImport(
   "resource://services-common/uptake-telemetry.js"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ClientEnvironmentBase",
+const { ClientEnvironmentBase } = XPCOMUtils.lazyImport(
   "resource://gre/modules/components-utils/ClientEnvironment.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "RemoteSettingsWorker",
+const { RemoteSettingsWorker } = XPCOMUtils.lazyImport(
   "resource://services-settings/RemoteSettingsWorker.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Utils",
+const { Utils } = XPCOMUtils.lazyImport(
   "resource://services-settings/Utils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Downloader",
+const { Downloader } = XPCOMUtils.lazyImport(
   "resource://services-settings/Attachments.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ObjectUtils",
+const { ObjectUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ObjectUtils.jsm"
 );
 

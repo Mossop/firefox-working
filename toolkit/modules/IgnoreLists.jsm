@@ -7,10 +7,12 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  RemoteSettings: "resource://services-settings/remote-settings.js",
-  RemoteSettingsClient: "resource://services-settings/RemoteSettingsClient.jsm",
-});
+const { RemoteSettings } = XPCOMUtils.lazyImport(
+  "resource://services-settings/remote-settings.js"
+);
+const { RemoteSettingsClient } = XPCOMUtils.lazyImport(
+  "resource://services-settings/RemoteSettingsClient.jsm"
+);
 
 var EXPORTED_SYMBOLS = ["IgnoreLists"];
 

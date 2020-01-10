@@ -13,15 +13,25 @@ var EXPORTED_SYMBOLS = ["UrlbarProviderPrivateSearch"];
 const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
-XPCOMUtils.defineLazyModuleGetters(this, {
-  Log: "resource://gre/modules/Log.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-  SkippableTimer: "resource:///modules/UrlbarUtils.jsm",
-  UrlbarProvider: "resource:///modules/UrlbarUtils.jsm",
-  UrlbarResult: "resource:///modules/UrlbarResult.jsm",
-  UrlbarTokenizer: "resource:///modules/UrlbarTokenizer.jsm",
-  UrlbarUtils: "resource:///modules/UrlbarUtils.jsm",
-});
+const { Log } = XPCOMUtils.lazyImport("resource://gre/modules/Log.jsm");
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { SkippableTimer } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarUtils.jsm"
+);
+const { UrlbarProvider } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarUtils.jsm"
+);
+const { UrlbarResult } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarResult.jsm"
+);
+const { UrlbarTokenizer } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarTokenizer.jsm"
+);
+const { UrlbarUtils } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarUtils.jsm"
+);
 
 XPCOMUtils.defineLazyGetter(this, "logger", () =>
   Log.repository.getLogger("Urlbar.Provider.PrivateSearch")

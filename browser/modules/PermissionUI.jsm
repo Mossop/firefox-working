@@ -61,32 +61,22 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
+const { Services } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Services.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "SitePermissions",
+const { SitePermissions } = XPCOMUtils.lazyImport(
   "resource:///modules/SitePermissions.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "IDNService",
+const IDNService = XPCOMUtils.lazyService(
   "@mozilla.org/network/idn-service;1",
   "nsIIDNService"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "ContentPrefService2",
+const ContentPrefService2 = XPCOMUtils.lazyService(
   "@mozilla.org/content-pref/service;1",
   "nsIContentPrefService2"
 );

@@ -6,11 +6,10 @@
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "console",
-  "resource://gre/modules/Console.jsm"
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
 );
+const { console } = XPCOMUtils.lazyImport("resource://gre/modules/Console.jsm");
 
 var EXPORTED_SYMBOLS = ["EventEmitter"];
 

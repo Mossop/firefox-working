@@ -15,14 +15,22 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
-  Downloads: "resource://gre/modules/Downloads.jsm",
-  DownloadUtils: "resource://gre/modules/DownloadUtils.jsm",
-  DownloadsCommon: "resource:///modules/DownloadsCommon.jsm",
-  FileUtils: "resource://gre/modules/FileUtils.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-});
+const { BrowserWindowTracker } = XPCOMUtils.lazyImport(
+  "resource:///modules/BrowserWindowTracker.jsm"
+);
+const { Downloads } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Downloads.jsm"
+);
+const { DownloadUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/DownloadUtils.jsm"
+);
+const { DownloadsCommon } = XPCOMUtils.lazyImport(
+  "resource:///modules/DownloadsCommon.jsm"
+);
+const { FileUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FileUtils.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
 
 const HTML_NS = "http://www.w3.org/1999/xhtml";
 

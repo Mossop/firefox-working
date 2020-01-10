@@ -9,19 +9,13 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PreferenceFilters",
+const { PreferenceFilters } = XPCOMUtils.lazyImport(
   "resource://gre/modules/components-utils/PreferenceFilters.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Sampling",
+const { Sampling } = XPCOMUtils.lazyImport(
   "resource://gre/modules/components-utils/Sampling.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "mozjexl",
+const { mozjexl } = XPCOMUtils.lazyImport(
   "resource://gre/modules/components-utils/mozjexl.js"
 );
 

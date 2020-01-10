@@ -6,19 +6,16 @@
 const { Log } = ChromeUtils.import("resource://gre/modules/Log.jsm");
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AddonStudies",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { AddonStudies } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/AddonStudies.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PreferenceExperiments",
+const { PreferenceExperiments } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/PreferenceExperiments.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "RecipeRunner",
+const { RecipeRunner } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/RecipeRunner.jsm"
 );
 

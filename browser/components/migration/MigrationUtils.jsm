@@ -22,44 +22,26 @@ const { XPCOMUtils } = ChromeUtils.import(
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["URL"]);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "BookmarkHTMLUtils",
+const { BookmarkHTMLUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/BookmarkHTMLUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "LoginHelper",
+const { LoginHelper } = XPCOMUtils.lazyImport(
   "resource://gre/modules/LoginHelper.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesUtils",
+const { PlacesUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PlacesUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PromiseUtils",
+const { PromiseUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PromiseUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ResponsivenessMonitor",
+const { ResponsivenessMonitor } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ResponsivenessMonitor.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Sqlite",
-  "resource://gre/modules/Sqlite.jsm"
-);
-ChromeUtils.defineModuleGetter(
-  this,
-  "WindowsRegistry",
+const { Sqlite } = XPCOMUtils.lazyImport("resource://gre/modules/Sqlite.jsm");
+const { WindowsRegistry } = XPCOMUtils.lazyImport(
   "resource://gre/modules/WindowsRegistry.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "setTimeout",
+const { setTimeout } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Timer.jsm"
 );
 

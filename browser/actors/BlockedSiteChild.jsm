@@ -7,9 +7,10 @@ const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
 var EXPORTED_SYMBOLS = ["BlockedSiteChild"];
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "SafeBrowsing",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { SafeBrowsing } = XPCOMUtils.lazyImport(
   "resource://gre/modules/SafeBrowsing.jsm"
 );
 

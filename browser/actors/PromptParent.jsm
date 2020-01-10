@@ -7,14 +7,13 @@
 
 var EXPORTED_SYMBOLS = ["PromptParent"];
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PromptUtils",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { PromptUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/SharedPromptUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
+const { Services } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Services.jsm"
 );
 

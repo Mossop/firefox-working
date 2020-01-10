@@ -14,9 +14,10 @@ const { E10SUtils } = ChromeUtils.import(
   "resource://gre/modules/E10SUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AboutNewTab",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { AboutNewTab } = XPCOMUtils.lazyImport(
   "resource:///modules/AboutNewTab.jsm"
 );
 

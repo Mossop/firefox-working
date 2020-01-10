@@ -9,9 +9,7 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "serviceWorkerManager",
+const serviceWorkerManager = XPCOMUtils.lazyService(
   "@mozilla.org/serviceworkers/manager;1",
   "nsIServiceWorkerManager"
 );

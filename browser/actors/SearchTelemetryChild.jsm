@@ -9,12 +9,18 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  ActorChild: "resource://gre/modules/ActorChild.jsm",
-  clearTimeout: "resource://gre/modules/Timer.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-  setTimeout: "resource://gre/modules/Timer.jsm",
-});
+const { ActorChild } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ActorChild.jsm"
+);
+const { clearTimeout } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Timer.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { setTimeout } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Timer.jsm"
+);
 
 const SHARED_DATA_KEY = "SearchTelemetry:ProviderInfo";
 const ADLINK_CHECK_TIMEOUT_MS = 1000;

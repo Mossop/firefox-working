@@ -9,11 +9,12 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  GeckoViewTelemetryController:
-    "resource://gre/modules/GeckoViewTelemetryController.jsm",
-  TelemetryController: "resource://gre/modules/TelemetryController.jsm",
-});
+const { GeckoViewTelemetryController } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/GeckoViewTelemetryController.jsm"
+);
+const { TelemetryController } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryController.jsm"
+);
 
 function ContentProcessSingleton() {}
 ContentProcessSingleton.prototype = {

@@ -11,13 +11,21 @@ const { actionTypes: at } = ChromeUtils.import(
   "resource://activity-stream/common/Actions.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
-  DownloadsCommon: "resource:///modules/DownloadsCommon.jsm",
-  DownloadsViewUI: "resource:///modules/DownloadsViewUI.jsm",
-  FileUtils: "resource://gre/modules/FileUtils.jsm",
-  NewTabUtils: "resource://gre/modules/NewTabUtils.jsm",
-});
+const { BrowserWindowTracker } = XPCOMUtils.lazyImport(
+  "resource:///modules/BrowserWindowTracker.jsm"
+);
+const { DownloadsCommon } = XPCOMUtils.lazyImport(
+  "resource:///modules/DownloadsCommon.jsm"
+);
+const { DownloadsViewUI } = XPCOMUtils.lazyImport(
+  "resource:///modules/DownloadsViewUI.jsm"
+);
+const { FileUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FileUtils.jsm"
+);
+const { NewTabUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/NewTabUtils.jsm"
+);
 
 const DOWNLOAD_CHANGED_DELAY_TIME = 1000; // time in ms to delay timer for downloads changed events
 

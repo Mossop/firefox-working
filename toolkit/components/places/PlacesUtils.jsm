@@ -14,14 +14,18 @@ const { AppConstants } = ChromeUtils.import(
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["URL"]);
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  Services: "resource://gre/modules/Services.jsm",
-  NetUtil: "resource://gre/modules/NetUtil.jsm",
-  Sqlite: "resource://gre/modules/Sqlite.jsm",
-  Bookmarks: "resource://gre/modules/Bookmarks.jsm",
-  History: "resource://gre/modules/History.jsm",
-  PlacesSyncUtils: "resource://gre/modules/PlacesSyncUtils.jsm",
-});
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { NetUtil } = XPCOMUtils.lazyImport("resource://gre/modules/NetUtil.jsm");
+const { Sqlite } = XPCOMUtils.lazyImport("resource://gre/modules/Sqlite.jsm");
+const { Bookmarks } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Bookmarks.jsm"
+);
+const { History } = XPCOMUtils.lazyImport("resource://gre/modules/History.jsm");
+const { PlacesSyncUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesSyncUtils.jsm"
+);
 
 XPCOMUtils.defineLazyGetter(this, "MOZ_ACTION_REGEX", () => {
   return /^moz-action:([^,]+),(.*)$/;
@@ -1942,9 +1946,7 @@ XPCOMUtils.defineLazyServiceGetter(
   "nsIFaviconService"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "bmsvc",
+const bmsvc = XPCOMUtils.lazyService(
   "@mozilla.org/browser/nav-bookmarks-service;1",
   "nsINavBookmarksService"
 );

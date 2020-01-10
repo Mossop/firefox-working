@@ -4,24 +4,19 @@
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AppConstants",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { AppConstants } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AppConstants.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "UpdateUtils",
+const { UpdateUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/UpdateUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryEnvironment",
+const { TelemetryEnvironment } = XPCOMUtils.lazyImport(
   "resource://gre/modules/TelemetryEnvironment.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ServiceRequest",
+const { ServiceRequest } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ServiceRequest.jsm"
 );
 

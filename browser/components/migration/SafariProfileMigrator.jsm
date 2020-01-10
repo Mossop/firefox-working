@@ -15,19 +15,13 @@ const { MigrationUtils, MigratorPrototype } = ChromeUtils.import(
   "resource:///modules/MigrationUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PropertyListUtils",
+const { PropertyListUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PropertyListUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesUtils",
+const { PlacesUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PlacesUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FormHistory",
+const { FormHistory } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FormHistory.jsm"
 );
 

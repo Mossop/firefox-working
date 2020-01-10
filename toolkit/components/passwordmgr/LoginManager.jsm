@@ -12,19 +12,13 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "LoginHelper",
+const { LoginHelper } = XPCOMUtils.lazyImport(
   "resource://gre/modules/LoginHelper.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "LoginFormFactory",
+const { LoginFormFactory } = XPCOMUtils.lazyImport(
   "resource://gre/modules/LoginFormFactory.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "InsecurePasswordUtils",
+const { InsecurePasswordUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/InsecurePasswordUtils.jsm"
 );
 

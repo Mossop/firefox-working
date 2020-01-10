@@ -7,9 +7,7 @@ const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "LogManager",
+const { LogManager } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/LogManager.jsm"
 );
 

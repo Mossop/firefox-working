@@ -14,15 +14,11 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AppConstants",
+const { AppConstants } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AppConstants.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "ClipboardHelper",
+const ClipboardHelper = XPCOMUtils.lazyService(
   "@mozilla.org/widget/clipboardhelper;1",
   "nsIClipboardHelper"
 );

@@ -28,12 +28,7 @@ const { XPCOMUtils } = ChromeUtils.import(
 // attempting to use anything in this file on platforms other than Windows will
 // result in an error.
 if (AppConstants.MOZ_BITS_DOWNLOAD) {
-  XPCOMUtils.defineLazyServiceGetter(
-    this,
-    "gBits",
-    "@mozilla.org/bits;1",
-    "nsIBits"
-  );
+  const gBits = XPCOMUtils.lazyService("@mozilla.org/bits;1", "nsIBits");
 }
 
 // This value exists to mitigate a very unlikely problem: If a BITS method

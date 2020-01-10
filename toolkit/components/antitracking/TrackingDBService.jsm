@@ -57,11 +57,15 @@ XPCOMUtils.defineLazyPreferenceGetter(
   24 * 60 * 60 * 1000
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  readAsyncStream: "resource://gre/modules/AsyncStreamReader.jsm",
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.jsm",
-  DeferredTask: "resource://gre/modules/DeferredTask.jsm",
-});
+const { readAsyncStream } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AsyncStreamReader.jsm"
+);
+const { AsyncShutdown } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AsyncShutdown.jsm"
+);
+const { DeferredTask } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/DeferredTask.jsm"
+);
 
 /**
  * All SQL statements should be defined here.

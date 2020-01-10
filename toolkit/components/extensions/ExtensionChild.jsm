@@ -21,23 +21,35 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "finalizationService",
+const finalizationService = XPCOMUtils.lazyService(
   "@mozilla.org/toolkit/finalizationwitness;1",
   "nsIFinalizationWitnessService"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  ExtensionContent: "resource://gre/modules/ExtensionContent.jsm",
-  ExtensionPageChild: "resource://gre/modules/ExtensionPageChild.jsm",
-  ExtensionProcessScript: "resource://gre/modules/ExtensionProcessScript.jsm",
-  MessageChannel: "resource://gre/modules/MessageChannel.jsm",
-  NativeApp: "resource://gre/modules/NativeMessaging.jsm",
-  PerformanceCounters: "resource://gre/modules/PerformanceCounters.jsm",
-  PromiseUtils: "resource://gre/modules/PromiseUtils.jsm",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { ExtensionContent } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionContent.jsm"
+);
+const { ExtensionPageChild } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionPageChild.jsm"
+);
+const { ExtensionProcessScript } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionProcessScript.jsm"
+);
+const { MessageChannel } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/MessageChannel.jsm"
+);
+const { NativeApp } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/NativeMessaging.jsm"
+);
+const { PerformanceCounters } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PerformanceCounters.jsm"
+);
+const { PromiseUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PromiseUtils.jsm"
+);
 
 // We're using the pref to avoid loading PerformanceCounters.jsm for nothing.
 XPCOMUtils.defineLazyPreferenceGetter(

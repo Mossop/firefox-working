@@ -14,16 +14,27 @@ var EXPORTED_SYMBOLS = ["UrlbarProviderExtension"];
 const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
-XPCOMUtils.defineLazyModuleGetters(this, {
-  PlacesSearchAutocompleteProvider:
-    "resource://gre/modules/PlacesSearchAutocompleteProvider.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-  SkippableTimer: "resource:///modules/UrlbarUtils.jsm",
-  UrlbarProvider: "resource:///modules/UrlbarUtils.jsm",
-  UrlbarProvidersManager: "resource:///modules/UrlbarProvidersManager.jsm",
-  UrlbarResult: "resource:///modules/UrlbarResult.jsm",
-  UrlbarUtils: "resource:///modules/UrlbarUtils.jsm",
-});
+const { PlacesSearchAutocompleteProvider } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesSearchAutocompleteProvider.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { SkippableTimer } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarUtils.jsm"
+);
+const { UrlbarProvider } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarUtils.jsm"
+);
+const { UrlbarProvidersManager } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarProvidersManager.jsm"
+);
+const { UrlbarResult } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarResult.jsm"
+);
+const { UrlbarUtils } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarUtils.jsm"
+);
 
 // When we send events to extensions, we wait this amount of time in ms for them
 // to respond before timing out.  Tests can override this by setting

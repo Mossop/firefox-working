@@ -6,19 +6,16 @@
 
 var EXPORTED_SYMBOLS = ["TabState"];
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivacyFilter",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { PrivacyFilter } = XPCOMUtils.lazyImport(
   "resource://gre/modules/sessionstore/PrivacyFilter.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TabStateCache",
+const { TabStateCache } = XPCOMUtils.lazyImport(
   "resource:///modules/sessionstore/TabStateCache.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TabAttributes",
+const { TabAttributes } = XPCOMUtils.lazyImport(
   "resource:///modules/sessionstore/TabAttributes.jsm"
 );
 

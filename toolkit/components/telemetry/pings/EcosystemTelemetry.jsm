@@ -13,20 +13,31 @@ var EXPORTED_SYMBOLS = ["EcosystemTelemetry"];
 
 ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm", this);
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  Weave: "resource://services-sync/main.js",
-  ONLOGIN_NOTIFICATION: "resource://gre/modules/FxAccountsCommon.js",
-  ONLOGOUT_NOTIFICATION: "resource://gre/modules/FxAccountsCommon.js",
-  TelemetryController: "resource://gre/modules/TelemetryController.jsm",
-  TelemetryUtils: "resource://gre/modules/TelemetryUtils.jsm",
-  TelemetryEnvironment: "resource://gre/modules/TelemetryEnvironment.jsm",
-  Log: "resource://gre/modules/Log.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-});
+const { Weave } = XPCOMUtils.lazyImport("resource://services-sync/main.js");
+const { ONLOGIN_NOTIFICATION } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FxAccountsCommon.js"
+);
+const { ONLOGOUT_NOTIFICATION } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FxAccountsCommon.js"
+);
+const { TelemetryController } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryController.jsm"
+);
+const { TelemetryUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryUtils.jsm"
+);
+const { TelemetryEnvironment } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryEnvironment.jsm"
+);
+const { Log } = XPCOMUtils.lazyImport("resource://gre/modules/Log.jsm");
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  Telemetry: ["@mozilla.org/base/telemetry;1", "nsITelemetry"],
-});
+const Telemetry = XPCOMUtils.lazyService(
+  "@mozilla.org/base/telemetry;1",
+  "nsITelemetry"
+);
 
 const LOGGER_NAME = "Toolkit.Telemetry";
 const LOGGER_PREFIX = "EcosystemTelemetry::";

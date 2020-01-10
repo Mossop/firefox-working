@@ -7,9 +7,10 @@
 var EXPORTED_SYMBOLS = ["ThumbnailsChild"];
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PageThumbUtils",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { PageThumbUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PageThumbUtils.jsm"
 );
 

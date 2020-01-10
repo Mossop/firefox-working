@@ -9,9 +9,10 @@ ChromeUtils.import("resource://gre/modules/Log.jsm", this);
 ChromeUtils.import("resource://gre/modules/Services.jsm", this);
 ChromeUtils.import("resource://gre/modules/TelemetryUtils.jsm", this);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryController",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { TelemetryController } = XPCOMUtils.lazyImport(
   "resource://gre/modules/TelemetryController.jsm"
 );
 

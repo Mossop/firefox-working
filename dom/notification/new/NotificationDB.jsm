@@ -11,20 +11,17 @@ function debug(s) {
   dump("-*- NotificationDB component: " + s + "\n");
 }
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "FileUtils",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { FileUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FileUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "KeyValueService",
+const { KeyValueService } = XPCOMUtils.lazyImport(
   "resource://gre/modules/kvstore.jsm"
 );
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { Services } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Services.jsm"
 );
 

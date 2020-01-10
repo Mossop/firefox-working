@@ -6,15 +6,19 @@
 const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
-XPCOMUtils.defineLazyModuleGetters(this, {
-  Services: "resource://gre/modules/Services.jsm",
-  EveryWindow: "resource:///modules/EveryWindow.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-  RemoteL10n: "resource://activity-stream/lib/RemoteL10n.jsm",
-});
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "TrackingDBService",
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { EveryWindow } = XPCOMUtils.lazyImport(
+  "resource:///modules/EveryWindow.jsm"
+);
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
+const { RemoteL10n } = XPCOMUtils.lazyImport(
+  "resource://activity-stream/lib/RemoteL10n.jsm"
+);
+const TrackingDBService = XPCOMUtils.lazyService(
   "@mozilla.org/tracking-db-service;1",
   "nsITrackingDBService"
 );

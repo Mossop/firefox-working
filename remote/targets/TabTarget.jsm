@@ -20,9 +20,7 @@ const { RemoteAgent } = ChromeUtils.import(
   "chrome://remote/content/RemoteAgent.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "Favicons",
+const Favicons = XPCOMUtils.lazyService(
   "@mozilla.org/browser/favicon-service;1",
   "nsIFaviconService"
 );

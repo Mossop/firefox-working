@@ -8,9 +8,10 @@ const EXPORTED_SYMBOLS = ["LinkHandlerParent"];
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesUIUtils",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { PlacesUIUtils } = XPCOMUtils.lazyImport(
   "resource:///modules/PlacesUIUtils.jsm"
 );
 

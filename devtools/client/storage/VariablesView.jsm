@@ -31,9 +31,7 @@ const { LocalizationHelper, ELLIPSIS } = require("devtools/shared/l10n");
 const L10N = new LocalizationHelper(DBG_STRINGS_URI);
 const HTML_NS = "http://www.w3.org/1999/xhtml";
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "clipboardHelper",
+const clipboardHelper = XPCOMUtils.lazyService(
   "@mozilla.org/widget/clipboardhelper;1",
   "nsIClipboardHelper"
 );

@@ -51,63 +51,45 @@ const {
   logPII,
 } = ChromeUtils.import("resource://gre/modules/FxAccountsCommon.js");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "FxAccountsClient",
+const { FxAccountsClient } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FxAccountsClient.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "FxAccountsOAuthGrantClient",
+const { FxAccountsOAuthGrantClient } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FxAccountsOAuthGrantClient.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "FxAccountsConfig",
+const { FxAccountsConfig } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FxAccountsConfig.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "jwcrypto",
+const { jwcrypto } = XPCOMUtils.lazyImport(
   "resource://services-crypto/jwcrypto.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "FxAccountsCommands",
+const { FxAccountsCommands } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FxAccountsCommands.js"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "FxAccountsDevice",
+const { FxAccountsDevice } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FxAccountsDevice.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "FxAccountsKeys",
+const { FxAccountsKeys } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FxAccountsKeys.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "FxAccountsProfile",
+const { FxAccountsProfile } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FxAccountsProfile.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "FxAccountsTelemetry",
+const { FxAccountsTelemetry } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FxAccountsTelemetry.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  Preferences: "resource://gre/modules/Preferences.jsm",
-});
+const { Preferences } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Preferences.jsm"
+);
 
 XPCOMUtils.defineLazyPreferenceGetter(
   this,

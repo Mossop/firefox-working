@@ -6,9 +6,10 @@
 
 var EXPORTED_SYMBOLS = ["PrivacyFilter"];
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivacyLevel",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { PrivacyLevel } = XPCOMUtils.lazyImport(
   "resource://gre/modules/sessionstore/PrivacyLevel.jsm"
 );
 

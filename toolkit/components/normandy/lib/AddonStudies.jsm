@@ -42,34 +42,25 @@
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "IndexedDB",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { IndexedDB } = XPCOMUtils.lazyImport(
   "resource://gre/modules/IndexedDB.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "AddonManager",
+const { AddonManager } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AddonManager.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "CleanupManager",
+const { CleanupManager } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/CleanupManager.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "LogManager",
+const { LogManager } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/LogManager.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryEnvironment",
+const { TelemetryEnvironment } = XPCOMUtils.lazyImport(
   "resource://gre/modules/TelemetryEnvironment.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryEvents",
+const { TelemetryEvents } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/TelemetryEvents.jsm"
 );
 

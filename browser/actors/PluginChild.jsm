@@ -22,9 +22,7 @@ XPCOMUtils.defineLazyGetter(this, "gNavigatorBundle", function() {
   return Services.strings.createBundle(url);
 });
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gPluginHost",
+const gPluginHost = XPCOMUtils.lazyService(
   "@mozilla.org/plugin/host;1",
   "nsIPluginHost"
 );

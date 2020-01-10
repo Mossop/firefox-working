@@ -10,16 +10,30 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  E10SUtils: "resource://gre/modules/E10SUtils.jsm",
-  LoginBreaches: "resource:///modules/LoginBreaches.jsm",
-  LoginHelper: "resource://gre/modules/LoginHelper.jsm",
-  MigrationUtils: "resource:///modules/MigrationUtils.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-  UIState: "resource://services-sync/UIState.jsm",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.jsm",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { E10SUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/E10SUtils.jsm"
+);
+const { LoginBreaches } = XPCOMUtils.lazyImport(
+  "resource:///modules/LoginBreaches.jsm"
+);
+const { LoginHelper } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/LoginHelper.jsm"
+);
+const { MigrationUtils } = XPCOMUtils.lazyImport(
+  "resource:///modules/MigrationUtils.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { UIState } = XPCOMUtils.lazyImport(
+  "resource://services-sync/UIState.jsm"
+);
+const { PlacesUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesUtils.jsm"
+);
 
 XPCOMUtils.defineLazyGetter(this, "log", () => {
   return LoginHelper.createLogger("AboutLoginsParent");

@@ -7,9 +7,10 @@
 const { BaseAction } = ChromeUtils.import(
   "resource://normandy/actions/BaseAction.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ActionSchemas",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { ActionSchemas } = XPCOMUtils.lazyImport(
   "resource://normandy/actions/schemas/index.js"
 );
 

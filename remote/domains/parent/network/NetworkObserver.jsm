@@ -36,9 +36,7 @@ const StorageStream = CC(
   "nsIStorageStream",
   "init"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gActivityDistributor",
+const gActivityDistributor = XPCOMUtils.lazyService(
   "@mozilla.org/network/http-activity-distributor;1",
   "nsIHttpActivityDistributor"
 );

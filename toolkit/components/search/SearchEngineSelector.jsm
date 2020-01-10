@@ -12,10 +12,12 @@ const { XPCOMUtils } = ChromeUtils.import(
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["fetch"]);
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  SearchUtils: "resource://gre/modules/SearchUtils.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-});
+const { SearchUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/SearchUtils.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
 
 const EXT_SEARCH_PREFIX = "resource://search-extensions/";
 const ENGINE_CONFIG_URL = `${EXT_SEARCH_PREFIX}engines.json`;

@@ -19,44 +19,28 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AddressResult",
+const { AddressResult } = XPCOMUtils.lazyImport(
   "resource://formautofill/ProfileAutoCompleteResult.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "CreditCardResult",
+const { CreditCardResult } = XPCOMUtils.lazyImport(
   "resource://formautofill/ProfileAutoCompleteResult.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FormAutofill",
+const { FormAutofill } = XPCOMUtils.lazyImport(
   "resource://formautofill/FormAutofill.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FormAutofillHandler",
+const { FormAutofillHandler } = XPCOMUtils.lazyImport(
   "resource://formautofill/FormAutofillHandler.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FormAutofillUtils",
+const { FormAutofillUtils } = XPCOMUtils.lazyImport(
   "resource://formautofill/FormAutofillUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FormLikeFactory",
+const { FormLikeFactory } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FormLikeFactory.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "InsecurePasswordUtils",
+const { InsecurePasswordUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/InsecurePasswordUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
 

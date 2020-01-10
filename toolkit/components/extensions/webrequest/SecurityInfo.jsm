@@ -11,15 +11,11 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 
 const wpl = Ci.nsIWebProgressListener;
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "NSSErrorsService",
+const NSSErrorsService = XPCOMUtils.lazyService(
   "@mozilla.org/nss_errors_service;1",
   "nsINSSErrorsService"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "sss",
+const sss = XPCOMUtils.lazyService(
   "@mozilla.org/ssservice;1",
   "nsISiteSecurityService"
 );

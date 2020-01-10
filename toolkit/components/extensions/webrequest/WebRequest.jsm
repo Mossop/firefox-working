@@ -17,11 +17,15 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  ExtensionUtils: "resource://gre/modules/ExtensionUtils.jsm",
-  WebRequestUpload: "resource://gre/modules/WebRequestUpload.jsm",
-  SecurityInfo: "resource://gre/modules/SecurityInfo.jsm",
-});
+const { ExtensionUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionUtils.jsm"
+);
+const { WebRequestUpload } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/WebRequestUpload.jsm"
+);
+const { SecurityInfo } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/SecurityInfo.jsm"
+);
 
 function runLater(job) {
   Services.tm.dispatchToMainThread(job);

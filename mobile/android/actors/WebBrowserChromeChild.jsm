@@ -10,10 +10,12 @@ const { GeckoViewActorChild } = ChromeUtils.import(
   "resource://gre/modules/GeckoViewActorChild.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  BrowserUtils: "resource://gre/modules/BrowserUtils.jsm",
-  E10SUtils: "resource://gre/modules/E10SUtils.jsm",
-});
+const { BrowserUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/BrowserUtils.jsm"
+);
+const { E10SUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/E10SUtils.jsm"
+);
 
 var EXPORTED_SYMBOLS = ["WebBrowserChromeChild"];
 

@@ -16,9 +16,9 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  Downloads: "resource://gre/modules/Downloads.jsm",
-});
+const { Downloads } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Downloads.jsm"
+);
 
 var DownloadsMacFinderProgress = {
   /**

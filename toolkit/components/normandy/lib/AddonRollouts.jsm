@@ -4,19 +4,16 @@
 
 "use strict";
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "IndexedDB",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { IndexedDB } = XPCOMUtils.lazyImport(
   "resource://gre/modules/IndexedDB.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryEnvironment",
+const { TelemetryEnvironment } = XPCOMUtils.lazyImport(
   "resource://gre/modules/TelemetryEnvironment.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryEvents",
+const { TelemetryEvents } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/TelemetryEvents.jsm"
 );
 

@@ -11,13 +11,17 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-  Schemas: "resource://gre/modules/Schemas.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-  WindowsRegistry: "resource://gre/modules/WindowsRegistry.jsm",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { Schemas } = XPCOMUtils.lazyImport("resource://gre/modules/Schemas.jsm");
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { WindowsRegistry } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/WindowsRegistry.jsm"
+);
 
 const DASHED = AppConstants.platform === "linux";
 

@@ -16,18 +16,22 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 const { setTimeout } = ChromeUtils.import("resource://gre/modules/Timer.jsm");
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-  Log: "resource://gre/modules/Log.jsm",
-  FileUtils: "resource://gre/modules/FileUtils.jsm",
-  PromiseUtils: "resource://gre/modules/PromiseUtils.jsm",
-});
+const { AsyncShutdown } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AsyncShutdown.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { Log } = XPCOMUtils.lazyImport("resource://gre/modules/Log.jsm");
+const { FileUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FileUtils.jsm"
+);
+const { PromiseUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PromiseUtils.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "FinalizationWitnessService",
+const FinalizationWitnessService = XPCOMUtils.lazyService(
   "@mozilla.org/toolkit/finalizationwitness;1",
   "nsIFinalizationWitnessService"
 );

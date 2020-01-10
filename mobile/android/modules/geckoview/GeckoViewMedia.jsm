@@ -16,9 +16,7 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "MediaManagerService",
+const MediaManagerService = XPCOMUtils.lazyService(
   "@mozilla.org/mediaManagerService;1",
   "nsIMediaManagerService"
 );

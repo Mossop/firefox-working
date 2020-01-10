@@ -349,26 +349,52 @@ const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["fetch"]);
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AboutPagesUtils: "resource://gre/modules/AboutPagesUtils.jsm",
-  BrowserUtils: "resource://gre/modules/BrowserUtils.jsm",
-  ExtensionSearchHandler: "resource://gre/modules/ExtensionSearchHandler.jsm",
-  ObjectUtils: "resource://gre/modules/ObjectUtils.jsm",
-  PlacesRemoteTabsAutocompleteProvider:
-    "resource://gre/modules/PlacesRemoteTabsAutocompleteProvider.jsm",
-  PlacesSearchAutocompleteProvider:
-    "resource://gre/modules/PlacesSearchAutocompleteProvider.jsm",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-  ProfileAge: "resource://gre/modules/ProfileAge.jsm",
-  PromiseUtils: "resource://gre/modules/PromiseUtils.jsm",
-  Sqlite: "resource://gre/modules/Sqlite.jsm",
-  UrlbarPrefs: "resource:///modules/UrlbarPrefs.jsm",
-  UrlbarProviderOpenTabs: "resource:///modules/UrlbarProviderOpenTabs.jsm",
-  UrlbarProvidersManager: "resource:///modules/UrlbarProvidersManager.jsm",
-  UrlbarTokenizer: "resource:///modules/UrlbarTokenizer.jsm",
-  UrlbarUtils: "resource:///modules/UrlbarUtils.jsm",
-});
+const { AboutPagesUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AboutPagesUtils.jsm"
+);
+const { BrowserUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/BrowserUtils.jsm"
+);
+const { ExtensionSearchHandler } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionSearchHandler.jsm"
+);
+const { ObjectUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ObjectUtils.jsm"
+);
+const { PlacesRemoteTabsAutocompleteProvider } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesRemoteTabsAutocompleteProvider.jsm"
+);
+const { PlacesSearchAutocompleteProvider } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesSearchAutocompleteProvider.jsm"
+);
+const { PlacesUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesUtils.jsm"
+);
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
+const { ProfileAge } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ProfileAge.jsm"
+);
+const { PromiseUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PromiseUtils.jsm"
+);
+const { Sqlite } = XPCOMUtils.lazyImport("resource://gre/modules/Sqlite.jsm");
+const { UrlbarPrefs } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarPrefs.jsm"
+);
+const { UrlbarProviderOpenTabs } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarProviderOpenTabs.jsm"
+);
+const { UrlbarProvidersManager } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarProvidersManager.jsm"
+);
+const { UrlbarTokenizer } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarTokenizer.jsm"
+);
+const { UrlbarUtils } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarUtils.jsm"
+);
 
 XPCOMUtils.defineLazyPreferenceGetter(
   this,

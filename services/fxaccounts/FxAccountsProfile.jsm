@@ -22,9 +22,10 @@ const { fxAccounts } = ChromeUtils.import(
   "resource://gre/modules/FxAccounts.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "FxAccountsProfileClient",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { FxAccountsProfileClient } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FxAccountsProfileClient.jsm"
 );
 

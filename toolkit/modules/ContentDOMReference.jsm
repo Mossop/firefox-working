@@ -20,9 +20,7 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "finalizationService",
+const finalizationService = XPCOMUtils.lazyService(
   "@mozilla.org/toolkit/finalizationwitness;1",
   "nsIFinalizationWitnessService"
 );

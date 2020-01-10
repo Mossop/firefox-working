@@ -18,9 +18,7 @@ const { OS } = ChromeUtils.import("resource://gre/modules/osfile.jsm");
 const { ctypes } = ChromeUtils.import("resource://gre/modules/ctypes.jsm");
 XPCOMUtils.defineLazyGlobalGetters(this, ["fetch"]); /* globals fetch */
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "WindowsRegistry",
+const { WindowsRegistry } = XPCOMUtils.lazyImport(
   "resource://gre/modules/WindowsRegistry.jsm"
 );
 

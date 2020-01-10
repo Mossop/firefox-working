@@ -15,20 +15,25 @@ var EXPORTED_SYMBOLS = ["TelemetryUntrustedModulesPing"];
 
 ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm", this);
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  Log: "resource://gre/modules/Log.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-  TelemetryController: "resource://gre/modules/TelemetryController.jsm",
-  TelemetryUtils: "resource://gre/modules/TelemetryUtils.jsm",
-});
+const { Log } = XPCOMUtils.lazyImport("resource://gre/modules/Log.jsm");
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { TelemetryController } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryController.jsm"
+);
+const { TelemetryUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetryUtils.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  Telemetry: ["@mozilla.org/base/telemetry;1", "nsITelemetry"],
-  UpdateTimerManager: [
-    "@mozilla.org/updates/timer-manager;1",
-    "nsIUpdateTimerManager",
-  ],
-});
+const Telemetry = XPCOMUtils.lazyService(
+  "@mozilla.org/base/telemetry;1",
+  "nsITelemetry"
+);
+const UpdateTimerManager = XPCOMUtils.lazyService(
+  "@mozilla.org/updates/timer-manager;1",
+  "nsIUpdateTimerManager"
+);
 
 const DEFAULT_INTERVAL_SECONDS = 24 * 60 * 60; // 1 day
 

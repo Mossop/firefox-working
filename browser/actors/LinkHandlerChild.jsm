@@ -8,9 +8,10 @@ const EXPORTED_SYMBOLS = ["LinkHandlerChild"];
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "FaviconLoader",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { FaviconLoader } = XPCOMUtils.lazyImport(
   "resource:///modules/FaviconLoader.jsm"
 );
 

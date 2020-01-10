@@ -10,9 +10,10 @@ const { Domain } = ChromeUtils.import(
   "chrome://remote/content/domains/Domain.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "ContextObserver",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { ContextObserver } = XPCOMUtils.lazyImport(
   "chrome://remote/content/domains/ContextObserver.jsm"
 );
 

@@ -9,29 +9,17 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PushDB",
-  "resource://gre/modules/PushDB.jsm"
-);
-ChromeUtils.defineModuleGetter(
-  this,
-  "PushRecord",
+const { PushDB } = XPCOMUtils.lazyImport("resource://gre/modules/PushDB.jsm");
+const { PushRecord } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PushRecord.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PushCrypto",
+const { PushCrypto } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PushCrypto.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "EventDispatcher",
+const { EventDispatcher } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Messaging.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Preferences",
+const { Preferences } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Preferences.jsm"
 );
 

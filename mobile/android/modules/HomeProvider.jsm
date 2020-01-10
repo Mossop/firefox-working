@@ -40,9 +40,7 @@ XPCOMUtils.defineLazyGetter(this, "gSyncCheckIntervalSecs", function() {
   return Services.prefs.getIntPref(PREF_SYNC_CHECK_INTERVAL_SECS);
 });
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gUpdateTimerManager",
+const gUpdateTimerManager = XPCOMUtils.lazyService(
   "@mozilla.org/updates/timer-manager;1",
   "nsIUpdateTimerManager"
 );

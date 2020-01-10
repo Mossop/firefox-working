@@ -12,9 +12,10 @@
 
 var EXPORTED_SYMBOLS = ["SpecialPowersSandbox"];
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "Assert",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { Assert } = XPCOMUtils.lazyImport(
   "resource://testing-common/Assert.jsm"
 );
 

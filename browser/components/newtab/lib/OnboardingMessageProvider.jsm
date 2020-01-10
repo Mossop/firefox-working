@@ -3,14 +3,13 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 "use strict";
 /* globals Localization */
-ChromeUtils.defineModuleGetter(
-  this,
-  "AttributionCode",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { AttributionCode } = XPCOMUtils.lazyImport(
   "resource:///modules/AttributionCode.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "AddonRepository",
+const { AddonRepository } = XPCOMUtils.lazyImport(
   "resource://gre/modules/addons/AddonRepository.jsm"
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");

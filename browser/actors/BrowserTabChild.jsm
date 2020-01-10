@@ -6,9 +6,10 @@
 
 var EXPORTED_SYMBOLS = ["BrowserTabChild"];
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "E10SUtils",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { E10SUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/E10SUtils.jsm"
 );
 

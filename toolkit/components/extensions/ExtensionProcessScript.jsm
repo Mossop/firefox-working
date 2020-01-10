@@ -20,12 +20,18 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  ExtensionChild: "resource://gre/modules/ExtensionChild.jsm",
-  ExtensionCommon: "resource://gre/modules/ExtensionCommon.jsm",
-  ExtensionContent: "resource://gre/modules/ExtensionContent.jsm",
-  ExtensionPageChild: "resource://gre/modules/ExtensionPageChild.jsm",
-});
+const { ExtensionChild } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionChild.jsm"
+);
+const { ExtensionCommon } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionCommon.jsm"
+);
+const { ExtensionContent } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionContent.jsm"
+);
+const { ExtensionPageChild } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionPageChild.jsm"
+);
 
 const { ExtensionUtils } = ChromeUtils.import(
   "resource://gre/modules/ExtensionUtils.jsm"

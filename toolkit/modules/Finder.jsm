@@ -11,26 +11,18 @@ const { XPCOMUtils } = ChromeUtils.import(
 const { Rect } = ChromeUtils.import("resource://gre/modules/Geometry.jsm");
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "BrowserUtils",
+const { BrowserUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/BrowserUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FinderIterator",
+const { FinderIterator } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FinderIterator.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "Clipboard",
+const Clipboard = XPCOMUtils.lazyService(
   "@mozilla.org/widget/clipboard;1",
   "nsIClipboard"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "ClipboardHelper",
+const ClipboardHelper = XPCOMUtils.lazyService(
   "@mozilla.org/widget/clipboardhelper;1",
   "nsIClipboardHelper"
 );

@@ -34,29 +34,19 @@ const { AppConstants } = ChromeUtils.import(
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["CSS"]);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AddonManager",
+const { AddonManager } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AddonManager.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "AMTelemetry",
+const { AMTelemetry } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AddonManager.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "DragPositionManager",
+const { DragPositionManager } = XPCOMUtils.lazyImport(
   "resource:///modules/DragPositionManager.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "BrowserUtils",
+const { BrowserUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/BrowserUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "SessionStore",
+const { SessionStore } = XPCOMUtils.lazyImport(
   "resource:///modules/sessionstore/SessionStore.jsm"
 );
 XPCOMUtils.defineLazyGetter(this, "gWidgetsBundle", function() {
@@ -69,9 +59,7 @@ XPCOMUtils.defineLazyPreferenceGetter(
   "gCosmeticAnimationsEnabled",
   "toolkit.cosmeticAnimations.enabled"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gTouchBarUpdater",
+const gTouchBarUpdater = XPCOMUtils.lazyService(
   "@mozilla.org/widget/touchbarupdater;1",
   "nsITouchBarUpdater"
 );

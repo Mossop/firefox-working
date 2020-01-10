@@ -19,45 +19,29 @@ const { AppConstants } = ChromeUtils.import(
 );
 XPCOMUtils.defineLazyGlobalGetters(this, ["XMLHttpRequest"]);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AddonManager",
+const { AddonManager } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AddonManager.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "AddonManagerPrivate",
+const { AddonManagerPrivate } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AddonManager.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "CertUtils",
+const { CertUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/CertUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FileUtils",
+const { FileUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FileUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "RemoteSettings",
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { RemoteSettings } = XPCOMUtils.lazyImport(
   "resource://services-settings/remote-settings.js"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "jexlFilterFunc",
+const { jexlFilterFunc } = XPCOMUtils.lazyImport(
   "resource://services-settings/remote-settings.js"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ServiceRequest",
+const { ServiceRequest } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ServiceRequest.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "UpdateUtils",
+const { UpdateUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/UpdateUtils.jsm"
 );
 

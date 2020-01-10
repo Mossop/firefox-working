@@ -12,9 +12,7 @@ const { ChildMessagePort } = ChromeUtils.import(
   "resource://gre/modules/remotepagemanager/RemotePageManagerChild.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gSerializationHelper",
+const gSerializationHelper = XPCOMUtils.lazyService(
   "@mozilla.org/network/serialization-helper;1",
   "nsISerializationHelper"
 );

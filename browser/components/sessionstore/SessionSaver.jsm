@@ -10,14 +10,24 @@ ChromeUtils.import("resource://gre/modules/Timer.jsm", this);
 ChromeUtils.import("resource://gre/modules/Services.jsm", this);
 ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm", this);
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  PrivacyFilter: "resource://gre/modules/sessionstore/PrivacyFilter.jsm",
-  RunState: "resource:///modules/sessionstore/RunState.jsm",
-  SessionStore: "resource:///modules/sessionstore/SessionStore.jsm",
-  SessionFile: "resource:///modules/sessionstore/SessionFile.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { PrivacyFilter } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/sessionstore/PrivacyFilter.jsm"
+);
+const { RunState } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/RunState.jsm"
+);
+const { SessionStore } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/SessionStore.jsm"
+);
+const { SessionFile } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/SessionFile.jsm"
+);
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
 
 /*
  * Minimal interval between two save operations (in milliseconds).

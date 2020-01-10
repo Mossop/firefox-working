@@ -182,35 +182,79 @@ ChromeUtils.import("resource://gre/modules/Timer.jsm", this);
 ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm", this);
 ChromeUtils.import("resource://gre/modules/osfile.jsm", this);
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  gScreenManager: ["@mozilla.org/gfx/screenmanager;1", "nsIScreenManager"],
-  Telemetry: ["@mozilla.org/base/telemetry;1", "nsITelemetry"],
-});
+const gScreenManager = XPCOMUtils.lazyService(
+  "@mozilla.org/gfx/screenmanager;1",
+  "nsIScreenManager"
+);
+const Telemetry = XPCOMUtils.lazyService(
+  "@mozilla.org/base/telemetry;1",
+  "nsITelemetry"
+);
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.jsm",
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
-  DevToolsShim: "chrome://devtools-startup/content/DevToolsShim.jsm",
-  E10SUtils: "resource://gre/modules/E10SUtils.jsm",
-  GlobalState: "resource:///modules/sessionstore/GlobalState.jsm",
-  HomePage: "resource:///modules/HomePage.jsm",
-  PrivacyFilter: "resource://gre/modules/sessionstore/PrivacyFilter.jsm",
-  PromiseUtils: "resource://gre/modules/PromiseUtils.jsm",
-  RunState: "resource:///modules/sessionstore/RunState.jsm",
-  SessionCookies: "resource:///modules/sessionstore/SessionCookies.jsm",
-  SessionFile: "resource:///modules/sessionstore/SessionFile.jsm",
-  SessionSaver: "resource:///modules/sessionstore/SessionSaver.jsm",
-  SessionStartup: "resource:///modules/sessionstore/SessionStartup.jsm",
-  TabAttributes: "resource:///modules/sessionstore/TabAttributes.jsm",
-  TabCrashHandler: "resource:///modules/ContentCrashHandlers.jsm",
-  TabState: "resource:///modules/sessionstore/TabState.jsm",
-  TabStateCache: "resource:///modules/sessionstore/TabStateCache.jsm",
-  TabStateFlusher: "resource:///modules/sessionstore/TabStateFlusher.jsm",
-  Utils: "resource://gre/modules/sessionstore/Utils.jsm",
-  ViewSourceBrowser: "resource://gre/modules/ViewSourceBrowser.jsm",
-  setTimeout: "resource://gre/modules/Timer.jsm",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { AsyncShutdown } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AsyncShutdown.jsm"
+);
+const { BrowserWindowTracker } = XPCOMUtils.lazyImport(
+  "resource:///modules/BrowserWindowTracker.jsm"
+);
+const { DevToolsShim } = XPCOMUtils.lazyImport(
+  "chrome://devtools-startup/content/DevToolsShim.jsm"
+);
+const { E10SUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/E10SUtils.jsm"
+);
+const { GlobalState } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/GlobalState.jsm"
+);
+const { HomePage } = XPCOMUtils.lazyImport("resource:///modules/HomePage.jsm");
+const { PrivacyFilter } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/sessionstore/PrivacyFilter.jsm"
+);
+const { PromiseUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PromiseUtils.jsm"
+);
+const { RunState } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/RunState.jsm"
+);
+const { SessionCookies } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/SessionCookies.jsm"
+);
+const { SessionFile } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/SessionFile.jsm"
+);
+const { SessionSaver } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/SessionSaver.jsm"
+);
+const { SessionStartup } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/SessionStartup.jsm"
+);
+const { TabAttributes } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/TabAttributes.jsm"
+);
+const { TabCrashHandler } = XPCOMUtils.lazyImport(
+  "resource:///modules/ContentCrashHandlers.jsm"
+);
+const { TabState } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/TabState.jsm"
+);
+const { TabStateCache } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/TabStateCache.jsm"
+);
+const { TabStateFlusher } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/TabStateFlusher.jsm"
+);
+const { Utils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/sessionstore/Utils.jsm"
+);
+const { ViewSourceBrowser } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ViewSourceBrowser.jsm"
+);
+const { setTimeout } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Timer.jsm"
+);
 
 /**
  * |true| if we are in debug mode, |false| otherwise.

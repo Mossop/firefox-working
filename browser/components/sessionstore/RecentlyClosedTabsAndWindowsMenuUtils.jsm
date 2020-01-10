@@ -6,14 +6,13 @@ var EXPORTED_SYMBOLS = ["RecentlyClosedTabsAndWindowsMenuUtils"];
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PluralForm",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { PluralForm } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PluralForm.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "SessionStore",
+const { SessionStore } = XPCOMUtils.lazyImport(
   "resource:///modules/sessionstore/SessionStore.jsm"
 );
 

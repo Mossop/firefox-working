@@ -35,25 +35,39 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  NetUtil: "resource://gre/modules/NetUtil.jsm",
-  PluralForm: "resource://gre/modules/PluralForm.jsm",
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
-  DownloadHistory: "resource://gre/modules/DownloadHistory.jsm",
-  Downloads: "resource://gre/modules/Downloads.jsm",
-  DownloadUIHelper: "resource://gre/modules/DownloadUIHelper.jsm",
-  DownloadUtils: "resource://gre/modules/DownloadUtils.jsm",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-});
+const { NetUtil } = XPCOMUtils.lazyImport("resource://gre/modules/NetUtil.jsm");
+const { PluralForm } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PluralForm.jsm"
+);
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { BrowserWindowTracker } = XPCOMUtils.lazyImport(
+  "resource:///modules/BrowserWindowTracker.jsm"
+);
+const { DownloadHistory } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/DownloadHistory.jsm"
+);
+const { Downloads } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Downloads.jsm"
+);
+const { DownloadUIHelper } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/DownloadUIHelper.jsm"
+);
+const { DownloadUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/DownloadUtils.jsm"
+);
+const { PlacesUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesUtils.jsm"
+);
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  gClipboardHelper: [
-    "@mozilla.org/widget/clipboardhelper;1",
-    "nsIClipboardHelper",
-  ],
-});
+const gClipboardHelper = XPCOMUtils.lazyService(
+  "@mozilla.org/widget/clipboardhelper;1",
+  "nsIClipboardHelper"
+);
 
 XPCOMUtils.defineLazyGetter(this, "DownloadsLogger", () => {
   let { ConsoleAPI } = ChromeUtils.import("resource://gre/modules/Console.jsm");

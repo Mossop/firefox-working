@@ -34,18 +34,20 @@ const { AsyncShutdown } = ChromeUtils.import(
   "resource://gre/modules/AsyncShutdown.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "Telemetry",
+const Telemetry = XPCOMUtils.lazyService(
   "@mozilla.org/base/telemetry;1",
   "nsITelemetry"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  RunState: "resource:///modules/sessionstore/RunState.jsm",
-  SessionStore: "resource:///modules/sessionstore/SessionStore.jsm",
-  SessionWorker: "resource:///modules/sessionstore/SessionWorker.jsm",
-});
+const { RunState } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/RunState.jsm"
+);
+const { SessionStore } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/SessionStore.jsm"
+);
+const { SessionWorker } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/SessionWorker.jsm"
+);
 
 const PREF_UPGRADE_BACKUP = "browser.sessionstore.upgradeBackup.latestBuildID";
 const PREF_MAX_UPGRADE_BACKUPS =

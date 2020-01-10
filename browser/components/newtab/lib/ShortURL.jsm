@@ -7,9 +7,7 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "IDNService",
+const IDNService = XPCOMUtils.lazyService(
   "@mozilla.org/network/idn-service;1",
   "nsIIDNService"
 );

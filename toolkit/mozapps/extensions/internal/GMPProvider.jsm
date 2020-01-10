@@ -24,14 +24,10 @@ const { AppConstants } = ChromeUtils.import(
   "resource://gre/modules/AppConstants.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "GMPInstallManager",
+const { GMPInstallManager } = XPCOMUtils.lazyImport(
   "resource://gre/modules/GMPInstallManager.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "setTimeout",
+const { setTimeout } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Timer.jsm"
 );
 

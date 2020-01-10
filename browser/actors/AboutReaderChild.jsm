@@ -10,19 +10,16 @@ const { ActorChild } = ChromeUtils.import(
   "resource://gre/modules/ActorChild.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AboutReader",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { AboutReader } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AboutReader.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ReaderMode",
+const { ReaderMode } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ReaderMode.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Readerable",
+const { Readerable } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Readerable.jsm"
 );
 

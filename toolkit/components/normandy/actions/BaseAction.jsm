@@ -2,19 +2,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "LogManager",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { LogManager } = XPCOMUtils.lazyImport(
   "resource://normandy/lib/LogManager.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Uptake",
-  "resource://normandy/lib/Uptake.jsm"
-);
-ChromeUtils.defineModuleGetter(
-  this,
-  "JsonSchemaValidator",
+const { Uptake } = XPCOMUtils.lazyImport("resource://normandy/lib/Uptake.jsm");
+const { JsonSchemaValidator } = XPCOMUtils.lazyImport(
   "resource://gre/modules/components-utils/JsonSchemaValidator.jsm"
 );
 

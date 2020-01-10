@@ -11,15 +11,14 @@ const { ActorChild } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "setTimeout",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { setTimeout } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Timer.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "ReaderMode",
+const { ReaderMode } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ReaderMode.jsm"
 );
 

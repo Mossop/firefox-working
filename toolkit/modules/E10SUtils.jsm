@@ -11,9 +11,7 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
 
@@ -67,15 +65,11 @@ XPCOMUtils.defineLazyPreferenceGetter(
   "browser.tabs.remote.useCrossOriginOpenerPolicy",
   false
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "serializationHelper",
+const serializationHelper = XPCOMUtils.lazyService(
   "@mozilla.org/network/serialization-helper;1",
   "nsISerializationHelper"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "extProtService",
+const extProtService = XPCOMUtils.lazyService(
   "@mozilla.org/uriloader/external-protocol-service;1",
   "nsIExternalProtocolService"
 );

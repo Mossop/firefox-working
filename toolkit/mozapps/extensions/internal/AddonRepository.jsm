@@ -8,17 +8,29 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  AddonManagerPrivate: "resource://gre/modules/AddonManager.jsm",
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.jsm",
-  DeferredTask: "resource://gre/modules/DeferredTask.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-  ServiceRequest: "resource://gre/modules/ServiceRequest.jsm",
-  NetUtil: "resource://gre/modules/NetUtil.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-  Preferences: "resource://gre/modules/Preferences.jsm",
-});
+const { AddonManager } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { AddonManagerPrivate } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { AsyncShutdown } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AsyncShutdown.jsm"
+);
+const { DeferredTask } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/DeferredTask.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { ServiceRequest } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ServiceRequest.jsm"
+);
+const { NetUtil } = XPCOMUtils.lazyImport("resource://gre/modules/NetUtil.jsm");
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { Preferences } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Preferences.jsm"
+);
 
 // The current platform as specified in the AMO API:
 // http://addons-server.readthedocs.io/en/latest/topics/api/addons.html#addon-detail-platform

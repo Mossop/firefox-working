@@ -14,21 +14,15 @@ const { AppConstants } = ChromeUtils.import(
   "resource://gre/modules/AppConstants.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "ActorManagerParent",
+const { ActorManagerParent } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ActorManagerParent.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "CustomizableUI",
+const { CustomizableUI } = XPCOMUtils.lazyImport(
   "resource:///modules/CustomizableUI.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "PushService",
+const PushService = XPCOMUtils.lazyService(
   "@mozilla.org/push/Service;1",
   "nsIPushService"
 );
@@ -503,70 +497,162 @@ XPCOMUtils.defineLazyGetter(
 
 // lazy module getters
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AboutPrivateBrowsingHandler:
-    "resource:///modules/aboutpages/AboutPrivateBrowsingHandler.jsm",
-  AboutProtectionsHandler:
-    "resource:///modules/aboutpages/AboutProtectionsHandler.jsm",
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  AppMenuNotifications: "resource://gre/modules/AppMenuNotifications.jsm",
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.jsm",
-  Blocklist: "resource://gre/modules/Blocklist.jsm",
-  BookmarkHTMLUtils: "resource://gre/modules/BookmarkHTMLUtils.jsm",
-  BookmarkJSONUtils: "resource://gre/modules/BookmarkJSONUtils.jsm",
-  BrowserUsageTelemetry: "resource:///modules/BrowserUsageTelemetry.jsm",
-  BrowserUtils: "resource://gre/modules/BrowserUtils.jsm",
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
-  ContextualIdentityService:
-    "resource://gre/modules/ContextualIdentityService.jsm",
-  Corroborate: "resource://gre/modules/Corroborate.jsm",
-  Discovery: "resource:///modules/Discovery.jsm",
-  ExtensionsUI: "resource:///modules/ExtensionsUI.jsm",
-  FirefoxMonitor: "resource:///modules/FirefoxMonitor.jsm",
-  FxAccounts: "resource://gre/modules/FxAccounts.jsm",
-  HomePage: "resource:///modules/HomePage.jsm",
-  Integration: "resource://gre/modules/Integration.jsm",
-  LoginBreaches: "resource:///modules/LoginBreaches.jsm",
-  LiveBookmarkMigrator: "resource:///modules/LiveBookmarkMigrator.jsm",
-  NewTabUtils: "resource://gre/modules/NewTabUtils.jsm",
-  Normandy: "resource://normandy/Normandy.jsm",
-  ObjectUtils: "resource://gre/modules/ObjectUtils.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-  PageActions: "resource:///modules/PageActions.jsm",
-  PageThumbs: "resource://gre/modules/PageThumbs.jsm",
-  PdfJs: "resource://pdf.js/PdfJs.jsm",
-  PermissionUI: "resource:///modules/PermissionUI.jsm",
-  PlacesBackups: "resource://gre/modules/PlacesBackups.jsm",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.jsm",
-  PluralForm: "resource://gre/modules/PluralForm.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-  ProcessHangMonitor: "resource:///modules/ProcessHangMonitor.jsm",
-  PublicSuffixList: "resource://gre/modules/netwerk-dns/PublicSuffixList.jsm",
-  RemoteSettings: "resource://services-settings/remote-settings.js",
-  RemoteSecuritySettings:
-    "resource://gre/modules/psm/RemoteSecuritySettings.jsm",
-  RFPHelper: "resource://gre/modules/RFPHelper.jsm",
-  SafeBrowsing: "resource://gre/modules/SafeBrowsing.jsm",
-  Sanitizer: "resource:///modules/Sanitizer.jsm",
-  SaveToPocket: "chrome://pocket/content/SaveToPocket.jsm",
-  SearchTelemetry: "resource:///modules/SearchTelemetry.jsm",
-  SessionStartup: "resource:///modules/sessionstore/SessionStartup.jsm",
-  SessionStore: "resource:///modules/sessionstore/SessionStore.jsm",
-  ShellService: "resource:///modules/ShellService.jsm",
-  TabCrashHandler: "resource:///modules/ContentCrashHandlers.jsm",
-  TabUnloader: "resource:///modules/TabUnloader.jsm",
-  UIState: "resource://services-sync/UIState.jsm",
-  WebChannel: "resource://gre/modules/WebChannel.jsm",
-  WindowsRegistry: "resource://gre/modules/WindowsRegistry.jsm",
-});
+const { AboutPrivateBrowsingHandler } = XPCOMUtils.lazyImport(
+  "resource:///modules/aboutpages/AboutPrivateBrowsingHandler.jsm"
+);
+const { AboutProtectionsHandler } = XPCOMUtils.lazyImport(
+  "resource:///modules/aboutpages/AboutProtectionsHandler.jsm"
+);
+const { AddonManager } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { AppMenuNotifications } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppMenuNotifications.jsm"
+);
+const { AsyncShutdown } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AsyncShutdown.jsm"
+);
+const { Blocklist } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Blocklist.jsm"
+);
+const { BookmarkHTMLUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/BookmarkHTMLUtils.jsm"
+);
+const { BookmarkJSONUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/BookmarkJSONUtils.jsm"
+);
+const { BrowserUsageTelemetry } = XPCOMUtils.lazyImport(
+  "resource:///modules/BrowserUsageTelemetry.jsm"
+);
+const { BrowserUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/BrowserUtils.jsm"
+);
+const { BrowserWindowTracker } = XPCOMUtils.lazyImport(
+  "resource:///modules/BrowserWindowTracker.jsm"
+);
+const { ContextualIdentityService } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ContextualIdentityService.jsm"
+);
+const { Corroborate } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Corroborate.jsm"
+);
+const { Discovery } = XPCOMUtils.lazyImport(
+  "resource:///modules/Discovery.jsm"
+);
+const { ExtensionsUI } = XPCOMUtils.lazyImport(
+  "resource:///modules/ExtensionsUI.jsm"
+);
+const { FirefoxMonitor } = XPCOMUtils.lazyImport(
+  "resource:///modules/FirefoxMonitor.jsm"
+);
+const { FxAccounts } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FxAccounts.jsm"
+);
+const { HomePage } = XPCOMUtils.lazyImport("resource:///modules/HomePage.jsm");
+const { Integration } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Integration.jsm"
+);
+const { LoginBreaches } = XPCOMUtils.lazyImport(
+  "resource:///modules/LoginBreaches.jsm"
+);
+const { LiveBookmarkMigrator } = XPCOMUtils.lazyImport(
+  "resource:///modules/LiveBookmarkMigrator.jsm"
+);
+const { NewTabUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/NewTabUtils.jsm"
+);
+const { Normandy } = XPCOMUtils.lazyImport("resource://normandy/Normandy.jsm");
+const { ObjectUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ObjectUtils.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { PageActions } = XPCOMUtils.lazyImport(
+  "resource:///modules/PageActions.jsm"
+);
+const { PageThumbs } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PageThumbs.jsm"
+);
+const { PdfJs } = XPCOMUtils.lazyImport("resource://pdf.js/PdfJs.jsm");
+const { PermissionUI } = XPCOMUtils.lazyImport(
+  "resource:///modules/PermissionUI.jsm"
+);
+const { PlacesBackups } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesBackups.jsm"
+);
+const { PlacesUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesUtils.jsm"
+);
+const { PluralForm } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PluralForm.jsm"
+);
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
+const { ProcessHangMonitor } = XPCOMUtils.lazyImport(
+  "resource:///modules/ProcessHangMonitor.jsm"
+);
+const { PublicSuffixList } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/netwerk-dns/PublicSuffixList.jsm"
+);
+const { RemoteSettings } = XPCOMUtils.lazyImport(
+  "resource://services-settings/remote-settings.js"
+);
+const { RemoteSecuritySettings } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/psm/RemoteSecuritySettings.jsm"
+);
+const { RFPHelper } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/RFPHelper.jsm"
+);
+const { SafeBrowsing } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/SafeBrowsing.jsm"
+);
+const { Sanitizer } = XPCOMUtils.lazyImport(
+  "resource:///modules/Sanitizer.jsm"
+);
+const { SaveToPocket } = XPCOMUtils.lazyImport(
+  "chrome://pocket/content/SaveToPocket.jsm"
+);
+const { SearchTelemetry } = XPCOMUtils.lazyImport(
+  "resource:///modules/SearchTelemetry.jsm"
+);
+const { SessionStartup } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/SessionStartup.jsm"
+);
+const { SessionStore } = XPCOMUtils.lazyImport(
+  "resource:///modules/sessionstore/SessionStore.jsm"
+);
+const { ShellService } = XPCOMUtils.lazyImport(
+  "resource:///modules/ShellService.jsm"
+);
+const { TabCrashHandler } = XPCOMUtils.lazyImport(
+  "resource:///modules/ContentCrashHandlers.jsm"
+);
+const { TabUnloader } = XPCOMUtils.lazyImport(
+  "resource:///modules/TabUnloader.jsm"
+);
+const { UIState } = XPCOMUtils.lazyImport(
+  "resource://services-sync/UIState.jsm"
+);
+const { WebChannel } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/WebChannel.jsm"
+);
+const { WindowsRegistry } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/WindowsRegistry.jsm"
+);
 
 // eslint-disable-next-line no-unused-vars
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AboutLoginsParent: "resource:///modules/AboutLoginsParent.jsm",
-  AsyncPrefs: "resource://gre/modules/AsyncPrefs.jsm",
-  PluginManager: "resource:///actors/PluginParent.jsm",
-  ReaderParent: "resource:///modules/ReaderParent.jsm",
-});
+const { AboutLoginsParent } = XPCOMUtils.lazyImport(
+  "resource:///modules/AboutLoginsParent.jsm"
+);
+const { AsyncPrefs } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AsyncPrefs.jsm"
+);
+const { PluginManager } = XPCOMUtils.lazyImport(
+  "resource:///actors/PluginParent.jsm"
+);
+const { ReaderParent } = XPCOMUtils.lazyImport(
+  "resource:///modules/ReaderParent.jsm"
+);
 
 /**
  * IF YOU ADD OR REMOVE FROM THIS LIST, PLEASE UPDATE THE LIST ABOVE AS WELL.
@@ -593,9 +679,9 @@ let initializedModules = {};
 });
 
 if (AppConstants.MOZ_CRASHREPORTER) {
-  XPCOMUtils.defineLazyModuleGetters(this, {
-    UnsubmittedCrashHandler: "resource:///modules/ContentCrashHandlers.jsm",
-  });
+  const { UnsubmittedCrashHandler } = XPCOMUtils.lazyImport(
+    "resource:///modules/ContentCrashHandlers.jsm"
+  );
 }
 
 XPCOMUtils.defineLazyGetter(this, "gBrandBundle", function() {

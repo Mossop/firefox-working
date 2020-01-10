@@ -28,26 +28,34 @@ ChromeUtils.import("resource://gre/modules/osfile.jsm", this);
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["FileReader"]);
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  Services: "resource://gre/modules/Services.jsm",
-  FileUtils: "resource://gre/modules/FileUtils.jsm",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.jsm",
-  Deprecated: "resource://gre/modules/Deprecated.jsm",
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.jsm",
-  PageThumbUtils: "resource://gre/modules/PageThumbUtils.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-});
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { FileUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FileUtils.jsm"
+);
+const { PlacesUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesUtils.jsm"
+);
+const { Deprecated } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Deprecated.jsm"
+);
+const { AsyncShutdown } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AsyncShutdown.jsm"
+);
+const { PageThumbUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PageThumbUtils.jsm"
+);
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gUpdateTimerManager",
+const gUpdateTimerManager = XPCOMUtils.lazyService(
   "@mozilla.org/updates/timer-manager;1",
   "nsIUpdateTimerManager"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "PageThumbsStorageService",
+const PageThumbsStorageService = XPCOMUtils.lazyService(
   "@mozilla.org/thumbnails/pagethumbs-service;1",
   "nsIPageThumbsStorageService"
 );

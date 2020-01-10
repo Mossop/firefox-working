@@ -8,32 +8,22 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "Preferences",
+const { Preferences } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Preferences.jsm"
 );
-ChromeUtils.defineModuleGetter(this, "Log", "resource://gre/modules/Log.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryController",
+const { Log } = XPCOMUtils.lazyImport("resource://gre/modules/Log.jsm");
+const { TelemetryController } = XPCOMUtils.lazyImport(
   "resource://gre/modules/TelemetryController.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "AppConstants",
+const { AppConstants } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AppConstants.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gUpdateTimerManager",
+const gUpdateTimerManager = XPCOMUtils.lazyService(
   "@mozilla.org/updates/timer-manager;1",
   "nsIUpdateTimerManager"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "Telemetry",
+const Telemetry = XPCOMUtils.lazyService(
   "@mozilla.org/base/telemetry;1",
   "nsITelemetry"
 );

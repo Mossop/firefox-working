@@ -10,41 +10,27 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "Downloads",
+const { Downloads } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Downloads.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FileUtils",
+const { FileUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FileUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Notifications",
+const { Notifications } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Notifications.jsm"
 );
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { Services } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Services.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Snackbars",
+const { Snackbars } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Snackbars.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "UITelemetry",
+const { UITelemetry } = XPCOMUtils.lazyImport(
   "resource://gre/modules/UITelemetry.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "ParentalControls",
+const ParentalControls = XPCOMUtils.lazyService(
   "@mozilla.org/parental-controls-service;1",
   "nsIParentalControlsService"
 );

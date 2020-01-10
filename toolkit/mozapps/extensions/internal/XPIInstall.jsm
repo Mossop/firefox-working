@@ -37,26 +37,43 @@ XPCOMUtils.defineLazyGlobalGetters(this, [
   "fetch",
 ]);
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonRepository: "resource://gre/modules/addons/AddonRepository.jsm",
-  AddonSettings: "resource://gre/modules/addons/AddonSettings.jsm",
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  CertUtils: "resource://gre/modules/CertUtils.jsm",
-  ExtensionData: "resource://gre/modules/Extension.jsm",
-  FileUtils: "resource://gre/modules/FileUtils.jsm",
-  NetUtil: "resource://gre/modules/NetUtil.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-  ProductAddonChecker: "resource://gre/modules/addons/ProductAddonChecker.jsm",
-  UpdateUtils: "resource://gre/modules/UpdateUtils.jsm",
+const { AddonRepository } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/addons/AddonRepository.jsm"
+);
+const { AddonSettings } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/addons/AddonSettings.jsm"
+);
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { CertUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/CertUtils.jsm"
+);
+const { ExtensionData } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Extension.jsm"
+);
+const { FileUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FileUtils.jsm"
+);
+const { NetUtil } = XPCOMUtils.lazyImport("resource://gre/modules/NetUtil.jsm");
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { ProductAddonChecker } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/addons/ProductAddonChecker.jsm"
+);
+const { UpdateUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/UpdateUtils.jsm"
+);
+const { AddonInternal } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/addons/XPIDatabase.jsm"
+);
+const { XPIDatabase } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/addons/XPIDatabase.jsm"
+);
+const { XPIInternal } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/addons/XPIProvider.jsm"
+);
 
-  AddonInternal: "resource://gre/modules/addons/XPIDatabase.jsm",
-  XPIDatabase: "resource://gre/modules/addons/XPIDatabase.jsm",
-  XPIInternal: "resource://gre/modules/addons/XPIProvider.jsm",
-});
-
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "uuidGen",
+const uuidGen = XPCOMUtils.lazyService(
   "@mozilla.org/uuid-generator;1",
   "nsIUUIDGenerator"
 );
@@ -100,9 +117,10 @@ const ZipReader = Components.Constructor(
   "open"
 );
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  gCertDB: ["@mozilla.org/security/x509certdb;1", "nsIX509CertDB"],
-});
+const gCertDB = XPCOMUtils.lazyService(
+  "@mozilla.org/security/x509certdb;1",
+  "nsIX509CertDB"
+);
 
 const PREF_INSTALL_REQUIRESECUREORIGIN =
   "extensions.install.requireSecureOrigin";

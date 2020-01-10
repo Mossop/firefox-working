@@ -20,9 +20,7 @@ const { DefaultMap } = ExtensionUtils;
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["TextEncoder"]);
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "mimeHeader",
+const mimeHeader = XPCOMUtils.lazyService(
   "@mozilla.org/network/mime-hdrparam;1",
   "nsIMIMEHeaderParam"
 );

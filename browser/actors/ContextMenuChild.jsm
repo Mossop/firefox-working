@@ -15,17 +15,30 @@ const { XPCOMUtils } = ChromeUtils.import(
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["URL"]);
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  E10SUtils: "resource://gre/modules/E10SUtils.jsm",
-  BrowserUtils: "resource://gre/modules/BrowserUtils.jsm",
-  SpellCheckHelper: "resource://gre/modules/InlineSpellChecker.jsm",
-  LoginManagerChild: "resource://gre/modules/LoginManagerChild.jsm",
-  WebNavigationFrames: "resource://gre/modules/WebNavigationFrames.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-  InlineSpellCheckerContent:
-    "resource://gre/modules/InlineSpellCheckerContent.jsm",
-  ContentDOMReference: "resource://gre/modules/ContentDOMReference.jsm",
-});
+const { E10SUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/E10SUtils.jsm"
+);
+const { BrowserUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/BrowserUtils.jsm"
+);
+const { SpellCheckHelper } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/InlineSpellChecker.jsm"
+);
+const { LoginManagerChild } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/LoginManagerChild.jsm"
+);
+const { WebNavigationFrames } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/WebNavigationFrames.jsm"
+);
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
+const { InlineSpellCheckerContent } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/InlineSpellCheckerContent.jsm"
+);
+const { ContentDOMReference } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ContentDOMReference.jsm"
+);
 
 XPCOMUtils.defineLazyGetter(this, "PageMenuChild", () => {
   let tmp = {};

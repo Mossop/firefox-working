@@ -18,17 +18,23 @@ const { GeckoViewUtils } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  EventDispatcher: "resource://gre/modules/Messaging.jsm",
-  Extension: "resource://gre/modules/Extension.jsm",
-  ExtensionChild: "resource://gre/modules/ExtensionChild.jsm",
-  GeckoViewTabBridge: "resource://gre/modules/GeckoViewTab.jsm",
-});
+const { AddonManager } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { EventDispatcher } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Messaging.jsm"
+);
+const { Extension } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Extension.jsm"
+);
+const { ExtensionChild } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionChild.jsm"
+);
+const { GeckoViewTabBridge } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/GeckoViewTab.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "mimeService",
+const mimeService = XPCOMUtils.lazyService(
   "@mozilla.org/mime;1",
   "nsIMIMEService"
 );

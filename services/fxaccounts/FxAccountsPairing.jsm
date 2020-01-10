@@ -21,14 +21,11 @@ const { setTimeout, clearTimeout } = ChromeUtils.import(
   "resource://gre/modules/Timer.jsm"
 );
 ChromeUtils.import("resource://services-common/utils.js");
-ChromeUtils.defineModuleGetter(
-  this,
-  "Weave",
-  "resource://services-sync/main.js"
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FxAccountsPairingChannel",
+const { Weave } = XPCOMUtils.lazyImport("resource://services-sync/main.js");
+const { FxAccountsPairingChannel } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FxAccountsPairingChannel.js"
 );
 

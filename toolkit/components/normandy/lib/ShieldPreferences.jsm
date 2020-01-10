@@ -7,13 +7,21 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  Services: "resource://gre/modules/Services.jsm",
-  AddonStudyAction: "resource://normandy/actions/AddonStudyAction.jsm",
-  AddonStudies: "resource://normandy/lib/AddonStudies.jsm",
-  CleanupManager: "resource://normandy/lib/CleanupManager.jsm",
-  PreferenceExperiments: "resource://normandy/lib/PreferenceExperiments.jsm",
-});
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { AddonStudyAction } = XPCOMUtils.lazyImport(
+  "resource://normandy/actions/AddonStudyAction.jsm"
+);
+const { AddonStudies } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/AddonStudies.jsm"
+);
+const { CleanupManager } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/CleanupManager.jsm"
+);
+const { PreferenceExperiments } = XPCOMUtils.lazyImport(
+  "resource://normandy/lib/PreferenceExperiments.jsm"
+);
 
 var EXPORTED_SYMBOLS = ["ShieldPreferences"];
 

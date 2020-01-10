@@ -14,9 +14,7 @@ const { BrowserTestUtils } = ChromeUtils.import(
   "resource://testing-common/BrowserTestUtils.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "swm",
+const swm = XPCOMUtils.lazyService(
   "@mozilla.org/serviceworkers/manager;1",
   "nsIServiceWorkerManager"
 );

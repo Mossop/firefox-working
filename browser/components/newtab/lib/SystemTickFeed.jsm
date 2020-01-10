@@ -7,14 +7,13 @@ const { actionTypes: at } = ChromeUtils.import(
   "resource://activity-stream/common/Actions.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "setInterval",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { setInterval } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Timer.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "clearInterval",
+const { clearInterval } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Timer.jsm"
 );
 

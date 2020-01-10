@@ -6,9 +6,10 @@
 "use strict";
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "PeerConnectionIdp",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { PeerConnectionIdp } = XPCOMUtils.lazyImport(
   "resource://gre/modules/media/PeerConnectionIdp.jsm"
 );
 

@@ -10,15 +10,9 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "Prompt",
-  "resource://gre/modules/Prompt.jsm"
-);
+const { Prompt } = XPCOMUtils.lazyImport("resource://gre/modules/Prompt.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "EventDispatcher",
+const { EventDispatcher } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Messaging.jsm"
 );
 

@@ -8,19 +8,16 @@ var EXPORTED_SYMBOLS = ["ContentRestore"];
 
 ChromeUtils.import("resource://gre/modules/Services.jsm", this);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "SessionHistory",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { SessionHistory } = XPCOMUtils.lazyImport(
   "resource://gre/modules/sessionstore/SessionHistory.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Utils",
+const { Utils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/sessionstore/Utils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "E10SUtils",
+const { E10SUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/E10SUtils.jsm"
 );
 /**

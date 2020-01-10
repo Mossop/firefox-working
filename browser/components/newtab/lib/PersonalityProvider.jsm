@@ -10,11 +10,8 @@ const { RemoteSettings } = ChromeUtils.import(
 const { actionCreators: ac } = ChromeUtils.import(
   "resource://activity-stream/common/Actions.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "perfService",
-  "resource://activity-stream/common/PerfService.jsm"
-);
+const { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
+const { perfService } = XPCOMUtils.lazyImport("resource://activity-stream/common/PerfService.jsm");
 
 const { NaiveBayesTextTagger } = ChromeUtils.import(
   "resource://activity-stream/lib/NaiveBayesTextTagger.jsm"
@@ -26,17 +23,13 @@ const { RecipeExecutor } = ChromeUtils.import(
   "resource://activity-stream/lib/RecipeExecutor.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "NewTabUtils",
-  "resource://gre/modules/NewTabUtils.jsm"
-);
+const { NewTabUtils } = XPCOMUtils.lazyImport("resource://gre/modules/NewTabUtils.jsm");
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
 XPCOMUtils.defineLazyGlobalGetters(this, ["fetch"]);
 
 XPCOMUtils.defineLazyGetter(this, "gTextDecoder", () => new TextDecoder());

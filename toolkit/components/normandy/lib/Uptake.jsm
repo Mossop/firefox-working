@@ -4,14 +4,13 @@
 
 "use strict";
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "UptakeTelemetry",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { UptakeTelemetry } = XPCOMUtils.lazyImport(
   "resource://services-common/uptake-telemetry.js"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
+const { Services } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Services.jsm"
 );
 

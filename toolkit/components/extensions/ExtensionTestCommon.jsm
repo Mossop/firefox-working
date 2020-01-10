@@ -21,32 +21,22 @@ const { XPCOMUtils } = ChromeUtils.import(
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["TextEncoder"]);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AddonManager",
+const { AddonManager } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AddonManager.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Extension",
+const { Extension } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Extension.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ExtensionParent",
+const { ExtensionParent } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ExtensionParent.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ExtensionPermissions",
+const { ExtensionPermissions } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ExtensionPermissions.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FileUtils",
+const { FileUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FileUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
 
 XPCOMUtils.defineLazyGetter(
   this,
@@ -61,9 +51,7 @@ const { ExtensionUtils } = ChromeUtils.import(
   "resource://gre/modules/ExtensionUtils.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "uuidGen",
+const uuidGen = XPCOMUtils.lazyService(
   "@mozilla.org/uuid-generator;1",
   "nsIUUIDGenerator"
 );

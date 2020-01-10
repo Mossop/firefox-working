@@ -23,34 +23,25 @@ const { Dedupe } = ChromeUtils.import(
   "resource://activity-stream/common/Dedupe.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "filterAdult",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { filterAdult } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/FilterAdult.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "LinksCache",
+const { LinksCache } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/LinksCache.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "NewTabUtils",
+const { NewTabUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/NewTabUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Screenshots",
+const { Screenshots } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/Screenshots.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PageThumbs",
+const { PageThumbs } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PageThumbs.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "DownloadsManager",
+const { DownloadsManager } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/DownloadsManager.jsm"
 );
 

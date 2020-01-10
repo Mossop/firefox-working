@@ -41,14 +41,10 @@
 ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm", this);
 ChromeUtils.import("resource://gre/modules/Services.jsm", this);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PromiseUtils",
+const { PromiseUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PromiseUtils.jsm"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gDebug",
+const gDebug = XPCOMUtils.lazyService(
   "@mozilla.org/xpcom/debug;1",
   "nsIDebug2"
 );

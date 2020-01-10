@@ -45,19 +45,16 @@ var EXPORTED_SYMBOLS = ["ExtensionSettingsStore"];
 const { OS } = ChromeUtils.import("resource://gre/modules/osfile.jsm");
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AddonManager",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { AddonManager } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AddonManager.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "JSONFile",
+const { JSONFile } = XPCOMUtils.lazyImport(
   "resource://gre/modules/JSONFile.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ExtensionParent",
+const { ExtensionParent } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ExtensionParent.jsm"
 );
 

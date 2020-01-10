@@ -25,26 +25,18 @@ ChromeUtils.import("resource://gre/modules/Services.jsm", this);
 ChromeUtils.import("resource://gre/modules/TelemetryUtils.jsm", this);
 ChromeUtils.import("resource://gre/modules/Timer.jsm", this);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryStorage",
+const { TelemetryStorage } = XPCOMUtils.lazyImport(
   "resource://gre/modules/TelemetryStorage.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryReportingPolicy",
+const { TelemetryReportingPolicy } = XPCOMUtils.lazyImport(
   "resource://gre/modules/TelemetryReportingPolicy.jsm"
 );
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "Telemetry",
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const Telemetry = XPCOMUtils.lazyService(
   "@mozilla.org/base/telemetry;1",
   "nsITelemetry"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "TelemetryHealthPing",
+const { TelemetryHealthPing } = XPCOMUtils.lazyImport(
   "resource://gre/modules/HealthPing.jsm"
 );
 

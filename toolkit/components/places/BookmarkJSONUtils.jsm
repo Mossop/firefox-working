@@ -12,9 +12,10 @@ const { PlacesUtils } = ChromeUtils.import(
 
 Cu.importGlobalProperties(["fetch"]);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesBackups",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { PlacesBackups } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PlacesBackups.jsm"
 );
 

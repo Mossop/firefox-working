@@ -20,19 +20,13 @@ const { FormAutofill } = ChromeUtils.import(
   "resource://formautofill/FormAutofill.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "FormAutofillUtils",
+const { FormAutofillUtils } = XPCOMUtils.lazyImport(
   "resource://formautofill/FormAutofillUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FormAutofillHeuristics",
+const { FormAutofillHeuristics } = XPCOMUtils.lazyImport(
   "resource://formautofill/FormAutofillHeuristics.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FormLikeFactory",
+const { FormLikeFactory } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FormLikeFactory.jsm"
 );
 

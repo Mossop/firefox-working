@@ -7,14 +7,13 @@
 var EXPORTED_SYMBOLS = ["TelemetryUtils"];
 
 ChromeUtils.import("resource://gre/modules/Services.jsm", this);
-ChromeUtils.defineModuleGetter(
-  this,
-  "AppConstants",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { AppConstants } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AppConstants.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "UpdateUtils",
+const { UpdateUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/UpdateUtils.jsm"
 );
 

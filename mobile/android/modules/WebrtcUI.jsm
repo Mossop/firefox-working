@@ -9,22 +9,24 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  DoorHanger: "resource://gre/modules/Prompt.jsm",
-  Notifications: "resource://gre/modules/Notifications.jsm",
-  RuntimePermissions: "resource://gre/modules/RuntimePermissions.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-});
+const { DoorHanger } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Prompt.jsm"
+);
+const { Notifications } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Notifications.jsm"
+);
+const { RuntimePermissions } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/RuntimePermissions.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "MediaManagerService",
+const MediaManagerService = XPCOMUtils.lazyService(
   "@mozilla.org/mediaManagerService;1",
   "nsIMediaManagerService"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "ParentalControls",
+const ParentalControls = XPCOMUtils.lazyService(
   "@mozilla.org/parental-controls-service;1",
   "nsIParentalControlsService"
 );

@@ -11,26 +11,51 @@ const { PromiseUtils } = ChromeUtils.import(
   "resource://gre/modules/PromiseUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  clearTimeout: "resource://gre/modules/Timer.jsm",
-  DeferredTask: "resource://gre/modules/DeferredTask.jsm",
-  ExtensionParent: "resource://gre/modules/ExtensionParent.jsm",
-  getVerificationHash: "resource://gre/modules/SearchEngine.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-  IgnoreLists: "resource://gre/modules/IgnoreLists.jsm",
-  SearchEngine: "resource://gre/modules/SearchEngine.jsm",
-  SearchEngineSelector: "resource://gre/modules/SearchEngineSelector.jsm",
-  SearchStaticData: "resource://gre/modules/SearchStaticData.jsm",
-  SearchUtils: "resource://gre/modules/SearchUtils.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-  setTimeout: "resource://gre/modules/Timer.jsm",
-});
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { AddonManager } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { clearTimeout } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Timer.jsm"
+);
+const { DeferredTask } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/DeferredTask.jsm"
+);
+const { ExtensionParent } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionParent.jsm"
+);
+const { getVerificationHash } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/SearchEngine.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { IgnoreLists } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/IgnoreLists.jsm"
+);
+const { SearchEngine } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/SearchEngine.jsm"
+);
+const { SearchEngineSelector } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/SearchEngineSelector.jsm"
+);
+const { SearchStaticData } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/SearchStaticData.jsm"
+);
+const { SearchUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/SearchUtils.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { setTimeout } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Timer.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  gEnvironment: ["@mozilla.org/process/environment;1", "nsIEnvironment"],
-});
+const gEnvironment = XPCOMUtils.lazyService(
+  "@mozilla.org/process/environment;1",
+  "nsIEnvironment"
+);
 
 XPCOMUtils.defineLazyPreferenceGetter(
   this,

@@ -4,9 +4,10 @@
 
 "use strict";
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AsyncShutdown",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { AsyncShutdown } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AsyncShutdown.jsm"
 );
 

@@ -27,37 +27,57 @@ const { AddonManager, AddonManagerPrivate } = ChromeUtils.import(
   "resource://gre/modules/AddonManager.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.jsm",
-  Dictionary: "resource://gre/modules/Extension.jsm",
-  Extension: "resource://gre/modules/Extension.jsm",
-  Langpack: "resource://gre/modules/Extension.jsm",
-  FileUtils: "resource://gre/modules/FileUtils.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-  JSONFile: "resource://gre/modules/JSONFile.jsm",
-  TelemetrySession: "resource://gre/modules/TelemetrySession.jsm",
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { AsyncShutdown } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AsyncShutdown.jsm"
+);
+const { Dictionary } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Extension.jsm"
+);
+const { Extension } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Extension.jsm"
+);
+const { Langpack } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Extension.jsm"
+);
+const { FileUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FileUtils.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { JSONFile } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/JSONFile.jsm"
+);
+const { TelemetrySession } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/TelemetrySession.jsm"
+);
+const { XPIDatabase } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/addons/XPIDatabase.jsm"
+);
+const { XPIDatabaseReconcile } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/addons/XPIDatabase.jsm"
+);
+const { XPIInstall } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/addons/XPIInstall.jsm"
+);
 
-  XPIDatabase: "resource://gre/modules/addons/XPIDatabase.jsm",
-  XPIDatabaseReconcile: "resource://gre/modules/addons/XPIDatabase.jsm",
-  XPIInstall: "resource://gre/modules/addons/XPIInstall.jsm",
-});
-
-XPCOMUtils.defineLazyServiceGetters(this, {
-  aomStartup: [
-    "@mozilla.org/addons/addon-manager-startup;1",
-    "amIAddonManagerStartup",
-  ],
-  resProto: [
-    "@mozilla.org/network/protocol;1?name=resource",
-    "nsISubstitutingProtocolHandler",
-  ],
-  spellCheck: ["@mozilla.org/spellchecker/engine;1", "mozISpellCheckingEngine"],
-  timerManager: [
-    "@mozilla.org/updates/timer-manager;1",
-    "nsIUpdateTimerManager",
-  ],
-});
+const aomStartup = XPCOMUtils.lazyService(
+  "@mozilla.org/addons/addon-manager-startup;1",
+  "amIAddonManagerStartup"
+);
+const resProto = XPCOMUtils.lazyService(
+  "@mozilla.org/network/protocol;1?name=resource",
+  "nsISubstitutingProtocolHandler"
+);
+const spellCheck = XPCOMUtils.lazyService(
+  "@mozilla.org/spellchecker/engine;1",
+  "mozISpellCheckingEngine"
+);
+const timerManager = XPCOMUtils.lazyService(
+  "@mozilla.org/updates/timer-manager;1",
+  "nsIUpdateTimerManager"
+);
 
 const nsIFile = Components.Constructor(
   "@mozilla.org/file/local;1",

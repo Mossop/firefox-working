@@ -18,90 +18,56 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AsyncShutdown",
+const { AsyncShutdown } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AsyncShutdown.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "AppConstants",
+const { AppConstants } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AppConstants.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "DeferredTask",
+const { DeferredTask } = XPCOMUtils.lazyImport(
   "resource://gre/modules/DeferredTask.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Downloads",
+const { Downloads } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Downloads.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "DownloadStore",
+const { DownloadStore } = XPCOMUtils.lazyImport(
   "resource://gre/modules/DownloadStore.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "DownloadUIHelper",
+const { DownloadUIHelper } = XPCOMUtils.lazyImport(
   "resource://gre/modules/DownloadUIHelper.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FileUtils",
+const { FileUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FileUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "NetUtil",
-  "resource://gre/modules/NetUtil.jsm"
-);
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesUtils",
+const { NetUtil } = XPCOMUtils.lazyImport("resource://gre/modules/NetUtil.jsm");
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { PlacesUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PlacesUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
+const { Services } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Services.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "CloudStorage",
+const { CloudStorage } = XPCOMUtils.lazyImport(
   "resource://gre/modules/CloudStorage.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gDownloadPlatform",
+const gDownloadPlatform = XPCOMUtils.lazyService(
   "@mozilla.org/toolkit/download-platform;1",
   "mozIDownloadPlatform"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gEnvironment",
+const gEnvironment = XPCOMUtils.lazyService(
   "@mozilla.org/process/environment;1",
   "nsIEnvironment"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gMIMEService",
+const gMIMEService = XPCOMUtils.lazyService(
   "@mozilla.org/mime;1",
   "nsIMIMEService"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gExternalProtocolService",
+const gExternalProtocolService = XPCOMUtils.lazyService(
   "@mozilla.org/uriloader/external-protocol-service;1",
   "nsIExternalProtocolService"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "RuntimePermissions",
+const { RuntimePermissions } = XPCOMUtils.lazyImport(
   "resource://gre/modules/RuntimePermissions.jsm"
 );
 
@@ -114,9 +80,7 @@ XPCOMUtils.defineLazyGetter(this, "gParentalControlsService", function() {
   return null;
 });
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "gApplicationReputationService",
+const gApplicationReputationService = XPCOMUtils.lazyService(
   "@mozilla.org/reputationservice/application-reputation-service;1",
   Ci.nsIApplicationReputationService
 );

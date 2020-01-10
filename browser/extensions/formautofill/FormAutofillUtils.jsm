@@ -63,9 +63,7 @@ const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 const { FormAutofill } = ChromeUtils.import(
   "resource://formautofill/FormAutofill.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "CreditCard",
+const { CreditCard } = XPCOMUtils.lazyImport(
   "resource://gre/modules/CreditCard.jsm"
 );
 

@@ -15,20 +15,14 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "AppConstants",
+const { AppConstants } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AppConstants.jsm"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "nativeOSKeyStore",
+const nativeOSKeyStore = XPCOMUtils.lazyService(
   "@mozilla.org/security/oskeystore;1",
   Ci.nsIOSKeyStore
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "osReauthenticator",
+const osReauthenticator = XPCOMUtils.lazyService(
   "@mozilla.org/security/osreauthenticator;1",
   Ci.nsIOSReauthenticator
 );

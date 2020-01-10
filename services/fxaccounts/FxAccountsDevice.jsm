@@ -23,9 +23,7 @@ const { DEVICE_TYPE_DESKTOP } = ChromeUtils.import(
   "resource://services-sync/constants.js"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "CommonUtils",
+const { CommonUtils } = XPCOMUtils.lazyImport(
   "resource://services-common/utils.js"
 );
 

@@ -20,30 +20,52 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  AppConstants: "resource://gre/modules/AppConstants.jsm",
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.jsm",
-  BroadcastConduit: "resource://gre/modules/ConduitsParent.jsm",
-  DeferredTask: "resource://gre/modules/DeferredTask.jsm",
-  ExtensionData: "resource://gre/modules/Extension.jsm",
-  ExtensionActivityLog: "resource://gre/modules/ExtensionActivityLog.jsm",
-  GeckoViewConnection: "resource://gre/modules/GeckoViewWebExtension.jsm",
-  MessageChannel: "resource://gre/modules/MessageChannel.jsm",
-  MessageManagerProxy: "resource://gre/modules/MessageManagerProxy.jsm",
-  NativeApp: "resource://gre/modules/NativeMessaging.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
-  PerformanceCounters: "resource://gre/modules/PerformanceCounters.jsm",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.jsm",
-  Schemas: "resource://gre/modules/Schemas.jsm",
-});
+const { AddonManager } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AddonManager.jsm"
+);
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { AsyncShutdown } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AsyncShutdown.jsm"
+);
+const { BroadcastConduit } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ConduitsParent.jsm"
+);
+const { DeferredTask } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/DeferredTask.jsm"
+);
+const { ExtensionData } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Extension.jsm"
+);
+const { ExtensionActivityLog } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/ExtensionActivityLog.jsm"
+);
+const { GeckoViewConnection } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/GeckoViewWebExtension.jsm"
+);
+const { MessageChannel } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/MessageChannel.jsm"
+);
+const { MessageManagerProxy } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/MessageManagerProxy.jsm"
+);
+const { NativeApp } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/NativeMessaging.jsm"
+);
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { PerformanceCounters } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PerformanceCounters.jsm"
+);
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PrivateBrowsingUtils.jsm"
+);
+const { Schemas } = XPCOMUtils.lazyImport("resource://gre/modules/Schemas.jsm");
 
-XPCOMUtils.defineLazyServiceGetters(this, {
-  aomStartup: [
-    "@mozilla.org/addons/addon-manager-startup;1",
-    "amIAddonManagerStartup",
-  ],
-});
+const aomStartup = XPCOMUtils.lazyService(
+  "@mozilla.org/addons/addon-manager-startup;1",
+  "amIAddonManagerStartup"
+);
 
 // We're using the pref to avoid loading PerformanceCounters.jsm for nothing.
 XPCOMUtils.defineLazyPreferenceGetter(

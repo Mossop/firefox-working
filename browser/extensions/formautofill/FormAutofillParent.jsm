@@ -40,15 +40,24 @@ const { FormAutofill } = ChromeUtils.import(
   "resource://formautofill/FormAutofill.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
-  CreditCard: "resource://gre/modules/CreditCard.jsm",
-  FormAutofillPreferences:
-    "resource://formautofill/FormAutofillPreferences.jsm",
-  FormAutofillDoorhanger: "resource://formautofill/FormAutofillDoorhanger.jsm",
-  FormAutofillUtils: "resource://formautofill/FormAutofillUtils.jsm",
-  OSKeyStore: "resource://formautofill/OSKeyStore.jsm",
-});
+const { BrowserWindowTracker } = XPCOMUtils.lazyImport(
+  "resource:///modules/BrowserWindowTracker.jsm"
+);
+const { CreditCard } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/CreditCard.jsm"
+);
+const { FormAutofillPreferences } = XPCOMUtils.lazyImport(
+  "resource://formautofill/FormAutofillPreferences.jsm"
+);
+const { FormAutofillDoorhanger } = XPCOMUtils.lazyImport(
+  "resource://formautofill/FormAutofillDoorhanger.jsm"
+);
+const { FormAutofillUtils } = XPCOMUtils.lazyImport(
+  "resource://formautofill/FormAutofillUtils.jsm"
+);
+const { OSKeyStore } = XPCOMUtils.lazyImport(
+  "resource://formautofill/OSKeyStore.jsm"
+);
 
 this.log = null;
 FormAutofill.defineLazyLogGetter(this, EXPORTED_SYMBOLS[0]);

@@ -14,23 +14,19 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "OverrideService",
+const OverrideService = XPCOMUtils.lazyService(
   "@mozilla.org/security/certoverride;1",
   "nsICertOverrideService"
 );
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "IDNService",
+const IDNService = XPCOMUtils.lazyService(
   "@mozilla.org/network/idn-service;1",
   "nsIIDNService"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  BrowserUtils: "resource://gre/modules/BrowserUtils.jsm",
-});
+const { BrowserUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/BrowserUtils.jsm"
+);
 
 var IdentityHandler = {
   // The definitions below should be kept in sync with those in GeckoView.ProgressListener.SecurityInformation

@@ -9,14 +9,13 @@
 
 var EXPORTED_SYMBOLS = ["PhoneNumber"];
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PHONE_NUMBER_META_DATA",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { PHONE_NUMBER_META_DATA } = XPCOMUtils.lazyImport(
   "resource://formautofill/phonenumberutils/PhoneNumberMetaData.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PhoneNumberNormalizer",
+const { PhoneNumberNormalizer } = XPCOMUtils.lazyImport(
   "resource://formautofill/phonenumberutils/PhoneNumberNormalizer.jsm"
 );
 var PhoneNumber = (function(dataBase) {

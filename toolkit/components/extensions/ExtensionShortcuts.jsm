@@ -19,19 +19,13 @@ const { ShortcutUtils } = ChromeUtils.import(
   "resource://gre/modules/ShortcutUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "ExtensionParent",
+const { ExtensionParent } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ExtensionParent.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ExtensionSettingsStore",
+const { ExtensionSettingsStore } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ExtensionSettingsStore.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
 

@@ -12,17 +12,13 @@ const { XPCOMUtils } = ChromeUtils.import(
 );
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "ExtensionUtils",
+const { ExtensionUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ExtensionUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "JSONFile",
+const { JSONFile } = XPCOMUtils.lazyImport(
   "resource://gre/modules/JSONFile.jsm"
 );
-ChromeUtils.defineModuleGetter(this, "OS", "resource://gre/modules/osfile.jsm");
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
 
 const global = this;
 

@@ -12,10 +12,10 @@ const { SiteSpecificBrowserService } = ChromeUtils.import(
   "resource:///modules/SiteSpecificBrowserService.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  OS: "resource://gre/modules/osfile.jsm",
-  ImageTools: "resource:///modules/ssb/ImageTools.jsm",
-});
+const { OS } = XPCOMUtils.lazyImport("resource://gre/modules/osfile.jsm");
+const { ImageTools } = XPCOMUtils.lazyImport(
+  "resource:///modules/ssb/ImageTools.jsm"
+);
 
 const shellService = Cc["@mozilla.org/browser/shell-service;1"].getService(
   Ci.nsIWindowsShellService

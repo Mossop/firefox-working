@@ -20,9 +20,7 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "WebNavigationFrames",
+const { WebNavigationFrames } = XPCOMUtils.lazyImport(
   "resource://gre/modules/WebNavigationFrames.jsm"
 );
 

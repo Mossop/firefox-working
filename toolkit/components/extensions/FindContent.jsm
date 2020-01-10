@@ -9,15 +9,14 @@ var EXPORTED_SYMBOLS = ["FindContent"];
 
 /* exported FindContent */
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "FinderIterator",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { FinderIterator } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FinderIterator.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "FinderHighlighter",
+const { FinderHighlighter } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FinderHighlighter.jsm"
 );
 

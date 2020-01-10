@@ -31,21 +31,15 @@ const { OS } = ChromeUtils.import("resource://gre/modules/osfile.jsm");
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["XMLHttpRequest"]);
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "GMPPrefs",
+const { GMPPrefs } = XPCOMUtils.lazyImport(
   "resource://gre/modules/GMPUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "UpdateUtils",
+const { UpdateUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/UpdateUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "ServiceRequest",
+const { ServiceRequest } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ServiceRequest.jsm"
 );
 

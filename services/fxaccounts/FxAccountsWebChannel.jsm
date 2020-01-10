@@ -38,44 +38,26 @@ const {
   logPII,
 } = ChromeUtils.import("resource://gre/modules/FxAccountsCommon.js");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "Services",
+const { Services } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Services.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "WebChannel",
+const { WebChannel } = XPCOMUtils.lazyImport(
   "resource://gre/modules/WebChannel.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "fxAccounts",
+const { fxAccounts } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FxAccounts.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FxAccountsStorageManagerCanStoreField",
+const { FxAccountsStorageManagerCanStoreField } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FxAccountsStorage.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Weave",
-  "resource://services-sync/main.js"
-);
-ChromeUtils.defineModuleGetter(
-  this,
-  "CryptoUtils",
+const { Weave } = XPCOMUtils.lazyImport("resource://services-sync/main.js");
+const { CryptoUtils } = XPCOMUtils.lazyImport(
   "resource://services-crypto/utils.js"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "FxAccountsPairingFlow",
+const { FxAccountsPairingFlow } = XPCOMUtils.lazyImport(
   "resource://gre/modules/FxAccountsPairing.jsm"
 );
 XPCOMUtils.defineLazyPreferenceGetter(

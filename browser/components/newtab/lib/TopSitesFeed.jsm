@@ -35,29 +35,19 @@ const {
   getSearchProvider,
 } = ChromeUtils.import("resource://activity-stream/lib/SearchShortcuts.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "filterAdult",
+const { filterAdult } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/FilterAdult.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "LinksCache",
+const { LinksCache } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/LinksCache.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "NewTabUtils",
+const { NewTabUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/NewTabUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "Screenshots",
+const { Screenshots } = XPCOMUtils.lazyImport(
   "resource://activity-stream/lib/Screenshots.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PageThumbs",
+const { PageThumbs } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PageThumbs.jsm"
 );
 

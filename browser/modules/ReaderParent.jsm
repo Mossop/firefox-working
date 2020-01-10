@@ -9,14 +9,13 @@ var EXPORTED_SYMBOLS = ["ReaderParent"];
 
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesUtils",
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { PlacesUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PlacesUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "ReaderMode",
+const { ReaderMode } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ReaderMode.jsm"
 );
 

@@ -46,27 +46,19 @@ XPCOMUtils.defineLazyGetter(this, "_stringBundle", function() {
   );
 });
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "_idle",
+const _idle = XPCOMUtils.lazyService(
   "@mozilla.org/widget/idleservice;1",
   "nsIIdleService"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "_taskbarService",
+const _taskbarService = XPCOMUtils.lazyService(
   "@mozilla.org/windows-taskbar;1",
   "nsIWinTaskbar"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesUtils",
+const { PlacesUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PlacesUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PrivateBrowsingUtils",
+const { PrivateBrowsingUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PrivateBrowsingUtils.jsm"
 );
 

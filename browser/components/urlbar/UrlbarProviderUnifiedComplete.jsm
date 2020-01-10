@@ -15,18 +15,24 @@ var EXPORTED_SYMBOLS = ["UrlbarProviderUnifiedComplete"];
 const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
-XPCOMUtils.defineLazyModuleGetters(this, {
-  Log: "resource://gre/modules/Log.jsm",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.jsm",
-  Services: "resource://gre/modules/Services.jsm",
-  UrlbarProvider: "resource:///modules/UrlbarUtils.jsm",
-  UrlbarResult: "resource:///modules/UrlbarResult.jsm",
-  UrlbarUtils: "resource:///modules/UrlbarUtils.jsm",
-});
+const { Log } = XPCOMUtils.lazyImport("resource://gre/modules/Log.jsm");
+const { PlacesUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PlacesUtils.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { UrlbarProvider } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarUtils.jsm"
+);
+const { UrlbarResult } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarResult.jsm"
+);
+const { UrlbarUtils } = XPCOMUtils.lazyImport(
+  "resource:///modules/UrlbarUtils.jsm"
+);
 
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "unifiedComplete",
+const unifiedComplete = XPCOMUtils.lazyService(
   "@mozilla.org/autocomplete/search;1?name=unifiedcomplete",
   "nsIAutoCompleteSearch"
 );

@@ -13,9 +13,7 @@ XPCOMUtils.defineLazyGetter(this, "gBundle", function() {
   return Services.strings.createBundle(kUrl);
 });
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "Deprecated",
+const { Deprecated } = XPCOMUtils.lazyImport(
   "resource://gre/modules/Deprecated.jsm"
 );
 

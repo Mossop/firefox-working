@@ -11,14 +11,22 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  HttpServer: "chrome://remote/content/server/HTTPD.jsm",
-  JSONHandler: "chrome://remote/content/JSONHandler.jsm",
-  Log: "chrome://remote/content/Log.jsm",
-  Preferences: "resource://gre/modules/Preferences.jsm",
-  RecommendedPreferences: "chrome://remote/content/RecommendedPreferences.jsm",
-  Targets: "chrome://remote/content/targets/Targets.jsm",
-});
+const { HttpServer } = XPCOMUtils.lazyImport(
+  "chrome://remote/content/server/HTTPD.jsm"
+);
+const { JSONHandler } = XPCOMUtils.lazyImport(
+  "chrome://remote/content/JSONHandler.jsm"
+);
+const { Log } = XPCOMUtils.lazyImport("chrome://remote/content/Log.jsm");
+const { Preferences } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Preferences.jsm"
+);
+const { RecommendedPreferences } = XPCOMUtils.lazyImport(
+  "chrome://remote/content/RecommendedPreferences.jsm"
+);
+const { Targets } = XPCOMUtils.lazyImport(
+  "chrome://remote/content/targets/Targets.jsm"
+);
 XPCOMUtils.defineLazyGetter(this, "log", Log.get);
 
 const ENABLED = "remote.enabled";

@@ -29,14 +29,22 @@ const { XPCOMUtils } = ChromeUtils.import(
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["DOMParser", "XMLHttpRequest"]);
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.jsm",
-  CertUtils: "resource://gre/modules/CertUtils.jsm",
-  ctypes: "resource://gre/modules/ctypes.jsm",
-  DeferredTask: "resource://gre/modules/DeferredTask.jsm",
-  UpdateUtils: "resource://gre/modules/UpdateUtils.jsm",
-  WindowsRegistry: "resource://gre/modules/WindowsRegistry.jsm",
-});
+const { AsyncShutdown } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AsyncShutdown.jsm"
+);
+const { CertUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/CertUtils.jsm"
+);
+const { ctypes } = XPCOMUtils.lazyImport("resource://gre/modules/ctypes.jsm");
+const { DeferredTask } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/DeferredTask.jsm"
+);
+const { UpdateUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/UpdateUtils.jsm"
+);
+const { WindowsRegistry } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/WindowsRegistry.jsm"
+);
 
 const UPDATESERVICE_CID = Components.ID(
   "{B3C290A6-3943-4B89-8BBE-C01EB7B3B311}"

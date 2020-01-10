@@ -22,24 +22,14 @@ const { ExtensionUtils } = ChromeUtils.import(
 );
 var { DefaultMap, DefaultWeakMap } = ExtensionUtils;
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "ExtensionParent",
+const { ExtensionParent } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ExtensionParent.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "NetUtil",
-  "resource://gre/modules/NetUtil.jsm"
-);
-ChromeUtils.defineModuleGetter(
-  this,
-  "ShortcutUtils",
+const { NetUtil } = XPCOMUtils.lazyImport("resource://gre/modules/NetUtil.jsm");
+const { ShortcutUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/ShortcutUtils.jsm"
 );
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "contentPolicyService",
+const contentPolicyService = XPCOMUtils.lazyService(
   "@mozilla.org/addons/content-policy;1",
   "nsIAddonContentPolicy"
 );

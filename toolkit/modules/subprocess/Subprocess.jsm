@@ -24,15 +24,14 @@ const { SubprocessConstants } = ChromeUtils.import(
 );
 
 if (AppConstants.platform == "win") {
-  ChromeUtils.defineModuleGetter(
-    this,
-    "SubprocessImpl",
+  const { XPCOMUtils } = ChromeUtils.import(
+    "resource://gre/modules/XPCOMUtils.jsm"
+  );
+  const { SubprocessImpl } = XPCOMUtils.lazyImport(
     "resource://gre/modules/subprocess/subprocess_win.jsm"
   );
 } else {
-  ChromeUtils.defineModuleGetter(
-    this,
-    "SubprocessImpl",
+  const { SubprocessImpl } = XPCOMUtils.lazyImport(
     "resource://gre/modules/subprocess/subprocess_unix.jsm"
   );
 }

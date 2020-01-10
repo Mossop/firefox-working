@@ -22,19 +22,11 @@ const { MSMigrationUtils } = ChromeUtils.import(
   "resource:///modules/MSMigrationUtils.jsm"
 );
 
-ChromeUtils.defineModuleGetter(
-  this,
-  "ctypes",
-  "resource://gre/modules/ctypes.jsm"
-);
-ChromeUtils.defineModuleGetter(
-  this,
-  "PlacesUtils",
+const { ctypes } = XPCOMUtils.lazyImport("resource://gre/modules/ctypes.jsm");
+const { PlacesUtils } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PlacesUtils.jsm"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "OSCrypto",
+const { OSCrypto } = XPCOMUtils.lazyImport(
   "resource://gre/modules/OSCrypto.jsm"
 );
 

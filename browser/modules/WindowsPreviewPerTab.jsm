@@ -65,15 +65,11 @@ const CACHE_EXPIRATION_TIME_PREF_NAME = "browser.taskbar.previews.cachetime";
 const WINTASKBAR_CONTRACTID = "@mozilla.org/windows-taskbar;1";
 
 // Various utility properties
-XPCOMUtils.defineLazyServiceGetter(
-  this,
-  "imgTools",
+const imgTools = XPCOMUtils.lazyService(
   "@mozilla.org/image/tools;1",
   "imgITools"
 );
-ChromeUtils.defineModuleGetter(
-  this,
-  "PageThumbs",
+const { PageThumbs } = XPCOMUtils.lazyImport(
   "resource://gre/modules/PageThumbs.jsm"
 );
 
