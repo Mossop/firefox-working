@@ -19,6 +19,22 @@ function markArrayElementsAsUsed(context, node, expression) {
   }
 
   for (let element of expression.elements) {
+    for (let variable of context.getScope().variables) {
+      if (variable.name == element.value) {
+        for (let identifier of variable.identifiers) {
+          if (
+            identifier.parent &&
+            identifier.parent.type == "ClassDeclaration"
+          ) {
+            context.report({
+              node,
+              message: "Don't export classes from JSM modules.",
+            });
+          }
+        }
+      }
+    }
+
     context.markVariableAsUsed(element.value);
   }
   // Also mark EXPORTED_SYMBOLS as used.
