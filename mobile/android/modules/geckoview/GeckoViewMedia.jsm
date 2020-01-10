@@ -16,10 +16,6 @@ const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
 
-XPCOMUtils.defineLazyModuleGetters(this, {
-  GeckoViewUtils: "resource://gre/modules/GeckoViewUtils.jsm",
-});
-
 XPCOMUtils.defineLazyServiceGetter(
   this,
   "MediaManagerService",
