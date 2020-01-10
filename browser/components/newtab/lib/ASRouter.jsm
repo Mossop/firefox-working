@@ -27,7 +27,6 @@ XPCOMUtils.defineLazyModuleGetters(this, {
     "resource://activity-stream/lib/ASRouterPreferences.jsm",
   ASRouterTriggerListeners:
     "resource://activity-stream/lib/ASRouterTriggerListeners.jsm",
-  CFRMessageProvider: "resource://activity-stream/lib/CFRMessageProvider.jsm",
   GroupsConfigurationProvider:
     "resource://activity-stream/lib/GroupsConfigurationProvider.jsm",
   KintoHttpClient: "resource://services-common/kinto-http-client.js",

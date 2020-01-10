@@ -34,7 +34,6 @@ XPCOMUtils.defineLazyModuleGetters(this, {
   CertUtils: "resource://gre/modules/CertUtils.jsm",
   ctypes: "resource://gre/modules/ctypes.jsm",
   DeferredTask: "resource://gre/modules/DeferredTask.jsm",
-  OS: "resource://gre/modules/osfile.jsm",
   UpdateUtils: "resource://gre/modules/UpdateUtils.jsm",
   WindowsRegistry: "resource://gre/modules/WindowsRegistry.jsm",
 });
