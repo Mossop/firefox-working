@@ -20,7 +20,7 @@ const { KintoHttpClient } = XPCOMUtils.lazyImport(
 const { UptakeTelemetry } = XPCOMUtils.lazyImport(
   "resource://services-common/uptake-telemetry.js"
 );
-const { ClientEnvironmentBase } = XPCOMUtils.lazyImport(
+const { ClientEnvironmentBase } = ChromeUtils.import(
   "resource://gre/modules/components-utils/ClientEnvironment.jsm"
 );
 const { RemoteSettingsWorker } = XPCOMUtils.lazyImport(

@@ -27,9 +27,9 @@ const { XPCOMUtils } = ChromeUtils.import(
 // systems other than Windows. This is purely for convenient importing, because
 // attempting to use anything in this file on platforms other than Windows will
 // result in an error.
-if (AppConstants.MOZ_BITS_DOWNLOAD) {
-  const gBits = XPCOMUtils.lazyService("@mozilla.org/bits;1", "nsIBits");
-}
+const gBits = AppConstants.MOZ_BITS_DOWNLOAD
+  ? XPCOMUtils.lazyService("@mozilla.org/bits;1", "nsIBits")
+  : null;
 
 // This value exists to mitigate a very unlikely problem: If a BITS method
 // catastrophically fails, it may never call its callback. This would result in

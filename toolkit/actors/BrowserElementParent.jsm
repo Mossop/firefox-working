@@ -6,12 +6,13 @@
 
 var EXPORTED_SYMBOLS = ["BrowserElementParent", "PermitUnloader"];
 
-const { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
-const { Services } = XPCOMUtils.lazyImport("resource://gre/modules/Services.jsm");
-
-let { XPCOMUtils } = ChromeUtils.import(
+const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
 );
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+
 XPCOMUtils.defineLazyPreferenceGetter(
   this,
   "unloadTimeoutMs",
