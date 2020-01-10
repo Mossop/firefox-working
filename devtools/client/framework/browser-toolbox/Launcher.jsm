@@ -13,10 +13,15 @@ const { require, DevToolsLoader } = ChromeUtils.import(
 );
 const { XPCOMUtils } = require("resource://gre/modules/XPCOMUtils.jsm");
 
-const { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
-const { Subprocess } = XPCOMUtils.lazyImport("resource://gre/modules/Subprocess.jsm");
-const { AppConstants } = XPCOMUtils.lazyImport("resource://gre/modules/AppConstants.jsm");
-const { FileUtils } = XPCOMUtils.lazyImport("resource://gre/modules/FileUtils.jsm");
+const { Subprocess } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Subprocess.jsm"
+);
+const { AppConstants } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/AppConstants.jsm"
+);
+const { FileUtils } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/FileUtils.jsm"
+);
 
 XPCOMUtils.defineLazyGetter(this, "Telemetry", function() {
   return require("devtools/client/shared/telemetry");

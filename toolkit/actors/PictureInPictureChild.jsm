@@ -6,14 +6,20 @@
 
 var EXPORTED_SYMBOLS = ["PictureInPictureChild", "PictureInPictureToggleChild"];
 
-const { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
-const { DeferredTask } = XPCOMUtils.lazyImport("resource://gre/modules/DeferredTask.jsm");
-const { Services } = XPCOMUtils.lazyImport("resource://gre/modules/Services.jsm");
-const { TOGGLE_POLICIES } = XPCOMUtils.lazyImport("resource://gre/modules/PictureInPictureTogglePolicy.jsm");
-const { TOGGLE_POLICY_STRINGS } = XPCOMUtils.lazyImport("resource://gre/modules/PictureInPictureTogglePolicy.jsm");
-
 const { XPCOMUtils } = ChromeUtils.import(
   "resource://gre/modules/XPCOMUtils.jsm"
+);
+const { DeferredTask } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/DeferredTask.jsm"
+);
+const { Services } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/Services.jsm"
+);
+const { TOGGLE_POLICIES } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PictureInPictureTogglePolicy.jsm"
+);
+const { TOGGLE_POLICY_STRINGS } = XPCOMUtils.lazyImport(
+  "resource://gre/modules/PictureInPictureTogglePolicy.jsm"
 );
 
 const TOGGLE_ENABLED_PREF =

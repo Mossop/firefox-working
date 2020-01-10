@@ -23,18 +23,18 @@ const { SubprocessConstants } = ChromeUtils.import(
   "resource://gre/modules/subprocess/subprocess_common.jsm"
 );
 
-if (AppConstants.platform == "win") {
-  const { XPCOMUtils } = ChromeUtils.import(
-    "resource://gre/modules/XPCOMUtils.jsm"
-  );
-  const { SubprocessImpl } = XPCOMUtils.lazyImport(
-    "resource://gre/modules/subprocess/subprocess_win.jsm"
-  );
-} else {
-  const { SubprocessImpl } = XPCOMUtils.lazyImport(
-    "resource://gre/modules/subprocess/subprocess_unix.jsm"
-  );
-}
+const { XPCOMUtils } = ChromeUtils.import(
+  "resource://gre/modules/XPCOMUtils.jsm"
+);
+
+const { SubprocessImpl } =
+  AppConstants.platform == "win"
+    ? XPCOMUtils.lazyImport(
+        "resource://gre/modules/subprocess/subprocess_win.jsm"
+      )
+    : XPCOMUtils.lazyImport(
+        "resource://gre/modules/subprocess/subprocess_unix.jsm"
+      );
 
 function encodeEnvVar(name, value) {
   if (typeof name === "string" && typeof value === "string") {

@@ -644,12 +644,15 @@ const { WindowsRegistry } = XPCOMUtils.lazyImport(
 const { AboutLoginsParent } = XPCOMUtils.lazyImport(
   "resource:///modules/AboutLoginsParent.jsm"
 );
+// eslint-disable-next-line no-unused-vars
 const { AsyncPrefs } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AsyncPrefs.jsm"
 );
+// eslint-disable-next-line no-unused-vars
 const { PluginManager } = XPCOMUtils.lazyImport(
   "resource:///actors/PluginParent.jsm"
 );
+// eslint-disable-next-line no-unused-vars
 const { ReaderParent } = XPCOMUtils.lazyImport(
   "resource:///modules/ReaderParent.jsm"
 );
@@ -678,11 +681,9 @@ let initializedModules = {};
   });
 });
 
-if (AppConstants.MOZ_CRASHREPORTER) {
-  const { UnsubmittedCrashHandler } = XPCOMUtils.lazyImport(
-    "resource:///modules/ContentCrashHandlers.jsm"
-  );
-}
+const { UnsubmittedCrashHandler } = AppConstants.MOZ_CRASHREPORTER
+  ? XPCOMUtils.lazyImport("resource:///modules/ContentCrashHandlers.jsm")
+  : {};
 
 XPCOMUtils.defineLazyGetter(this, "gBrandBundle", function() {
   return Services.strings.createBundle(

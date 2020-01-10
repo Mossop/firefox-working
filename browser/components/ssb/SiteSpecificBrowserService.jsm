@@ -50,11 +50,10 @@ const { AppConstants } = XPCOMUtils.lazyImport(
   "resource://gre/modules/AppConstants.jsm"
 );
 
-if (AppConstants.platform == "win") {
-  const { WindowsSupport } = XPCOMUtils.lazyImport(
-    "resource:///modules/ssb/WindowsSupport.jsm"
-  );
-}
+const { WindowsSupport } =
+  AppConstants.platform == "win"
+    ? XPCOMUtils.lazyImport("resource:///modules/ssb/WindowsSupport.jsm")
+    : {};
 
 /**
  * A schema version for the SSB data stored in the kvstore.

@@ -52,7 +52,10 @@ const { JSONFile } = XPCOMUtils.lazyImport(
 const { TelemetrySession } = XPCOMUtils.lazyImport(
   "resource://gre/modules/TelemetrySession.jsm"
 );
-const { XPIDatabase } = XPCOMUtils.lazyImport(
+// eslint-disable-next-line mozilla/no-define-module-getter
+ChromeUtils.defineModuleGetter(
+  this,
+  "XPIDatabase",
   "resource://gre/modules/addons/XPIDatabase.jsm"
 );
 const { XPIDatabaseReconcile } = XPCOMUtils.lazyImport(
