@@ -29,10 +29,12 @@
 #include "mozilla/dom/Document.h"
 #include "mozilla/dom/Element.h"
 #include "mozilla/dom/Text.h"
+#include "mozilla/parser/PrototypeDocumentParser.h"
 
 using namespace mozilla;
 using namespace mozilla::dom;
 using mozilla::dom::DestroyProtoAndIfaceCache;
+using mozilla::parser::PrototypeDocumentParser;
 
 uint32_t nsXULPrototypeDocument::gRefCnt;
 
@@ -42,7 +44,10 @@ uint32_t nsXULPrototypeDocument::gRefCnt;
 //
 
 nsXULPrototypeDocument::nsXULPrototypeDocument()
-    : mRoot(nullptr), mLoaded(false), mCCGeneration(0), mWasL10nCached(false) {
+    : mRoot(nullptr),
+      mReady(false),
+      mCCGeneration(0),
+      mWasL10nCached(false) {
   ++gRefCnt;
 }
 
@@ -59,6 +64,7 @@ NS_IMPL_CYCLE_COLLECTION_CLASS(nsXULPrototypeDocument)
 
 NS_IMPL_CYCLE_COLLECTION_UNLINK_BEGIN(nsXULPrototypeDocument)
   NS_IMPL_CYCLE_COLLECTION_UNLINK(mPrototypeWaiters)
+  NS_IMPL_CYCLE_COLLECTION_UNLINK(mDocParser)
 NS_IMPL_CYCLE_COLLECTION_UNLINK_END
 NS_IMPL_CYCLE_COLLECTION_TRAVERSE_BEGIN(nsXULPrototypeDocument)
   if (nsCCUncollectableMarker::InGeneration(cb, tmp->mCCGeneration)) {
@@ -66,6 +72,7 @@ NS_IMPL_CYCLE_COLLECTION_TRAVERSE_BEGIN(nsXULPrototypeDocument)
   }
   NS_IMPL_CYCLE_COLLECTION_TRAVERSE(mRoot)
   NS_IMPL_CYCLE_COLLECTION_TRAVERSE(mNodeInfoManager)
+  NS_IMPL_CYCLE_COLLECTION_TRAVERSE(mDocParser)
 NS_IMPL_CYCLE_COLLECTION_TRAVERSE_END
 
 NS_INTERFACE_MAP_BEGIN_CYCLE_COLLECTION(nsXULPrototypeDocument)
@@ -201,7 +208,8 @@ nsXULPrototypeDocument::Read(nsIObjectInputStream* aStream) {
     }
   }
 
-  return NotifyLoadDone();
+  NotifyPrototypeReady();
+  return NS_OK;
 }
 
 static nsresult GetNodeInfos(nsXULPrototypeElement* aPrototype,
@@ -391,13 +399,20 @@ nsNodeInfoManager* nsXULPrototypeDocument::GetNodeInfoManager() {
   return mNodeInfoManager;
 }
 
-nsresult nsXULPrototypeDocument::AwaitLoadDone(Callback&& aCallback,
-                                               bool* aResult) {
+void nsXULPrototypeDocument::AwaitPrototypeParsed(
+    PrototypeDocumentParser* aDocParser) {
+  MOZ_ASSERT(!mDocParser);
+  MOZ_ASSERT(!mReady);
+  mDocParser = aDocParser;
+}
+
+nsresult nsXULPrototypeDocument::AwaitPrototypeReady(
+    PrototypeDocumentParser* aDocParser, bool* aResult) {
   nsresult rv = NS_OK;
 
-  *aResult = mLoaded;
+  *aResult = mReady;
 
-  if (!mLoaded) {
+  if (!mReady) {
     // XXX(Bug 1631371) Check if this should use a fallible operation as it
     // pretended earlier, or change the return type to void.
     mPrototypeWaiters.AppendElement(std::move(aCallback));
@@ -406,21 +421,37 @@ nsresult nsXULPrototypeDocument::AwaitLoadDone(Callback&& aCallback,
   return rv;
 }
 
-nsresult nsXULPrototypeDocument::NotifyLoadDone() {
+void nsXULPrototypeDocument::NotifyPrototypeReady() {
+  if (mReady) {
+    MOZ_ASSERT(mPrototypeWaiters.Length() == 0);
+    return;
+  }
+
+  printf("%p nsXULPrototypeDocument::NotifyPrototypeReady\n", this);
+
   // Call back to each XUL document that raced to start the same
   // prototype document load, lost the race, but hit the XUL
   // prototype cache because the winner filled the cache with
   // the not-yet-loaded prototype object.
+  MOZ_ASSERT(!mDocParser);
 
-  mLoaded = true;
+  mReady = true;
 
   for (uint32_t i = mPrototypeWaiters.Length(); i > 0;) {
     --i;
-    mPrototypeWaiters[i]();
+    mPrototypeWaiters[i]->OnPrototypeLoadDone();
   }
   mPrototypeWaiters.Clear();
+}
 
-  return NS_OK;
+void nsXULPrototypeDocument::NotifyPrototypeParsed() {
+  MOZ_ASSERT(!mReady);
+  MOZ_ASSERT(mDocParser);
+
+  printf("%p nsXULPrototypeDocument::NotifyPrototypeParsed\n", this);
+
+  RefPtr<PrototypeDocumentParser> docParser = mDocParser.forget();
+  docParser->OnPrototypeLoadDone();
 }
 
 void nsXULPrototypeDocument::SetIsL10nCached(bool aIsCached) {

@@ -109,6 +109,13 @@ class PrototypeDocumentParser final : public nsIParser,
 
   // End nsIParser
 
+  // This is invoked whenever the prototype for this document is loaded
+  // and should be walked, regardless of whether the XUL cache is
+  // disabled, whether the protototype was loaded, whether the
+  // prototype was loaded from the cache or created by parsing the
+  // actual XUL source, etc.
+  nsresult OnPrototypeLoadDone();
+
  private:
   virtual ~PrototypeDocumentParser();
 
@@ -116,13 +123,6 @@ class PrototypeDocumentParser final : public nsIParser,
   nsresult PrepareToLoadPrototype(nsIURI* aURI,
                                   nsIPrincipal* aDocumentPrincipal,
                                   nsIParser** aResult);
-
-  // This is invoked whenever the prototype for this document is loaded
-  // and should be walked, regardless of whether the XUL cache is
-  // disabled, whether the protototype was loaded, whether the
-  // prototype was loaded from the cache or created by parsing the
-  // actual XUL source, etc.
-  nsresult OnPrototypeLoadDone();
 
   nsCOMPtr<nsIURI> mDocumentURI;
   RefPtr<dom::PrototypeDocumentContentSink> mOriginalSink;
@@ -138,7 +138,7 @@ class PrototypeDocumentParser final : public nsIParser,
 
   // True if there was a prototype in the cache and it finished loading
   // already.
-  bool mPrototypeAlreadyLoaded;
+  bool mPrototypeAlreadyReady;
 
   // True after the parser has notified the content sink that it is done.
   bool mIsComplete;

@@ -26,7 +26,7 @@ PrototypeDocumentParser::PrototypeDocumentParser(nsIURI* aDocumentURI,
                                                  dom::Document* aDocument)
     : mDocumentURI(aDocumentURI),
       mDocument(aDocument),
-      mPrototypeAlreadyLoaded(false),
+      mPrototypeAlreadyReady(false),
       mIsComplete(false) {}
 
 PrototypeDocumentParser::~PrototypeDocumentParser() {}
@@ -87,6 +87,12 @@ PrototypeDocumentParser::Parse(nsIURI* aURL, void* aKey) {
     // Set up the right principal on the document.
     mDocument->SetPrincipals(proto->DocumentPrincipal(),
                              proto->DocumentPrincipal());
+
+    // We have a cached prototype. It may not yet have been fully parsed and
+    // translated. So we wait for the prototype to be ready.
+    mCurrentPrototype->AwaitPrototypeReady(this, &mPrototypeAlreadyReady);
+    printf("%p %p %p PrototypeDocumentParser::Parse existing %d %s\n", mCurrentPrototype.get(),  mOriginalSink.get(), mDocument.get(), mPrototypeAlreadyReady, aURL->GetSpecOrDefault().get());
+    return NS_OK;
   } else {
     // It's just a vanilla document load. Create a parser to deal
     // with the stream n' stuff.
@@ -97,6 +103,7 @@ PrototypeDocumentParser::Parse(nsIURI* aURL, void* aKey) {
     rv =
         PrepareToLoadPrototype(mDocumentURI, principal, getter_AddRefs(parser));
     if (NS_FAILED(rv)) return rv;
+    printf("%p %p %p PrototypeDocumentParser::Parse new %s\n", mCurrentPrototype.get(),  mOriginalSink.get(), mDocument.get(), aURL->GetSpecOrDefault().get());
 
     nsCOMPtr<nsIStreamListener> listener = do_QueryInterface(parser, &rv);
     NS_ASSERTION(NS_SUCCEEDED(rv), "parser doesn't support nsIStreamListener");
@@ -106,18 +113,6 @@ PrototypeDocumentParser::Parse(nsIURI* aURL, void* aKey) {
 
     parser->Parse(mDocumentURI);
   }
-
-  // If we're racing with another document to load proto, wait till the
-  // load has finished loading before trying build the document.
-  // Either the nsXULContentSink finishing to load the XML or
-  // the nsXULPrototypeDocument completing deserialization will trigger the
-  // OnPrototypeLoadDone callback.
-  // If the prototype is already loaded, OnPrototypeLoadDone will be called
-  // in OnStopRequest.
-  RefPtr<PrototypeDocumentParser> self = this;
-  rv = mCurrentPrototype->AwaitLoadDone(
-      [self]() { self->OnPrototypeLoadDone(); }, &mPrototypeAlreadyLoaded);
-  if (NS_FAILED(rv)) return rv;
 
   return NS_OK;
 }
@@ -139,7 +134,7 @@ PrototypeDocumentParser::OnStopRequest(nsIRequest* request, nsresult aStatus) {
   if (mStreamListener) {
     return mStreamListener->OnStopRequest(request, aStatus);
   }
-  if (mPrototypeAlreadyLoaded) {
+  if (mPrototypeAlreadyReady) {
     return this->OnPrototypeLoadDone();
   }
   // The prototype will handle calling OnPrototypeLoadDone when it is ready.
@@ -162,6 +157,7 @@ PrototypeDocumentParser::OnDataAvailable(nsIRequest* request,
 nsresult PrototypeDocumentParser::OnPrototypeLoadDone() {
   MOZ_ASSERT(!mIsComplete, "Should not be called more than once.");
   mIsComplete = true;
+  printf("%p %p PrototypeDocumentParser::OnPrototypeLoadDone\n", mCurrentPrototype.get(),  mOriginalSink.get());
 
   return mOriginalSink->OnPrototypeLoadDone(mCurrentPrototype);
 }
@@ -179,6 +175,8 @@ nsresult PrototypeDocumentParser::PrepareToLoadPrototype(
     mCurrentPrototype = nullptr;
     return rv;
   }
+
+  mCurrentPrototype->AwaitPrototypeParsed(this);
 
   // Store the new prototype right away so if there are multiple requests
   // for the same document they all get the same prototype.

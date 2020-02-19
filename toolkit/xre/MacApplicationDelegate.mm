@@ -286,6 +286,8 @@ void ProcessPendingGetURLAppleEvents() {
   // We provide our own full screen menu item, so we don't want the OS providing
   // one as well.
   [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"NSFullScreenMenuItemEverywhere"];
+
+  [self openURL:[NSURL URLWithString:@"https://www.google.com/"]];
 }
 
 // If we don't handle applicationShouldTerminate:, a call to [NSApp terminate:]
