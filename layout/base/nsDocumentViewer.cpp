@@ -990,14 +990,16 @@ nsDocumentViewer::LoadComplete(nsresult aStatus) {
     restoring =
         (mDocument->GetReadyStateEnum() == Document::READYSTATE_COMPLETE);
     if (!restoring) {
-      NS_ASSERTION(
+      printf("%p %s\n", mDocument.get(), mDocument->GetDocumentURI()->GetSpecOrDefault().get());
+      if (!(
           mDocument->GetReadyStateEnum() == Document::READYSTATE_INTERACTIVE ||
               // test_stricttransportsecurity.html has old-style
               // docshell-generated about:blank docs reach this code!
               (mDocument->GetReadyStateEnum() ==
                    Document::READYSTATE_UNINITIALIZED &&
-               NS_IsAboutBlank(mDocument->GetDocumentURI())),
-          "Bad readystate");
+               NS_IsAboutBlank(mDocument->GetDocumentURI())))) {
+          MOZ_ASSERT(false, "Bad readystate");
+               }
 #ifdef DEBUG
       bool docShellThinksWeAreRestoring;
       docShell->GetRestoringDocument(&docShellThinksWeAreRestoring);

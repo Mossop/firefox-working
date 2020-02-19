@@ -637,10 +637,16 @@ nsresult PrototypeDocumentContentSink::MaybeDoneWalking() {
     return NS_OK;
   }
 
+  printf("%p %p PrototypeDocumentContentSink::MaybeDoneWalking %d\n", mCurrentPrototype.get(), this, mDocument->HasPendingInitialTranslation());
+
   if (mDocument->HasPendingInitialTranslation()) {
     mDocument->OnParsingCompleted();
     return NS_OK;
   }
+
+  // Notify others waiting for this prototype that it is now fully parsed and
+  // translated.
+  mCurrentPrototype->NotifyPrototypeReady();
 
   return DoneWalking();
 }
@@ -650,6 +656,7 @@ nsresult PrototypeDocumentContentSink::DoneWalking() {
   MOZ_ASSERT(!mStillWalking, "walk not done");
   MOZ_ASSERT(!mDocument->HasPendingInitialTranslation(), "translation pending");
 
+  printf("%p %p PrototypeDocumentContentSink::DoneWalking\n", mCurrentPrototype.get(), this);
   if (mDocument) {
     MOZ_ASSERT(mDocument->GetReadyStateEnum() == Document::READYSTATE_LOADING,
                "Bad readyState");

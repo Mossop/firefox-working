@@ -26,6 +26,13 @@ namespace mozilla::dom {
 class Element;
 }
 
+namespace mozilla {
+namespace parser {
+  class PrototypeDocumentParser;
+}
+}
+using mozilla::parser::PrototypeDocumentParser;
+
 /**
  * A "prototype" document that stores shared document information
  * for the XUL cache.
@@ -72,21 +79,32 @@ class nsXULPrototypeDocument final : public nsISerializable {
   void SetDocumentPrincipal(nsIPrincipal* aPrincipal);
 
   /**
-   * If current prototype document has not yet finished loading,
+   * Registers the initial content sink for this prototype that parsing is
+   * complete and translation (if needed) is ready to happen.
+   */
+  void AwaitPrototypeParsed(PrototypeDocumentParser* aDocParser);
+
+  /**
+   * If current prototype document has not yet finished loading and translating,
    * appends aDocument to the list of documents to notify (via
    * PrototypeDocumentContentSink::OnPrototypeLoadDone()) and
    * sets aLoaded to false. Otherwise sets aLoaded to true.
    */
-  nsresult AwaitLoadDone(Callback&& aCallback, bool* aResult);
+  nsresult AwaitPrototypeReady(PrototypeDocumentParser* aDocParser, bool* aResult);
 
   /**
-   * Notifies each document registered via AwaitLoadDone on this
-   * prototype document that the prototype has finished loading.
-   * The notification is performed by calling
-   * PrototypeDocumentContentSink::OnPrototypeLoadDone on the
-   * registered documents.
+   * Notifies each document registered via AwaitPrototypeReady on this
+   * prototype document that the prototype has finished loading. The
+   * notification is performed by calling
+   * PrototypeDocumentContentSink::OnPrototypeLoadDone on the registered documents.
    */
-  nsresult NotifyLoadDone();
+  void NotifyPrototypeReady();
+
+  /**
+   * Notification from XULContentSinkImpl that parsing of the document is
+   * complete.
+   */
+  void NotifyPrototypeParsed();
 
   nsNodeInfoManager* GetNodeInfoManager();
 
@@ -106,8 +124,8 @@ class nsXULPrototypeDocument final : public nsISerializable {
   RefPtr<nsXULPrototypeElement> mRoot;
   nsTArray<RefPtr<nsXULPrototypePI> > mProcessingInstructions;
 
-  bool mLoaded;
-  nsTArray<Callback> mPrototypeWaiters;
+  bool mReady;
+  nsTArray<RefPtr<PrototypeDocumentParser>> mPrototypeWaiters;
 
   RefPtr<nsNodeInfoManager> mNodeInfoManager;
 
@@ -122,6 +140,7 @@ class nsXULPrototypeDocument final : public nsISerializable {
 
   static uint32_t gRefCnt;
   bool mWasL10nCached;
+  RefPtr<PrototypeDocumentParser> mDocParser;
 };
 
 #endif  // nsXULPrototypeDocument_h__
