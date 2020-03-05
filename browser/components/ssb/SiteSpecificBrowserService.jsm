@@ -40,6 +40,7 @@ XPCOMUtils.defineLazyModuleGetters(this, {
   OS: "resource://gre/modules/osfile.jsm",
   ImageTools: "resource:///modules/ssb/ImageTools.jsm",
   AppConstants: "resource://gre/modules/AppConstants.jsm",
+  PageActions: "resource:///modules/PageActions.jsm",
 });
 
 if (AppConstants.platform == "win") {
@@ -785,6 +786,65 @@ async function loadKVStore() {
 
 const SiteSpecificBrowserService = {
   kvstore: null,
+  pageAction: null,
+
+  onEnabled() {
+    if (this.pageAction) {
+      return;
+    }
+
+    this.pageAction = PageActions.addAction(
+      new PageActions.Action({
+        id: "launchSSB",
+        // Hardcoded for now. Localization tracked in bug 1602528.
+        title: "Install Website as App",
+
+        onLocationChange(browserWindow) {
+          let browser = browserWindow.gBrowser.selectedBrowser;
+          this.setDisabled(
+            !browser.currentURI.schemeIs("https"),
+            browserWindow
+          );
+        },
+
+        async onCommand(event, buttonNode) {
+          let gBrowser = buttonNode.ownerGlobal.gBrowser;
+          let browser = gBrowser.selectedBrowser;
+
+          if (!browser.currentURI.schemeIs("https")) {
+            return;
+          }
+
+          let ssb = await SiteSpecificBrowser.createFromBrowser(browser);
+
+          // Launching through the UI implies installing.
+          await ssb.install();
+
+          // The site's manifest may point to a different start page so explicitly
+          // open the SSB to the current page.
+          ssb.launch(browser.currentURI);
+          gBrowser.removeTab(gBrowser.selectedTab, {
+            closeWindowWithLastTab: false,
+          });
+        },
+      })
+    );
+  },
+
+  onDisabled() {
+    if (!this.pageAction) {
+      return;
+    }
+
+    this.pageAction.remove();
+    this.pageAction = null;
+
+    Services.obs.notifyObservers(
+      null,
+      "site-specific-browser-disabled",
+      this.id
+    );
+  },
 
   /**
    * Returns a promise that resolves to the KV store for SSBs.
@@ -828,8 +888,17 @@ XPCOMUtils.defineLazyPreferenceGetter(
   SiteSpecificBrowserService,
   "isEnabled",
   "browser.ssb.enabled",
-  false
+  false,
+  (pref, previousValue, newValue) => {
+    newValue
+      ? SiteSpecificBrowserService.onEnabled()
+      : SiteSpecificBrowserService.onDisabled();
+  }
 );
+
+if (SiteSpecificBrowserService.isEnabled) {
+  SiteSpecificBrowserService.onEnabled();
+}
 
 async function startSSB(id) {
   // Loading the SSB is async. Until that completes and launches we will
