@@ -2519,49 +2519,53 @@ const SiteSpecificBrowserUI = {
   menuInitialized: false,
 
   init() {
-    if (!SiteSpecificBrowserService.isEnabled) {
-      return;
-    }
+    Services.obs.addObserver(this, "site-specific-browser-disabled", true);
+    Services.obs.addObserver(this, "site-specific-browser-install", true);
+    Services.obs.addObserver(this, "site-specific-browser-uninstall", true);
+
+    XPCOMUtils.defineLazyGetter(this, "panelButton", () => {
+      return document.getElementById("appMenu-ssb-button");
+    });
 
     XPCOMUtils.defineLazyGetter(this, "panelBody", () => {
       return document.querySelector("#appMenu-SSBView .panel-subview-body");
     });
 
-    let initializeMenu = async () => {
-      let list = await SiteSpecificBrowserService.list();
+    document
+      .getElementById("appMenu-mainView")
+      .addEventListener("ViewShowing", event => {
+        if (!SiteSpecificBrowserService.isEnabled || this.menuInitialized) {
+          return;
+        }
 
-      for (let ssb of list) {
-        this.addSSBToMenu(ssb);
-      }
+        event.detail.addBlocker(this.initializeMenu());
+      });
+  },
 
-      if (!list.length) {
-        document.getElementById("appMenu-ssb-button").hidden = true;
-      }
+  async initializeMenu() {
+    if (this.menuInitialized) {
+      return;
+    }
 
-      this.menuInitialized = true;
-      Services.obs.addObserver(this, "site-specific-browser-install", true);
-      Services.obs.addObserver(this, "site-specific-browser-uninstall", true);
-    };
+    let list = await SiteSpecificBrowserService.list();
 
-    document.getElementById("appMenu-popup").addEventListener(
-      "popupshowing",
-      () => {
-        let blocker = initializeMenu();
-        document.getElementById("appMenu-SSBView").addEventListener(
-          "ViewShowing",
-          event => {
-            event.detail.addBlocker(blocker);
-          },
-          { once: true }
-        );
-      },
-      { once: true }
-    );
+    this.menuInitialized = true;
+
+    for (let ssb of list) {
+      this.addSSBToMenu(ssb);
+    }
   },
 
   observe(subject, topic, id) {
     let ssb = SiteSpecificBrowser.get(id);
     switch (topic) {
+      case "site-specific-browser-disabled":
+        this.panelButton.hidden = true;
+        this.menuInitialized = false;
+        while (this.panelBody.lastElementChild) {
+          this.panelBody.lastElementChild.remove();
+        }
+        break;
       case "site-specific-browser-install":
         this.addSSBToMenu(ssb);
         break;
@@ -2572,13 +2576,17 @@ const SiteSpecificBrowserUI = {
   },
 
   removeSSBFromMenu(ssb) {
+    if (!this.menuInitialized) {
+      return;
+    }
+
     let container = document.getElementById("ssb-button-" + ssb.id);
     if (!container) {
       return;
     }
 
     if (!container.nextElementSibling && !container.previousElementSibling) {
-      document.getElementById("appMenu-ssb-button").hidden = true;
+      this.panelButton.hidden = true;
     }
 
     let button = container.querySelector(".ssb-launch");
@@ -2591,6 +2599,10 @@ const SiteSpecificBrowserUI = {
   },
 
   addSSBToMenu(ssb) {
+    if (!this.menuInitialized) {
+      return;
+    }
+
     let container = document.createXULElement("toolbaritem");
     container.id = `ssb-button-${ssb.id}`;
     container.className = "toolbaritem-menu-buttons";
@@ -2627,7 +2639,7 @@ const SiteSpecificBrowserUI = {
     container.append(menu);
     container.append(uninstall);
     this.panelBody.append(container);
-    document.getElementById("appMenu-ssb-button").hidden = false;
+    this.panelButton.hidden = false;
   },
 
   QueryInterface: ChromeUtils.generateQI([Ci.nsISupportsWeakReference]),
