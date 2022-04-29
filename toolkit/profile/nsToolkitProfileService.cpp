@@ -1535,18 +1535,6 @@ nsresult nsToolkitProfileService::SelectStartupProfile(
 
     rv = CreateDefaultProfile(getter_AddRefs(mCurrent));
     if (NS_SUCCEEDED(rv)) {
-      // If there is only one profile and it isn't meant to be the profile that
-      // older versions of Firefox use then we must create a default profile
-      // for older versions of Firefox to avoid the existing profile being
-      // auto-selected.
-      if ((mUseDedicatedProfile || mUseDevEditionProfile) &&
-          mProfiles.getFirst() == mProfiles.getLast()) {
-        nsCOMPtr<nsIToolkitProfile> newProfile;
-        CreateProfile(nullptr, nsLiteralCString(DEFAULT_NAME),
-                      getter_AddRefs(newProfile));
-        SetNormalDefault(newProfile);
-      }
-
       rv = Flush();
       NS_ENSURE_SUCCESS(rv, rv);
 
