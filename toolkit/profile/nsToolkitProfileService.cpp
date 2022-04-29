@@ -792,33 +792,6 @@ nsToolkitProfileService::GetIsListOutdated(bool* aResult) {
   return NS_OK;
 }
 
-struct ImportInstallsClosure {
-  nsINIParser* backupData;
-  nsINIParser* profileDB;
-};
-
-static bool ImportInstalls(const char* aSection, void* aClosure) {
-  ImportInstallsClosure* closure =
-      static_cast<ImportInstallsClosure*>(aClosure);
-
-  nsTArray<UniquePtr<KeyValue>> strings =
-      GetSectionStrings(closure->backupData, aSection);
-  if (strings.IsEmpty()) {
-    return true;
-  }
-
-  nsCString newSection(INSTALL_PREFIX);
-  newSection.Append(aSection);
-  nsCString buffer;
-
-  for (uint32_t i = 0; i < strings.Length(); i++) {
-    closure->profileDB->SetString(newSection.get(), strings[i]->key.get(),
-                                  strings[i]->value.get());
-  }
-
-  return true;
-}
-
 nsresult nsToolkitProfileService::Init() {
   NS_ASSERTION(gDirServiceProvider, "No dirserviceprovider!");
   nsresult rv;
@@ -833,12 +806,6 @@ nsresult nsToolkitProfileService::Init() {
   NS_ENSURE_SUCCESS(rv, rv);
 
   rv = mProfileDBFile->AppendNative("profiles.ini"_ns);
-  NS_ENSURE_SUCCESS(rv, rv);
-
-  rv = mAppData->Clone(getter_AddRefs(mInstallDBFile));
-  NS_ENSURE_SUCCESS(rv, rv);
-
-  rv = mInstallDBFile->AppendNative("installs.ini"_ns);
   NS_ENSURE_SUCCESS(rv, rv);
 
   nsAutoCString buffer;
@@ -860,16 +827,6 @@ nsresult nsToolkitProfileService::Init() {
 
     rv = mProfileDB.GetString("General", "Version", buffer);
     if (NS_FAILED(rv)) {
-      // This is a profiles.ini written by an older version. We must restore
-      // any install data from the backup.
-      nsINIParser installDB;
-
-      if (NS_SUCCEEDED(installDB.Init(mInstallDBFile))) {
-        // There is install data to import.
-        ImportInstallsClosure closure = {&installDB, &mProfileDB};
-        installDB.GetSections(&ImportInstalls, &closure);
-      }
-
       rv = mProfileDB.SetString("General", "Version", PROFILE_DB_VERSION);
       NS_ENSURE_SUCCESS(rv, rv);
     }
@@ -2010,58 +1967,7 @@ nsToolkitProfileService::Flush() {
     return NS_ERROR_DATABASE_CHANGED;
   }
 
-  nsresult rv;
-
-  // If we aren't using dedicated profiles then nothing about the list of
-  // installs can have changed, so no need to update the backup.
-  if (mUseDedicatedProfile) {
-    // Export the installs to the backup.
-    nsTArray<nsCString> installs = GetKnownInstalls();
-
-    if (!installs.IsEmpty()) {
-      nsCString data;
-      nsCString buffer;
-
-      for (uint32_t i = 0; i < installs.Length(); i++) {
-        nsTArray<UniquePtr<KeyValue>> strings =
-            GetSectionStrings(&mProfileDB, installs[i].get());
-        if (strings.IsEmpty()) {
-          continue;
-        }
-
-        // Strip "Install" from the start.
-        const nsDependentCSubstring& install =
-            Substring(installs[i], INSTALL_PREFIX_LENGTH);
-        data.AppendPrintf("[%s]\n", PromiseFlatCString(install).get());
-
-        for (uint32_t j = 0; j < strings.Length(); j++) {
-          data.AppendPrintf("%s=%s\n", strings[j]->key.get(),
-                            strings[j]->value.get());
-        }
-
-        data.Append("\n");
-      }
-
-      FILE* writeFile;
-      rv = mInstallDBFile->OpenANSIFileDesc("w", &writeFile);
-      NS_ENSURE_SUCCESS(rv, rv);
-
-      uint32_t length = data.Length();
-      if (fwrite(data.get(), sizeof(char), length, writeFile) != length) {
-        fclose(writeFile);
-        return NS_ERROR_UNEXPECTED;
-      }
-
-      fclose(writeFile);
-    } else {
-      rv = mInstallDBFile->Remove(false);
-      if (NS_FAILED(rv) && rv != NS_ERROR_FILE_NOT_FOUND) {
-        return rv;
-      }
-    }
-  }
-
-  rv = mProfileDB.WriteToFile(mProfileDBFile);
+  nsresult rv = mProfileDB.WriteToFile(mProfileDBFile);
   NS_ENSURE_SUCCESS(rv, rv);
 
   rv = UpdateFileStats(mProfileDBFile, &mProfileDBExists,

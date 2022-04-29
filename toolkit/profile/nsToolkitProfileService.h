@@ -133,8 +133,6 @@ class nsToolkitProfileService final : public nsIToolkitProfileService {
   nsCOMPtr<nsIFile> mTempData;
   // The location of profiles.ini.
   nsCOMPtr<nsIFile> mProfileDBFile;
-  // The location of installs.ini.
-  nsCOMPtr<nsIFile> mInstallDBFile;
   // The data loaded from profiles.ini.
   nsINIParser mProfileDB;
   // The section in the profiles db for the current install.
