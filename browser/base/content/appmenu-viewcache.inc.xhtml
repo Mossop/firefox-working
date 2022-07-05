@@ -38,6 +38,11 @@
           </vbox>
         </toolbarbutton>
       </toolbaritem>
+      <toolbarbutton id="appMenu-identities-button"
+                class="subviewbutton subviewbutton-nav"
+                data-l10n-id="appmenuitem-identities"
+                closemenu="none"
+                oncommand="gIdentities.showPanel(this)"/>
       <toolbarseparator id="appMenu-fxa-separator" class="proton-zap"/>
       <toolbarbutton id="appMenu-new-tab-button2"
                      class="subviewbutton"
@@ -196,6 +201,16 @@
                    class="subviewbutton panel-subview-footer-button"
                    data-l10n-id="appmenu-manage-history"
                    oncommand="PlacesCommandHook.showPlacesOrganizer('History'); CustomizableUI.hidePanelForNode(this);"/>
+  </panelview>
+
+  <panelview id="PanelUI-identities" flex="1">
+    <vbox class="panel-subview-body">
+    </vbox>
+    <toolbarseparator/>
+    <toolbarbutton id="PanelUI-manageIdentities"
+                   class="subviewbutton panel-subview-footer-button"
+                   data-l10n-id="appmenu-manage-identities"
+                   oncommand="switchToTabHavingURI('about:identities', true)"/>
   </panelview>
 
   <panelview id="appMenu-library-recentlyClosedTabs"/>

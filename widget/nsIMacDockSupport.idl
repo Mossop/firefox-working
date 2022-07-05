@@ -5,6 +5,7 @@
 #include "nsISupports.idl"
 
 interface nsIStandaloneNativeMenu;
+interface nsIURI;
 
 /**
  * Allow applications to interface with the Mac OS X Dock.
@@ -31,6 +32,8 @@ interface nsIMacDockSupport : nsISupports
    *        application activates regardless.
    */
   void activateApplication(in boolean aIgnoreOtherApplications);
+
+  void setDockIcon(in nsIURI icon, in AString aColor);
 
   /**
    * Text used to badge the dock tile.

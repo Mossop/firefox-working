@@ -61,9 +61,30 @@ interface nsIToolkitProfile : nsISupports
     readonly attribute nsIFile localDir;
 
     /**
+     * The location of the profile identity directory.
+     */
+    readonly attribute nsIFile identityRootDir;
+
+    /**
+     * The location of the profile identity local directory, which may be the
+     * same as the root directory.
+     */
+    readonly attribute nsIFile identityLocalDir;
+
+    /**
      * The name of the profile.
      */
     attribute AUTF8String name;
+
+    /**
+     * The current nested identity.
+     */
+    readonly attribute AString currentIdentity;
+
+    /**
+     * The nested identity to load by default.
+     */
+    attribute AString defaultIdentity;
 
     /**
      * Removes the profile from the registry of profiles.

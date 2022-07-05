@@ -418,6 +418,10 @@ toolbar[brighttext] #panic-button[open] {
   fill: #ef4056;
 }
 
+.identity-item .toolbarbutton-text {
+  color: var(--toolbar-color)
+}
+
 /* ----- BOOKMARK BUTTONS ----- */
 
 .bookmark-item {

@@ -34,6 +34,7 @@
 #include "nsMenuItemIconX.h"
 #include "nsNameSpaceManager.h"
 #include "nsObjCExceptions.h"
+#include "mozilla/SVGImageContext.h"
 
 using namespace mozilla;
 
@@ -150,10 +151,12 @@ nsresult nsMenuItemIconX::OnComplete(imgIContainer* aImage) {
     mIconImage = nil;
   }
   RefPtr<nsPresContext> pc = mPresContext.get();
+  SVGImageContext svgContext;
+  SVGImageContext::MaybeStoreContextPaint(svgContext, *pc, *mComputedStyle, aImage);
+
   mIconImage = [[MOZIconHelper iconImageFromImageContainer:aImage
                                                   withSize:NSMakeSize(kIconSize, kIconSize)
-                                               presContext:pc
-                                             computedStyle:mComputedStyle
+                                                svgContext:svgContext
                                                scaleFactor:0.0f] retain];
   mComputedStyle = nullptr;
   mPresContext = nullptr;

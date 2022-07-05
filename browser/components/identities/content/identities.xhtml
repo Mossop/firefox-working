@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
+   - You can obtain one at http://mozilla.org/MPL/2.0/. -->
+
+<?xml-stylesheet href="chrome://global/skin/global.css"?>
+
+<?xml-stylesheet href="chrome://global/skin/in-content/info-pages.css"?>
+<?xml-stylesheet href="chrome://browser/content/identities/identities.css"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <head>
+    <meta http-equiv="Content-Security-Policy" content="default-src chrome:; object-src 'none'" />
+    <meta name="color-scheme" content="light dark" />
+    <title data-l10n-id="page-title"/>
+
+    <link rel="icon" type="image/png" id="favicon"
+          href="chrome://branding/content/icon32.png"/>
+
+    <script src="chrome://global/content/customElements.js"/>
+
+    <link rel="localization" href="branding/brand.ftl"/>
+    <link rel="localization" href="browser/identities.ftl"/>
+
+    <link rel="preload" href="chrome://global/skin/in-content/info-pages.css" as="style"/>
+    <link rel="preload" href="chrome://browser/content/identities/identities.css" as="style"/>
+  </head>
+
+  <body>
+    <template id="template-identity">
+      <div class="identity-icon"></div>
+      <div class="identity-name"></div>
+      <div class="identity-actions">
+        <button class="action-launch" data-l10n-id="action-launch"/>
+        <button class="action-edit" data-l10n-id="action-edit"/>
+        <button class="action-delete" data-l10n-id="action-delete"/>
+      </div>
+    </template>
+
+    <xul:stack id="identity-stack">
+      <div id="identity-container">
+        <div id="identity-list" class="container"></div>
+        <div id="identity-actions">
+          <button id="action-create" data-l10n-id="action-create"/>
+        </div>
+      </div>
+
+      <xul:stack id="dialogStack" hidden="true"/>
+      <vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+            id="dialogTemplate" class="dialogOverlay" topmost="true" hidden="true">
+        <vbox class="dialogBox"
+              role="dialog"
+              aria-labelledby="dialogTitle">
+          <hbox class="dialogTitleBar">
+            <label class="dialogTitle"/>
+            <button class="dialogClose close-icon"
+                    data-l10n-id="close-button"/>
+          </hbox>
+          <browser class="dialogFrame"
+                  autoscroll="false"
+                  disablehistory="true"/>
+        </vbox>
+      </vbox>
+    </xul:stack>
+    <script type="module" src="chrome://browser/content/identities/identities.js"/>
+  </body>
+</html>

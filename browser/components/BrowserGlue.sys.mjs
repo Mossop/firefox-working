@@ -32,6 +32,7 @@ ChromeUtils.defineESModuleGetters(lazy, {
   E10SUtils: "resource://gre/modules/E10SUtils.sys.mjs",
   FeatureGate: "resource://featuregates/FeatureGate.sys.mjs",
   FxAccounts: "resource://gre/modules/FxAccounts.sys.mjs",
+  IdentityService: "resource:///modules/IdentityService.sys.mjs",
   Integration: "resource://gre/modules/Integration.sys.mjs",
   Interactions: "resource:///modules/Interactions.sys.mjs",
   Log: "resource://gre/modules/Log.sys.mjs",
@@ -1300,6 +1301,22 @@ BrowserGlue.prototype = {
     Services.obs.notifyObservers(null, "browser-ui-startup-complete");
   },
 
+  async initDockBadge() {
+    let identities = await lazy.IdentityService.list();
+    let identity = identities.find(i => i.isCurrent);
+    if (identity) {
+      console.log(`Setting icon to ${identity.iconURL}`);
+      let iconURL = Services.io.newURI(identity.iconURL);
+      let dockSupport = Cc["@mozilla.org/widget/macdocksupport;1"].getService(
+        Ci.nsIMacDockSupport
+      );
+      dockSupport.setDockIcon(
+        iconURL,
+        identity.color?.substring(1) ?? "000000"
+      );
+    }
+  },
+
   _checkForOldBuildUpdates() {
     // check for update if our build is old
     if (
@@ -2216,6 +2233,8 @@ BrowserGlue.prototype = {
       return;
     }
     this._windowsWereRestored = true;
+
+    this.initDockBadge();
 
     lazy.BrowserUsageTelemetry.init();
     lazy.SearchSERPTelemetry.init();

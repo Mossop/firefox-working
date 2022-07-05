@@ -4,6 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 #import <Cocoa/Cocoa.h>
+#include "ErrorList.h"
 #include <CoreFoundation/CoreFoundation.h>
 #include <signal.h>
 
@@ -13,8 +14,12 @@
 #include "nsObjCExceptions.h"
 #include "nsNativeThemeColors.h"
 #include "nsString.h"
+#include "imgLoader.h"
+#include "imgRequestProxy.h"
+#include "MOZIconHelper.h"
+#include "mozilla/SVGImageContext.h"
 
-NS_IMPL_ISUPPORTS(nsMacDockSupport, nsIMacDockSupport, nsITaskbarProgress)
+NS_IMPL_ISUPPORTS(nsMacDockSupport, nsIMacDockSupport, nsITaskbarProgress, imgINotificationObserver)
 
 // This view is used in the dock tile when we're downloading a file.
 // It draws a progress bar that looks similar to the native progress bar on
@@ -71,19 +76,16 @@ NS_IMPL_ISUPPORTS(nsMacDockSupport, nsIMacDockSupport, nsITaskbarProgress)
 
 nsMacDockSupport::nsMacDockSupport()
     : mDockTileWrapperView(nil),
+      mDockBadgeView(nil),
+      mDockBadgeImage(nil),
       mProgressDockOverlayView(nil),
+      mHasBadgeColor(false),
+      mBadgeColor(0),
       mProgressState(STATE_NO_PROGRESS),
       mProgressFraction(0.0) {}
 
 nsMacDockSupport::~nsMacDockSupport() {
-  if (mDockTileWrapperView) {
-    [mDockTileWrapperView release];
-    mDockTileWrapperView = nil;
-  }
-  if (mProgressDockOverlayView) {
-    [mProgressDockOverlayView release];
-    mProgressDockOverlayView = nil;
-  }
+  ReleaseDockTile();
 }
 
 NS_IMETHODIMP
@@ -97,6 +99,99 @@ NS_IMETHODIMP
 nsMacDockSupport::SetDockMenu(nsIStandaloneNativeMenu* aDockMenu) {
   mDockMenu = aDockMenu;
   return NS_OK;
+}
+
+NS_IMETHODIMP
+nsMacDockSupport::SetDockIcon(nsIURI* aIcon, const nsAString& aColor) {
+  if (!aIcon) {
+    if (mDockBadgeView) {
+      mDockBadgeView.image = [MOZIconHelper placeholderIconWithSize:NSMakeSize(128, 128)];
+    }
+    if (mDockBadgeImage) {
+      [mDockBadgeImage release];
+      mDockBadgeImage = nil;
+    }
+
+    return UpdateDockTile();
+  }
+
+  if (aColor.IsVoid()) {
+    mHasBadgeColor = false;
+  } else if (NS_HexToRGBA(aColor, nsHexColorType::NoAlpha, &mBadgeColor)) {
+    mHasBadgeColor = true;
+  } else {
+    return NS_ERROR_FAILURE;
+  }
+
+  RefPtr<imgLoader> loader = imgLoader::NormalLoader();
+
+  return loader->LoadImage(
+    aIcon, nullptr, nullptr, nullptr, 0, nullptr, this, nullptr, nullptr, nsIRequest::LOAD_NORMAL,
+    nullptr, nsIContentPolicy::TYPE_INTERNAL_IMAGE, u""_ns, false, false, 0,
+    getter_AddRefs(mIconRequest)
+  );
+}
+
+void nsMacDockSupport::Notify(imgIRequest* aRequest, int32_t aType,
+                              const nsIntRect* aRect) {
+  if (aType == imgINotificationObserver::FRAME_COMPLETE) {
+    nsCOMPtr<imgIContainer> image;
+    aRequest->GetImage(getter_AddRefs(image));
+    MOZ_ASSERT(image);
+
+    UpdateBadgeIcon(image);
+  }
+
+  if (aType == imgINotificationObserver::DECODE_COMPLETE) {
+    aRequest->Cancel(NS_BINDING_ABORTED);
+    mIconRequest = nullptr;
+  }
+
+  if (aType == imgINotificationObserver::LOAD_COMPLETE) {
+    // Make sure the image loaded successfully.
+    uint32_t status = imgIRequest::STATUS_ERROR;
+    if (NS_FAILED(aRequest->GetImageStatus(&status)) ||
+        (status & imgIRequest::STATUS_ERROR)) {
+      mIconRequest->Cancel(NS_BINDING_ABORTED);
+      mIconRequest = nullptr;
+      return;
+    }
+
+    nsCOMPtr<imgIContainer> image;
+    aRequest->GetImage(getter_AddRefs(image));
+    MOZ_ASSERT(image);
+
+    // Ask the image to decode at its intrinsic size.
+    int32_t width = 0, height = 0;
+    image->GetWidth(&width);
+    image->GetHeight(&height);
+    image->RequestDecodeForSize(nsIntSize(width, height),
+                                imgIContainer::FLAG_HIGH_QUALITY_SCALING);
+  }
+}
+
+nsresult nsMacDockSupport::UpdateBadgeIcon(imgIContainer* aImage) {
+  NS_OBJC_BEGIN_TRY_BLOCK_RETURN
+
+  mozilla::SVGImageContext svgContext;
+  if (mHasBadgeColor) {
+    auto contextPaint = mozilla::MakeRefPtr<mozilla::SVGEmbeddingContextPaint>();
+    contextPaint->SetFill(mBadgeColor);
+    svgContext.SetContextPaint(contextPaint);
+  }
+
+  mDockBadgeImage = [[MOZIconHelper iconImageFromImageContainer:aImage
+                                    withSize:NSMakeSize(128, 128)
+                                    svgContext:svgContext
+                                    scaleFactor:0.0] retain];
+
+  if (mDockBadgeView) {
+    mDockBadgeView.image = mDockBadgeImage;
+  }
+
+  return UpdateDockTile();
+
+  NS_OBJC_END_TRY_BLOCK_RETURN(NS_ERROR_FAILURE)
 }
 
 NS_IMETHODIMP
@@ -154,48 +249,104 @@ nsMacDockSupport::SetProgressState(nsTaskbarProgressState aState, uint64_t aCurr
   return UpdateDockTile();
 }
 
-nsresult nsMacDockSupport::UpdateDockTile() {
+void nsMacDockSupport::ReleaseDockTile() {
+  if (!mDockTileWrapperView) {
+    return;
+  }
+
+  [mDockTileWrapperView release];
+  mDockTileWrapperView = nil;
+  [mProgressDockOverlayView release];
+  mProgressDockOverlayView = nil;
+  [mDockBadgeView release];
+  mDockBadgeView = nil;
+
+  if (mDockBadgeImage) {
+    [mDockBadgeImage release];
+    mDockBadgeImage = nil;
+  }
+}
+
+nsresult nsMacDockSupport::BuildDockTile() {
   NS_OBJC_BEGIN_TRY_BLOCK_RETURN;
 
-  if (mProgressState == STATE_NORMAL || mProgressState == STATE_INDETERMINATE) {
-    if (!mDockTileWrapperView) {
-      // Create the following NSView hierarchy:
-      // * mDockTileWrapperView (NSView)
-      //    * imageView (NSImageView) <- has the application icon
-      //    * mProgressDockOverlayView (MOZProgressDockOverlayView) <- draws the progress bar
+  if (mProgressState != STATE_NORMAL && mProgressState != STATE_INDETERMINATE && !mDockBadgeImage) {
+    ReleaseDockTile();
+    return NS_OK;
+  }
 
-      mDockTileWrapperView = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 32, 32)];
-      mDockTileWrapperView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+  if (mDockTileWrapperView) {
+    return NS_OK;
+  }
 
-      NSImageView* imageView = [[NSImageView alloc] initWithFrame:[mDockTileWrapperView bounds]];
-      imageView.image = [NSImage imageNamed:@"NSApplicationIcon"];
-      imageView.imageScaling = NSImageScaleAxesIndependently;
-      imageView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
-      [mDockTileWrapperView addSubview:imageView];
+  // Create the following NSView hierarchy:
+  // * mDockTileWrapperView (NSView)
+  //    * imageView (NSImageView) <- has the application icon
+  //    * mDockBadgeView (NSImageView) <- has the dock badge
+  //    * mProgressDockOverlayView (MOZProgressDockOverlayView) <- draws the progress bar
 
-      mProgressDockOverlayView =
-          [[MOZProgressDockOverlayView alloc] initWithFrame:NSMakeRect(1, 3, 30, 4)];
-      mProgressDockOverlayView.autoresizingMask = NSViewMinXMargin | NSViewWidthSizable |
-                                                  NSViewMaxXMargin | NSViewMinYMargin |
-                                                  NSViewHeightSizable | NSViewMaxYMargin;
-      [mDockTileWrapperView addSubview:mProgressDockOverlayView];
-    }
-    if (NSApp.dockTile.contentView != mDockTileWrapperView) {
-      NSApp.dockTile.contentView = mDockTileWrapperView;
-    }
+  mDockTileWrapperView = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 32, 32)];
+  mDockTileWrapperView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
 
-    if (mProgressState == STATE_NORMAL) {
-      mProgressDockOverlayView.fractionValue = mProgressFraction;
-    } else {
-      // Indeterminate states are rare. Just fill the entire progress bar in
-      // that case.
-      mProgressDockOverlayView.fractionValue = 1.0;
-    }
-    [NSApp.dockTile display];
-  } else if (NSApp.dockTile.contentView) {
+  NSImageView* imageView = [[NSImageView alloc] initWithFrame:[mDockTileWrapperView bounds]];
+  imageView.image = [NSImage imageNamed:@"NSApplicationIcon"];
+  imageView.imageScaling = NSImageScaleAxesIndependently;
+  imageView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+  [mDockTileWrapperView addSubview:imageView];
+
+  NSImageView* mDockBadgeView = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 16, 16, 16)];
+  if (mDockBadgeImage) {
+    mDockBadgeView.image = mDockBadgeImage;
+  } else {
+    mDockBadgeView.image = [MOZIconHelper placeholderIconWithSize:NSMakeSize(128, 128)];
+  }
+  mDockBadgeView.imageScaling = NSImageScaleProportionallyUpOrDown;
+  mDockBadgeView.autoresizingMask = NSViewMinXMargin | NSViewWidthSizable |
+                                    NSViewMaxXMargin | NSViewMinYMargin |
+                                    NSViewHeightSizable | NSViewMaxYMargin;
+  [mDockTileWrapperView addSubview:mDockBadgeView];
+
+  mProgressDockOverlayView =
+      [[MOZProgressDockOverlayView alloc] initWithFrame:NSMakeRect(1, 3, 30, 4)];
+  mProgressDockOverlayView.autoresizingMask = NSViewMinXMargin | NSViewWidthSizable |
+                                              NSViewMaxXMargin | NSViewMinYMargin |
+                                              NSViewHeightSizable | NSViewMaxYMargin;
+  [mDockTileWrapperView addSubview:mProgressDockOverlayView];
+
+  return NS_OK;
+
+  NS_OBJC_END_TRY_BLOCK_RETURN(NS_ERROR_FAILURE);
+}
+
+nsresult nsMacDockSupport::UpdateDockTile() {
+  MOZ_TRY(BuildDockTile());
+
+  NS_OBJC_BEGIN_TRY_BLOCK_RETURN;
+
+  if (!mDockTileWrapperView) {
     NSApp.dockTile.contentView = nil;
     [NSApp.dockTile display];
+
+    return NS_OK;
   }
+
+  if (NSApp.dockTile.contentView != mDockTileWrapperView) {
+    NSApp.dockTile.contentView = mDockTileWrapperView;
+  }
+
+  if (mProgressState == STATE_NORMAL) {
+    mProgressDockOverlayView.fractionValue = mProgressFraction;
+    mProgressDockOverlayView.hidden = false;
+  } else if (mProgressState == STATE_INDETERMINATE) {
+    // Indeterminate states are rare. Just fill the entire progress bar in
+    // that case.
+    mProgressDockOverlayView.fractionValue = 1.0;
+    mProgressDockOverlayView.hidden = false;
+  } else {
+    mProgressDockOverlayView.hidden = true;
+  }
+
+  [NSApp.dockTile display];
 
   return NS_OK;
 

@@ -45,6 +45,7 @@ class nsIWidget;
 
 namespace mozilla {
 class TimeStamp;
+class SVGImageContext;
 namespace gfx {
 class SourceSurface;
 }  // namespace gfx
@@ -286,8 +287,7 @@ class nsCocoaUtils {
       @return NS_OK if the conversion worked, NS_ERROR_FAILURE otherwise
    */
   static nsresult CreateNSImageFromImageContainer(imgIContainer* aImage, uint32_t aWhichFrame,
-                                                  const nsPresContext* aPresContext,
-                                                  const mozilla::ComputedStyle* aComputedStyle,
+                                                  const mozilla::SVGImageContext& aSVGContext,
                                                   NSImage** aResult, CGFloat scaleFactor,
                                                   bool* aIsEntirelyBlack = nullptr);
 
@@ -305,9 +305,8 @@ class nsCocoaUtils {
       @return NS_OK if the conversion worked, NS_ERROR_FAILURE otherwise
    */
   static nsresult CreateDualRepresentationNSImageFromImageContainer(
-      imgIContainer* aImage, uint32_t aWhichFrame, const nsPresContext* aPresContext,
-      const mozilla::ComputedStyle* aComputedStyle, NSImage** aResult,
-      bool* aIsEntirelyBlack = nullptr);
+      imgIContainer* aImage, uint32_t aWhichFrame, const mozilla::SVGImageContext& aSVGContext,
+      NSImage** aResult, bool* aIsEntirelyBlack = nullptr);
 
   /**
    * Returns nsAString for aSrc.
