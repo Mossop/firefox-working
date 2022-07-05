@@ -8,16 +8,22 @@
 #include "nsITaskbarProgress.h"
 #include "nsCOMPtr.h"
 #include "nsString.h"
+#include "imgINotificationObserver.h"
+#include "imgIContainer.h"
+#include "nsColor.h"
+
+class imgRequestProxy;
 
 @class MOZProgressDockOverlayView;
 
-class nsMacDockSupport : public nsIMacDockSupport, public nsITaskbarProgress {
+class nsMacDockSupport : public nsIMacDockSupport, public nsITaskbarProgress, public imgINotificationObserver {
  public:
   nsMacDockSupport();
 
   NS_DECL_ISUPPORTS
   NS_DECL_NSIMACDOCKSUPPORT
   NS_DECL_NSITASKBARPROGRESS
+  NS_DECL_IMGINOTIFICATIONOBSERVER
 
  protected:
   virtual ~nsMacDockSupport();
@@ -26,10 +32,20 @@ class nsMacDockSupport : public nsIMacDockSupport, public nsITaskbarProgress {
   nsString mBadgeText;
 
   NSView* mDockTileWrapperView;
+  NSImageView* mDockBadgeView;
+  NSImage* mDockBadgeImage;
   MOZProgressDockOverlayView* mProgressDockOverlayView;
 
+  bool mHasBadgeColor;
+  nscolor mBadgeColor;
   nsTaskbarProgressState mProgressState;
   double mProgressFraction;
 
+  RefPtr<imgRequestProxy> mIconRequest;
+
+  nsresult UpdateBadgeIcon(imgIContainer* aImage);
+
+  nsresult BuildDockTile();
+  void ReleaseDockTile();
   nsresult UpdateDockTile();
 };

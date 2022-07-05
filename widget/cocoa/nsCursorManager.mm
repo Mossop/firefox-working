@@ -7,6 +7,7 @@
 #include "nsCursorManager.h"
 #include "nsObjCExceptions.h"
 #include <math.h>
+#include "mozilla/SVGImageContext.h"
 
 static nsCursorManager* gInstance;
 static CGFloat sCurrentCursorScaleFactor = 0.0f;
@@ -264,8 +265,9 @@ static constexpr nsCursor kCustomCursor = eCursorCount;
   }
 
   NSImage* cursorImage;
+  mozilla::SVGImageContext svgContext;
   nsresult rv = nsCocoaUtils::CreateNSImageFromImageContainer(
-      aCursor.mContainer, imgIContainer::FRAME_FIRST, nullptr, nullptr, &cursorImage, scaleFactor);
+      aCursor.mContainer, imgIContainer::FRAME_FIRST, svgContext, &cursorImage, scaleFactor);
   if (NS_FAILED(rv) || !cursorImage) {
     return NS_ERROR_FAILURE;
   }

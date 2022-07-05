@@ -85,6 +85,7 @@ XPCOMUtils.defineLazyModuleGetters(this, {
   CustomizableUI: "resource:///modules/CustomizableUI.jsm",
   ExtensionsUI: "resource:///modules/ExtensionsUI.jsm",
   HomePage: "resource:///modules/HomePage.jsm",
+  IdentityService: "resource:///modules/IdentityService.jsm",
   NetUtil: "resource://gre/modules/NetUtil.jsm",
   OpenInTabsUtils: "resource:///modules/OpenInTabsUtils.jsm",
   PageActions: "resource:///modules/PageActions.jsm",
@@ -1443,6 +1444,45 @@ var gKeywordURIFixup = {
     }
 
     this.check(browser, fixupInfo);
+  },
+};
+
+const gIdentities = {
+  showPanel(panel) {
+    this.populateView();
+    PanelUI.showSubView("PanelUI-identities", panel);
+  },
+
+  async populateView() {
+    console.log("Populate!");
+    let view = PanelMultiView.getViewNode(
+      document,
+      "PanelUI-identities"
+    ).querySelector(".panel-subview-body");
+    while (view.lastElementChild) {
+      view.lastElementChild.remove();
+    }
+
+    let identities = await IdentityService.list();
+    for (let identity of identities) {
+      if (identity.isCurrent) {
+        continue;
+      }
+
+      let button = document.createXULElement("toolbarbutton");
+      button.setAttribute("label", identity.name);
+      button.className = "subviewbutton subviewbutton-iconic identity-item";
+      button.style.listStyleImage = `url("${identity.iconURL}")`;
+      button.style.color = identity.color;
+
+      if (identity.isCurrent) {
+        button.setAttribute("disabled", "true");
+      } else {
+        button.addEventListener("click", () => identity.launch());
+      }
+
+      view.appendChild(button);
+    }
   },
 };
 

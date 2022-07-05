@@ -19,6 +19,11 @@ appmenuitem-banner-update-unsupported =
 appmenuitem-banner-update-restart =
     .label = Update available — restart now
 
+appmenuitem-identities =
+    .label = Identities
+appmenu-manage-identities =
+    .label = Manage Identities…
+
 appmenuitem-new-tab =
     .label = New tab
 appmenuitem-new-window =

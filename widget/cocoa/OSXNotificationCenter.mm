@@ -17,6 +17,7 @@
 #include "nsString.h"
 #include "nsCOMPtr.h"
 #include "nsIObserver.h"
+#include "mozilla/SVGImageContext.h"
 
 using namespace mozilla;
 
@@ -512,8 +513,9 @@ OSXNotificationCenter::OnImageReady(nsISupports* aUserData, imgIRequest* aReques
 
   NSImage* cocoaImage = nil;
   // TODO: Pass pres context / ComputedStyle here to support context paint properties
+  SVGImageContext svgContext;
   nsCocoaUtils::CreateDualRepresentationNSImageFromImageContainer(image, imgIContainer::FRAME_FIRST,
-                                                                  nullptr, nullptr, &cocoaImage);
+                                                                  svgContext, &cocoaImage);
   (osxni->mPendingNotification).contentImage = cocoaImage;
   [cocoaImage release];
   ShowPendingNotification(osxni);

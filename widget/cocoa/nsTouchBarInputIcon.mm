@@ -18,6 +18,7 @@
 #include "nsINode.h"
 #include "nsNameSpaceManager.h"
 #include "nsObjCExceptions.h"
+#include "mozilla/SVGImageContext.h"
 
 using namespace mozilla;
 using mozilla::widget::IconLoader;
@@ -117,10 +118,10 @@ nsresult nsTouchBarInputIcon::OnComplete(imgIContainer* aImage) {
 
   // We ask only for the HiDPI images since all Touch Bars are Retina
   // displays and we have no need for icons @1x.
+  SVGImageContext svgContext;
   NSImage* image = [MOZIconHelper iconImageFromImageContainer:aImage
                                                      withSize:NSMakeSize(kIconHeight, kIconHeight)
-                                                  presContext:nullptr
-                                                computedStyle:nullptr
+                                                   svgContext:svgContext
                                                   scaleFactor:kHiDPIScalingFactor];
   [mButton setImage:image];
   [mShareScrubber setButtonImage:image];

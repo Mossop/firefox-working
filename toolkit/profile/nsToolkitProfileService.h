@@ -29,14 +29,16 @@ class nsToolkitProfile final
  private:
   ~nsToolkitProfile() = default;
 
-  nsToolkitProfile(const nsACString& aName, nsIFile* aRootDir,
-                   nsIFile* aLocalDir, bool aFromDB);
+  nsToolkitProfile(const nsACString& aName, const nsAString& aIdentity,
+                   nsIFile* aRootDir, nsIFile* aLocalDir, bool aFromDB);
 
   nsresult RemoveInternal(bool aRemoveFiles, bool aInBackground);
 
   friend class nsToolkitProfileLock;
 
   nsCString mName;
+  nsString mCurrentIdentity;
+  nsString mDefaultIdentity;
   nsCOMPtr<nsIFile> mRootDir;
   nsCOMPtr<nsIFile> mLocalDir;
   nsIProfileLock* mLock;

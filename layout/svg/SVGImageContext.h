@@ -84,6 +84,10 @@ class SVGImageContext {
     return mContextPaint.get();
   }
 
+  void SetContextPaint(SVGEmbeddingContextPaint* aContextPaint) {
+    mContextPaint = aContextPaint;
+  }
+
   void ClearContextPaint() { mContextPaint = nullptr; }
 
   bool operator==(const SVGImageContext& aOther) const {
