@@ -28,6 +28,7 @@ EXTRA_JS_MODULES += [
     "UrlbarProviderExtension.sys.mjs",
     "UrlbarProviderHeuristicFallback.sys.mjs",
     "UrlbarProviderInputHistory.sys.mjs",
+    "UrlbarProviderInteractions.sys.mjs",
     "UrlbarProviderInterventions.sys.mjs",
     "UrlbarProviderOmnibox.sys.mjs",
     "UrlbarProviderOpenTabs.sys.mjs",

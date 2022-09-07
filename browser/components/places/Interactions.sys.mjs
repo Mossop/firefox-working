@@ -105,7 +105,29 @@ function monotonicNow() {
  *   Last updated time as the number of milliseconds since the epoch.
  * @property {string} referrer
  *   The referrer to the url of the page that was interacted with (may be empty)
- *
+ */
+
+/**
+ * @typedef {object} AggregateInteraction
+ *   AggregateInteraction contains total interactions for a given url.
+ * @property {string} site
+ *   The url or the domain that these interactions were for.
+ * @property {number} count
+ *   The number of visits made.
+ * @property {number} totalViewTime
+ *   Time in milliseconds that the page has been actively viewed for.
+ * @property {number} typingTime
+ *   Time in milliseconds that the user typed on the page
+ * @property {number} keypresses
+ *   The number of keypresses made on the page
+ * @property {number} scrollingTime
+ *   Time in milliseconds that the user spent scrolling the page
+ * @property {number} scrollingDistance
+ *   The distance, in pixels, that the user scrolled the page
+ * @property {number} firstInteraction
+ *   The time of first interaction as the number of milliseconds since the epoch.
+ * @property {number} lastInteraction
+ *   The time of last interaction as the number of milliseconds since the epoch.
  */
 
 /**
@@ -212,6 +234,26 @@ class _Interactions {
     if (this.#initialized) {
       lazy.idleService.removeIdleObserver(this, lazy.pageViewIdleTime);
     }
+  }
+
+  /**
+   * Retrieves aggregate interactions for the given urls.
+   *
+   * @param {string[]} urls
+   * @returns {Promise<AggregateInteraction[]>} The aggregate interactions for each url
+   */
+  aggregateInteractionsForUrls(urls) {
+    return this.store.aggregateInteractionsForUrls(urls);
+  }
+
+  /**
+   * Retrieves aggregate interactions for the given domains.
+   *
+   * @param {string[]} domains
+   * @returns {Promise<AggregateInteraction[]>} The aggregate interactions for each domain
+   */
+  aggregateInteractionsForDomains(domains) {
+    return this.store.aggregateInteractionsForDomains(domains);
   }
 
   /**
@@ -646,6 +688,101 @@ class InteractionsStore {
     this.pendingPromise = Promise.resolve();
 
     lazy.idleService.addIdleObserver(this, lazy.snapshotIdleTime);
+  }
+
+  /**
+   * Retrieves aggregate interactions for the given urls.
+   *
+   * @param {string[]} urls
+   * @returns {Promise<AggregateInteraction[]>} The aggregate interactions for each url
+   */
+  aggregateInteractionsForUrls(urls) {
+    let bindList = urls.map((url, index) => `$${index}`);
+
+    return lazy.PlacesUtils.withConnectionWrapper(
+      "Interactions.jsm::aggregateInteractions",
+      async db => {
+        let rows = await db.executeCached(
+          `
+          SELECT
+            p.url AS url,
+            COUNT() as count,
+            SUM(m.total_view_time) AS total_view_time,
+            SUM(m.typing_time) AS typing_time,
+            SUM(m.key_presses) AS key_presses,
+            SUM(m.scrolling_time) AS scrolling_time,
+            SUM(m.scrolling_distance) AS scrolling_distance,
+            MIN(m.created_at) AS first_interaction,
+            MAX(m.updated_at) AS last_interaction
+          FROM moz_places_metadata AS m
+            JOIN moz_places AS p ON p.id=m.place_id
+          WHERE p.url IN (${bindList.join(", ")})
+          GROUP BY p.id
+        `,
+          urls
+        );
+
+        return rows.map(row => ({
+          site: row.getResultByName("url"),
+          count: row.getResultByName("count"),
+          totalViewTime: row.getResultByName("total_view_time"),
+          typingTime: row.getResultByName("typing_time"),
+          keyPresses: row.getResultByName("key_presses"),
+          scrollingTime: row.getResultByName("scrolling_time"),
+          scrollingDistance: row.getResultByName("scrolling_distance"),
+          firstInteraction: row.getResultByName("first_interaction"),
+          lastInteraction: row.getResultByName("last_interaction"),
+        }));
+      }
+    );
+  }
+
+  /**
+   * Retrieves aggregate interactions for the given domains.
+   *
+   * @param {string[]} domains
+   * @returns {Promise<AggregateInteraction[]>} The aggregate interactions for each domain
+   */
+  aggregateInteractionsForDomains(domains) {
+    let bindList = domains.map((url, index) => `$${index}`);
+
+    return lazy.PlacesUtils.withConnectionWrapper(
+      "Interactions.jsm::aggregateInteractions",
+      async db => {
+        let rows = await db.executeCached(
+          `
+          SELECT
+            o.host as host,
+            COUNT() as count,
+            SUM(m.total_view_time) AS total_view_time,
+            SUM(m.typing_time) AS typing_time,
+            SUM(m.key_presses) AS key_presses,
+            SUM(m.scrolling_time) AS scrolling_time,
+            SUM(m.scrolling_distance) AS scrolling_distance,
+            MIN(m.created_at) AS first_interaction,
+            MAX(m.updated_at) AS last_interaction
+          FROM moz_places_metadata AS m
+            JOIN moz_places AS p ON p.id=m.place_id
+            JOIN moz_origins AS o ON o.id=p.origin_id
+          WHERE o.host IN (${bindList.join(", ")})
+          GROUP BY o.host
+        `,
+          domains
+        );
+
+        return rows.map(row => ({
+          site: row.getResultByName("host"),
+          count: row.getResultByName("count"),
+          totalViewTime: row.getResultByName("total_view_time"),
+          typingTime: row.getResultByName("typing_time"),
+          keyPresses: row.getResultByName("key_presses"),
+          scrollingTime: row.getResultByName("scrolling_time"),
+          scrollingDistance: row.getResultByName("scrolling_distance"),
+          firstInteraction: row.getResultByName("first_interaction"),
+          lastInteraction: row.getResultByName("last_interaction"),
+        }));
+      }
+    );
   }
 
   /**
