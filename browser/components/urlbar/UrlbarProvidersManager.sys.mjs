@@ -46,10 +46,12 @@ var localProviderModules = {
     "resource:///modules/UrlbarProviderHeuristicFallback.sys.mjs",
   UrlbarProviderInputHistory:
     "resource:///modules/UrlbarProviderInputHistory.sys.mjs",
+  UrlbarProviderInteractions:
+    "resource:///modules/UrlbarProviderInteractions.sys.mjs",
   UrlbarProviderInterventions:
     "resource:///modules/UrlbarProviderInterventions.sys.mjs",
   UrlbarProviderOmnibox: "resource:///modules/UrlbarProviderOmnibox.sys.mjs",
-  UrlbarProviderPlaces: "resource:///modules/UrlbarProviderPlaces.sys.mjs",
+  // UrlbarProviderPlaces: "resource:///modules/UrlbarProviderPlaces.sys.mjs",
   UrlbarProviderPreloadedSites:
     "resource:///modules/UrlbarProviderPreloadedSites.sys.mjs",
   UrlbarProviderPrivateSearch:
