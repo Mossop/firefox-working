@@ -201,7 +201,7 @@ add_task(async function testWindowCreate() {
 
   Assert.equal(
     dialogCount,
-    2,
+    4,
     "Expected to see the right number of permission prompts."
   );
 

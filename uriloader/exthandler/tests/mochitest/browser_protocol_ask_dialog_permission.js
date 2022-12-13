@@ -1221,6 +1221,56 @@ add_task(async function test_extension_principal() {
 });
 
 /**
+ * Tests that we show the permission dialog for extensions opening a window with
+ * multiple tabs for a custom protocol.
+ */
+add_task(async function test_extension_window_create() {
+  let scheme = TEST_PROTOS[0];
+
+  let newWindowPromise = BrowserTestUtils.waitForNewWindow();
+  const EXTENSION_DATA = {
+    background() {
+      browser.test.onMessage.addListener(async (msg, url) => {
+        switch (msg) {
+          case "engage":
+            browser.windows.create({ url: [url, url] });
+            break;
+          default:
+            browser.test.fail(`Unexpected message received: ${msg}`);
+        }
+      });
+    },
+  };
+
+  let testExtension = ExtensionTestUtils.loadExtension(EXTENSION_DATA);
+  await testExtension.startup();
+  testExtension.sendMessage("engage", `${scheme}://test`);
+
+  let dialogCount = 0;
+  let seenDialogs = PromiseUtils.defer();
+  let newWindow = await newWindowPromise;
+  let listener = event => {
+    let { dialog } = event.detail;
+    Assert.equal(
+      dialog._openedURL,
+      "chrome://mozapps/content/handling/permissionDialog.xhtml",
+      "Should see the permission prompt"
+    );
+
+    dialogCount++;
+    if (dialogCount == 2) {
+      seenDialogs.resolve();
+    }
+  };
+  newWindow.addEventListener("dialogopen", listener);
+
+  await seenDialogs.promise;
+
+  await testExtension.unload();
+  await BrowserTestUtils.closeWindow(newWindow);
+});
+
+/**
  * Test that we use the redirect principal for the dialog when applicable.
  */
 add_task(async function test_redirect_principal() {
