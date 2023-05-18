@@ -38,6 +38,7 @@ from ..frontend.data import (
     ExternalLibrary,
     FinalTargetFiles,
     FinalTargetPreprocessedFiles,
+    ExtraJsModules,
     GeneratedFile,
     HostDefines,
     HostLibrary,
@@ -653,6 +654,9 @@ class RecursiveMakeBackend(MakeBackend):
             self._process_final_target_pp_files(
                 obj, obj.files, backend_file, "DIST_FILES"
             )
+
+        elif isinstance(obj, ExtraJsModules):
+            self._process_extra_js_modules(obj, obj.files, backend_file)
 
         elif isinstance(obj, ChromeManifestEntry):
             self._process_chrome_manifest_entry(obj, backend_file)
@@ -1595,6 +1599,49 @@ class RecursiveMakeBackend(MakeBackend):
             )
             backend_file.write("%s_TARGET := misc\n" % var)
             backend_file.write("PP_TARGETS += %s\n" % var)
+
+    def _process_extra_js_modules(self, obj, files, backend_file):
+        target = obj.install_target
+        path = mozpath.basedir(
+            target, ["dist/bin"]
+        )
+        if not path:
+            raise Exception("Cannot install to " + target)
+
+        manifest = path.replace("/", "_")
+        install_manifest = self._install_manifests[manifest]
+        reltarget = mozpath.relpath(target, path)
+
+        for path, files in files.walk():
+            target_var = (mozpath.join(target, path) if path else target).replace(
+                "/", "_"
+            )
+            objdir_files = []
+
+            for f in files:
+                if not isinstance(f, ObjDirPath):
+                    assert isinstance(f, SourcePath)
+                    dest_dir = mozpath.join("moz-src", f.context.relsrcdir, mozpath.dirname(f))
+                    if "*" in f:
+                        install_manifest.add_pattern_link(f.srcdir, f, dest_dir)
+                    else:
+                        dest_file = mozpath.join(dest_dir, f.target_basename)
+                        install_manifest.add_link(f.full_path, dest_file)
+                else:
+                    dest_dir = mozpath.join(reltarget, path)
+                    dest_file = mozpath.join(dest_dir, f.target_basename)
+                    install_manifest.add_optional_exists(dest_file)
+                    objdir_files.append(self._pretty_path(f, backend_file))
+
+            if objdir_files:
+                install_location = "$(DEPTH)/%s" % mozpath.join(target, path)
+                tier = "export" if obj.install_target == "dist/include" else "misc"
+                # We cannot generate multilocale.txt during misc at the moment.
+                if objdir_files[0] == "multilocale.txt":
+                    tier = "libs"
+                self._add_install_target(
+                    backend_file, target_var, tier, install_location, objdir_files
+                )
 
     def _write_localized_files_files(self, files, name, backend_file):
         for f in files:
