@@ -15,6 +15,7 @@ from mozbuild.frontend.data import (
     ChromeManifestEntry,
     FinalTargetFiles,
     FinalTargetPreprocessedFiles,
+    ExtraJsModules,
     GeneratedFile,
     JARManifest,
     LocalizedFiles,
@@ -124,6 +125,45 @@ class FasterMakeBackend(MakeBackend, PartialBackend):
                         )
                     if isinstance(f, ObjDirPath):
                         dep_target = "install-%s" % obj.install_target
+                        dep = mozpath.relpath(f.full_path, self.environment.topobjdir)
+                        if dep in self._generated_files_map:
+                            # Only the first output file is specified as a
+                            # dependency. If there are multiple output files
+                            # from a single GENERATED_FILES invocation that are
+                            # installed, we only want to run the command once.
+                            dep = self._generated_files_map[dep]
+                        self._dependencies[dep_target].append(dep)
+
+        elif isinstance(
+            obj, ExtraJsModules
+        ) and obj.install_target.startswith("dist/bin"):
+            for path, files in obj.files.walk():
+                for f in files:
+                    src = f.full_path
+                    dest_dir = mozpath.join("moz-src", f.context.relsrcdir, mozpath.dirname(f))
+
+                    if "*" in f:
+
+                        def _prefix(s):
+                            for p in mozpath.split(s):
+                                if "*" not in p:
+                                    yield p + "/"
+
+                        prefix = "".join(_prefix(src))
+
+                        if "*" in f.target_basename:
+                            target = dest_dir
+                        else:
+                            target = mozpath.join(dest_dir, f.target_basename)
+                        self._install_manifests["dist/bin"].add_pattern_link(
+                            prefix, src[len(prefix) :], target
+                        )
+                    else:
+                        self._install_manifests["dist/bin"].add_link(
+                            src, mozpath.join(dest_dir, f.target_basename)
+                        )
+                    if isinstance(f, ObjDirPath):
+                        dep_target = "install-%s" % "dist/bin"
                         dep = mozpath.relpath(f.full_path, self.environment.topobjdir)
                         if dep in self._generated_files_map:
                             # Only the first output file is specified as a

@@ -1629,6 +1629,15 @@ VARIABLES = {
         """Like ``FINAL_TARGET_FILES``, with preprocessing.
         """,
     ),
+    "EXTRA_JS_MODULES": (
+        ContextDerivedTypedHierarchicalStringList(Path),
+        list,
+        """Additional JavaScript files to distribute.
+
+        This variable contains a list of files to copy into
+        ``$(FINAL_TARGET)/modules.
+        """,
+    ),
     "LOCALIZED_FILES": (
         ContextDerivedTypedHierarchicalStringList(Path),
         list,
@@ -2919,15 +2928,6 @@ SPECIAL_VARIABLES = {
         ``CONTENT_ACCESSIBLE_FILES`` is used to list the files to be exported
         to ``dist/bin/contentaccessible``. Files can also be appended to a
         field to indicate which subdirectory they should be exported to.
-        """,
-    ),
-    "EXTRA_JS_MODULES": (
-        lambda context: context["FINAL_TARGET_FILES"].modules,
-        list,
-        """Additional JavaScript files to distribute.
-
-        This variable contains a list of files to copy into
-        ``$(FINAL_TARGET)/modules.
         """,
     ),
     "EXTRA_PP_JS_MODULES": (

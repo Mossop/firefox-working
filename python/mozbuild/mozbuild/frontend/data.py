@@ -1207,6 +1207,22 @@ class FinalTargetPreprocessedFiles(ContextDerived):
         self.files = files
 
 
+class ExtraJsModules(ContextDerived):
+    """Sandbox container object for EXTRA_JS_MODULES, which is a
+    HierarchicalStringList.
+
+    We need an object derived from ContextDerived for use in the backend, so
+    this object fills that role. It just has a reference to the underlying
+    StringList, which is created when parsing EXTRA_JS_MODULES.
+    """
+
+    __slots__ = "files"
+
+    def __init__(self, sandbox, files):
+        ContextDerived.__init__(self, sandbox)
+        self.files = files
+
+
 class LocalizedFiles(FinalTargetFiles):
     """Sandbox container object for LOCALIZED_FILES, which is a
     HierarchicalStringList.
