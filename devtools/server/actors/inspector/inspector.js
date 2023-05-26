@@ -56,7 +56,7 @@ const {
 } = require("resource://devtools/shared/specs/inspector.js");
 
 const { setTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 const {
   LongStringActor,

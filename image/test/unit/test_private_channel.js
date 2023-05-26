@@ -1,4 +1,4 @@
-const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+const { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 const { HttpServer } = ChromeUtils.import("resource://testing-common/httpd.js");
 
 const ReferrerInfo = Components.Constructor(

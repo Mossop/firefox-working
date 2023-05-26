@@ -5,31 +5,31 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { AUSTLMY } from "resource://gre/modules/UpdateTelemetry.sys.mjs";
+import { AUSTLMY } from "moz-src:///toolkit/mozapps/update/UpdateTelemetry.sys.mjs";
 
 import {
   Bits,
   BitsRequest,
   BitsUnknownError,
   BitsVerificationError,
-} from "resource://gre/modules/Bits.sys.mjs";
-import { FileUtils } from "resource://gre/modules/FileUtils.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+} from "moz-src:///toolkit/components/bitsdownload/Bits.sys.mjs";
+import { FileUtils } from "moz-src:///toolkit/modules/FileUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.sys.mjs",
-  CertUtils: "resource://gre/modules/CertUtils.sys.mjs",
-  DeferredTask: "resource://gre/modules/DeferredTask.sys.mjs",
-  UpdateUtils: "resource://gre/modules/UpdateUtils.sys.mjs",
+  AsyncShutdown: "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs",
+  CertUtils: "moz-src:///toolkit/modules/CertUtils.sys.mjs",
+  DeferredTask: "moz-src:///toolkit/modules/DeferredTask.sys.mjs",
+  UpdateUtils: "moz-src:///toolkit/modules/UpdateUtils.sys.mjs",
   WindowsRegistry: "resource://gre/modules/WindowsRegistry.sys.mjs",
-  ctypes: "resource://gre/modules/ctypes.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  ctypes: "moz-src:///toolkit/components/ctypes/ctypes.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
 });
 
 XPCOMUtils.defineLazyServiceGetter(

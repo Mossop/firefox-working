@@ -2,7 +2,7 @@
 
 ChromeUtils.defineESModuleGetters(this, {
   FilterExpressions:
-    "resource://gre/modules/components-utils/FilterExpressions.sys.mjs",
+    "moz-src:///toolkit/components/utils/FilterExpressions.sys.mjs",
 });
 
 // Basic JEXL tests

@@ -4,7 +4,7 @@
 "use strict";
 
 const { FxAccounts } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccounts.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
 );
 
 add_task(

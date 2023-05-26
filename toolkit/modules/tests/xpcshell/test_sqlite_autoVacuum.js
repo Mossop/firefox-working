@@ -1,7 +1,7 @@
 "use strict";
 
 const { Sqlite } = ChromeUtils.importESModule(
-  "resource://gre/modules/Sqlite.sys.mjs"
+  "moz-src:///toolkit/modules/Sqlite.sys.mjs"
 );
 const { TestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/TestUtils.sys.mjs"

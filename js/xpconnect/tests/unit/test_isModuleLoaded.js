@@ -1,12 +1,12 @@
 function run_test() {
   // Existing module.
-  Assert.ok(Cu.isModuleLoaded("resource://gre/modules/NetUtil.jsm"),
+  Assert.ok(Cu.isModuleLoaded("moz-src:///netwerk/base/NetUtil.jsm"),
             "isModuleLoaded returned correct value for non-loaded module");
-  ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
-  Assert.ok(Cu.isModuleLoaded("resource://gre/modules/NetUtil.jsm"),
+  ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
+  Assert.ok(Cu.isModuleLoaded("moz-src:///netwerk/base/NetUtil.jsm"),
             "isModuleLoaded returned true after loading that module");
-  Cu.unload("resource://gre/modules/NetUtil.jsm");
-  Assert.ok(!Cu.isModuleLoaded("resource://gre/modules/NetUtil.jsm"),
+  Cu.unload("moz-src:///netwerk/base/NetUtil.jsm");
+  Assert.ok(!Cu.isModuleLoaded("moz-src:///netwerk/base/NetUtil.jsm"),
             "isModuleLoaded returned false after unloading that module");
 
   // Non-existing module

@@ -4,12 +4,12 @@
 
 /* eslint-disable no-restricted-globals */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
 
   accessibility: "chrome://remote/content/marionette/accessibility.sys.mjs",
   element: "chrome://remote/content/shared/webdriver/Element.sys.mjs",

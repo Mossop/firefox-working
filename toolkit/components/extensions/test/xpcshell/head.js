@@ -10,7 +10,7 @@ var { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 var {
   clearInterval,
@@ -19,25 +19,25 @@ var {
   setIntervalWithTarget,
   setTimeout,
   setTimeoutWithTarget,
-} = ChromeUtils.importESModule("resource://gre/modules/Timer.sys.mjs");
+} = ChromeUtils.importESModule("moz-src:///toolkit/modules/Timer.sys.mjs");
 var { AddonTestUtils, MockAsyncShutdown } = ChromeUtils.import(
   "resource://testing-common/AddonTestUtils.jsm"
 );
 
 ChromeUtils.defineESModuleGetters(this, {
   ContentTask: "resource://testing-common/ContentTask.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
   PromiseTestUtils: "resource://testing-common/PromiseTestUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  Extension: "resource://gre/modules/Extension.jsm",
-  ExtensionData: "resource://gre/modules/Extension.jsm",
-  ExtensionParent: "resource://gre/modules/ExtensionParent.jsm",
+  Extension: "moz-src:///toolkit/components/extensions/Extension.jsm",
+  ExtensionData: "moz-src:///toolkit/components/extensions/Extension.jsm",
+  ExtensionParent: "moz-src:///toolkit/components/extensions/ExtensionParent.jsm",
   ExtensionTestUtils: "resource://testing-common/ExtensionXPCShellUtils.jsm",
   MessageChannel: "resource://testing-common/MessageChannel.jsm",
-  NetUtil: "resource://gre/modules/NetUtil.jsm",
-  Schemas: "resource://gre/modules/Schemas.jsm",
+  NetUtil: "moz-src:///netwerk/base/NetUtil.jsm",
+  Schemas: "moz-src:///toolkit/components/extensions/Schemas.jsm",
 });
 
 PromiseTestUtils.allowMatchingRejectionsGlobally(

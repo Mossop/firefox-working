@@ -2,7 +2,7 @@
  * http://creativecommons.org/publicdomain/zero/1.0/ */
 
 ChromeUtils.defineESModuleGetters(this, {
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
 });
 
 add_task(async function insert_separator_notification() {

@@ -12,7 +12,7 @@ const {
   testSetup,
   testTeardown,
 } = require("damp-test/tests/head");
-const { Downloads } = require("resource://gre/modules/Downloads.jsm");
+const { Downloads } = require("moz-src:///toolkit/components/downloads/Downloads.jsm");
 
 module.exports = async function() {
   await testSetup(COMPLICATED_URL);

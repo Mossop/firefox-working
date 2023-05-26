@@ -5,25 +5,25 @@
 "use strict";
 
 const { Troubleshoot } = ChromeUtils.importESModule(
-  "resource://gre/modules/Troubleshoot.sys.mjs"
+  "moz-src:///toolkit/modules/Troubleshoot.sys.mjs"
 );
 const { ResetProfile } = ChromeUtils.importESModule(
-  "resource://gre/modules/ResetProfile.sys.mjs"
+  "moz-src:///toolkit/modules/ResetProfile.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  DownloadUtils: "resource://gre/modules/DownloadUtils.sys.mjs",
-  PlacesDBUtils: "resource://gre/modules/PlacesDBUtils.sys.mjs",
-  ProcessType: "resource://gre/modules/ProcessType.sys.mjs",
+  DownloadUtils: "moz-src:///toolkit/mozapps/downloads/DownloadUtils.sys.mjs",
+  PlacesDBUtils: "moz-src:///toolkit/components/places/PlacesDBUtils.sys.mjs",
+  ProcessType: "moz-src:///toolkit/modules/ProcessType.sys.mjs",
 });
 
 ChromeUtils.defineModuleGetter(
   this,
   "PluralForm",
-  "resource://gre/modules/PluralForm.jsm"
+  "moz-src:///intl/locale/PluralForm.jsm"
 );
 
 window.addEventListener("load", function onload(event) {
@@ -1024,7 +1024,7 @@ var snapshotFormatters = {
       if (button) {
         button.addEventListener("click", function(event) {
           let { KeyValueService } = ChromeUtils.importESModule(
-            "resource://gre/modules/kvstore.sys.mjs"
+            "moz-src:///toolkit/components/kvstore/kvstore.sys.mjs"
           );
           let currProfDir = Services.dirsvc.get("ProfD", Ci.nsIFile);
           currProfDir.append("mediacapabilities");

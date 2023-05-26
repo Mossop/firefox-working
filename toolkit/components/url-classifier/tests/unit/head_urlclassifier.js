@@ -380,7 +380,7 @@ function updateError(arg) {
 ChromeUtils.defineModuleGetter(
   this,
   "NetUtil",
-  "resource://gre/modules/NetUtil.jsm"
+  "moz-src:///netwerk/base/NetUtil.jsm"
 );
 
 function readFileToString(aFilename) {

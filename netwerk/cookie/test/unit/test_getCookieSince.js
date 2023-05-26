@@ -1,4 +1,4 @@
-const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+const { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 
 function setCookie(name, url) {
   let value = `${name}=${Math.random()}; Path=/; Max-Age=1000; sameSite=none; Secure`;

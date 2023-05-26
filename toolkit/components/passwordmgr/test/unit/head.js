@@ -10,13 +10,13 @@ const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { LoginRecipesContent, LoginRecipesParent } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginRecipes.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginRecipes.sys.mjs"
 );
 const { LoginHelper } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginHelper.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs"
 );
 const { FileTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/FileTestUtils.sys.mjs"
@@ -31,8 +31,8 @@ const { MockDocument } = ChromeUtils.importESModule(
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(this, {
-  DownloadPaths: "resource://gre/modules/DownloadPaths.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
+  DownloadPaths: "moz-src:///toolkit/components/downloads/DownloadPaths.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
 });
 
 const LoginInfo = Components.Constructor(

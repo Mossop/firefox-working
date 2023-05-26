@@ -5,7 +5,7 @@
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  E10SUtils: "resource://gre/modules/E10SUtils.sys.mjs",
+  E10SUtils: "moz-src:///toolkit/modules/E10SUtils.sys.mjs",
 });
 
 class BrowserTestUtilsChildObserver {
@@ -215,7 +215,7 @@ export class BrowserTestUtilsChild extends JSWindowActorChild {
         // upon loading this frame script.
 
         const { ctypes } = ChromeUtils.importESModule(
-          "resource://gre/modules/ctypes.sys.mjs"
+          "moz-src:///toolkit/components/ctypes/ctypes.sys.mjs"
         );
 
         let dies = function() {
@@ -258,7 +258,7 @@ export class BrowserTestUtilsChild extends JSWindowActorChild {
 
         if (aMessage.data.asyncCrash) {
           let { setTimeout } = ChromeUtils.importESModule(
-            "resource://gre/modules/Timer.sys.mjs"
+            "moz-src:///toolkit/modules/Timer.sys.mjs"
           );
           // Get out of the stack.
           setTimeout(dies, 0);

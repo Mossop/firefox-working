@@ -9,7 +9,7 @@
 {
   let imports = {};
   ChromeUtils.defineESModuleGetters(imports, {
-    ShortcutUtils: "resource://gre/modules/ShortcutUtils.sys.mjs",
+    ShortcutUtils: "moz-src:///toolkit/modules/ShortcutUtils.sys.mjs",
   });
 
   const MozMenuItemBaseMixin = Base => {

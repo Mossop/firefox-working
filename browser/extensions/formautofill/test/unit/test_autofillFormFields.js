@@ -6,16 +6,16 @@
 "use strict";
 
 const { setTimeout, clearTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 
 var FormAutofillHandler, OSKeyStore;
 add_setup(async () => {
   ({ FormAutofillHandler } = ChromeUtils.importESModule(
-    "resource://gre/modules/shared/FormAutofillHandler.sys.mjs"
+    "moz-src:///toolkit/components/formautofill/shared/FormAutofillHandler.sys.mjs"
   ));
   ({ OSKeyStore } = ChromeUtils.importESModule(
-    "resource://gre/modules/OSKeyStore.sys.mjs"
+    "moz-src:///toolkit/modules/OSKeyStore.sys.mjs"
   ));
 });
 

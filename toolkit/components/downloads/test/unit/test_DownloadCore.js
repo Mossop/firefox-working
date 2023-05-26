@@ -10,7 +10,7 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  DownloadError: "resource://gre/modules/DownloadCore.sys.mjs",
+  DownloadError: "moz-src:///toolkit/components/downloads/DownloadCore.sys.mjs",
 });
 
 // Execution of common tests

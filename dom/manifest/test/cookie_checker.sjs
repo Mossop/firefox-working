@@ -1,5 +1,5 @@
 "use strict";
-let { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+let { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 
 function handleRequest(request, response) {
   response.setStatusLine(request.httpVersion, 200);

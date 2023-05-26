@@ -115,7 +115,7 @@ add_task(async function customized_permission_keys_mapping() {
 // combinations of host permissions.
 add_task(async function host_permissions() {
   let { PluralForm } = ChromeUtils.import(
-    "resource://gre/modules/PluralForm.jsm"
+    "moz-src:///intl/locale/PluralForm.jsm"
   );
 
   let permissionTestCases = [

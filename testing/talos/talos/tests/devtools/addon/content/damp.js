@@ -8,7 +8,7 @@
 
 const { gBrowser, MozillaFileLogger, requestIdleCallback } = dampWindow;
 
-const { AddonManager } = require("resource://gre/modules/AddonManager.jsm");
+const { AddonManager } = require("moz-src:///toolkit/mozapps/extensions/AddonManager.jsm");
 
 const DampLoadParentModule = require("damp-test/actors/DampLoadParent.jsm");
 const DAMP_TESTS = require("damp-test/damp-tests.js");

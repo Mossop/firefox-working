@@ -5,7 +5,7 @@
 /* global arguments */
 
 const { PlacesUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PlacesUtils.sys.mjs"
+  "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs"
 );
 
 let resolve = arguments[3];

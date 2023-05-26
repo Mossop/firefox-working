@@ -9,7 +9,7 @@
 const EventEmitter = require("resource://devtools/shared/event-emitter.js");
 const { dumpn } = require("resource://devtools/shared/DevToolsUtils.js");
 const { setTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 
 const {

@@ -7,10 +7,10 @@
 "use strict";
 
 const { AddonManager } = ChromeUtils.import(
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 const { ExtensionParent } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 
 const { WebExtensionPolicy } = Cu.getGlobalForObject(Services);

@@ -5,15 +5,15 @@
 "use strict";
 
 const { JsonSchema } = ChromeUtils.importESModule(
-  "resource://gre/modules/JsonSchema.sys.mjs"
+  "moz-src:///toolkit/modules/JsonSchema.sys.mjs"
 );
 
 const { TelemetryArchive } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryArchive.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryArchive.sys.mjs"
 );
 
 const { TelemetryStorage } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryStorage.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryStorage.sys.mjs"
 );
 
 const ORIG_AVAILABLE_LOCALES = Services.locale.availableLocales;

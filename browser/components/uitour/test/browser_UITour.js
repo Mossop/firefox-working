@@ -7,11 +7,11 @@ var gTestTab;
 var gContentAPI;
 
 ChromeUtils.defineESModuleGetters(this, {
-  ProfileAge: "resource://gre/modules/ProfileAge.sys.mjs",
+  ProfileAge: "moz-src:///toolkit/modules/ProfileAge.sys.mjs",
   TelemetryArchiveTesting:
     "resource://testing-common/TelemetryArchiveTesting.sys.mjs",
   TelemetryTestUtils: "resource://testing-common/TelemetryTestUtils.sys.mjs",
-  UpdateUtils: "resource://gre/modules/UpdateUtils.sys.mjs",
+  UpdateUtils: "moz-src:///toolkit/modules/UpdateUtils.sys.mjs",
 });
 
 function test() {

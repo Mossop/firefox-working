@@ -8,8 +8,8 @@ const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   EventDispatcher: "resource://gre/modules/Messaging.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
 const prefs = Services.prefs.getBranch("dom.push.");

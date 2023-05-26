@@ -1,11 +1,11 @@
 "use strict";
 
 const { ShellService } = ChromeUtils.importESModule(
-  "resource:///modules/ShellService.sys.mjs"
+  "moz-src:///browser/components/shell/ShellService.sys.mjs"
 );
 
 const { TelemetryEnvironment } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryEnvironment.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryEnvironment.sys.mjs"
 );
 
 const TEST_DEFAULT_CONTENT = [

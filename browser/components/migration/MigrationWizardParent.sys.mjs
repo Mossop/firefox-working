@@ -2,9 +2,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { MigrationUtils } from "resource:///modules/MigrationUtils.sys.mjs";
-import { E10SUtils } from "resource://gre/modules/E10SUtils.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { MigrationUtils } from "moz-src:///browser/components/migration/MigrationUtils.sys.mjs";
+import { E10SUtils } from "moz-src:///toolkit/modules/E10SUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
@@ -17,7 +17,7 @@ XPCOMUtils.defineLazyGetter(lazy, "gFluentStrings", function() {
 
 ChromeUtils.defineESModuleGetters(lazy, {
   InternalTestingProfileMigrator:
-    "resource:///modules/InternalTestingProfileMigrator.sys.mjs",
+    "moz-src:///browser/components/migration/InternalTestingProfileMigrator.sys.mjs",
   MigrationWizardConstants:
     "chrome://browser/content/migration/migration-wizard-constants.mjs",
 });

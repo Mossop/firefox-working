@@ -2,20 +2,20 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
-import { EventEmitter } from "resource://gre/modules/EventEmitter.sys.mjs";
+import { EventEmitter } from "moz-src:///toolkit/modules/EventEmitter.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  E10SUtils: "resource://gre/modules/E10SUtils.sys.mjs",
-  HiddenFrame: "resource://gre/modules/HiddenFrame.sys.mjs",
-  PromiseUtils: "resource://gre/modules/PromiseUtils.sys.mjs",
+  E10SUtils: "moz-src:///toolkit/modules/E10SUtils.sys.mjs",
+  HiddenFrame: "moz-src:///toolkit/modules/HiddenFrame.sys.mjs",
+  PromiseUtils: "moz-src:///toolkit/modules/PromiseUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
+  BrowserWindowTracker: "moz-src:///browser/modules/BrowserWindowTracker.jsm",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "logConsole", function() {

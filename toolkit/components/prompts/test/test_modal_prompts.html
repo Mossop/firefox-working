@@ -19,7 +19,7 @@ Prompter tests: modal prompts
 /* eslint-disable complexity */
 async function runTests(util) {
   const { NetUtil } = SpecialPowers.ChromeUtils.import(
-    "resource://gre/modules/NetUtil.jsm"
+    "moz-src:///netwerk/base/NetUtil.jsm"
   );
 
   // The ConfirmEx + delay test has slightly different behavior with the focus

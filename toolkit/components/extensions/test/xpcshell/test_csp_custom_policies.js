@@ -3,7 +3,7 @@
 "use strict";
 
 const { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 
 const ADDON_ID = "test@web.extension";

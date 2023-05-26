@@ -9,11 +9,11 @@
 ChromeUtils.defineModuleGetter(
   this,
   "AboutNewTab",
-  "resource:///modules/AboutNewTab.jsm"
+  "moz-src:///browser/modules/AboutNewTab.jsm"
 );
 
 var { ExtensionPreferencesManager } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionPreferencesManager.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPreferencesManager.jsm"
 );
 
 var { ExtensionError } = ExtensionUtils;

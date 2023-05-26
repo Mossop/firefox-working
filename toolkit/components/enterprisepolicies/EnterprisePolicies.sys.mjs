@@ -9,12 +9,12 @@ export function EnterprisePolicies() {
   );
   if (appinfo.processType == appinfo.PROCESS_TYPE_DEFAULT) {
     const { EnterprisePoliciesManager } = ChromeUtils.importESModule(
-      "resource://gre/modules/EnterprisePoliciesParent.sys.mjs"
+      "moz-src:///toolkit/components/enterprisepolicies/EnterprisePoliciesParent.sys.mjs"
     );
     return new EnterprisePoliciesManager();
   }
   const { EnterprisePoliciesManagerContent } = ChromeUtils.importESModule(
-    "resource://gre/modules/EnterprisePoliciesContent.sys.mjs"
+    "moz-src:///toolkit/components/enterprisepolicies/EnterprisePoliciesContent.sys.mjs"
   );
   return new EnterprisePoliciesManagerContent();
 }

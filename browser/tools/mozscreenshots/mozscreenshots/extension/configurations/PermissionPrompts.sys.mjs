@@ -74,7 +74,7 @@ export var PermissionPrompts = {
         // we need to emulate user input in the form for the save-password prompt to be shown
         await clickOn("#login-capture", function beforeContentFn() {
           const { E10SUtils } = ChromeUtils.importESModule(
-            "resource://gre/modules/E10SUtils.sys.mjs"
+            "moz-src:///toolkit/modules/E10SUtils.sys.mjs"
           );
           E10SUtils.wrapHandlingUserInput(content, true, function() {
             let element = content.document.querySelector(

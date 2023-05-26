@@ -3,7 +3,7 @@
 */
 
 const { TelemetryController } = ChromeUtils.import(
-  "resource://gre/modules/TelemetryController.jsm"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryController.jsm"
 );
 const { ContentTaskUtils } = ChromeUtils.importESModule(
   "resource://testing-common/ContentTaskUtils.sys.mjs"

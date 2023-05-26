@@ -11,10 +11,10 @@ var { ExtensionError, promiseObserved } = ExtensionUtils;
 ChromeUtils.defineModuleGetter(
   this,
   "AddonManagerPrivate",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 ChromeUtils.defineESModuleGetters(this, {
-  SessionStore: "resource:///modules/sessionstore/SessionStore.sys.mjs",
+  SessionStore: "moz-src:///browser/components/sessionstore/SessionStore.sys.mjs",
 });
 
 const SS_ON_CLOSED_OBJECTS_CHANGED = "sessionstore-closed-objects-changed";

@@ -9,8 +9,8 @@ const {
 } = window.docShell.chromeEventHandler.ownerGlobal;
 
 ChromeUtils.defineESModuleGetters(this, {
-  DeferredTask: "resource://gre/modules/DeferredTask.sys.mjs",
-  DownloadPaths: "resource://gre/modules/DownloadPaths.sys.mjs",
+  DeferredTask: "moz-src:///toolkit/modules/DeferredTask.sys.mjs",
+  DownloadPaths: "moz-src:///toolkit/components/downloads/DownloadPaths.sys.mjs",
 });
 
 const PDF_JS_URI = "resource://pdf.js/web/viewer.html";
@@ -28,7 +28,7 @@ var logger = (function() {
     Services.prefs.getBoolPref("print.debug", false) ? "all" : "warn";
 
   let { ConsoleAPI } = ChromeUtils.importESModule(
-    "resource://gre/modules/Console.sys.mjs"
+    "moz-src:///toolkit/modules/Console.sys.mjs"
   );
   // Create a new instance of the ConsoleAPI so we can control the maxLogLevel with a pref.
   let _logger = new ConsoleAPI({

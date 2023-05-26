@@ -3,25 +3,25 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // _AboutLogins is only exported for testing
-import { setTimeout, clearTimeout } from "resource://gre/modules/Timer.sys.mjs";
+import { setTimeout, clearTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { E10SUtils } from "resource://gre/modules/E10SUtils.sys.mjs";
+import { E10SUtils } from "moz-src:///toolkit/modules/E10SUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  LoginBreaches: "resource:///modules/LoginBreaches.sys.mjs",
-  LoginCSVImport: "resource://gre/modules/LoginCSVImport.sys.mjs",
-  LoginExport: "resource://gre/modules/LoginExport.sys.mjs",
-  LoginHelper: "resource://gre/modules/LoginHelper.sys.mjs",
-  OSKeyStore: "resource://gre/modules/OSKeyStore.sys.mjs",
+  LoginBreaches: "moz-src:///browser/components/aboutlogins/LoginBreaches.sys.mjs",
+  LoginCSVImport: "moz-src:///toolkit/components/passwordmgr/LoginCSVImport.sys.mjs",
+  LoginExport: "moz-src:///toolkit/components/passwordmgr/LoginExport.sys.mjs",
+  LoginHelper: "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs",
+  OSKeyStore: "moz-src:///toolkit/modules/OSKeyStore.sys.mjs",
   UIState: "resource://services-sync/UIState.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  MigrationUtils: "resource:///modules/MigrationUtils.jsm",
+  MigrationUtils: "moz-src:///browser/components/migration/MigrationUtils.jsm",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "log", () => {

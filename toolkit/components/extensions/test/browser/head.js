@@ -5,7 +5,7 @@
 "use strict";
 
 const { ClientEnvironmentBase } = ChromeUtils.importESModule(
-  "resource://gre/modules/components-utils/ClientEnvironment.sys.mjs"
+  "moz-src:///toolkit/components/utils/ClientEnvironment.sys.mjs"
 );
 
 const BACKGROUND =

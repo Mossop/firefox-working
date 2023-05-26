@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { Preferences } from "resource://gre/modules/Preferences.sys.mjs";
+import { Preferences } from "moz-src:///toolkit/modules/Preferences.sys.mjs";
 
 import { Assert } from "resource://testing-common/Assert.sys.mjs";
 
@@ -93,7 +93,7 @@ export var PoliciesPrefTracker = {
 
   start() {
     let { PoliciesUtils } = ChromeUtils.importESModule(
-      "resource:///modules/policies/Policies.sys.mjs"
+      "moz-src:///browser/components/enterprisepolicies/Policies.sys.mjs"
     );
     this._originalFunc = PoliciesUtils.setDefaultPref;
     PoliciesUtils.setDefaultPref = this.hoistedSetDefaultPref.bind(this);
@@ -103,7 +103,7 @@ export var PoliciesPrefTracker = {
     this.restoreDefaultValues();
 
     let { PoliciesUtils } = ChromeUtils.importESModule(
-      "resource:///modules/policies/Policies.sys.mjs"
+      "moz-src:///browser/components/enterprisepolicies/Policies.sys.mjs"
     );
     PoliciesUtils.setDefaultPref = this._originalFunc;
     this._originalFunc = null;

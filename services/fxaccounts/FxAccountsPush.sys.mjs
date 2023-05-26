@@ -18,7 +18,7 @@ const {
   ON_PROFILE_UPDATED_NOTIFICATION,
   ON_VERIFY_LOGIN_NOTIFICATION,
   log,
-} = ChromeUtils.import("resource://gre/modules/FxAccountsCommon.js");
+} = ChromeUtils.import("moz-src:///services/fxaccounts/FxAccountsCommon.js");
 
 /**
  * FxAccountsPushService manages Push notifications for Firefox Accounts in the browser
@@ -85,7 +85,7 @@ FxAccountsPushService.prototype = {
       this.fxai = options.fxai;
     } else {
       const { getFxAccountsSingleton } = ChromeUtils.importESModule(
-        "resource://gre/modules/FxAccounts.sys.mjs"
+        "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
       );
       const fxAccounts = getFxAccountsSingleton();
       this.fxai = fxAccounts._internal;

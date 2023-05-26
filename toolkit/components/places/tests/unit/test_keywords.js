@@ -1,7 +1,7 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
 });
 
 async function check_keyword(aExpectExists, aHref, aKeyword, aPostData = null) {

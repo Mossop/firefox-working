@@ -6,8 +6,8 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  TelemetryController: "resource://gre/modules/TelemetryController.sys.mjs",
-  TelemetryEnvironment: "resource://gre/modules/TelemetryEnvironment.sys.mjs",
+  TelemetryController: "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs",
+  TelemetryEnvironment: "moz-src:///toolkit/components/telemetry/app/TelemetryEnvironment.sys.mjs",
 });
 
 /**

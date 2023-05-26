@@ -5,17 +5,17 @@
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
-import { PromiseUtils } from "resource://gre/modules/PromiseUtils.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { PromiseUtils } from "moz-src:///toolkit/modules/PromiseUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Bookmarks: "resource://gre/modules/Bookmarks.sys.mjs",
-  History: "resource://gre/modules/History.sys.mjs",
-  Log: "resource://gre/modules/Log.sys.mjs",
-  PlacesSyncUtils: "resource://gre/modules/PlacesSyncUtils.sys.mjs",
-  Sqlite: "resource://gre/modules/Sqlite.sys.mjs",
+  Bookmarks: "moz-src:///toolkit/components/places/Bookmarks.sys.mjs",
+  History: "moz-src:///toolkit/components/places/History.sys.mjs",
+  Log: "moz-src:///toolkit/modules/Log.sys.mjs",
+  PlacesSyncUtils: "moz-src:///toolkit/components/places/PlacesSyncUtils.sys.mjs",
+  Sqlite: "moz-src:///toolkit/modules/Sqlite.sys.mjs",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "MOZ_ACTION_REGEX", () => {

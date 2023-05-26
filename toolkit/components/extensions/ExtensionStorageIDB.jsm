@@ -8,18 +8,18 @@ const EXPORTED_SYMBOLS = ["ExtensionStorageIDB"];
 let ExtensionStorageIDB;
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { IndexedDB } = ChromeUtils.importESModule(
-  "resource://gre/modules/IndexedDB.sys.mjs"
+  "moz-src:///toolkit/modules/IndexedDB.sys.mjs"
 );
 
 const lazy = {};
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  ExtensionStorage: "resource://gre/modules/ExtensionStorage.jsm",
-  ExtensionUtils: "resource://gre/modules/ExtensionUtils.jsm",
-  getTrimmedString: "resource://gre/modules/ExtensionTelemetry.jsm",
+  ExtensionStorage: "moz-src:///toolkit/components/extensions/ExtensionStorage.jsm",
+  ExtensionUtils: "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm",
+  getTrimmedString: "moz-src:///toolkit/components/extensions/ExtensionTelemetry.jsm",
 });
 
 // The userContextID reserved for the extension storage (its purpose is ensuring that the IndexedDB

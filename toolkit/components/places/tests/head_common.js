@@ -21,33 +21,33 @@ const TRANSITION_RELOAD = Ci.nsINavHistoryService.TRANSITION_RELOAD;
 const TITLE_LENGTH_MAX = 4096;
 
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 var { PlacesSyncUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PlacesSyncUtils.sys.mjs"
+  "moz-src:///toolkit/components/places/PlacesSyncUtils.sys.mjs"
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  BookmarkHTMLUtils: "resource://gre/modules/BookmarkHTMLUtils.sys.mjs",
-  BookmarkJSONUtils: "resource://gre/modules/BookmarkJSONUtils.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
-  PlacesBackups: "resource://gre/modules/PlacesBackups.sys.mjs",
-  PlacesDBUtils: "resource://gre/modules/PlacesDBUtils.sys.mjs",
+  BookmarkHTMLUtils: "moz-src:///toolkit/components/places/BookmarkHTMLUtils.sys.mjs",
+  BookmarkJSONUtils: "moz-src:///toolkit/components/places/BookmarkJSONUtils.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
+  PlacesBackups: "moz-src:///toolkit/components/places/PlacesBackups.sys.mjs",
+  PlacesDBUtils: "moz-src:///toolkit/components/places/PlacesDBUtils.sys.mjs",
   PlacesTestUtils: "resource://testing-common/PlacesTestUtils.sys.mjs",
-  PlacesTransactions: "resource://gre/modules/PlacesTransactions.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
-  PromiseUtils: "resource://gre/modules/PromiseUtils.sys.mjs",
-  Sqlite: "resource://gre/modules/Sqlite.sys.mjs",
+  PlacesTransactions: "moz-src:///toolkit/components/places/PlacesTransactions.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
+  PromiseUtils: "moz-src:///toolkit/modules/PromiseUtils.sys.mjs",
+  Sqlite: "moz-src:///toolkit/modules/Sqlite.sys.mjs",
   TelemetryTestUtils: "resource://testing-common/TelemetryTestUtils.sys.mjs",
   TestUtils: "resource://testing-common/TestUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  NetUtil: "resource://gre/modules/NetUtil.jsm",
-  ObjectUtils: "resource://gre/modules/ObjectUtils.jsm",
+  NetUtil: "moz-src:///netwerk/base/NetUtil.jsm",
+  ObjectUtils: "moz-src:///toolkit/modules/ObjectUtils.jsm",
 });
 
 XPCOMUtils.defineLazyGetter(this, "SMALLPNG_DATA_URI", function() {

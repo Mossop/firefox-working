@@ -2,13 +2,13 @@
    http://creativecommons.org/publicdomain/zero/1.0/ */
 
 ChromeUtils.defineESModuleGetters(this, {
-  BackgroundPageThumbs: "resource://gre/modules/BackgroundPageThumbs.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
-  NewTabUtils: "resource://gre/modules/NewTabUtils.sys.mjs",
-  PageThumbs: "resource://gre/modules/PageThumbs.sys.mjs",
-  PageThumbsStorage: "resource://gre/modules/PageThumbs.sys.mjs",
+  BackgroundPageThumbs: "moz-src:///toolkit/components/thumbnails/BackgroundPageThumbs.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
+  NewTabUtils: "moz-src:///toolkit/modules/NewTabUtils.sys.mjs",
+  PageThumbs: "moz-src:///toolkit/components/thumbnails/PageThumbs.sys.mjs",
+  PageThumbsStorage: "moz-src:///toolkit/components/thumbnails/PageThumbs.sys.mjs",
   PlacesTestUtils: "resource://testing-common/PlacesTestUtils.sys.mjs",
-  SessionStore: "resource:///modules/sessionstore/SessionStore.sys.mjs",
+  SessionStore: "moz-src:///browser/components/sessionstore/SessionStore.sys.mjs",
 });
 
 XPCOMUtils.defineLazyServiceGetter(

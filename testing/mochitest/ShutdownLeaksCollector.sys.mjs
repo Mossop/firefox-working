@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { setTimeout } from "resource://gre/modules/Timer.sys.mjs";
+import { setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 
 // This listens for the message "browser-test:collect-request". When it gets it,
 // it runs some GCs and CCs, then prints out a message indicating the collections

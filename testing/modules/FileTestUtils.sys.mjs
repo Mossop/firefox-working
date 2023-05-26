@@ -6,9 +6,9 @@
  * Provides testing functions dealing with local files and their contents.
  */
 
-import { DownloadPaths } from "resource://gre/modules/DownloadPaths.sys.mjs";
-import { FileUtils } from "resource://gre/modules/FileUtils.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { DownloadPaths } from "moz-src:///toolkit/components/downloads/DownloadPaths.sys.mjs";
+import { FileUtils } from "moz-src:///toolkit/modules/FileUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 import { Assert } from "resource://testing-common/Assert.sys.mjs";
 

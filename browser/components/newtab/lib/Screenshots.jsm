@@ -6,15 +6,15 @@
 const EXPORTED_SYMBOLS = ["Screenshots"];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  BackgroundPageThumbs: "resource://gre/modules/BackgroundPageThumbs.sys.mjs",
-  PageThumbs: "resource://gre/modules/PageThumbs.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  BackgroundPageThumbs: "moz-src:///toolkit/components/thumbnails/BackgroundPageThumbs.sys.mjs",
+  PageThumbs: "moz-src:///toolkit/components/thumbnails/PageThumbs.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
 const GREY_10 = "#F9F9FA";

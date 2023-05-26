@@ -11,11 +11,11 @@ const { ASRouterTargeting } = ChromeUtils.import(
 );
 
 const { BackgroundUpdate } = ChromeUtils.importESModule(
-  "resource://gre/modules/BackgroundUpdate.sys.mjs"
+  "moz-src:///toolkit/mozapps/update/BackgroundUpdate.sys.mjs"
 );
 
 const { maybeSubmitBackgroundUpdatePing } = ChromeUtils.importESModule(
-  "resource://gre/modules/backgroundtasks/BackgroundTask_backgroundupdate.sys.mjs"
+  "moz-src:///toolkit/mozapps/update/BackgroundTask_backgroundupdate.sys.mjs"
 );
 
 XPCOMUtils.defineLazyServiceGetter(

@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { AsyncShutdown } from "resource://gre/modules/AsyncShutdown.sys.mjs";
+import { AsyncShutdown } from "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs";
 
 // Set to true if the application is quitting
 var gQuitting = false;

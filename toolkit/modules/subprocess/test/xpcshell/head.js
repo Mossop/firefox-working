@@ -1,7 +1,7 @@
 "use strict";
 
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
@@ -9,5 +9,5 @@ const { AppConstants } = ChromeUtils.importESModule(
 
 // eslint-disable-next-line no-unused-vars
 ChromeUtils.defineESModuleGetters(this, {
-  Subprocess: "resource://gre/modules/Subprocess.sys.mjs",
+  Subprocess: "moz-src:///toolkit/modules/subprocess/Subprocess.sys.mjs",
 });

@@ -160,7 +160,7 @@ async function test_idletimeout_on_streamfilter({
     );
   } else {
     const { Management } = ChromeUtils.import(
-      "resource://gre/modules/Extension.jsm"
+      "moz-src:///toolkit/components/extensions/Extension.jsm"
     );
     const promiseProxyContextUnloaded = new Promise(resolve => {
       function listener(evt, context) {

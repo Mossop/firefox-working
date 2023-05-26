@@ -75,7 +75,7 @@ XPCOMUtils.defineLazyPreferenceGetter(
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  DoHConfigController: "resource:///modules/DoHConfig.sys.mjs",
+  DoHConfigController: "moz-src:///browser/components/doh/DoHConfig.sys.mjs",
 });
 
 Preferences.addAll([

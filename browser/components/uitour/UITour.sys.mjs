@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
@@ -10,25 +10,25 @@ const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   AboutReaderParent: "resource:///actors/AboutReaderParent.sys.mjs",
-  BuiltInThemes: "resource:///modules/BuiltInThemes.sys.mjs",
-  FxAccounts: "resource://gre/modules/FxAccounts.sys.mjs",
-  ProfileAge: "resource://gre/modules/ProfileAge.sys.mjs",
-  ResetProfile: "resource://gre/modules/ResetProfile.sys.mjs",
-  TelemetryController: "resource://gre/modules/TelemetryController.sys.mjs",
+  BuiltInThemes: "moz-src:///browser/themes/BuiltInThemes.sys.mjs",
+  FxAccounts: "moz-src:///services/fxaccounts/FxAccounts.sys.mjs",
+  ProfileAge: "moz-src:///toolkit/modules/ProfileAge.sys.mjs",
+  ResetProfile: "moz-src:///toolkit/modules/ResetProfile.sys.mjs",
+  TelemetryController: "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs",
   UIState: "resource://services-sync/UIState.sys.mjs",
-  UpdateUtils: "resource://gre/modules/UpdateUtils.sys.mjs",
+  UpdateUtils: "moz-src:///toolkit/modules/UpdateUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  BrowserUsageTelemetry: "resource:///modules/BrowserUsageTelemetry.jsm",
-  CustomizableUI: "resource:///modules/CustomizableUI.jsm",
-  PanelMultiView: "resource:///modules/PanelMultiView.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  BrowserUsageTelemetry: "moz-src:///browser/modules/BrowserUsageTelemetry.jsm",
+  CustomizableUI: "moz-src:///browser/components/customizableui/CustomizableUI.jsm",
+  PanelMultiView: "moz-src:///browser/components/customizableui/PanelMultiView.jsm",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "fxAccounts", () => {
   return ChromeUtils.importESModule(
-    "resource://gre/modules/FxAccounts.sys.mjs"
+    "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
   ).getFxAccountsSingleton();
 });
 
@@ -65,7 +65,7 @@ const TARGET_SEARCHENGINE_PREFIX = "searchEngine-";
 // Create a new instance of the ConsoleAPI so we can control the maxLogLevel with a pref.
 XPCOMUtils.defineLazyGetter(lazy, "log", () => {
   let { ConsoleAPI } = ChromeUtils.importESModule(
-    "resource://gre/modules/Console.sys.mjs"
+    "moz-src:///toolkit/modules/Console.sys.mjs"
   );
   let consoleOptions = {
     maxLogLevelPref: PREF_LOG_LEVEL,

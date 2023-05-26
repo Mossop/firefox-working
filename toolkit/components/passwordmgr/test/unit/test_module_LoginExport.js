@@ -9,7 +9,7 @@
 "use strict";
 
 let { LoginExport } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginExport.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginExport.sys.mjs"
 );
 let { sinon } = ChromeUtils.importESModule(
   "resource://testing-common/Sinon.sys.mjs"

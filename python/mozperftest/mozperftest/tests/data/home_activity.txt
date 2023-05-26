@@ -430,11 +430,11 @@
 05-26 11:45:24.849  1666  1791 E GeckoConsole: [JavaScript Error: "NetworkError when attempting to fetch resource."]
 05-26 11:45:24.849  1666  1791 E GeckoConsole: get@resource://services-settings/RemoteSettingsClient.jsm:348:12
 05-26 11:45:25.001  1666  1666 D App     : Installed browser-icons extension
-05-26 11:45:25.023  1666  1791 I GeckoConsole: 1590507925022	addons.xpi	WARN	Exception running bootstrap method shutdown on default-theme@mozilla.org: [Exception... "Component returned failure code: 0x80004002 (NS_NOINTERFACE) [nsISupports.QueryInterface]"  nsresult: "0x80004002 (NS_NOINTERFACE)"  location: "JS frame :: resource://gre/modules/Extension.jsm :: shutdown :: line 2586"  data: no] Stack trace: shutdown()@resource://gre/modules/Extension.jsm:2586
-05-26 11:45:25.023  1666  1791 I GeckoConsole: shutdown()@resource://gre/modules/Extension.jsm:1703
-05-26 11:45:25.023  1666  1791 I GeckoConsole: callBootstrapMethod()@resource://gre/modules/addons/XPIProvider.jsm:1819
-05-26 11:45:25.023  1666  1791 I GeckoConsole: _shutdown()@resource://gre/modules/addons/XPIProvider.jsm:1948
-05-26 11:45:25.023  1666  1791 I GeckoConsole: observe()@resource://gre/modules/AsyncShutdown.jsm:554
+05-26 11:45:25.023  1666  1791 I GeckoConsole: 1590507925022	addons.xpi	WARN	Exception running bootstrap method shutdown on default-theme@mozilla.org: [Exception... "Component returned failure code: 0x80004002 (NS_NOINTERFACE) [nsISupports.QueryInterface]"  nsresult: "0x80004002 (NS_NOINTERFACE)"  location: "JS frame :: moz-src:///toolkit/components/extensions/Extension.jsm :: shutdown :: line 2586"  data: no] Stack trace: shutdown()@moz-src:///toolkit/components/extensions/Extension.jsm:2586
+05-26 11:45:25.023  1666  1791 I GeckoConsole: shutdown()@moz-src:///toolkit/components/extensions/Extension.jsm:1703
+05-26 11:45:25.023  1666  1791 I GeckoConsole: callBootstrapMethod()@moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm:1819
+05-26 11:45:25.023  1666  1791 I GeckoConsole: _shutdown()@moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm:1948
+05-26 11:45:25.023  1666  1791 I GeckoConsole: observe()@moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.jsm:554
 05-26 11:45:25.030  1666  1791 D         : HostConnection::get() New Host Connection established 0xd119ec00, tid 1791
 05-26 11:45:25.033  1831  1831 D GeckoThread: State changed to LAUNCHED
 05-26 11:45:25.033  1666  1791 I ConfigStore: android::hardware::configstore::V1_0::ISurfaceFlingerConfigs::hasWideColorDisplay retrieved: 0
@@ -443,33 +443,33 @@
 05-26 11:45:25.035  1666  1791 E EGL_emulation: tid 1791: eglBindAPI(1259): error 0x300c (EGL_BAD_PARAMETER)
 05-26 11:45:25.037  1666  1791 D EGL_emulation: eglCreateContext: 0xe8b05f00: maj 3 min 0 rcv 3
 05-26 11:45:25.039  1666  1791 D EGL_emulation: eglMakeCurrent: 0xe8b05f00: ver 3 0 (tinfo 0xe8b03c50)
-05-26 11:45:25.129  1666  1791 E GeckoConsole: [JavaScript Error: "Error: Phase "profile-change-teardown" is finished, it is too late to register completion condition "ServiceWorkerShutdownBlocker: shutting down Service Workers"" {file: "resource://gre/modules/AsyncShutdown.jsm" line: 697}]
-05-26 11:45:25.129  1666  1791 E GeckoConsole: addBlocker@resource://gre/modules/AsyncShutdown.jsm:697:15
-05-26 11:45:25.129  1666  1791 E GeckoConsole: addBlocker@resource://gre/modules/AsyncShutdown.jsm:505:26
-05-26 11:45:25.129  1666  1791 E GeckoConsole: addBlocker@resource://gre/modules/AsyncShutdown.jsm:444:15
-05-26 11:45:25.129  1666  1791 E GeckoConsole: addBlocker@resource://gre/modules/nsAsyncShutdown.jsm:162:24
-05-26 11:45:25.129  1666  1791 E GeckoConsole: observe@resource://gre/modules/AsyncShutdown.jsm:554:16
+05-26 11:45:25.129  1666  1791 E GeckoConsole: [JavaScript Error: "Error: Phase "profile-change-teardown" is finished, it is too late to register completion condition "ServiceWorkerShutdownBlocker: shutting down Service Workers"" {file: "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.jsm" line: 697}]
+05-26 11:45:25.129  1666  1791 E GeckoConsole: addBlocker@moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.jsm:697:15
+05-26 11:45:25.129  1666  1791 E GeckoConsole: addBlocker@moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.jsm:505:26
+05-26 11:45:25.129  1666  1791 E GeckoConsole: addBlocker@moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.jsm:444:15
+05-26 11:45:25.129  1666  1791 E GeckoConsole: addBlocker@moz-src:///toolkit/components/asyncshutdown/nsAsyncShutdown.jsm:162:24
+05-26 11:45:25.129  1666  1791 E GeckoConsole: observe@moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.jsm:554:16
 05-26 11:45:25.267  1666  1791 W GeckoConsole: [JavaScript Warning: "Security wrapper denied access to property "ONE_QUARTER" on privileged Javascript object. Support for exposing privileged objects to untrusted content via __exposedProps__ has been removed - use WebIDL bindings or Components.utils.cloneInto instead. Note that only the first denied property access from a given global object will be reported." {file: "moz-extension://9670d999-4378-46ae-b907-6d0c226b09b6/data/picture_in_picture_overrides.js" line: 26}]
 05-26 11:45:25.311  1666  1666 D mozac-webcompat: Installed WebCompat webextension: webcompat@mozilla.com
-05-26 11:45:25.381  1666  1791 E GeckoConsole: [JavaScript Error: "can't access property "startupData", state is undefined" {file: "resource://gre/modules/addons/XPIProvider.jsm" line: 3079}]
-05-26 11:45:25.381  1666  1791 E GeckoConsole: setStartupData@resource://gre/modules/addons/XPIProvider.jsm:3079:5
-05-26 11:45:25.381  1666  1791 E GeckoConsole: saveStartupData@resource://gre/modules/Extension.jsm:2035:17
-05-26 11:45:25.381  1666  1791 E GeckoConsole: _writePersistentListeners@resource://gre/modules/ExtensionCommon.jsm:2271:15
-05-26 11:45:25.381  1666  1791 E GeckoConsole: savePersistentListener@resource://gre/modules/ExtensionCommon.jsm:2362:18
-05-26 11:45:25.381  1666  1791 E GeckoConsole: addListener@resource://gre/modules/ExtensionCommon.jsm:2495:20
-05-26 11:45:25.381  1666  1791 E GeckoConsole: addListener@resource://gre/modules/ExtensionCommon.jsm:2550:38
-05-26 11:45:25.381  1666  1791 E GeckoConsole: recvAddListener@resource://gre/modules/ExtensionParent.jsm:1079:13
-05-26 11:45:25.381  1666  1791 E GeckoConsole: observe@resource://gre/modules/AsyncShutdown.jsm:554:16
+05-26 11:45:25.381  1666  1791 E GeckoConsole: [JavaScript Error: "can't access property "startupData", state is undefined" {file: "moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm" line: 3079}]
+05-26 11:45:25.381  1666  1791 E GeckoConsole: setStartupData@moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm:3079:5
+05-26 11:45:25.381  1666  1791 E GeckoConsole: saveStartupData@moz-src:///toolkit/components/extensions/Extension.jsm:2035:17
+05-26 11:45:25.381  1666  1791 E GeckoConsole: _writePersistentListeners@moz-src:///toolkit/components/extensions/ExtensionCommon.jsm:2271:15
+05-26 11:45:25.381  1666  1791 E GeckoConsole: savePersistentListener@moz-src:///toolkit/components/extensions/ExtensionCommon.jsm:2362:18
+05-26 11:45:25.381  1666  1791 E GeckoConsole: addListener@moz-src:///toolkit/components/extensions/ExtensionCommon.jsm:2495:20
+05-26 11:45:25.381  1666  1791 E GeckoConsole: addListener@moz-src:///toolkit/components/extensions/ExtensionCommon.jsm:2550:38
+05-26 11:45:25.381  1666  1791 E GeckoConsole: recvAddListener@moz-src:///toolkit/components/extensions/ExtensionParent.jsm:1079:13
+05-26 11:45:25.381  1666  1791 E GeckoConsole: observe@moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.jsm:554:16
 05-26 11:45:25.401  1666  1791 I chatty  : uid=10091(org.mozilla.fenix.debug) Gecko identical 24 lines
-05-26 11:45:25.478  1666  1791 E GeckoConsole: [JavaScript Error: "can't access property "startupData", state is undefined" {file: "resource://gre/modules/addons/XPIProvider.jsm" line: 3079}]
-05-26 11:45:25.478  1666  1791 E GeckoConsole: setStartupData@resource://gre/modules/addons/XPIProvider.jsm:3079:5
-05-26 11:45:25.478  1666  1791 E GeckoConsole: saveStartupData@resource://gre/modules/Extension.jsm:2035:17
-05-26 11:45:25.478  1666  1791 E GeckoConsole: _writePersistentListeners@resource://gre/modules/ExtensionCommon.jsm:2271:15
-05-26 11:45:25.478  1666  1791 E GeckoConsole: savePersistentListener@resource://gre/modules/ExtensionCommon.jsm:2362:18
-05-26 11:45:25.478  1666  1791 E GeckoConsole: addListener@resource://gre/modules/ExtensionCommon.jsm:2495:20
-05-26 11:45:25.478  1666  1791 E GeckoConsole: addListener@resource://gre/modules/ExtensionCommon.jsm:2550:38
-05-26 11:45:25.478  1666  1791 E GeckoConsole: recvAddListener@resource://gre/modules/ExtensionParent.jsm:1079:13
-05-26 11:45:25.478  1666  1791 E GeckoConsole: observe@resource://gre/modules/AsyncShutdown.jsm:554:16
+05-26 11:45:25.478  1666  1791 E GeckoConsole: [JavaScript Error: "can't access property "startupData", state is undefined" {file: "moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm" line: 3079}]
+05-26 11:45:25.478  1666  1791 E GeckoConsole: setStartupData@moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm:3079:5
+05-26 11:45:25.478  1666  1791 E GeckoConsole: saveStartupData@moz-src:///toolkit/components/extensions/Extension.jsm:2035:17
+05-26 11:45:25.478  1666  1791 E GeckoConsole: _writePersistentListeners@moz-src:///toolkit/components/extensions/ExtensionCommon.jsm:2271:15
+05-26 11:45:25.478  1666  1791 E GeckoConsole: savePersistentListener@moz-src:///toolkit/components/extensions/ExtensionCommon.jsm:2362:18
+05-26 11:45:25.478  1666  1791 E GeckoConsole: addListener@moz-src:///toolkit/components/extensions/ExtensionCommon.jsm:2495:20
+05-26 11:45:25.478  1666  1791 E GeckoConsole: addListener@moz-src:///toolkit/components/extensions/ExtensionCommon.jsm:2550:38
+05-26 11:45:25.478  1666  1791 E GeckoConsole: recvAddListener@moz-src:///toolkit/components/extensions/ExtensionParent.jsm:1079:13
+05-26 11:45:25.478  1666  1791 E GeckoConsole: observe@moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.jsm:554:16
 05-26 11:45:25.499  1876  2204 I GnssLocationProvider: WakeLock acquired by sendMessage(REPORT_SV_STATUS, 0, com.android.server.location.GnssLocationProvider$SvStatusInfo@c8d27c8)
 05-26 11:45:25.500  1876  1890 I GnssLocationProvider: WakeLock released by handleMessage(REPORT_SV_STATUS, 0, com.android.server.location.GnssLocationProvider$SvStatusInfo@c8d27c8)
 05-26 11:45:25.518  1666  1791 I Gecko   : 1590507925518	Marionette	TRACE	Received observer notification xpcom-will-shutdown
@@ -2192,46 +2192,46 @@
 05-26 11:45:58.978  3020  3020 D GeckoThread: State changed to LAUNCHED
 05-26 11:45:58.979  3020  3074 I GeckoThread: preparing to run Gecko
 05-26 11:45:59.080  2958  2958 D App     : Installed browser-icons extension
-05-26 11:45:59.095  2958  2993 I GeckoConsole: 1590507959095	addons.xpi	WARN	Exception running bootstrap method shutdown on default-theme@mozilla.org: [Exception... "Component returned failure code: 0x80004002 (NS_NOINTERFACE) [nsISupports.QueryInterface]"  nsresult: "0x80004002 (NS_NOINTERFACE)"  location: "JS frame :: resource://gre/modules/Extension.jsm :: shutdown :: line 2586"  data: no] Stack trace: shutdown()@resource://gre/modules/Extension.jsm:2586
-05-26 11:45:59.095  2958  2993 I GeckoConsole: shutdown()@resource://gre/modules/Extension.jsm:1703
-05-26 11:45:59.095  2958  2993 I GeckoConsole: callBootstrapMethod()@resource://gre/modules/addons/XPIProvider.jsm:1819
-05-26 11:45:59.095  2958  2993 I GeckoConsole: _shutdown()@resource://gre/modules/addons/XPIProvider.jsm:1948
-05-26 11:45:59.095  2958  2993 I GeckoConsole: observe()@resource://gre/modules/AsyncShutdown.jsm:554
+05-26 11:45:59.095  2958  2993 I GeckoConsole: 1590507959095	addons.xpi	WARN	Exception running bootstrap method shutdown on default-theme@mozilla.org: [Exception... "Component returned failure code: 0x80004002 (NS_NOINTERFACE) [nsISupports.QueryInterface]"  nsresult: "0x80004002 (NS_NOINTERFACE)"  location: "JS frame :: moz-src:///toolkit/components/extensions/Extension.jsm :: shutdown :: line 2586"  data: no] Stack trace: shutdown()@moz-src:///toolkit/components/extensions/Extension.jsm:2586
+05-26 11:45:59.095  2958  2993 I GeckoConsole: shutdown()@moz-src:///toolkit/components/extensions/Extension.jsm:1703
+05-26 11:45:59.095  2958  2993 I GeckoConsole: callBootstrapMethod()@moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm:1819
+05-26 11:45:59.095  2958  2993 I GeckoConsole: _shutdown()@moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm:1948
+05-26 11:45:59.095  2958  2993 I GeckoConsole: observe()@moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.jsm:554
 05-26 11:45:59.106  2958  2993 D         : HostConnection::get() New Host Connection established 0xe6b53580, tid 2993
 05-26 11:45:59.109  2958  2993 I ConfigStore: android::hardware::configstore::V1_0::ISurfaceFlingerConfigs::hasWideColorDisplay retrieved: 0
 05-26 11:45:59.109  2958  2993 I ConfigStore: android::hardware::configstore::V1_0::ISurfaceFlingerConfigs::hasHDRDisplay retrieved: 0
 05-26 11:45:59.110  2958  2993 E EGL_emulation: tid 2993: eglBindAPI(1259): error 0x300c (EGL_BAD_PARAMETER)
 05-26 11:45:59.111  2958  2993 D EGL_emulation: eglCreateContext: 0xea8dc120: maj 3 min 0 rcv 3
 05-26 11:45:59.112  2958  2993 D EGL_emulation: eglMakeCurrent: 0xea8dc120: ver 3 0 (tinfo 0xee8fd9d0)
-05-26 11:45:59.388  2958  2993 E GeckoConsole: [JavaScript Error: "Error: Phase "profile-change-teardown" is finished, it is too late to register completion condition "ServiceWorkerShutdownBlocker: shutting down Service Workers"" {file: "resource://gre/modules/AsyncShutdown.jsm" line: 697}]
-05-26 11:45:59.388  2958  2993 E GeckoConsole: addBlocker@resource://gre/modules/AsyncShutdown.jsm:697:15
-05-26 11:45:59.388  2958  2993 E GeckoConsole: addBlocker@resource://gre/modules/AsyncShutdown.jsm:505:26
-05-26 11:45:59.388  2958  2993 E GeckoConsole: addBlocker@resource://gre/modules/AsyncShutdown.jsm:444:15
-05-26 11:45:59.388  2958  2993 E GeckoConsole: addBlocker@resource://gre/modules/nsAsyncShutdown.jsm:162:24
-05-26 11:45:59.388  2958  2993 E GeckoConsole: observe@resource://gre/modules/AsyncShutdown.jsm:554:16
+05-26 11:45:59.388  2958  2993 E GeckoConsole: [JavaScript Error: "Error: Phase "profile-change-teardown" is finished, it is too late to register completion condition "ServiceWorkerShutdownBlocker: shutting down Service Workers"" {file: "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.jsm" line: 697}]
+05-26 11:45:59.388  2958  2993 E GeckoConsole: addBlocker@moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.jsm:697:15
+05-26 11:45:59.388  2958  2993 E GeckoConsole: addBlocker@moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.jsm:505:26
+05-26 11:45:59.388  2958  2993 E GeckoConsole: addBlocker@moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.jsm:444:15
+05-26 11:45:59.388  2958  2993 E GeckoConsole: addBlocker@moz-src:///toolkit/components/asyncshutdown/nsAsyncShutdown.jsm:162:24
+05-26 11:45:59.388  2958  2993 E GeckoConsole: observe@moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.jsm:554:16
 05-26 11:45:59.541  2958  2993 W GeckoConsole: [JavaScript Warning: "Security wrapper denied access to property "ONE_QUARTER" on privileged Javascript object. Support for exposing privileged objects to untrusted content via __exposedProps__ has been removed - use WebIDL bindings or Components.utils.cloneInto instead. Note that only the first denied property access from a given global object will be reported." {file: "moz-extension://9670d999-4378-46ae-b907-6d0c226b09b6/data/picture_in_picture_overrides.js" line: 26}]
 05-26 11:45:59.547  1876  2204 I GnssLocationProvider: WakeLock acquired by sendMessage(REPORT_SV_STATUS, 0, com.android.server.location.GnssLocationProvider$SvStatusInfo@3a65818)
 05-26 11:45:59.548  1876  1890 I GnssLocationProvider: WakeLock released by handleMessage(REPORT_SV_STATUS, 0, com.android.server.location.GnssLocationProvider$SvStatusInfo@3a65818)
 05-26 11:45:59.576  2958  2958 D mozac-webcompat: Installed WebCompat webextension: webcompat@mozilla.com
-05-26 11:45:59.636  2958  2993 E GeckoConsole: [JavaScript Error: "can't access property "startupData", state is undefined" {file: "resource://gre/modules/addons/XPIProvider.jsm" line: 3079}]
-05-26 11:45:59.636  2958  2993 E GeckoConsole: setStartupData@resource://gre/modules/addons/XPIProvider.jsm:3079:5
-05-26 11:45:59.636  2958  2993 E GeckoConsole: saveStartupData@resource://gre/modules/Extension.jsm:2035:17
-05-26 11:45:59.636  2958  2993 E GeckoConsole: _writePersistentListeners@resource://gre/modules/ExtensionCommon.jsm:2271:15
-05-26 11:45:59.636  2958  2993 E GeckoConsole: savePersistentListener@resource://gre/modules/ExtensionCommon.jsm:2362:18
-05-26 11:45:59.636  2958  2993 E GeckoConsole: addListener@resource://gre/modules/ExtensionCommon.jsm:2495:20
-05-26 11:45:59.636  2958  2993 E GeckoConsole: addListener@resource://gre/modules/ExtensionCommon.jsm:2550:38
-05-26 11:45:59.636  2958  2993 E GeckoConsole: recvAddListener@resource://gre/modules/ExtensionParent.jsm:1079:13
-05-26 11:45:59.636  2958  2993 E GeckoConsole: observe@resource://gre/modules/AsyncShutdown.jsm:554:16
+05-26 11:45:59.636  2958  2993 E GeckoConsole: [JavaScript Error: "can't access property "startupData", state is undefined" {file: "moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm" line: 3079}]
+05-26 11:45:59.636  2958  2993 E GeckoConsole: setStartupData@moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm:3079:5
+05-26 11:45:59.636  2958  2993 E GeckoConsole: saveStartupData@moz-src:///toolkit/components/extensions/Extension.jsm:2035:17
+05-26 11:45:59.636  2958  2993 E GeckoConsole: _writePersistentListeners@moz-src:///toolkit/components/extensions/ExtensionCommon.jsm:2271:15
+05-26 11:45:59.636  2958  2993 E GeckoConsole: savePersistentListener@moz-src:///toolkit/components/extensions/ExtensionCommon.jsm:2362:18
+05-26 11:45:59.636  2958  2993 E GeckoConsole: addListener@moz-src:///toolkit/components/extensions/ExtensionCommon.jsm:2495:20
+05-26 11:45:59.636  2958  2993 E GeckoConsole: addListener@moz-src:///toolkit/components/extensions/ExtensionCommon.jsm:2550:38
+05-26 11:45:59.636  2958  2993 E GeckoConsole: recvAddListener@moz-src:///toolkit/components/extensions/ExtensionParent.jsm:1079:13
+05-26 11:45:59.636  2958  2993 E GeckoConsole: observe@moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.jsm:554:16
 05-26 11:45:59.657  2958  2993 I chatty  : uid=10091(org.mozilla.fenix.debug) Gecko identical 24 lines
-05-26 11:45:59.705  2958  2993 E GeckoConsole: [JavaScript Error: "can't access property "startupData", state is undefined" {file: "resource://gre/modules/addons/XPIProvider.jsm" line: 3079}]
-05-26 11:45:59.705  2958  2993 E GeckoConsole: setStartupData@resource://gre/modules/addons/XPIProvider.jsm:3079:5
-05-26 11:45:59.705  2958  2993 E GeckoConsole: saveStartupData@resource://gre/modules/Extension.jsm:2035:17
-05-26 11:45:59.705  2958  2993 E GeckoConsole: _writePersistentListeners@resource://gre/modules/ExtensionCommon.jsm:2271:15
-05-26 11:45:59.705  2958  2993 E GeckoConsole: savePersistentListener@resource://gre/modules/ExtensionCommon.jsm:2362:18
-05-26 11:45:59.705  2958  2993 E GeckoConsole: addListener@resource://gre/modules/ExtensionCommon.jsm:2495:20
-05-26 11:45:59.705  2958  2993 E GeckoConsole: addListener@resource://gre/modules/ExtensionCommon.jsm:2550:38
-05-26 11:45:59.705  2958  2993 E GeckoConsole: recvAddListener@resource://gre/modules/ExtensionParent.jsm:1079:13
-05-26 11:45:59.705  2958  2993 E GeckoConsole: observe@resource://gre/modules/AsyncShutdown.jsm:554:16
+05-26 11:45:59.705  2958  2993 E GeckoConsole: [JavaScript Error: "can't access property "startupData", state is undefined" {file: "moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm" line: 3079}]
+05-26 11:45:59.705  2958  2993 E GeckoConsole: setStartupData@moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm:3079:5
+05-26 11:45:59.705  2958  2993 E GeckoConsole: saveStartupData@moz-src:///toolkit/components/extensions/Extension.jsm:2035:17
+05-26 11:45:59.705  2958  2993 E GeckoConsole: _writePersistentListeners@moz-src:///toolkit/components/extensions/ExtensionCommon.jsm:2271:15
+05-26 11:45:59.705  2958  2993 E GeckoConsole: savePersistentListener@moz-src:///toolkit/components/extensions/ExtensionCommon.jsm:2362:18
+05-26 11:45:59.705  2958  2993 E GeckoConsole: addListener@moz-src:///toolkit/components/extensions/ExtensionCommon.jsm:2495:20
+05-26 11:45:59.705  2958  2993 E GeckoConsole: addListener@moz-src:///toolkit/components/extensions/ExtensionCommon.jsm:2550:38
+05-26 11:45:59.705  2958  2993 E GeckoConsole: recvAddListener@moz-src:///toolkit/components/extensions/ExtensionParent.jsm:1079:13
+05-26 11:45:59.705  2958  2993 E GeckoConsole: observe@moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.jsm:554:16
 05-26 11:45:59.748  2958  2993 I Gecko   : 1590507959748	Marionette	TRACE	Received observer notification xpcom-will-shutdown
 05-26 11:45:59.759  2958  2958 I DefaultSupportedAddonsChecker: Register check for new supported add-ons
 05-26 11:45:59.875  2958  2979 I WM-WorkerWrapper: Work [ id=c00de910-17a6-4ace-93f7-da1dd8387abe, tags={ mozilla.components.feature.addons.migration.DefaultSupportedAddonsChecker.periodicWork, mozilla.components.feature.addons.migration.SupportedAddonsWorker } ] was cancelled

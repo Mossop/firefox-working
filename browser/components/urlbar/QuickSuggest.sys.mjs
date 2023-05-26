@@ -2,30 +2,30 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   NimbusFeatures: "resource://nimbus/ExperimentAPI.sys.mjs",
-  UrlbarPrefs: "resource:///modules/UrlbarPrefs.sys.mjs",
-  UrlbarUtils: "resource:///modules/UrlbarUtils.sys.mjs",
+  UrlbarPrefs: "moz-src:///browser/components/urlbar/UrlbarPrefs.sys.mjs",
+  UrlbarUtils: "moz-src:///browser/components/urlbar/UrlbarUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
+  BrowserWindowTracker: "moz-src:///browser/modules/BrowserWindowTracker.jsm",
 });
 
 // Quick suggest features. On init, QuickSuggest creates an instance of each and
 // keeps it in the `#features` map. See `BaseFeature`.
 const FEATURES = {
   AddonSuggestions:
-    "resource:///modules/urlbar/private/AddonSuggestions.sys.mjs",
-  AdmWikipedia: "resource:///modules/urlbar/private/AdmWikipedia.sys.mjs",
+    "moz-src:///browser/components/urlbar/private/AddonSuggestions.sys.mjs",
+  AdmWikipedia: "moz-src:///browser/components/urlbar/private/AdmWikipedia.sys.mjs",
   BlockedSuggestions:
-    "resource:///modules/urlbar/private/BlockedSuggestions.sys.mjs",
-  ImpressionCaps: "resource:///modules/urlbar/private/ImpressionCaps.sys.mjs",
-  Weather: "resource:///modules/urlbar/private/Weather.sys.mjs",
+    "moz-src:///browser/components/urlbar/private/BlockedSuggestions.sys.mjs",
+  ImpressionCaps: "moz-src:///browser/components/urlbar/private/ImpressionCaps.sys.mjs",
+  Weather: "moz-src:///browser/components/urlbar/private/Weather.sys.mjs",
 };
 
 const TIMESTAMP_TEMPLATE = "%YYYYMMDDHH%";

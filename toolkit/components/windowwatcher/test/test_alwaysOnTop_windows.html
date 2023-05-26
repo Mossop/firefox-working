@@ -13,7 +13,7 @@ Tests the alwaysOnTop window feature for the Windows OS.
   <script type="application/javascript">
 
   const {BrowserTestUtils} = ChromeUtils.import("resource://testing-common/BrowserTestUtils.jsm");
-  const {ctypes} = ChromeUtils.import("resource://gre/modules/ctypes.jsm");
+  const {ctypes} = ChromeUtils.import("moz-src:///toolkit/components/ctypes/ctypes.jsm");
 
   function assertAlwaysOnTop(win, expected) {
     let docShell = win.docShell;

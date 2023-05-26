@@ -6,7 +6,7 @@ const { AppConstants } = ChromeUtils.importESModule(
 );
 
 const { BrowserUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/BrowserUtils.sys.mjs"
+  "moz-src:///toolkit/modules/BrowserUtils.sys.mjs"
 );
 
 const { EnterprisePolicyTesting } = ChromeUtils.importESModule(
@@ -14,7 +14,7 @@ const { EnterprisePolicyTesting } = ChromeUtils.importESModule(
 );
 
 const { Region } = ChromeUtils.importESModule(
-  "resource://gre/modules/Region.sys.mjs"
+  "moz-src:///toolkit/modules/Region.sys.mjs"
 );
 
 const { updateAppInfo } = ChromeUtils.importESModule(
@@ -22,7 +22,7 @@ const { updateAppInfo } = ChromeUtils.importESModule(
 );
 
 const { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 
 // Helper to run tests for specific regions

@@ -1,7 +1,7 @@
 const { HttpServer } = ChromeUtils.import("resource://testing-common/httpd.js");
-const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+const { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 // Since this test creates a TYPE_DOCUMENT channel via javascript, it will

@@ -5,7 +5,7 @@
 "use strict";
 
 const { LoginManagerChild } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginManagerChild.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginManagerChild.sys.mjs"
 );
 
 // expectation[0] tests cases when a form doesn't have a sign-in keyword.

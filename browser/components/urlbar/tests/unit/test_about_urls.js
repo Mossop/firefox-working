@@ -5,7 +5,7 @@
 "use strict";
 
 const { AboutPagesUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/AboutPagesUtils.sys.mjs"
+  "moz-src:///toolkit/modules/AboutPagesUtils.sys.mjs"
 );
 
 testEngine_setup();

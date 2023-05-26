@@ -10,7 +10,7 @@ const { RemoteSettings } = ChromeUtils.importESModule(
   "resource://services-settings/remote-settings.sys.mjs"
 );
 const { SBRS_UPDATE_MINIMUM_DELAY } = ChromeUtils.import(
-  "resource://gre/modules/UrlClassifierRemoteSettingsService.jsm"
+  "moz-src:///toolkit/components/url-classifier/UrlClassifierRemoteSettingsService.jsm"
 );
 
 const COLLECTION_NAME = "tracking-protection-lists";

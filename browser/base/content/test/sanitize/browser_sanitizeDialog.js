@@ -19,7 +19,7 @@
 
 ChromeUtils.defineESModuleGetters(this, {
   PlacesTestUtils: "resource://testing-common/PlacesTestUtils.sys.mjs",
-  Timer: "resource://gre/modules/Timer.sys.mjs",
+  Timer: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 const kMsecPerMin = 60 * 1000;

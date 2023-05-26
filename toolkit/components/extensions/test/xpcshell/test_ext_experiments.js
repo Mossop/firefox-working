@@ -2,7 +2,7 @@
 
 /* globals browser */
 const { AddonSettings } = ChromeUtils.import(
-  "resource://gre/modules/addons/AddonSettings.jsm"
+  "moz-src:///toolkit/mozapps/extensions/internal/AddonSettings.jsm"
 );
 
 AddonTestUtils.init(this);

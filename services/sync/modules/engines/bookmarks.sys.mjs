@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 import { Async } from "resource://services-common/async.sys.mjs";
 
@@ -20,12 +20,12 @@ const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   Observers: "resource://services-common/observers.sys.mjs",
-  PlacesBackups: "resource://gre/modules/PlacesBackups.sys.mjs",
-  PlacesDBUtils: "resource://gre/modules/PlacesDBUtils.sys.mjs",
-  PlacesSyncUtils: "resource://gre/modules/PlacesSyncUtils.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
+  PlacesBackups: "moz-src:///toolkit/components/places/PlacesBackups.sys.mjs",
+  PlacesDBUtils: "moz-src:///toolkit/components/places/PlacesDBUtils.sys.mjs",
+  PlacesSyncUtils: "moz-src:///toolkit/components/places/PlacesSyncUtils.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
   Resource: "resource://services-sync/resource.sys.mjs",
-  SyncedBookmarksMirror: "resource://gre/modules/SyncedBookmarksMirror.sys.mjs",
+  SyncedBookmarksMirror: "moz-src:///toolkit/components/places/SyncedBookmarksMirror.sys.mjs",
 });
 
 const PLACES_MAINTENANCE_INTERVAL_SECONDS = 4 * 60 * 60; // 4 hours.

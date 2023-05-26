@@ -4,7 +4,7 @@
 "use strict";
 
 let { runOnce } = ChromeUtils.importESModule(
-  "resource:///modules/policies/Policies.sys.mjs"
+  "moz-src:///browser/components/enterprisepolicies/Policies.sys.mjs"
 );
 
 let runCount = 0;

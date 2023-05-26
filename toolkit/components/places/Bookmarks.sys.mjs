@@ -60,11 +60,11 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "NetUtil",
-  "resource://gre/modules/NetUtil.jsm"
+  "moz-src:///netwerk/base/NetUtil.jsm"
 );
 ChromeUtils.defineESModuleGetters(lazy, {
-  PlacesSyncUtils: "resource://gre/modules/PlacesSyncUtils.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
+  PlacesSyncUtils: "moz-src:///toolkit/components/places/PlacesSyncUtils.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
 });
 
 const MATCH_ANYWHERE_UNMODIFIED =

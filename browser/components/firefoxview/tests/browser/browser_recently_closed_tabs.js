@@ -15,7 +15,7 @@ requestLongerTimeout(10);
  */
 
 ChromeUtils.defineESModuleGetters(globalThis, {
-  SessionStore: "resource:///modules/sessionstore/SessionStore.sys.mjs",
+  SessionStore: "moz-src:///browser/components/sessionstore/SessionStore.sys.mjs",
 });
 
 const RECENTLY_CLOSED_EVENT = [

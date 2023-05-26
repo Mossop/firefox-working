@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 import {
   BridgedEngine,
@@ -21,9 +21,9 @@ ChromeUtils.defineESModuleGetters(lazy, {
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  extensionStorageSync: "resource://gre/modules/ExtensionStorageSync.jsm",
+  extensionStorageSync: "moz-src:///toolkit/components/extensions/ExtensionStorageSync.jsm",
   extensionStorageSyncKinto:
-    "resource://gre/modules/ExtensionStorageSyncKinto.jsm",
+    "moz-src:///toolkit/components/extensions/ExtensionStorageSyncKinto.jsm",
 });
 
 XPCOMUtils.defineLazyServiceGetter(

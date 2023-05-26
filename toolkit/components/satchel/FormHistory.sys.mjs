@@ -88,7 +88,7 @@ import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Sqlite: "resource://gre/modules/Sqlite.sys.mjs",
+  Sqlite: "moz-src:///toolkit/modules/Sqlite.sys.mjs",
 });
 
 const DB_SCHEMA_VERSION = 5;

@@ -13,7 +13,7 @@ const nsLoginInfo = new Components.Constructor(
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  Region: "resource://gre/modules/Region.sys.mjs",
+  Region: "moz-src:///toolkit/modules/Region.sys.mjs",
 });
 
 const { SearchTestUtils } = ChromeUtils.importESModule(

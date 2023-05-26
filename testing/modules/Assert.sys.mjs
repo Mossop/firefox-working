@@ -7,7 +7,7 @@
 // MIT license: http://opensource.org/licenses/MIT
 
 const { ObjectUtils } = ChromeUtils.import(
-  "resource://gre/modules/ObjectUtils.jsm"
+  "moz-src:///toolkit/modules/ObjectUtils.jsm"
 );
 
 /**

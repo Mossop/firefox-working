@@ -4,26 +4,26 @@
 "use strict";
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  Region: "resource://gre/modules/Region.sys.mjs",
+  Region: "moz-src:///toolkit/modules/Region.sys.mjs",
   RemoteSettings: "resource://services-settings/remote-settings.sys.mjs",
-  SearchEngine: "resource://gre/modules/SearchEngine.sys.mjs",
-  SearchEngineSelector: "resource://gre/modules/SearchEngineSelector.sys.mjs",
+  SearchEngine: "moz-src:///toolkit/components/search/SearchEngine.sys.mjs",
+  SearchEngineSelector: "moz-src:///toolkit/components/search/SearchEngineSelector.sys.mjs",
   SearchTestUtils: "resource://testing-common/SearchTestUtils.sys.mjs",
-  SearchUtils: "resource://gre/modules/SearchUtils.sys.mjs",
+  SearchUtils: "moz-src:///toolkit/components/search/SearchUtils.sys.mjs",
   sinon: "resource://testing-common/Sinon.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
   AddonTestUtils: "resource://testing-common/AddonTestUtils.jsm",
-  ObjectUtils: "resource://gre/modules/ObjectUtils.jsm",
+  ObjectUtils: "moz-src:///toolkit/modules/ObjectUtils.jsm",
 });
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["fetch"]);

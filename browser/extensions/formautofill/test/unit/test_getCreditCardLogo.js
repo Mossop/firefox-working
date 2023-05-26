@@ -5,7 +5,7 @@ http://creativecommons.org/publicdomain/zero/1.0/ */
 
 add_task(async function test_getCreditCardLogo() {
   const { CreditCard } = ChromeUtils.importESModule(
-    "resource://gre/modules/CreditCard.sys.mjs"
+    "moz-src:///toolkit/modules/CreditCard.sys.mjs"
   );
   // Credit card logos can be either PNG or SVG
   // so we construct an array that includes both of these file extensions

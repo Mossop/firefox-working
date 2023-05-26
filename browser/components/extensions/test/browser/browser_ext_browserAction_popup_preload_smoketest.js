@@ -79,7 +79,7 @@ async function waitForExtensionAndBrowserAction(addonId) {
     Management: {
       global: { browserActionFor },
     },
-  } = ChromeUtils.import("resource://gre/modules/Extension.jsm");
+  } = ChromeUtils.import("moz-src:///toolkit/components/extensions/Extension.jsm");
 
   // trigger a number of preloads
   let extension;

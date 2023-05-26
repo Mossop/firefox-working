@@ -4,7 +4,7 @@
 "use strict";
 
 let { AboutHomeStartupCache } = ChromeUtils.importESModule(
-  "resource:///modules/BrowserGlue.sys.mjs"
+  "moz-src:///browser/components/BrowserGlue.sys.mjs"
 );
 
 // Some Activity Stream preferences are JSON encoded, and quite complex.
@@ -146,7 +146,7 @@ async function simulateRestart(
   info("Waiting for AboutHomeStartupCacheChild to uninit");
   await SpecialPowers.spawn(browser, [], async () => {
     let { AboutHomeStartupCacheChild } = ChromeUtils.import(
-      "resource:///modules/AboutNewTabService.jsm"
+      "moz-src:///browser/components/newtab/AboutNewTabService.jsm"
     );
     AboutHomeStartupCacheChild.uninit();
   });
@@ -168,7 +168,7 @@ async function simulateRestart(
       info("Ensuring cache bytes are available");
       await SpecialPowers.spawn(browser, [], async () => {
         let { AboutHomeStartupCacheChild } = ChromeUtils.import(
-          "resource:///modules/AboutNewTabService.jsm"
+          "moz-src:///browser/components/newtab/AboutNewTabService.jsm"
         );
         let pageStream = AboutHomeStartupCacheChild._pageInputStream;
         let scriptStream = AboutHomeStartupCacheChild._scriptInputStream;

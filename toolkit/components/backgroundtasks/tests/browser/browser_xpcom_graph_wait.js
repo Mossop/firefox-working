@@ -30,14 +30,14 @@ const backgroundtaskPhases = {
     allowlist: {
       modules: [
         "resource://gre/modules/AppConstants.sys.mjs",
-        "resource://gre/modules/AsyncShutdown.sys.mjs",
-        "resource://gre/modules/BackgroundTasksManager.sys.mjs",
-        "resource://gre/modules/Console.sys.mjs",
-        "resource://gre/modules/EnterprisePolicies.sys.mjs",
-        "resource://gre/modules/EnterprisePoliciesParent.sys.mjs",
-        "resource://gre/modules/PromiseUtils.sys.mjs",
-        "resource://gre/modules/XPCOMUtils.sys.mjs",
-        "resource://gre/modules/nsAsyncShutdown.sys.mjs",
+        "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs",
+        "moz-src:///toolkit/components/backgroundtasks/BackgroundTasksManager.sys.mjs",
+        "moz-src:///toolkit/modules/Console.sys.mjs",
+        "moz-src:///toolkit/components/enterprisepolicies/EnterprisePolicies.sys.mjs",
+        "moz-src:///toolkit/components/enterprisepolicies/EnterprisePoliciesParent.sys.mjs",
+        "moz-src:///toolkit/modules/PromiseUtils.sys.mjs",
+        "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs",
+        "moz-src:///toolkit/components/asyncshutdown/nsAsyncShutdown.sys.mjs",
       ],
       // Human-readable contract IDs are many-to-one mapped to CIDs, so this
       // list is a little misleading.  For example, all of
@@ -121,8 +121,8 @@ const backgroundtaskPhases = {
         // We have a profile marker for this, even though it failed to load!
         "resource:///modules/backgroundtasks/BackgroundTask_wait.sys.mjs",
 
-        "resource://gre/modules/ConsoleAPIStorage.jsm",
-        "resource://gre/modules/Timer.sys.mjs",
+        "moz-src:///dom/console/ConsoleAPIStorage.jsm",
+        "moz-src:///toolkit/modules/Timer.sys.mjs",
 
         // We have a profile marker for this, even though it failed to load!
         "resource://gre/modules/backgroundtasks/BackgroundTask_wait.sys.mjs",

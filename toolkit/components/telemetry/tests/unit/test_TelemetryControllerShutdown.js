@@ -7,13 +7,13 @@
 "use strict";
 
 const { TelemetryController } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryController.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs"
 );
 const { TelemetrySend } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetrySend.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetrySend.sys.mjs"
 );
 const { AsyncShutdown } = ChromeUtils.importESModule(
-  "resource://gre/modules/AsyncShutdown.sys.mjs"
+  "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs"
 );
 
 function contentHandler(metadata, response) {

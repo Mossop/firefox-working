@@ -7,7 +7,7 @@ const {
   SearchSERPTelemetry,
   SearchSERPTelemetryUtils,
 } = ChromeUtils.importESModule(
-  "resource:///modules/SearchSERPTelemetry.sys.mjs"
+  "moz-src:///browser/components/search/SearchSERPTelemetry.sys.mjs"
 );
 
 const WINDOW_HEIGHT = 768;

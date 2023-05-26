@@ -4,7 +4,7 @@
 
 "use strict";
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const gDashboard = Cc["@mozilla.org/network/dashboard;1"].getService(
   Ci.nsIDashboard
@@ -17,7 +17,7 @@ const { ProfilerMenuButton } = ChromeUtils.import(
   "resource://devtools/client/performance-new/popup/menu-button.jsm.js"
 );
 const { CustomizableUI } = ChromeUtils.import(
-  "resource:///modules/CustomizableUI.jsm"
+  "moz-src:///browser/components/customizableui/CustomizableUI.jsm"
 );
 
 XPCOMUtils.defineLazyGetter(this, "ProfilerPopupBackground", function() {

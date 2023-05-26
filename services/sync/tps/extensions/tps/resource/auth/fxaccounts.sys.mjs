@@ -2,14 +2,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { Log } from "resource://gre/modules/Log.sys.mjs";
-import { clearTimeout, setTimeout } from "resource://gre/modules/Timer.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
+import { clearTimeout, setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 
-import { getFxAccountsSingleton } from "resource://gre/modules/FxAccounts.sys.mjs";
+import { getFxAccountsSingleton } from "moz-src:///services/fxaccounts/FxAccounts.sys.mjs";
 
 const fxAccounts = getFxAccountsSingleton();
-import { FxAccountsClient } from "resource://gre/modules/FxAccountsClient.sys.mjs";
-import { FxAccountsConfig } from "resource://gre/modules/FxAccountsConfig.sys.mjs";
+import { FxAccountsClient } from "moz-src:///services/fxaccounts/FxAccountsClient.sys.mjs";
+import { FxAccountsConfig } from "moz-src:///services/fxaccounts/FxAccountsConfig.sys.mjs";
 import { Logger } from "resource://tps/logger.sys.mjs";
 
 /**

@@ -5,9 +5,9 @@
 
 ChromeUtils.defineESModuleGetters(this, {
   CONTEXTUAL_SERVICES_PING_TYPES:
-    "resource:///modules/PartnerLinkAttribution.sys.mjs",
-  NewTabUtils: "resource://gre/modules/NewTabUtils.sys.mjs",
-  PartnerLinkAttribution: "resource:///modules/PartnerLinkAttribution.sys.mjs",
+    "moz-src:///browser/modules/PartnerLinkAttribution.sys.mjs",
+  NewTabUtils: "moz-src:///toolkit/modules/NewTabUtils.sys.mjs",
+  PartnerLinkAttribution: "moz-src:///browser/modules/PartnerLinkAttribution.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {

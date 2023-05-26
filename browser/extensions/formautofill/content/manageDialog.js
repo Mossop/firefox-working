@@ -14,7 +14,7 @@ const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { FormAutofill } = ChromeUtils.importESModule(
   "resource://autofill/FormAutofill.sys.mjs"
@@ -24,9 +24,9 @@ const { AutofillTelemetry } = ChromeUtils.import(
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  CreditCard: "resource://gre/modules/CreditCard.sys.mjs",
-  FormAutofillUtils: "resource://gre/modules/shared/FormAutofillUtils.sys.mjs",
-  OSKeyStore: "resource://gre/modules/OSKeyStore.sys.mjs",
+  CreditCard: "moz-src:///toolkit/modules/CreditCard.sys.mjs",
+  FormAutofillUtils: "moz-src:///toolkit/components/formautofill/shared/FormAutofillUtils.sys.mjs",
+  OSKeyStore: "moz-src:///toolkit/modules/OSKeyStore.sys.mjs",
   formAutofillStorage: "resource://autofill/FormAutofillStorage.sys.mjs",
 });
 

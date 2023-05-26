@@ -1,5 +1,5 @@
 const { LoginAutoCompleteResult } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginAutoComplete.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginAutoComplete.sys.mjs"
 );
 let nsLoginInfo = Components.Constructor(
   "@mozilla.org/login-manager/loginInfo;1",

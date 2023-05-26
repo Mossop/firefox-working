@@ -76,7 +76,7 @@ var WindowListener = {
   setupWindow(win) {
     win.nativeConsole = win.console;
     ChromeUtils.defineESModuleGetters(win, {
-      console: "resource://gre/modules/Console.sys.mjs",
+      console: "moz-src:///toolkit/modules/Console.sys.mjs",
     });
   },
 

@@ -14,7 +14,7 @@
   <!-- test code goes here -->
   <script type="application/javascript" src="outoflinexulscript.js"></script>
   <script type="application/javascript"><![CDATA[
-const {NetUtil} = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+const {NetUtil} = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 
 function inlinefunction() {
          return 42;
@@ -30,7 +30,7 @@ is(src.charAt(src.length - 1), "}", "out of line XUL source should end with '}'"
 src = NetUtil.asyncFetch.toSource();
 isnot(src.indexOf("return"), -1, "JSM should have source");
 var ns = {};
-Services.scriptloader.loadSubScript("resource://gre/modules/NetUtil.jsm", ns);
+Services.scriptloader.loadSubScript("moz-src:///netwerk/base/NetUtil.jsm", ns);
 src = ns.NetUtil.asyncFetch.toSource();
 isnot(src.indexOf("return"), -1, "subscript should have source");
 

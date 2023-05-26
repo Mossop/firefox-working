@@ -188,7 +188,7 @@
 
         try {
           const { InlineSpellChecker } = ChromeUtils.importESModule(
-            "resource://gre/modules/InlineSpellChecker.sys.mjs"
+            "moz-src:///toolkit/modules/InlineSpellChecker.sys.mjs"
           );
           this.InlineSpellCheckerUI = new InlineSpellChecker(
             this._input.editor

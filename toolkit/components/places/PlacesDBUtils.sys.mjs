@@ -16,9 +16,9 @@ const MAINTENANCE_INTERVAL_SECONDS = 7 * 86400;
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  PlacesPreviews: "resource://gre/modules/PlacesPreviews.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
-  Sqlite: "resource://gre/modules/Sqlite.sys.mjs",
+  PlacesPreviews: "moz-src:///toolkit/components/places/PlacesPreviews.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
+  Sqlite: "moz-src:///toolkit/modules/Sqlite.sys.mjs",
 });
 
 export var PlacesDBUtils = {

@@ -18,14 +18,14 @@ let gCUITestUtils = new CustomizableUITestUtils(window);
 const EXPECTED_APPMENU_OPEN_REFLOWS = [
   {
     stack: [
-      "openPopup/this._openPopupPromise<@resource:///modules/PanelMultiView.jsm",
+      "openPopup/this._openPopupPromise<@moz-src:///browser/components/customizableui/PanelMultiView.jsm",
     ],
   },
 
   {
     stack: [
-      "_calculateMaxHeight@resource:///modules/PanelMultiView.jsm",
-      "handleEvent@resource:///modules/PanelMultiView.jsm",
+      "_calculateMaxHeight@moz-src:///browser/components/customizableui/PanelMultiView.jsm",
+      "handleEvent@moz-src:///browser/components/customizableui/PanelMultiView.jsm",
     ],
 
     maxCount: 7, // This number should only ever go down - never up.

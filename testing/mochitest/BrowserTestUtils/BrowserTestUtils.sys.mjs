@@ -13,8 +13,8 @@
 /* global ContentTaskUtils */
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
-import { ComponentUtils } from "resource://gre/modules/ComponentUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
+import { ComponentUtils } from "moz-src:///js/xpconnect/loader/ComponentUtils.sys.mjs";
 import { TestUtils } from "resource://testing-common/TestUtils.sys.mjs";
 
 const lazy = {};
@@ -24,7 +24,7 @@ ChromeUtils.defineESModuleGetters(lazy, {
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
+  BrowserWindowTracker: "moz-src:///browser/modules/BrowserWindowTracker.jsm",
 });
 
 XPCOMUtils.defineLazyServiceGetters(lazy, {

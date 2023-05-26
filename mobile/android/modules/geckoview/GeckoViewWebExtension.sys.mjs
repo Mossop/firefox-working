@@ -2,9 +2,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 import { GeckoViewUtils } from "resource://gre/modules/GeckoViewUtils.sys.mjs";
-import { EventEmitter } from "resource://gre/modules/EventEmitter.sys.mjs";
+import { EventEmitter } from "moz-src:///toolkit/modules/EventEmitter.sys.mjs";
 
 const PRIVATE_BROWSING_PERMISSION = {
   permissions: ["internal:privateBrowsingAllowed"],
@@ -16,15 +16,15 @@ const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
   EventDispatcher: "resource://gre/modules/Messaging.sys.mjs",
   GeckoViewTabBridge: "resource://gre/modules/GeckoViewTab.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  Extension: "resource://gre/modules/Extension.jsm",
-  ExtensionData: "resource://gre/modules/Extension.jsm",
-  ExtensionPermissions: "resource://gre/modules/ExtensionPermissions.jsm",
-  Management: "resource://gre/modules/Extension.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  Extension: "moz-src:///toolkit/components/extensions/Extension.jsm",
+  ExtensionData: "moz-src:///toolkit/components/extensions/Extension.jsm",
+  ExtensionPermissions: "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm",
+  Management: "moz-src:///toolkit/components/extensions/Extension.jsm",
 });
 
 XPCOMUtils.defineLazyServiceGetter(

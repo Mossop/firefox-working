@@ -8,7 +8,7 @@ var { AppConstants } = ChromeUtils.importESModule(
 );
 
 const { ExtensionPermissions } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionPermissions.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm"
 );
 
 let gHandlerService = Cc["@mozilla.org/uriloader/handler-service;1"].getService(

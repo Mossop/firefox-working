@@ -3,11 +3,11 @@
 ChromeUtils.defineModuleGetter(
   this,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 const { Management } = ChromeUtils.import(
-  "resource://gre/modules/Extension.jsm"
+  "moz-src:///toolkit/components/extensions/Extension.jsm"
 );
 
 const PREF_WC_REPORTER_ENABLED = "extensions.webcompat-reporter.enabled";

@@ -15,7 +15,7 @@ debug("loaded");
 var BrowserElementIsReady;
 
 var { BrowserElementPromptService } = ChromeUtils.import(
-  "resource://gre/modules/BrowserElementPromptService.jsm"
+  "moz-src:///dom/browser-element/BrowserElementPromptService.jsm"
 );
 
 function sendAsyncMsg(msg, data) {

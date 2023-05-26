@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 var MonitorAPI = ChromeUtils.importESModule(
-  "resource://gre/modules/CrashMonitor.sys.mjs"
+  "moz-src:///toolkit/components/crashmonitor/CrashMonitor.sys.mjs"
 ).CrashMonitor;
 
 export function CrashMonitor() {}

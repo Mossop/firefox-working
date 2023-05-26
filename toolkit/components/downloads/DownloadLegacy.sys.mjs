@@ -15,8 +15,8 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  DownloadError: "resource://gre/modules/DownloadCore.sys.mjs",
-  Downloads: "resource://gre/modules/Downloads.sys.mjs",
+  DownloadError: "moz-src:///toolkit/components/downloads/DownloadCore.sys.mjs",
+  Downloads: "moz-src:///toolkit/components/downloads/Downloads.sys.mjs",
 });
 
 /**

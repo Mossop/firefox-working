@@ -21,11 +21,11 @@ const PIVOT_LANGUAGE = "en";
 
 const lazy = {};
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 ChromeUtils.defineESModuleGetters(lazy, {
   RemoteSettings: "resource://services-settings/remote-settings.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "console", () => {

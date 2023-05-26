@@ -3,16 +3,16 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { FormAutofill } from "resource://autofill/FormAutofill.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
-import { HeuristicsRegExp } from "resource://gre/modules/shared/HeuristicsRegExp.sys.mjs";
-import { FieldScanner } from "resource://gre/modules/shared/FieldScanner.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
+import { HeuristicsRegExp } from "moz-src:///toolkit/components/formautofill/shared/HeuristicsRegExp.sys.mjs";
+import { FieldScanner } from "moz-src:///toolkit/components/formautofill/shared/FieldScanner.sys.mjs";
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  creditCardRulesets: "resource://gre/modules/shared/CreditCardRuleset.sys.mjs",
-  LabelUtils: "resource://gre/modules/shared/LabelUtils.sys.mjs",
-  CreditCard: "resource://gre/modules/CreditCard.sys.mjs",
-  FormAutofillUtils: "resource://gre/modules/shared/FormAutofillUtils.sys.mjs",
+  creditCardRulesets: "moz-src:///toolkit/components/formautofill/shared/CreditCardRuleset.sys.mjs",
+  LabelUtils: "moz-src:///toolkit/components/formautofill/shared/LabelUtils.sys.mjs",
+  CreditCard: "moz-src:///toolkit/modules/CreditCard.sys.mjs",
+  FormAutofillUtils: "moz-src:///toolkit/components/formautofill/shared/FormAutofillUtils.sys.mjs",
 });
 
 /**

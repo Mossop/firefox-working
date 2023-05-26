@@ -10,7 +10,7 @@ const { TelemetryTestUtils } = ChromeUtils.importESModule(
 );
 
 let { AddonManagerPrivate } = ChromeUtils.import(
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 var pathParts = gTestPath.split("/");
@@ -1462,7 +1462,7 @@ function waitAppMenuNotificationShown(
   win = window
 ) {
   const { AppMenuNotifications } = ChromeUtils.importESModule(
-    "resource://gre/modules/AppMenuNotifications.sys.mjs"
+    "moz-src:///toolkit/modules/AppMenuNotifications.sys.mjs"
   );
   return new Promise(resolve => {
     let { document, PanelUI } = win;
@@ -1641,7 +1641,7 @@ function loadTestSubscript(filePath) {
 
 function cleanupPendingNotifications() {
   const { ExtensionsUI } = ChromeUtils.import(
-    "resource:///modules/ExtensionsUI.jsm"
+    "moz-src:///browser/modules/ExtensionsUI.jsm"
   );
   info("Cleanup any pending notification before exiting the test");
   const keys = ChromeUtils.nondeterministicGetWeakSetKeys(

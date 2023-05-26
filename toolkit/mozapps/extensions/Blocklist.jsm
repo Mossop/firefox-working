@@ -11,7 +11,7 @@
 var EXPORTED_SYMBOLS = ["Blocklist", "BlocklistPrivate"];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
@@ -20,12 +20,12 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
   "AddonManagerPrivate",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 ChromeUtils.defineESModuleGetters(lazy, {
   RemoteSettings: "resource://services-settings/remote-settings.sys.mjs",

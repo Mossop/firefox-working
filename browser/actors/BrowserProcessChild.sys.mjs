@@ -11,7 +11,7 @@ ChromeUtils.defineESModuleGetters(lazy, {
 ChromeUtils.defineModuleGetter(
   lazy,
   "AboutHomeStartupCacheChild",
-  "resource:///modules/AboutNewTabService.jsm"
+  "moz-src:///browser/components/newtab/AboutNewTabService.jsm"
 );
 
 export class BrowserProcessChild extends JSProcessActorChild {

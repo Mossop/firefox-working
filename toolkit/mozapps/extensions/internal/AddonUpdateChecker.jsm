@@ -19,30 +19,30 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
   "AddonManagerPrivate",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
   "Blocklist",
-  "resource://gre/modules/Blocklist.jsm"
+  "moz-src:///toolkit/mozapps/extensions/Blocklist.jsm"
 );
 ChromeUtils.defineESModuleGetters(lazy, {
-  CertUtils: "resource://gre/modules/CertUtils.sys.mjs",
-  ServiceRequest: "resource://gre/modules/ServiceRequest.sys.mjs",
+  CertUtils: "moz-src:///toolkit/modules/CertUtils.sys.mjs",
+  ServiceRequest: "moz-src:///toolkit/modules/ServiceRequest.sys.mjs",
 });
 ChromeUtils.defineModuleGetter(
   lazy,
   "AddonSettings",
-  "resource://gre/modules/addons/AddonSettings.jsm"
+  "moz-src:///toolkit/mozapps/extensions/internal/AddonSettings.jsm"
 );
 
 const { Log } = ChromeUtils.importESModule(
-  "resource://gre/modules/Log.sys.mjs"
+  "moz-src:///toolkit/modules/Log.sys.mjs"
 );
 const LOGGER_ID = "addons.update-checker";
 

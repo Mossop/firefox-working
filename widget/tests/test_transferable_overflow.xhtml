@@ -78,7 +78,7 @@
   }
 
   function RunTest() {
-    const {PrivateBrowsingUtils} = ChromeUtils.import("resource://gre/modules/PrivateBrowsingUtils.jsm");
+    const {PrivateBrowsingUtils} = ChromeUtils.import("moz-src:///toolkit/modules/PrivateBrowsingUtils.jsm");
 
     var win = window.browsingContext.topChromeWindow.open("about:blank", "_blank", "chrome, width=500, height=200");
     ok(win, "should open window");

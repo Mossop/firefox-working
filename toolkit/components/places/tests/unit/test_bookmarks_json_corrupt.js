@@ -20,7 +20,7 @@
  */
 
 const { BookmarkJSONUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/BookmarkJSONUtils.sys.mjs"
+  "moz-src:///toolkit/components/places/BookmarkJSONUtils.sys.mjs"
 );
 
 add_task(async function test_import_bookmarks() {

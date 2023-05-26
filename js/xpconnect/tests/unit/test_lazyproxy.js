@@ -5,7 +5,7 @@
  * This file tests the method defineLazyProxy from XPCOMUtils.sys.mjs.
  */
 
-const {XPCOMUtils} = ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
+const {XPCOMUtils} = ChromeUtils.importESModule("moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs");
 
 add_task(function test_lazy_proxy() {
   let tmp = {};
@@ -75,7 +75,7 @@ add_task(function test_lazy_proxy() {
 add_task(function test_module_version() {
   // Test that passing a string instead of an initialization function
   // makes this behave like a lazy module getter.
-  const NET_UTIL_URI = "resource://gre/modules/NetUtil.jsm";
+  const NET_UTIL_URI = "moz-src:///netwerk/base/NetUtil.jsm";
   let underlyingObject;
 
   Cu.unload(NET_UTIL_URI);

@@ -4,8 +4,8 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  PromiseUtils: "resource://gre/modules/PromiseUtils.sys.mjs",
-  SearchEngineSelector: "resource://gre/modules/SearchEngineSelector.sys.mjs",
+  PromiseUtils: "moz-src:///toolkit/modules/PromiseUtils.sys.mjs",
+  SearchEngineSelector: "moz-src:///toolkit/components/search/SearchEngineSelector.sys.mjs",
 });
 
 const TEST_CONFIG = [

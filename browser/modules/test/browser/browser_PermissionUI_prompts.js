@@ -7,10 +7,10 @@
 "use strict";
 
 const { PermissionUI } = ChromeUtils.importESModule(
-  "resource:///modules/PermissionUI.sys.mjs"
+  "moz-src:///browser/modules/PermissionUI.sys.mjs"
 );
 const { SITEPERMS_ADDON_PROVIDER_PREF } = ChromeUtils.importESModule(
-  "resource://gre/modules/addons/siteperms-addon-utils.sys.mjs"
+  "moz-src:///toolkit/mozapps/extensions/internal/siteperms-addon-utils.sys.mjs"
 );
 
 // Tests that GeolocationPermissionPrompt works as expected

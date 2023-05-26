@@ -7,28 +7,28 @@
 const EXPORTED_SYMBOLS = ["ExtensionShortcuts", "ExtensionShortcutKeyMap"];
 
 const { ExtensionCommon } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionCommon.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm"
 );
 const { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
 );
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
-  ShortcutUtils: "resource://gre/modules/ShortcutUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
+  ShortcutUtils: "moz-src:///toolkit/modules/ShortcutUtils.sys.mjs",
 });
 
 ChromeUtils.defineModuleGetter(
   lazy,
   "ExtensionParent",
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
   "ExtensionSettingsStore",
-  "resource://gre/modules/ExtensionSettingsStore.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionSettingsStore.jsm"
 );
 
 /**

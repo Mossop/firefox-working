@@ -542,7 +542,7 @@ add_task(async function setup() {
   createAppInfo("xpcshell@tests.mozilla.org", "XPCShell", "1", "1");
   if (useMLBF) {
     const { ClientEnvironmentBase } = ChromeUtils.importESModule(
-      "resource://gre/modules/components-utils/ClientEnvironment.sys.mjs"
+      "moz-src:///toolkit/components/utils/ClientEnvironment.sys.mjs"
     );
     Object.defineProperty(ClientEnvironmentBase, "appinfo", {
       configurable: true,

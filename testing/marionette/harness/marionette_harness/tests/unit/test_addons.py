@@ -33,7 +33,7 @@ class TestAddons(MarionetteTestCase):
                 """
               const [resolve] = arguments;
               const { AddonManager } = ChromeUtils.import(
-                "resource://gre/modules/AddonManager.jsm"
+                "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
               );
 
               async function getAllAddons() {
@@ -55,7 +55,7 @@ class TestAddons(MarionetteTestCase):
                     """
                   const [addonId, resolve] = arguments;
                   const { AddonManager } = ChromeUtils.import(
-                    "resource://gre/modules/AddonManager.jsm"
+                    "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
                   );
 
                   async function uninstall() {

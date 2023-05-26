@@ -63,10 +63,10 @@ async function run_test(path, dirs) {
         [{ eligibleElementSelector, file }],
         obj => {
           const { FieldScanner } = ChromeUtils.importESModule(
-            "resource://gre/modules/shared/FieldScanner.sys.mjs"
+            "moz-src:///toolkit/components/formautofill/shared/FieldScanner.sys.mjs"
           );
           const { FormAutofillUtils } = ChromeUtils.importESModule(
-            "resource://gre/modules/shared/FormAutofillUtils.sys.mjs"
+            "moz-src:///toolkit/components/formautofill/shared/FormAutofillUtils.sys.mjs"
           );
 
           let eligibleFields = [];

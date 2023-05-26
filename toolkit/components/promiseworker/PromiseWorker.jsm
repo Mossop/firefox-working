@@ -22,7 +22,7 @@ var EXPORTED_SYMBOLS = ["BasePromiseWorker"];
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  PromiseUtils: "resource://gre/modules/PromiseUtils.sys.mjs",
+  PromiseUtils: "moz-src:///toolkit/modules/PromiseUtils.sys.mjs",
 });
 
 /**

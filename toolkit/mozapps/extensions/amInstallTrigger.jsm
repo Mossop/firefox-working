@@ -5,13 +5,13 @@
 "use strict";
 
 const { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 const { Log } = ChromeUtils.importESModule(
-  "resource://gre/modules/Log.sys.mjs"
+  "moz-src:///toolkit/modules/Log.sys.mjs"
 );
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const lazy = {};

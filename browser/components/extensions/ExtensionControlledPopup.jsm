@@ -20,10 +20,10 @@
 var EXPORTED_SYMBOLS = ["ExtensionControlledPopup"];
 
 const { ExtensionCommon } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionCommon.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm"
 );
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const lazy = {};
@@ -31,25 +31,25 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
   "BrowserUIUtils",
-  "resource:///modules/BrowserUIUtils.jsm"
+  "moz-src:///browser/modules/BrowserUIUtils.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
   "CustomizableUI",
-  "resource:///modules/CustomizableUI.jsm"
+  "moz-src:///browser/components/customizableui/CustomizableUI.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
   "ExtensionSettingsStore",
-  "resource://gre/modules/ExtensionSettingsStore.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionSettingsStore.jsm"
 );
 ChromeUtils.defineESModuleGetters(lazy, {
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
 let { makeWidgetId } = ExtensionCommon;

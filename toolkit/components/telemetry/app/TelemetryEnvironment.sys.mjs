@@ -2,36 +2,36 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { Log } from "resource://gre/modules/Log.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
 
-import { TelemetryUtils } from "resource://gre/modules/TelemetryUtils.sys.mjs";
+import { TelemetryUtils } from "moz-src:///toolkit/components/telemetry/app/TelemetryUtils.sys.mjs";
 
 const { ObjectUtils } = ChromeUtils.import(
-  "resource://gre/modules/ObjectUtils.jsm"
+  "moz-src:///toolkit/modules/ObjectUtils.jsm"
 );
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { UpdateUtils } from "resource://gre/modules/UpdateUtils.sys.mjs";
+import { UpdateUtils } from "moz-src:///toolkit/modules/UpdateUtils.sys.mjs";
 
 const Utils = TelemetryUtils;
 
 const { AddonManager, AddonManagerPrivate } = ChromeUtils.import(
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AttributionCode: "resource:///modules/AttributionCode.sys.mjs",
-  ProfileAge: "resource://gre/modules/ProfileAge.sys.mjs",
+  AttributionCode: "moz-src:///browser/components/attribution/AttributionCode.sys.mjs",
+  ProfileAge: "moz-src:///toolkit/modules/ProfileAge.sys.mjs",
   WindowsRegistry: "resource://gre/modules/WindowsRegistry.sys.mjs",
   WindowsVersionInfo:
-    "resource://gre/modules/components-utils/WindowsVersionInfo.sys.mjs",
+    "moz-src:///toolkit/components/utils/WindowsVersionInfo.sys.mjs",
 });
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 XPCOMUtils.defineLazyGetter(lazy, "fxAccounts", () => {
   return ChromeUtils.importESModule(
-    "resource://gre/modules/FxAccounts.sys.mjs"
+    "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
   ).getFxAccountsSingleton();
 });
 
@@ -1543,7 +1543,7 @@ EnvironmentCache.prototype = {
 
     try {
       let { ShellService } = ChromeUtils.importESModule(
-        "resource:///modules/ShellService.sys.mjs"
+        "moz-src:///browser/components/shell/ShellService.sys.mjs"
       );
       // This uses the same set of flags used by the pref pane.
       return isDefault(ShellService, false, true);

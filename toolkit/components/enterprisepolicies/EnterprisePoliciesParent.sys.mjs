@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
@@ -10,11 +10,11 @@ const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   JsonSchemaValidator:
-    "resource://gre/modules/components-utils/JsonSchemaValidator.sys.mjs",
-  Policies: "resource:///modules/policies/Policies.sys.mjs",
+    "moz-src:///toolkit/components/utils/JsonSchemaValidator.sys.mjs",
+  Policies: "moz-src:///browser/components/enterprisepolicies/Policies.sys.mjs",
   WindowsGPOParser: "resource://gre/modules/policies/WindowsGPOParser.sys.mjs",
   macOSPoliciesParser:
-    "resource://gre/modules/policies/macOSPoliciesParser.sys.mjs",
+    "moz-src:///toolkit/components/enterprisepolicies/macOSPoliciesParser.sys.mjs",
 });
 
 // This is the file that will be searched for in the
@@ -48,7 +48,7 @@ const PREF_POLICIES_APPLIED = "browser.policies.applied";
 
 XPCOMUtils.defineLazyGetter(lazy, "log", () => {
   let { ConsoleAPI } = ChromeUtils.importESModule(
-    "resource://gre/modules/Console.sys.mjs"
+    "moz-src:///toolkit/modules/Console.sys.mjs"
   );
   return new ConsoleAPI({
     prefix: "Enterprise Policies",
@@ -277,7 +277,7 @@ EnterprisePoliciesManager.prototype = {
     }
 
     let { PromiseUtils } = ChromeUtils.importESModule(
-      "resource://gre/modules/PromiseUtils.sys.mjs"
+      "moz-src:///toolkit/modules/PromiseUtils.sys.mjs"
     );
     // Simulate the startup process. This step-by-step is a bit ugly but it
     // tries to emulate the same behavior as of a normal startup.

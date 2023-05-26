@@ -14,12 +14,12 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "CustomizableUI",
-  "resource:///modules/CustomizableUI.jsm"
+  "moz-src:///browser/components/customizableui/CustomizableUI.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
   "BrowserUsageTelemetry",
-  "resource:///modules/BrowserUsageTelemetry.jsm"
+  "moz-src:///browser/modules/BrowserUsageTelemetry.jsm"
 );
 
 const WIDGET_ID = "search-container";

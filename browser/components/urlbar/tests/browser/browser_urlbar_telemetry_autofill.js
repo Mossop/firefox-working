@@ -9,7 +9,7 @@
 
 ChromeUtils.defineESModuleGetters(this, {
   UrlbarProviderPreloadedSites:
-    "resource:///modules/UrlbarProviderPreloadedSites.sys.mjs",
+    "moz-src:///browser/components/urlbar/UrlbarProviderPreloadedSites.sys.mjs",
 });
 
 const SCALAR_URLBAR = "browser.engagement.navigation.urlbar";

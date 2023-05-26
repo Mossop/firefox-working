@@ -5,7 +5,7 @@
 "use strict";
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 ChromeUtils.defineESModuleGetters(this, {
@@ -15,7 +15,7 @@ ChromeUtils.defineESModuleGetters(this, {
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  HomePage: "resource:///modules/HomePage.jsm",
+  HomePage: "moz-src:///browser/modules/HomePage.jsm",
 });
 
 const HOMEPAGE_IGNORELIST = "homepage-urls";

@@ -129,10 +129,10 @@ var Profiler;
             let profileFile = profiler_dir + "/" + currentTest + ".profile";
 
             const { NetUtil } = ChromeUtils.import(
-              "resource://gre/modules/NetUtil.jsm"
+              "moz-src:///netwerk/base/NetUtil.jsm"
             );
             const { FileUtils } = ChromeUtils.importESModule(
-              "resource://gre/modules/FileUtils.sys.mjs"
+              "moz-src:///toolkit/modules/FileUtils.sys.mjs"
             );
 
             var file = Cc["@mozilla.org/file/local;1"].createInstance(

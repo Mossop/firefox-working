@@ -4,9 +4,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 ChromeUtils.defineESModuleGetters(this, {
-  PlacesTransactions: "resource://gre/modules/PlacesTransactions.sys.mjs",
-  PlacesUIUtils: "resource:///modules/PlacesUIUtils.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
+  PlacesTransactions: "moz-src:///toolkit/components/places/PlacesTransactions.sys.mjs",
+  PlacesUIUtils: "moz-src:///browser/components/places/PlacesUIUtils.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
 });
 
 /* import-globals-from /browser/base/content/utilityOverlay.js */
@@ -84,7 +84,7 @@ function PlacesController(aView) {
     false
   );
   ChromeUtils.defineESModuleGetters(this, {
-    ForgetAboutSite: "resource://gre/modules/ForgetAboutSite.sys.mjs",
+    ForgetAboutSite: "moz-src:///toolkit/components/forgetaboutsite/ForgetAboutSite.sys.mjs",
   });
 }
 

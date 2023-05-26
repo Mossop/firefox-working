@@ -14,13 +14,13 @@ const { TelemetryEvents } = ChromeUtils.importESModule(
   "resource://normandy/lib/TelemetryEvents.sys.mjs"
 );
 const { AddonManager } = ChromeUtils.import(
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 const { AddonStudies } = ChromeUtils.importESModule(
   "resource://normandy/lib/AddonStudies.sys.mjs"
 );
 const { PromiseUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PromiseUtils.sys.mjs"
+  "moz-src:///toolkit/modules/PromiseUtils.sys.mjs"
 );
 
 /* import-globals-from utils.js */
@@ -98,7 +98,7 @@ decorate_task(
             "resource://normandy/lib/AddonStudies.sys.mjs"
           );
           const { ExtensionCommon } = ChromeUtils.import(
-            "resource://gre/modules/ExtensionCommon.jsm"
+            "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm"
           );
           this.study = class extends ExtensionAPI {
             getAPI(context) {

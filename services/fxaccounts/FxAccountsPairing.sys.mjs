@@ -10,20 +10,20 @@ const {
   COMMAND_PAIR_DECLINE,
   COMMAND_PAIR_HEARTBEAT,
   COMMAND_PAIR_COMPLETE,
-} = ChromeUtils.import("resource://gre/modules/FxAccountsCommon.js");
+} = ChromeUtils.import("moz-src:///services/fxaccounts/FxAccountsCommon.js");
 import {
   getFxAccountsSingleton,
   FxAccounts,
-} from "resource://gre/modules/FxAccounts.sys.mjs";
+} from "moz-src:///services/fxaccounts/FxAccounts.sys.mjs";
 
 const fxAccounts = getFxAccountsSingleton();
-import { setTimeout, clearTimeout } from "resource://gre/modules/Timer.sys.mjs";
+import { setTimeout, clearTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 
 ChromeUtils.importESModule("resource://services-common/utils.sys.mjs");
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
   FxAccountsPairingChannel:
-    "resource://gre/modules/FxAccountsPairingChannel.sys.mjs",
+    "moz-src:///services/fxaccounts/FxAccountsPairingChannel.sys.mjs",
 
   Weave: "resource://services-sync/main.sys.mjs",
   jwcrypto: "resource://services-crypto/jwcrypto.sys.mjs",

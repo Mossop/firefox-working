@@ -7,20 +7,20 @@
  * networks. Heuristics are run at startup and upon network changes.
  * Heuristics are disabled if the user sets their DoH provider or mode manually.
  */
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.sys.mjs",
-  ClientID: "resource://gre/modules/ClientID.sys.mjs",
-  DoHConfigController: "resource:///modules/DoHConfig.sys.mjs",
+  AsyncShutdown: "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs",
+  ClientID: "moz-src:///toolkit/components/telemetry/app/ClientID.sys.mjs",
+  DoHConfigController: "moz-src:///browser/components/doh/DoHConfig.sys.mjs",
   ExperimentAPI: "resource://nimbus/ExperimentAPI.sys.mjs",
-  Heuristics: "resource:///modules/DoHHeuristics.sys.mjs",
+  Heuristics: "moz-src:///browser/components/doh/DoHHeuristics.sys.mjs",
   NimbusFeatures: "resource://nimbus/ExperimentAPI.sys.mjs",
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
-  clearTimeout: "resource://gre/modules/Timer.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
+  clearTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 // When this is set we suppress automatic TRR selection beyond dry-run as well
@@ -583,7 +583,7 @@ export const DoHController = {
     // Importing the module here saves us from having to do it at startup, and
     // ensures tests have time to set prefs before the module initializes.
     let { TRRRacer } = ChromeUtils.importESModule(
-      "resource:///modules/TRRPerformance.sys.mjs"
+      "moz-src:///browser/components/doh/TRRPerformance.sys.mjs"
     );
     await new Promise(resolve => {
       let trrList = lazy.DoHConfigController.currentConfig.trrSelection.providerList.map(

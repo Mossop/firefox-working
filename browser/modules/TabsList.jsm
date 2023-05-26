@@ -9,7 +9,7 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "PanelMultiView",
-  "resource:///modules/PanelMultiView.jsm"
+  "moz-src:///browser/components/customizableui/PanelMultiView.jsm"
 );
 
 var EXPORTED_SYMBOLS = ["TabsPanel"];

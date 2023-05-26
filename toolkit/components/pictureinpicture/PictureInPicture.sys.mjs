@@ -4,9 +4,9 @@
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
-import { ShortcutUtils } from "resource://gre/modules/ShortcutUtils.sys.mjs";
+import { ShortcutUtils } from "moz-src:///toolkit/modules/ShortcutUtils.sys.mjs";
 
 const lazy = {};
 XPCOMUtils.defineLazyServiceGetters(lazy, {
@@ -14,10 +14,10 @@ XPCOMUtils.defineLazyServiceGetters(lazy, {
 });
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
-import { Rect, Point } from "resource://gre/modules/Geometry.sys.mjs";
+import { Rect, Point } from "moz-src:///toolkit/modules/Geometry.sys.mjs";
 
 const PLAYER_URI = "chrome://global/content/pictureinpicture/player.xhtml";
 // Currently, we need titlebar="yes" on macOS in order for the player window

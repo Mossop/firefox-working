@@ -3,27 +3,27 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const { ExtensionParent } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 
 const { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
 );
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  Extension: "resource://gre/modules/Extension.jsm",
-  Schemas: "resource://gre/modules/Schemas.jsm",
-  PromiseUtils: "resource://gre/modules/PromiseUtils.jsm",
+  Extension: "moz-src:///toolkit/components/extensions/Extension.jsm",
+  Schemas: "moz-src:///toolkit/components/extensions/Schemas.jsm",
+  PromiseUtils: "moz-src:///toolkit/modules/PromiseUtils.jsm",
 });
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  DeferredTask: "resource://gre/modules/DeferredTask.sys.mjs",
-  ExtensionDNR: "resource://gre/modules/ExtensionDNR.sys.mjs",
-  ExtensionDNRLimits: "resource://gre/modules/ExtensionDNRLimits.sys.mjs",
+  DeferredTask: "moz-src:///toolkit/modules/DeferredTask.sys.mjs",
+  ExtensionDNR: "moz-src:///toolkit/components/extensions/ExtensionDNR.sys.mjs",
+  ExtensionDNRLimits: "moz-src:///toolkit/components/extensions/ExtensionDNRLimits.sys.mjs",
 });
 
 XPCOMUtils.defineLazyServiceGetters(lazy, {

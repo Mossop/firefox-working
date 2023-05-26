@@ -8,7 +8,7 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "SafeBrowsing",
-  "resource://gre/modules/SafeBrowsing.jsm"
+  "moz-src:///toolkit/components/url-classifier/SafeBrowsing.jsm"
 );
 
 function getSiteBlockedErrorDetails(docShell) {

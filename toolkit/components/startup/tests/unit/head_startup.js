@@ -5,7 +5,7 @@ const XULRUNTIME_CONTRACTID = "@mozilla.org/xre/runtime;1";
 const XULRUNTIME_CID = Components.ID("7685dac8-3637-4660-a544-928c5ec0e714}");
 
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 var gAppInfo = null;

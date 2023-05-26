@@ -4,8 +4,8 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  Downloads: "resource://gre/modules/Downloads.sys.mjs",
-  DownloadsCommon: "resource:///modules/DownloadsCommon.sys.mjs",
+  Downloads: "moz-src:///toolkit/components/downloads/Downloads.sys.mjs",
+  DownloadsCommon: "moz-src:///browser/components/downloads/DownloadsCommon.sys.mjs",
 });
 
 const { PromptTestUtils } = ChromeUtils.importESModule(

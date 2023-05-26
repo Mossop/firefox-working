@@ -33,7 +33,7 @@ const INSTALLER_PREFS_BRANCH = "installer.";
 const INSTALLER_PREFS_LIST = ["installer.taskbarpin.win10.enabled"];
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 // This constructor can take a list of prefs to override the default one,
 // but this is really only intended for tests to use. Normal usage should be

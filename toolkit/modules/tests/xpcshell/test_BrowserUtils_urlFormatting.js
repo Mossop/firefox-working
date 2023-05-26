@@ -6,7 +6,7 @@ http://creativecommons.org/publicdomain/zero/1.0/ */
 do_get_profile();
 
 const { FileUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/FileUtils.sys.mjs"
+  "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 );
 
 let tempFile = new FileUtils.File(PathUtils.tempDir);
@@ -218,7 +218,7 @@ add_setup(async () => {
 });
 
 const { BrowserUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/BrowserUtils.sys.mjs"
+  "moz-src:///toolkit/modules/BrowserUtils.sys.mjs"
 );
 
 add_task(async function test_checkStringFormatting() {

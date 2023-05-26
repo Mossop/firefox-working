@@ -7,13 +7,13 @@
 var EXPORTED_SYMBOLS = ["AddonSettings"];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 const { AddonManager } = ChromeUtils.import(
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 const PREF_SIGNATURES_REQUIRED = "xpinstall.signatures.required";

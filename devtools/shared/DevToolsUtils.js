@@ -17,7 +17,7 @@ var {
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
   NetworkHelper:
     "resource://devtools/shared/network-observer/NetworkHelper.sys.mjs",
 });
@@ -25,7 +25,7 @@ ChromeUtils.defineESModuleGetters(lazy, {
 ChromeUtils.defineModuleGetter(
   lazy,
   "ObjectUtils",
-  "resource://gre/modules/ObjectUtils.jsm"
+  "moz-src:///toolkit/modules/ObjectUtils.jsm"
 );
 
 ChromeUtils.defineLazyGetter(lazy, "eagerEcmaAllowlist", () => {
@@ -523,7 +523,7 @@ Object.defineProperty(exports, "assert", {
 });
 
 DevToolsUtils.defineLazyGetter(this, "NetUtil", () => {
-  return ChromeUtils.import("resource://gre/modules/NetUtil.jsm").NetUtil;
+  return ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm").NetUtil;
 });
 
 /**

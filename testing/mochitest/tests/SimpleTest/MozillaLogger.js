@@ -59,7 +59,7 @@ class MozillaFileLogger extends MozillaLogger {
   constructor(aPath) {
     super();
 
-    const { FileUtils } = importMJS("resource://gre/modules/FileUtils.sys.mjs");
+    const { FileUtils } = importMJS("moz-src:///toolkit/modules/FileUtils.sys.mjs");
 
     this._file = FileUtils.File(aPath);
     this._foStream = FileUtils.openFileOutputStream(

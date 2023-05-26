@@ -10,13 +10,13 @@ const PREF_SETTING_TYPE = "prefs";
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionSettingsStore",
-  "resource://gre/modules/ExtensionSettingsStore.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionSettingsStore.jsm"
 );
 
 ChromeUtils.defineModuleGetter(
   this,
   "AboutNewTab",
-  "resource:///modules/AboutNewTab.jsm"
+  "moz-src:///browser/modules/AboutNewTab.jsm"
 );
 
 XPCOMUtils.defineLazyPreferenceGetter(this, "proxyType", PROXY_PREF);
@@ -27,7 +27,7 @@ const { AddonTestUtils } = ChromeUtils.import(
 AddonTestUtils.initMochitest(this);
 
 const { ExtensionPreferencesManager } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionPreferencesManager.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPreferencesManager.jsm"
 );
 
 const TEST_DIR = gTestPath.substr(0, gTestPath.lastIndexOf("/"));

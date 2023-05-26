@@ -7,7 +7,7 @@
 const EXPORTED_SYMBOLS = ["SecurityInfo"];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const wpl = Ci.nsIWebProgressListener;

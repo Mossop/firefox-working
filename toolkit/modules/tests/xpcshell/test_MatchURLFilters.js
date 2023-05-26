@@ -4,11 +4,11 @@
 "use strict";
 
 const { MatchURLFilters } = ChromeUtils.import(
-  "resource://gre/modules/MatchURLFilters.jsm"
+  "moz-src:///toolkit/components/extensions/MatchURLFilters.jsm"
 );
 
 const { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 
 function createTestFilter({ url, filters }) {

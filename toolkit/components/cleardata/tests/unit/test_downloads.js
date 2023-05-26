@@ -5,7 +5,7 @@
 "use strict";
 
 const { Downloads } = ChromeUtils.importESModule(
-  "resource://gre/modules/Downloads.sys.mjs"
+  "moz-src:///toolkit/components/downloads/Downloads.sys.mjs"
 );
 const { FileTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/FileTestUtils.sys.mjs"

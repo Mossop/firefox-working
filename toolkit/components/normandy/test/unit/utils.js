@@ -5,7 +5,7 @@
 /* import-globals-from head_xpc.js */
 
 const { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 const { HttpServer } = ChromeUtils.import("resource://testing-common/httpd.js");
 

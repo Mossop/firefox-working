@@ -11,7 +11,7 @@
 "use strict";
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const lazy = {};
 XPCOMUtils.defineLazyPreferenceGetter(
@@ -49,7 +49,7 @@ const MSG_ADDON_EVENT = "WebAPIAddonEvent";
 var AddonManager, AddonManagerPrivate;
 function amManager() {
   ({ AddonManager, AddonManagerPrivate } = ChromeUtils.import(
-    "resource://gre/modules/AddonManager.jsm"
+    "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
   ));
 
   Services.mm.addMessageListener(MSG_INSTALL_ENABLED, this);
@@ -328,7 +328,7 @@ amManager.prototype = {
   ]),
 };
 
-const BLOCKLIST_JSM = "resource://gre/modules/Blocklist.jsm";
+const BLOCKLIST_JSM = "moz-src:///toolkit/mozapps/extensions/Blocklist.jsm";
 ChromeUtils.defineModuleGetter(lazy, "Blocklist", BLOCKLIST_JSM);
 
 function BlocklistService() {

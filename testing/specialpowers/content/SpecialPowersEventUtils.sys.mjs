@@ -7,7 +7,7 @@
  * content tasks without holding any direct references to windows.
  */
 
-import { setTimeout } from "resource://gre/modules/Timer.sys.mjs";
+import { setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 
 export let EventUtils = { setTimeout, window: {}, _EU_Ci: Ci, _EU_Cc: Cc };
 

@@ -7,20 +7,20 @@
  * provides prototypes for objects that handle input and display information.
  */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  DownloadUtils: "resource://gre/modules/DownloadUtils.sys.mjs",
-  Downloads: "resource://gre/modules/Downloads.sys.mjs",
-  DownloadsCommon: "resource:///modules/DownloadsCommon.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
-  UrlbarUtils: "resource:///modules/UrlbarUtils.sys.mjs",
+  DownloadUtils: "moz-src:///toolkit/mozapps/downloads/DownloadUtils.sys.mjs",
+  Downloads: "moz-src:///toolkit/components/downloads/Downloads.sys.mjs",
+  DownloadsCommon: "moz-src:///browser/components/downloads/DownloadsCommon.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
+  UrlbarUtils: "moz-src:///browser/components/urlbar/UrlbarUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
+  BrowserWindowTracker: "moz-src:///browser/modules/BrowserWindowTracker.jsm",
 });
 
 XPCOMUtils.defineLazyServiceGetter(
@@ -37,12 +37,12 @@ XPCOMUtils.defineLazyServiceGetter(
   Ci.nsIApplicationReputationService
 );
 
-import { Integration } from "resource://gre/modules/Integration.sys.mjs";
+import { Integration } from "moz-src:///toolkit/modules/Integration.sys.mjs";
 
 Integration.downloads.defineESModuleGetter(
   lazy,
   "DownloadIntegration",
-  "resource://gre/modules/DownloadIntegration.sys.mjs"
+  "moz-src:///toolkit/components/downloads/DownloadIntegration.sys.mjs"
 );
 
 const HTML_NS = "http://www.w3.org/1999/xhtml";

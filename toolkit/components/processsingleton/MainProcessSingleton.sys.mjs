@@ -15,7 +15,7 @@ MainProcessSingleton.prototype = {
       case "app-startup": {
         // Imported for side-effects.
         ChromeUtils.importESModule(
-          "resource://gre/modules/CustomElementsListener.sys.mjs"
+          "moz-src:///toolkit/components/processsingleton/CustomElementsListener.sys.mjs"
         );
 
         Services.ppmm.loadProcessScript(

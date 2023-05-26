@@ -10,7 +10,7 @@ ChromeUtils.defineESModuleGetters(this, {
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  ExtensionCommon: "resource://gre/modules/ExtensionCommon.jsm",
+  ExtensionCommon: "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm",
 });
 
 async function promisePageActionPanelOpen(win = window, eventDict = {}) {

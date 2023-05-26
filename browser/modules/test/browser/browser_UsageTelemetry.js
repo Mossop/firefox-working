@@ -21,11 +21,11 @@ const RESTORE_ON_DEMAND_PREF = "browser.sessionstore.restore_on-demand";
 ChromeUtils.defineModuleGetter(
   this,
   "MINIMUM_TAB_COUNT_INTERVAL_MS",
-  "resource:///modules/BrowserUsageTelemetry.jsm"
+  "moz-src:///browser/modules/BrowserUsageTelemetry.jsm"
 );
 
 const { ObjectUtils } = ChromeUtils.import(
-  "resource://gre/modules/ObjectUtils.jsm"
+  "moz-src:///toolkit/modules/ObjectUtils.jsm"
 );
 
 BrowserUsageTelemetry._onTabsOpenedTask._timeoutMs = 0;
@@ -622,7 +622,7 @@ add_task(async function test_restored_max_pinned_count() {
   // https://searchfox.org/mozilla-central/rev/1843375acbbca68127713e402be222350ac99301/browser/components/sessionstore/test/browser_pinned_tabs.js
   Services.telemetry.clearScalars();
   const { E10SUtils } = ChromeUtils.importESModule(
-    "resource://gre/modules/E10SUtils.sys.mjs"
+    "moz-src:///toolkit/modules/E10SUtils.sys.mjs"
   );
   const BACKUP_STATE = SessionStore.getBrowserState();
   const triggeringPrincipal_base64 = E10SUtils.SERIALIZED_SYSTEMPRINCIPAL;

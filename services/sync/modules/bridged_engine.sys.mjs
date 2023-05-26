@@ -20,8 +20,8 @@ import { RawCryptoWrapper } from "resource://services-sync/record.sys.mjs";
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Log: "resource://gre/modules/Log.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
+  Log: "moz-src:///toolkit/modules/Log.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
 });
 
 /**

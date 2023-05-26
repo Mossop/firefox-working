@@ -7,48 +7,48 @@ const DISTRIBUTION_ID_PREF = "distribution.id";
 const DISTRIBUTION_ID_CHINA_REPACK = "MozillaOnline";
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 const { NewTabUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/NewTabUtils.sys.mjs"
+  "moz-src:///toolkit/modules/NewTabUtils.sys.mjs"
 );
 const { ShellService } = ChromeUtils.importESModule(
-  "resource:///modules/ShellService.sys.mjs"
+  "moz-src:///browser/components/shell/ShellService.sys.mjs"
 );
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AttributionCode: "resource:///modules/AttributionCode.sys.mjs",
+  AttributionCode: "moz-src:///browser/components/attribution/AttributionCode.sys.mjs",
   ClientEnvironment: "resource://normandy/lib/ClientEnvironment.sys.mjs",
   NimbusFeatures: "resource://nimbus/ExperimentAPI.sys.mjs",
-  ProfileAge: "resource://gre/modules/ProfileAge.sys.mjs",
-  Region: "resource://gre/modules/Region.sys.mjs",
+  ProfileAge: "moz-src:///toolkit/modules/ProfileAge.sys.mjs",
+  Region: "moz-src:///toolkit/modules/Region.sys.mjs",
   TargetingContext: "resource://messaging-system/targeting/Targeting.sys.mjs",
-  TelemetryEnvironment: "resource://gre/modules/TelemetryEnvironment.sys.mjs",
-  TelemetrySession: "resource://gre/modules/TelemetrySession.sys.mjs",
+  TelemetryEnvironment: "moz-src:///toolkit/components/telemetry/app/TelemetryEnvironment.sys.mjs",
+  TelemetrySession: "moz-src:///toolkit/components/telemetry/pings/TelemetrySession.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
   ASRouterPreferences: "resource://activity-stream/lib/ASRouterPreferences.jsm",
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  HomePage: "resource:///modules/HomePage.jsm",
-  AboutNewTab: "resource:///modules/AboutNewTab.jsm",
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  HomePage: "moz-src:///browser/modules/HomePage.jsm",
+  AboutNewTab: "moz-src:///browser/modules/AboutNewTab.jsm",
+  BrowserWindowTracker: "moz-src:///browser/modules/BrowserWindowTracker.jsm",
 });
 
 ChromeUtils.defineModuleGetter(
   lazy,
   "CustomizableUI",
-  "resource:///modules/CustomizableUI.jsm"
+  "moz-src:///browser/components/customizableui/CustomizableUI.jsm"
 );
 
 XPCOMUtils.defineLazyGetter(lazy, "fxAccounts", () => {
   return ChromeUtils.importESModule(
-    "resource://gre/modules/FxAccounts.sys.mjs"
+    "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
   ).getFxAccountsSingleton();
 });
 

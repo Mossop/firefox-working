@@ -4,7 +4,7 @@
 
 "use strict";
 
-const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+const { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 
 function testURL(url) {
   Services.io.newChannelFromURI(

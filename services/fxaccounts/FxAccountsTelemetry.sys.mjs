@@ -7,7 +7,7 @@
 // sanely shared (eg, services-common?), but let's wait and see where we end up
 // first...
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
@@ -20,7 +20,7 @@ ChromeUtils.defineESModuleGetters(lazy, {
 });
 
 const { PREF_ACCOUNT_ROOT, log } = ChromeUtils.import(
-  "resource://gre/modules/FxAccountsCommon.js"
+  "moz-src:///services/fxaccounts/FxAccountsCommon.js"
 );
 
 const PREF_SANITIZED_UID = PREF_ACCOUNT_ROOT + "telemetry.sanitized_uid";

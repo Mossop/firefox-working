@@ -2,7 +2,7 @@
    http://creativecommons.org/publicdomain/zero/1.0/ */
 
 const { AsyncShutdown } = ChromeUtils.importESModule(
-  "resource://gre/modules/AsyncShutdown.sys.mjs"
+  "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs"
 );
 
 const { FirefoxAdapter } = ChromeUtils.importESModule(

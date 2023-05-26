@@ -80,7 +80,7 @@ mozIExtensionProcessScript& ExtensionPolicyService::ProcessScript() {
 
   if (MOZ_UNLIKELY(!sProcessScript)) {
     sProcessScript =
-        do_ImportModule("resource://gre/modules/ExtensionProcessScript.jsm",
+        do_ImportModule("moz-src:///toolkit/components/extensions/ExtensionProcessScript.jsm",
                         "ExtensionProcessScript");
     ClearOnShutdown(&sProcessScript);
   }

@@ -1,7 +1,7 @@
 "use strict";
 
 var { LabelUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/shared/LabelUtils.sys.mjs"
+  "moz-src:///toolkit/components/formautofill/shared/LabelUtils.sys.mjs"
 );
 
 const TESTCASES = [

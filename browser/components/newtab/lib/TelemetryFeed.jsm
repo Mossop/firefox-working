@@ -5,7 +5,7 @@
 "use strict";
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { MESSAGE_TYPE_HASH: msg } = ChromeUtils.importESModule(
   "resource://activity-stream/common/ActorConstants.sys.mjs"
@@ -26,12 +26,12 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "AboutNewTab",
-  "resource:///modules/AboutNewTab.jsm"
+  "moz-src:///browser/modules/AboutNewTab.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
   "PingCentre",
-  "resource:///modules/PingCentre.jsm"
+  "moz-src:///browser/modules/PingCentre.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
@@ -39,24 +39,24 @@ ChromeUtils.defineModuleGetter(
   "resource://activity-stream/lib/UTEventReporting.jsm"
 );
 ChromeUtils.defineESModuleGetters(lazy, {
-  ClientID: "resource://gre/modules/ClientID.sys.mjs",
+  ClientID: "moz-src:///toolkit/components/telemetry/app/ClientID.sys.mjs",
   ExperimentAPI: "resource://nimbus/ExperimentAPI.sys.mjs",
   NimbusFeatures: "resource://nimbus/ExperimentAPI.sys.mjs",
   pktApi: "chrome://pocket/content/pktApi.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
-  TelemetryEnvironment: "resource://gre/modules/TelemetryEnvironment.sys.mjs",
-  TelemetrySession: "resource://gre/modules/TelemetrySession.sys.mjs",
-  UpdateUtils: "resource://gre/modules/UpdateUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
+  TelemetryEnvironment: "moz-src:///toolkit/components/telemetry/app/TelemetryEnvironment.sys.mjs",
+  TelemetrySession: "moz-src:///toolkit/components/telemetry/pings/TelemetrySession.sys.mjs",
+  UpdateUtils: "moz-src:///toolkit/modules/UpdateUtils.sys.mjs",
 });
 ChromeUtils.defineModuleGetter(
   lazy,
   "HomePage",
-  "resource:///modules/HomePage.jsm"
+  "moz-src:///browser/modules/HomePage.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
   "ExtensionSettingsStore",
-  "resource://gre/modules/ExtensionSettingsStore.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionSettingsStore.jsm"
 );
 
 const ACTIVITY_STREAM_ID = "activity-stream";

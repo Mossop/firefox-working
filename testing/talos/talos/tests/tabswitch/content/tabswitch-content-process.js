@@ -1,7 +1,7 @@
 /* eslint-env mozilla/process-script */
 
 const { ComponentUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/ComponentUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/ComponentUtils.sys.mjs"
 );
 
 const WEBEXTENSION_ID = "tabswitch-talos@mozilla.org";

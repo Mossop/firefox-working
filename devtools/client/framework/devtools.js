@@ -209,7 +209,7 @@ DevTools.prototype = {
       tool = this._tools.get(tool);
     } else {
       const { Deprecated } = ChromeUtils.importESModule(
-        "resource://gre/modules/Deprecated.sys.mjs"
+        "moz-src:///toolkit/modules/Deprecated.sys.mjs"
       );
       Deprecated.warning(
         "Deprecation WARNING: gDevTools.unregisterTool(tool) is " +

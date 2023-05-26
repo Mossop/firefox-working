@@ -2,7 +2,7 @@
 /* vim: set ft=javascript ts=2 et sw=2 tw=80: */
 
 const { E10SUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/E10SUtils.sys.mjs"
+  "moz-src:///toolkit/modules/E10SUtils.sys.mjs"
 );
 
 const URI_SECURE_COM = Services.io.newURI("https://example.com");

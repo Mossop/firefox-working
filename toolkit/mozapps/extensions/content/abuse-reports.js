@@ -12,7 +12,7 @@
  */
 
 const { AbuseReporter } = ChromeUtils.import(
-  "resource://gre/modules/AbuseReporter.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AbuseReporter.jsm"
 );
 
 // Message Bars definitions.

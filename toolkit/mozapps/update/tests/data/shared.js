@@ -9,15 +9,15 @@
 /* global Services, URL_HOST, TestUtils */
 
 const { FileUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/FileUtils.sys.mjs"
+  "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 );
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  UpdateUtils: "resource://gre/modules/UpdateUtils.sys.mjs",
-  ctypes: "resource://gre/modules/ctypes.sys.mjs",
+  UpdateUtils: "moz-src:///toolkit/modules/UpdateUtils.sys.mjs",
+  ctypes: "moz-src:///toolkit/components/ctypes/ctypes.sys.mjs",
 });
 
 const PREF_APP_UPDATE_AUTO = "app.update.auto";

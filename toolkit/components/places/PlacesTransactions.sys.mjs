@@ -162,9 +162,9 @@
 
 const TRANSACTIONS_QUEUE_TIMEOUT_MS = 240000; // 4 Mins.
 
-import { PlacesUtils } from "resource://gre/modules/PlacesUtils.sys.mjs";
+import { PlacesUtils } from "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs";
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 function setTimeout(callback, ms) {
   let timer = Cc["@mozilla.org/timer;1"].createInstance(Ci.nsITimer);

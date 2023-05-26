@@ -7,7 +7,7 @@ const { GeckoViewActorChild } = ChromeUtils.importESModule(
 );
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const EXPORTED_SYMBOLS = ["GeckoViewPromptChild"];

@@ -11,7 +11,7 @@ const { FormAutofill } = ChromeUtils.importESModule(
   "resource://autofill/FormAutofill.sys.mjs"
 );
 const { FormAutofillUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/shared/FormAutofillUtils.sys.mjs"
+  "moz-src:///toolkit/components/formautofill/shared/FormAutofillUtils.sys.mjs"
 );
 
 class EditAutofillForm {

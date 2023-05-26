@@ -4,9 +4,9 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  UrlbarProvider: "resource:///modules/UrlbarUtils.sys.mjs",
-  UrlbarProvidersManager: "resource:///modules/UrlbarProvidersManager.sys.mjs",
-  UrlbarUtils: "resource:///modules/UrlbarUtils.sys.mjs",
+  UrlbarProvider: "moz-src:///browser/components/urlbar/UrlbarUtils.sys.mjs",
+  UrlbarProvidersManager: "moz-src:///browser/components/urlbar/UrlbarProvidersManager.sys.mjs",
+  UrlbarUtils: "moz-src:///browser/components/urlbar/UrlbarUtils.sys.mjs",
 });
 
 const TEST_ENGINE_NAME = "Test";

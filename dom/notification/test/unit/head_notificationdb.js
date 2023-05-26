@@ -1,7 +1,7 @@
 "use strict";
 
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 function getNotificationObject(app, id, tag, includeScope) {
@@ -31,7 +31,7 @@ var calendarNotification = getNotificationObject(
 
 // Helper to start the NotificationDB
 function startNotificationDB() {
-  ChromeUtils.import("resource://gre/modules/NotificationDB.jsm");
+  ChromeUtils.import("moz-src:///dom/notification/new/NotificationDB.jsm");
 }
 
 // Helper function to add a listener, send message and treat the reply

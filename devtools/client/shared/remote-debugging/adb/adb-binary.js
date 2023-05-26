@@ -11,15 +11,15 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "ExtensionParent",
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 ChromeUtils.defineESModuleGetters(lazy, {
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
 });
 ChromeUtils.defineModuleGetter(
   lazy,
   "NetUtil",
-  "resource://gre/modules/NetUtil.jsm"
+  "moz-src:///netwerk/base/NetUtil.jsm"
 );
 loader.lazyGetter(this, "UNPACKED_ROOT_PATH", () => {
   return PathUtils.join(PathUtils.localProfileDir, "adb");

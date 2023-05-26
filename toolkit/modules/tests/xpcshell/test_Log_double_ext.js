@@ -1,5 +1,5 @@
 const { Log } = ChromeUtils.importESModule(
-  "resource://gre/modules/Log.sys.mjs"
+  "moz-src:///toolkit/modules/Log.sys.mjs"
 );
 
 function run_test() {

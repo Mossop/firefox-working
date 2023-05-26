@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const { FileUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/FileUtils.sys.mjs"
+  "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 );
 
 /* globals ExtensionAPI, Services, XPCOMUtils */

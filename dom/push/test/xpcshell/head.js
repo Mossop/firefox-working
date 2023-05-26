@@ -4,23 +4,23 @@
 "use strict";
 
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 ChromeUtils.defineESModuleGetters(this, {
   PermissionTestUtils: "resource://testing-common/PermissionTestUtils.sys.mjs",
   PlacesTestUtils: "resource://testing-common/PlacesTestUtils.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
-  PushCrypto: "resource://gre/modules/PushCrypto.sys.mjs",
-  PushService: "resource://gre/modules/PushService.sys.mjs",
-  PushServiceHttp2: "resource://gre/modules/PushService.sys.mjs",
-  PushServiceWebSocket: "resource://gre/modules/PushService.sys.mjs",
-  pushBroadcastService: "resource://gre/modules/PushBroadcastService.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
+  PushCrypto: "moz-src:///dom/push/PushCrypto.sys.mjs",
+  PushService: "moz-src:///dom/push/PushService.sys.mjs",
+  PushServiceHttp2: "moz-src:///dom/push/PushService.sys.mjs",
+  PushServiceWebSocket: "moz-src:///dom/push/PushService.sys.mjs",
+  pushBroadcastService: "moz-src:///dom/push/PushBroadcastService.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  ObjectUtils: "resource://gre/modules/ObjectUtils.jsm",
+  ObjectUtils: "moz-src:///toolkit/modules/ObjectUtils.jsm",
 });
 var {
   clearInterval,
@@ -29,7 +29,7 @@ var {
   setIntervalWithTarget,
   setTimeout,
   setTimeoutWithTarget,
-} = ChromeUtils.importESModule("resource://gre/modules/Timer.sys.mjs");
+} = ChromeUtils.importESModule("moz-src:///toolkit/modules/Timer.sys.mjs");
 
 XPCOMUtils.defineLazyServiceGetter(
   this,

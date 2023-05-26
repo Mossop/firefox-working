@@ -4,7 +4,7 @@
 
 import { CommonUtils } from "resource://services-common/utils.sys.mjs";
 
-import { Log } from "resource://gre/modules/Log.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
 
 import { Weave } from "resource://services-sync/main.sys.mjs";
 

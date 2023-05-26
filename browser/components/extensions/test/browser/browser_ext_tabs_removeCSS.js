@@ -127,7 +127,7 @@ add_task(async function testExecuteScript() {
   // that requires cleanup (Bug 1464711).
   await SpecialPowers.spawn(tab.linkedBrowser, [extension.id], async extId => {
     const { ExtensionContent } = ChromeUtils.import(
-      "resource://gre/modules/ExtensionContent.jsm"
+      "moz-src:///toolkit/components/extensions/ExtensionContent.jsm"
     );
 
     let contentScriptContext = ExtensionContent.getContextByExtensionId(

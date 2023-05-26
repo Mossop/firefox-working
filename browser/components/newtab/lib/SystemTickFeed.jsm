@@ -10,8 +10,8 @@ const { actionTypes: at } = ChromeUtils.importESModule(
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  clearInterval: "resource://gre/modules/Timer.sys.mjs",
-  setInterval: "resource://gre/modules/Timer.sys.mjs",
+  clearInterval: "moz-src:///toolkit/modules/Timer.sys.mjs",
+  setInterval: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 // Frequency at which SYSTEM_TICK events are fired

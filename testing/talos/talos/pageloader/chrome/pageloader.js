@@ -8,7 +8,7 @@ var { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 var { E10SUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/E10SUtils.sys.mjs"
+  "moz-src:///toolkit/modules/E10SUtils.sys.mjs"
 );
 ChromeUtils.defineESModuleGetters(this, {
   TalosParentProfiler: "resource://talos-powers/TalosParentProfiler.sys.mjs",

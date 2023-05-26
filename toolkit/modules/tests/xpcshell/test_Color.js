@@ -1,7 +1,7 @@
 "use strict";
 
 const { Color } = ChromeUtils.importESModule(
-  "resource://gre/modules/Color.sys.mjs"
+  "moz-src:///toolkit/modules/Color.sys.mjs"
 );
 
 function run_test() {

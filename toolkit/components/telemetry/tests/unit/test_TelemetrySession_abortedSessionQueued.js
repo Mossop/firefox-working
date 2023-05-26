@@ -10,7 +10,7 @@
  */
 
 const { TelemetryStorage } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryStorage.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryStorage.sys.mjs"
 );
 
 const DATAREPORTING_DIR = "datareporting";

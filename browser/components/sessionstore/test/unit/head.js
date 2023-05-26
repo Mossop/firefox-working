@@ -1,5 +1,5 @@
 ChromeUtils.defineESModuleGetters(this, {
-  SessionStartup: "resource:///modules/sessionstore/SessionStartup.sys.mjs",
+  SessionStartup: "moz-src:///browser/components/sessionstore/SessionStartup.sys.mjs",
 });
 
 // Call a function once initialization of SessionStartup is complete
@@ -19,7 +19,7 @@ function afterSessionStartupInitialization(cb) {
   // We need the Crash Monitor initialized for sessionstartup to run
   // successfully.
   const { CrashMonitor } = ChromeUtils.importESModule(
-    "resource://gre/modules/CrashMonitor.sys.mjs"
+    "moz-src:///toolkit/components/crashmonitor/CrashMonitor.sys.mjs"
   );
   CrashMonitor.init();
 

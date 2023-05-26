@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
@@ -11,9 +11,9 @@ const lazy = {};
 // This allows per-app variables.
 ChromeUtils.defineESModuleGetters(lazy, {
   NimbusFeatures: "resource://nimbus/ExperimentAPI.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
-  ThemeContentPropertyList: "resource:///modules/ThemeVariableMap.sys.mjs",
-  ThemeVariableMap: "resource:///modules/ThemeVariableMap.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
+  ThemeContentPropertyList: "moz-src:///browser/themes/ThemeVariableMap.sys.mjs",
+  ThemeVariableMap: "moz-src:///browser/themes/ThemeVariableMap.sys.mjs",
 });
 
 // Whether the content and chrome areas should always use the same color
@@ -164,7 +164,7 @@ export function LightweightThemeConsumer(aDocument) {
   this.darkThemeMediaQuery.addListener(this);
 
   const { LightweightThemeManager } = ChromeUtils.import(
-    "resource://gre/modules/LightweightThemeManager.jsm"
+    "moz-src:///toolkit/mozapps/extensions/LightweightThemeManager.jsm"
   );
   this._update(LightweightThemeManager.themeData);
 

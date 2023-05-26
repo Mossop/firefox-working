@@ -4,7 +4,7 @@ http://creativecommons.org/publicdomain/zero/1.0/ */
 "use strict";
 
 const { CSV } = ChromeUtils.importESModule(
-  "resource://gre/modules/CSV.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/CSV.sys.mjs"
 );
 
 const TEST_CASES = [

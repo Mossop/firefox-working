@@ -4,13 +4,13 @@ http://creativecommons.org/publicdomain/zero/1.0/ */
 "use strict";
 
 const { XPIInstall } = ChromeUtils.import(
-  "resource://gre/modules/addons/XPIInstall.jsm"
+  "moz-src:///toolkit/mozapps/extensions/internal/XPIInstall.jsm"
 );
 
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionPermissions",
-  "resource://gre/modules/ExtensionPermissions.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm"
 );
 
 AddonTestUtils.init(this);

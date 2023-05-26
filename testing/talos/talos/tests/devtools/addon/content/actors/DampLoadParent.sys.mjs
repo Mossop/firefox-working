@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { EventEmitter } from "resource://gre/modules/EventEmitter.sys.mjs";
+import { EventEmitter } from "moz-src:///toolkit/modules/EventEmitter.sys.mjs";
 
 // Global event emitter to avoid listening to individual JSWindowActor instances.
 // For a single load, several pairs of JSWindowActors might be created in quick

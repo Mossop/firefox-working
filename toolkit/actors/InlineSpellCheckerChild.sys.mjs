@@ -8,7 +8,7 @@ const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   InlineSpellCheckerContent:
-    "resource://gre/modules/InlineSpellCheckerContent.sys.mjs",
+    "moz-src:///toolkit/modules/InlineSpellCheckerContent.sys.mjs",
 });
 
 export class InlineSpellCheckerChild extends JSWindowActorChild {

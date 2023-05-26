@@ -14,15 +14,15 @@ const {
   LongStringActor,
 } = require("resource://devtools/server/actors/string.js");
 loader.lazyGetter(this, "ExtensionParent", () => {
-  return ChromeUtils.import("resource://gre/modules/ExtensionParent.jsm")
+  return ChromeUtils.import("moz-src:///toolkit/components/extensions/ExtensionParent.jsm")
     .ExtensionParent;
 });
 loader.lazyGetter(this, "ExtensionProcessScript", () => {
-  return ChromeUtils.import("resource://gre/modules/ExtensionProcessScript.jsm")
+  return ChromeUtils.import("moz-src:///toolkit/components/extensions/ExtensionProcessScript.jsm")
     .ExtensionProcessScript;
 });
 loader.lazyGetter(this, "ExtensionStorageIDB", () => {
-  return ChromeUtils.import("resource://gre/modules/ExtensionStorageIDB.jsm")
+  return ChromeUtils.import("moz-src:///toolkit/components/extensions/ExtensionStorageIDB.jsm")
     .ExtensionStorageIDB;
 });
 

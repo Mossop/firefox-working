@@ -7,9 +7,9 @@
  * listed symbols will exposed on import, and only when and where imported.
  */
 
-import { PlacesUtils } from "resource://gre/modules/PlacesUtils.sys.mjs";
+import { PlacesUtils } from "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs";
 
-import { PlacesSyncUtils } from "resource://gre/modules/PlacesSyncUtils.sys.mjs";
+import { PlacesSyncUtils } from "moz-src:///toolkit/components/places/PlacesSyncUtils.sys.mjs";
 
 import { Logger } from "resource://tps/logger.sys.mjs";
 

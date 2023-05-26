@@ -23,8 +23,8 @@ const globalThis = this;
 
 var EXPORTED_SYMBOLS = ["KintoHttpClient"];
 
-const { setTimeout, clearTimeout } = ChromeUtils.importESModule("resource://gre/modules/Timer.sys.mjs");
-const { XPCOMUtils } = ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
+const { setTimeout, clearTimeout } = ChromeUtils.importESModule("moz-src:///toolkit/modules/Timer.sys.mjs");
+const { XPCOMUtils } = ChromeUtils.importESModule("moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs");
 XPCOMUtils.defineLazyGlobalGetters(global, ["fetch"]);
 
 /*
@@ -2862,7 +2862,7 @@ XPCOMUtils.defineLazyGlobalGetters(global, ["fetch"]);
      * See the License for the specific language governing permissions and
      * limitations under the License.
      */
-    const { EventEmitter } = ChromeUtils.importESModule("resource://gre/modules/EventEmitter.sys.mjs");
+    const { EventEmitter } = ChromeUtils.importESModule("moz-src:///toolkit/modules/EventEmitter.sys.mjs");
     class KintoHttpClient extends KintoClientBase {
         constructor(remote, options = {}) {
             const events = {};

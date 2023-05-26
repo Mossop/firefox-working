@@ -6,7 +6,7 @@
 /* General Partial MAR File Patch Apply Test */
 
 const { setTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 
 const { BackgroundTasksTestUtils } = ChromeUtils.importESModule(
@@ -18,7 +18,7 @@ const do_backgroundtask = BackgroundTasksTestUtils.do_backgroundtask.bind(
 );
 
 const { PromiseUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PromiseUtils.sys.mjs"
+  "moz-src:///toolkit/modules/PromiseUtils.sys.mjs"
 );
 
 async function run_test() {

@@ -2,21 +2,21 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
-import { PushDB } from "resource://gre/modules/PushDB.sys.mjs";
-import { PushRecord } from "resource://gre/modules/PushRecord.sys.mjs";
-import { PushCrypto } from "resource://gre/modules/PushCrypto.sys.mjs";
+import { PushDB } from "moz-src:///dom/push/PushDB.sys.mjs";
+import { PushRecord } from "moz-src:///dom/push/PushRecord.sys.mjs";
+import { PushCrypto } from "moz-src:///dom/push/PushCrypto.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  pushBroadcastService: "resource://gre/modules/PushBroadcastService.sys.mjs",
+  pushBroadcastService: "moz-src:///dom/push/PushBroadcastService.sys.mjs",
 });
 ChromeUtils.defineModuleGetter(
   lazy,
   "ObjectUtils",
-  "resource://gre/modules/ObjectUtils.jsm"
+  "moz-src:///toolkit/modules/ObjectUtils.jsm"
 );
 
 const kPUSHWSDB_DB_NAME = "pushapi";
@@ -51,7 +51,7 @@ const prefs = Services.prefs.getBranch("dom.push.");
 
 XPCOMUtils.defineLazyGetter(lazy, "console", () => {
   let { ConsoleAPI } = ChromeUtils.importESModule(
-    "resource://gre/modules/Console.sys.mjs"
+    "moz-src:///toolkit/modules/Console.sys.mjs"
   );
   return new ConsoleAPI({
     maxLogLevelPref: "dom.push.loglevel",

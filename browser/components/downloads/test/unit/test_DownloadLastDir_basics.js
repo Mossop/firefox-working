@@ -8,10 +8,10 @@ const SAVE_PER_SITE_PREF_BRANCH = "browser.download.lastDir";
 const SAVE_PER_SITE_PREF = SAVE_PER_SITE_PREF_BRANCH + ".savePerSite";
 
 let { FileUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/FileUtils.sys.mjs"
+  "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 );
 let { DownloadLastDir } = ChromeUtils.import(
-  "resource://gre/modules/DownloadLastDir.jsm"
+  "moz-src:///toolkit/mozapps/downloads/DownloadLastDir.jsm"
 );
 
 add_task(

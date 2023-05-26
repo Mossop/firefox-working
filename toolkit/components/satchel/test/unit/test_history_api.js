@@ -6,7 +6,7 @@ var testnum = 0;
 var dbConnection; // used for deleted table tests
 
 const { PromiseUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PromiseUtils.sys.mjs"
+  "moz-src:///toolkit/modules/PromiseUtils.sys.mjs"
 );
 
 function countDeletedEntries(expected) {

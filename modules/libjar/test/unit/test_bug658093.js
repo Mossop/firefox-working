@@ -2,7 +2,7 @@
  * http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+const { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 
 // Check that we don't crash on reading a directory entry signature
 

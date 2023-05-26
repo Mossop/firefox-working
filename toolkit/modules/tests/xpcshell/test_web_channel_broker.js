@@ -4,7 +4,7 @@
 "use strict";
 
 const { WebChannelBroker } = ChromeUtils.importESModule(
-  "resource://gre/modules/WebChannel.sys.mjs"
+  "moz-src:///toolkit/modules/WebChannel.sys.mjs"
 );
 
 const VALID_WEB_CHANNEL_ID = "id";

@@ -9,7 +9,7 @@ const DevToolsUtils = require("resource://devtools/shared/DevToolsUtils.js");
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  Reflect: "resource://gre/modules/reflect.sys.mjs",
+  Reflect: "moz-src:///toolkit/components/reflect/reflect.sys.mjs",
 });
 loader.lazyRequireGetter(
   this,

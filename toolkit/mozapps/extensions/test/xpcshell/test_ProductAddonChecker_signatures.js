@@ -1,7 +1,7 @@
 "use strict";
 
 const { ProductAddonChecker } = ChromeUtils.import(
-  "resource://gre/modules/addons/ProductAddonChecker.jsm"
+  "moz-src:///toolkit/mozapps/extensions/internal/ProductAddonChecker.jsm"
 );
 
 Services.prefs.setBoolPref("media.gmp-manager.updateEnabled", true);

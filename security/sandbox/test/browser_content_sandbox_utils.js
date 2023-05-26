@@ -50,7 +50,7 @@ function sanityChecks() {
 // remotely by ContentTask.spawn.
 function createFile(path) {
   const { FileUtils } = ChromeUtils.importESModule(
-    "resource://gre/modules/FileUtils.sys.mjs"
+    "moz-src:///toolkit/modules/FileUtils.sys.mjs"
   );
 
   try {
@@ -88,7 +88,7 @@ function createFile(path) {
 // and run remotely by ContentTask.spawn.
 function createSymlink(path) {
   const { ctypes } = ChromeUtils.importESModule(
-    "resource://gre/modules/ctypes.sys.mjs"
+    "moz-src:///toolkit/components/ctypes/ctypes.sys.mjs"
   );
 
   try {
@@ -120,7 +120,7 @@ function createSymlink(path) {
 // remotely by ContentTask.spawn.
 function deleteFile(path) {
   const { FileUtils } = ChromeUtils.importESModule(
-    "resource://gre/modules/FileUtils.sys.mjs"
+    "moz-src:///toolkit/modules/FileUtils.sys.mjs"
   );
 
   try {
@@ -139,7 +139,7 @@ function deleteFile(path) {
 // .numEntries is the number of directory entries found.
 function readDir(path) {
   const { FileUtils } = ChromeUtils.importESModule(
-    "resource://gre/modules/FileUtils.sys.mjs"
+    "moz-src:///toolkit/modules/FileUtils.sys.mjs"
   );
 
   let numEntries = 0;
@@ -164,7 +164,7 @@ function readDir(path) {
 // success or failure.
 function readFile(path) {
   const { FileUtils } = ChromeUtils.importESModule(
-    "resource://gre/modules/FileUtils.sys.mjs"
+    "moz-src:///toolkit/modules/FileUtils.sys.mjs"
   );
 
   try {
@@ -194,7 +194,7 @@ function readFile(path) {
 // success or failure.
 function statPath(path) {
   const { FileUtils } = ChromeUtils.importESModule(
-    "resource://gre/modules/FileUtils.sys.mjs"
+    "moz-src:///toolkit/modules/FileUtils.sys.mjs"
   );
 
   try {

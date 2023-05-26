@@ -5,15 +5,15 @@
 "use strict";
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  LocationHelper: "resource://gre/modules/LocationHelper.sys.mjs",
-  clearTimeout: "resource://gre/modules/Timer.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  LocationHelper: "moz-src:///dom/base/LocationHelper.sys.mjs",
+  clearTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 // GeolocationPositionError has no interface object, so we can't use that here.

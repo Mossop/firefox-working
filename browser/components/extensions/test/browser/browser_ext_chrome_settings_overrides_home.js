@@ -6,15 +6,15 @@
 requestLongerTimeout(4);
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  ExtensionSettingsStore: "resource://gre/modules/ExtensionSettingsStore.jsm",
-  HomePage: "resource:///modules/HomePage.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  ExtensionSettingsStore: "moz-src:///toolkit/components/extensions/ExtensionSettingsStore.jsm",
+  HomePage: "moz-src:///browser/modules/HomePage.jsm",
 });
 
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionControlledPopup",
-  "resource:///modules/ExtensionControlledPopup.jsm"
+  "moz-src:///browser/components/extensions/ExtensionControlledPopup.jsm"
 );
 
 // Named this way so they correspond to the extensions

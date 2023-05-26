@@ -2,10 +2,10 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { Log } from "resource://gre/modules/Log.sys.mjs";
-import { Preferences } from "resource://gre/modules/Preferences.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
+import { Preferences } from "moz-src:///toolkit/modules/Preferences.sys.mjs";
 
-import { TelemetryUtils } from "resource://gre/modules/TelemetryUtils.sys.mjs";
+import { TelemetryUtils } from "moz-src:///toolkit/components/telemetry/app/TelemetryUtils.sys.mjs";
 
 const LOGGER_NAME = "Toolkit.Telemetry";
 const LOGGER_PREFIX = "TelemetryArchive::";
@@ -13,7 +13,7 @@ const LOGGER_PREFIX = "TelemetryArchive::";
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  TelemetryStorage: "resource://gre/modules/TelemetryStorage.sys.mjs",
+  TelemetryStorage: "moz-src:///toolkit/components/telemetry/app/TelemetryStorage.sys.mjs",
 });
 
 export var TelemetryArchive = {

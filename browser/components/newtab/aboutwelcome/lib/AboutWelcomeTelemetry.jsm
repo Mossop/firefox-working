@@ -5,19 +5,19 @@
 
 const EXPORTED_SYMBOLS = ["AboutWelcomeTelemetry"];
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AttributionCode: "resource:///modules/AttributionCode.sys.mjs",
-  ClientID: "resource://gre/modules/ClientID.sys.mjs",
-  TelemetrySession: "resource://gre/modules/TelemetrySession.sys.mjs",
+  AttributionCode: "moz-src:///browser/components/attribution/AttributionCode.sys.mjs",
+  ClientID: "moz-src:///toolkit/components/telemetry/app/ClientID.sys.mjs",
+  TelemetrySession: "moz-src:///toolkit/components/telemetry/pings/TelemetrySession.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  PingCentre: "resource:///modules/PingCentre.jsm",
+  PingCentre: "moz-src:///browser/modules/PingCentre.jsm",
 });
 XPCOMUtils.defineLazyPreferenceGetter(
   lazy,

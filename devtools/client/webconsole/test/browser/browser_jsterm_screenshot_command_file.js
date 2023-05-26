@@ -104,7 +104,7 @@ add_task(async function() {
     screenshotDir = Services.dirsvc.get("Scrnshts", Ci.nsIFile).path;
   } catch (e) {
     const { Downloads } = ChromeUtils.importESModule(
-      "resource://gre/modules/Downloads.sys.mjs"
+      "moz-src:///toolkit/components/downloads/Downloads.sys.mjs"
     );
     screenshotDir = await Downloads.getPreferredDownloadsDirectory();
   }

@@ -5,7 +5,7 @@
 // Tests for DevToolsUtils.fetch on file:// URI's.
 
 const { FileUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/FileUtils.sys.mjs"
+  "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 );
 
 const TEST_CONTENT = "aéd";

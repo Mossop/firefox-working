@@ -17,10 +17,10 @@
  * nsContentPermissionHelper. The system add-on could then do the following:
  *
  * const { Integration } = ChromeUtils.importESModule(
- *   "resource://gre/modules/Integration.sys.mjs"
+ *   "moz-src:///toolkit/modules/Integration.sys.mjs"
  * );
  * const { PermissionUI } = ChromeUtils.import(
- *   "resource:///modules/PermissionUI.jsm"
+ *   "moz-src:///browser/modules/PermissionUI.jsm"
  * );
  *
  * const SoundCardIntegration = base => {
@@ -64,22 +64,22 @@
  * imported, subclassed, and have prompt() called directly, without
  * the caller having called into createPermissionPrompt.
  */
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineModuleGetter(
   lazy,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
   "SitePermissions",
-  "resource:///modules/SitePermissions.jsm"
+  "moz-src:///browser/modules/SitePermissions.jsm"
 );
 ChromeUtils.defineESModuleGetters(lazy, {
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyServiceGetter(
@@ -100,7 +100,7 @@ XPCOMUtils.defineLazyGetter(lazy, "gBrowserBundle", function() {
   );
 });
 
-import { SITEPERMS_ADDON_PROVIDER_PREF } from "resource://gre/modules/addons/siteperms-addon-utils.sys.mjs";
+import { SITEPERMS_ADDON_PROVIDER_PREF } from "moz-src:///toolkit/mozapps/extensions/internal/siteperms-addon-utils.sys.mjs";
 
 XPCOMUtils.defineLazyPreferenceGetter(
   lazy,

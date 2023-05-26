@@ -4,18 +4,18 @@
 
 function run_test() {
   var scope1 = {};
-  var exports1 = ChromeUtils.import("resource://gre/modules/NetUtil.jsm", scope1);
+  var exports1 = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm", scope1);
 
   var scope2 = {};
-  var exports2 = ChromeUtils.import("resource://gre/modules/NetUtil.jsm", scope2);
+  var exports2 = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm", scope2);
 
   Assert.ok(exports1 === exports2);
   Assert.ok(scope1.NetUtil === scope2.NetUtil);
 
-  Cu.unload("resource://gre/modules/NetUtil.jsm");
+  Cu.unload("moz-src:///netwerk/base/NetUtil.jsm");
 
   var scope3 = {};
-  var exports3 = ChromeUtils.import("resource://gre/modules/NetUtil.jsm", scope3);
+  var exports3 = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm", scope3);
 
   Assert.equal(false, exports1 === exports3);
   Assert.equal(false, scope1.NetUtil === scope3.NetUtil);

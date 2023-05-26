@@ -4,7 +4,7 @@ const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 const { setTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 
 const { UptakeTelemetry, Policy } = ChromeUtils.importESModule(
@@ -14,7 +14,7 @@ const { RemoteSettingsClient } = ChromeUtils.importESModule(
   "resource://services-settings/RemoteSettingsClient.sys.mjs"
 );
 const { pushBroadcastService } = ChromeUtils.import(
-  "resource://gre/modules/PushBroadcastService.jsm"
+  "moz-src:///dom/push/PushBroadcastService.jsm"
 );
 const { SyncHistory } = ChromeUtils.importESModule(
   "resource://services-settings/SyncHistory.sys.mjs"

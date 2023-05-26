@@ -47,15 +47,15 @@
  *   issues.
  */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   Async: "resource://services-common/async.sys.mjs",
-  Log: "resource://gre/modules/Log.sys.mjs",
-  PlacesSyncUtils: "resource://gre/modules/PlacesSyncUtils.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
+  Log: "moz-src:///toolkit/modules/Log.sys.mjs",
+  PlacesSyncUtils: "moz-src:///toolkit/components/places/PlacesSyncUtils.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "MirrorLog", () =>

@@ -38,22 +38,22 @@ const known_scripts = {
 
     // General utilities
     "resource://gre/modules/AppConstants.sys.mjs",
-    "resource://gre/modules/XPCOMUtils.sys.mjs",
+    "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs",
 
     // Logging related
-    "resource://gre/modules/Log.sys.mjs",
+    "moz-src:///toolkit/modules/Log.sys.mjs",
 
     // Telemetry
-    "resource://gre/modules/TelemetryControllerBase.sys.mjs", // bug 1470339
-    "resource://gre/modules/TelemetryControllerContent.sys.mjs", // bug 1470339
+    "moz-src:///toolkit/components/telemetry/app/TelemetryControllerBase.sys.mjs", // bug 1470339
+    "moz-src:///toolkit/components/telemetry/app/TelemetryControllerContent.sys.mjs", // bug 1470339
 
     // Extensions
-    "resource://gre/modules/ExtensionProcessScript.jsm",
-    "resource://gre/modules/ExtensionUtils.jsm",
+    "moz-src:///toolkit/components/extensions/ExtensionProcessScript.jsm",
+    "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm",
   ]),
   processScripts: new Set([
     "chrome://global/content/process-content.js",
-    "resource://gre/modules/extensionProcessScriptLoader.js",
+    "moz-src:///toolkit/components/extensions/extensionProcessScriptLoader.js",
   ]),
 };
 
@@ -61,11 +61,11 @@ const known_scripts = {
 // items in the main list, which we expect will always load.
 const intermittently_loaded_scripts = {
   modules: new Set([
-    "resource://gre/modules/nsAsyncShutdown.sys.mjs",
+    "moz-src:///toolkit/components/asyncshutdown/nsAsyncShutdown.sys.mjs",
 
     // Cookie banner handling.
     "resource://gre/actors/CookieBannerChild.sys.mjs",
-    "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+    "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 
     // Test related
     "chrome://remote/content/marionette/actors/MarionetteEventsChild.sys.mjs",

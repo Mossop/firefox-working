@@ -12,7 +12,7 @@ var CC = Components.Constructor;
 const { require } = ChromeUtils.importESModule(
   "resource://devtools/shared/loader/Loader.sys.mjs"
 );
-const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+const { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 
 // We do not want to log packets by default, because in some tests,
 // we can be sending large amounts of data. The test harness has

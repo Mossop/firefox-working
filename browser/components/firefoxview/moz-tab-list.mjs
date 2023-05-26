@@ -15,7 +15,7 @@ let XPCOMUtils;
 
 if (!window.IS_STORYBOOK) {
   XPCOMUtils = ChromeUtils.importESModule(
-    "resource://gre/modules/XPCOMUtils.sys.mjs"
+    "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
   ).XPCOMUtils;
   XPCOMUtils.defineLazyGetter(lazy, "relativeTimeFormat", () => {
     return new Services.intl.RelativeTimeFormat(undefined, {
@@ -24,8 +24,8 @@ if (!window.IS_STORYBOOK) {
   });
 
   ChromeUtils.defineESModuleGetters(lazy, {
-    BrowserUtils: "resource://gre/modules/BrowserUtils.sys.mjs",
-    PlacesUIUtils: "resource:///modules/PlacesUIUtils.sys.mjs",
+    BrowserUtils: "moz-src:///toolkit/modules/BrowserUtils.sys.mjs",
+    PlacesUIUtils: "moz-src:///browser/components/places/PlacesUIUtils.sys.mjs",
   });
 }
 

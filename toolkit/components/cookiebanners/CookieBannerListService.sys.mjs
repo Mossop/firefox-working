@@ -4,11 +4,11 @@
 
 const lazy = {};
 
-const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+const { Services } = ChromeUtils.import("moz-src:///toolkit/modules/Services.jsm");
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  JsonSchema: "resource://gre/modules/JsonSchema.sys.mjs",
+  JsonSchema: "moz-src:///toolkit/modules/JsonSchema.sys.mjs",
   RemoteSettings: "resource://services-settings/remote-settings.sys.mjs",
 });
 

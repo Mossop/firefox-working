@@ -9,10 +9,10 @@
 "use strict";
 
 const { LoginCSVImport } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginCSVImport.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginCSVImport.sys.mjs"
 );
 const { LoginExport } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginExport.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginExport.sys.mjs"
 );
 const { TelemetryTestUtils: TTU } = ChromeUtils.importESModule(
   "resource://testing-common/TelemetryTestUtils.sys.mjs"

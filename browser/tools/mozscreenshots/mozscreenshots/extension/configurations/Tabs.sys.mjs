@@ -6,7 +6,7 @@ const CUST_TAB = "chrome://browser/skin/customize.svg";
 const PREFS_TAB = "chrome://global/skin/icons/settings.svg";
 const DEFAULT_FAVICON_TAB = `data:text/html,<meta%20charset="utf-8"><title>No%20favicon</title>`;
 
-import { setTimeout } from "resource://gre/modules/Timer.sys.mjs";
+import { setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 import { TestUtils } from "resource://testing-common/TestUtils.sys.mjs";
 
 export var Tabs = {

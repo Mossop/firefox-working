@@ -5,12 +5,12 @@
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionSettingsStore",
-  "resource://gre/modules/ExtensionSettingsStore.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionSettingsStore.jsm"
 );
 ChromeUtils.defineModuleGetter(
   this,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 function enableAddon(addon) {

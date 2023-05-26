@@ -3,8 +3,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { ContentTaskUtils } from "resource://testing-common/ContentTaskUtils.sys.mjs";
-import { Preferences } from "resource://gre/modules/Preferences.sys.mjs";
-import { setTimeout } from "resource://gre/modules/Timer.sys.mjs";
+import { Preferences } from "moz-src:///toolkit/modules/Preferences.sys.mjs";
+import { setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 
 export var NarrateTestUtils = {
   TOGGLE: ".narrate-toggle",

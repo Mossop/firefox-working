@@ -2,7 +2,7 @@
    http://creativecommons.org/publicdomain/zero/1.0/ */
 
 const { CertUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/CertUtils.sys.mjs"
+  "moz-src:///toolkit/modules/CertUtils.sys.mjs"
 );
 
 const PREF_PREFIX = "certutils.certs.";

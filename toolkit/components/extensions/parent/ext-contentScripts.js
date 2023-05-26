@@ -10,7 +10,7 @@
 /* global registerContentScript, unregisterContentScript */
 
 var { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
 );
 
 var { ExtensionError, getUniqueId } = ExtensionUtils;

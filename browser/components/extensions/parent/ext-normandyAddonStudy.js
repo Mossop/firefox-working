@@ -8,13 +8,13 @@ const { AddonStudies } = ChromeUtils.importESModule(
   "resource://normandy/lib/AddonStudies.sys.mjs"
 );
 const { ClientID } = ChromeUtils.importESModule(
-  "resource://gre/modules/ClientID.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/ClientID.sys.mjs"
 );
 
 ChromeUtils.defineModuleGetter(
   this,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 this.normandyAddonStudy = class extends ExtensionAPI {

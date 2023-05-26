@@ -2,9 +2,9 @@
 // Load standard base class for network tests into child process
 //
 
-var { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+var { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 load("../unit/head_channels.js");

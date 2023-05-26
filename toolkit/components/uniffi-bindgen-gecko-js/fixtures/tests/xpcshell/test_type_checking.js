@@ -14,7 +14,7 @@ const Rondpoint = ChromeUtils.importESModule(
   "resource://gre/modules/RustRondpoint.sys.mjs"
 );
 const { UniFFITypeError } = ChromeUtils.importESModule(
-  "resource://gre/modules/UniFFI.sys.mjs"
+  "moz-src:///toolkit/components/uniffi-js/js/UniFFI.sys.mjs"
 );
 
 add_task(async function testFunctionArguments() {

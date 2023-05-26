@@ -4,7 +4,7 @@
 "use strict";
 
 const { TOGGLE_POLICIES } = ChromeUtils.importESModule(
-  "resource://gre/modules/PictureInPictureControls.sys.mjs"
+  "moz-src:///toolkit/components/pictureinpicture/PictureInPictureControls.sys.mjs"
 );
 
 const TEST_ROOT = getRootDirectory(gTestPath).replace(
@@ -336,7 +336,7 @@ async function assertTogglePolicy(
 
     if (policy) {
       const { TOGGLE_POLICY_STRINGS } = ChromeUtils.importESModule(
-        "resource://gre/modules/PictureInPictureControls.sys.mjs"
+        "moz-src:///toolkit/components/pictureinpicture/PictureInPictureControls.sys.mjs"
       );
       let policyAttr = toggle.getAttribute("policy");
       Assert.equal(
@@ -499,7 +499,7 @@ async function getToggleClientRect(
   let args = { videoID, toggleID: toggleStyles.rootID };
   return ContentTask.spawn(browser, args, async args => {
     const { Rect } = ChromeUtils.importESModule(
-      "resource://gre/modules/Geometry.sys.mjs"
+      "moz-src:///toolkit/modules/Geometry.sys.mjs"
     );
 
     let { videoID, toggleID } = args;

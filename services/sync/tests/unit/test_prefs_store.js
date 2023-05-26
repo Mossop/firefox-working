@@ -12,7 +12,7 @@ PromiseTestUtils.allowMatchingRejectionsGlobally(
 );
 
 const { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 const { PrefRec, getPrefsGUIDForTest } = ChromeUtils.importESModule(
   "resource://services-sync/engines/prefs.sys.mjs"

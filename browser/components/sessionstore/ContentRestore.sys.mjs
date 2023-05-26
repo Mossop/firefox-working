@@ -5,8 +5,8 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  SessionHistory: "resource://gre/modules/sessionstore/SessionHistory.sys.mjs",
-  Utils: "resource://gre/modules/sessionstore/Utils.sys.mjs",
+  SessionHistory: "moz-src:///toolkit/modules/sessionstore/SessionHistory.sys.mjs",
+  Utils: "moz-src:///toolkit/modules/sessionstore/Utils.sys.mjs",
 });
 
 /**

@@ -7,7 +7,7 @@
 // (web-extension:, resource:, etc) should return the original URL,
 // not the jar/file it was actually substituted for.
 
-const TEST_URL = "resource://gre/modules/XPCOMUtils.sys.mjs";
+const TEST_URL = "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 add_task(async function test() {
   await new Promise(resolve => {

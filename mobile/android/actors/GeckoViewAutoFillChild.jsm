@@ -12,9 +12,9 @@ const { GeckoViewUtils } = ChromeUtils.importESModule(
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  FormLikeFactory: "resource://gre/modules/FormLikeFactory.sys.mjs",
-  LayoutUtils: "resource://gre/modules/LayoutUtils.sys.mjs",
-  LoginManagerChild: "resource://gre/modules/LoginManagerChild.sys.mjs",
+  FormLikeFactory: "moz-src:///toolkit/modules/FormLikeFactory.sys.mjs",
+  LayoutUtils: "moz-src:///toolkit/modules/LayoutUtils.sys.mjs",
+  LoginManagerChild: "moz-src:///toolkit/components/passwordmgr/LoginManagerChild.sys.mjs",
 });
 
 const EXPORTED_SYMBOLS = ["GeckoViewAutoFillChild"];

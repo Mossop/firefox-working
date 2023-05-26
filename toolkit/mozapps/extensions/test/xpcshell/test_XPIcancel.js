@@ -5,7 +5,7 @@
 // Test the cancellable doing/done/cancelAll API in XPIProvider
 
 const { XPIInstall } = ChromeUtils.import(
-  "resource://gre/modules/addons/XPIInstall.jsm"
+  "moz-src:///toolkit/mozapps/extensions/internal/XPIInstall.jsm"
 );
 
 function run_test() {

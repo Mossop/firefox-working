@@ -2,11 +2,11 @@
 "use strict";
 
 const { setTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 
 const { Subprocess } = ChromeUtils.importESModule(
-  "resource://gre/modules/Subprocess.sys.mjs"
+  "moz-src:///toolkit/modules/subprocess/Subprocess.sys.mjs"
 );
 
 const ProcessTools = Cc["@mozilla.org/processtools-service;1"].getService(

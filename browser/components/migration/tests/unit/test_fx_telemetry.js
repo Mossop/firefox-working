@@ -3,10 +3,10 @@
 
 "use strict";
 const { FirefoxProfileMigrator } = ChromeUtils.importESModule(
-  "resource:///modules/FirefoxProfileMigrator.sys.mjs"
+  "moz-src:///browser/components/migration/FirefoxProfileMigrator.sys.mjs"
 );
 const { InternalTestingProfileMigrator } = ChromeUtils.importESModule(
-  "resource:///modules/InternalTestingProfileMigrator.sys.mjs"
+  "moz-src:///browser/components/migration/InternalTestingProfileMigrator.sys.mjs"
 );
 
 // These preferences are set to true anytime MigratorBase.migrate

@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const {
   saveToDisk,
@@ -18,17 +18,17 @@ const TOPIC_PDFJS_HANDLER_CHANGED = "pdfjs:handlerChanged";
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  kHandlerList: "resource://gre/modules/handlers/HandlerList.sys.mjs",
-  kHandlerListVersion: "resource://gre/modules/handlers/HandlerList.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
-  JSONFile: "resource://gre/modules/JSONFile.sys.mjs",
+  kHandlerList: "moz-src:///uriloader/exthandler/HandlerList.sys.mjs",
+  kHandlerListVersion: "moz-src:///uriloader/exthandler/HandlerList.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
+  JSONFile: "moz-src:///toolkit/modules/JSONFile.sys.mjs",
 });
-import { Integration } from "resource://gre/modules/Integration.sys.mjs";
+import { Integration } from "moz-src:///toolkit/modules/Integration.sys.mjs";
 
 Integration.downloads.defineESModuleGetter(
   lazy,
   "DownloadIntegration",
-  "resource://gre/modules/DownloadIntegration.sys.mjs"
+  "moz-src:///toolkit/components/downloads/DownloadIntegration.sys.mjs"
 );
 
 XPCOMUtils.defineLazyServiceGetter(

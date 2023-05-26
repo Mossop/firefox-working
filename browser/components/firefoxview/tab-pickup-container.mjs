@@ -7,10 +7,10 @@
 import { onToggleContainer } from "./helpers.mjs";
 
 const { SyncedTabsErrorHandler } = ChromeUtils.importESModule(
-  "resource:///modules/firefox-view-synced-tabs-error-handler.sys.mjs"
+  "moz-src:///browser/components/firefoxview/firefox-view-synced-tabs-error-handler.sys.mjs"
 );
 const { TabsSetupFlowManager } = ChromeUtils.importESModule(
-  "resource:///modules/firefox-view-tabs-setup-manager.sys.mjs"
+  "moz-src:///browser/components/firefoxview/firefox-view-tabs-setup-manager.sys.mjs"
 );
 
 const TOPIC_SETUPSTATE_CHANGED = "firefox-view.setupstate.changed";

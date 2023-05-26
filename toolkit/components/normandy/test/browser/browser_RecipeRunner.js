@@ -4,7 +4,7 @@ const { NormandyTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/NormandyTestUtils.sys.mjs"
 );
 const { FilterExpressions } = ChromeUtils.importESModule(
-  "resource://gre/modules/components-utils/FilterExpressions.sys.mjs"
+  "moz-src:///toolkit/components/utils/FilterExpressions.sys.mjs"
 );
 
 const { Normandy } = ChromeUtils.importESModule(

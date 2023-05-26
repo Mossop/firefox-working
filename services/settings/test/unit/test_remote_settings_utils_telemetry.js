@@ -6,7 +6,7 @@
 /* import-globals-from ../../../common/tests/unit/head_helpers.js */
 
 const { TelemetryController } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryController.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs"
 );
 const { TelemetryTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/TelemetryTestUtils.sys.mjs"

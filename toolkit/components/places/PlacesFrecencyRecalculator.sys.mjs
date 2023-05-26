@@ -8,20 +8,20 @@
  * This component handles frecency recalculations and decay on idle.
  */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.sys.mjs",
-  DeferredTask: "resource://gre/modules/DeferredTask.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
-  PromiseUtils: "resource://gre/modules/PromiseUtils.sys.mjs",
+  AsyncShutdown: "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs",
+  DeferredTask: "moz-src:///toolkit/modules/DeferredTask.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
+  PromiseUtils: "moz-src:///toolkit/modules/PromiseUtils.sys.mjs",
 });
 
 ChromeUtils.defineModuleGetter(
   lazy,
   "ObjectUtils",
-  "resource://gre/modules/ObjectUtils.jsm"
+  "moz-src:///toolkit/modules/ObjectUtils.jsm"
 );
 
 XPCOMUtils.defineLazyGetter(lazy, "logger", function() {

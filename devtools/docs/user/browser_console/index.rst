@@ -82,7 +82,7 @@ One exported symbol from ``Console.sys.mjs`` is ``console``. Below is an example
 
 .. code-block:: JavaScript
 
-  const { console } = ChromeUtils.importESModule("resource://gre/modules/Console.sys.mjs");
+  const { console } = ChromeUtils.importESModule("moz-src:///toolkit/modules/Console.sys.mjs");
   console.log("Hello from Firefox code"); //output messages to the console
 
 Learn more:

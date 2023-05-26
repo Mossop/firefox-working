@@ -7,7 +7,7 @@
  */
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  Schemas: "resource://gre/modules/Schemas.jsm",
+  Schemas: "moz-src:///toolkit/components/extensions/Schemas.jsm",
 });
 
 function getDNRRule({

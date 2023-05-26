@@ -5,9 +5,9 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  E10SUtils: "resource://gre/modules/E10SUtils.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  E10SUtils: "moz-src:///toolkit/modules/E10SUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 export class PageInfoChild extends JSWindowActorChild {

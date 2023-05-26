@@ -1,5 +1,5 @@
 ChromeUtils.defineESModuleGetters(this, {
-  DownloadUtils: "resource://gre/modules/DownloadUtils.sys.mjs",
+  DownloadUtils: "moz-src:///toolkit/mozapps/downloads/DownloadUtils.sys.mjs",
   SiteDataTestUtils: "resource://testing-common/SiteDataTestUtils.sys.mjs",
 });
 

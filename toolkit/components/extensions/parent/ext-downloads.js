@@ -5,10 +5,10 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  DownloadLastDir: "resource://gre/modules/DownloadLastDir.sys.mjs",
-  DownloadPaths: "resource://gre/modules/DownloadPaths.sys.mjs",
-  Downloads: "resource://gre/modules/Downloads.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
+  DownloadLastDir: "moz-src:///toolkit/mozapps/downloads/DownloadLastDir.sys.mjs",
+  DownloadPaths: "moz-src:///toolkit/components/downloads/DownloadPaths.sys.mjs",
+  Downloads: "moz-src:///toolkit/components/downloads/Downloads.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
 });
 
 var { EventEmitter, ignoreEvent } = ExtensionCommon;

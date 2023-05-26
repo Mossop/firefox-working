@@ -8,7 +8,7 @@
  */
 
 const { DownloadUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/DownloadUtils.sys.mjs"
+  "moz-src:///toolkit/mozapps/downloads/DownloadUtils.sys.mjs"
 );
 
 function run_test() {

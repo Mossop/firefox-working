@@ -13,7 +13,7 @@ ChromeUtils.defineESModuleGetters(this, {
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  AboutNewTab: "resource:///modules/AboutNewTab.jsm",
+  AboutNewTab: "moz-src:///browser/modules/AboutNewTab.jsm",
 });
 
 const EN_US_TOPSITES =

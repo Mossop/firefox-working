@@ -11,7 +11,7 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Downloads: "resource://gre/modules/Downloads.sys.mjs",
+  Downloads: "moz-src:///toolkit/components/downloads/Downloads.sys.mjs",
 });
 
 export var DownloadsMacFinderProgress = {

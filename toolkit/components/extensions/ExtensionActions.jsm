@@ -7,17 +7,17 @@
 var EXPORTED_SYMBOLS = ["BrowserActionBase", "PageActionBase"];
 
 const { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
 );
 const { ExtensionError } = ExtensionUtils;
 
 const { ExtensionParent } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 const { IconDetails, StartupCache } = ExtensionParent;
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const lazy = {};

@@ -5,7 +5,7 @@
 function assertNoLeaksInTabTracker() {
   // Check that no tabs have been leaked by the internal tabTracker helper class.
   const { ExtensionParent } = ChromeUtils.import(
-    "resource://gre/modules/ExtensionParent.jsm"
+    "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
   );
   const { tabTracker } = ExtensionParent.apiManager.global;
 

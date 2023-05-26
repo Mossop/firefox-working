@@ -13,7 +13,7 @@ var gSSService = Cc["@mozilla.org/ssservice;1"].getService(
 );
 
 const { FileUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/FileUtils.sys.mjs"
+  "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 );
 
 const SOURCE =

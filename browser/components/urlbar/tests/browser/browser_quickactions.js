@@ -11,13 +11,13 @@ requestLongerTimeout(3);
 
 ChromeUtils.defineESModuleGetters(this, {
   AppConstants: "resource://gre/modules/AppConstants.sys.mjs",
-  UpdateService: "resource://gre/modules/UpdateService.sys.mjs",
+  UpdateService: "moz-src:///toolkit/mozapps/update/UpdateService.sys.mjs",
 
   UrlbarProviderQuickActions:
-    "resource:///modules/UrlbarProviderQuickActions.sys.mjs",
+    "moz-src:///browser/components/urlbar/UrlbarProviderQuickActions.sys.mjs",
 });
 XPCOMUtils.defineLazyModuleGetters(this, {
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
+  BrowserWindowTracker: "moz-src:///browser/modules/BrowserWindowTracker.jsm",
 });
 
 const DUMMY_PAGE =

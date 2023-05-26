@@ -17,7 +17,7 @@ import {
   type,
   utils,
   clusters,
-} from "resource://gre/modules/third_party/fathom/fathom.mjs";
+} from "moz-src:///toolkit/modules/third_party/fathom/fathom.mjs";
 
 let { identity, isVisible, min, setDefault } = utils;
 let { euclidean } = clusters;

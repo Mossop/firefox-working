@@ -4,12 +4,12 @@
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
-import { BrowserUtils } from "resource://gre/modules/BrowserUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
+import { BrowserUtils } from "moz-src:///toolkit/modules/BrowserUtils.sys.mjs";
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  EnableDelayHelper: "resource://gre/modules/PromptUtils.sys.mjs",
+  EnableDelayHelper: "moz-src:///toolkit/components/prompts/src/PromptUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyServiceGetter(
@@ -25,12 +25,12 @@ XPCOMUtils.defineLazyServiceGetter(
   Ci.nsIMIMEService
 );
 
-import { Integration } from "resource://gre/modules/Integration.sys.mjs";
+import { Integration } from "moz-src:///toolkit/modules/Integration.sys.mjs";
 
 Integration.downloads.defineESModuleGetter(
   lazy,
   "DownloadIntegration",
-  "resource://gre/modules/DownloadIntegration.sys.mjs"
+  "moz-src:///toolkit/components/downloads/DownloadIntegration.sys.mjs"
 );
 
 // /////////////////////////////////////////////////////////////////////////////
@@ -117,12 +117,12 @@ nsUnknownContentTypeDialogProgressListener.prototype = {
 const PREF_BD_USEDOWNLOADDIR = "browser.download.useDownloadDir";
 const nsITimer = Ci.nsITimer;
 
-import * as downloadModule from "resource://gre/modules/DownloadLastDir.sys.mjs";
-import { DownloadPaths } from "resource://gre/modules/DownloadPaths.sys.mjs";
+import * as downloadModule from "moz-src:///toolkit/mozapps/downloads/DownloadLastDir.sys.mjs";
+import { DownloadPaths } from "moz-src:///toolkit/components/downloads/DownloadPaths.sys.mjs";
 
-import { DownloadUtils } from "resource://gre/modules/DownloadUtils.sys.mjs";
-import { Downloads } from "resource://gre/modules/Downloads.sys.mjs";
-import { FileUtils } from "resource://gre/modules/FileUtils.sys.mjs";
+import { DownloadUtils } from "moz-src:///toolkit/mozapps/downloads/DownloadUtils.sys.mjs";
+import { Downloads } from "moz-src:///toolkit/components/downloads/Downloads.sys.mjs";
+import { FileUtils } from "moz-src:///toolkit/modules/FileUtils.sys.mjs";
 
 /* ctor
  */

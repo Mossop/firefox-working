@@ -5,7 +5,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "AboutNewTab",
-  "resource:///modules/AboutNewTab.jsm"
+  "moz-src:///browser/modules/AboutNewTab.jsm"
 );
 
 this.tabswitch = class extends ExtensionAPI {

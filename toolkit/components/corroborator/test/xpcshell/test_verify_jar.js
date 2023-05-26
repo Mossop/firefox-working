@@ -3,7 +3,7 @@
 "use strict";
 
 const { Corroborate } = ChromeUtils.importESModule(
-  "resource://gre/modules/Corroborate.sys.mjs"
+  "moz-src:///toolkit/components/corroborator/Corroborate.sys.mjs"
 );
 
 add_task(async function test_various_jars() {

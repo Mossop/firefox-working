@@ -1,7 +1,7 @@
 "use strict";
 
 const { OSKeyStore } = ChromeUtils.importESModule(
-  "resource://gre/modules/OSKeyStore.sys.mjs"
+  "moz-src:///toolkit/modules/OSKeyStore.sys.mjs"
 );
 const { OSKeyStoreTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/OSKeyStoreTestUtils.sys.mjs"
@@ -417,7 +417,7 @@ async function focusAndWaitForFieldsIdentified(browserOrContext, selector) {
     [selector],
     async function(selector) {
       const { FormLikeFactory } = ChromeUtils.importESModule(
-        "resource://gre/modules/FormLikeFactory.sys.mjs"
+        "moz-src:///toolkit/modules/FormLikeFactory.sys.mjs"
       );
       const input = content.document.querySelector(selector);
       const rootElement = FormLikeFactory.findRootForField(input);
@@ -468,7 +468,7 @@ async function focusAndWaitForFieldsIdentified(browserOrContext, selector) {
   await sleep();
   await SpecialPowers.spawn(browserOrContext, [], async function() {
     const { FormLikeFactory } = ChromeUtils.importESModule(
-      "resource://gre/modules/FormLikeFactory.sys.mjs"
+      "moz-src:///toolkit/modules/FormLikeFactory.sys.mjs"
     );
     FormLikeFactory.findRootForField(
       content.document.activeElement

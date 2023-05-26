@@ -4,7 +4,7 @@
 "use strict";
 
 const { OsEnvironment } = ChromeUtils.importESModule(
-  "resource://gre/modules/OsEnvironment.sys.mjs"
+  "moz-src:///toolkit/modules/OsEnvironment.sys.mjs"
 );
 const { TelemetryTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/TelemetryTestUtils.sys.mjs"

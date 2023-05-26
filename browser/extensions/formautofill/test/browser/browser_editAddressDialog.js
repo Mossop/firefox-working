@@ -1,11 +1,11 @@
 "use strict";
 
 const { FormAutofillUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/shared/FormAutofillUtils.sys.mjs"
+  "moz-src:///toolkit/components/formautofill/shared/FormAutofillUtils.sys.mjs"
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  Region: "resource://gre/modules/Region.sys.mjs",
+  Region: "moz-src:///toolkit/modules/Region.sys.mjs",
 });
 
 requestLongerTimeout(6);

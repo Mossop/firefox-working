@@ -10,31 +10,31 @@
 "use strict";
 
 var { Integration } = ChromeUtils.importESModule(
-  "resource://gre/modules/Integration.sys.mjs"
+  "moz-src:///toolkit/modules/Integration.sys.mjs"
 );
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  DownloadPaths: "resource://gre/modules/DownloadPaths.sys.mjs",
-  Downloads: "resource://gre/modules/Downloads.sys.mjs",
-  E10SUtils: "resource://gre/modules/E10SUtils.sys.mjs",
+  DownloadPaths: "moz-src:///toolkit/components/downloads/DownloadPaths.sys.mjs",
+  Downloads: "moz-src:///toolkit/components/downloads/Downloads.sys.mjs",
+  E10SUtils: "moz-src:///toolkit/modules/E10SUtils.sys.mjs",
   FileTestUtils: "resource://testing-common/FileTestUtils.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
   MockRegistrar: "resource://testing-common/MockRegistrar.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
-  PromiseUtils: "resource://gre/modules/PromiseUtils.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
+  PromiseUtils: "moz-src:///toolkit/modules/PromiseUtils.sys.mjs",
   TelemetryTestUtils: "resource://testing-common/TelemetryTestUtils.sys.mjs",
   TestUtils: "resource://testing-common/TestUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
   HttpServer: "resource://testing-common/httpd.js",
-  NetUtil: "resource://gre/modules/NetUtil.jsm",
+  NetUtil: "moz-src:///netwerk/base/NetUtil.jsm",
 });
 
 XPCOMUtils.defineLazyServiceGetter(
@@ -48,7 +48,7 @@ XPCOMUtils.defineLazyServiceGetter(
 Integration.downloads.defineESModuleGetter(
   this,
   "DownloadIntegration",
-  "resource://gre/modules/DownloadIntegration.sys.mjs"
+  "moz-src:///toolkit/components/downloads/DownloadIntegration.sys.mjs"
 );
 
 const ServerSocket = Components.Constructor(

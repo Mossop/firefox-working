@@ -6,10 +6,10 @@
 "use strict";
 
 const { LoginFormFactory } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginFormFactory.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginFormFactory.sys.mjs"
 );
 const { LoginFormState } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginManagerChild.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginManagerChild.sys.mjs"
 );
 const TESTCASES = [
   {

@@ -2,7 +2,7 @@
  * http://creativecommons.org/publicdomain/zero/1.0/ */
 
 let { LoginBreaches } = ChromeUtils.importESModule(
-  "resource:///modules/LoginBreaches.sys.mjs"
+  "moz-src:///browser/components/aboutlogins/LoginBreaches.sys.mjs"
 );
 let { RemoteSettings } = ChromeUtils.importESModule(
   "resource://services-settings/remote-settings.sys.mjs"

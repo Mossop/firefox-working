@@ -3,10 +3,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const { DeferredTask } = ChromeUtils.importESModule(
-  "resource://gre/modules/DeferredTask.sys.mjs"
+  "moz-src:///toolkit/modules/DeferredTask.sys.mjs"
 );
 const { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 
 const SEARCH_TIMEOUT_MS = 100;

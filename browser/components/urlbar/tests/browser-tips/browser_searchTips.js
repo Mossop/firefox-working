@@ -11,12 +11,12 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  AppMenuNotifications: "resource://gre/modules/AppMenuNotifications.sys.mjs",
-  ProfileAge: "resource://gre/modules/ProfileAge.sys.mjs",
-  PromiseUtils: "resource://gre/modules/PromiseUtils.sys.mjs",
-  UrlbarPrefs: "resource:///modules/UrlbarPrefs.sys.mjs",
+  AppMenuNotifications: "moz-src:///toolkit/modules/AppMenuNotifications.sys.mjs",
+  ProfileAge: "moz-src:///toolkit/modules/ProfileAge.sys.mjs",
+  PromiseUtils: "moz-src:///toolkit/modules/PromiseUtils.sys.mjs",
+  UrlbarPrefs: "moz-src:///browser/components/urlbar/UrlbarPrefs.sys.mjs",
   UrlbarProviderSearchTips:
-    "resource:///modules/UrlbarProviderSearchTips.sys.mjs",
+    "moz-src:///browser/components/urlbar/UrlbarProviderSearchTips.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {

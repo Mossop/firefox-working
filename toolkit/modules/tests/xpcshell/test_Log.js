@@ -4,7 +4,7 @@
 /* eslint-disable block-spacing */
 
 const { Log } = ChromeUtils.importESModule(
-  "resource://gre/modules/Log.sys.mjs"
+  "moz-src:///toolkit/modules/Log.sys.mjs"
 );
 
 Services.prefs.setBoolPref("security.allow_eval_with_system_principal", true);

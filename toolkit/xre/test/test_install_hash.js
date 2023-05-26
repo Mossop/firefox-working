@@ -7,7 +7,7 @@
  */
 
 const { Subprocess } = ChromeUtils.importESModule(
-  "resource://gre/modules/Subprocess.sys.mjs"
+  "moz-src:///toolkit/modules/subprocess/Subprocess.sys.mjs"
 );
 
 const XRE = Cc["@mozilla.org/xre/directory-provider;1"].getService(

@@ -1,7 +1,7 @@
 "use strict";
 
 const { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 
 // ExtensionContent.jsm needs to know when it's running from xpcshell,

@@ -3,10 +3,10 @@
 "use strict";
 
 const { MessageManagerProxy } = ChromeUtils.import(
-  "resource://gre/modules/MessageManagerProxy.jsm"
+  "moz-src:///toolkit/components/extensions/MessageManagerProxy.jsm"
 );
 const { PromiseUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PromiseUtils.sys.mjs"
+  "moz-src:///toolkit/modules/PromiseUtils.sys.mjs"
 );
 
 class TestMessageManagerProxy extends MessageManagerProxy {

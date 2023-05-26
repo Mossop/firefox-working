@@ -1,6 +1,6 @@
 /* eslint-disable mozilla/no-arbitrary-setTimeout */
 const { AddonManagerPrivate } = ChromeUtils.import(
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 const { AddonTestUtils } = ChromeUtils.import(

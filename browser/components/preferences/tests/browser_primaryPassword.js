@@ -2,7 +2,7 @@ const { OSKeyStoreTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/OSKeyStoreTestUtils.sys.mjs"
 );
 const { OSKeyStore } = ChromeUtils.importESModule(
-  "resource://gre/modules/OSKeyStore.sys.mjs"
+  "moz-src:///toolkit/modules/OSKeyStore.sys.mjs"
 );
 
 add_task(async function() {

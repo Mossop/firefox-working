@@ -5,7 +5,7 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  LoginHelper: "resource://gre/modules/LoginHelper.sys.mjs",
+  LoginHelper: "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs",
 });
 
 export function nsLoginInfo() {}

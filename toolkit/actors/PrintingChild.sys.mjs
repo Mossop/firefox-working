@@ -6,9 +6,9 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  DeferredTask: "resource://gre/modules/DeferredTask.sys.mjs",
-  ReaderMode: "resource://gre/modules/ReaderMode.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  DeferredTask: "moz-src:///toolkit/modules/DeferredTask.sys.mjs",
+  ReaderMode: "moz-src:///toolkit/components/reader/ReaderMode.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 let gPendingPreviewsMap = new Map();

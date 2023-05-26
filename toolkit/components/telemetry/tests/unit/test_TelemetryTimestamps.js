@@ -2,10 +2,10 @@
  * http://creativecommons.org/publicdomain/zero/1.0/ */
 
 const { TelemetryController } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryController.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs"
 );
 const { TelemetrySession } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetrySession.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/pings/TelemetrySession.sys.mjs"
 );
 
 // The @mozilla/xre/app-info;1 XPCOM object provided by the xpcshell test harness doesn't
@@ -41,7 +41,7 @@ add_task(async function actualTest() {
 
   // Test the module logic
   let { TelemetryTimestamps } = ChromeUtils.importESModule(
-    "resource://gre/modules/TelemetryTimestamps.sys.mjs"
+    "moz-src:///toolkit/components/telemetry/app/TelemetryTimestamps.sys.mjs"
   );
   let now = Date.now();
   TelemetryTimestamps.add("foo");

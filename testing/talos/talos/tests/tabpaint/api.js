@@ -26,7 +26,7 @@ ChromeUtils.defineESModuleGetters(this, {
 ChromeUtils.defineModuleGetter(
   this,
   "BrowserWindowTracker",
-  "resource:///modules/BrowserWindowTracker.jsm"
+  "moz-src:///browser/modules/BrowserWindowTracker.jsm"
 );
 
 const REDUCE_MOTION_PREF = "ui.prefersReducedMotion";

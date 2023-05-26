@@ -2,7 +2,7 @@
 /* import-globals-from ../head_addons.js */
 
 const { ComponentUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/ComponentUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/ComponentUtils.sys.mjs"
 );
 
 const MLBF_RECORD = {
@@ -23,7 +23,7 @@ function enable_blocklist_v2_instead_of_useMLBF() {
   Services.prefs.setBoolPref("extensions.blocklist.useMLBF", false);
   // Sanity check: blocklist v2 has been enabled.
   const { BlocklistPrivate } = ChromeUtils.import(
-    "resource://gre/modules/Blocklist.jsm"
+    "moz-src:///toolkit/mozapps/extensions/Blocklist.jsm"
   );
   Assert.equal(
     Blocklist.ExtensionBlocklist,
@@ -45,7 +45,7 @@ function getExtensionBlocklistMLBF() {
   // pref is set to true.
   const {
     BlocklistPrivate: { ExtensionBlocklistMLBF },
-  } = ChromeUtils.import("resource://gre/modules/Blocklist.jsm");
+  } = ChromeUtils.import("moz-src:///toolkit/mozapps/extensions/Blocklist.jsm");
   if (Blocklist.allowDeprecatedBlocklistV2) {
     Assert.ok(
       Services.prefs.getBoolPref("extensions.blocklist.useMLBF", false),

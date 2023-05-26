@@ -14,7 +14,7 @@ XPCOMUtils.defineLazyGetter(this, "strBundle", function() {
 ChromeUtils.defineModuleGetter(
   this,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 // We can't use Services.prompt here at the moment, as tests need to mock

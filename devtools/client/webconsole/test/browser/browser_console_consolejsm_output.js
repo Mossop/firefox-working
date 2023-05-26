@@ -11,7 +11,7 @@ add_task(async function testCategoryLogs() {
   storage.clearEvents();
 
   const { console } = ChromeUtils.importESModule(
-    "resource://gre/modules/Console.sys.mjs"
+    "moz-src:///toolkit/modules/Console.sys.mjs"
   );
   console.log("bug861338-log-cached");
 
@@ -58,7 +58,7 @@ add_task(async function testFilter() {
   storage.clearEvents();
 
   const { ConsoleAPI } = ChromeUtils.importESModule(
-    "resource://gre/modules/Console.sys.mjs"
+    "moz-src:///toolkit/modules/Console.sys.mjs"
   );
   const console2 = new ConsoleAPI();
   const hud = await BrowserConsoleManager.toggleBrowserConsole();
@@ -89,7 +89,7 @@ add_task(async function testProfile() {
   const consoleStorage = Cc["@mozilla.org/consoleAPI-storage;1"];
   const storage = consoleStorage.getService(Ci.nsIConsoleAPIStorage);
   const { console } = ChromeUtils.importESModule(
-    "resource://gre/modules/Console.sys.mjs"
+    "moz-src:///toolkit/modules/Console.sys.mjs"
   );
 
   storage.clearEvents();

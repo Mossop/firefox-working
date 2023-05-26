@@ -4,7 +4,7 @@
 "use strict";
 
 const { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 
 // List of default preferences that can be used for tests, chosen because they

@@ -9,9 +9,9 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  CSV: "resource://gre/modules/CSV.sys.mjs",
-  LoginHelper: "resource://gre/modules/LoginHelper.sys.mjs",
-  ResponsivenessMonitor: "resource://gre/modules/ResponsivenessMonitor.sys.mjs",
+  CSV: "moz-src:///toolkit/components/passwordmgr/CSV.sys.mjs",
+  LoginHelper: "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs",
+  ResponsivenessMonitor: "moz-src:///toolkit/modules/ResponsivenessMonitor.sys.mjs",
 });
 
 /**

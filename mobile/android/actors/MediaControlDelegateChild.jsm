@@ -12,7 +12,7 @@ const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   MediaUtils: "resource://gre/modules/MediaUtils.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 var EXPORTED_SYMBOLS = ["MediaControlDelegateChild"];

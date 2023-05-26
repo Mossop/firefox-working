@@ -7,8 +7,8 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  AsyncShutdown: "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 const REMOTE_SETTINGS_RESULTS = [

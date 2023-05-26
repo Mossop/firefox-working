@@ -16,16 +16,16 @@ const { HawkClient } = ChromeUtils.importESModule(
   "resource://services-common/hawkclient.sys.mjs"
 );
 const { FxAccounts } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccounts.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
 );
 const { FxAccountsClient } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccountsClient.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccountsClient.sys.mjs"
 );
 const {
   ERRNO_INVALID_AUTH_TOKEN,
   ONLOGIN_NOTIFICATION,
   ONVERIFIED_NOTIFICATION,
-} = ChromeUtils.import("resource://gre/modules/FxAccountsCommon.js");
+} = ChromeUtils.import("moz-src:///services/fxaccounts/FxAccountsCommon.js");
 const { Service } = ChromeUtils.importESModule(
   "resource://services-sync/service.sys.mjs"
 );
@@ -39,7 +39,7 @@ const {
   "resource://services-common/tokenserverclient.sys.mjs"
 );
 const { AccountState } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccounts.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
 );
 
 const SECOND_MS = 1000;

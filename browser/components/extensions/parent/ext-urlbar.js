@@ -5,13 +5,13 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  UrlbarPrefs: "resource:///modules/UrlbarPrefs.sys.mjs",
+  UrlbarPrefs: "moz-src:///browser/components/urlbar/UrlbarPrefs.sys.mjs",
   UrlbarProviderExtension:
-    "resource:///modules/UrlbarProviderExtension.sys.mjs",
+    "moz-src:///browser/components/urlbar/UrlbarProviderExtension.sys.mjs",
 });
 
 var { ExtensionPreferencesManager } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionPreferencesManager.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPreferencesManager.jsm"
 );
 var { getSettingsAPI } = ExtensionPreferencesManager;
 

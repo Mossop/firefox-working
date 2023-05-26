@@ -12,12 +12,12 @@ const {
   ERROR_NETWORK,
   ERROR_PARSE,
   ERROR_UNKNOWN,
-} = ChromeUtils.import("resource://gre/modules/FxAccountsCommon.js");
+} = ChromeUtils.import("moz-src:///services/fxaccounts/FxAccountsCommon.js");
 const {
   FxAccountsProfileClient,
   FxAccountsProfileClientError,
 } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccountsProfileClient.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccountsProfileClient.sys.mjs"
 );
 
 const STATUS_SUCCESS = 200;

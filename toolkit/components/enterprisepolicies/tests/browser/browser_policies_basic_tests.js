@@ -5,7 +5,7 @@
 
 add_task(async function test_simple_policies() {
   let { Policies } = ChromeUtils.importESModule(
-    "resource:///modules/policies/Policies.sys.mjs"
+    "moz-src:///browser/components/enterprisepolicies/Policies.sys.mjs"
   );
 
   let policy0Ran = false,

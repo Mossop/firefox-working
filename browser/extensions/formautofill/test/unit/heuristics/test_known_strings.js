@@ -129,7 +129,7 @@ const KNOWN_NAMES = {
 
 add_setup(async () => {
   ({ FormAutofillHeuristics } = ChromeUtils.importESModule(
-    "resource://gre/modules/shared/FormAutofillHeuristics.sys.mjs"
+    "moz-src:///toolkit/components/formautofill/shared/FormAutofillHeuristics.sys.mjs"
   ));
 });
 

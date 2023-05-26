@@ -3,24 +3,24 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { BackgroundUpdate } from "resource://gre/modules/BackgroundUpdate.sys.mjs";
+import { BackgroundUpdate } from "moz-src:///toolkit/mozapps/update/BackgroundUpdate.sys.mjs";
 
 const { EXIT_CODE } = BackgroundUpdate;
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AppUpdater: "resource://gre/modules/AppUpdater.sys.mjs",
-  BackgroundTasksUtils: "resource://gre/modules/BackgroundTasksUtils.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
-  UpdateUtils: "resource://gre/modules/UpdateUtils.sys.mjs",
+  AppUpdater: "moz-src:///toolkit/mozapps/update/AppUpdater.sys.mjs",
+  BackgroundTasksUtils: "moz-src:///toolkit/components/backgroundtasks/BackgroundTasksUtils.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
+  UpdateUtils: "moz-src:///toolkit/modules/UpdateUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  ExtensionUtils: "resource://gre/modules/ExtensionUtils.jsm",
+  ExtensionUtils: "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm",
 });
 
 XPCOMUtils.defineLazyServiceGetter(
@@ -32,7 +32,7 @@ XPCOMUtils.defineLazyServiceGetter(
 
 XPCOMUtils.defineLazyGetter(lazy, "log", () => {
   let { ConsoleAPI } = ChromeUtils.importESModule(
-    "resource://gre/modules/Console.sys.mjs"
+    "moz-src:///toolkit/modules/Console.sys.mjs"
   );
   let consoleOptions = {
     // tip: set maxLogLevel to "debug" and use log.debug() to create detailed

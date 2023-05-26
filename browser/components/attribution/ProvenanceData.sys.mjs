@@ -6,7 +6,7 @@ import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  AttributionIOUtils: "resource:///modules/AttributionCode.sys.mjs",
+  AttributionIOUtils: "moz-src:///browser/components/attribution/AttributionCode.sys.mjs",
 });
 
 let gReadZoneIdPromise = null;

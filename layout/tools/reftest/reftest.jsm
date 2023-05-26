@@ -11,7 +11,7 @@ var EXPORTED_SYMBOLS = [
 ];
 
 const { FileUtils } = ChromeUtils.importESModule(
-    "resource://gre/modules/FileUtils.sys.mjs"
+    "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 );
 const {
     XHTML_NS,
@@ -55,11 +55,11 @@ const { PerTestCoverageUtils } = ChromeUtils.importESModule(
     "resource://reftest/PerTestCoverageUtils.sys.mjs"
 );
 const { XPCOMUtils } = ChromeUtils.importESModule(
-    "resource://gre/modules/XPCOMUtils.sys.mjs"
+    "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const { E10SUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/E10SUtils.sys.mjs"
+  "moz-src:///toolkit/modules/E10SUtils.sys.mjs"
 );
 
 const lazy = {};

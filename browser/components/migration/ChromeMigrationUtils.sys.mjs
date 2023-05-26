@@ -7,8 +7,8 @@ import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  LoginHelper: "resource://gre/modules/LoginHelper.sys.mjs",
-  MigrationUtils: "resource:///modules/MigrationUtils.sys.mjs",
+  LoginHelper: "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs",
+  MigrationUtils: "moz-src:///browser/components/migration/MigrationUtils.sys.mjs",
 });
 
 const S100NS_FROM1601TO1970 = 0x19db1ded53e8000;

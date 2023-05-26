@@ -1,5 +1,5 @@
 const { FormHistory } = ChromeUtils.importESModule(
-  "resource://gre/modules/FormHistory.sys.mjs"
+  "moz-src:///toolkit/components/satchel/FormHistory.sys.mjs"
 );
 const { Service } = ChromeUtils.importESModule(
   "resource://services-sync/service.sys.mjs"

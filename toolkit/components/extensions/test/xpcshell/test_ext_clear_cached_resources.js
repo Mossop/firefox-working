@@ -15,7 +15,7 @@ AddonTestUtils.createAppInfo(
 );
 
 const { AddonManager } = ChromeUtils.import(
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 const LEAVE_UUID_PREF = "extensions.webextensions.keepUuidOnUninstall";

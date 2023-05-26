@@ -6,16 +6,16 @@
 const EXPORTED_SYMBOLS = ["ExtensionActivityLog"];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
 );
 const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "ExtensionParent",
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 XPCOMUtils.defineLazyGetter(lazy, "tabTracker", () => {
   return lazy.ExtensionParent.apiManager.global.tabTracker;

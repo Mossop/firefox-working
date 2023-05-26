@@ -5,27 +5,27 @@
 // 1 day default
 const DEFAULT_SECONDS_BETWEEN_CHECKS = 60 * 60 * 24;
 
-import { PromiseUtils } from "resource://gre/modules/PromiseUtils.sys.mjs";
+import { PromiseUtils } from "moz-src:///toolkit/modules/PromiseUtils.sys.mjs";
 
-import { Log } from "resource://gre/modules/Log.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
 import {
   GMPPrefs,
   GMPUtils,
   GMP_PLUGIN_IDS,
   WIDEVINE_ID,
-} from "resource://gre/modules/GMPUtils.sys.mjs";
+} from "moz-src:///toolkit/modules/GMPUtils.sys.mjs";
 
 const { ProductAddonChecker } = ChromeUtils.import(
-  "resource://gre/modules/addons/ProductAddonChecker.jsm"
+  "moz-src:///toolkit/mozapps/extensions/internal/ProductAddonChecker.jsm"
 );
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  CertUtils: "resource://gre/modules/CertUtils.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
-  ServiceRequest: "resource://gre/modules/ServiceRequest.sys.mjs",
-  UpdateUtils: "resource://gre/modules/UpdateUtils.sys.mjs",
+  CertUtils: "moz-src:///toolkit/modules/CertUtils.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
+  ServiceRequest: "moz-src:///toolkit/modules/ServiceRequest.sys.mjs",
+  UpdateUtils: "moz-src:///toolkit/modules/UpdateUtils.sys.mjs",
 });
 
 function getScopedLogger(prefix) {
@@ -676,7 +676,7 @@ GMPExtractor.prototype = {
     let zipFile = new lazy.FileUtils.File(zipPath);
     let zipURI = Services.io.newFileURI(zipFile).spec;
     let worker = new ChromeWorker(
-      "resource://gre/modules/GMPExtractorWorker.js"
+      "moz-src:///toolkit/modules/GMPExtractorWorker.js"
     );
     worker.onmessage = function(msg) {
       let log = getScopedLogger("GMPExtractor");

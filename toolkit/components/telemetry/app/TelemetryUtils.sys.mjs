@@ -2,11 +2,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { TelemetryControllerBase } from "resource://gre/modules/TelemetryControllerBase.sys.mjs";
+import { TelemetryControllerBase } from "moz-src:///toolkit/components/telemetry/app/TelemetryControllerBase.sys.mjs";
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  UpdateUtils: "resource://gre/modules/UpdateUtils.sys.mjs",
+  UpdateUtils: "moz-src:///toolkit/modules/UpdateUtils.sys.mjs",
 });
 
 const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
@@ -29,7 +29,7 @@ export var TelemetryUtils = {
    *
    * Here is an example of listening for that event:
    *
-   *  const { TelemetryUtils } = ChromeUtils.import("resource://gre/modules/TelemetryUtils.jsm");
+   *  const { TelemetryUtils } = ChromeUtils.import("moz-src:///toolkit/components/telemetry/app/TelemetryUtils.jsm");
    *
    *  class YourClass {
    *    constructor() {

@@ -4,10 +4,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 const { UpdateUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/UpdateUtils.sys.mjs"
+  "moz-src:///toolkit/modules/UpdateUtils.sys.mjs"
 );
 
 const PREF_APP_UPDATE_CHANNEL = "app.update.channel";

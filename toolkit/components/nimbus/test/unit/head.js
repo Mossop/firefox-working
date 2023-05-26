@@ -5,12 +5,12 @@ const { sinon } = ChromeUtils.importESModule(
   "resource://testing-common/Sinon.sys.mjs"
 );
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 ChromeUtils.defineModuleGetter(
   this,
   "ObjectUtils",
-  "resource://gre/modules/ObjectUtils.jsm"
+  "moz-src:///toolkit/modules/ObjectUtils.jsm"
 );
 ChromeUtils.defineESModuleGetters(this, {
   ExperimentFakes: "resource://testing-common/NimbusTestUtils.sys.mjs",

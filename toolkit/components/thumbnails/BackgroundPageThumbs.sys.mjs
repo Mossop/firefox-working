@@ -22,7 +22,7 @@ const ABOUT_NEWTAB_SEGREGATION_PREF =
 import {
   PageThumbs,
   PageThumbsStorage,
-} from "resource://gre/modules/PageThumbs.sys.mjs";
+} from "moz-src:///toolkit/components/thumbnails/PageThumbs.sys.mjs";
 
 // possible FX_THUMBNAILS_BG_CAPTURE_DONE_REASON_2 telemetry values
 const TEL_CAPTURE_DONE_OK = 0;
@@ -37,7 +37,7 @@ const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   ContextualIdentityService:
-    "resource://gre/modules/ContextualIdentityService.sys.mjs",
+    "moz-src:///toolkit/components/contextualidentity/ContextualIdentityService.sys.mjs",
 });
 
 export const BackgroundPageThumbs = {

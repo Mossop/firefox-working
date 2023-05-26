@@ -56,14 +56,14 @@ const EXPORTED_SYMBOLS = [
 
 const {
   ExtensionUtils: { DefaultWeakMap, ExtensionError },
-} = ChromeUtils.import("resource://gre/modules/ExtensionUtils.jsm");
+} = ChromeUtils.import("moz-src:///toolkit/components/extensions/ExtensionUtils.jsm");
 
 const { BaseConduit } = ChromeUtils.import(
-  "resource://gre/modules/ConduitsChild.jsm"
+  "moz-src:///toolkit/components/extensions/ConduitsChild.jsm"
 );
 
 const { WebNavigationFrames } = ChromeUtils.import(
-  "resource://gre/modules/WebNavigationFrames.jsm"
+  "moz-src:///toolkit/components/extensions/WebNavigationFrames.jsm"
 );
 
 const BATCH_TIMEOUT_MS = 250;

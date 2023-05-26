@@ -21,7 +21,7 @@ const SUGGEST_PREF = "browser.search.suggest.enabled";
 
 ChromeUtils.defineESModuleGetters(this, {
   UrlbarProviderTabToSearch:
-    "resource:///modules/UrlbarProviderTabToSearch.sys.mjs",
+    "moz-src:///browser/components/urlbar/UrlbarProviderTabToSearch.sys.mjs",
   UrlbarTestUtils: "resource://testing-common/UrlbarTestUtils.sys.mjs",
 });
 

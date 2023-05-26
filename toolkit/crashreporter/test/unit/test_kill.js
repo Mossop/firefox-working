@@ -28,7 +28,7 @@ add_task(async function run_test() {
 
   // Let's wait a little to give the child process a chance to create a minidump.
   let { setTimeout } = ChromeUtils.importESModule(
-    "resource://gre/modules/Timer.sys.mjs"
+    "moz-src:///toolkit/modules/Timer.sys.mjs"
   );
   // eslint-disable-next-line mozilla/no-arbitrary-setTimeout
   await new Promise(resolve => setTimeout(resolve, 100));

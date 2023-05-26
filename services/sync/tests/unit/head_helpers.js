@@ -32,16 +32,16 @@ var {
   getChromeWindow,
 } = ChromeUtils.importESModule("resource://services-sync/util.sys.mjs");
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 var { PlacesUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PlacesUtils.sys.mjs"
+  "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs"
 );
 var { PlacesSyncUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PlacesSyncUtils.sys.mjs"
+  "moz-src:///toolkit/components/places/PlacesSyncUtils.sys.mjs"
 );
 var { ObjectUtils } = ChromeUtils.import(
-  "resource://gre/modules/ObjectUtils.jsm"
+  "moz-src:///toolkit/modules/ObjectUtils.jsm"
 );
 var {
   MockFxaStorageManager,
@@ -63,7 +63,7 @@ var {
 ChromeUtils.defineModuleGetter(
   this,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 add_setup(async function head_setup() {
@@ -78,9 +78,9 @@ add_setup(async function head_setup() {
 
 XPCOMUtils.defineLazyGetter(this, "SyncPingSchema", function() {
   let { FileUtils } = ChromeUtils.importESModule(
-    "resource://gre/modules/FileUtils.sys.mjs"
+    "moz-src:///toolkit/modules/FileUtils.sys.mjs"
   );
-  let { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+  let { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
   let stream = Cc["@mozilla.org/network/file-input-stream;1"].createInstance(
     Ci.nsIFileInputStream
   );
@@ -103,7 +103,7 @@ XPCOMUtils.defineLazyGetter(this, "SyncPingSchema", function() {
 
 XPCOMUtils.defineLazyGetter(this, "SyncPingValidator", function() {
   const { JsonSchema } = ChromeUtils.importESModule(
-    "resource://gre/modules/JsonSchema.sys.mjs"
+    "moz-src:///toolkit/modules/JsonSchema.sys.mjs"
   );
   return new JsonSchema.Validator(SyncPingSchema);
 });

@@ -2,16 +2,16 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { ReaderMode } from "resource://gre/modules/ReaderMode.sys.mjs";
+import { ReaderMode } from "moz-src:///toolkit/components/reader/ReaderMode.sys.mjs";
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AsyncPrefs: "resource://gre/modules/AsyncPrefs.sys.mjs",
-  NarrateControls: "resource://gre/modules/narrate/NarrateControls.sys.mjs",
+  AsyncPrefs: "moz-src:///toolkit/modules/AsyncPrefs.sys.mjs",
+  NarrateControls: "moz-src:///toolkit/components/narrate/NarrateControls.sys.mjs",
   NimbusFeatures: "resource://nimbus/ExperimentAPI.sys.mjs",
 });
 

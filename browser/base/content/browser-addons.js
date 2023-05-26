@@ -11,21 +11,21 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "ExtensionParent",
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
   "OriginControls",
-  "resource://gre/modules/ExtensionPermissions.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
   "ExtensionPermissions",
-  "resource://gre/modules/ExtensionPermissions.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm"
 );
 ChromeUtils.defineESModuleGetters(lazy, {
   SITEPERMS_ADDON_TYPE:
-    "resource://gre/modules/addons/siteperms-addon-utils.sys.mjs",
+    "moz-src:///toolkit/mozapps/extensions/internal/siteperms-addon-utils.sys.mjs",
 });
 
 customElements.define(

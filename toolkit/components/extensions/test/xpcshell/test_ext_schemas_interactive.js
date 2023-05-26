@@ -1,7 +1,7 @@
 "use strict";
 
 const { ExtensionProcessScript } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionProcessScript.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionProcessScript.jsm"
 );
 
 let experimentAPIs = {

@@ -7,16 +7,16 @@
 "use strict";
 
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  clearTimeout: "resource://gre/modules/Timer.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  clearTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  ExtensionCommon: "resource://gre/modules/ExtensionCommon.jsm",
+  ExtensionCommon: "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm",
 });
 
 // Minimum time between two resizes.

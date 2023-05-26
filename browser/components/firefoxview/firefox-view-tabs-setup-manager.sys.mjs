@@ -7,16 +7,16 @@
  * diverse inputs which drive the Firefox View synced tabs setup flow
  */
 
-import { PromiseUtils } from "resource://gre/modules/PromiseUtils.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { PromiseUtils } from "moz-src:///toolkit/modules/PromiseUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Log: "resource://gre/modules/Log.sys.mjs",
+  Log: "moz-src:///toolkit/modules/Log.sys.mjs",
   SyncedTabs: "resource://services-sync/SyncedTabs.sys.mjs",
   SyncedTabsErrorHandler:
-    "resource:///modules/firefox-view-synced-tabs-error-handler.sys.mjs",
+    "moz-src:///browser/components/firefoxview/firefox-view-synced-tabs-error-handler.sys.mjs",
   UIState: "resource://services-sync/UIState.sys.mjs",
 });
 
@@ -27,7 +27,7 @@ XPCOMUtils.defineLazyGetter(lazy, "syncUtils", () => {
 
 XPCOMUtils.defineLazyGetter(lazy, "fxAccounts", () => {
   return ChromeUtils.importESModule(
-    "resource://gre/modules/FxAccounts.sys.mjs"
+    "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
   ).getFxAccountsSingleton();
 });
 

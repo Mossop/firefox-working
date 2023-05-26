@@ -4,7 +4,7 @@
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
-import { Subprocess } from "resource://gre/modules/Subprocess.sys.mjs";
+import { Subprocess } from "moz-src:///toolkit/modules/subprocess/Subprocess.sys.mjs";
 
 function getFirefoxExecutableFilename() {
   if (AppConstants.platform === "win") {

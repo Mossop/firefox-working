@@ -1,5 +1,5 @@
 const { SafeBrowsing } = ChromeUtils.import(
-  "resource://gre/modules/SafeBrowsing.jsm"
+  "moz-src:///toolkit/components/url-classifier/SafeBrowsing.jsm"
 );
 const { updateAppInfo } = ChromeUtils.importESModule(
   "resource://testing-common/AppInfo.sys.mjs"

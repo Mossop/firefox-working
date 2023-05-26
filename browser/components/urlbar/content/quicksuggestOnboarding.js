@@ -5,7 +5,7 @@
 "use strict";
 
 const { QuickSuggest } = ChromeUtils.importESModule(
-  "resource:///modules/QuickSuggest.sys.mjs"
+  "moz-src:///browser/components/urlbar/QuickSuggest.sys.mjs"
 );
 const { ONBOARDING_CHOICE } = QuickSuggest;
 

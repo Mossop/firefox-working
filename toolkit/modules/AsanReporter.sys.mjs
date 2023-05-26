@@ -8,7 +8,7 @@ import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Log: "resource://gre/modules/Log.sys.mjs",
+  Log: "moz-src:///toolkit/modules/Log.sys.mjs",
 });
 
 // Define our prefs

@@ -8,7 +8,7 @@ const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   Normandy: "resource://normandy/Normandy.sys.mjs",
-  TaskScheduler: "resource://gre/modules/TaskScheduler.sys.mjs",
+  TaskScheduler: "moz-src:///toolkit/components/taskscheduler/TaskScheduler.sys.mjs",
 });
 
 const PREF_TIMEOUT = "first-startup.timeout";

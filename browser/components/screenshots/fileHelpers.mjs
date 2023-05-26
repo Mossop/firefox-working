@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const { AppConstants } = ChromeUtils.import(
@@ -13,14 +13,14 @@ const { AppConstants } = ChromeUtils.import(
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  DownloadLastDir: "resource://gre/modules/DownloadLastDir.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
-  ScreenshotsUtils: "resource:///modules/ScreenshotsUtils.sys.mjs",
+  DownloadLastDir: "moz-src:///toolkit/mozapps/downloads/DownloadLastDir.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
+  ScreenshotsUtils: "moz-src:///browser/components/screenshots/ScreenshotsUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  Downloads: "resource://gre/modules/Downloads.jsm",
-  DownloadPaths: "resource://gre/modules/DownloadPaths.jsm",
+  Downloads: "moz-src:///toolkit/components/downloads/Downloads.jsm",
+  DownloadPaths: "moz-src:///toolkit/components/downloads/DownloadPaths.jsm",
 });
 
 /**

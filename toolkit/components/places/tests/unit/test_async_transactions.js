@@ -11,7 +11,7 @@ const PT = PlacesTransactions;
 const menuGuid = PlacesUtils.bookmarks.menuGuid;
 
 ChromeUtils.defineESModuleGetters(this, {
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
 });
 
 // Create and add bookmarks observer.

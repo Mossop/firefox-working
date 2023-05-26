@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
 const lazy = {};
@@ -10,7 +10,7 @@ const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
   Database: "resource://services-settings/Database.sys.mjs",
   FilterExpressions:
-    "resource://gre/modules/components-utils/FilterExpressions.sys.mjs",
+    "moz-src:///toolkit/components/utils/FilterExpressions.sys.mjs",
   RemoteSettingsClient:
     "resource://services-settings/RemoteSettingsClient.sys.mjs",
   SyncHistory: "resource://services-settings/SyncHistory.sys.mjs",
@@ -19,7 +19,7 @@ ChromeUtils.defineESModuleGetters(lazy, {
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  pushBroadcastService: "resource://gre/modules/PushBroadcastService.jsm",
+  pushBroadcastService: "moz-src:///dom/push/PushBroadcastService.jsm",
 });
 
 const PREF_SETTINGS_BRANCH = "services.settings.";

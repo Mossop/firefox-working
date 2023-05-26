@@ -7,7 +7,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "HomePage",
-  "resource:///modules/HomePage.jsm"
+  "moz-src:///browser/modules/HomePage.jsm"
 );
 
 const kPrefProtonToolbarVersion = "browser.proton.toolbar.version";

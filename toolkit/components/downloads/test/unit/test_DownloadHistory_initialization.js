@@ -4,7 +4,7 @@
 "use strict";
 
 const { DownloadHistory } = ChromeUtils.importESModule(
-  "resource://gre/modules/DownloadHistory.sys.mjs"
+  "moz-src:///toolkit/components/downloads/DownloadHistory.sys.mjs"
 );
 const { PlacesTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/PlacesTestUtils.sys.mjs"

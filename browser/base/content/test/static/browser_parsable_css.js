@@ -422,7 +422,7 @@ add_task(async function checkAllTheCSS() {
   // chrome URI so that it's allowed to load and parse any styles.
   let testFile = getRootDirectory(gTestPath) + "dummy_page.html";
   let { HiddenFrame } = ChromeUtils.importESModule(
-    "resource://gre/modules/HiddenFrame.sys.mjs"
+    "moz-src:///toolkit/modules/HiddenFrame.sys.mjs"
   );
   let hiddenFrame = new HiddenFrame();
   let win = await hiddenFrame.get();

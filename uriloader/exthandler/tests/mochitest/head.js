@@ -1,5 +1,5 @@
 var { FileUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/FileUtils.sys.mjs"
+  "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 );
 var { HandlerServiceTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/HandlerServiceTestUtils.sys.mjs"

@@ -7,7 +7,7 @@ const { PanelTestProvider } = ChromeUtils.import(
   "resource://activity-stream/lib/PanelTestProvider.jsm"
 );
 const { BrowserWindowTracker } = ChromeUtils.import(
-  "resource:///modules/BrowserWindowTracker.jsm"
+  "moz-src:///browser/modules/BrowserWindowTracker.jsm"
 );
 
 const { AboutWelcomeTelemetry } = ChromeUtils.import(

@@ -3,24 +3,24 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  FirstStartup: "resource://gre/modules/FirstStartup.sys.mjs",
-  HeadlessShell: "resource:///modules/HeadlessShell.sys.mjs",
+  FirstStartup: "moz-src:///toolkit/modules/FirstStartup.sys.mjs",
+  HeadlessShell: "moz-src:///browser/components/shell/HeadlessShell.sys.mjs",
   NimbusFeatures: "resource://nimbus/ExperimentAPI.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
-  SessionStartup: "resource:///modules/sessionstore/SessionStartup.sys.mjs",
-  ShellService: "resource:///modules/ShellService.sys.mjs",
-  UpdatePing: "resource://gre/modules/UpdatePing.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
+  SessionStartup: "moz-src:///browser/components/sessionstore/SessionStartup.sys.mjs",
+  ShellService: "moz-src:///browser/components/shell/ShellService.sys.mjs",
+  UpdatePing: "moz-src:///toolkit/components/telemetry/pings/UpdatePing.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
-  HomePage: "resource:///modules/HomePage.jsm",
-  LaterRun: "resource:///modules/LaterRun.jsm",
+  BrowserWindowTracker: "moz-src:///browser/modules/BrowserWindowTracker.jsm",
+  HomePage: "moz-src:///browser/modules/HomePage.jsm",
+  LaterRun: "moz-src:///browser/modules/LaterRun.jsm",
 });
 XPCOMUtils.defineLazyServiceGetters(lazy, {
   UpdateManager: ["@mozilla.org/updates/update-manager;1", "nsIUpdateManager"],

@@ -5,17 +5,17 @@
 ChromeUtils.defineModuleGetter(
   this,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 ChromeUtils.defineModuleGetter(
   this,
   "Management",
-  "resource://gre/modules/Extension.jsm"
+  "moz-src:///toolkit/components/extensions/Extension.jsm"
 );
 
 const { AboutNewTab } = ChromeUtils.import(
-  "resource:///modules/AboutNewTab.jsm"
+  "moz-src:///browser/modules/AboutNewTab.jsm"
 );
 
 const { AddonTestUtils } = ChromeUtils.import(

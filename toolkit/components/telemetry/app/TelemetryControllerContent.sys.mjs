@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { TelemetryControllerBase } from "resource://gre/modules/TelemetryControllerBase.sys.mjs";
+import { TelemetryControllerBase } from "moz-src:///toolkit/components/telemetry/app/TelemetryControllerBase.sys.mjs";
 
 export var TelemetryController = Object.freeze({
   /**

@@ -10,10 +10,10 @@ const kClientIdPref = "browser.translation.bing.clientIdOverride";
 const kClientSecretPref = "browser.translation.bing.apiKeyOverride";
 
 const { BingTranslator } = ChromeUtils.import(
-  "resource:///modules/translation/BingTranslator.jsm"
+  "moz-src:///browser/components/translation/BingTranslator.jsm"
 );
 const { TranslationDocument } = ChromeUtils.import(
-  "resource:///modules/translation/TranslationDocument.jsm"
+  "moz-src:///browser/components/translation/TranslationDocument.jsm"
 );
 
 add_setup(async function() {
@@ -44,11 +44,11 @@ add_task(async function test_bing_translation() {
   await SpecialPowers.spawn(browser, [], async function() {
     // eslint-disable-next-line no-shadow
     const { BingTranslator } = ChromeUtils.import(
-      "resource:///modules/translation/BingTranslator.jsm"
+      "moz-src:///browser/components/translation/BingTranslator.jsm"
     );
     // eslint-disable-next-line no-shadow
     const { TranslationDocument } = ChromeUtils.import(
-      "resource:///modules/translation/TranslationDocument.jsm"
+      "moz-src:///browser/components/translation/TranslationDocument.jsm"
     );
 
     let client = new BingTranslator(
@@ -87,11 +87,11 @@ add_task(async function test_handling_out_of_valid_key_error() {
   await SpecialPowers.spawn(browser, [], async function() {
     // eslint-disable-next-line no-shadow
     const { BingTranslator } = ChromeUtils.import(
-      "resource:///modules/translation/BingTranslator.jsm"
+      "moz-src:///browser/components/translation/BingTranslator.jsm"
     );
     // eslint-disable-next-line no-shadow
     const { TranslationDocument } = ChromeUtils.import(
-      "resource:///modules/translation/TranslationDocument.jsm"
+      "moz-src:///browser/components/translation/TranslationDocument.jsm"
     );
 
     let client = new BingTranslator(

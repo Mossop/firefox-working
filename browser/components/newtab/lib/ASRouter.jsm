@@ -5,7 +5,7 @@
 "use strict";
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
@@ -15,7 +15,7 @@ const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
   Downloader: "resource://services-settings/Attachments.sys.mjs",
   ExperimentAPI: "resource://nimbus/ExperimentAPI.sys.mjs",
-  MacAttribution: "resource:///modules/MacAttribution.sys.mjs",
+  MacAttribution: "moz-src:///browser/components/attribution/MacAttribution.sys.mjs",
   NimbusFeatures: "resource://nimbus/ExperimentAPI.sys.mjs",
   SpecialMessageActions:
     "resource://messaging-system/lib/SpecialMessageActions.sys.mjs",
@@ -41,7 +41,7 @@ XPCOMUtils.defineLazyModuleGetters(lazy, {
     "resource://activity-stream/lib/ASRouterTriggerListeners.jsm",
   KintoHttpClient: "resource://services-common/kinto-http-client.js",
   RemoteL10n: "resource://activity-stream/lib/RemoteL10n.jsm",
-  setTimeout: "resource://gre/modules/Timer.jsm",
+  setTimeout: "moz-src:///toolkit/modules/Timer.jsm",
 });
 
 XPCOMUtils.defineLazyServiceGetters(lazy, {
@@ -64,7 +64,7 @@ const { CFRPageActions } = ChromeUtils.import(
   "resource://activity-stream/lib/CFRPageActions.jsm"
 );
 const { AttributionCode } = ChromeUtils.importESModule(
-  "resource:///modules/AttributionCode.sys.mjs"
+  "moz-src:///browser/components/attribution/AttributionCode.sys.mjs"
 );
 
 // List of hosts for endpoints that serve router messages.

@@ -7,23 +7,23 @@
 "use strict";
 
 const { TelemetryController } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryController.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs"
 );
 const { MockRegistrar } = ChromeUtils.importESModule(
   "resource://testing-common/MockRegistrar.sys.mjs"
 );
 const { TelemetrySend } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetrySend.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetrySend.sys.mjs"
 );
 const { TelemetryStorage } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryStorage.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryStorage.sys.mjs"
 );
 const { TelemetryUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryUtils.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryUtils.sys.mjs"
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  TelemetryHealthPing: "resource://gre/modules/HealthPing.sys.mjs",
+  TelemetryHealthPing: "moz-src:///toolkit/components/telemetry/pings/HealthPing.sys.mjs",
 });
 
 const MS_IN_A_MINUTE = 60 * 1000;

@@ -45,7 +45,7 @@ https://bugzilla.mozilla.org/show_bug.cgi?id=1123480
       // handles, so if FILE_FLAG_DELETE_ON_CLOSE does the thing it promises, the
       // file is actually removed when the handle is closed.
 
-      var {FileUtils} = ChromeUtils.import("resource://gre/modules/FileUtils.jsm");
+      var {FileUtils} = ChromeUtils.import("moz-src:///toolkit/modules/FileUtils.jsm");
       // Path from nsAnonymousTemporaryFile.cpp, GetTempDir.
       dir = FileUtils.getFile("TmpD", ["mozilla-temp-files"]);
     } else {
@@ -97,7 +97,7 @@ https://bugzilla.mozilla.org/show_bug.cgi?id=1123480
 
     // Repeat procedure of plain text selection with private browsing
     // disabled and enabled
-    const {PrivateBrowsingUtils} = ChromeUtils.import("resource://gre/modules/PrivateBrowsingUtils.jsm");
+    const {PrivateBrowsingUtils} = ChromeUtils.import("moz-src:///toolkit/modules/PrivateBrowsingUtils.jsm");
     for (let private of [false, true]) {
       var win = window.browsingContext.topChromeWindow.open("about:blank", "_blank", "chrome, width=500, height=200" + (private ? ", private" : ""));
       ok(win, private ? "should open private window" : "should open non-private window");

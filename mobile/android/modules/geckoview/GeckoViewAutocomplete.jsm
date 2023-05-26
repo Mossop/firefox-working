@@ -13,7 +13,7 @@ const EXPORTED_SYMBOLS = [
 ];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const { GeckoViewUtils } = ChromeUtils.importESModule(

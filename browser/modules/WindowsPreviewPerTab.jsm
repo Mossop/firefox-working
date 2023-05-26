@@ -43,15 +43,15 @@
  */
 var EXPORTED_SYMBOLS = ["AeroPeek"];
 
-const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+const { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 const { PlacesUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PlacesUtils.sys.mjs"
+  "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs"
 );
 const { PrivateBrowsingUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PrivateBrowsingUtils.sys.mjs"
+  "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs"
 );
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 // Pref to enable/disable preview-per-tab
@@ -73,7 +73,7 @@ XPCOMUtils.defineLazyServiceGetter(
   "imgITools"
 );
 ChromeUtils.defineESModuleGetters(lazy, {
-  PageThumbs: "resource://gre/modules/PageThumbs.sys.mjs",
+  PageThumbs: "moz-src:///toolkit/components/thumbnails/PageThumbs.sys.mjs",
 });
 
 // nsIURI -> imgIContainer

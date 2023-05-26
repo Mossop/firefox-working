@@ -4,7 +4,7 @@ http://creativecommons.org/publicdomain/zero/1.0/ */
 "use strict";
 
 const { AboutHomeStartupCacheChild } = ChromeUtils.import(
-  "resource:///modules/AboutNewTabService.jsm"
+  "moz-src:///browser/components/newtab/AboutNewTabService.jsm"
 );
 
 /**

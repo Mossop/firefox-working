@@ -7,10 +7,10 @@
 "use strict";
 
 const { TelemetryReportingPolicy } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryReportingPolicy.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryReportingPolicy.sys.mjs"
 );
 const { UpdateUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/UpdateUtils.sys.mjs"
+  "moz-src:///toolkit/modules/UpdateUtils.sys.mjs"
 );
 
 const TEST_CHANNEL = "TestChannelABC";
@@ -20,7 +20,7 @@ const PREF_MINIMUM_CHANNEL_POLICY_VERSION =
 
 function fakeShowPolicyTimeout(set, clear) {
   let { Policy } = ChromeUtils.importESModule(
-    "resource://gre/modules/TelemetryReportingPolicy.sys.mjs"
+    "moz-src:///toolkit/components/telemetry/app/TelemetryReportingPolicy.sys.mjs"
   );
   Policy.setShowInfobarTimeout = set;
   Policy.clearShowInfobarTimeout = clear;

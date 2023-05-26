@@ -12,33 +12,33 @@
 // for ensuring that we can delete those pings upon user request, by plumbing its
 // identifiers into the "deletion-request" ping.
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
-import { Log } from "resource://gre/modules/Log.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   Async: "resource://services-common/async.sys.mjs",
   AuthenticationError: "resource://services-sync/sync_auth.sys.mjs",
-  FxAccounts: "resource://gre/modules/FxAccounts.sys.mjs",
+  FxAccounts: "moz-src:///services/fxaccounts/FxAccounts.sys.mjs",
   Observers: "resource://services-common/observers.sys.mjs",
   Resource: "resource://services-sync/resource.sys.mjs",
   Status: "resource://services-sync/status.sys.mjs",
   Svc: "resource://services-sync/util.sys.mjs",
-  TelemetryController: "resource://gre/modules/TelemetryController.sys.mjs",
-  TelemetryEnvironment: "resource://gre/modules/TelemetryEnvironment.sys.mjs",
-  TelemetryUtils: "resource://gre/modules/TelemetryUtils.sys.mjs",
+  TelemetryController: "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs",
+  TelemetryEnvironment: "moz-src:///toolkit/components/telemetry/app/TelemetryEnvironment.sys.mjs",
+  TelemetryUtils: "moz-src:///toolkit/components/telemetry/app/TelemetryUtils.sys.mjs",
   Weave: "resource://services-sync/main.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  ObjectUtils: "resource://gre/modules/ObjectUtils.jsm",
+  ObjectUtils: "moz-src:///toolkit/modules/ObjectUtils.jsm",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "fxAccounts", () => {
   return ChromeUtils.importESModule(
-    "resource://gre/modules/FxAccounts.sys.mjs"
+    "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
   ).getFxAccountsSingleton();
 });
 

@@ -8,7 +8,7 @@
 var EXPORTED_SYMBOLS = ["ExtensionContent", "ExtensionContentChild"];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
@@ -18,14 +18,14 @@ const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   LanguageDetector:
-    "resource://gre/modules/translation/LanguageDetector.sys.mjs",
+    "moz-src:///toolkit/components/translation/LanguageDetector.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  ExtensionProcessScript: "resource://gre/modules/ExtensionProcessScript.jsm",
-  ExtensionTelemetry: "resource://gre/modules/ExtensionTelemetry.jsm",
-  Schemas: "resource://gre/modules/Schemas.jsm",
-  WebNavigationFrames: "resource://gre/modules/WebNavigationFrames.jsm",
+  ExtensionProcessScript: "moz-src:///toolkit/components/extensions/ExtensionProcessScript.jsm",
+  ExtensionTelemetry: "moz-src:///toolkit/components/extensions/ExtensionTelemetry.jsm",
+  Schemas: "moz-src:///toolkit/components/extensions/Schemas.jsm",
+  WebNavigationFrames: "moz-src:///toolkit/components/extensions/WebNavigationFrames.jsm",
 });
 
 XPCOMUtils.defineLazyServiceGetter(
@@ -48,13 +48,13 @@ const ScriptError = Components.Constructor(
 );
 
 const { ExtensionChild, ExtensionActivityLogChild } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionChild.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionChild.jsm"
 );
 const { ExtensionCommon } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionCommon.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm"
 );
 const { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
 );
 
 const {

@@ -3,11 +3,11 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
 });
 
 const { ExtensionPermissions } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionPermissions.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm"
 );
 
 AddonTestUtils.init(this);

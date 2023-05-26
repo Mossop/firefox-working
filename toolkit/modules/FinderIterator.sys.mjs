@@ -2,13 +2,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { clearTimeout, setTimeout } from "resource://gre/modules/Timer.sys.mjs";
+import { clearTimeout, setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  NLP: "resource://gre/modules/NLP.sys.mjs",
-  Rect: "resource://gre/modules/Geometry.sys.mjs",
+  NLP: "moz-src:///toolkit/modules/NLP.sys.mjs",
+  Rect: "moz-src:///toolkit/modules/Geometry.sys.mjs",
 });
 
 const kDebug = false;

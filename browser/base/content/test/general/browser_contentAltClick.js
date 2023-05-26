@@ -13,7 +13,7 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  Downloads: "resource://gre/modules/Downloads.sys.mjs",
+  Downloads: "moz-src:///toolkit/components/downloads/Downloads.sys.mjs",
 });
 
 function setup() {

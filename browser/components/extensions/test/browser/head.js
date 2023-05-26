@@ -55,16 +55,16 @@ const { AppUiTestDelegate, AppUiTestInternals } = ChromeUtils.import(
 );
 
 const { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 const { ClientEnvironmentBase } = ChromeUtils.importESModule(
-  "resource://gre/modules/components-utils/ClientEnvironment.sys.mjs"
+  "moz-src:///toolkit/components/utils/ClientEnvironment.sys.mjs"
 );
 
 ChromeUtils.defineModuleGetter(
   this,
   "Management",
-  "resource://gre/modules/Extension.jsm"
+  "moz-src:///toolkit/components/extensions/Extension.jsm"
 );
 
 var {
@@ -101,7 +101,7 @@ Services.prefs
   // Touch the recipeParentPromise lazy getter so we don't get
   // `this._recipeManager is undefined` errors during tests.
   const { LoginManagerParent } = ChromeUtils.importESModule(
-    "resource://gre/modules/LoginManagerParent.sys.mjs"
+    "moz-src:///toolkit/components/passwordmgr/LoginManagerParent.sys.mjs"
   );
   void LoginManagerParent.recipeParentPromise;
 }

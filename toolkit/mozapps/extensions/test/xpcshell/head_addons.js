@@ -31,20 +31,20 @@ const MAX_TIME_DIFFERENCE = 3000;
 const MAKE_FILE_OLD_DIFFERENCE = 10 * 3600 * 1000;
 
 const { AddonManager, AddonManagerPrivate } = ChromeUtils.import(
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 var { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 var { FileUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/FileUtils.sys.mjs"
+  "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 );
-var { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+var { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 var { AddonRepository } = ChromeUtils.import(
-  "resource://gre/modules/addons/AddonRepository.jsm"
+  "moz-src:///toolkit/mozapps/extensions/internal/AddonRepository.jsm"
 );
 
 var { AddonTestUtils, MockAsyncShutdown } = ChromeUtils.import(
@@ -54,12 +54,12 @@ var { AddonTestUtils, MockAsyncShutdown } = ChromeUtils.import(
 ChromeUtils.defineModuleGetter(
   this,
   "Blocklist",
-  "resource://gre/modules/Blocklist.jsm"
+  "moz-src:///toolkit/mozapps/extensions/Blocklist.jsm"
 );
 ChromeUtils.defineModuleGetter(
   this,
   "Extension",
-  "resource://gre/modules/Extension.jsm"
+  "moz-src:///toolkit/components/extensions/Extension.jsm"
 );
 ChromeUtils.defineModuleGetter(
   this,
@@ -82,7 +82,7 @@ ChromeUtils.defineESModuleGetters(this, {
   PromiseTestUtils: "resource://testing-common/PromiseTestUtils.sys.mjs",
   RemoteSettings: "resource://services-settings/remote-settings.sys.mjs",
   TestUtils: "resource://testing-common/TestUtils.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 XPCOMUtils.defineLazyServiceGetter(
@@ -1177,7 +1177,7 @@ async function mockGfxBlocklistItemsFromDisk(path) {
 async function mockGfxBlocklistItems(items) {
   const { generateUUID } = Services.uuid;
   const { BlocklistPrivate } = ChromeUtils.import(
-    "resource://gre/modules/Blocklist.jsm"
+    "moz-src:///toolkit/mozapps/extensions/Blocklist.jsm"
   );
   const client = RemoteSettings("gfx", {
     bucketName: "blocklists",

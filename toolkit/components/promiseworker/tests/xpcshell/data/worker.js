@@ -8,8 +8,8 @@
 // Trivial worker definition
 
 /* import-globals-from /toolkit/components/workerloader/require.js */
-importScripts("resource://gre/modules/workers/require.js");
-var PromiseWorker = require("resource://gre/modules/workers/PromiseWorker.js");
+importScripts("moz-src:///toolkit/components/workerloader/require.js");
+var PromiseWorker = require("moz-src:///toolkit/components/promiseworker/worker/PromiseWorker.js");
 
 var worker = new PromiseWorker.AbstractWorker();
 worker.dispatch = function(method, args = []) {

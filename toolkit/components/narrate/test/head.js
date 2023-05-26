@@ -16,7 +16,7 @@ const TEST_ITALIAN_ARTICLE =
 ChromeUtils.defineModuleGetter(
   this,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 const TEST_PREFS = {

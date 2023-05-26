@@ -1,7 +1,7 @@
 /* eslint-env mozilla/chrome-script */
 
 const { clearInterval, setInterval, setTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 
 const { BrowserTestUtils } = ChromeUtils.importESModule(

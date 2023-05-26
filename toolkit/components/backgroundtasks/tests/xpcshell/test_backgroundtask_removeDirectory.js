@@ -8,7 +8,7 @@
 // This test exercises functionality and also ensures the exit codes,
 // which are a public API, do not change over time.
 const { EXIT_CODE } = ChromeUtils.import(
-  "resource://gre/modules/BackgroundTasksManager.jsm"
+  "moz-src:///toolkit/components/backgroundtasks/BackgroundTasksManager.jsm"
 );
 
 const LEAF_NAME = "newCacheFolder";

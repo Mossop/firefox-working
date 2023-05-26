@@ -5,31 +5,31 @@
 "use strict";
 
 const { BrowserUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/BrowserUtils.sys.mjs"
+  "moz-src:///toolkit/modules/BrowserUtils.sys.mjs"
 );
 const { TelemetryTimestamps } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryTimestamps.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryTimestamps.sys.mjs"
 );
 const { TelemetryController } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryController.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs"
 );
 const { TelemetryArchive } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryArchive.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryArchive.sys.mjs"
 );
 const { TelemetrySend } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetrySend.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetrySend.sys.mjs"
 );
 
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 ChromeUtils.defineESModuleGetters(this, {
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
 });
 ChromeUtils.defineModuleGetter(
   this,
   "ObjectUtils",
-  "resource://gre/modules/ObjectUtils.jsm"
+  "moz-src:///toolkit/modules/ObjectUtils.jsm"
 );
 
 const Telemetry = Services.telemetry;

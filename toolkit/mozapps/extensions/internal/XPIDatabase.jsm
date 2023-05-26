@@ -22,11 +22,11 @@ var EXPORTED_SYMBOLS = [
 ];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const { FileUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/FileUtils.sys.mjs"
+  "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 );
 
 const lazy = {};
@@ -36,23 +36,23 @@ XPCOMUtils.defineLazyServiceGetters(lazy, {
 });
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  DeferredTask: "resource://gre/modules/DeferredTask.sys.mjs",
-  PermissionsUtils: "resource://gre/modules/PermissionsUtils.sys.mjs",
+  DeferredTask: "moz-src:///toolkit/modules/DeferredTask.sys.mjs",
+  PermissionsUtils: "moz-src:///toolkit/modules/PermissionsUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  AddonManagerPrivate: "resource://gre/modules/AddonManager.jsm",
-  AddonRepository: "resource://gre/modules/addons/AddonRepository.jsm",
-  AddonSettings: "resource://gre/modules/addons/AddonSettings.jsm",
-  ExtensionData: "resource://gre/modules/Extension.jsm",
-  ExtensionUtils: "resource://gre/modules/ExtensionUtils.jsm",
-  Blocklist: "resource://gre/modules/Blocklist.jsm",
-  UpdateChecker: "resource://gre/modules/addons/XPIInstall.jsm",
-  XPIInstall: "resource://gre/modules/addons/XPIInstall.jsm",
-  XPIInternal: "resource://gre/modules/addons/XPIProvider.jsm",
-  XPIProvider: "resource://gre/modules/addons/XPIProvider.jsm",
-  verifyBundleSignedState: "resource://gre/modules/addons/XPIInstall.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  AddonManagerPrivate: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  AddonRepository: "moz-src:///toolkit/mozapps/extensions/internal/AddonRepository.jsm",
+  AddonSettings: "moz-src:///toolkit/mozapps/extensions/internal/AddonSettings.jsm",
+  ExtensionData: "moz-src:///toolkit/components/extensions/Extension.jsm",
+  ExtensionUtils: "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm",
+  Blocklist: "moz-src:///toolkit/mozapps/extensions/Blocklist.jsm",
+  UpdateChecker: "moz-src:///toolkit/mozapps/extensions/internal/XPIInstall.jsm",
+  XPIInstall: "moz-src:///toolkit/mozapps/extensions/internal/XPIInstall.jsm",
+  XPIInternal: "moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm",
+  XPIProvider: "moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm",
+  verifyBundleSignedState: "moz-src:///toolkit/mozapps/extensions/internal/XPIInstall.jsm",
 });
 
 // WARNING: BuiltInThemes.sys.mjs may be provided by the host application (e.g.
@@ -61,7 +61,7 @@ XPCOMUtils.defineLazyModuleGetters(lazy, {
 XPCOMUtils.defineLazyGetter(lazy, "BuiltInThemes", () => {
   try {
     let { BuiltInThemes } = ChromeUtils.importESModule(
-      "resource:///modules/BuiltInThemes.sys.mjs"
+      "moz-src:///browser/themes/BuiltInThemes.sys.mjs"
     );
     return BuiltInThemes;
   } catch (e) {
@@ -112,7 +112,7 @@ XPCOMUtils.defineLazyPreferenceGetter(
 const { nsIBlocklistService } = Ci;
 
 const { Log } = ChromeUtils.importESModule(
-  "resource://gre/modules/Log.sys.mjs"
+  "moz-src:///toolkit/modules/Log.sys.mjs"
 );
 const LOGGER_ID = "addons.xpi-utils";
 

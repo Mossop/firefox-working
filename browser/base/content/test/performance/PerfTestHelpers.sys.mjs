@@ -6,7 +6,7 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "NetUtil",
-  "resource://gre/modules/NetUtil.jsm"
+  "moz-src:///netwerk/base/NetUtil.jsm"
 );
 
 export var PerfTestHelpers = {

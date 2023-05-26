@@ -10,7 +10,7 @@ const {
 } = require("resource://devtools/shared/specs/worker/service-worker-registration.js");
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const {
   PushSubscriptionActor,

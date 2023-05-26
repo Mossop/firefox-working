@@ -11,22 +11,22 @@
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
-import { ClientID } from "resource://gre/modules/ClientID.sys.mjs";
-import { Log } from "resource://gre/modules/Log.sys.mjs";
-import { PromiseUtils } from "resource://gre/modules/PromiseUtils.sys.mjs";
-import { ServiceRequest } from "resource://gre/modules/ServiceRequest.sys.mjs";
+import { ClientID } from "moz-src:///toolkit/components/telemetry/app/ClientID.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
+import { PromiseUtils } from "moz-src:///toolkit/modules/PromiseUtils.sys.mjs";
+import { ServiceRequest } from "moz-src:///toolkit/modules/ServiceRequest.sys.mjs";
 
-import { TelemetryUtils } from "resource://gre/modules/TelemetryUtils.sys.mjs";
-import { clearTimeout, setTimeout } from "resource://gre/modules/Timer.sys.mjs";
+import { TelemetryUtils } from "moz-src:///toolkit/components/telemetry/app/TelemetryUtils.sys.mjs";
+import { clearTimeout, setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   NimbusFeatures: "resource://nimbus/ExperimentAPI.sys.mjs",
-  TelemetryHealthPing: "resource://gre/modules/HealthPing.sys.mjs",
+  TelemetryHealthPing: "moz-src:///toolkit/components/telemetry/pings/HealthPing.sys.mjs",
   TelemetryReportingPolicy:
-    "resource://gre/modules/TelemetryReportingPolicy.sys.mjs",
-  TelemetryStorage: "resource://gre/modules/TelemetryStorage.sys.mjs",
+    "moz-src:///toolkit/components/telemetry/app/TelemetryReportingPolicy.sys.mjs",
+  TelemetryStorage: "moz-src:///toolkit/components/telemetry/app/TelemetryStorage.sys.mjs",
 });
 
 const Utils = TelemetryUtils;

@@ -5,22 +5,22 @@
 "use strict";
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.sys.mjs",
-  DeferredTask: "resource://gre/modules/DeferredTask.sys.mjs",
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
-  ServiceRequest: "resource://gre/modules/ServiceRequest.sys.mjs",
+  AsyncShutdown: "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs",
+  DeferredTask: "moz-src:///toolkit/modules/DeferredTask.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
+  ServiceRequest: "moz-src:///toolkit/modules/ServiceRequest.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  AddonManagerPrivate: "resource://gre/modules/AddonManager.jsm",
-  NetUtil: "resource://gre/modules/NetUtil.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  AddonManagerPrivate: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  NetUtil: "moz-src:///netwerk/base/NetUtil.jsm",
 });
 
 // The current platform as specified in the AMO API:
@@ -83,7 +83,7 @@ const BLANK_DB = function() {
 };
 
 const { Log } = ChromeUtils.importESModule(
-  "resource://gre/modules/Log.sys.mjs"
+  "moz-src:///toolkit/modules/Log.sys.mjs"
 );
 const LOGGER_ID = "addons.repository";
 

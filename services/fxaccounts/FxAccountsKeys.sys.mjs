@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { PromiseUtils } from "resource://gre/modules/PromiseUtils.sys.mjs";
+import { PromiseUtils } from "moz-src:///toolkit/modules/PromiseUtils.sys.mjs";
 
 import { CommonUtils } from "resource://services-common/utils.sys.mjs";
 
@@ -16,7 +16,7 @@ const {
   FX_OAUTH_CLIENT_ID,
   log,
   logPII,
-} = ChromeUtils.import("resource://gre/modules/FxAccountsCommon.js");
+} = ChromeUtils.import("moz-src:///services/fxaccounts/FxAccountsCommon.js");
 
 // These are the scopes that correspond to new storage for the `LEGACY_DERIVED_KEYS_NAMES`.
 // We will, if necessary, migrate storage for those keys so that it's associated with

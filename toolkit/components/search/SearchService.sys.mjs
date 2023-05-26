@@ -4,32 +4,32 @@
 
 /* eslint no-shadow: error, mozilla/no-aArgs: error */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
-import { PromiseUtils } from "resource://gre/modules/PromiseUtils.sys.mjs";
+import { PromiseUtils } from "moz-src:///toolkit/modules/PromiseUtils.sys.mjs";
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AddonSearchEngine: "resource://gre/modules/AddonSearchEngine.sys.mjs",
-  IgnoreLists: "resource://gre/modules/IgnoreLists.sys.mjs",
+  AddonSearchEngine: "moz-src:///toolkit/components/search/AddonSearchEngine.sys.mjs",
+  IgnoreLists: "moz-src:///toolkit/modules/IgnoreLists.sys.mjs",
   NimbusFeatures: "resource://nimbus/ExperimentAPI.sys.mjs",
-  OpenSearchEngine: "resource://gre/modules/OpenSearchEngine.sys.mjs",
-  PolicySearchEngine: "resource://gre/modules/PolicySearchEngine.sys.mjs",
-  Region: "resource://gre/modules/Region.sys.mjs",
+  OpenSearchEngine: "moz-src:///toolkit/components/search/OpenSearchEngine.sys.mjs",
+  PolicySearchEngine: "moz-src:///toolkit/components/search/PolicySearchEngine.sys.mjs",
+  Region: "moz-src:///toolkit/modules/Region.sys.mjs",
   RemoteSettings: "resource://services-settings/remote-settings.sys.mjs",
-  SearchEngine: "resource://gre/modules/SearchEngine.sys.mjs",
-  SearchEngineSelector: "resource://gre/modules/SearchEngineSelector.sys.mjs",
-  SearchSettings: "resource://gre/modules/SearchSettings.sys.mjs",
-  SearchStaticData: "resource://gre/modules/SearchStaticData.sys.mjs",
-  SearchUtils: "resource://gre/modules/SearchUtils.sys.mjs",
-  UserSearchEngine: "resource://gre/modules/UserSearchEngine.sys.mjs",
+  SearchEngine: "moz-src:///toolkit/components/search/SearchEngine.sys.mjs",
+  SearchEngineSelector: "moz-src:///toolkit/components/search/SearchEngineSelector.sys.mjs",
+  SearchSettings: "moz-src:///toolkit/components/search/SearchSettings.sys.mjs",
+  SearchStaticData: "moz-src:///toolkit/components/search/SearchStaticData.sys.mjs",
+  SearchUtils: "moz-src:///toolkit/components/search/SearchUtils.sys.mjs",
+  UserSearchEngine: "moz-src:///toolkit/components/search/UserSearchEngine.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "logConsole", () => {

@@ -7,7 +7,7 @@
  * or disable DoH on different networks. DoHController is responsible for running
  * these at startup and upon network changes.
  */
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
@@ -26,8 +26,8 @@ XPCOMUtils.defineLazyServiceGetter(
 );
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  DoHConfigController: "resource:///modules/DoHConfig.sys.mjs",
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
+  DoHConfigController: "moz-src:///browser/components/doh/DoHConfig.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
 });
 
 const GLOBAL_CANARY = "use-application-dns.net.";

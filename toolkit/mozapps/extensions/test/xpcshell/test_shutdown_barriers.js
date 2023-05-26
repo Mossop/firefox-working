@@ -4,7 +4,7 @@
 "use strict";
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  Management: "resource://gre/modules/Extension.jsm",
+  Management: "moz-src:///toolkit/components/extensions/Extension.jsm",
 });
 
 AddonTestUtils.init(this);
@@ -101,7 +101,7 @@ add_task(async function test_wait_addons_startup_before_granting_quit() {
 
   info("Test early shutdown while enabled addons are still being started");
   const { XPIProvider } = ChromeUtils.import(
-    "resource://gre/modules/addons/XPIProvider.jsm"
+    "moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm"
   );
   function listener(_evt, extension) {
     ok(
@@ -137,10 +137,10 @@ add_task(async function test_late_XPIDB_load_rejected() {
 
   // Mock a late XPIDB load and expect to be rejected.
   const { XPIProvider, XPIInternal } = ChromeUtils.import(
-    "resource://gre/modules/addons/XPIProvider.jsm"
+    "moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm"
   );
   const { XPIDatabase } = ChromeUtils.import(
-    "resource://gre/modules/addons/XPIDatabase.jsm"
+    "moz-src:///toolkit/mozapps/extensions/internal/XPIDatabase.jsm"
   );
 
   const resolveDBReadySpy = sinon.spy(XPIInternal, "resolveDBReady");

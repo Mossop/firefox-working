@@ -21,7 +21,7 @@ class TestProxyCapabilities(MarionetteTestCase):
             self.marionette.execute_script(
                 """
                 const { Preferences } = ChromeUtils.importESModule(
-                  "resource://gre/modules/Preferences.sys.mjs"
+                  "moz-src:///toolkit/modules/Preferences.sys.mjs"
                 );
                 Preferences.resetBranch("network.proxy");
             """

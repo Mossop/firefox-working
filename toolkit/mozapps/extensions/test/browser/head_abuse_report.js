@@ -13,13 +13,13 @@
 /* global MockProvider, loadInitialView, closeView */
 
 const { AbuseReporter } = ChromeUtils.import(
-  "resource://gre/modules/AbuseReporter.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AbuseReporter.jsm"
 );
 const { AddonTestUtils } = ChromeUtils.import(
   "resource://testing-common/AddonTestUtils.jsm"
 );
 const { ExtensionCommon } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionCommon.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm"
 );
 
 const { makeWidgetId } = ExtensionCommon;

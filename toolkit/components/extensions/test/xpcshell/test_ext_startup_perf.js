@@ -5,28 +5,28 @@
 const STARTUP_APIS = ["backgroundPage"];
 
 const STARTUP_MODULES = new Set([
-  "resource://gre/modules/Extension.jsm",
-  "resource://gre/modules/ExtensionCommon.jsm",
-  "resource://gre/modules/ExtensionParent.jsm",
+  "moz-src:///toolkit/components/extensions/Extension.jsm",
+  "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm",
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm",
   // FIXME: This is only loaded at startup for new extension installs.
   // Otherwise the data comes from the startup cache. We should test for
   // this.
-  "resource://gre/modules/ExtensionPermissions.jsm",
-  "resource://gre/modules/ExtensionProcessScript.jsm",
-  "resource://gre/modules/ExtensionUtils.jsm",
-  "resource://gre/modules/ExtensionTelemetry.jsm",
+  "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm",
+  "moz-src:///toolkit/components/extensions/ExtensionProcessScript.jsm",
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm",
+  "moz-src:///toolkit/components/extensions/ExtensionTelemetry.jsm",
 ]);
 
 if (!Services.prefs.getBoolPref("extensions.webextensions.remote")) {
-  STARTUP_MODULES.add("resource://gre/modules/ExtensionChild.jsm");
-  STARTUP_MODULES.add("resource://gre/modules/ExtensionPageChild.jsm");
+  STARTUP_MODULES.add("moz-src:///toolkit/components/extensions/ExtensionChild.jsm");
+  STARTUP_MODULES.add("moz-src:///toolkit/components/extensions/ExtensionPageChild.jsm");
 }
 
 if (AppConstants.MOZ_APP_NAME == "thunderbird") {
   // Imported via mail/components/extensions/processScript.js.
-  STARTUP_MODULES.add("resource://gre/modules/ExtensionChild.jsm");
-  STARTUP_MODULES.add("resource://gre/modules/ExtensionContent.jsm");
-  STARTUP_MODULES.add("resource://gre/modules/ExtensionPageChild.jsm");
+  STARTUP_MODULES.add("moz-src:///toolkit/components/extensions/ExtensionChild.jsm");
+  STARTUP_MODULES.add("moz-src:///toolkit/components/extensions/ExtensionContent.jsm");
+  STARTUP_MODULES.add("moz-src:///toolkit/components/extensions/ExtensionPageChild.jsm");
 }
 
 AddonTestUtils.init(this);

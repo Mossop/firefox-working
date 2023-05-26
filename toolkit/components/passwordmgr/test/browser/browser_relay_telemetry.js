@@ -3,10 +3,10 @@ const { sinon } = ChromeUtils.importESModule(
 );
 const { HttpServer } = ChromeUtils.import("resource://testing-common/httpd.js");
 const { getFxAccountsSingleton } = ChromeUtils.import(
-  "resource://gre/modules/FxAccounts.jsm"
+  "moz-src:///services/fxaccounts/FxAccounts.jsm"
 );
 const { FirefoxRelayTelemetry } = ChromeUtils.importESModule(
-  "resource://gre/modules/FirefoxRelayTelemetry.mjs"
+  "moz-src:///toolkit/components/passwordmgr/FirefoxRelayTelemetry.mjs"
 );
 
 const gFxAccounts = getFxAccountsSingleton();

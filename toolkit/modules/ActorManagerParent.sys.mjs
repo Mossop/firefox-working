@@ -9,7 +9,7 @@
  */
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 /**
  * Fission-compatible JSProcess implementations.
@@ -20,35 +20,35 @@ import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
 let JSPROCESSACTORS = {
   AsyncPrefs: {
     parent: {
-      esModuleURI: "resource://gre/modules/AsyncPrefs.sys.mjs",
+      esModuleURI: "moz-src:///toolkit/modules/AsyncPrefs.sys.mjs",
     },
     child: {
-      esModuleURI: "resource://gre/modules/AsyncPrefs.sys.mjs",
+      esModuleURI: "moz-src:///toolkit/modules/AsyncPrefs.sys.mjs",
     },
   },
 
   ContentPrefs: {
     parent: {
-      esModuleURI: "resource://gre/modules/ContentPrefServiceParent.sys.mjs",
+      esModuleURI: "moz-src:///toolkit/components/contentprefs/ContentPrefServiceParent.sys.mjs",
     },
     child: {
-      esModuleURI: "resource://gre/modules/ContentPrefServiceChild.sys.mjs",
+      esModuleURI: "moz-src:///toolkit/components/contentprefs/ContentPrefServiceChild.sys.mjs",
     },
   },
 
   ExtensionContent: {
     child: {
-      moduleURI: "resource://gre/modules/ExtensionContent.jsm",
+      moduleURI: "moz-src:///toolkit/components/extensions/ExtensionContent.jsm",
     },
     includeParent: true,
   },
 
   ProcessConduits: {
     parent: {
-      moduleURI: "resource://gre/modules/ConduitsParent.jsm",
+      moduleURI: "moz-src:///toolkit/components/extensions/ConduitsParent.jsm",
     },
     child: {
-      moduleURI: "resource://gre/modules/ConduitsChild.jsm",
+      moduleURI: "moz-src:///toolkit/components/extensions/ConduitsChild.jsm",
     },
   },
 };
@@ -62,10 +62,10 @@ let JSPROCESSACTORS = {
 let JSWINDOWACTORS = {
   AboutCertViewer: {
     parent: {
-      esModuleURI: "resource://gre/modules/AboutCertViewerParent.sys.mjs",
+      esModuleURI: "moz-src:///toolkit/components/certviewer/AboutCertViewerParent.sys.mjs",
     },
     child: {
-      esModuleURI: "resource://gre/modules/AboutCertViewerChild.sys.mjs",
+      esModuleURI: "moz-src:///toolkit/components/certviewer/AboutCertViewerChild.sys.mjs",
 
       events: {
         DOMDocElementInserted: { capture: true },
@@ -195,11 +195,11 @@ let JSWINDOWACTORS = {
 
   Conduits: {
     parent: {
-      moduleURI: "resource://gre/modules/ConduitsParent.jsm",
+      moduleURI: "moz-src:///toolkit/components/extensions/ConduitsParent.jsm",
     },
 
     child: {
-      moduleURI: "resource://gre/modules/ConduitsChild.jsm",
+      moduleURI: "moz-src:///toolkit/components/extensions/ConduitsChild.jsm",
     },
 
     allFrames: true,
@@ -309,10 +309,10 @@ let JSWINDOWACTORS = {
 
   LoginManager: {
     parent: {
-      esModuleURI: "resource://gre/modules/LoginManagerParent.sys.mjs",
+      esModuleURI: "moz-src:///toolkit/components/passwordmgr/LoginManagerParent.sys.mjs",
     },
     child: {
-      esModuleURI: "resource://gre/modules/LoginManagerChild.sys.mjs",
+      esModuleURI: "moz-src:///toolkit/components/passwordmgr/LoginManagerChild.sys.mjs",
       events: {
         DOMDocFetchSuccess: {},
         DOMFormBeforeSubmit: {},
@@ -328,7 +328,7 @@ let JSWINDOWACTORS = {
 
   ManifestMessages: {
     child: {
-      moduleURI: "resource://gre/modules/ManifestMessagesChild.jsm",
+      moduleURI: "moz-src:///dom/ipc/ManifestMessagesChild.jsm",
     },
   },
 
@@ -350,7 +350,7 @@ let JSWINDOWACTORS = {
 
   PictureInPictureLauncher: {
     parent: {
-      esModuleURI: "resource://gre/modules/PictureInPicture.sys.mjs",
+      esModuleURI: "moz-src:///toolkit/components/pictureinpicture/PictureInPicture.sys.mjs",
     },
     child: {
       esModuleURI: "resource://gre/actors/PictureInPictureChild.sys.mjs",
@@ -364,7 +364,7 @@ let JSWINDOWACTORS = {
 
   PictureInPicture: {
     parent: {
-      esModuleURI: "resource://gre/modules/PictureInPicture.sys.mjs",
+      esModuleURI: "moz-src:///toolkit/components/pictureinpicture/PictureInPicture.sys.mjs",
     },
     child: {
       esModuleURI: "resource://gre/actors/PictureInPictureChild.sys.mjs",
@@ -375,7 +375,7 @@ let JSWINDOWACTORS = {
 
   PictureInPictureToggle: {
     parent: {
-      esModuleURI: "resource://gre/modules/PictureInPicture.sys.mjs",
+      esModuleURI: "moz-src:///toolkit/components/pictureinpicture/PictureInPicture.sys.mjs",
     },
     child: {
       esModuleURI: "resource://gre/actors/PictureInPictureChild.sys.mjs",

@@ -3,7 +3,7 @@
  */
 
 ChromeUtils.defineESModuleGetters(this, {
-  WebChannel: "resource://gre/modules/WebChannel.sys.mjs",
+  WebChannel: "moz-src:///toolkit/modules/WebChannel.sys.mjs",
 });
 
 const HTTP_PATH = "http://example.com";

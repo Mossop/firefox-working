@@ -4,7 +4,7 @@
 
 /* eslint no-shadow: error, mozilla/no-aArgs: error */
 
-import { SearchEngine } from "resource://gre/modules/SearchEngine.sys.mjs";
+import { SearchEngine } from "moz-src:///toolkit/components/search/SearchEngine.sys.mjs";
 
 /**
  * UserSearchEngine represents a search engine defined by a user.

@@ -8,7 +8,7 @@ const { AboutWelcomeTelemetry } = ChromeUtils.import(
   "resource://activity-stream/aboutwelcome/lib/AboutWelcomeTelemetry.jsm"
 );
 const { AttributionCode } = ChromeUtils.importESModule(
-  "resource:///modules/AttributionCode.sys.mjs"
+  "moz-src:///browser/components/attribution/AttributionCode.sys.mjs"
 );
 const { sinon } = ChromeUtils.importESModule(
   "resource://testing-common/Sinon.sys.mjs"

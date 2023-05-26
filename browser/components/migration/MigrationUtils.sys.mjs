@@ -3,17 +3,17 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  LoginHelper: "resource://gre/modules/LoginHelper.sys.mjs",
-  PlacesUIUtils: "resource:///modules/PlacesUIUtils.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
-  Sqlite: "resource://gre/modules/Sqlite.sys.mjs",
+  LoginHelper: "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs",
+  PlacesUIUtils: "moz-src:///browser/components/places/PlacesUIUtils.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
+  Sqlite: "moz-src:///toolkit/modules/Sqlite.sys.mjs",
   WindowsRegistry: "resource://gre/modules/WindowsRegistry.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 var gMigrators = null;
@@ -39,7 +39,7 @@ const MIGRATOR_MODULES = Object.freeze({
     platforms: ["win"],
   },
   FirefoxProfileMigrator: {
-    moduleURI: "resource:///modules/FirefoxProfileMigrator.sys.mjs",
+    moduleURI: "moz-src:///browser/components/migration/FirefoxProfileMigrator.sys.mjs",
     platforms: ["linux", "macosx", "win"],
   },
   IEProfileMigrator: {
@@ -47,70 +47,70 @@ const MIGRATOR_MODULES = Object.freeze({
     platforms: ["win"],
   },
   SafariProfileMigrator: {
-    moduleURI: "resource:///modules/SafariProfileMigrator.sys.mjs",
+    moduleURI: "moz-src:///browser/components/migration/SafariProfileMigrator.sys.mjs",
     platforms: ["macosx"],
   },
 
   // The following migrators are all variants of the ChromeProfileMigrator
 
   BraveProfileMigrator: {
-    moduleURI: "resource:///modules/ChromeProfileMigrator.sys.mjs",
+    moduleURI: "moz-src:///browser/components/migration/ChromeProfileMigrator.sys.mjs",
     platforms: ["linux", "macosx", "win"],
   },
   CanaryProfileMigrator: {
-    moduleURI: "resource:///modules/ChromeProfileMigrator.sys.mjs",
+    moduleURI: "moz-src:///browser/components/migration/ChromeProfileMigrator.sys.mjs",
     platforms: ["macosx", "win"],
   },
   ChromeProfileMigrator: {
-    moduleURI: "resource:///modules/ChromeProfileMigrator.sys.mjs",
+    moduleURI: "moz-src:///browser/components/migration/ChromeProfileMigrator.sys.mjs",
     platforms: ["linux", "macosx", "win"],
   },
   ChromeBetaMigrator: {
-    moduleURI: "resource:///modules/ChromeProfileMigrator.sys.mjs",
+    moduleURI: "moz-src:///browser/components/migration/ChromeProfileMigrator.sys.mjs",
     platforms: ["linux", "win"],
   },
   ChromeDevMigrator: {
-    moduleURI: "resource:///modules/ChromeProfileMigrator.sys.mjs",
+    moduleURI: "moz-src:///browser/components/migration/ChromeProfileMigrator.sys.mjs",
     platforms: ["linux"],
   },
   ChromiumProfileMigrator: {
-    moduleURI: "resource:///modules/ChromeProfileMigrator.sys.mjs",
+    moduleURI: "moz-src:///browser/components/migration/ChromeProfileMigrator.sys.mjs",
     platforms: ["linux", "macosx", "win"],
   },
   Chromium360seMigrator: {
-    moduleURI: "resource:///modules/ChromeProfileMigrator.sys.mjs",
+    moduleURI: "moz-src:///browser/components/migration/ChromeProfileMigrator.sys.mjs",
     platforms: ["win"],
   },
   ChromiumEdgeMigrator: {
-    moduleURI: "resource:///modules/ChromeProfileMigrator.sys.mjs",
+    moduleURI: "moz-src:///browser/components/migration/ChromeProfileMigrator.sys.mjs",
     platforms: ["macosx", "win"],
   },
   ChromiumEdgeBetaMigrator: {
-    moduleURI: "resource:///modules/ChromeProfileMigrator.sys.mjs",
+    moduleURI: "moz-src:///browser/components/migration/ChromeProfileMigrator.sys.mjs",
     platforms: ["macosx", "win"],
   },
   OperaProfileMigrator: {
-    moduleURI: "resource:///modules/ChromeProfileMigrator.sys.mjs",
+    moduleURI: "moz-src:///browser/components/migration/ChromeProfileMigrator.sys.mjs",
     platforms: ["linux", "macosx", "win"],
   },
   VivaldiProfileMigrator: {
-    moduleURI: "resource:///modules/ChromeProfileMigrator.sys.mjs",
+    moduleURI: "moz-src:///browser/components/migration/ChromeProfileMigrator.sys.mjs",
     platforms: ["linux", "macosx", "win"],
   },
   OperaGXProfileMigrator: {
-    moduleURI: "resource:///modules/ChromeProfileMigrator.sys.mjs",
+    moduleURI: "moz-src:///browser/components/migration/ChromeProfileMigrator.sys.mjs",
     platforms: ["macosx", "win"],
   },
 
   InternalTestingProfileMigrator: {
-    moduleURI: "resource:///modules/InternalTestingProfileMigrator.sys.mjs",
+    moduleURI: "moz-src:///browser/components/migration/InternalTestingProfileMigrator.sys.mjs",
     platforms: ["linux", "macosx", "win"],
   },
 });
 
 const FILE_MIGRATOR_MODULES = Object.freeze({
   PasswordFileMigrator: {
-    moduleURI: "resource:///modules/FileMigrators.sys.mjs",
+    moduleURI: "moz-src:///browser/components/migration/FileMigrators.sys.mjs",
   },
 });
 

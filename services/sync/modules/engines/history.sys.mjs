@@ -26,8 +26,8 @@ import { Utils } from "resource://services-sync/util.sys.mjs";
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  PlacesSyncUtils: "resource://gre/modules/PlacesSyncUtils.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
+  PlacesSyncUtils: "moz-src:///toolkit/components/places/PlacesSyncUtils.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
 });
 
 export function HistoryRec(collection, id) {

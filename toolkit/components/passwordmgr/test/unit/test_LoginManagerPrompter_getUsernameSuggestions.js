@@ -1,5 +1,5 @@
 const { LoginManagerPrompter } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginManagerPrompter.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginManagerPrompter.sys.mjs"
 );
 
 const TEST_CASES = [

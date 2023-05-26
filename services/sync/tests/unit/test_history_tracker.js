@@ -2,7 +2,7 @@
    http://creativecommons.org/publicdomain/zero/1.0/ */
 
 const { PlacesDBUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PlacesDBUtils.sys.mjs"
+  "moz-src:///toolkit/components/places/PlacesDBUtils.sys.mjs"
 );
 const { HistoryEngine } = ChromeUtils.importESModule(
   "resource://services-sync/engines/history.sys.mjs"

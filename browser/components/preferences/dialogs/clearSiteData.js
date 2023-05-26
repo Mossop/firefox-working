@@ -3,11 +3,11 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const { SiteDataManager } = ChromeUtils.import(
-  "resource:///modules/SiteDataManager.jsm"
+  "moz-src:///browser/modules/SiteDataManager.jsm"
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  DownloadUtils: "resource://gre/modules/DownloadUtils.sys.mjs",
+  DownloadUtils: "moz-src:///toolkit/mozapps/downloads/DownloadUtils.sys.mjs",
 });
 
 var gClearSiteDataDialog = {

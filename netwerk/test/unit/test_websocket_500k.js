@@ -10,7 +10,7 @@
 /* import-globals-from head_servers.js */
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  ObjectUtils: "resource://gre/modules/ObjectUtils.jsm",
+  ObjectUtils: "moz-src:///toolkit/modules/ObjectUtils.jsm",
 });
 
 add_setup(async function() {

@@ -40,7 +40,7 @@ end_of_record
 """
 
 # These line numbers are (synthetically) sorted.
-multiple_records = """SF:resource://gre/modules/workers/require.js
+multiple_records = """SF:moz-src:///toolkit/components/workerloader/require.js
 FN:1,top-level
 FN:80,.get
 FN:95,require
@@ -415,7 +415,7 @@ class TestUrlFinder(unittest.TestCase):
             ),
             # Path which contains "->"
             (
-                "resource://gre/modules/addons/XPIProvider.jsm -> resource://gre/modules/osfile/osfile_async_worker.js",  # noqa
+                "moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm -> resource://gre/modules/osfile/osfile_async_worker.js",  # noqa
                 ("toolkit/components/osfile/modules/osfile_async_worker.js", None),
             ),
             # Path with pp_info

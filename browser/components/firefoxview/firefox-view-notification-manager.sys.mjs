@@ -11,14 +11,14 @@ const RECENT_TABS_SYNC = "services.sync.lastTabFetch";
 const SHOULD_NOTIFY_FOR_TABS = "browser.tabs.firefox-view.notify-for-tabs";
 const lazy = {};
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 ChromeUtils.defineESModuleGetters(lazy, {
   SyncedTabs: "resource://services-sync/SyncedTabs.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
+  BrowserWindowTracker: "moz-src:///browser/modules/BrowserWindowTracker.jsm",
 });
 
 export const FirefoxViewNotificationManager = new (class {

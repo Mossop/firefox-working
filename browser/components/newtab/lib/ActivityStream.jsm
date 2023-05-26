@@ -16,7 +16,7 @@ ChromeUtils.defineModuleGetter(
 );
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Region: "resource://gre/modules/Region.sys.mjs",
+  Region: "moz-src:///toolkit/modules/Region.sys.mjs",
 });
 
 // NB: Eagerly load modules that will be loaded/constructed/initialized in the

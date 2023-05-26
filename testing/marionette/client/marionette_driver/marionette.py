@@ -805,7 +805,7 @@ class Marionette(object):
             self.execute_script(
                 """
                const { Preferences } = ChromeUtils.importESModule(
-                 "resource://gre/modules/Preferences.sys.mjs"
+                 "moz-src:///toolkit/modules/Preferences.sys.mjs"
                );
                Preferences.reset(arguments[0]);
                """,
@@ -832,7 +832,7 @@ class Marionette(object):
             pref_value = self.execute_script(
                 """
                 const { Preferences } = ChromeUtils.importESModule(
-                  "resource://gre/modules/Preferences.sys.mjs"
+                  "moz-src:///toolkit/modules/Preferences.sys.mjs"
                 );
 
                 let pref = arguments[0];
@@ -871,7 +871,7 @@ class Marionette(object):
             self.execute_script(
                 """
                 const { Preferences } = ChromeUtils.importESModule(
-                  "resource://gre/modules/Preferences.sys.mjs"
+                  "moz-src:///toolkit/modules/Preferences.sys.mjs"
                 );
 
                 let pref = arguments[0];

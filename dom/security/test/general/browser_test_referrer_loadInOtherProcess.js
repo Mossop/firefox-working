@@ -78,7 +78,7 @@ var checkResult = async function(isRemote, browserKey, uri) {
       );
 
       var { E10SUtils } = SpecialPowers.ChromeUtils.import(
-        "resource://gre/modules/E10SUtils.jsm"
+        "moz-src:///toolkit/modules/E10SUtils.jsm"
       );
 
       Assert.equal(entry.URI.spec, args.uri, "Uri should be correct");

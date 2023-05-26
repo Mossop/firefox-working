@@ -16,7 +16,7 @@ loader.lazyRequireGetter(
 );
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  DeferredTask: "resource://gre/modules/DeferredTask.sys.mjs",
+  DeferredTask: "moz-src:///toolkit/modules/DeferredTask.sys.mjs",
 });
 loader.lazyRequireGetter(
   this,

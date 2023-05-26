@@ -14,7 +14,7 @@ const { RotaryEngine } = ChromeUtils.importESModule(
   "resource://testing-common/services/sync/rotaryengine.sys.mjs"
 );
 const { getFxAccountsSingleton } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccounts.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
 );
 const fxAccounts = getFxAccountsSingleton();
 

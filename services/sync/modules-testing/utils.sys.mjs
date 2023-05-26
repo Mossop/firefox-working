@@ -17,11 +17,11 @@ import {
 import {
   FxAccounts,
   AccountState,
-} from "resource://gre/modules/FxAccounts.sys.mjs";
-import { FxAccountsClient } from "resource://gre/modules/FxAccountsClient.sys.mjs";
+} from "moz-src:///services/fxaccounts/FxAccounts.sys.mjs";
+import { FxAccountsClient } from "moz-src:///services/fxaccounts/FxAccountsClient.sys.mjs";
 
 const { SCOPE_OLD_SYNC, LEGACY_SCOPE_WEBEXT_SYNC } = ChromeUtils.import(
-  "resource://gre/modules/FxAccountsCommon.js"
+  "moz-src:///services/fxaccounts/FxAccountsCommon.js"
 );
 
 // A mock "storage manager" for FxAccounts that doesn't actually write anywhere.

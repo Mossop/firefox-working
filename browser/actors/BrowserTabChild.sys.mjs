@@ -6,7 +6,7 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  E10SUtils: "resource://gre/modules/E10SUtils.sys.mjs",
+  E10SUtils: "moz-src:///toolkit/modules/E10SUtils.sys.mjs",
 });
 
 export class BrowserTabChild extends JSWindowActorChild {

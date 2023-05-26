@@ -2,7 +2,7 @@
 
 var Cc = Components.Constructor;
 
-const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+const { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 
 const tests = [
   {

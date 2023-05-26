@@ -2,12 +2,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { Log } from "resource://gre/modules/Log.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
 
-import { TelemetrySession } from "resource://gre/modules/TelemetrySession.sys.mjs";
-import { TelemetryUtils } from "resource://gre/modules/TelemetryUtils.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
-import { clearTimeout, setTimeout } from "resource://gre/modules/Timer.sys.mjs";
+import { TelemetrySession } from "moz-src:///toolkit/components/telemetry/pings/TelemetrySession.sys.mjs";
+import { TelemetryUtils } from "moz-src:///toolkit/components/telemetry/app/TelemetryUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
+import { clearTimeout, setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 
 const lazy = {};
 

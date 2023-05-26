@@ -3,7 +3,7 @@
 "use strict";
 
 const { Sampling } = ChromeUtils.importESModule(
-  "resource://gre/modules/components-utils/Sampling.sys.mjs"
+  "moz-src:///toolkit/components/utils/Sampling.sys.mjs"
 );
 
 const { ClientEnvironment } = ChromeUtils.importESModule(

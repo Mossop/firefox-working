@@ -15,16 +15,16 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "BrowserWindowTracker",
-  "resource:///modules/BrowserWindowTracker.jsm"
+  "moz-src:///browser/modules/BrowserWindowTracker.jsm"
 );
 ChromeUtils.defineESModuleGetters(lazy, {
-  UrlbarUtils: "resource:///modules/UrlbarUtils.sys.mjs",
+  UrlbarUtils: "moz-src:///browser/components/urlbar/UrlbarUtils.sys.mjs",
   ClickHandlerParent: "resource:///actors/ClickHandlerParent.sys.mjs",
 });
 ChromeUtils.defineModuleGetter(
   lazy,
   "WebNavigationFrames",
-  "resource://gre/modules/WebNavigationFrames.jsm"
+  "moz-src:///toolkit/components/extensions/WebNavigationFrames.jsm"
 );
 
 // Maximum amount of time that can be passed and still consider

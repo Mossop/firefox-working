@@ -11,10 +11,10 @@ const { UIState } = ChromeUtils.importESModule(
 
 ChromeUtils.defineESModuleGetters(this, {
   EnsureFxAccountsWebChannel:
-    "resource://gre/modules/FxAccountsWebChannel.sys.mjs",
+    "moz-src:///services/fxaccounts/FxAccountsWebChannel.sys.mjs",
 
   ExperimentAPI: "resource://nimbus/ExperimentAPI.sys.mjs",
-  FxAccounts: "resource://gre/modules/FxAccounts.sys.mjs",
+  FxAccounts: "moz-src:///services/fxaccounts/FxAccounts.sys.mjs",
   SyncedTabs: "resource://services-sync/SyncedTabs.sys.mjs",
   Weave: "resource://services-sync/main.sys.mjs",
 });
@@ -337,7 +337,7 @@ var gSync = {
   get log() {
     if (!this._log) {
       const { Log } = ChromeUtils.importESModule(
-        "resource://gre/modules/Log.sys.mjs"
+        "moz-src:///toolkit/modules/Log.sys.mjs"
       );
       let syncLog = Log.repository.getLogger("Sync.Browser");
       syncLog.manageLevelFromPref("services.sync.log.logger.browser");

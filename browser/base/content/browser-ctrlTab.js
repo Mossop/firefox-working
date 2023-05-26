@@ -11,7 +11,7 @@
 var tabPreviews = {
   get aspectRatio() {
     let { PageThumbUtils } = ChromeUtils.importESModule(
-      "resource://gre/modules/PageThumbUtils.sys.mjs"
+      "moz-src:///toolkit/components/thumbnails/PageThumbUtils.sys.mjs"
     );
     let [width, height] = PageThumbUtils.getThumbnailSize(window);
     delete this.aspectRatio;

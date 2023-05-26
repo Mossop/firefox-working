@@ -1,4 +1,4 @@
-import { TelemetryArchive } from "resource://gre/modules/TelemetryArchive.sys.mjs";
+import { TelemetryArchive } from "moz-src:///toolkit/components/telemetry/app/TelemetryArchive.sys.mjs";
 
 function checkForProperties(ping, expected) {
   for (let [props, val] of expected) {

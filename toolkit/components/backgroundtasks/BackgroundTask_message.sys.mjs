@@ -51,20 +51,20 @@
 // --no-optoutstudies: set `app.shield.optoutstudies.enabled=false` in the
 //   background task profile.
 
-import { EXIT_CODE } from "resource://gre/modules/BackgroundTasksManager.sys.mjs";
+import { EXIT_CODE } from "moz-src:///toolkit/components/backgroundtasks/BackgroundTasksManager.sys.mjs";
 
 const { ASRouter } = ChromeUtils.import(
   "resource://activity-stream/lib/ASRouter.jsm"
 );
-import { BackgroundTasksUtils } from "resource://gre/modules/BackgroundTasksUtils.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { BackgroundTasksUtils } from "moz-src:///toolkit/components/backgroundtasks/BackgroundTasksUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   ClientEnvironmentBase:
-    "resource://gre/modules/components-utils/ClientEnvironment.sys.mjs",
-  IndexedDB: "resource://gre/modules/IndexedDB.sys.mjs",
+    "moz-src:///toolkit/components/utils/ClientEnvironment.sys.mjs",
+  IndexedDB: "moz-src:///toolkit/modules/IndexedDB.sys.mjs",
   RemoteSettings: "resource://services-settings/remote-settings.sys.mjs",
   RemoteSettingsClient:
     "resource://services-settings/RemoteSettingsClient.sys.mjs",
@@ -72,7 +72,7 @@ ChromeUtils.defineESModuleGetters(lazy, {
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  ExtensionUtils: "resource://gre/modules/ExtensionUtils.jsm",
+  ExtensionUtils: "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm",
   ToastNotification: "resource://activity-stream/lib/ToastNotification.jsm",
 });
 

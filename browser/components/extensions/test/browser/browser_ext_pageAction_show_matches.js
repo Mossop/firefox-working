@@ -63,7 +63,7 @@ function getId(tab) {
     Management: {
       global: { tabTracker },
     },
-  } = ChromeUtils.import("resource://gre/modules/Extension.jsm");
+  } = ChromeUtils.import("moz-src:///toolkit/components/extensions/Extension.jsm");
   getId = tabTracker.getId.bind(tabTracker); // eslint-disable-line no-func-assign
   return getId(tab);
 }

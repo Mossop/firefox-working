@@ -52,7 +52,7 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 /**

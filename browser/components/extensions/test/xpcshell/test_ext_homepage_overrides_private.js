@@ -5,9 +5,9 @@
 const { AddonTestUtils } = ChromeUtils.import(
   "resource://testing-common/AddonTestUtils.jsm"
 );
-const { HomePage } = ChromeUtils.import("resource:///modules/HomePage.jsm");
+const { HomePage } = ChromeUtils.import("moz-src:///browser/modules/HomePage.jsm");
 const { ExtensionPermissions } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionPermissions.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm"
 );
 
 const {

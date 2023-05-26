@@ -22,7 +22,7 @@ var CanonicalJSON = {
   stringify: function stringify(source, jsescFn) {
     if (typeof jsescFn != "function") {
       const { jsesc } = ChromeUtils.import(
-        "resource://gre/modules/third_party/jsesc/jsesc.js"
+        "moz-src:///toolkit/modules/third_party/jsesc/jsesc.js"
       );
       jsescFn = jsesc;
     }

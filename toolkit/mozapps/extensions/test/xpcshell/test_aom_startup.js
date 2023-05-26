@@ -1,7 +1,7 @@
 "use strict";
 
 const { JSONFile } = ChromeUtils.importESModule(
-  "resource://gre/modules/JSONFile.sys.mjs"
+  "moz-src:///toolkit/modules/JSONFile.sys.mjs"
 );
 
 const aomStartup = Cc["@mozilla.org/addons/addon-manager-startup;1"].getService(

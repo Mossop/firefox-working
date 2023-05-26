@@ -8,10 +8,10 @@ const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 const { MigrationUtils } = ChromeUtils.importESModule(
-  "resource:///modules/MigrationUtils.sys.mjs"
+  "moz-src:///browser/components/migration/MigrationUtils.sys.mjs"
 );
 const { MigratorBase } = ChromeUtils.importESModule(
-  "resource:///modules/MigratorBase.sys.mjs"
+  "moz-src:///browser/components/migration/MigratorBase.sys.mjs"
 );
 
 /**

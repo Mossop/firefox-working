@@ -8,7 +8,7 @@
 // Globals
 
 ChromeUtils.defineESModuleGetters(this, {
-  DeferredTask: "resource://gre/modules/DeferredTask.sys.mjs",
+  DeferredTask: "moz-src:///toolkit/modules/DeferredTask.sys.mjs",
 });
 
 /**

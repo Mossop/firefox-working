@@ -22,7 +22,7 @@ const { PersistentCache } = ChromeUtils.import(
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  NewTabUtils: "resource://gre/modules/NewTabUtils.sys.mjs",
+  NewTabUtils: "moz-src:///toolkit/modules/NewTabUtils.sys.mjs",
   pktApi: "chrome://pocket/content/pktApi.sys.mjs",
 });
 

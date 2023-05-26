@@ -16,7 +16,7 @@ function frameScript() {
 
   let range = selection.getRangeAt(0);
   const { FindContent } = ChromeUtils.import(
-    "resource://gre/modules/FindContent.jsm"
+    "moz-src:///toolkit/components/extensions/FindContent.jsm"
   );
   let highlighter = new FindContent(docShell).highlighter;
   let r1 = content.parent.frameElement.getBoundingClientRect();

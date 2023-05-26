@@ -11,10 +11,10 @@ var EXPORTED_SYMBOLS = [
 ];
 
 const { EventEmitter } = ChromeUtils.import(
-  "resource:///modules/syncedtabs/EventEmitter.jsm"
+  "moz-src:///browser/components/syncedtabs/EventEmitter.jsm"
 );
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const { AppConstants } = ChromeUtils.importESModule(
@@ -24,12 +24,12 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "BrowserWindowTracker",
-  "resource:///modules/BrowserWindowTracker.jsm"
+  "moz-src:///browser/modules/BrowserWindowTracker.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
   "SitePermissions",
-  "resource:///modules/SitePermissions.jsm"
+  "moz-src:///browser/modules/SitePermissions.jsm"
 );
 XPCOMUtils.defineLazyGetter(
   lazy,

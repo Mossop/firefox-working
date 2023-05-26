@@ -83,7 +83,7 @@ outstanding operations before FooService shuts down.
     // Module FooService
 
     const { AsyncShutdown } = ChromeUtils.importESModule(
-      "resource://gre/modules/AsyncShutdown.sys.mjs"
+      "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs"
     );
 
     this.exports = ["FooService"];
@@ -165,10 +165,10 @@ Example 4: A service with both internal and external dependencies
     // Module FooService2
 
     let { AsyncShutdown } = ChromeUtils.importESModule(
-      "resource://gre/modules/AsyncShutdown.sys.mjs"
+      "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs"
     );
     let { PromiseUtils } = ChromeUtils.importESModule(
-      "resource://gre/modules/PromiseUtils.sys.mjs"
+      "moz-src:///toolkit/modules/PromiseUtils.sys.mjs"
     );
 
     this.exports = ["FooService2"];

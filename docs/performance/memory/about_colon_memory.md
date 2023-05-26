@@ -177,7 +177,7 @@ there are various things worth pointing out.
 Some add-on memory usage is identified, as the following example shows.
 
     ├───40,214,384 B (04.17%) -- add-ons
-    │   ├──21,184,320 B (02.20%) ++ {d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d}/js-non-window/zones/zone(0x100496800)/compartment([System Principal], jar:file:///Users/njn/Library/Application%20Support/Firefox/Profiles/puna0zr8.new/extensions/%7Bd10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d%7D.xpi!/bootstrap.js (from: resource://gre/modules/addons/XPIProvider.jsm:4307))
+    │   ├──21,184,320 B (02.20%) ++ {d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d}/js-non-window/zones/zone(0x100496800)/compartment([System Principal], jar:file:///Users/njn/Library/Application%20Support/Firefox/Profiles/puna0zr8.new/extensions/%7Bd10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d%7D.xpi!/bootstrap.js (from: moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm:4307))
     │   ├──11,583,312 B (01.20%) ++ jid1-xUfzOsOFlzSOXg@jetpack/js-non-window/zones/zone(0x100496800)
     │   ├───5,574,608 B (00.58%) -- {59c81df5-4b7a-477b-912d-4e0fdf64e5f2}
     │   │   ├──5,529,280 B (00.57%) -- window-objects

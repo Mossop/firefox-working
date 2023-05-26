@@ -23,22 +23,22 @@ const SUBMIT_FORM_IS_REMOVED = 3;
 const LOG_MESSAGE_FORM_SUBMISSION = "form submission";
 const LOG_MESSAGE_FIELD_EDIT = "field edit";
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { PrivateBrowsingUtils } from "resource://gre/modules/PrivateBrowsingUtils.sys.mjs";
-import { CreditCard } from "resource://gre/modules/CreditCard.sys.mjs";
+import { PrivateBrowsingUtils } from "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs";
+import { CreditCard } from "moz-src:///toolkit/modules/CreditCard.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  ContentDOMReference: "resource://gre/modules/ContentDOMReference.sys.mjs",
-  DeferredTask: "resource://gre/modules/DeferredTask.sys.mjs",
-  FormLikeFactory: "resource://gre/modules/FormLikeFactory.sys.mjs",
-  InsecurePasswordUtils: "resource://gre/modules/InsecurePasswordUtils.sys.mjs",
-  LoginFormFactory: "resource://gre/modules/LoginFormFactory.sys.mjs",
-  LoginHelper: "resource://gre/modules/LoginHelper.sys.mjs",
-  LoginRecipesContent: "resource://gre/modules/LoginRecipes.sys.mjs",
-  SignUpFormRuleset: "resource://gre/modules/SignUpFormRuleset.sys.mjs",
+  ContentDOMReference: "moz-src:///toolkit/modules/ContentDOMReference.sys.mjs",
+  DeferredTask: "moz-src:///toolkit/modules/DeferredTask.sys.mjs",
+  FormLikeFactory: "moz-src:///toolkit/modules/FormLikeFactory.sys.mjs",
+  InsecurePasswordUtils: "moz-src:///toolkit/components/passwordmgr/InsecurePasswordUtils.sys.mjs",
+  LoginFormFactory: "moz-src:///toolkit/components/passwordmgr/LoginFormFactory.sys.mjs",
+  LoginHelper: "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs",
+  LoginRecipesContent: "moz-src:///toolkit/components/passwordmgr/LoginRecipes.sys.mjs",
+  SignUpFormRuleset: "moz-src:///toolkit/components/passwordmgr/SignUpFormRuleset.sys.mjs",
 });
 
 XPCOMUtils.defineLazyServiceGetter(

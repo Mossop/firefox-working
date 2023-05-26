@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { ClientEnvironmentBase } from "resource://gre/modules/components-utils/ClientEnvironment.sys.mjs";
+import { ClientEnvironmentBase } from "moz-src:///toolkit/components/utils/ClientEnvironment.sys.mjs";
 
 const lazy = {};
 

@@ -1,7 +1,7 @@
 "use strict";
 
 const { AppMenuNotifications } = ChromeUtils.importESModule(
-  "resource://gre/modules/AppMenuNotifications.sys.mjs"
+  "moz-src:///toolkit/modules/AppMenuNotifications.sys.mjs"
 );
 
 /**
@@ -229,7 +229,7 @@ add_task(async function testInteractionWithBadges() {
     // Remove the fxa toolbar button from the navbar to ensure the notification
     // is displayed on the app menu button.
     let { CustomizableUI } = ChromeUtils.import(
-      "resource:///modules/CustomizableUI.jsm"
+      "moz-src:///browser/components/customizableui/CustomizableUI.jsm"
     );
     CustomizableUI.removeWidgetFromArea("fxa-toolbar-menu-button");
 

@@ -21,7 +21,7 @@ class TestMainTabScalars(TelemetryTestCase):
             self.marionette.execute_script(
                 """
                 const { BrowserUsageTelemetry } = ChromeUtils.import(
-                    "resource:///modules/BrowserUsageTelemetry.jsm"
+                    "moz-src:///browser/modules/BrowserUsageTelemetry.jsm"
                 );
 
                 BrowserUsageTelemetry._onTabsOpenedTask._timeoutMs = 0;

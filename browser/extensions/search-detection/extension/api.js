@@ -7,15 +7,15 @@
 /* global ExtensionCommon, ExtensionAPI, Services, XPCOMUtils, ExtensionUtils */
 
 const { AddonManager } = ChromeUtils.import(
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 const { WebRequest } = ChromeUtils.import(
-  "resource://gre/modules/WebRequest.jsm"
+  "moz-src:///toolkit/components/extensions/webrequest/WebRequest.jsm"
 );
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AddonSearchEngine: "resource://gre/modules/AddonSearchEngine.sys.mjs",
+  AddonSearchEngine: "moz-src:///toolkit/components/search/AddonSearchEngine.sys.mjs",
 });
 
 // eslint-disable-next-line mozilla/reject-importGlobalProperties

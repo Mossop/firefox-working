@@ -28,8 +28,8 @@ const LAST_DIR_PREF = "browser.download.lastDir";
 const SAVE_PER_SITE_PREF = LAST_DIR_PREF + ".savePerSite";
 const nsIFile = Ci.nsIFile;
 
-import { PrivateBrowsingUtils } from "resource://gre/modules/PrivateBrowsingUtils.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { PrivateBrowsingUtils } from "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 XPCOMUtils.defineLazyServiceGetter(

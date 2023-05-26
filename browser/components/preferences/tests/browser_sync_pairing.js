@@ -7,7 +7,7 @@ const { UIState } = ChromeUtils.importESModule(
   "resource://services-sync/UIState.sys.mjs"
 );
 const { FxAccountsPairingFlow } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccountsPairing.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccountsPairing.sys.mjs"
 );
 
 // Use sinon for mocking.

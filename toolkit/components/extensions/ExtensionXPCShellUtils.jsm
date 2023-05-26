@@ -19,7 +19,7 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
@@ -32,17 +32,17 @@ ChromeUtils.defineModuleGetter(
   "resource://testing-common/ExtensionTestCommon.jsm"
 );
 ChromeUtils.defineESModuleGetters(lazy, {
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
 });
 ChromeUtils.defineModuleGetter(
   lazy,
   "Management",
-  "resource://gre/modules/Extension.jsm"
+  "moz-src:///toolkit/components/extensions/Extension.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
   "Schemas",
-  "resource://gre/modules/Schemas.jsm"
+  "moz-src:///toolkit/components/extensions/Schemas.jsm"
 );
 
 let BASE_MANIFEST = Object.freeze({

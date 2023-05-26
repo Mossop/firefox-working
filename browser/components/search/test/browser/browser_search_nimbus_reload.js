@@ -8,7 +8,7 @@ const { ExperimentFakes } = ChromeUtils.importESModule(
 );
 
 const { SearchService } = ChromeUtils.importESModule(
-  "resource://gre/modules/SearchService.sys.mjs"
+  "moz-src:///toolkit/components/search/SearchService.sys.mjs"
 );
 const { sinon } = ChromeUtils.importESModule(
   "resource://testing-common/Sinon.sys.mjs"

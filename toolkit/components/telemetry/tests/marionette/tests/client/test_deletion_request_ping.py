@@ -56,7 +56,7 @@ class TestDeletionRequestPing(TelemetryTestCase):
                 """
                 let [resolve] = arguments;
                 const { ClientID } = ChromeUtils.import(
-                  "resource://gre/modules/ClientID.jsm"
+                  "moz-src:///toolkit/components/telemetry/app/ClientID.jsm"
                 );
                 ClientID.getClientID().then(resolve);
                 """,

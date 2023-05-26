@@ -12,15 +12,15 @@
 // Put any other stuff relative to this test folder below.
 
 var { CanonicalJSON } = ChromeUtils.import(
-  "resource://gre/modules/CanonicalJSON.jsm"
+  "moz-src:///toolkit/modules/CanonicalJSON.jsm"
 );
-var { Log } = ChromeUtils.importESModule("resource://gre/modules/Log.sys.mjs");
+var { Log } = ChromeUtils.importESModule("moz-src:///toolkit/modules/Log.sys.mjs");
 
 var { PlacesSyncUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PlacesSyncUtils.sys.mjs"
+  "moz-src:///toolkit/components/places/PlacesSyncUtils.sys.mjs"
 );
 var { SyncedBookmarksMirror } = ChromeUtils.importESModule(
-  "resource://gre/modules/SyncedBookmarksMirror.sys.mjs"
+  "moz-src:///toolkit/components/places/SyncedBookmarksMirror.sys.mjs"
 );
 var { CommonUtils } = ChromeUtils.importESModule(
   "resource://services-common/utils.sys.mjs"

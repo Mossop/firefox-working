@@ -2,20 +2,20 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { PushDB } from "resource://gre/modules/PushDB.sys.mjs";
-import { PushRecord } from "resource://gre/modules/PushRecord.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { PushDB } from "moz-src:///dom/push/PushDB.sys.mjs";
+import { PushRecord } from "moz-src:///dom/push/PushRecord.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
-const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
-import { clearTimeout, setTimeout } from "resource://gre/modules/Timer.sys.mjs";
+const { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
+import { clearTimeout, setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 
-import { PushCrypto } from "resource://gre/modules/PushCrypto.sys.mjs";
+import { PushCrypto } from "moz-src:///dom/push/PushCrypto.sys.mjs";
 
 const lazy = {};
 
 XPCOMUtils.defineLazyGetter(lazy, "console", () => {
   let { ConsoleAPI } = ChromeUtils.importESModule(
-    "resource://gre/modules/Console.sys.mjs"
+    "moz-src:///toolkit/modules/Console.sys.mjs"
   );
   return new ConsoleAPI({
     maxLogLevelPref: "dom.push.loglevel",

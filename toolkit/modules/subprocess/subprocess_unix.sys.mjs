@@ -7,17 +7,17 @@
 import {
   BaseProcess,
   PromiseWorker,
-} from "resource://gre/modules/subprocess/subprocess_common.sys.mjs";
+} from "moz-src:///toolkit/modules/subprocess/subprocess_common.sys.mjs";
 
-import { ctypes } from "resource://gre/modules/ctypes.sys.mjs";
+import { ctypes } from "moz-src:///toolkit/components/ctypes/ctypes.sys.mjs";
 
 var obj = { ctypes };
 Services.scriptloader.loadSubScript(
-  "resource://gre/modules/subprocess/subprocess_shared.js",
+  "moz-src:///toolkit/modules/subprocess/subprocess_shared.js",
   obj
 );
 Services.scriptloader.loadSubScript(
-  "resource://gre/modules/subprocess/subprocess_shared_unix.js",
+  "moz-src:///toolkit/modules/subprocess/subprocess_shared_unix.js",
   obj
 );
 
@@ -69,7 +69,7 @@ class UnixPromiseWorker extends PromiseWorker {
 
 class Process extends BaseProcess {
   static get WORKER_URL() {
-    return "resource://gre/modules/subprocess/subprocess_worker_unix.js";
+    return "moz-src:///toolkit/modules/subprocess/subprocess_worker_unix.js";
   }
 
   static get WorkerClass() {

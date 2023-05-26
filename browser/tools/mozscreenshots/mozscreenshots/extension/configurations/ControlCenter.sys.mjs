@@ -2,13 +2,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { setTimeout } from "resource://gre/modules/Timer.sys.mjs";
+import { setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 import { BrowserTestUtils } from "resource://testing-common/BrowserTestUtils.sys.mjs";
 
 const { SitePermissions } = ChromeUtils.import(
-  "resource:///modules/SitePermissions.jsm"
+  "moz-src:///browser/modules/SitePermissions.jsm"
 );
-const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+const { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
 let { UrlClassifierTestUtils } = ChromeUtils.import(

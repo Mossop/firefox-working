@@ -4,7 +4,7 @@
 
 /* import-globals-from head_global.js */
 
-var { Log } = ChromeUtils.importESModule("resource://gre/modules/Log.sys.mjs");
+var { Log } = ChromeUtils.importESModule("moz-src:///toolkit/modules/Log.sys.mjs");
 var { CommonUtils } = ChromeUtils.importESModule(
   "resource://services-common/utils.sys.mjs"
 );
@@ -41,7 +41,7 @@ var { getTestLogger, initTestLogging } = ChromeUtils.importESModule(
 var { MockRegistrar } = ChromeUtils.importESModule(
   "resource://testing-common/MockRegistrar.sys.mjs"
 );
-var { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+var { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 
 function do_check_empty(obj) {
   do_check_attribute_count(obj, 0);

@@ -9,7 +9,7 @@ const { UIState } = ChromeUtils.importESModule(
 
 XPCOMUtils.defineLazyGetter(this, "fxAccounts", () => {
   return ChromeUtils.importESModule(
-    "resource://gre/modules/FxAccounts.sys.mjs"
+    "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
   ).getFxAccountsSingleton();
 });
 

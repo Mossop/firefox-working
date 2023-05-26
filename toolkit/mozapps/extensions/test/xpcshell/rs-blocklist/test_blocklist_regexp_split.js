@@ -58,7 +58,7 @@ add_task(async function test_check_matching_works() {
   });
 
   const { BlocklistPrivate } = ChromeUtils.import(
-    "resource://gre/modules/Blocklist.jsm"
+    "moz-src:///toolkit/mozapps/extensions/Blocklist.jsm"
   );
   let parsedEntries = BlocklistPrivate.ExtensionBlocklistRS._entries;
 
@@ -169,7 +169,7 @@ add_task(async function check_all_properties() {
   });
 
   let { Blocklist } = ChromeUtils.import(
-    "resource://gre/modules/Blocklist.jsm"
+    "moz-src:///toolkit/mozapps/extensions/Blocklist.jsm"
   );
   // Check 'wrong' creator doesn't match.
   Assert.ok(

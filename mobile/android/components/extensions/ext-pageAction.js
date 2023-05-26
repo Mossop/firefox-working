@@ -12,7 +12,7 @@ ChromeUtils.defineESModuleGetters(this, {
 });
 
 const { PageActionBase } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionActions.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionActions.jsm"
 );
 
 const PAGE_ACTION_PROPERTIES = [

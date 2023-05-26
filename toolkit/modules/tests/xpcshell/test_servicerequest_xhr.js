@@ -4,7 +4,7 @@
 "use strict";
 
 const { ServiceRequest } = ChromeUtils.importESModule(
-  "resource://gre/modules/ServiceRequest.sys.mjs"
+  "moz-src:///toolkit/modules/ServiceRequest.sys.mjs"
 );
 
 add_task(async function test_tls_conservative() {

@@ -10,7 +10,7 @@ const { MigrationWizardConstants } = ChromeUtils.importESModule(
   "chrome://browser/content/migration/migration-wizard-constants.mjs"
 );
 const { InternalTestingProfileMigrator } = ChromeUtils.importESModule(
-  "resource:///modules/InternalTestingProfileMigrator.sys.mjs"
+  "moz-src:///browser/components/migration/InternalTestingProfileMigrator.sys.mjs"
 );
 
 const DIALOG_URL =

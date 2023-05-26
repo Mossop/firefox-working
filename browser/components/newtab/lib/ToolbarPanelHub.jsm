@@ -4,25 +4,25 @@
 "use strict";
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
   SpecialMessageActions:
     "resource://messaging-system/lib/SpecialMessageActions.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  EveryWindow: "resource:///modules/EveryWindow.jsm",
+  EveryWindow: "moz-src:///browser/modules/EveryWindow.jsm",
   RemoteL10n: "resource://activity-stream/lib/RemoteL10n.jsm",
 });
 ChromeUtils.defineModuleGetter(
   lazy,
   "PanelMultiView",
-  "resource:///modules/PanelMultiView.jsm"
+  "moz-src:///browser/components/customizableui/PanelMultiView.jsm"
 );
 XPCOMUtils.defineLazyServiceGetter(
   lazy,

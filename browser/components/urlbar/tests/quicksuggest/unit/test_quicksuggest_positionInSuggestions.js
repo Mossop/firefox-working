@@ -9,10 +9,10 @@
 
 ChromeUtils.defineESModuleGetters(this, {
   UrlbarProviderHeuristicFallback:
-    "resource:///modules/UrlbarProviderHeuristicFallback.sys.mjs",
-  UrlbarProviderPlaces: "resource:///modules/UrlbarProviderPlaces.sys.mjs",
+    "moz-src:///browser/components/urlbar/UrlbarProviderHeuristicFallback.sys.mjs",
+  UrlbarProviderPlaces: "moz-src:///browser/components/urlbar/UrlbarProviderPlaces.sys.mjs",
   UrlbarProviderTabToSearch:
-    "resource:///modules/UrlbarProviderTabToSearch.sys.mjs",
+    "moz-src:///browser/components/urlbar/UrlbarProviderTabToSearch.sys.mjs",
 });
 
 const SPONSORED_SECOND_POSITION_RESULT = {

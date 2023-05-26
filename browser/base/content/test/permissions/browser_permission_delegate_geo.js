@@ -92,7 +92,7 @@ async function checkGeolocation(browser, frameId, expect) {
 
       await content.SpecialPowers.spawn(frame, [], async () => {
         const { E10SUtils } = ChromeUtils.importESModule(
-          "resource://gre/modules/E10SUtils.sys.mjs"
+          "moz-src:///toolkit/modules/E10SUtils.sys.mjs"
         );
 
         E10SUtils.wrapHandlingUserInput(this.content, true, function() {

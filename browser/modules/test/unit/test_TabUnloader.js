@@ -4,7 +4,7 @@
 "use strict";
 
 const { TabUnloader } = ChromeUtils.import(
-  "resource:///modules/TabUnloader.jsm"
+  "moz-src:///browser/modules/TabUnloader.jsm"
 );
 
 let TestTabUnloaderMethods = {

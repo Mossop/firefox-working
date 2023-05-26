@@ -102,13 +102,13 @@
 var EXPORTED_SYMBOLS = ["PanelMultiView", "PanelView"];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "CustomizableUI",
-  "resource:///modules/CustomizableUI.jsm"
+  "moz-src:///browser/components/customizableui/CustomizableUI.jsm"
 );
 
 XPCOMUtils.defineLazyGetter(lazy, "gBundle", function() {

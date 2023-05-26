@@ -14,8 +14,8 @@ function debug(s) {
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
-  KeyValueService: "resource://gre/modules/kvstore.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
+  KeyValueService: "moz-src:///toolkit/components/kvstore/kvstore.sys.mjs",
 });
 
 const kMessages = [

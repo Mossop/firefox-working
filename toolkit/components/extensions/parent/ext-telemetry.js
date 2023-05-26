@@ -5,8 +5,8 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  TelemetryController: "resource://gre/modules/TelemetryController.sys.mjs",
-  TelemetryUtils: "resource://gre/modules/TelemetryUtils.sys.mjs",
+  TelemetryController: "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs",
+  TelemetryUtils: "moz-src:///toolkit/components/telemetry/app/TelemetryUtils.sys.mjs",
 });
 
 const SCALAR_TYPES = {

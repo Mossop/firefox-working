@@ -216,7 +216,7 @@ export var TabModalPrompt = class {
     // a "pagehide" event.
 
     let { CommonDialog } = ChromeUtils.importESModule(
-      "resource://gre/modules/CommonDialog.sys.mjs"
+      "moz-src:///toolkit/components/prompts/src/CommonDialog.sys.mjs"
     );
     this.Dialog = new CommonDialog(args, this.ui);
     this.Dialog.onLoad(null);

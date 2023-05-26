@@ -5,7 +5,7 @@
 "use strict";
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  CustomizableUI: "resource:///modules/CustomizableUI.jsm",
+  CustomizableUI: "moz-src:///browser/components/customizableui/CustomizableUI.jsm",
   CustomizableUITestUtils:
     "resource://testing-common/CustomizableUITestUtils.jsm",
 });

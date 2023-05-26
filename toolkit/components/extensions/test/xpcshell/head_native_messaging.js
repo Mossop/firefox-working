@@ -14,12 +14,12 @@ if (AppConstants.platform == "win") {
   });
 } else {
   ChromeUtils.defineESModuleGetters(this, {
-    SubprocessImpl: "resource://gre/modules/subprocess/subprocess_unix.sys.mjs",
+    SubprocessImpl: "moz-src:///toolkit/modules/subprocess/subprocess_unix.sys.mjs",
   });
 }
 
 const { Subprocess } = ChromeUtils.importESModule(
-  "resource://gre/modules/Subprocess.sys.mjs"
+  "moz-src:///toolkit/modules/subprocess/Subprocess.sys.mjs"
 );
 
 // It's important that we use a space in this directory name to make sure we

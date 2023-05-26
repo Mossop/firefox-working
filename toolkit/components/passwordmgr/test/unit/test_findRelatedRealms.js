@@ -4,7 +4,7 @@ http://creativecommons.org/publicdomain/zero/1.0/ */
 "use strict";
 
 const { LoginRelatedRealmsParent } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginRelatedRealms.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginRelatedRealms.sys.mjs"
 );
 const { RemoteSettings } = ChromeUtils.importESModule(
   "resource://services-settings/remote-settings.sys.mjs"

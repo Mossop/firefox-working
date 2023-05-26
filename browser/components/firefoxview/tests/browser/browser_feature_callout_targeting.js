@@ -1,7 +1,7 @@
 "use strict";
 
 const { BuiltInThemes } = ChromeUtils.importESModule(
-  "resource:///modules/BuiltInThemes.sys.mjs"
+  "moz-src:///browser/themes/BuiltInThemes.sys.mjs"
 );
 
 add_task(

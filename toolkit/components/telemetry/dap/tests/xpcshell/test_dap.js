@@ -9,7 +9,7 @@ const { HttpServer } = ChromeUtils.import("resource://testing-common/httpd.js");
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  DAPTelemetrySender: "resource://gre/modules/DAPTelemetrySender.sys.mjs",
+  DAPTelemetrySender: "moz-src:///toolkit/components/telemetry/dap/DAPTelemetrySender.sys.mjs",
 });
 
 const BinaryOutputStream = Components.Constructor(

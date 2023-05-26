@@ -6,14 +6,14 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  E10SUtils: "resource://gre/modules/E10SUtils.sys.mjs",
-  PlacesUIUtils: "resource:///modules/PlacesUIUtils.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  E10SUtils: "moz-src:///toolkit/modules/E10SUtils.sys.mjs",
+  PlacesUIUtils: "moz-src:///browser/components/places/PlacesUIUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 ChromeUtils.defineModuleGetter(
   lazy,
   "WebNavigationFrames",
-  "resource://gre/modules/WebNavigationFrames.jsm"
+  "moz-src:///toolkit/components/extensions/WebNavigationFrames.jsm"
 );
 
 let gContentClickListeners = new Set();

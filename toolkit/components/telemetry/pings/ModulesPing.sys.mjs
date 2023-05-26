@@ -3,14 +3,14 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { Log } from "resource://gre/modules/Log.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
-  TelemetryController: "resource://gre/modules/TelemetryController.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
+  TelemetryController: "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs",
 });
 
 XPCOMUtils.defineLazyServiceGetter(

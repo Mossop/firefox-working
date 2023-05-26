@@ -13,7 +13,7 @@ ChromeUtils.defineESModuleGetters(this, {
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  HomePage: "resource:///modules/HomePage.jsm",
+  HomePage: "moz-src:///browser/modules/HomePage.jsm",
 });
 
 function promisePrefChanged(expectedValue) {

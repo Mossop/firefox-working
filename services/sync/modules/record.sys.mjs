@@ -5,7 +5,7 @@
 const CRYPTO_COLLECTION = "crypto";
 const KEYS_WBO = "keys";
 
-import { Log } from "resource://gre/modules/Log.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
 
 import {
   DEFAULT_DOWNLOAD_BATCH_SIZE,

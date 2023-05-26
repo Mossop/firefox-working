@@ -2,7 +2,7 @@
 /* vim: set sts=2 sw=2 et tw=80: */
 "use strict";
 
-const { Schemas } = ChromeUtils.import("resource://gre/modules/Schemas.jsm");
+const { Schemas } = ChromeUtils.import("moz-src:///toolkit/components/extensions/Schemas.jsm");
 
 let { SchemaAPIInterface } = ExtensionCommon;
 

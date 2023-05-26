@@ -8,7 +8,7 @@
 var EXPORTED_SYMBOLS = ["NativeManifests"];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
@@ -21,7 +21,7 @@ ChromeUtils.defineESModuleGetters(lazy, {
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  Schemas: "resource://gre/modules/Schemas.jsm",
+  Schemas: "moz-src:///toolkit/components/extensions/Schemas.jsm",
 });
 
 const DASHED = AppConstants.platform === "linux";

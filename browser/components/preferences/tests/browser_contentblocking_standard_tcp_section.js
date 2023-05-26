@@ -6,7 +6,7 @@
  */
 
 ChromeUtils.defineESModuleGetters(this, {
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
 });
 
 const COOKIE_BEHAVIOR_PREF = "network.cookie.cookieBehavior";

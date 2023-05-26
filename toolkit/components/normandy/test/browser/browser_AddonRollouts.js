@@ -1,7 +1,7 @@
 "use strict";
 
 const { IndexedDB } = ChromeUtils.importESModule(
-  "resource://gre/modules/IndexedDB.sys.mjs"
+  "moz-src:///toolkit/modules/IndexedDB.sys.mjs"
 );
 
 const { AddonRollouts } = ChromeUtils.importESModule(

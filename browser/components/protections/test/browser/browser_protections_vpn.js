@@ -9,7 +9,7 @@ const { AboutProtectionsParent } = ChromeUtils.importESModule(
 );
 
 let { Region } = ChromeUtils.importESModule(
-  "resource://gre/modules/Region.sys.mjs"
+  "moz-src:///toolkit/modules/Region.sys.mjs"
 );
 
 const initialHomeRegion = Region._home;

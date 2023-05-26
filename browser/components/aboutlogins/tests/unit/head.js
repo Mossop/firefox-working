@@ -7,7 +7,7 @@ const { LoginTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/LoginTestUtils.sys.mjs"
 );
 const { LoginHelper } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginHelper.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs"
 );
 
 const TestData = LoginTestUtils.testData;

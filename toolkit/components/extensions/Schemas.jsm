@@ -9,11 +9,11 @@ const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
 );
 var { DefaultMap, DefaultWeakMap } = ExtensionUtils;
 
@@ -22,15 +22,15 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "ExtensionParent",
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
   "NetUtil",
-  "resource://gre/modules/NetUtil.jsm"
+  "moz-src:///netwerk/base/NetUtil.jsm"
 );
 ChromeUtils.defineESModuleGetters(lazy, {
-  ShortcutUtils: "resource://gre/modules/ShortcutUtils.sys.mjs",
+  ShortcutUtils: "moz-src:///toolkit/modules/ShortcutUtils.sys.mjs",
 });
 XPCOMUtils.defineLazyServiceGetter(
   lazy,

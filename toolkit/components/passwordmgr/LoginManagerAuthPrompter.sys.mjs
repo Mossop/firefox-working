@@ -2,9 +2,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { PrivateBrowsingUtils } from "resource://gre/modules/PrivateBrowsingUtils.sys.mjs";
-import { PromptUtils } from "resource://gre/modules/PromptUtils.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { PrivateBrowsingUtils } from "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs";
+import { PromptUtils } from "moz-src:///toolkit/components/prompts/src/PromptUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
@@ -18,7 +18,7 @@ XPCOMUtils.defineLazyServiceGetter(
 /* eslint-disable block-scoped-var, no-var */
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  LoginHelper: "resource://gre/modules/LoginHelper.sys.mjs",
+  LoginHelper: "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs",
 });
 
 const LoginInfo = Components.Constructor(

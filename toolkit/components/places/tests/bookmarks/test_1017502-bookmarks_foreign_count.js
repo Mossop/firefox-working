@@ -89,7 +89,7 @@ add_task(async function maintenance_foreign_count_test() {
 
   // Run maintenance
   const { PlacesDBUtils } = ChromeUtils.importESModule(
-    "resource://gre/modules/PlacesDBUtils.sys.mjs"
+    "moz-src:///toolkit/components/places/PlacesDBUtils.sys.mjs"
   );
   await PlacesDBUtils.maintenanceOnIdle();
 

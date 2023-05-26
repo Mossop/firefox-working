@@ -31,8 +31,8 @@
  * does not necessarily tell us that the checkpoint wasn't reached.
  */
 
-import { PrivateBrowsingUtils } from "resource://gre/modules/PrivateBrowsingUtils.sys.mjs";
-import { PromiseUtils } from "resource://gre/modules/PromiseUtils.sys.mjs";
+import { PrivateBrowsingUtils } from "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs";
+import { PromiseUtils } from "moz-src:///toolkit/modules/PromiseUtils.sys.mjs";
 
 const SESSIONSTORE_WINDOWS_RESTORED_TOPIC = "sessionstore-windows-restored";
 const SESSIONSTORE_FINAL_STATE_WRITE_COMPLETE_TOPIC =

@@ -12,9 +12,9 @@ const lazy = {};
 /* exported FindContent */
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Finder: "resource://gre/modules/Finder.sys.mjs",
-  FinderHighlighter: "resource://gre/modules/FinderHighlighter.sys.mjs",
-  FinderIterator: "resource://gre/modules/FinderIterator.sys.mjs",
+  Finder: "moz-src:///toolkit/modules/Finder.sys.mjs",
+  FinderHighlighter: "moz-src:///toolkit/modules/FinderHighlighter.sys.mjs",
+  FinderIterator: "moz-src:///toolkit/modules/FinderIterator.sys.mjs",
 });
 
 class FindContent {

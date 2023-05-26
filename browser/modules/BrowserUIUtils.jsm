@@ -6,7 +6,7 @@
 "use strict";
 
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 var EXPORTED_SYMBOLS = ["BrowserUIUtils"];

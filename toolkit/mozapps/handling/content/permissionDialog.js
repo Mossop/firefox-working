@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const { EnableDelayHelper } = ChromeUtils.importESModule(
-  "resource://gre/modules/PromptUtils.sys.mjs"
+  "moz-src:///toolkit/components/prompts/src/PromptUtils.sys.mjs"
 );
 
 let dialog = {

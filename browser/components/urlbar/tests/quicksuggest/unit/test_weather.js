@@ -8,7 +8,7 @@
 
 ChromeUtils.defineESModuleGetters(this, {
   MockRegistrar: "resource://testing-common/MockRegistrar.sys.mjs",
-  UrlbarProviderWeather: "resource:///modules/UrlbarProviderWeather.sys.mjs",
+  UrlbarProviderWeather: "moz-src:///browser/components/urlbar/UrlbarProviderWeather.sys.mjs",
 });
 
 const HISTOGRAM_LATENCY = "FX_URLBAR_MERINO_LATENCY_WEATHER_MS";

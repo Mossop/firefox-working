@@ -3,10 +3,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const lazy = {};
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  LoginCSVImport: "resource://gre/modules/LoginCSVImport.jsm",
+  LoginCSVImport: "moz-src:///toolkit/components/passwordmgr/LoginCSVImport.jsm",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "gFluentStrings", function() {

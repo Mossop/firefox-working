@@ -11,7 +11,7 @@ const { updateAppInfo } = ChromeUtils.importESModule(
 updateAppInfo();
 
 const { TaskScheduler } = ChromeUtils.importESModule(
-  "resource://gre/modules/TaskScheduler.sys.mjs"
+  "moz-src:///toolkit/components/taskscheduler/TaskScheduler.sys.mjs"
 );
 
 const { WinImpl } = ChromeUtils.importESModule(

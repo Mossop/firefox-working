@@ -6,13 +6,13 @@
  * Helpers for using OS Key Store.
  */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  UpdateUtils: "resource://gre/modules/UpdateUtils.sys.mjs",
+  UpdateUtils: "moz-src:///toolkit/modules/UpdateUtils.sys.mjs",
 });
 XPCOMUtils.defineLazyServiceGetter(
   lazy,
@@ -371,7 +371,7 @@ export var OSKeyStore = {
 
 XPCOMUtils.defineLazyGetter(lazy, "log", () => {
   let { ConsoleAPI } = ChromeUtils.importESModule(
-    "resource://gre/modules/Console.sys.mjs"
+    "moz-src:///toolkit/modules/Console.sys.mjs"
   );
   return new ConsoleAPI({
     maxLogLevelPref: "toolkit.osKeyStore.loglevel",

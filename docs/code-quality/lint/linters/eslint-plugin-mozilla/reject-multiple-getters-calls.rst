@@ -13,7 +13,7 @@ Examples of incorrect code for this rule:
       AppConstants: "resource://gre/modules/AppConstants.sys.mjs",
     });
     ChromeUtils.defineESModuleGetters(lazy, {
-      PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
+      PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
     });
 
 Examples of correct code for this rule:
@@ -23,5 +23,5 @@ Examples of correct code for this rule:
 
     ChromeUtils.defineESModuleGetters(lazy, {
       AppConstants: "resource://gre/modules/AppConstants.sys.mjs",
-      PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
+      PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
     });

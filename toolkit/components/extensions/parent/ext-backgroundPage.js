@@ -5,7 +5,7 @@
 "use strict";
 
 var { ExtensionParent } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 var {
   HiddenExtensionPage,
@@ -16,10 +16,10 @@ var {
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionTelemetry",
-  "resource://gre/modules/ExtensionTelemetry.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionTelemetry.jsm"
 );
 ChromeUtils.defineESModuleGetters(this, {
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyGetter(this, "serviceWorkerManager", () => {

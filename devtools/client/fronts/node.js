@@ -24,7 +24,7 @@ loader.lazyRequireGetter(
 );
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 XPCOMUtils.defineLazyPreferenceGetter(

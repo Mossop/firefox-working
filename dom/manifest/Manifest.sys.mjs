@@ -13,14 +13,14 @@
  *  - Trigger appropriate app installed events
  */
 
-import { ManifestObtainer } from "resource://gre/modules/ManifestObtainer.sys.mjs";
+import { ManifestObtainer } from "moz-src:///dom/manifest/ManifestObtainer.sys.mjs";
 
-import { ManifestIcons } from "resource://gre/modules/ManifestIcons.sys.mjs";
+import { ManifestIcons } from "moz-src:///dom/manifest/ManifestIcons.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  JSONFile: "resource://gre/modules/JSONFile.sys.mjs",
+  JSONFile: "moz-src:///toolkit/modules/JSONFile.sys.mjs",
 });
 
 /**

@@ -5,7 +5,7 @@
 /* exported TestWorkerWatcher */
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  ExtensionCommon: "resource://gre/modules/ExtensionCommon.jsm",
+  ExtensionCommon: "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm",
 });
 
 // Ensure that the profile-after-change message has been notified,

@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 var { WebChannel } = ChromeUtils.importESModule(
-  "resource://gre/modules/WebChannel.sys.mjs"
+  "moz-src:///toolkit/modules/WebChannel.sys.mjs"
 );
 const { PermissionTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/PermissionTestUtils.sys.mjs"
@@ -83,7 +83,7 @@ add_task(async function() {
   let updateChannel = null;
   try {
     updateChannel = ChromeUtils.importESModule(
-      "resource://gre/modules/UpdateUtils.sys.mjs"
+      "moz-src:///toolkit/modules/UpdateUtils.sys.mjs"
     ).UpdateUtils.UpdateChannel;
   } catch (ex) {}
   if (!updateChannel) {

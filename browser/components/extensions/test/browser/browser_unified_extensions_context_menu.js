@@ -8,7 +8,7 @@ requestLongerTimeout(2);
 ChromeUtils.defineModuleGetter(
   this,
   "AbuseReporter",
-  "resource://gre/modules/AbuseReporter.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AbuseReporter.jsm"
 );
 
 const { EnterprisePolicyTesting } = ChromeUtils.importESModule(
@@ -556,7 +556,7 @@ add_task(async function test_open_context_menu_with_keyboard() {
 
 add_task(async function test_context_menu_without_browserActionFor_global() {
   const { ExtensionParent } = ChromeUtils.import(
-    "resource://gre/modules/ExtensionParent.jsm"
+    "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
   );
   const { browserActionFor } = ExtensionParent.apiManager.global;
   const cleanup = () => {

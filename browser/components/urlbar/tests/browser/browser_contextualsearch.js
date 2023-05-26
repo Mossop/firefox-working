@@ -4,7 +4,7 @@
 "use strict";
 
 const { UrlbarProviderContextualSearch } = ChromeUtils.importESModule(
-  "resource:///modules/UrlbarProviderContextualSearch.sys.mjs"
+  "moz-src:///browser/components/urlbar/UrlbarProviderContextualSearch.sys.mjs"
 );
 
 add_setup(async function setup() {

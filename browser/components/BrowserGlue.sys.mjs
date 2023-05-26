@@ -3,119 +3,119 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 // Ignore unused lazy property for PluginManager.
 // eslint-disable-next-line mozilla/valid-lazy
 ChromeUtils.defineESModuleGetters(lazy, {
-  ActorManagerParent: "resource://gre/modules/ActorManagerParent.sys.mjs",
-  AppMenuNotifications: "resource://gre/modules/AppMenuNotifications.sys.mjs",
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.sys.mjs",
-  BookmarkHTMLUtils: "resource://gre/modules/BookmarkHTMLUtils.sys.mjs",
-  BookmarkJSONUtils: "resource://gre/modules/BookmarkJSONUtils.sys.mjs",
-  BrowserSearchTelemetry: "resource:///modules/BrowserSearchTelemetry.sys.mjs",
-  BuiltInThemes: "resource:///modules/BuiltInThemes.sys.mjs",
+  ActorManagerParent: "moz-src:///toolkit/modules/ActorManagerParent.sys.mjs",
+  AppMenuNotifications: "moz-src:///toolkit/modules/AppMenuNotifications.sys.mjs",
+  AsyncShutdown: "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs",
+  BookmarkHTMLUtils: "moz-src:///toolkit/components/places/BookmarkHTMLUtils.sys.mjs",
+  BookmarkJSONUtils: "moz-src:///toolkit/components/places/BookmarkJSONUtils.sys.mjs",
+  BrowserSearchTelemetry: "moz-src:///browser/components/search/BrowserSearchTelemetry.sys.mjs",
+  BuiltInThemes: "moz-src:///browser/themes/BuiltInThemes.sys.mjs",
 
   ContextualIdentityService:
-    "resource://gre/modules/ContextualIdentityService.sys.mjs",
+    "moz-src:///toolkit/components/contextualidentity/ContextualIdentityService.sys.mjs",
 
-  Corroborate: "resource://gre/modules/Corroborate.sys.mjs",
-  DAPTelemetrySender: "resource://gre/modules/DAPTelemetrySender.sys.mjs",
-  DeferredTask: "resource://gre/modules/DeferredTask.sys.mjs",
-  DoHController: "resource:///modules/DoHController.sys.mjs",
+  Corroborate: "moz-src:///toolkit/components/corroborator/Corroborate.sys.mjs",
+  DAPTelemetrySender: "moz-src:///toolkit/components/telemetry/dap/DAPTelemetrySender.sys.mjs",
+  DeferredTask: "moz-src:///toolkit/modules/DeferredTask.sys.mjs",
+  DoHController: "moz-src:///browser/components/doh/DoHController.sys.mjs",
 
   DownloadsViewableInternally:
-    "resource:///modules/DownloadsViewableInternally.sys.mjs",
+    "moz-src:///browser/components/downloads/DownloadsViewableInternally.sys.mjs",
 
-  E10SUtils: "resource://gre/modules/E10SUtils.sys.mjs",
+  E10SUtils: "moz-src:///toolkit/modules/E10SUtils.sys.mjs",
   FeatureGate: "resource://featuregates/FeatureGate.sys.mjs",
-  FxAccounts: "resource://gre/modules/FxAccounts.sys.mjs",
-  Integration: "resource://gre/modules/Integration.sys.mjs",
-  Interactions: "resource:///modules/Interactions.sys.mjs",
-  Log: "resource://gre/modules/Log.sys.mjs",
-  LoginBreaches: "resource:///modules/LoginBreaches.sys.mjs",
-  NewTabUtils: "resource://gre/modules/NewTabUtils.sys.mjs",
+  FxAccounts: "moz-src:///services/fxaccounts/FxAccounts.sys.mjs",
+  Integration: "moz-src:///toolkit/modules/Integration.sys.mjs",
+  Interactions: "moz-src:///browser/components/places/Interactions.sys.mjs",
+  Log: "moz-src:///toolkit/modules/Log.sys.mjs",
+  LoginBreaches: "moz-src:///browser/components/aboutlogins/LoginBreaches.sys.mjs",
+  NewTabUtils: "moz-src:///toolkit/modules/NewTabUtils.sys.mjs",
   NimbusFeatures: "resource://nimbus/ExperimentAPI.sys.mjs",
   Normandy: "resource://normandy/Normandy.sys.mjs",
-  OsEnvironment: "resource://gre/modules/OsEnvironment.sys.mjs",
-  PageDataService: "resource:///modules/pagedata/PageDataService.sys.mjs",
-  PageThumbs: "resource://gre/modules/PageThumbs.sys.mjs",
+  OsEnvironment: "moz-src:///toolkit/modules/OsEnvironment.sys.mjs",
+  PageDataService: "moz-src:///browser/components/pagedata/PageDataService.sys.mjs",
+  PageThumbs: "moz-src:///toolkit/components/thumbnails/PageThumbs.sys.mjs",
   PdfJs: "resource://pdf.js/PdfJs.sys.mjs",
-  PermissionUI: "resource:///modules/PermissionUI.sys.mjs",
-  PlacesBackups: "resource://gre/modules/PlacesBackups.sys.mjs",
-  PlacesDBUtils: "resource://gre/modules/PlacesDBUtils.sys.mjs",
-  PlacesUIUtils: "resource:///modules/PlacesUIUtils.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
+  PermissionUI: "moz-src:///browser/modules/PermissionUI.sys.mjs",
+  PlacesBackups: "moz-src:///toolkit/components/places/PlacesBackups.sys.mjs",
+  PlacesDBUtils: "moz-src:///toolkit/components/places/PlacesDBUtils.sys.mjs",
+  PlacesUIUtils: "moz-src:///browser/components/places/PlacesUIUtils.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
   PluginManager: "resource:///actors/PluginParent.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
-  ProvenanceData: "resource:///modules/ProvenanceData.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
+  ProvenanceData: "moz-src:///browser/components/attribution/ProvenanceData.sys.mjs",
 
   PublicSuffixList:
-    "resource://gre/modules/netwerk-dns/PublicSuffixList.sys.mjs",
+    "moz-src:///netwerk/dns/PublicSuffixList.sys.mjs",
 
-  QuickSuggest: "resource:///modules/QuickSuggest.sys.mjs",
-  RFPHelper: "resource://gre/modules/RFPHelper.sys.mjs",
+  QuickSuggest: "moz-src:///browser/components/urlbar/QuickSuggest.sys.mjs",
+  RFPHelper: "moz-src:///toolkit/components/resistfingerprinting/RFPHelper.sys.mjs",
 
   RemoteSecuritySettings:
-    "resource://gre/modules/psm/RemoteSecuritySettings.sys.mjs",
+    "moz-src:///security/manager/ssl/RemoteSecuritySettings.sys.mjs",
 
   RemoteSettings: "resource://services-settings/remote-settings.sys.mjs",
   SaveToPocket: "chrome://pocket/content/SaveToPocket.sys.mjs",
-  ScreenshotsUtils: "resource:///modules/ScreenshotsUtils.sys.mjs",
-  SearchSERPTelemetry: "resource:///modules/SearchSERPTelemetry.sys.mjs",
-  SessionStartup: "resource:///modules/sessionstore/SessionStartup.sys.mjs",
-  SessionStore: "resource:///modules/sessionstore/SessionStore.sys.mjs",
-  ShellService: "resource:///modules/ShellService.sys.mjs",
-  ShortcutUtils: "resource://gre/modules/ShortcutUtils.sys.mjs",
+  ScreenshotsUtils: "moz-src:///browser/components/screenshots/ScreenshotsUtils.sys.mjs",
+  SearchSERPTelemetry: "moz-src:///browser/components/search/SearchSERPTelemetry.sys.mjs",
+  SessionStartup: "moz-src:///browser/components/sessionstore/SessionStartup.sys.mjs",
+  SessionStore: "moz-src:///browser/components/sessionstore/SessionStore.sys.mjs",
+  ShellService: "moz-src:///browser/components/shell/ShellService.sys.mjs",
+  ShortcutUtils: "moz-src:///toolkit/modules/ShortcutUtils.sys.mjs",
 
   SpecialMessageActions:
     "resource://messaging-system/lib/SpecialMessageActions.sys.mjs",
 
-  TRRRacer: "resource:///modules/TRRPerformance.sys.mjs",
-  TelemetryUtils: "resource://gre/modules/TelemetryUtils.sys.mjs",
+  TRRRacer: "moz-src:///browser/components/doh/TRRPerformance.sys.mjs",
+  TelemetryUtils: "moz-src:///toolkit/components/telemetry/app/TelemetryUtils.sys.mjs",
   UIState: "resource://services-sync/UIState.sys.mjs",
-  UrlbarPrefs: "resource:///modules/UrlbarPrefs.sys.mjs",
-  WebChannel: "resource://gre/modules/WebChannel.sys.mjs",
+  UrlbarPrefs: "moz-src:///browser/components/urlbar/UrlbarPrefs.sys.mjs",
+  WebChannel: "moz-src:///toolkit/modules/WebChannel.sys.mjs",
   WindowsRegistry: "resource://gre/modules/WindowsRegistry.sys.mjs",
-  clearTimeout: "resource://gre/modules/Timer.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  clearTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AboutNewTab: "resource:///modules/AboutNewTab.jsm",
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
+  AboutNewTab: "moz-src:///browser/modules/AboutNewTab.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
   ASRouterDefaultConfig:
     "resource://activity-stream/lib/ASRouterDefaultConfig.jsm",
   ASRouterNewTabHook: "resource://activity-stream/lib/ASRouterNewTabHook.jsm",
   ASRouter: "resource://activity-stream/lib/ASRouter.jsm",
-  Blocklist: "resource://gre/modules/Blocklist.jsm",
-  BrowserUsageTelemetry: "resource:///modules/BrowserUsageTelemetry.jsm",
-  BrowserUIUtils: "resource:///modules/BrowserUIUtils.jsm",
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
-  Discovery: "resource:///modules/Discovery.jsm",
-  ExtensionsUI: "resource:///modules/ExtensionsUI.jsm",
-  HomePage: "resource:///modules/HomePage.jsm",
-  NetUtil: "resource://gre/modules/NetUtil.jsm",
+  Blocklist: "moz-src:///toolkit/mozapps/extensions/Blocklist.jsm",
+  BrowserUsageTelemetry: "moz-src:///browser/modules/BrowserUsageTelemetry.jsm",
+  BrowserUIUtils: "moz-src:///browser/modules/BrowserUIUtils.jsm",
+  BrowserWindowTracker: "moz-src:///browser/modules/BrowserWindowTracker.jsm",
+  Discovery: "moz-src:///browser/modules/Discovery.jsm",
+  ExtensionsUI: "moz-src:///browser/modules/ExtensionsUI.jsm",
+  HomePage: "moz-src:///browser/modules/HomePage.jsm",
+  NetUtil: "moz-src:///netwerk/base/NetUtil.jsm",
   OnboardingMessageProvider:
     "resource://activity-stream/lib/OnboardingMessageProvider.jsm",
-  PageActions: "resource:///modules/PageActions.jsm",
-  ProcessHangMonitor: "resource:///modules/ProcessHangMonitor.jsm",
-  SafeBrowsing: "resource://gre/modules/SafeBrowsing.jsm",
-  Sanitizer: "resource:///modules/Sanitizer.jsm",
-  TabCrashHandler: "resource:///modules/ContentCrashHandlers.jsm",
-  TabUnloader: "resource:///modules/TabUnloader.jsm",
+  PageActions: "moz-src:///browser/modules/PageActions.jsm",
+  ProcessHangMonitor: "moz-src:///browser/modules/ProcessHangMonitor.jsm",
+  SafeBrowsing: "moz-src:///toolkit/components/url-classifier/SafeBrowsing.jsm",
+  Sanitizer: "moz-src:///browser/modules/Sanitizer.jsm",
+  TabCrashHandler: "moz-src:///browser/modules/ContentCrashHandlers.jsm",
+  TabUnloader: "moz-src:///browser/modules/TabUnloader.jsm",
 });
 
 if (AppConstants.MOZ_UPDATER) {
   ChromeUtils.defineESModuleGetters(lazy, {
-    UpdateListener: "resource://gre/modules/UpdateListener.sys.mjs",
+    UpdateListener: "moz-src:///toolkit/mozapps/update/UpdateListener.sys.mjs",
   });
 }
 if (AppConstants.MOZ_UPDATE_AGENT) {
   ChromeUtils.defineESModuleGetters(lazy, {
-    BackgroundUpdate: "resource://gre/modules/BackgroundUpdate.sys.mjs",
+    BackgroundUpdate: "moz-src:///toolkit/mozapps/update/BackgroundUpdate.sys.mjs",
   });
 }
 
@@ -719,7 +719,7 @@ let JSWINDOWACTORS = {
 
   ScreenshotsComponent: {
     parent: {
-      esModuleURI: "resource:///modules/ScreenshotsUtils.sys.mjs",
+      esModuleURI: "moz-src:///browser/components/screenshots/ScreenshotsUtils.sys.mjs",
     },
     child: {
       esModuleURI: "resource:///actors/ScreenshotsComponentChild.sys.mjs",
@@ -793,10 +793,10 @@ let JSWINDOWACTORS = {
   // This is being replaced by a newer ML-backed translation service. See Bug 971044.
   Translation: {
     parent: {
-      moduleURI: "resource:///modules/translation/TranslationParent.jsm",
+      moduleURI: "moz-src:///browser/components/translation/TranslationParent.jsm",
     },
     child: {
-      moduleURI: "resource:///modules/translation/TranslationChild.jsm",
+      moduleURI: "moz-src:///browser/components/translation/TranslationChild.jsm",
       events: {
         pageshow: {},
         load: { mozSystemGroup: true, capture: true },
@@ -807,10 +807,10 @@ let JSWINDOWACTORS = {
 
   UITour: {
     parent: {
-      esModuleURI: "resource:///modules/UITourParent.sys.mjs",
+      esModuleURI: "moz-src:///browser/components/uitour/UITourParent.sys.mjs",
     },
     child: {
-      esModuleURI: "resource:///modules/UITourChild.sys.mjs",
+      esModuleURI: "moz-src:///browser/components/uitour/UITourChild.sys.mjs",
       events: {
         mozUITour: { wantUntrusted: true },
       },
@@ -839,7 +839,7 @@ XPCOMUtils.defineLazyGetter(
 
 if (AppConstants.MOZ_CRASHREPORTER) {
   XPCOMUtils.defineLazyModuleGetters(lazy, {
-    UnsubmittedCrashHandler: "resource:///modules/ContentCrashHandlers.jsm",
+    UnsubmittedCrashHandler: "moz-src:///browser/modules/ContentCrashHandlers.jsm",
   });
 }
 
@@ -917,7 +917,7 @@ export function BrowserGlue() {
 
   XPCOMUtils.defineLazyGetter(this, "_distributionCustomizer", function() {
     const { DistributionCustomizer } = ChromeUtils.import(
-      "resource:///modules/distribution.js"
+      "moz-src:///browser/components/distribution.js"
     );
     return new DistributionCustomizer();
   });
@@ -1408,7 +1408,7 @@ BrowserGlue.prototype = {
     }
 
     const { ResetProfile } = ChromeUtils.importESModule(
-      "resource://gre/modules/ResetProfile.sys.mjs"
+      "moz-src:///toolkit/modules/ResetProfile.sys.mjs"
     );
     if (!ResetProfile.resetSupported()) {
       return;
@@ -1585,7 +1585,7 @@ BrowserGlue.prototype = {
     win.openTime = Cu.now();
 
     let { TelemetryTimestamps } = ChromeUtils.importESModule(
-      "resource://gre/modules/TelemetryTimestamps.sys.mjs"
+      "moz-src:///toolkit/components/telemetry/app/TelemetryTimestamps.sys.mjs"
     );
     TelemetryTimestamps.add("blankWindowShown");
   },
@@ -1645,7 +1645,7 @@ BrowserGlue.prototype = {
     channel.listen((id, data, target) => {
       if (data.command == "request") {
         let { Troubleshoot } = ChromeUtils.importESModule(
-          "resource://gre/modules/Troubleshoot.sys.mjs"
+          "moz-src:///toolkit/modules/Troubleshoot.sys.mjs"
         );
         Troubleshoot.snapshot().then(snapshotData => {
           // for privacy we remove crash IDs and all preferences (but bug 1091944
@@ -1677,7 +1677,7 @@ BrowserGlue.prototype = {
       let updateChannel;
       try {
         updateChannel = ChromeUtils.importESModule(
-          "resource://gre/modules/UpdateUtils.sys.mjs"
+          "moz-src:///toolkit/modules/UpdateUtils.sys.mjs"
         ).UpdateUtils.UpdateChannel;
       } catch (ex) {}
       if (updateChannel) {
@@ -2958,7 +2958,7 @@ BrowserGlue.prototype = {
 
       function GMPInstallManagerSimpleCheckAndInstall() {
         let { GMPInstallManager } = ChromeUtils.importESModule(
-          "resource://gre/modules/GMPInstallManager.sys.mjs"
+          "moz-src:///toolkit/modules/GMPInstallManager.sys.mjs"
         );
         this._gmpInstallManager = new GMPInstallManager();
         // We don't really care about the results, if someone is interested they
@@ -4017,7 +4017,7 @@ BrowserGlue.prototype = {
       // from default placement. This is done early enough that it doesn't
       // impact adding new managed bookmarks.
       const { CustomizableUI } = ChromeUtils.import(
-        "resource:///modules/CustomizableUI.jsm"
+        "moz-src:///browser/components/customizableui/CustomizableUI.jsm"
       );
       CustomizableUI.removeWidgetFromArea("managed-bookmarks");
     }

@@ -6,7 +6,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const lazy = {};
-ChromeUtils.defineModuleGetter(lazy, "AddonManager", "resource://gre/modules/AddonManager.jsm");
+ChromeUtils.defineModuleGetter(lazy, "AddonManager", "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm");
 
 // Immutable for export.
 export var AppConstants = Object.freeze({

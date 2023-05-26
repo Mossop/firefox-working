@@ -1,13 +1,13 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  SessionStore: "resource:///modules/sessionstore/SessionStore.sys.mjs",
-  TabStateFlusher: "resource:///modules/sessionstore/TabStateFlusher.sys.mjs",
+  SessionStore: "moz-src:///browser/components/sessionstore/SessionStore.sys.mjs",
+  TabStateFlusher: "moz-src:///browser/components/sessionstore/TabStateFlusher.sys.mjs",
 });
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionControlledPopup",
-  "resource:///modules/ExtensionControlledPopup.jsm"
+  "moz-src:///browser/components/extensions/ExtensionControlledPopup.jsm"
 );
 
 const triggeringPrincipal_base64 = E10SUtils.SERIALIZED_SYSTEMPRINCIPAL;

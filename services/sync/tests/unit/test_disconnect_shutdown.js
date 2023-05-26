@@ -7,7 +7,7 @@ const { SyncDisconnect, SyncDisconnectInternal } = ChromeUtils.importESModule(
   "resource://services-sync/SyncDisconnect.sys.mjs"
 );
 const { AsyncShutdown } = ChromeUtils.importESModule(
-  "resource://gre/modules/AsyncShutdown.sys.mjs"
+  "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs"
 );
 
 add_task(async function test_shutdown_blocker() {

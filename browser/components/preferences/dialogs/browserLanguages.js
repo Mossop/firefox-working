@@ -10,12 +10,12 @@ let { LangPackMatcher } = window.top;
 ChromeUtils.defineModuleGetter(
   this,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 ChromeUtils.defineModuleGetter(
   this,
   "AddonRepository",
-  "resource://gre/modules/addons/AddonRepository.jsm"
+  "moz-src:///toolkit/mozapps/extensions/internal/AddonRepository.jsm"
 );
 ChromeUtils.defineESModuleGetters(this, {
   RemoteSettings: "resource://services-settings/remote-settings.sys.mjs",
@@ -23,7 +23,7 @@ ChromeUtils.defineESModuleGetters(this, {
 ChromeUtils.defineModuleGetter(
   this,
   "SelectionChangedMenulist",
-  "resource:///modules/SelectionChangedMenulist.jsm"
+  "moz-src:///browser/modules/SelectionChangedMenulist.jsm"
 );
 
 document

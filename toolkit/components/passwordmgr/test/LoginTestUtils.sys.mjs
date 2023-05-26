@@ -16,7 +16,7 @@ import { Assert as AssertCls } from "resource://testing-common/Assert.sys.mjs";
 let Assert = AssertCls;
 
 import { TestUtils } from "resource://testing-common/TestUtils.sys.mjs";
-import { setTimeout } from "resource://gre/modules/Timer.sys.mjs";
+import { setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 import { FileTestUtils } from "resource://testing-common/FileTestUtils.sys.mjs";
 
 const LoginInfo = Components.Constructor(
@@ -78,7 +78,7 @@ export const LoginTestUtils = {
 
   resetGeneratedPasswordsCache() {
     let { LoginManagerParent } = ChromeUtils.importESModule(
-      "resource://gre/modules/LoginManagerParent.sys.mjs"
+      "moz-src:///toolkit/components/passwordmgr/LoginManagerParent.sys.mjs"
     );
     LoginManagerParent.getGeneratedPasswordsByPrincipalOrigin().clear();
   },
@@ -477,7 +477,7 @@ LoginTestUtils.testData = {
 LoginTestUtils.recipes = {
   getRecipeParent() {
     let { LoginManagerParent } = ChromeUtils.importESModule(
-      "resource://gre/modules/LoginManagerParent.sys.mjs"
+      "moz-src:///toolkit/components/passwordmgr/LoginManagerParent.sys.mjs"
     );
     if (!LoginManagerParent.recipeParentPromise) {
       return null;

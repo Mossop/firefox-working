@@ -3,7 +3,7 @@
  */
 
 let { AddonUpdateChecker } = ChromeUtils.import(
-  "resource://gre/modules/addons/AddonUpdateChecker.jsm"
+  "moz-src:///toolkit/mozapps/extensions/internal/AddonUpdateChecker.jsm"
 );
 
 const updatejson = RELATIVE_DIR + "browser_updatessl.json";

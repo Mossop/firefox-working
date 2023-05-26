@@ -12,7 +12,7 @@
  */
 
 const { AddonManager } = ChromeUtils.import(
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 const { RemoteSettings } = ChromeUtils.importESModule(
@@ -20,7 +20,7 @@ const { RemoteSettings } = ChromeUtils.importESModule(
 );
 
 const { TelemetryController } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryController.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs"
 );
 
 let parserUtils = Cc["@mozilla.org/parserutils;1"].getService(

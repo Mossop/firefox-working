@@ -13,7 +13,7 @@ var EXPORTED_SYMBOLS = [
 ];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
@@ -22,21 +22,21 @@ const { AppConstants } = ChromeUtils.importESModule(
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  ClientID: "resource://gre/modules/ClientID.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
-  ProvenanceData: "resource:///modules/ProvenanceData.sys.mjs",
-  SearchSERPTelemetry: "resource:///modules/SearchSERPTelemetry.sys.mjs",
-  SearchSERPTelemetryUtils: "resource:///modules/SearchSERPTelemetry.sys.mjs",
+  ClientID: "moz-src:///toolkit/components/telemetry/app/ClientID.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
+  ProvenanceData: "moz-src:///browser/components/attribution/ProvenanceData.sys.mjs",
+  SearchSERPTelemetry: "moz-src:///browser/components/search/SearchSERPTelemetry.sys.mjs",
+  SearchSERPTelemetryUtils: "moz-src:///browser/components/search/SearchSERPTelemetry.sys.mjs",
   WindowsInstallsInfo:
-    "resource://gre/modules/components-utils/WindowsInstallsInfo.sys.mjs",
-  clearTimeout: "resource://gre/modules/Timer.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
-  DeferredTask: "resource://gre/modules/DeferredTask.sys.mjs",
+    "moz-src:///toolkit/components/utils/WindowsInstallsInfo.sys.mjs",
+  clearTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
+  DeferredTask: "moz-src:///toolkit/modules/DeferredTask.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  CustomizableUI: "resource:///modules/CustomizableUI.jsm",
-  PageActions: "resource:///modules/PageActions.jsm",
+  CustomizableUI: "moz-src:///browser/components/customizableui/CustomizableUI.jsm",
+  PageActions: "moz-src:///browser/modules/PageActions.jsm",
 });
 
 // This pref is in seconds!

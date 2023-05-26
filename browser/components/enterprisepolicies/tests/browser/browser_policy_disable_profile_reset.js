@@ -3,7 +3,7 @@
 "use strict";
 
 let { ResetProfile } = ChromeUtils.importESModule(
-  "resource://gre/modules/ResetProfile.sys.mjs"
+  "moz-src:///toolkit/modules/ResetProfile.sys.mjs"
 );
 
 // For this test to work properly, this profile actually needs to be

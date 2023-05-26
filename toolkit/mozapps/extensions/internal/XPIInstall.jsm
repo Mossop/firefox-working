@@ -24,44 +24,44 @@ var EXPORTED_SYMBOLS = [
 ];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const {
   computeSha256HashAsString,
   getHashStringForCrypto,
 } = ChromeUtils.importESModule(
-  "resource://gre/modules/addons/crypto-utils.sys.mjs"
+  "moz-src:///toolkit/mozapps/extensions/internal/crypto-utils.sys.mjs"
 );
 
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 const { AddonManager, AddonManagerPrivate } = ChromeUtils.import(
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  CertUtils: "resource://gre/modules/CertUtils.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
-  UpdateUtils: "resource://gre/modules/UpdateUtils.sys.mjs",
+  CertUtils: "moz-src:///toolkit/modules/CertUtils.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
+  UpdateUtils: "moz-src:///toolkit/modules/UpdateUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonRepository: "resource://gre/modules/addons/AddonRepository.jsm",
-  AddonSettings: "resource://gre/modules/addons/AddonSettings.jsm",
-  BuiltInThemesHelpers: "resource://gre/modules/addons/XPIDatabase.jsm",
-  ExtensionData: "resource://gre/modules/Extension.jsm",
-  NetUtil: "resource://gre/modules/NetUtil.jsm",
-  ProductAddonChecker: "resource://gre/modules/addons/ProductAddonChecker.jsm",
-  AddonInternal: "resource://gre/modules/addons/XPIDatabase.jsm",
-  XPIDatabase: "resource://gre/modules/addons/XPIDatabase.jsm",
-  XPIInternal: "resource://gre/modules/addons/XPIProvider.jsm",
+  AddonRepository: "moz-src:///toolkit/mozapps/extensions/internal/AddonRepository.jsm",
+  AddonSettings: "moz-src:///toolkit/mozapps/extensions/internal/AddonSettings.jsm",
+  BuiltInThemesHelpers: "moz-src:///toolkit/mozapps/extensions/internal/XPIDatabase.jsm",
+  ExtensionData: "moz-src:///toolkit/components/extensions/Extension.jsm",
+  NetUtil: "moz-src:///netwerk/base/NetUtil.jsm",
+  ProductAddonChecker: "moz-src:///toolkit/mozapps/extensions/internal/ProductAddonChecker.jsm",
+  AddonInternal: "moz-src:///toolkit/mozapps/extensions/internal/XPIDatabase.jsm",
+  XPIDatabase: "moz-src:///toolkit/mozapps/extensions/internal/XPIDatabase.jsm",
+  XPIInternal: "moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "IconDetails", () => {
-  return ChromeUtils.import("resource://gre/modules/ExtensionParent.jsm")
+  return ChromeUtils.import("moz-src:///toolkit/components/extensions/ExtensionParent.jsm")
     .ExtensionParent.IconDetails;
 });
 
@@ -180,7 +180,7 @@ const MSG_JAR_FLUSH = "Extension:FlushJarCache";
 var gIDTest = /^(\{[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\}|[a-z0-9-\._]*\@[a-z0-9-\._]+)$/i;
 
 const { Log } = ChromeUtils.importESModule(
-  "resource://gre/modules/Log.sys.mjs"
+  "moz-src:///toolkit/modules/Log.sys.mjs"
 );
 const LOGGER_ID = "addons.xpi";
 
@@ -2880,7 +2880,7 @@ var UpdateChecker = function(
   }
 
   ({ AddonUpdateChecker } = ChromeUtils.import(
-    "resource://gre/modules/addons/AddonUpdateChecker.jsm"
+    "moz-src:///toolkit/mozapps/extensions/internal/AddonUpdateChecker.jsm"
   ));
 
   this.addon = aAddon;

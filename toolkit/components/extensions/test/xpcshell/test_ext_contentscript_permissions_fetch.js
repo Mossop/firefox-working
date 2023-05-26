@@ -6,7 +6,7 @@ const server = createHttpServer({ hosts: ["example.com", "example.net"] });
 server.registerDirectory("/data/", do_get_file("data"));
 
 const { ExtensionPermissions } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionPermissions.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm"
 );
 
 function grantOptional({ extension: ext }, origins) {

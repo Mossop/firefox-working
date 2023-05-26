@@ -2,16 +2,16 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { Log } from "resource://gre/modules/Log.sys.mjs";
-import { clearTimeout, setTimeout } from "resource://gre/modules/Timer.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
+import { clearTimeout, setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 
 import { Observers } from "resource://services-common/observers.sys.mjs";
-import { TelemetryUtils } from "resource://gre/modules/TelemetryUtils.sys.mjs";
+import { TelemetryUtils } from "moz-src:///toolkit/components/telemetry/app/TelemetryUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  TelemetrySend: "resource://gre/modules/TelemetrySend.sys.mjs",
+  TelemetrySend: "moz-src:///toolkit/components/telemetry/app/TelemetrySend.sys.mjs",
 });
 
 const LOGGER_NAME = "Toolkit.Telemetry";
@@ -495,7 +495,7 @@ var TelemetryReportingPolicyImpl = {
     firstRunPolicyURL = Services.urlFormatter.formatURL(firstRunPolicyURL);
 
     const { BrowserWindowTracker } = ChromeUtils.import(
-      "resource:///modules/BrowserWindowTracker.jsm"
+      "moz-src:///browser/modules/BrowserWindowTracker.jsm"
     );
     let win = BrowserWindowTracker.getTopWindow();
 

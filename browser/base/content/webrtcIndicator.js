@@ -3,25 +3,25 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 const { showStreamSharingMenu, webrtcUI } = ChromeUtils.import(
-  "resource:///modules/webrtcUI.jsm"
+  "moz-src:///browser/modules/webrtcUI.jsm"
 );
 
 ChromeUtils.defineModuleGetter(
   this,
   "MacOSWebRTCStatusbarIndicator",
-  "resource:///modules/webrtcUI.jsm"
+  "moz-src:///browser/modules/webrtcUI.jsm"
 );
 
 ChromeUtils.defineModuleGetter(
   this,
   "BrowserWindowTracker",
-  "resource:///modules/BrowserWindowTracker.jsm"
+  "moz-src:///browser/modules/BrowserWindowTracker.jsm"
 );
 
 XPCOMUtils.defineLazyServiceGetter(

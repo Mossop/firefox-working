@@ -2,11 +2,11 @@
  * http://creativecommons.org/publicdomain/zero/1.0/ */
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  PageDataSchema: "resource:///modules/pagedata/PageDataSchema.sys.mjs",
+  PageDataSchema: "moz-src:///browser/components/pagedata/PageDataSchema.sys.mjs",
 });
 
 const { HttpServer } = ChromeUtils.import("resource://testing-common/httpd.js");

@@ -190,7 +190,7 @@
    * boilerplate hooks.
    */
   function createWorkerString(fn) {
-    return `importScripts("resource://gre/modules/workers/require.js");
+    return `importScripts("moz-src:///toolkit/components/workerloader/require.js");
             const { createTask } = require("resource://devtools/shared/worker/helper.js");
             createTask(self, "workerifiedTask", ${fn.toString()});`;
   }

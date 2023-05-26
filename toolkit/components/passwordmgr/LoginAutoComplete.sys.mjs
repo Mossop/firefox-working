@@ -6,16 +6,16 @@
  * nsIAutoCompleteResult and nsILoginAutoCompleteSearch implementations for saved logins.
  */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  InsecurePasswordUtils: "resource://gre/modules/InsecurePasswordUtils.sys.mjs",
-  LoginFormFactory: "resource://gre/modules/LoginFormFactory.sys.mjs",
-  LoginHelper: "resource://gre/modules/LoginHelper.sys.mjs",
-  LoginManagerChild: "resource://gre/modules/LoginManagerChild.sys.mjs",
-  NewPasswordModel: "resource://gre/modules/NewPasswordModel.sys.mjs",
+  InsecurePasswordUtils: "moz-src:///toolkit/components/passwordmgr/InsecurePasswordUtils.sys.mjs",
+  LoginFormFactory: "moz-src:///toolkit/components/passwordmgr/LoginFormFactory.sys.mjs",
+  LoginHelper: "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs",
+  LoginManagerChild: "moz-src:///toolkit/components/passwordmgr/LoginManagerChild.sys.mjs",
+  NewPasswordModel: "moz-src:///toolkit/components/passwordmgr/NewPasswordModel.sys.mjs",
 });
 XPCOMUtils.defineLazyServiceGetter(
   lazy,

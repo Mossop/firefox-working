@@ -8,7 +8,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "AbuseReporter",
-  "resource://gre/modules/AbuseReporter.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AbuseReporter.jsm"
 );
 
 const IS_DIALOG_WINDOW = window.arguments && window.arguments.length;

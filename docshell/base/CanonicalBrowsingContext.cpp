@@ -2514,7 +2514,7 @@ void CanonicalBrowsingContext::RestoreState::Resolve() {
 nsresult CanonicalBrowsingContext::WriteSessionStorageToSessionStore(
     const nsTArray<SSCacheCopy>& aSesssionStorage, uint32_t aEpoch) {
   nsCOMPtr<nsISessionStoreFunctions> funcs = do_ImportESModule(
-      "resource://gre/modules/SessionStoreFunctions.sys.mjs", fallible);
+      "moz-src:///toolkit/components/sessionstore/SessionStoreFunctions.sys.mjs", fallible);
   if (!funcs) {
     return NS_ERROR_FAILURE;
   }

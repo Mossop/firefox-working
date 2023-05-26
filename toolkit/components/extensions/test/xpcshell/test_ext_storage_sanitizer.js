@@ -6,7 +6,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "Sanitizer",
-  "resource:///modules/Sanitizer.jsm"
+  "moz-src:///browser/modules/Sanitizer.jsm"
 );
 
 async function test_sanitize_offlineApps(storageHelpersScript) {

@@ -17,8 +17,8 @@ import { CrashManager } from "resource://gre/modules/CrashManager.sys.mjs";
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Log: "resource://gre/modules/Log.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  Log: "moz-src:///toolkit/modules/Log.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 var loggingConfigured = false;

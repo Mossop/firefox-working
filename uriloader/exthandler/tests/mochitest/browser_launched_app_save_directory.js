@@ -1,5 +1,5 @@
 const { DownloadIntegration } = ChromeUtils.importESModule(
-  "resource://gre/modules/DownloadIntegration.sys.mjs"
+  "moz-src:///toolkit/components/downloads/DownloadIntegration.sys.mjs"
 );
 
 const { TestUtils } = ChromeUtils.importESModule(

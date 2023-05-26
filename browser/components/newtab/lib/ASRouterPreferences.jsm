@@ -4,7 +4,7 @@
 "use strict";
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const PROVIDER_PREF_BRANCH =
@@ -62,7 +62,7 @@ class _ASRouterPreferences {
 
     XPCOMUtils.defineLazyGetter(this, "console", () => {
       let { ConsoleAPI } = ChromeUtils.importESModule(
-        "resource://gre/modules/Console.sys.mjs"
+        "moz-src:///toolkit/modules/Console.sys.mjs"
       );
       let consoleOptions = {
         maxLogLevel: "error",

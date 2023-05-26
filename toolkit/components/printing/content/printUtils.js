@@ -57,7 +57,7 @@ XPCOMUtils.defineLazyPreferenceGetter(
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  PromptUtils: "resource://gre/modules/PromptUtils.sys.mjs",
+  PromptUtils: "moz-src:///toolkit/components/prompts/src/PromptUtils.sys.mjs",
 });
 
 var PrintUtils = {

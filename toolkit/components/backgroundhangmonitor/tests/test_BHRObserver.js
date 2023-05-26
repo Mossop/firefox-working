@@ -2,7 +2,7 @@
    http://creativecommons.org/publicdomain/zero/1.0/ */
 
 const { TelemetryUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryUtils.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryUtils.sys.mjs"
 );
 
 function ensureProfilerInitialized() {

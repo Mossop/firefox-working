@@ -15,12 +15,12 @@ const MANAGE_CREDITCARDS_URL =
   "chrome://formautofill/content/manageCreditCards.xhtml";
 
 import { FormAutofill } from "resource://autofill/FormAutofill.sys.mjs";
-import { FormAutofillUtils } from "resource://gre/modules/shared/FormAutofillUtils.sys.mjs";
+import { FormAutofillUtils } from "moz-src:///toolkit/components/formautofill/shared/FormAutofillUtils.sys.mjs";
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  OSKeyStore: "resource://gre/modules/OSKeyStore.sys.mjs",
+  OSKeyStore: "moz-src:///toolkit/modules/OSKeyStore.sys.mjs",
 });
 
 const {

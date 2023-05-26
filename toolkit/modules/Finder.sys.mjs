@@ -3,17 +3,17 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
-import { Rect } from "resource://gre/modules/Geometry.sys.mjs";
+import { Rect } from "moz-src:///toolkit/modules/Geometry.sys.mjs";
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  FinderIterator: "resource://gre/modules/FinderIterator.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  FinderIterator: "moz-src:///toolkit/modules/FinderIterator.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyServiceGetter(
@@ -173,7 +173,7 @@ Finder.prototype = {
     }
 
     const { FinderHighlighter } = ChromeUtils.importESModule(
-      "resource://gre/modules/FinderHighlighter.sys.mjs"
+      "moz-src:///toolkit/modules/FinderHighlighter.sys.mjs"
     );
     return (this._highlighter = new FinderHighlighter(this));
   },

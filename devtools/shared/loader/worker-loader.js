@@ -391,7 +391,7 @@ var {
     Cu.evalInSandbox(
       `
 const { addDebuggerToGlobal } = ChromeUtils.importESModule(
-  'resource://gre/modules/jsdebugger.sys.mjs'
+  'moz-src:///devtools/platform/jsdebugger.sys.mjs'
 );
 addDebuggerToGlobal(globalThis);
 `,
@@ -421,7 +421,7 @@ addDebuggerToGlobal(globalThis);
     };
 
     const Timer = ChromeUtils.importESModule(
-      "resource://gre/modules/Timer.sys.mjs"
+      "moz-src:///toolkit/modules/Timer.sys.mjs"
     );
 
     const setImmediate = function(callback) {

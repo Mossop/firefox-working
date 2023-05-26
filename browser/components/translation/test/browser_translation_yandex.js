@@ -47,10 +47,10 @@ add_task(async function test_yandex_translation() {
 
   await SpecialPowers.spawn(browser, [], async function() {
     const { TranslationDocument } = ChromeUtils.import(
-      "resource:///modules/translation/TranslationDocument.jsm"
+      "moz-src:///browser/components/translation/TranslationDocument.jsm"
     );
     const { YandexTranslator } = ChromeUtils.import(
-      "resource:///modules/translation/YandexTranslator.jsm"
+      "moz-src:///browser/components/translation/YandexTranslator.jsm"
     );
 
     let client = new YandexTranslator(

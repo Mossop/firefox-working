@@ -8,7 +8,7 @@
 
 ChromeUtils.defineESModuleGetters(this, {
   ExperimentFakes: "resource://testing-common/NimbusTestUtils.sys.mjs",
-  MerinoClient: "resource:///modules/MerinoClient.sys.mjs",
+  MerinoClient: "moz-src:///browser/components/urlbar/MerinoClient.sys.mjs",
   NimbusFeatures: "resource://nimbus/ExperimentAPI.sys.mjs",
 });
 

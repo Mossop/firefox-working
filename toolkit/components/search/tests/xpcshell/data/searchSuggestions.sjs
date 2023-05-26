@@ -2,9 +2,9 @@
  * http://creativecommons.org/publicdomain/zero/1.0/ */
 
 let { setTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
-let { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+let { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 
 Cu.importGlobalProperties(["TextEncoder"]);
 

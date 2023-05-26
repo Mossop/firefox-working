@@ -7,14 +7,14 @@
 import {
   EngineURL,
   SearchEngine,
-} from "resource://gre/modules/SearchEngine.sys.mjs";
+} from "moz-src:///toolkit/components/search/SearchEngine.sys.mjs";
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  SearchUtils: "resource://gre/modules/SearchUtils.sys.mjs",
+  SearchUtils: "moz-src:///toolkit/components/search/SearchUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "logConsole", () => {

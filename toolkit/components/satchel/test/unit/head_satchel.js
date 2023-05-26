@@ -13,14 +13,14 @@ const CURRENT_SCHEMA = 5;
 const PR_HOURS = 60 * 60 * 1000000;
 
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  FormHistory: "resource://gre/modules/FormHistory.sys.mjs",
+  FormHistory: "moz-src:///toolkit/components/satchel/FormHistory.sys.mjs",
   FormHistoryTestUtils:
     "resource://testing-common/FormHistoryTestUtils.sys.mjs",
-  Sqlite: "resource://gre/modules/Sqlite.sys.mjs",
+  Sqlite: "moz-src:///toolkit/modules/Sqlite.sys.mjs",
 });
 
 do_get_profile();

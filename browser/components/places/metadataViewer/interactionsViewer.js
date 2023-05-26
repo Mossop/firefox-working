@@ -5,13 +5,13 @@
 /* eslint-env module */
 
 const { Interactions } = ChromeUtils.importESModule(
-  "resource:///modules/Interactions.sys.mjs"
+  "moz-src:///browser/components/places/Interactions.sys.mjs"
 );
 const { PlacesUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PlacesUtils.sys.mjs"
+  "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs"
 );
 const { PlacesDBUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PlacesDBUtils.sys.mjs"
+  "moz-src:///toolkit/components/places/PlacesDBUtils.sys.mjs"
 );
 
 /**

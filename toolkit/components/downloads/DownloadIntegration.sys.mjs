@@ -9,24 +9,24 @@
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
-import { Downloads } from "resource://gre/modules/Downloads.sys.mjs";
-import { Integration } from "resource://gre/modules/Integration.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { Downloads } from "moz-src:///toolkit/components/downloads/Downloads.sys.mjs";
+import { Integration } from "moz-src:///toolkit/modules/Integration.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.sys.mjs",
-  DeferredTask: "resource://gre/modules/DeferredTask.sys.mjs",
-  DownloadSpamProtection: "resource:///modules/DownloadSpamProtection.sys.mjs",
-  DownloadStore: "resource://gre/modules/DownloadStore.sys.mjs",
-  DownloadUIHelper: "resource://gre/modules/DownloadUIHelper.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
+  AsyncShutdown: "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs",
+  DeferredTask: "moz-src:///toolkit/modules/DeferredTask.sys.mjs",
+  DownloadSpamProtection: "moz-src:///browser/components/downloads/DownloadSpamProtection.sys.mjs",
+  DownloadStore: "moz-src:///toolkit/components/downloads/DownloadStore.sys.mjs",
+  DownloadUIHelper: "moz-src:///toolkit/components/downloads/DownloadUIHelper.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
 });
 ChromeUtils.defineModuleGetter(
   lazy,
   "NetUtil",
-  "resource://gre/modules/NetUtil.jsm"
+  "moz-src:///netwerk/base/NetUtil.jsm"
 );
 
 XPCOMUtils.defineLazyServiceGetter(
@@ -67,7 +67,7 @@ XPCOMUtils.defineLazyServiceGetter(
 Integration.downloads.defineESModuleGetter(
   lazy,
   "DownloadIntegration",
-  "resource://gre/modules/DownloadIntegration.sys.mjs"
+  "moz-src:///toolkit/components/downloads/DownloadIntegration.sys.mjs"
 );
 XPCOMUtils.defineLazyGetter(lazy, "gCombinedDownloadIntegration", () => {
   return lazy.DownloadIntegration;

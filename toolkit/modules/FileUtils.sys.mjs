@@ -6,7 +6,7 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Deprecated: "resource://gre/modules/Deprecated.sys.mjs",
+  Deprecated: "moz-src:///toolkit/modules/Deprecated.sys.mjs",
 });
 
 export var FileUtils = {

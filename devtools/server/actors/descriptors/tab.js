@@ -24,7 +24,7 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "PlacesUtils",
-  "resource://gre/modules/PlacesUtils.jsm"
+  "moz-src:///toolkit/components/places/PlacesUtils.jsm"
 );
 
 const { AppConstants } = ChromeUtils.importESModule(

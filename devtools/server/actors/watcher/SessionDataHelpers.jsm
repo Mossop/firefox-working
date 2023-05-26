@@ -32,7 +32,7 @@ if (typeof module == "object") {
   );
 } else {
   const { XPCOMUtils } = ChromeUtils.importESModule(
-    "resource://gre/modules/XPCOMUtils.sys.mjs"
+    "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
   );
   // Ignore the "duplicate" definitions here as this are also defined
   // in the if block above.

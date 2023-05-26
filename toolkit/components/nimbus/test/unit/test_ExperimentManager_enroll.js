@@ -4,7 +4,7 @@ const { NormandyTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/NormandyTestUtils.sys.mjs"
 );
 const { Sampling } = ChromeUtils.importESModule(
-  "resource://gre/modules/components-utils/Sampling.sys.mjs"
+  "moz-src:///toolkit/components/utils/Sampling.sys.mjs"
 );
 const { ClientEnvironment } = ChromeUtils.importESModule(
   "resource://normandy/lib/ClientEnvironment.sys.mjs"
@@ -15,7 +15,7 @@ const { ExperimentStore } = ChromeUtils.importESModule(
   "resource://nimbus/lib/ExperimentStore.sys.mjs"
 );
 const { TelemetryEnvironment } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryEnvironment.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryEnvironment.sys.mjs"
 );
 const { TelemetryEvents } = ChromeUtils.importESModule(
   "resource://normandy/lib/TelemetryEvents.sys.mjs"

@@ -6,8 +6,8 @@ const APPLY_CONFIG_TIMEOUT_MS = 60 * 1000;
 const HOME_PAGE = "resource://mozscreenshots/lib/mozscreenshots.html";
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { setTimeout } from "resource://gre/modules/Timer.sys.mjs";
-import { Rect } from "resource://gre/modules/Geometry.sys.mjs";
+import { setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
+import { Rect } from "moz-src:///toolkit/modules/Geometry.sys.mjs";
 
 const lazy = {};
 

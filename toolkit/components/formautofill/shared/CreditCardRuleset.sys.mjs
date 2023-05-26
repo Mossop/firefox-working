@@ -26,16 +26,16 @@ import {
   ruleset,
   score,
   type,
-} from "resource://gre/modules/third_party/fathom/fathom.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
-import { FormAutofillUtils } from "resource://gre/modules/shared/FormAutofillUtils.sys.mjs";
+} from "moz-src:///toolkit/modules/third_party/fathom/fathom.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
+import { FormAutofillUtils } from "moz-src:///toolkit/components/formautofill/shared/FormAutofillUtils.sys.mjs";
 import {
   CreditCard,
   NETWORK_NAMES,
-} from "resource://gre/modules/CreditCard.sys.mjs";
+} from "moz-src:///toolkit/modules/CreditCard.sys.mjs";
 
-import { FormLikeFactory } from "resource://gre/modules/FormLikeFactory.sys.mjs";
-import { LabelUtils } from "resource://gre/modules/shared/LabelUtils.sys.mjs";
+import { FormLikeFactory } from "moz-src:///toolkit/modules/FormLikeFactory.sys.mjs";
+import { LabelUtils } from "moz-src:///toolkit/components/formautofill/shared/LabelUtils.sys.mjs";
 
 /**
  * Callthrough abstraction to allow .getAutocompleteInfo() to be mocked out

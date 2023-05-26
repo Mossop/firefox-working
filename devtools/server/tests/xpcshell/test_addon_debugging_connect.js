@@ -11,7 +11,7 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "ExtensionParent",
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 
 const { createAppInfo, promiseStartupManager } = AddonTestUtils;

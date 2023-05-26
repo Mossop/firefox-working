@@ -9,7 +9,7 @@ add_task(setup_UITourTest);
 
 // Tests assume there's at least 1 builtin theme with colorway id.
 const { BuiltInThemes } = ChromeUtils.importESModule(
-  "resource:///modules/BuiltInThemes.sys.mjs"
+  "moz-src:///browser/themes/BuiltInThemes.sys.mjs"
 );
 const COLORWAY_IDS = [...BuiltInThemes.builtInThemeMap.keys()].filter(
   id =>

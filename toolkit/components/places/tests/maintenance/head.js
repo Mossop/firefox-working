@@ -12,7 +12,7 @@
 // Put any other stuff relative to this test folder below.
 
 ChromeUtils.defineESModuleGetters(this, {
-  PlacesDBUtils: "resource://gre/modules/PlacesDBUtils.sys.mjs",
+  PlacesDBUtils: "moz-src:///toolkit/components/places/PlacesDBUtils.sys.mjs",
 });
 
 async function createCorruptDb(filename) {

@@ -7,7 +7,7 @@ loadTestSubscript(
 );
 
 const { BuiltInThemes } = ChromeUtils.importESModule(
-  "resource:///modules/BuiltInThemes.sys.mjs"
+  "moz-src:///browser/themes/BuiltInThemes.sys.mjs"
 );
 
 AddonTestUtils.initMochitest(this);

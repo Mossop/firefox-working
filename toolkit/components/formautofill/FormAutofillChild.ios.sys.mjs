@@ -3,8 +3,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /* eslint-disable no-undef,mozilla/balanced-listeners */
-import { FormAutofillUtils } from "resource://gre/modules/shared/FormAutofillUtils.sys.mjs";
-import { FormStateManager } from "resource://gre/modules/shared/FormStateManager.sys.mjs";
+import { FormAutofillUtils } from "moz-src:///toolkit/components/formautofill/shared/FormAutofillUtils.sys.mjs";
+import { FormStateManager } from "moz-src:///toolkit/components/formautofill/shared/FormStateManager.sys.mjs";
 
 export class FormAutofillChild {
   constructor(onSubmitCallback, onAutofillCallback) {

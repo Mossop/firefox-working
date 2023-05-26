@@ -84,12 +84,12 @@
       ChromeUtils.defineModuleGetter(
         this,
         "AsyncTabSwitcher",
-        "resource:///modules/AsyncTabSwitcher.jsm"
+        "moz-src:///browser/modules/AsyncTabSwitcher.jsm"
       );
       ChromeUtils.defineESModuleGetters(this, {
         UrlbarProviderOpenTabs:
-          "resource:///modules/UrlbarProviderOpenTabs.sys.mjs",
-        PictureInPicture: "resource://gre/modules/PictureInPicture.sys.mjs",
+          "moz-src:///browser/components/urlbar/UrlbarProviderOpenTabs.sys.mjs",
+        PictureInPicture: "moz-src:///toolkit/components/pictureinpicture/PictureInPicture.sys.mjs",
       });
       XPCOMUtils.defineLazyServiceGetters(this, {
         MacSharingService: [
@@ -108,7 +108,7 @@
         ChromeUtils.defineModuleGetter(
           this,
           "TabCrashHandler",
-          "resource:///modules/ContentCrashHandlers.jsm"
+          "moz-src:///browser/modules/ContentCrashHandlers.jsm"
         );
       }
 
@@ -393,7 +393,7 @@
     _instantiateFeatureCalloutTour(browser, panelId) {
       this._featureCalloutPanelId = panelId;
       const { FeatureCallout } = ChromeUtils.importESModule(
-        "resource:///modules/FeatureCallout.sys.mjs"
+        "moz-src:///browser/modules/FeatureCallout.sys.mjs"
       );
       // Note - once we have additional browser chrome messages,
       // only use PDF.js pref value when navigating to PDF viewer

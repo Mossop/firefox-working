@@ -22,7 +22,7 @@ add_task(async function os_key_store_setup() {
 let OSKeyStore;
 add_task(async function setup() {
   ({ OSKeyStore } = ChromeUtils.importESModule(
-    "resource://gre/modules/OSKeyStore.sys.mjs"
+    "moz-src:///toolkit/modules/OSKeyStore.sys.mjs"
   ));
 });
 

@@ -1,10 +1,10 @@
 "use strict";
 
 const { TelemetryController } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryController.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs"
 );
 const { TelemetryUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryUtils.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryUtils.sys.mjs"
 );
 
 const CONTENT_CREATED = "ipc:content-created";

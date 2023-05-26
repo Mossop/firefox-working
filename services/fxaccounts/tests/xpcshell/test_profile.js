@@ -4,19 +4,19 @@
 "use strict";
 
 const { ON_PROFILE_CHANGE_NOTIFICATION, log } = ChromeUtils.import(
-  "resource://gre/modules/FxAccountsCommon.js"
+  "moz-src:///services/fxaccounts/FxAccountsCommon.js"
 );
 const { FxAccountsProfileClient } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccountsProfileClient.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccountsProfileClient.sys.mjs"
 );
 const { FxAccountsProfile } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccountsProfile.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccountsProfile.sys.mjs"
 );
 const { PromiseUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PromiseUtils.sys.mjs"
+  "moz-src:///toolkit/modules/PromiseUtils.sys.mjs"
 );
 const { setTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 
 let mockClient = function(fxa) {

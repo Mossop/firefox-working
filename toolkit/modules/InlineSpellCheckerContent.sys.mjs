@@ -6,7 +6,7 @@
 import {
   InlineSpellChecker,
   SpellCheckHelper,
-} from "resource://gre/modules/InlineSpellChecker.sys.mjs";
+} from "moz-src:///toolkit/modules/InlineSpellChecker.sys.mjs";
 
 export var InlineSpellCheckerContent = {
   _spellChecker: null,

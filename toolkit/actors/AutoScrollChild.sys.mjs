@@ -6,7 +6,7 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  BrowserUtils: "resource://gre/modules/BrowserUtils.sys.mjs",
+  BrowserUtils: "moz-src:///toolkit/modules/BrowserUtils.sys.mjs",
 });
 
 export class AutoScrollChild extends JSWindowActorChild {

@@ -5,7 +5,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionStorageIDB",
-  "resource://gre/modules/ExtensionStorageIDB.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionStorageIDB.jsm"
 );
 
 AddonTestUtils.init(this);

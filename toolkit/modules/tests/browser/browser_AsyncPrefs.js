@@ -24,7 +24,7 @@ Services.prefs
 
 async function runTest() {
   let { AsyncPrefs } = ChromeUtils.importESModule(
-    "resource://gre/modules/AsyncPrefs.sys.mjs"
+    "moz-src:///toolkit/modules/AsyncPrefs.sys.mjs"
   );
   const kInChildProcess =
     Services.appinfo.processType == Services.appinfo.PROCESS_TYPE_CONTENT;

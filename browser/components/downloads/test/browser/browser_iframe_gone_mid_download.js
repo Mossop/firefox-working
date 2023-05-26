@@ -6,7 +6,7 @@ function test_deleted_iframe(perSitePref, windowOptions = {}) {
       set: [[SAVE_PER_SITE_PREF, perSitePref]],
     });
     let { DownloadLastDir } = ChromeUtils.importESModule(
-      "resource://gre/modules/DownloadLastDir.sys.mjs"
+      "moz-src:///toolkit/mozapps/downloads/DownloadLastDir.sys.mjs"
     );
 
     let win = await BrowserTestUtils.openNewBrowserWindow(windowOptions);

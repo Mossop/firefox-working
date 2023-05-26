@@ -7,16 +7,16 @@ const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 const { AttributionIOUtils } = ChromeUtils.importESModule(
-  "resource:///modules/AttributionCode.sys.mjs"
+  "moz-src:///browser/components/attribution/AttributionCode.sys.mjs"
 );
 const { BrowserUsageTelemetry } = ChromeUtils.import(
-  "resource:///modules/BrowserUsageTelemetry.jsm"
+  "moz-src:///browser/modules/BrowserUsageTelemetry.jsm"
 );
 const { TelemetryTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/TelemetryTestUtils.sys.mjs"
 );
 ChromeUtils.defineESModuleGetters(this, {
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
 });
 
 const TIMESTAMP_PREF = "app.installation.timestamp";

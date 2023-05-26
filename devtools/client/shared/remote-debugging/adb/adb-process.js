@@ -10,7 +10,7 @@ const {
   getFileForBinary,
 } = require("resource://devtools/client/shared/remote-debugging/adb/adb-binary.js");
 const { setTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 
 loader.lazyRequireGetter(

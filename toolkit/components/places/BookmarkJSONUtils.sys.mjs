@@ -2,12 +2,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { PlacesUtils } from "resource://gre/modules/PlacesUtils.sys.mjs";
+import { PlacesUtils } from "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  PlacesBackups: "resource://gre/modules/PlacesBackups.sys.mjs",
+  PlacesBackups: "moz-src:///toolkit/components/places/PlacesBackups.sys.mjs",
 });
 
 // This is used to translate old folder pseudonyms in queries with their newer

@@ -31,7 +31,7 @@ add_task(async function check_ExtensionParent_StartupCache_is_non_empty() {
   let chromeScript = loadChromeScript(() => {
     const {
       ExtensionParent,
-    } = ChromeUtils.import("resource://gre/modules/ExtensionParent.jsm");
+    } = ChromeUtils.import("moz-src:///toolkit/components/extensions/ExtensionParent.jsm");
     const { StartupCache } = ExtensionParent;
     this.sendAsyncMessage("StartupCache_data", StartupCache._data);
   });

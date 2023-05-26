@@ -15,12 +15,12 @@
  * hopefully ported.
  */
 
-import { Log } from "resource://gre/modules/Log.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
 
 import { Svc, Utils } from "resource://services-sync/util.sys.mjs";
 
 const { AddonManager } = ChromeUtils.import(
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 const DEFAULT_STATE_FILE = "addonsreconciler";

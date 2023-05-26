@@ -2,14 +2,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 import { FormAutofill } from "resource://autofill/FormAutofill.sys.mjs";
-import { FormAutofillHeuristics } from "resource://gre/modules/shared/FormAutofillHeuristics.sys.mjs";
+import { FormAutofillHeuristics } from "moz-src:///toolkit/components/formautofill/shared/FormAutofillHeuristics.sys.mjs";
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  FormAutofillUtils: "resource://gre/modules/shared/FormAutofillUtils.sys.mjs",
-  creditCardRulesets: "resource://gre/modules/shared/CreditCardRuleset.sys.mjs",
+  FormAutofillUtils: "moz-src:///toolkit/components/formautofill/shared/FormAutofillUtils.sys.mjs",
+  creditCardRulesets: "moz-src:///toolkit/components/formautofill/shared/CreditCardRuleset.sys.mjs",
 });
 
 const DEFAULT_SECTION_NAME = "-moz-section-default";

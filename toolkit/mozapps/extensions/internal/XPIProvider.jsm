@@ -20,10 +20,10 @@
 var EXPORTED_SYMBOLS = ["XPIProvider", "XPIInternal"];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AddonManager, AddonManagerPrivate } = ChromeUtils.import(
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
@@ -32,22 +32,22 @@ const { AppConstants } = ChromeUtils.importESModule(
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
-  JSONFile: "resource://gre/modules/JSONFile.sys.mjs",
-  TelemetrySession: "resource://gre/modules/TelemetrySession.sys.mjs",
+  AsyncShutdown: "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
+  JSONFile: "moz-src:///toolkit/modules/JSONFile.sys.mjs",
+  TelemetrySession: "moz-src:///toolkit/components/telemetry/pings/TelemetrySession.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonSettings: "resource://gre/modules/addons/AddonSettings.jsm",
-  Dictionary: "resource://gre/modules/Extension.jsm",
-  Extension: "resource://gre/modules/Extension.jsm",
-  ExtensionData: "resource://gre/modules/Extension.jsm",
-  Langpack: "resource://gre/modules/Extension.jsm",
-  SitePermission: "resource://gre/modules/Extension.jsm",
-  XPIDatabase: "resource://gre/modules/addons/XPIDatabase.jsm",
-  XPIDatabaseReconcile: "resource://gre/modules/addons/XPIDatabase.jsm",
-  XPIInstall: "resource://gre/modules/addons/XPIInstall.jsm",
+  AddonSettings: "moz-src:///toolkit/mozapps/extensions/internal/AddonSettings.jsm",
+  Dictionary: "moz-src:///toolkit/components/extensions/Extension.jsm",
+  Extension: "moz-src:///toolkit/components/extensions/Extension.jsm",
+  ExtensionData: "moz-src:///toolkit/components/extensions/Extension.jsm",
+  Langpack: "moz-src:///toolkit/components/extensions/Extension.jsm",
+  SitePermission: "moz-src:///toolkit/components/extensions/Extension.jsm",
+  XPIDatabase: "moz-src:///toolkit/mozapps/extensions/internal/XPIDatabase.jsm",
+  XPIDatabaseReconcile: "moz-src:///toolkit/mozapps/extensions/internal/XPIDatabase.jsm",
+  XPIInstall: "moz-src:///toolkit/mozapps/extensions/internal/XPIInstall.jsm",
 });
 
 XPCOMUtils.defineLazyServiceGetters(lazy, {
@@ -191,7 +191,7 @@ const ALL_XPI_TYPES = new Set([
 var gIDTest = /^(\{[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\}|[a-z0-9-\._]*\@[a-z0-9-\._]+)$/i;
 
 const { Log } = ChromeUtils.importESModule(
-  "resource://gre/modules/Log.sys.mjs"
+  "moz-src:///toolkit/modules/Log.sys.mjs"
 );
 const LOGGER_ID = "addons.xpi";
 

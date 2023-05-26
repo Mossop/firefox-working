@@ -8,7 +8,7 @@ const URL3 = URL + "#3";
 
 const EXPIRATION_MIN_CHUNK_SIZE = 50;
 const { PageThumbsExpiration } = ChromeUtils.importESModule(
-  "resource://gre/modules/PageThumbs.sys.mjs"
+  "moz-src:///toolkit/components/thumbnails/PageThumbs.sys.mjs"
 );
 
 add_task(async function thumbnails_expiration() {

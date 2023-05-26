@@ -9,7 +9,7 @@ do_get_profile();
 Cc["@mozilla.org/psm;1"].getService(Ci.nsISupports);
 
 const { PromiseUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PromiseUtils.sys.mjs"
+  "moz-src:///toolkit/modules/PromiseUtils.sys.mjs"
 );
 const certOverrideService = Cc[
   "@mozilla.org/security/certoverride;1"

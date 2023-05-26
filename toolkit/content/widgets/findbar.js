@@ -1126,7 +1126,7 @@
       }
 
       let { PromiseUtils } = ChromeUtils.importESModule(
-        "resource://gre/modules/PromiseUtils.sys.mjs"
+        "moz-src:///toolkit/modules/PromiseUtils.sys.mjs"
       );
       this._startFindDeferred = PromiseUtils.defer();
       let startFindPromise = this._startFindDeferred.promise;

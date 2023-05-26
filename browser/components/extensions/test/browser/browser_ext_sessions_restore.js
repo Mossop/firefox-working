@@ -5,8 +5,8 @@
 SimpleTest.requestCompleteLog();
 
 ChromeUtils.defineESModuleGetters(this, {
-  SessionStore: "resource:///modules/sessionstore/SessionStore.sys.mjs",
-  TabStateFlusher: "resource:///modules/sessionstore/TabStateFlusher.sys.mjs",
+  SessionStore: "moz-src:///browser/components/sessionstore/SessionStore.sys.mjs",
+  TabStateFlusher: "moz-src:///browser/components/sessionstore/TabStateFlusher.sys.mjs",
 });
 
 add_task(async function test_sessions_restore() {
@@ -66,7 +66,7 @@ add_task(async function test_sessions_restore() {
     Management: {
       global: { windowTracker, tabTracker },
     },
-  } = ChromeUtils.import("resource://gre/modules/Extension.jsm");
+  } = ChromeUtils.import("moz-src:///toolkit/components/extensions/Extension.jsm");
 
   function checkLocalTab(tab, expectedUrl) {
     let realTab = tabTracker.getTab(tab.id);

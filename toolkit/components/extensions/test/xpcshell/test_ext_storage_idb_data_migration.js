@@ -19,16 +19,16 @@ AddonTestUtils.createAppInfo(
 );
 
 const { getTrimmedString } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionTelemetry.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionTelemetry.jsm"
 );
 const { ExtensionStorage } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionStorage.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionStorage.jsm"
 );
 const { ExtensionStorageIDB } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionStorageIDB.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionStorageIDB.jsm"
 );
 const { TelemetryController } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryController.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs"
 );
 const { TelemetryTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/TelemetryTestUtils.sys.mjs"

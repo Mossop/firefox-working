@@ -8,8 +8,8 @@
 /* eslint-env mozilla/simpletest */
 /* global ContentTaskUtils, content */
 
-const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+const { Services } = ChromeUtils.import("moz-src:///toolkit/modules/Services.jsm");
+const { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 const info = console.log;
 
 export var HTTPS_EXAMPLE_ORG = "https://example.org";

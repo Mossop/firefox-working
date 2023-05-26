@@ -9,7 +9,7 @@ const {
   SITEPERMS_ADDON_BLOCKEDLIST_PREF,
   SITEPERMS_ADDON_TYPE,
 } = ChromeUtils.importESModule(
-  "resource://gre/modules/addons/siteperms-addon-utils.sys.mjs"
+  "moz-src:///toolkit/mozapps/extensions/internal/siteperms-addon-utils.sys.mjs"
 );
 
 const { PermissionTestUtils } = ChromeUtils.importESModule(
@@ -930,7 +930,7 @@ add_task(
     info("Verify addon id after mocking new browsing session");
 
     const { generateSalt } = ChromeUtils.importESModule(
-      "resource://gre/modules/addons/SitePermsAddonProvider.sys.mjs"
+      "moz-src:///toolkit/mozapps/extensions/internal/SitePermsAddonProvider.sys.mjs"
     );
     generateSalt();
 

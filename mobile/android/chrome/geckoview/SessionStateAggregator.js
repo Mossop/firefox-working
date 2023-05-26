@@ -11,13 +11,13 @@ const { GeckoViewChildModule } = ChromeUtils.import(
   "resource://gre/modules/GeckoViewChildModule.jsm"
 );
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  SessionHistory: "resource://gre/modules/sessionstore/SessionHistory.sys.mjs",
-  clearTimeout: "resource://gre/modules/Timer.sys.mjs",
-  setTimeoutWithTarget: "resource://gre/modules/Timer.sys.mjs",
+  SessionHistory: "moz-src:///toolkit/modules/sessionstore/SessionHistory.sys.mjs",
+  clearTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
+  setTimeoutWithTarget: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 const NO_INDEX = Number.MAX_SAFE_INTEGER;

@@ -4,7 +4,7 @@
 "use strict";
 
 const { WebChannel } = ChromeUtils.importESModule(
-  "resource://gre/modules/WebChannel.sys.mjs"
+  "moz-src:///toolkit/modules/WebChannel.sys.mjs"
 );
 const { PermissionTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/PermissionTestUtils.sys.mjs"

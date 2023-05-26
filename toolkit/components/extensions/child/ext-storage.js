@@ -7,17 +7,17 @@
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionStorage",
-  "resource://gre/modules/ExtensionStorage.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionStorage.jsm"
 );
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionStorageIDB",
-  "resource://gre/modules/ExtensionStorageIDB.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionStorageIDB.jsm"
 );
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionTelemetry",
-  "resource://gre/modules/ExtensionTelemetry.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionTelemetry.jsm"
 );
 
 // Wrap a storage operation in a TelemetryStopWatch.

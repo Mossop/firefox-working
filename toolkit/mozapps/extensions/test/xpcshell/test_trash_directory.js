@@ -3,7 +3,7 @@
  */
 
 const { BasePromiseWorker } = ChromeUtils.import(
-  "resource://gre/modules/PromiseWorker.jsm"
+  "moz-src:///toolkit/components/promiseworker/PromiseWorker.jsm"
 );
 
 // Test that an open file inside the trash directory does not cause

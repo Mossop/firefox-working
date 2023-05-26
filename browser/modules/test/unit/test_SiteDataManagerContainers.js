@@ -4,7 +4,7 @@
 "use strict";
 
 const { SiteDataManager } = ChromeUtils.import(
-  "resource:///modules/SiteDataManager.jsm"
+  "moz-src:///browser/modules/SiteDataManager.jsm"
 );
 const { SiteDataTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/SiteDataTestUtils.sys.mjs"

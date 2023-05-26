@@ -5,10 +5,10 @@
 "use strict";
 
 const { BasePromiseWorker } = ChromeUtils.import(
-  "resource://gre/modules/PromiseWorker.jsm"
+  "moz-src:///toolkit/components/promiseworker/PromiseWorker.jsm"
 );
 const { setTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 
 // Worker must be loaded from a chrome:// uri, not a file://

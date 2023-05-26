@@ -6,7 +6,7 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  FirefoxRelay: "resource://gre/modules/FirefoxRelay.sys.mjs",
+  FirefoxRelay: "moz-src:///toolkit/components/passwordmgr/FirefoxRelay.sys.mjs",
 });
 
 export class ContextMenuParent extends JSWindowActorParent {

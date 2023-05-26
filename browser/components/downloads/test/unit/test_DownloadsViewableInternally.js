@@ -12,7 +12,7 @@ const AVIF_MIME = "image/avif";
 const WEBP_MIME = "image/webp";
 
 const { Integration } = ChromeUtils.importESModule(
-  "resource://gre/modules/Integration.sys.mjs"
+  "moz-src:///toolkit/modules/Integration.sys.mjs"
 );
 const {
   DownloadsViewableInternally,
@@ -21,14 +21,14 @@ const {
   PREF_BRANCH_PREVIOUS_ACTION,
   PREF_BRANCH_PREVIOUS_ASK,
 } = ChromeUtils.importESModule(
-  "resource:///modules/DownloadsViewableInternally.sys.mjs"
+  "moz-src:///browser/components/downloads/DownloadsViewableInternally.sys.mjs"
 );
 
 /* global DownloadIntegration */
 Integration.downloads.defineESModuleGetter(
   this,
   "DownloadIntegration",
-  "resource://gre/modules/DownloadIntegration.sys.mjs"
+  "moz-src:///toolkit/components/downloads/DownloadIntegration.sys.mjs"
 );
 
 const HandlerService = Cc[

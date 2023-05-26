@@ -7,11 +7,11 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  NewTabUtils: "resource://gre/modules/NewTabUtils.sys.mjs",
+  NewTabUtils: "moz-src:///toolkit/modules/NewTabUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  AboutNewTab: "resource:///modules/AboutNewTab.jsm",
+  AboutNewTab: "moz-src:///browser/modules/AboutNewTab.jsm",
   shortURL: "resource://activity-stream/lib/ShortURL.jsm",
   getSearchProvider: "resource://activity-stream/lib/SearchShortcuts.jsm",
 });

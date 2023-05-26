@@ -9,7 +9,7 @@
 // This test exercises functionality and also ensures the exit codes,
 // which are a public API, do not change over time.
 const { EXIT_CODE } = ChromeUtils.importESModule(
-  "resource://gre/modules/BackgroundTasksManager.sys.mjs"
+  "moz-src:///toolkit/components/backgroundtasks/BackgroundTasksManager.sys.mjs"
 );
 
 add_task(async function test_success() {

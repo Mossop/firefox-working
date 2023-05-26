@@ -6,7 +6,7 @@
 const EXPORTED_SYMBOLS = ["AboutWelcomeDefaults"];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
@@ -15,12 +15,12 @@ const { AppConstants } = ChromeUtils.importESModule(
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  BrowserUtils: "resource://gre/modules/BrowserUtils.sys.mjs",
-  AttributionCode: "resource:///modules/AttributionCode.sys.mjs",
+  BrowserUtils: "moz-src:///toolkit/modules/BrowserUtils.sys.mjs",
+  AttributionCode: "moz-src:///browser/components/attribution/AttributionCode.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonRepository: "resource://gre/modules/addons/AddonRepository.jsm",
+  AddonRepository: "moz-src:///toolkit/mozapps/extensions/internal/AddonRepository.jsm",
   AWScreenUtils: "resource://activity-stream/lib/AWScreenUtils.jsm",
 });
 

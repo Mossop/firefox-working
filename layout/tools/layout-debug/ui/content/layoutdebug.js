@@ -14,10 +14,10 @@ var gWritingProfile = false;
 var gWrittenProfile = false;
 
 const { E10SUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/E10SUtils.sys.mjs"
+  "moz-src:///toolkit/modules/E10SUtils.sys.mjs"
 );
 const { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {

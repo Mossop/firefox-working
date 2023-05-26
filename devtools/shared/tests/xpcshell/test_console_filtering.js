@@ -4,7 +4,7 @@
 "use strict";
 
 const { console, ConsoleAPI } = ChromeUtils.importESModule(
-  "resource://gre/modules/Console.sys.mjs"
+  "moz-src:///toolkit/modules/Console.sys.mjs"
 );
 const {
   ConsoleAPIListener,

@@ -3,7 +3,7 @@ var SpellCheckHelper;
 
 function test() {
   let tempScope = ChromeUtils.importESModule(
-    "resource://gre/modules/InlineSpellChecker.sys.mjs"
+    "moz-src:///toolkit/modules/InlineSpellChecker.sys.mjs"
   );
   InlineSpellChecker = tempScope.InlineSpellChecker;
   SpellCheckHelper = tempScope.SpellCheckHelper;

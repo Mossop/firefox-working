@@ -8,29 +8,29 @@
 var EXPORTED_SYMBOLS = ["NativeApp"];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 
 const { EventEmitter } = ChromeUtils.importESModule(
-  "resource://gre/modules/EventEmitter.sys.mjs"
+  "moz-src:///toolkit/modules/EventEmitter.sys.mjs"
 );
 
 const {
   ExtensionUtils: { ExtensionError, promiseTimeout },
-} = ChromeUtils.import("resource://gre/modules/ExtensionUtils.jsm");
+} = ChromeUtils.import("moz-src:///toolkit/components/extensions/ExtensionUtils.jsm");
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.sys.mjs",
-  Subprocess: "resource://gre/modules/Subprocess.sys.mjs",
+  AsyncShutdown: "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs",
+  Subprocess: "moz-src:///toolkit/modules/subprocess/Subprocess.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  NativeManifests: "resource://gre/modules/NativeManifests.jsm",
+  NativeManifests: "moz-src:///toolkit/components/extensions/NativeManifests.jsm",
 });
 
 // For a graceful shutdown (i.e., when the extension is unloaded or when it

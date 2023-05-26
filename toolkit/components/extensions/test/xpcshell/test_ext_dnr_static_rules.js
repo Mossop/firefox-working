@@ -4,9 +4,9 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  ExtensionDNR: "resource://gre/modules/ExtensionDNR.sys.mjs",
-  ExtensionDNRLimits: "resource://gre/modules/ExtensionDNRLimits.sys.mjs",
-  ExtensionDNRStore: "resource://gre/modules/ExtensionDNRStore.sys.mjs",
+  ExtensionDNR: "moz-src:///toolkit/components/extensions/ExtensionDNR.sys.mjs",
+  ExtensionDNRLimits: "moz-src:///toolkit/components/extensions/ExtensionDNRLimits.sys.mjs",
+  ExtensionDNRStore: "moz-src:///toolkit/components/extensions/ExtensionDNRStore.sys.mjs",
   TestUtils: "resource://testing-common/TestUtils.sys.mjs",
 });
 
@@ -257,7 +257,7 @@ add_task(async function test_load_static_rules() {
 
   info("Verify the expected DNRStore data persisted on disk is loaded back");
   const { AddonManager } = ChromeUtils.import(
-    "resource://gre/modules/AddonManager.jsm"
+    "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
   );
   const addon = await AddonManager.getAddonByID(extension.id);
   await addon.disable();

@@ -3,8 +3,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { EXIT_CODE } from "resource://gre/modules/BackgroundTasksManager.sys.mjs";
-import { setTimeout } from "resource://gre/modules/Timer.sys.mjs";
+import { EXIT_CODE } from "moz-src:///toolkit/components/backgroundtasks/BackgroundTasksManager.sys.mjs";
+import { setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 
 // Time out in just a single second. The task is set up to run for 5 minutes,
 // so it should always time out.

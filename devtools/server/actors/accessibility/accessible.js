@@ -66,7 +66,7 @@ loader.lazyGetter(
   "ContentDOMReference",
   () =>
     ChromeUtils.importESModule(
-      "resource://gre/modules/ContentDOMReference.sys.mjs",
+      "moz-src:///toolkit/modules/ContentDOMReference.sys.mjs",
       {
         // ContentDOMReference needs to be retrieved from the shared global
         // since it is a shared singleton.

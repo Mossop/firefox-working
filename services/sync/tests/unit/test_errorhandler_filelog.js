@@ -7,10 +7,10 @@ const { Service } = ChromeUtils.importESModule(
   "resource://services-sync/service.sys.mjs"
 );
 const { logManager } = ChromeUtils.import(
-  "resource://gre/modules/FxAccountsCommon.js"
+  "moz-src:///services/fxaccounts/FxAccountsCommon.js"
 );
 const { FileUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/FileUtils.sys.mjs"
+  "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 );
 
 const logsdir = FileUtils.getDir("ProfD", ["weave", "logs"], true);

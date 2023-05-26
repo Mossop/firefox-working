@@ -2,7 +2,7 @@
  * http://creativecommons.org/publicdomain/zero/1.0/ */
 
 const { Credentials } = ChromeUtils.importESModule(
-  "resource://gre/modules/Credentials.sys.mjs"
+  "moz-src:///services/fxaccounts/Credentials.sys.mjs"
 );
 const { CryptoUtils } = ChromeUtils.importESModule(
   "resource://services-crypto/utils.sys.mjs"

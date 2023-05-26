@@ -4,9 +4,9 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  ExtensionDNR: "resource://gre/modules/ExtensionDNR.sys.mjs",
-  ExtensionDNRLimits: "resource://gre/modules/ExtensionDNRLimits.sys.mjs",
-  ExtensionDNRStore: "resource://gre/modules/ExtensionDNRStore.sys.mjs",
+  ExtensionDNR: "moz-src:///toolkit/components/extensions/ExtensionDNR.sys.mjs",
+  ExtensionDNRLimits: "moz-src:///toolkit/components/extensions/ExtensionDNRLimits.sys.mjs",
+  ExtensionDNRStore: "moz-src:///toolkit/components/extensions/ExtensionDNRStore.sys.mjs",
   TestUtils: "resource://testing-common/TestUtils.sys.mjs",
 });
 

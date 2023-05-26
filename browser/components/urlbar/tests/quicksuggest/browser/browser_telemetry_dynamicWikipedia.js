@@ -9,7 +9,7 @@
 
 XPCOMUtils.defineLazyModuleGetters(this, {
   CONTEXTUAL_SERVICES_PING_TYPES:
-    "resource:///modules/PartnerLinkAttribution.jsm",
+    "moz-src:///browser/modules/PartnerLinkAttribution.jsm",
 });
 
 const { TELEMETRY_SCALARS } = UrlbarProviderQuickSuggest;

@@ -1,5 +1,5 @@
 const { ProfileAge } = ChromeUtils.importESModule(
-  "resource://gre/modules/ProfileAge.sys.mjs"
+  "moz-src:///toolkit/modules/ProfileAge.sys.mjs"
 );
 
 const gProfD = do_get_profile();

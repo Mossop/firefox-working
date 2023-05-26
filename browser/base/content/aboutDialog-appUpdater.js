@@ -8,13 +8,13 @@
 /* import-globals-from aboutDialog.js */
 
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  AppUpdater: "resource://gre/modules/AppUpdater.sys.mjs",
-  DownloadUtils: "resource://gre/modules/DownloadUtils.sys.mjs",
-  UpdateUtils: "resource://gre/modules/UpdateUtils.sys.mjs",
+  AppUpdater: "moz-src:///toolkit/mozapps/update/AppUpdater.sys.mjs",
+  DownloadUtils: "moz-src:///toolkit/mozapps/downloads/DownloadUtils.sys.mjs",
+  UpdateUtils: "moz-src:///toolkit/modules/UpdateUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyServiceGetter(

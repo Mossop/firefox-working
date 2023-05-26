@@ -4,7 +4,7 @@
 
 const Cm = Components.manager;
 
-import { Log } from "resource://gre/modules/Log.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
 
 var logger = Log.repository.getLogger("MockRegistrar");
 

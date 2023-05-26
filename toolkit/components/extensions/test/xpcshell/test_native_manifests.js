@@ -1,20 +1,20 @@
 "use strict";
 
 const { AsyncShutdown } = ChromeUtils.importESModule(
-  "resource://gre/modules/AsyncShutdown.sys.mjs"
+  "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs"
 );
 const { NativeManifests } = ChromeUtils.import(
-  "resource://gre/modules/NativeManifests.jsm"
+  "moz-src:///toolkit/components/extensions/NativeManifests.jsm"
 );
 const { FileUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/FileUtils.sys.mjs"
+  "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 );
-const { Schemas } = ChromeUtils.import("resource://gre/modules/Schemas.jsm");
+const { Schemas } = ChromeUtils.import("moz-src:///toolkit/components/extensions/Schemas.jsm");
 const { Subprocess } = ChromeUtils.importESModule(
-  "resource://gre/modules/Subprocess.sys.mjs"
+  "moz-src:///toolkit/modules/subprocess/Subprocess.sys.mjs"
 );
 const { NativeApp } = ChromeUtils.import(
-  "resource://gre/modules/NativeMessaging.jsm"
+  "moz-src:///toolkit/components/extensions/NativeMessaging.jsm"
 );
 
 let registry = null;
@@ -31,7 +31,7 @@ if (AppConstants.platform == "win") {
   });
 } else {
   ChromeUtils.defineESModuleGetters(this, {
-    SubprocessImpl: "resource://gre/modules/subprocess/subprocess_unix.sys.mjs",
+    SubprocessImpl: "moz-src:///toolkit/modules/subprocess/subprocess_unix.sys.mjs",
   });
 }
 

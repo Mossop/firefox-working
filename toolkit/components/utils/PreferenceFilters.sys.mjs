@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { Preferences } from "resource://gre/modules/Preferences.sys.mjs";
+import { Preferences } from "moz-src:///toolkit/modules/Preferences.sys.mjs";
 
 export var PreferenceFilters = {
   // Compare the value of a given preference. Takes a `default` value as an

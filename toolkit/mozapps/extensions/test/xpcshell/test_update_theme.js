@@ -2,7 +2,7 @@
 
 XPCOMUtils.defineLazyGetter(this, "Management", () => {
   const { ExtensionParent } = ChromeUtils.import(
-    "resource://gre/modules/ExtensionParent.jsm"
+    "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
   );
   return ExtensionParent.apiManager;
 });

@@ -16,7 +16,7 @@
 var EXPORTED_SYMBOLS = ["ExtensionCommon"];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
@@ -25,13 +25,13 @@ const { AppConstants } = ChromeUtils.importESModule(
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  ConsoleAPI: "resource://gre/modules/Console.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  ConsoleAPI: "moz-src:///toolkit/modules/Console.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  Schemas: "resource://gre/modules/Schemas.jsm",
-  SchemaRoot: "resource://gre/modules/Schemas.jsm",
+  Schemas: "moz-src:///toolkit/components/extensions/Schemas.jsm",
+  SchemaRoot: "moz-src:///toolkit/components/extensions/Schemas.jsm",
 });
 
 XPCOMUtils.defineLazyServiceGetter(
@@ -48,7 +48,7 @@ const ScriptError = Components.Constructor(
 );
 
 const { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
 );
 
 var {
@@ -1836,7 +1836,7 @@ class SchemaAPIManager extends EventEmitter {
       {
         wantXrays: false,
         wantGlobalProperties: ["ChromeUtils"],
-        sandboxName: `Namespace of ext-*.js scripts for ${this.processType} (from: resource://gre/modules/ExtensionCommon.jsm)`,
+        sandboxName: `Namespace of ext-*.js scripts for ${this.processType} (from: moz-src:///toolkit/components/extensions/ExtensionCommon.jsm)`,
       }
     );
 
@@ -1866,7 +1866,7 @@ class SchemaAPIManager extends EventEmitter {
     XPCOMUtils.defineLazyGetter(global, "console", getConsole);
 
     XPCOMUtils.defineLazyModuleGetters(global, {
-      ExtensionUtils: "resource://gre/modules/ExtensionUtils.jsm",
+      ExtensionUtils: "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm",
     });
 
     return global;

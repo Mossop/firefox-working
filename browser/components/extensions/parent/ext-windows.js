@@ -9,10 +9,10 @@
 ChromeUtils.defineModuleGetter(
   this,
   "HomePage",
-  "resource:///modules/HomePage.jsm"
+  "moz-src:///browser/modules/HomePage.jsm"
 );
 ChromeUtils.defineESModuleGetters(this, {
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
 var { ExtensionError, promiseObserved } = ExtensionUtils;

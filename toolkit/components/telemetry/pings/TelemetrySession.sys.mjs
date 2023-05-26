@@ -3,25 +3,25 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { Log } from "resource://gre/modules/Log.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
-import { TelemetryUtils } from "resource://gre/modules/TelemetryUtils.sys.mjs";
+import { TelemetryUtils } from "moz-src:///toolkit/components/telemetry/app/TelemetryUtils.sys.mjs";
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  TelemetryController: "resource://gre/modules/TelemetryController.sys.mjs",
-  TelemetryEnvironment: "resource://gre/modules/TelemetryEnvironment.sys.mjs",
+  TelemetryController: "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs",
+  TelemetryEnvironment: "moz-src:///toolkit/components/telemetry/app/TelemetryEnvironment.sys.mjs",
   TelemetryReportingPolicy:
-    "resource://gre/modules/TelemetryReportingPolicy.sys.mjs",
-  TelemetryScheduler: "resource://gre/modules/TelemetryScheduler.sys.mjs",
-  TelemetryStorage: "resource://gre/modules/TelemetryStorage.sys.mjs",
+    "moz-src:///toolkit/components/telemetry/app/TelemetryReportingPolicy.sys.mjs",
+  TelemetryScheduler: "moz-src:///toolkit/components/telemetry/app/TelemetryScheduler.sys.mjs",
+  TelemetryStorage: "moz-src:///toolkit/components/telemetry/app/TelemetryStorage.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonManagerPrivate: "resource://gre/modules/AddonManager.jsm",
+  AddonManagerPrivate: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
 });
 
 const Utils = TelemetryUtils;
@@ -120,7 +120,7 @@ var processInfo = {
   getCounters_Windows() {
     if (!this._initialized) {
       var { ctypes } = ChromeUtils.importESModule(
-        "resource://gre/modules/ctypes.sys.mjs"
+        "moz-src:///toolkit/components/ctypes/ctypes.sys.mjs"
       );
       this._IO_COUNTERS = new ctypes.StructType("IO_COUNTERS", [
         { readOps: ctypes.unsigned_long_long },
@@ -391,7 +391,7 @@ var Impl = {
     var appTimestamps = {};
     try {
       let { TelemetryTimestamps } = ChromeUtils.importESModule(
-        "resource://gre/modules/TelemetryTimestamps.sys.mjs"
+        "moz-src:///toolkit/components/telemetry/app/TelemetryTimestamps.sys.mjs"
       );
       appTimestamps = TelemetryTimestamps.get();
     } catch (ex) {}

@@ -32,10 +32,10 @@ const isParentProcess =
 export var TelemetryController;
 if (isParentProcess) {
   ({ TelemetryController } = ChromeUtils.importESModule(
-    "resource://gre/modules/TelemetryControllerParent.sys.mjs"
+    "moz-src:///toolkit/components/telemetry/app/TelemetryControllerParent.sys.mjs"
   ));
 } else {
   ({ TelemetryController } = ChromeUtils.importESModule(
-    "resource://gre/modules/TelemetryControllerContent.sys.mjs"
+    "moz-src:///toolkit/components/telemetry/app/TelemetryControllerContent.sys.mjs"
   ));
 }

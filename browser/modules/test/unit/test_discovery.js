@@ -11,11 +11,11 @@ const { TestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/TestUtils.sys.mjs"
 );
 const { ClientID } = ChromeUtils.importESModule(
-  "resource://gre/modules/ClientID.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/ClientID.sys.mjs"
 );
-const { Discovery } = ChromeUtils.import("resource:///modules/Discovery.jsm");
+const { Discovery } = ChromeUtils.import("moz-src:///browser/modules/Discovery.jsm");
 const { ContextualIdentityService } = ChromeUtils.importESModule(
-  "resource://gre/modules/ContextualIdentityService.sys.mjs"
+  "moz-src:///toolkit/components/contextualidentity/ContextualIdentityService.sys.mjs"
 );
 
 const TAAR_COOKIE_NAME = "taarId";

@@ -309,7 +309,7 @@ add_task(
     );
 
     const { AddonManager } = ChromeUtils.import(
-      "resource://gre/modules/AddonManager.jsm"
+      "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
     );
     function assertManagementAPIAddonListener(expect) {
       let found = false;

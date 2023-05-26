@@ -11,7 +11,7 @@ const {
   SearchSERPTelemetry,
   SearchSERPTelemetryUtils,
 } = ChromeUtils.importESModule(
-  "resource:///modules/SearchSERPTelemetry.sys.mjs"
+  "moz-src:///browser/components/search/SearchSERPTelemetry.sys.mjs"
 );
 const { UrlbarTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/UrlbarTestUtils.sys.mjs"

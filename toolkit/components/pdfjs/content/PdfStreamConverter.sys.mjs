@@ -21,22 +21,22 @@ const MAX_NUMBER_OF_PREFS = 50;
 const MAX_STRING_PREF_LENGTH = 128;
 const PDF_CONTENT_TYPE = "application/pdf";
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  AsyncPrefs: "resource://gre/modules/AsyncPrefs.sys.mjs",
+  AsyncPrefs: "moz-src:///toolkit/modules/AsyncPrefs.sys.mjs",
   NetworkManager: "resource://pdf.js/PdfJsNetwork.sys.mjs",
   PdfJs: "resource://pdf.js/PdfJs.sys.mjs",
   PdfJsTelemetry: "resource://pdf.js/PdfJsTelemetry.sys.mjs",
   PdfSandbox: "resource://pdf.js/PdfSandbox.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 ChromeUtils.defineModuleGetter(
   lazy,
   "NetUtil",
-  "resource://gre/modules/NetUtil.jsm"
+  "moz-src:///netwerk/base/NetUtil.jsm"
 );
 
 var Svc = {};

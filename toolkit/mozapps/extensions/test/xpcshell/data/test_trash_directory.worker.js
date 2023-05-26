@@ -4,9 +4,9 @@
 /* eslint-env mozilla/chrome-worker */
 
 /* import-globals-from /toolkit/components/workerloader/require.js */
-importScripts("resource://gre/modules/workers/require.js");
+importScripts("moz-src:///toolkit/components/workerloader/require.js");
 
-const PromiseWorker = require("resource://gre/modules/workers/PromiseWorker.js");
+const PromiseWorker = require("moz-src:///toolkit/components/promiseworker/worker/PromiseWorker.js");
 
 class OpenFileWorker extends PromiseWorker.AbstractWorker {
   constructor() {

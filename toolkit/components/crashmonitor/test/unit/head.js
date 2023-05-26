@@ -4,7 +4,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 var sessionCheckpointsPath;
@@ -20,7 +20,7 @@ function run_test() {
     "sessionCheckpoints.json"
   );
   ({ CrashMonitor } = ChromeUtils.importESModule(
-    "resource://gre/modules/CrashMonitor.sys.mjs"
+    "moz-src:///toolkit/components/crashmonitor/CrashMonitor.sys.mjs"
   ));
   run_next_test();
 }

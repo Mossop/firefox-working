@@ -3,7 +3,7 @@
 // This is a test for PageActions.jsm, specifically the context menus.
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  ExtensionCommon: "resource://gre/modules/ExtensionCommon.jsm",
+  ExtensionCommon: "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm",
 });
 
 // Initialization.  Must run first.

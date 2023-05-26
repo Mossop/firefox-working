@@ -9,7 +9,7 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  TelemetryEnvironment: "resource://gre/modules/TelemetryEnvironment.sys.mjs",
+  TelemetryEnvironment: "moz-src:///toolkit/components/telemetry/app/TelemetryEnvironment.sys.mjs",
 });
 
 const REMOTE_SETTINGS_RESULTS = [

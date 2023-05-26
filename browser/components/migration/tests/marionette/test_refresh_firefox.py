@@ -180,7 +180,7 @@ class TestFirefoxRefresh(MarionetteTestCase):
           const COMPLETE_STATE = Ci.nsIWebProgressListener.STATE_STOP +
                                  Ci.nsIWebProgressListener.STATE_IS_NETWORK;
           let { TabStateFlusher } = ChromeUtils.importESModule(
-            "resource:///modules/sessionstore/TabStateFlusher.sys.mjs"
+            "moz-src:///browser/components/sessionstore/TabStateFlusher.sys.mjs"
           );
           let expectedURLs = Array.from(arguments[0])
           gBrowser.addTabsProgressListener({
@@ -225,7 +225,7 @@ class TestFirefoxRefresh(MarionetteTestCase):
             """
           let resolve = arguments[arguments.length - 1];
           let { FxAccountsStorageManager } = ChromeUtils.import(
-            "resource://gre/modules/FxAccountsStorage.jsm"
+            "moz-src:///services/fxaccounts/FxAccountsStorage.jsm"
           );
           let storage = new FxAccountsStorageManager();
           let data = {email: "test@test.com", uid: "uid", keyFetchToken: "top-secret"};
@@ -448,7 +448,7 @@ class TestFirefoxRefresh(MarionetteTestCase):
         result = self.runAsyncCode(
             """
           let { FxAccountsStorageManager } = ChromeUtils.import(
-            "resource://gre/modules/FxAccountsStorage.jsm"
+            "moz-src:///services/fxaccounts/FxAccountsStorage.jsm"
           );
           let resolve = arguments[arguments.length - 1];
           let storage = new FxAccountsStorageManager();
@@ -513,10 +513,10 @@ class TestFirefoxRefresh(MarionetteTestCase):
           global.LoginInfo = Components.Constructor("@mozilla.org/login-manager/loginInfo;1", "nsILoginInfo", "init");
           global.profSvc = Cc["@mozilla.org/toolkit/profile-service;1"].getService(Ci.nsIToolkitProfileService);
           global.Preferences = ChromeUtils.importESModule(
-            "resource://gre/modules/Preferences.sys.mjs"
+            "moz-src:///toolkit/modules/Preferences.sys.mjs"
           ).Preferences;
           global.FormHistory = ChromeUtils.import(
-            "resource://gre/modules/FormHistory.jsm"
+            "moz-src:///toolkit/components/satchel/FormHistory.jsm"
           ).FormHistory;
         """  # NOQA: E501
         )

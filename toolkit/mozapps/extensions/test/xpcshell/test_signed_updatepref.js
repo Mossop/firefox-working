@@ -36,7 +36,7 @@ function verifySignatures() {
 
     info("Verifying signatures");
     const { XPIDatabase } = ChromeUtils.import(
-      "resource://gre/modules/addons/XPIDatabase.jsm"
+      "moz-src:///toolkit/mozapps/extensions/internal/XPIDatabase.jsm"
     );
     XPIDatabase.verifySignatures();
   });

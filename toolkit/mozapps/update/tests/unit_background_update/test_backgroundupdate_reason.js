@@ -7,7 +7,7 @@
 "use strict";
 
 const { BackgroundUpdate } = ChromeUtils.importESModule(
-  "resource://gre/modules/BackgroundUpdate.sys.mjs"
+  "moz-src:///toolkit/mozapps/update/BackgroundUpdate.sys.mjs"
 );
 
 // These tests use per-installation prefs, and those are a shared resource, so

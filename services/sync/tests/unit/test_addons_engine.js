@@ -4,7 +4,7 @@
 "use strict";
 
 const { AddonManager } = ChromeUtils.import(
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 const { CHANGE_INSTALLED } = ChromeUtils.importESModule(
   "resource://services-sync/addonsreconciler.sys.mjs"
@@ -16,7 +16,7 @@ const { Service } = ChromeUtils.importESModule(
   "resource://services-sync/service.sys.mjs"
 );
 const { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 
 const prefs = new Preferences();

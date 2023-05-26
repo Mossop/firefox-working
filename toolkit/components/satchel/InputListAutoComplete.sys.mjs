@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { FormAutoCompleteResult } from "resource://gre/modules/nsFormAutoCompleteResult.sys.mjs";
+import { FormAutoCompleteResult } from "moz-src:///toolkit/components/satchel/nsFormAutoCompleteResult.sys.mjs";
 
 export class InputListAutoComplete {
   classID = Components.ID("{bf1e01d0-953e-11df-981c-0800200c9a66}");

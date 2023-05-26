@@ -527,12 +527,12 @@ For example, they leverage advanced customization options (bucket, content-signa
 
 .. code-block:: js
 
-    const {RemoteSecuritySettings} = ChromeUtils.import("resource://gre/modules/psm/RemoteSecuritySettings.jsm");
+    const {RemoteSecuritySettings} = ChromeUtils.import("moz-src:///security/manager/ssl/RemoteSecuritySettings.jsm");
 
     RemoteSecuritySettings.init();
 
 
-    const {BlocklistPrivate} = ChromeUtils.import("resource://gre/modules/Blocklist.jsm");
+    const {BlocklistPrivate} = ChromeUtils.import("moz-src:///toolkit/mozapps/extensions/Blocklist.jsm");
 
     BlocklistPrivate.ExtensionBlocklistRS._ensureInitialized();
     BlocklistPrivate.PluginBlocklistRS._ensureInitialized();

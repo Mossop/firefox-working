@@ -3,9 +3,9 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // workerManager is exported for tests.
-import { clearTimeout, setTimeout } from "resource://gre/modules/Timer.sys.mjs";
+import { clearTimeout, setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 
-const WORKER_URL = "resource://gre/modules/translation/cld-worker.js";
+const WORKER_URL = "moz-src:///toolkit/components/translation/cld2/cld-worker.js";
 
 export var workerManager = {
   // Since Emscripten can handle heap growth, but not heap shrinkage, we

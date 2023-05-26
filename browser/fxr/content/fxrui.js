@@ -32,13 +32,13 @@ let refreshButton = null;
 let stopButton = null;
 
 const { PrivateBrowsingUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PrivateBrowsingUtils.sys.mjs"
+  "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 // Note: FxR UI uses a fork of browser-fullScreenAndPointerLock.js which removes

@@ -6,7 +6,7 @@
 "use strict";
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
@@ -15,13 +15,13 @@ const { AppConstants } = ChromeUtils.importESModule(
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
-  JSONFile: "resource://gre/modules/JSONFile.sys.mjs",
-  KeyValueService: "resource://gre/modules/kvstore.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
+  JSONFile: "moz-src:///toolkit/modules/JSONFile.sys.mjs",
+  KeyValueService: "moz-src:///toolkit/components/kvstore/kvstore.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  ExtensionParent: "resource://gre/modules/ExtensionParent.jsm",
+  ExtensionParent: "moz-src:///toolkit/components/extensions/ExtensionParent.jsm",
 });
 
 XPCOMUtils.defineLazyGetter(

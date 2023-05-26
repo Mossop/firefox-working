@@ -12,16 +12,16 @@ export const AttributionIOUtils = {
   exists: async path => IOUtils.exists(path),
 };
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  MacAttribution: "resource:///modules/MacAttribution.sys.mjs",
+  MacAttribution: "moz-src:///browser/components/attribution/MacAttribution.sys.mjs",
 });
 XPCOMUtils.defineLazyGetter(lazy, "log", () => {
   let { ConsoleAPI } = ChromeUtils.importESModule(
-    "resource://gre/modules/Console.sys.mjs"
+    "moz-src:///toolkit/modules/Console.sys.mjs"
   );
   let consoleOptions = {
     // tip: set maxLogLevel to "debug" and use lazy.log.debug() to create

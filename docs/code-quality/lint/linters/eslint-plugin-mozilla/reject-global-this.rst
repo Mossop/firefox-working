@@ -12,7 +12,7 @@ Examples of incorrect code for this rule:
     this.EXPORTED_SYMBOLS = ["foo"];
 
     XPCOMUtils.defineLazyModuleGetters(this, {
-      AddonManager: "resource://gre/modules/AddonManager.jsm",
+      AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
     });
 
 
@@ -25,5 +25,5 @@ Examples of correct code for this rule:
 
     const lazy = {};
     XPCOMUtils.defineLazyModuleGetters(lazy, {
-      AddonManager: "resource://gre/modules/AddonManager.jsm",
+      AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
     });

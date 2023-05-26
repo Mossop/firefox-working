@@ -7,14 +7,14 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  ContentDOMReference: "resource://gre/modules/ContentDOMReference.sys.mjs",
-  E10SUtils: "resource://gre/modules/E10SUtils.sys.mjs",
+  ContentDOMReference: "moz-src:///toolkit/modules/ContentDOMReference.sys.mjs",
+  E10SUtils: "moz-src:///toolkit/modules/E10SUtils.sys.mjs",
   InlineSpellCheckerContent:
-    "resource://gre/modules/InlineSpellCheckerContent.sys.mjs",
-  LoginHelper: "resource://gre/modules/LoginHelper.sys.mjs",
-  LoginManagerChild: "resource://gre/modules/LoginManagerChild.sys.mjs",
-  SelectionUtils: "resource://gre/modules/SelectionUtils.sys.mjs",
-  SpellCheckHelper: "resource://gre/modules/InlineSpellChecker.sys.mjs",
+    "moz-src:///toolkit/modules/InlineSpellCheckerContent.sys.mjs",
+  LoginHelper: "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs",
+  LoginManagerChild: "moz-src:///toolkit/components/passwordmgr/LoginManagerChild.sys.mjs",
+  SelectionUtils: "moz-src:///toolkit/modules/SelectionUtils.sys.mjs",
+  SpellCheckHelper: "moz-src:///toolkit/modules/InlineSpellChecker.sys.mjs",
 });
 
 let contextMenus = new WeakMap();

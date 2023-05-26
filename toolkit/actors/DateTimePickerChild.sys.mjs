@@ -4,7 +4,7 @@
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  LayoutUtils: "resource://gre/modules/LayoutUtils.sys.mjs",
+  LayoutUtils: "moz-src:///toolkit/modules/LayoutUtils.sys.mjs",
 });
 
 /**

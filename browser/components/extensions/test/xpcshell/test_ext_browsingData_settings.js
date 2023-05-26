@@ -3,12 +3,12 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
 });
 ChromeUtils.defineModuleGetter(
   this,
   "Sanitizer",
-  "resource:///modules/Sanitizer.jsm"
+  "moz-src:///browser/modules/Sanitizer.jsm"
 );
 
 const PREF_DOMAIN = "privacy.cpd.";

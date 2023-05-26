@@ -7,7 +7,7 @@
 var EXPORTED_SYMBOLS = ["TransientPrefs"];
 
 const { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 
 var prefVisibility = new Map();

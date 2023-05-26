@@ -6,7 +6,7 @@
 
 const { Services } = SpecialPowers;
 const { NetUtil } = SpecialPowers.ChromeUtils.import(
-  "resource://gre/modules/NetUtil.jsm"
+  "moz-src:///netwerk/base/NetUtil.jsm"
 );
 
 function checkSitePermissions(uuid, expectedPermAction, assertMessage) {

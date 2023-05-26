@@ -43,7 +43,7 @@
 var EXPORTED_SYMBOLS = ["ExtensionSettingsStore"];
 
 const { ExtensionParent } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 
 const lazy = {};
@@ -51,10 +51,10 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 ChromeUtils.defineESModuleGetters(lazy, {
-  JSONFile: "resource://gre/modules/JSONFile.sys.mjs",
+  JSONFile: "moz-src:///toolkit/modules/JSONFile.sys.mjs",
 });
 
 // Defined for readability of precedence and selection code.  keyInfo.selected will be

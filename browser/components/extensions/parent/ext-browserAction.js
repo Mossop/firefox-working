@@ -9,40 +9,40 @@
 ChromeUtils.defineModuleGetter(
   this,
   "CustomizableUI",
-  "resource:///modules/CustomizableUI.jsm"
+  "moz-src:///browser/components/customizableui/CustomizableUI.jsm"
 );
 ChromeUtils.defineESModuleGetters(this, {
-  clearTimeout: "resource://gre/modules/Timer.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  clearTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionTelemetry",
-  "resource://gre/modules/ExtensionTelemetry.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionTelemetry.jsm"
 );
 ChromeUtils.defineModuleGetter(
   this,
   "ViewPopup",
-  "resource:///modules/ExtensionPopups.jsm"
+  "moz-src:///browser/components/extensions/ExtensionPopups.jsm"
 );
 ChromeUtils.defineModuleGetter(
   this,
   "BrowserUsageTelemetry",
-  "resource:///modules/BrowserUsageTelemetry.jsm"
+  "moz-src:///browser/modules/BrowserUsageTelemetry.jsm"
 );
 ChromeUtils.defineModuleGetter(
   this,
   "OriginControls",
-  "resource://gre/modules/ExtensionPermissions.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm"
 );
 
 var { DefaultWeakMap, ExtensionError } = ExtensionUtils;
 
 var { ExtensionParent } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 var { BrowserActionBase } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionActions.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionActions.jsm"
 );
 
 var { IconDetails, StartupCache } = ExtensionParent;

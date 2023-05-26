@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const { CommonDialog } = ChromeUtils.importESModule(
-  "resource://gre/modules/CommonDialog.sys.mjs"
+  "moz-src:///toolkit/components/prompts/src/CommonDialog.sys.mjs"
 );
 
 // imported by adjustableTitle.js loaded in the same context:

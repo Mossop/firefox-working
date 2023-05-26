@@ -26,7 +26,7 @@ const { worker } = ChromeUtils.import(
   "resource://devtools/shared/loader/worker-loader.js"
 );
 
-const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+const { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 
 // Always log packets when running tests. runxpcshelltests.py will throw
 // the output away anyway, unless you give it the --verbose flag.
@@ -60,7 +60,7 @@ const {
 } = require("resource://devtools/shared/commands/commands-factory.js");
 
 const { addDebuggerToGlobal } = ChromeUtils.importESModule(
-  "resource://gre/modules/jsdebugger.sys.mjs"
+  "moz-src:///devtools/platform/jsdebugger.sys.mjs"
 );
 
 const { AddonTestUtils } = ChromeUtils.import(

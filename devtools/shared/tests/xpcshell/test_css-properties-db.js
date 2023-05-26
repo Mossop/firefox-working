@@ -28,7 +28,7 @@ const {
   generateCssProperties,
 } = require("resource://devtools/server/actors/css-properties.js");
 const { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 
 function run_test() {

@@ -1,7 +1,7 @@
 "use strict";
 
 const { Sampling } = ChromeUtils.importESModule(
-  "resource://gre/modules/components-utils/Sampling.sys.mjs"
+  "moz-src:///toolkit/components/utils/Sampling.sys.mjs"
 );
 
 add_task(async function testStableSample() {

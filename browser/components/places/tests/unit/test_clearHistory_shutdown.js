@@ -17,7 +17,7 @@ const URIS = [
 
 const FTP_URL = "ftp://localhost/clearHistoryOnShutdown/";
 
-const { Sanitizer } = ChromeUtils.import("resource:///modules/Sanitizer.jsm");
+const { Sanitizer } = ChromeUtils.import("moz-src:///browser/modules/Sanitizer.jsm");
 
 // Send the profile-after-change notification to the form history component to ensure
 // that it has been initialized.
@@ -26,7 +26,7 @@ var formHistoryStartup = Cc[
 ].getService(Ci.nsIObserver);
 formHistoryStartup.observe(null, "profile-after-change", null);
 ChromeUtils.defineESModuleGetters(this, {
-  FormHistory: "resource://gre/modules/FormHistory.sys.mjs",
+  FormHistory: "moz-src:///toolkit/components/satchel/FormHistory.sys.mjs",
 });
 
 var timeInMicroseconds = Date.now() * 1000;

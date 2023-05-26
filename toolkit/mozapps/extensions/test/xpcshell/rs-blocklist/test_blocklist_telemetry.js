@@ -12,7 +12,7 @@ AddonTestUtils.createAppInfo(
 );
 
 const { TelemetryController } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryController.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs"
 );
 const { TelemetryTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/TelemetryTestUtils.sys.mjs"
@@ -57,7 +57,7 @@ add_task(async function test_blocklist_lastModified_rs_scalars() {
       ExtensionBlocklistMLBF,
       ExtensionBlocklistRS,
     },
-  } = ChromeUtils.import("resource://gre/modules/Blocklist.jsm");
+  } = ChromeUtils.import("moz-src:///toolkit/mozapps/extensions/Blocklist.jsm");
 
   // Return a promise resolved when the recordRSBlocklistLastModified method
   // has been called (by temporarily replacing the method with a function that

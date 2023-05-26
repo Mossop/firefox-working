@@ -4,7 +4,7 @@ http://creativecommons.org/publicdomain/zero/1.0/ */
 "use strict";
 
 const { FormHistory } = ChromeUtils.importESModule(
-  "resource://gre/modules/FormHistory.sys.mjs"
+  "moz-src:///toolkit/components/satchel/FormHistory.sys.mjs"
 );
 
 let rootDir = do_get_file("chromefiles/", true);

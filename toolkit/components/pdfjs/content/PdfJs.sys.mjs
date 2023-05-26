@@ -23,7 +23,7 @@ const PREF_ISDEFAULT_CACHE_STATE = PREF_PREFIX + ".enabledCache.state";
 const TOPIC_PDFJS_HANDLER_CHANGED = "pdfjs:handlerChanged";
 const PDF_CONTENT_TYPE = "application/pdf";
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 var Svc = {};
 XPCOMUtils.defineLazyServiceGetter(

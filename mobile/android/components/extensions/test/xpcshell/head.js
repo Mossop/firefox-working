@@ -3,7 +3,7 @@
 /* exported createHttpServer */
 
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 // eslint-disable-next-line no-unused-vars

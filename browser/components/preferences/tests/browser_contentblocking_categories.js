@@ -4,7 +4,7 @@
 /* eslint-env webextensions */
 
 ChromeUtils.defineESModuleGetters(this, {
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
 });
 
 const TP_PREF = "privacy.trackingprotection.enabled";

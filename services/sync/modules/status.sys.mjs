@@ -15,7 +15,7 @@ import {
   SYNC_SUCCEEDED,
 } from "resource://services-sync/constants.sys.mjs";
 
-import { Log } from "resource://gre/modules/Log.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
 
 import { SyncAuthManager } from "resource://services-sync/sync_auth.sys.mjs";
 

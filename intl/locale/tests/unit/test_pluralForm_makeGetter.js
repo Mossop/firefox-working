@@ -9,7 +9,7 @@
  */
 
 const { PluralForm } = ChromeUtils.importESModule(
-  "resource://gre/modules/PluralForm.sys.mjs"
+  "moz-src:///intl/locale/PluralForm.sys.mjs"
 );
 
 function run_test() {

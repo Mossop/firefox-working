@@ -5,7 +5,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionSettingsStore",
-  "resource://gre/modules/ExtensionSettingsStore.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionSettingsStore.jsm"
 );
 
 const {

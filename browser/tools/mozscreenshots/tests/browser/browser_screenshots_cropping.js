@@ -7,7 +7,7 @@
 /* import-globals-from ../../head.js */
 
 const { Rect } = ChromeUtils.importESModule(
-  "resource://gre/modules/Geometry.sys.mjs"
+  "moz-src:///toolkit/modules/Geometry.sys.mjs"
 );
 
 async function draw(window, src) {

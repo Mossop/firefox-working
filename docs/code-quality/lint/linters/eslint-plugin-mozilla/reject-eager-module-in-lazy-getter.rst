@@ -13,7 +13,7 @@ Examples of incorrect code for this rule:
       AppConstants: "resource://gre/modules/AppConstants.sys.mjs",
     });
     XPCOMUtils.defineLazyModuleGetters(lazy, {
-      XPCOMUtils: "resource://gre/modules/XPCOMUtils.jsm",
+      XPCOMUtils: "moz-src:///js/xpconnect/loader/XPCOMUtils.jsm",
     });
     XPCOMUtils.defineLazyModuleGetter(
       lazy,
@@ -28,7 +28,7 @@ Examples of correct code for this rule:
 
     import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
     const { XPCOMUtils } = ChromeUtils.import(
-      "resource://gre/modules/XPCOMUtils.jsm"
+      "moz-src:///js/xpconnect/loader/XPCOMUtils.jsm"
     );
     const { AppConstants } = ChromeUtils.import(
       "resource://gre/modules/AppConstants.jsm"

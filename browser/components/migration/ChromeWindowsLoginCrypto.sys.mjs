@@ -7,10 +7,10 @@
  * on Windows.
  */
 
-import { ChromeMigrationUtils } from "resource:///modules/ChromeMigrationUtils.sys.mjs";
+import { ChromeMigrationUtils } from "moz-src:///browser/components/migration/ChromeMigrationUtils.sys.mjs";
 
 import { OSCrypto } from "resource://gre/modules/OSCrypto_win.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 /**
  * These constants should match those from Chromium.

@@ -5,21 +5,21 @@
 import { RESTRequest } from "resource://services-common/rest.sys.mjs";
 
 const { log } = ChromeUtils.import(
-  "resource://gre/modules/FxAccountsCommon.js"
+  "moz-src:///services/fxaccounts/FxAccountsCommon.js"
 );
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 XPCOMUtils.defineLazyGetter(lazy, "fxAccounts", () => {
   return ChromeUtils.importESModule(
-    "resource://gre/modules/FxAccounts.sys.mjs"
+    "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
   ).getFxAccountsSingleton();
 });
 
 ChromeUtils.defineESModuleGetters(lazy, {
   EnsureFxAccountsWebChannel:
-    "resource://gre/modules/FxAccountsWebChannel.sys.mjs",
+    "moz-src:///services/fxaccounts/FxAccountsWebChannel.sys.mjs",
 });
 
 XPCOMUtils.defineLazyPreferenceGetter(

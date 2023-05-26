@@ -78,7 +78,7 @@ var Translation = {
   openProviderAttribution() {
     let attribution = this.supportedEngines[this.translationEngine];
     const { BrowserWindowTracker } = ChromeUtils.import(
-      "resource:///modules/BrowserWindowTracker.jsm"
+      "moz-src:///browser/modules/BrowserWindowTracker.jsm"
     );
     BrowserWindowTracker.getTopWindow().openWebLinkIn(attribution, "tab");
   },

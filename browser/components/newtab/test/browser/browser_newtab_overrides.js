@@ -1,7 +1,7 @@
 "use strict";
 
 const { AboutNewTab } = ChromeUtils.import(
-  "resource:///modules/AboutNewTab.jsm"
+  "moz-src:///browser/modules/AboutNewTab.jsm"
 );
 
 registerCleanupFunction(() => {

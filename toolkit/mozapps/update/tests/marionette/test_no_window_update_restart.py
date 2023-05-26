@@ -45,7 +45,7 @@ class TestNoWindowUpdateRestart(MarionetteTestCase):
                 Services.prefs.clearUserPref("testing.no_window_update_restart.silent_restart_env");
 
                 let { UpdateUtils } = ChromeUtils.importESModule(
-                    "resource://gre/modules/UpdateUtils.sys.mjs"
+                    "moz-src:///toolkit/modules/UpdateUtils.sys.mjs"
                 );
                 let origAppUpdateAuto = await UpdateUtils.getAppUpdateAutoEnabled();
                 await UpdateUtils.setAppUpdateAutoEnabled(true);
@@ -101,7 +101,7 @@ class TestNoWindowUpdateRestart(MarionetteTestCase):
                 Services.prefs.clearUserPref("testing.no_window_update_restart.silent_restart_env");
 
                 let { UpdateUtils } = ChromeUtils.importESModule(
-                    "resource://gre/modules/UpdateUtils.sys.mjs"
+                    "moz-src:///toolkit/modules/UpdateUtils.sys.mjs"
                 );
                 await UpdateUtils.setAppUpdateAutoEnabled(origAppUpdateAuto);
             })().then(resolve);
@@ -162,11 +162,11 @@ class TestNoWindowUpdateRestart(MarionetteTestCase):
             let UM = Cc["@mozilla.org/updates/update-manager;1"].getService(Ci.nsIUpdateManager);
             UM.QueryInterface(Ci.nsIObserver).observe(null, "um-reload-update-data", "skip-files");
 
-            let { UpdateListener } = ChromeUtils.import("resource://gre/modules/UpdateListener.jsm");
+            let { UpdateListener } = ChromeUtils.import("moz-src:///toolkit/mozapps/update/UpdateListener.jsm");
             UpdateListener.reset();
 
             let { AppMenuNotifications } = ChromeUtils.importESModule(
-                "resource://gre/modules/AppMenuNotifications.sys.mjs"
+                "moz-src:///toolkit/modules/AppMenuNotifications.sys.mjs"
             );
             AppMenuNotifications.removeNotification(/.*/);
 

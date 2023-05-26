@@ -69,23 +69,23 @@ const gRuleManagers = [];
  *  - allow / allowAllRequests
  */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineModuleGetter(
   lazy,
   "WebRequest",
-  "resource://gre/modules/WebRequest.jsm"
+  "moz-src:///toolkit/components/extensions/webrequest/WebRequest.jsm"
 );
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  ExtensionDNRLimits: "resource://gre/modules/ExtensionDNRLimits.sys.mjs",
-  ExtensionDNRStore: "resource://gre/modules/ExtensionDNRStore.sys.mjs",
+  ExtensionDNRLimits: "moz-src:///toolkit/components/extensions/ExtensionDNRLimits.sys.mjs",
+  ExtensionDNRStore: "moz-src:///toolkit/components/extensions/ExtensionDNRStore.sys.mjs",
 });
 
 const { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
 );
 const { ExtensionError } = ExtensionUtils;
 

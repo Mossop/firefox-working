@@ -7,7 +7,7 @@
 requestLongerTimeout(2);
 
 const { FxAccounts } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccounts.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
 );
 let { SyncedTabs } = ChromeUtils.importESModule(
   "resource://services-sync/SyncedTabs.sys.mjs"
@@ -17,7 +17,7 @@ let { UIState } = ChromeUtils.importESModule(
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  UITour: "resource:///modules/UITour.sys.mjs",
+  UITour: "moz-src:///browser/components/uitour/UITour.sys.mjs",
 });
 
 const DECKINDEX_TABS = 0;

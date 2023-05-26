@@ -6,7 +6,7 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  PageThumbUtils: "resource://gre/modules/PageThumbUtils.sys.mjs",
+  PageThumbUtils: "moz-src:///toolkit/components/thumbnails/PageThumbUtils.sys.mjs",
 });
 
 // NOTE: Copied from nsSandboxFlags.h

@@ -1,5 +1,5 @@
 ChromeUtils.defineESModuleGetters(this, {
-  FormHistory: "resource://gre/modules/FormHistory.sys.mjs",
+  FormHistory: "moz-src:///toolkit/components/satchel/FormHistory.sys.mjs",
   SearchTestUtils: "resource://testing-common/SearchTestUtils.sys.mjs",
 });
 

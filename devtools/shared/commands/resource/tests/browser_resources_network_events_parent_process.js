@@ -166,7 +166,7 @@ add_task(async function testParentProcessRequests() {
     uri
   ) {
     const { NetUtil } = ChromeUtils.import(
-      "resource://gre/modules/NetUtil.jsm"
+      "moz-src:///netwerk/base/NetUtil.jsm"
     );
     const channel = NetUtil.newChannel({
       uri,
@@ -197,7 +197,7 @@ add_task(async function testParentProcessRequests() {
     [requestUrl],
     async function(uri) {
       const { NetUtil } = ChromeUtils.import(
-        "resource://gre/modules/NetUtil.jsm"
+        "moz-src:///netwerk/base/NetUtil.jsm"
       );
       const channel = NetUtil.newChannel({
         uri,

@@ -12,7 +12,7 @@ var USERSCRIPT_DISABLED_ERRORMSG = `userScripts APIs are currently experimental 
 ChromeUtils.defineModuleGetter(
   this,
   "Schemas",
-  "resource://gre/modules/Schemas.jsm"
+  "moz-src:///toolkit/components/extensions/Schemas.jsm"
 );
 
 XPCOMUtils.defineLazyPreferenceGetter(

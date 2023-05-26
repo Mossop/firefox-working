@@ -1,4 +1,4 @@
-const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+const { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 
 function run_test() {
   var dataFile = do_get_file("data/bug121341.properties");

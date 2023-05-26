@@ -11,7 +11,7 @@ const PREF_FEATURE_EXPIRE_DAYS =
 
 ChromeUtils.defineESModuleGetters(this, {
   UrlbarProviderPreloadedSites:
-    "resource:///modules/UrlbarProviderPreloadedSites.sys.mjs",
+    "moz-src:///browser/components/urlbar/UrlbarProviderPreloadedSites.sys.mjs",
 });
 
 Cu.importGlobalProperties(["fetch"]);

@@ -1,5 +1,5 @@
 const { FXA_PWDMGR_HOST, FXA_PWDMGR_REALM } = ChromeUtils.import(
-  "resource://gre/modules/FxAccountsCommon.js"
+  "moz-src:///services/fxaccounts/FxAccountsCommon.js"
 );
 const { LoginRec } = ChromeUtils.importESModule(
   "resource://services-sync/engines/passwords.sys.mjs"

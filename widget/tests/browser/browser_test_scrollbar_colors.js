@@ -17,7 +17,7 @@ add_task(async () => {
   await SpecialPowers.spawn(tab.linkedBrowser, [], () => {
     ChromeUtils.defineESModuleGetters(this, {
       WindowsVersionInfo:
-        "resource://gre/modules/components-utils/WindowsVersionInfo.sys.mjs",
+        "moz-src:///toolkit/components/utils/WindowsVersionInfo.sys.mjs",
     });
 
     Services.scriptloader.loadSubScript(

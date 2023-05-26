@@ -2,9 +2,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { AsyncPrefs } from "resource://gre/modules/AsyncPrefs.sys.mjs";
-import { Narrator } from "resource://gre/modules/narrate/Narrator.sys.mjs";
-import { VoiceSelect } from "resource://gre/modules/narrate/VoiceSelect.sys.mjs";
+import { AsyncPrefs } from "moz-src:///toolkit/modules/AsyncPrefs.sys.mjs";
+import { Narrator } from "moz-src:///toolkit/components/narrate/Narrator.sys.mjs";
+import { VoiceSelect } from "moz-src:///toolkit/components/narrate/VoiceSelect.sys.mjs";
 
 var gStrings = Services.strings.createBundle(
   "chrome://global/locale/narrate.properties"

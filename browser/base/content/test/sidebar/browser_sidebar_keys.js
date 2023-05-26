@@ -28,7 +28,7 @@ add_task(async function test_sidebar_in_customize_mode() {
   // the sidebar button widget doesn't appear checked, and that the sidebar
   // button toggle is inert while in customize mode.
   let { CustomizableUI } = ChromeUtils.import(
-    "resource:///modules/CustomizableUI.jsm"
+    "moz-src:///browser/components/customizableui/CustomizableUI.jsm"
   );
   registerCleanupFunction(() => SidebarUI.hide());
 

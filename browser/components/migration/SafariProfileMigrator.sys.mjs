@@ -2,17 +2,17 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { FileUtils } from "resource://gre/modules/FileUtils.sys.mjs";
+import { FileUtils } from "moz-src:///toolkit/modules/FileUtils.sys.mjs";
 
-import { MigrationUtils } from "resource:///modules/MigrationUtils.sys.mjs";
-import { MigratorBase } from "resource:///modules/MigratorBase.sys.mjs";
+import { MigrationUtils } from "moz-src:///browser/components/migration/MigrationUtils.sys.mjs";
+import { MigratorBase } from "moz-src:///browser/components/migration/MigratorBase.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  FormHistory: "resource://gre/modules/FormHistory.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
-  PropertyListUtils: "resource://gre/modules/PropertyListUtils.sys.mjs",
+  FormHistory: "moz-src:///toolkit/components/satchel/FormHistory.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
+  PropertyListUtils: "moz-src:///toolkit/modules/PropertyListUtils.sys.mjs",
 });
 
 function Bookmarks(aBookmarksFile) {

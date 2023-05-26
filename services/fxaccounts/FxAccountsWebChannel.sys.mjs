@@ -9,7 +9,7 @@
  * about account state changes.
  */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const {
   COMMAND_PROFILE_CHANGE,
@@ -33,22 +33,22 @@ const {
   WEBCHANNEL_ID,
   log,
   logPII,
-} = ChromeUtils.import("resource://gre/modules/FxAccountsCommon.js");
+} = ChromeUtils.import("moz-src:///services/fxaccounts/FxAccountsCommon.js");
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   CryptoUtils: "resource://services-crypto/utils.sys.mjs",
-  FxAccountsPairingFlow: "resource://gre/modules/FxAccountsPairing.sys.mjs",
+  FxAccountsPairingFlow: "moz-src:///services/fxaccounts/FxAccountsPairing.sys.mjs",
   FxAccountsStorageManagerCanStoreField:
-    "resource://gre/modules/FxAccountsStorage.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+    "moz-src:///services/fxaccounts/FxAccountsStorage.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
   Weave: "resource://services-sync/main.sys.mjs",
-  WebChannel: "resource://gre/modules/WebChannel.sys.mjs",
+  WebChannel: "moz-src:///toolkit/modules/WebChannel.sys.mjs",
 });
 XPCOMUtils.defineLazyGetter(lazy, "fxAccounts", () => {
   return ChromeUtils.importESModule(
-    "resource://gre/modules/FxAccounts.sys.mjs"
+    "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
   ).getFxAccountsSingleton();
 });
 XPCOMUtils.defineLazyPreferenceGetter(

@@ -462,7 +462,7 @@ async function cleanupPasswordNotifications(
 async function clearMessageCache(browser) {
   await SpecialPowers.spawn(browser, [], async () => {
     const { LoginManagerChild } = ChromeUtils.importESModule(
-      "resource://gre/modules/LoginManagerChild.sys.mjs"
+      "moz-src:///toolkit/components/passwordmgr/LoginManagerChild.sys.mjs"
     );
     let docState = LoginManagerChild.forWindow(content).stateForDocument(
       content.document

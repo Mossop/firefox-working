@@ -2,16 +2,16 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Region: "resource://gre/modules/Region.sys.mjs",
+  Region: "moz-src:///toolkit/modules/Region.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  PingCentre: "resource:///modules/PingCentre.jsm",
+  PingCentre: "moz-src:///browser/modules/PingCentre.jsm",
 });
 
 // Endpoint base URL for Structured Ingestion

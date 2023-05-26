@@ -12,7 +12,7 @@ const BinaryInputStream = Components.Constructor(
   "setInputStream"
 );
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
@@ -24,7 +24,7 @@ XPCOMUtils.defineLazyServiceGetter(
 );
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 class NetworkThrottleListener {

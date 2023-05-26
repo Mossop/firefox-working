@@ -4,12 +4,12 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  AppMenuNotifications: "resource://gre/modules/AppMenuNotifications.sys.mjs",
-  DownloadUtils: "resource://gre/modules/DownloadUtils.sys.mjs",
-  UpdateListener: "resource://gre/modules/UpdateListener.sys.mjs",
+  AppMenuNotifications: "moz-src:///toolkit/modules/AppMenuNotifications.sys.mjs",
+  DownloadUtils: "moz-src:///toolkit/mozapps/downloads/DownloadUtils.sys.mjs",
+  UpdateListener: "moz-src:///toolkit/mozapps/update/UpdateListener.sys.mjs",
 });
 const { XPIInstall } = ChromeUtils.import(
-  "resource://gre/modules/addons/XPIInstall.jsm"
+  "moz-src:///toolkit/mozapps/extensions/internal/XPIInstall.jsm"
 );
 
 const BIN_SUFFIX = AppConstants.platform == "win" ? ".exe" : "";

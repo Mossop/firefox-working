@@ -7,7 +7,7 @@
 "use strict";
 
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["URL"]);
@@ -15,7 +15,7 @@ XPCOMUtils.defineLazyGlobalGetters(this, ["URL"]);
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionChildDevToolsUtils",
-  "resource://gre/modules/ExtensionChildDevToolsUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionChildDevToolsUtils.jsm"
 );
 
 var { promiseDocumentLoaded } = ExtensionUtils;

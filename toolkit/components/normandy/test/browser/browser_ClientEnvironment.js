@@ -1,7 +1,7 @@
 "use strict";
 
 const { TelemetryController } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryController.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs"
 );
 
 const { AddonRollouts } = ChromeUtils.importESModule(

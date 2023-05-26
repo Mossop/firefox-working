@@ -3,8 +3,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { FileUtils } from "resource://gre/modules/FileUtils.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { FileUtils } from "moz-src:///toolkit/modules/FileUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 var gLogfileOutputStream;
 
@@ -14,7 +14,7 @@ const KEY_PROFILE_DIR = "ProfD";
 const FILE_UPDATE_MESSAGES = "update_messages.log";
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  UpdateUtils: "resource://gre/modules/UpdateUtils.sys.mjs",
+  UpdateUtils: "moz-src:///toolkit/modules/UpdateUtils.sys.mjs",
 });
 XPCOMUtils.defineLazyGetter(lazy, "gLogEnabled", function aus_gLogEnabled() {
   return (

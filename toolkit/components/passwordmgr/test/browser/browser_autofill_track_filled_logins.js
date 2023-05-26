@@ -50,13 +50,13 @@ add_task(async function test() {
       [{ login, usernameRequested }],
       async ({ login: addedLogin, usernameRequested: aUsernameRequested }) => {
         const { LoginFormFactory } = ChromeUtils.importESModule(
-          "resource://gre/modules/LoginFormFactory.sys.mjs"
+          "moz-src:///toolkit/components/passwordmgr/LoginFormFactory.sys.mjs"
         );
         const { LoginManagerChild } = ChromeUtils.importESModule(
-          "resource://gre/modules/LoginManagerChild.sys.mjs"
+          "moz-src:///toolkit/components/passwordmgr/LoginManagerChild.sys.mjs"
         );
         const { LoginHelper } = ChromeUtils.importESModule(
-          "resource://gre/modules/LoginHelper.sys.mjs"
+          "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs"
         );
 
         let password = content.document.querySelector("#form-basic-password");

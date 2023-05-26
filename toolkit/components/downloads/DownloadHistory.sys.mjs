@@ -11,14 +11,14 @@
  * exposed to allow the consumers to integrate with history view commands.
  */
 
-import { DownloadList } from "resource://gre/modules/DownloadList.sys.mjs";
+import { DownloadList } from "moz-src:///toolkit/components/downloads/DownloadList.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Downloads: "resource://gre/modules/Downloads.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
+  Downloads: "moz-src:///toolkit/components/downloads/Downloads.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
 });
 
 // Places query used to retrieve all history downloads for the related list.

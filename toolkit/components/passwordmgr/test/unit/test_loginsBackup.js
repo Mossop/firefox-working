@@ -8,7 +8,7 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  LoginStore: "resource://gre/modules/LoginStore.sys.mjs",
+  LoginStore: "moz-src:///toolkit/components/passwordmgr/LoginStore.sys.mjs",
 });
 const { TestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/TestUtils.sys.mjs"

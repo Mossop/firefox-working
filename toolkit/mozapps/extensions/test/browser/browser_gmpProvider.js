@@ -5,10 +5,10 @@
 "use strict";
 
 const { GMPInstallManager } = ChromeUtils.importESModule(
-  "resource://gre/modules/GMPInstallManager.sys.mjs"
+  "moz-src:///toolkit/modules/GMPInstallManager.sys.mjs"
 );
 const { GMPPrefs, GMP_PLUGIN_IDS, WIDEVINE_ID } = ChromeUtils.importESModule(
-  "resource://gre/modules/GMPUtils.sys.mjs"
+  "moz-src:///toolkit/modules/GMPUtils.sys.mjs"
 );
 
 const TEST_DATE = new Date(2013, 0, 1, 12);

@@ -14,7 +14,7 @@
 
 /* eslint-disable mozilla/use-ownerGlobal */
 
-import { setTimeout } from "resource://gre/modules/Timer.sys.mjs";
+import { setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 
 export var ContentTaskUtils = {
   /**

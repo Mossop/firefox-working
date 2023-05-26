@@ -9,7 +9,7 @@ var EXPORTED_SYMBOLS = ["TranslationChild"];
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
   LanguageDetector:
-    "resource://gre/modules/translation/LanguageDetector.sys.mjs",
+    "moz-src:///toolkit/components/translation/LanguageDetector.sys.mjs",
 });
 
 const STATE_OFFER = 0;
@@ -93,7 +93,7 @@ class TranslationChild extends JSWindowActorChild {
 
   async doTranslation(aFrom, aTo) {
     var { TranslationDocument } = ChromeUtils.import(
-      "resource:///modules/translation/TranslationDocument.jsm"
+      "moz-src:///browser/components/translation/TranslationDocument.jsm"
     );
 
     // If a TranslationDocument already exists for this document, it should

@@ -4,13 +4,13 @@
 "use strict";
 
 const { BasePromiseWorker } = ChromeUtils.import(
-  "resource://gre/modules/PromiseWorker.jsm"
+  "moz-src:///toolkit/components/promiseworker/PromiseWorker.jsm"
 );
 const { TelemetryStorage } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryStorage.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryStorage.sys.mjs"
 );
 const { FileUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/FileUtils.sys.mjs"
+  "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 );
 
 const gFakeInstallPathHash = "0123456789ABCDEF";
