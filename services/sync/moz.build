@@ -15,7 +15,7 @@ EXTRA_COMPONENTS += [
     "SyncComponents.manifest",
 ]
 
-EXTRA_JS_MODULES["services-sync"] += [
+FINAL_TARGET_FILES.modules["services-sync"] += [
     "modules/addonsreconciler.sys.mjs",
     "modules/addonutils.sys.mjs",
     "modules/bridged_engine.sys.mjs",
@@ -39,7 +39,7 @@ EXTRA_JS_MODULES["services-sync"] += [
     "Weave.sys.mjs",
 ]
 
-EXTRA_JS_MODULES["services-sync"].engines += [
+FINAL_TARGET_FILES.modules["services-sync"].engines += [
     "modules/engines/addons.sys.mjs",
     "modules/engines/clients.sys.mjs",
     "modules/engines/extension-storage.sys.mjs",
@@ -48,14 +48,14 @@ EXTRA_JS_MODULES["services-sync"].engines += [
 ]
 
 if not CONFIG["MOZ_THUNDERBIRD"]:
-    EXTRA_JS_MODULES["services-sync"].engines += [
+    FINAL_TARGET_FILES.modules["services-sync"].engines += [
         "modules/engines/bookmarks.sys.mjs",
         "modules/engines/forms.sys.mjs",
         "modules/engines/history.sys.mjs",
         "modules/engines/tabs.sys.mjs",
     ]
 
-EXTRA_JS_MODULES["services-sync"].stages += [
+FINAL_TARGET_FILES.modules["services-sync"].stages += [
     "modules/stages/declined.sys.mjs",
     "modules/stages/enginesync.sys.mjs",
 ]
