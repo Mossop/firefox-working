@@ -25,8 +25,11 @@ if CONFIG["MOZ_CRASHREPORTER"]:
         inputs=["CrashManager.in.sys.mjs"],
     )
 
-    EXTRA_JS_MODULES += [
+    FINAL_TARGET_FILES.modules += [
         "!CrashManager.sys.mjs",
+    ]
+
+    EXTRA_JS_MODULES += [
         "CrashService.sys.mjs",
     ]
 

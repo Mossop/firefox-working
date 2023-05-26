@@ -17,7 +17,7 @@ EXTRA_COMPONENTS += [
     "servicesComponents.manifest",
 ]
 
-EXTRA_JS_MODULES["services-common"] += [
+FINAL_TARGET_FILES.modules["services-common"] += [
     "async.sys.mjs",
     "kinto-http-client.js",
     "kinto-offline-client.js",
@@ -30,7 +30,7 @@ EXTRA_JS_MODULES["services-common"] += [
 ]
 
 if CONFIG["MOZ_WIDGET_TOOLKIT"] != "android":
-    EXTRA_JS_MODULES["services-common"] += [
+    FINAL_TARGET_FILES.modules["services-common"] += [
         "hawkclient.sys.mjs",
         "hawkrequest.sys.mjs",
         "tokenserverclient.sys.mjs",
