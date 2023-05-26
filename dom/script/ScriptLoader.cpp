@@ -3276,7 +3276,7 @@ int32_t ScriptLoader::PhysicalSizeOfMemoryInGB() {
 
 static bool IsInternalURIScheme(nsIURI* uri) {
   return uri->SchemeIs("moz-extension") || uri->SchemeIs("resource") ||
-         uri->SchemeIs("chrome");
+         uri->SchemeIs("chrome") || uri->SchemeIs("moz-src");
 }
 
 bool ScriptLoader::ShouldApplyDelazifyStrategy(ScriptLoadRequest* aRequest) {

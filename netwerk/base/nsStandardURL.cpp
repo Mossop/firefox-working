@@ -834,7 +834,8 @@ nsresult nsStandardURL::BuildNormalizedSpec(const char* spec,
       return rv;
     }
     if (!SegmentIs(spec, mScheme, "resource") &&
-        !SegmentIs(spec, mScheme, "chrome")) {
+        !SegmentIs(spec, mScheme, "chrome") &&
+        !SegmentIs(spec, mScheme, "moz-src")) {
       nsAutoCString ipString;
       if (encHost.Length() > 0 && encHost.First() == '[' &&
           encHost.Last() == ']' &&
