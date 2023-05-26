@@ -8,7 +8,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "URICountListener",
-  "resource:///modules/BrowserUsageTelemetry.jsm"
+  "moz-src:///browser/modules/BrowserUsageTelemetry.jsm"
 );
 
 add_task(async function test_uniqueDomainsVisitedInPast24Hours() {

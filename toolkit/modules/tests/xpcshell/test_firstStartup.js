@@ -4,7 +4,7 @@ const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 const { FirstStartup } = ChromeUtils.importESModule(
-  "resource://gre/modules/FirstStartup.sys.mjs"
+  "moz-src:///toolkit/modules/FirstStartup.sys.mjs"
 );
 const { updateAppInfo } = ChromeUtils.importESModule(
   "resource://testing-common/AppInfo.sys.mjs"

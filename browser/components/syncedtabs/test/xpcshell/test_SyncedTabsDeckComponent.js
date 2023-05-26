@@ -4,13 +4,13 @@ let { SyncedTabs } = ChromeUtils.importESModule(
   "resource://services-sync/SyncedTabs.sys.mjs"
 );
 let { SyncedTabsDeckComponent } = ChromeUtils.import(
-  "resource:///modules/syncedtabs/SyncedTabsDeckComponent.js"
+  "moz-src:///browser/components/syncedtabs/SyncedTabsDeckComponent.js"
 );
 let { SyncedTabsListStore } = ChromeUtils.import(
-  "resource:///modules/syncedtabs/SyncedTabsListStore.js"
+  "moz-src:///browser/components/syncedtabs/SyncedTabsListStore.js"
 );
 let { SyncedTabsDeckStore } = ChromeUtils.import(
-  "resource:///modules/syncedtabs/SyncedTabsDeckStore.js"
+  "moz-src:///browser/components/syncedtabs/SyncedTabsDeckStore.js"
 );
 const { UIState } = ChromeUtils.importESModule(
   "resource://services-sync/UIState.sys.mjs"

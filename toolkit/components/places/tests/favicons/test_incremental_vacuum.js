@@ -4,7 +4,7 @@
 // Tests incremental vacuum of the favicons database.
 
 const { PlacesDBUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PlacesDBUtils.sys.mjs"
+  "moz-src:///toolkit/components/places/PlacesDBUtils.sys.mjs"
 );
 
 add_task(async function() {

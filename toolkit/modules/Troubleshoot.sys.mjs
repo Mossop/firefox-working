@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const { AddonManager } = ChromeUtils.import(
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
@@ -12,7 +12,7 @@ import { FeatureGate } from "resource://featuregates/FeatureGate.sys.mjs";
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  PlacesDBUtils: "resource://gre/modules/PlacesDBUtils.sys.mjs",
+  PlacesDBUtils: "moz-src:///toolkit/components/places/PlacesDBUtils.sys.mjs",
 });
 
 // We use a list of prefs for display to make sure we only show prefs that
@@ -234,7 +234,7 @@ var dataProviders = {
 
     if (AppConstants.MOZ_UPDATER) {
       data.updateChannel = ChromeUtils.importESModule(
-        "resource://gre/modules/UpdateUtils.sys.mjs"
+        "moz-src:///toolkit/modules/UpdateUtils.sys.mjs"
       ).UpdateUtils.UpdateChannel;
     }
 
@@ -458,7 +458,7 @@ var dataProviders = {
     try {
       // Subprocess is not available in all builds
       Subprocess = ChromeUtils.importESModule(
-        "resource://gre/modules/Subprocess.sys.mjs"
+        "moz-src:///toolkit/modules/subprocess/Subprocess.sys.mjs"
       ).Subprocess;
     } catch (ex) {
       done({});
@@ -1017,7 +1017,7 @@ var dataProviders = {
 if (AppConstants.MOZ_CRASHREPORTER) {
   dataProviders.crashes = function crashes(done) {
     const { CrashReports } = ChromeUtils.importESModule(
-      "resource://gre/modules/CrashReports.sys.mjs"
+      "moz-src:///toolkit/crashreporter/CrashReports.sys.mjs"
     );
     let reports = CrashReports.getReports();
     let now = new Date();

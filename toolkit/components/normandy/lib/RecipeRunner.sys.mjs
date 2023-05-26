@@ -2,9 +2,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 import { LogManager } from "resource://normandy/lib/LogManager.sys.mjs";
-import { PromiseUtils } from "resource://gre/modules/PromiseUtils.sys.mjs";
+import { PromiseUtils } from "moz-src:///toolkit/modules/PromiseUtils.sys.mjs";
 
 const lazy = {};
 
@@ -21,7 +21,7 @@ ChromeUtils.defineESModuleGetters(lazy, {
   CleanupManager: "resource://normandy/lib/CleanupManager.sys.mjs",
   ClientEnvironment: "resource://normandy/lib/ClientEnvironment.sys.mjs",
   FilterExpressions:
-    "resource://gre/modules/components-utils/FilterExpressions.sys.mjs",
+    "moz-src:///toolkit/components/utils/FilterExpressions.sys.mjs",
   LegacyHeartbeat: "resource://normandy/lib/LegacyHeartbeat.sys.mjs",
   Normandy: "resource://normandy/Normandy.sys.mjs",
   NormandyApi: "resource://normandy/lib/NormandyApi.sys.mjs",
@@ -31,8 +31,8 @@ ChromeUtils.defineESModuleGetters(lazy, {
   Storage: "resource://normandy/lib/Storage.sys.mjs",
   TargetingContext: "resource://messaging-system/targeting/Targeting.sys.mjs",
   Uptake: "resource://normandy/lib/Uptake.sys.mjs",
-  clearTimeout: "resource://gre/modules/Timer.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  clearTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 const log = LogManager.getLogger("recipe-runner");

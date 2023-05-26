@@ -2,7 +2,7 @@
 "use strict";
 
 const { ClientID } = ChromeUtils.importESModule(
-  "resource://gre/modules/ClientID.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/ClientID.sys.mjs"
 );
 
 const { AddonTestUtils } = ChromeUtils.import(

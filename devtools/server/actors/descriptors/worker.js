@@ -23,7 +23,7 @@ const {
   DevToolsServer,
 } = require("resource://devtools/server/devtools-server.js");
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const {
   createWorkerSessionContext,

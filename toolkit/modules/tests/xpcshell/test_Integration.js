@@ -7,7 +7,7 @@
 
 "use strict";
 const { Integration } = ChromeUtils.importESModule(
-  "resource://gre/modules/Integration.sys.mjs"
+  "moz-src:///toolkit/modules/Integration.sys.mjs"
 );
 
 const TestIntegration = {

@@ -24,13 +24,13 @@ var EXPORTED_SYMBOLS = [
 ];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 const { PromiseUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PromiseUtils.sys.mjs"
+  "moz-src:///toolkit/modules/PromiseUtils.sys.mjs"
 );
 
 const lazy = {};
@@ -53,20 +53,20 @@ ChromeUtils.defineESModuleGetters(lazy, {
   DumpCreditCards: "resource://tps/modules/formautofill.sys.mjs",
   DumpHistory: "resource://tps/modules/history.sys.mjs",
   DumpPasswords: "resource://tps/modules/passwords.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
   FormData: "resource://tps/modules/forms.sys.mjs",
   FormValidator: "resource://services-sync/engines/forms.sys.mjs",
   HistoryEntry: "resource://tps/modules/history.sys.mjs",
-  JsonSchema: "resource://gre/modules/JsonSchema.sys.mjs",
+  JsonSchema: "moz-src:///toolkit/modules/JsonSchema.sys.mjs",
   Livemark: "resource://tps/modules/bookmarks.sys.mjs",
-  Log: "resource://gre/modules/Log.sys.mjs",
+  Log: "moz-src:///toolkit/modules/Log.sys.mjs",
   Logger: "resource://tps/logger.sys.mjs",
   Password: "resource://tps/modules/passwords.sys.mjs",
   PasswordValidator: "resource://services-sync/engines/passwords.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
   Preference: "resource://tps/modules/prefs.sys.mjs",
   Separator: "resource://tps/modules/bookmarks.sys.mjs",
-  SessionStore: "resource:///modules/sessionstore/SessionStore.sys.mjs",
+  SessionStore: "moz-src:///browser/components/sessionstore/SessionStore.sys.mjs",
   STATUS_OK: "resource://services-sync/constants.sys.mjs",
   Svc: "resource://services-sync/util.sys.mjs",
   SyncTelemetry: "resource://services-sync/telemetry.sys.mjs",
@@ -75,7 +75,7 @@ ChromeUtils.defineESModuleGetters(lazy, {
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  extensionStorageSync: "resource://gre/modules/ExtensionStorageSync.jsm",
+  extensionStorageSync: "moz-src:///toolkit/components/extensions/ExtensionStorageSync.jsm",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "fileProtocolHandler", () => {
@@ -90,7 +90,7 @@ XPCOMUtils.defineLazyGetter(lazy, "gTextDecoder", () => {
 ChromeUtils.defineModuleGetter(
   lazy,
   "NetUtil",
-  "resource://gre/modules/NetUtil.jsm"
+  "moz-src:///netwerk/base/NetUtil.jsm"
 );
 
 // Options for wiping data during a sync

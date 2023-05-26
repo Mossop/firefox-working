@@ -17,7 +17,7 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "PanelMultiView",
-  "resource:///modules/PanelMultiView.jsm"
+  "moz-src:///browser/components/customizableui/PanelMultiView.jsm"
 );
 
 var ZoomUI = {
@@ -193,7 +193,7 @@ async function updateZoomUI(aBrowser, aAnimate = false) {
 }
 
 const { CustomizableUI } = ChromeUtils.import(
-  "resource:///modules/CustomizableUI.jsm"
+  "moz-src:///browser/components/customizableui/CustomizableUI.jsm"
 );
 let customizationListener = {};
 customizationListener.onWidgetAdded = customizationListener.onWidgetRemoved = customizationListener.onWidgetMoved = function(

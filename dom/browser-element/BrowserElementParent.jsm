@@ -10,7 +10,7 @@
  */
 
 const { BrowserElementPromptService } = ChromeUtils.import(
-  "resource://gre/modules/BrowserElementPromptService.jsm"
+  "moz-src:///dom/browser-element/BrowserElementPromptService.jsm"
 );
 
 function debug(msg) {

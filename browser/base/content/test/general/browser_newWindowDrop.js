@@ -20,7 +20,7 @@ add_task(async function test_setup() {
 
   // Move New Window button to nav bar, to make it possible to drag and drop.
   let { CustomizableUI } = ChromeUtils.import(
-    "resource:///modules/CustomizableUI.jsm"
+    "moz-src:///browser/components/customizableui/CustomizableUI.jsm"
   );
   let origPlacement = CustomizableUI.getPlacementOfWidget("new-window-button");
   if (!origPlacement || origPlacement.area != CustomizableUI.AREA_NAVBAR) {

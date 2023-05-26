@@ -8,7 +8,7 @@
 const Telemetry = Services.telemetry;
 
 const { TelemetryController } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryController.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs"
 );
 
 /* eslint-disable mozilla/no-redeclare-with-import-autofix */

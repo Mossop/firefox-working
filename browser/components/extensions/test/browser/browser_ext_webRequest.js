@@ -6,7 +6,7 @@
 loadTestSubscript("head_webrequest.js");
 
 const { HiddenFrame } = ChromeUtils.importESModule(
-  "resource://gre/modules/HiddenFrame.sys.mjs"
+  "moz-src:///toolkit/modules/HiddenFrame.sys.mjs"
 );
 const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 

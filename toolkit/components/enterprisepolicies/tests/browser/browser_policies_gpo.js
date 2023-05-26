@@ -13,7 +13,7 @@ add_task(async function setup_preferences() {
 
 add_task(async function test_gpo_policies() {
   let { Policies } = ChromeUtils.importESModule(
-    "resource:///modules/policies/Policies.sys.mjs"
+    "moz-src:///browser/components/enterprisepolicies/Policies.sys.mjs"
   );
 
   let gpoPolicyRan = false;
@@ -69,7 +69,7 @@ add_task(async function test_gpo_policies() {
 
 add_task(async function test_gpo_json_policies() {
   let { Policies } = ChromeUtils.importESModule(
-    "resource:///modules/policies/Policies.sys.mjs"
+    "moz-src:///browser/components/enterprisepolicies/Policies.sys.mjs"
   );
 
   let gpoPolicyRan = false;
@@ -155,7 +155,7 @@ add_task(async function test_gpo_json_policies() {
 
 add_task(async function test_gpo_broken_json_policies() {
   let { Policies } = ChromeUtils.importESModule(
-    "resource:///modules/policies/Policies.sys.mjs"
+    "moz-src:///browser/components/enterprisepolicies/Policies.sys.mjs"
   );
 
   let gpoPolicyRan = false;

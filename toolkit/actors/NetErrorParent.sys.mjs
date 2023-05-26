@@ -5,8 +5,8 @@
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
-import { PrivateBrowsingUtils } from "resource://gre/modules/PrivateBrowsingUtils.sys.mjs";
-import { TelemetryController } from "resource://gre/modules/TelemetryController.sys.mjs";
+import { PrivateBrowsingUtils } from "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs";
+import { TelemetryController } from "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs";
 
 const PREF_SSL_IMPACT_ROOTS = [
   "security.tls.version.",
@@ -17,13 +17,13 @@ const PREF_SSL_IMPACT_ROOTS = [
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  BrowserUtils: "resource://gre/modules/BrowserUtils.sys.mjs",
+  BrowserUtils: "moz-src:///toolkit/modules/BrowserUtils.sys.mjs",
 });
 
 ChromeUtils.defineModuleGetter(
   lazy,
   "HomePage",
-  "resource:///modules/HomePage.jsm"
+  "moz-src:///browser/modules/HomePage.jsm"
 );
 
 class CaptivePortalObserver {

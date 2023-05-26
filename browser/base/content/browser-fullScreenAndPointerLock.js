@@ -95,7 +95,7 @@ var PointerlockFsWarning = {
       textElem.removeAttribute("hidden");
       // Document's principal's URI has a host. Display a warning including it.
       let { DownloadUtils } = ChromeUtils.importESModule(
-        "resource://gre/modules/DownloadUtils.sys.mjs"
+        "moz-src:///toolkit/mozapps/downloads/DownloadUtils.sys.mjs"
       );
       let displayHost = DownloadUtils.getURIHost(uri.spec)[0];
       let l10nString = {
@@ -902,7 +902,7 @@ var FullScreen = {
 
 XPCOMUtils.defineLazyGetter(FullScreen, "_permissionNotificationIDs", () => {
   let { PermissionUI } = ChromeUtils.importESModule(
-    "resource:///modules/PermissionUI.sys.mjs"
+    "moz-src:///browser/modules/PermissionUI.sys.mjs"
   );
   return (
     Object.values(PermissionUI)

@@ -8,7 +8,7 @@ const { Status } = ChromeUtils.importESModule(
   "resource://services-sync/status.sys.mjs"
 );
 const { FileUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/FileUtils.sys.mjs"
+  "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 );
 
 const fakeServer = new SyncServer();

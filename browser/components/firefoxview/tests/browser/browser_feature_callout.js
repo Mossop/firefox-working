@@ -7,7 +7,7 @@ const { MessageLoaderUtils } = ChromeUtils.import(
 );
 
 const { BuiltInThemes } = ChromeUtils.importESModule(
-  "resource:///modules/BuiltInThemes.sys.mjs"
+  "moz-src:///browser/themes/BuiltInThemes.sys.mjs"
 );
 
 const featureTourPref = "browser.firefox-view.feature-tour";

@@ -9,10 +9,10 @@
 ChromeUtils.defineModuleGetter(
   this,
   "ProxyChannelFilter",
-  "resource://gre/modules/ProxyChannelFilter.jsm"
+  "moz-src:///toolkit/components/extensions/ProxyChannelFilter.jsm"
 );
 var { ExtensionPreferencesManager } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionPreferencesManager.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPreferencesManager.jsm"
 );
 
 var { ExtensionError } = ExtensionUtils;

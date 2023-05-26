@@ -84,7 +84,7 @@ add_task(async function test_add() {
 add_task(async function test_diacritics() {
   const diacritic_engine = "Foo \u2661";
   let { Preferences } = ChromeUtils.importESModule(
-    "resource://gre/modules/Preferences.sys.mjs"
+    "moz-src:///toolkit/modules/Preferences.sys.mjs"
   );
 
   Preferences.set("browser.search.hiddenOneOffs", diacritic_engine);

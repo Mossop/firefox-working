@@ -8,7 +8,7 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
 var { ExtensionError } = ExtensionUtils;

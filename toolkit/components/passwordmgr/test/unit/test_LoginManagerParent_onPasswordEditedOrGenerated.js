@@ -8,10 +8,10 @@ const { sinon } = ChromeUtils.importESModule(
   "resource://testing-common/Sinon.sys.mjs"
 );
 const { LoginManagerParent } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginManagerParent.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginManagerParent.sys.mjs"
 );
 const { LoginManagerPrompter } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginManagerPrompter.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginManagerPrompter.sys.mjs"
 );
 
 const { TestUtils } = ChromeUtils.importESModule(

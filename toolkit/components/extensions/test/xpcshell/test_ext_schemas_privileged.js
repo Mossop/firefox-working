@@ -146,7 +146,7 @@ add_task(
 // Test that Extension.jsm and schema correctly match.
 add_task(function test_privileged_permissions_match() {
   const { PRIVILEGED_PERMS } = ChromeUtils.import(
-    "resource://gre/modules/Extension.jsm"
+    "moz-src:///toolkit/components/extensions/Extension.jsm"
   );
   let perms = Schemas.getPermissionNames(["PermissionPrivileged"]);
   if (AppConstants.platform == "android") {

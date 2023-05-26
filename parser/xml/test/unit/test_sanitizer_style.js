@@ -89,7 +89,7 @@ function run_test() {
     // To work around this, just force the history service to be created earlier:
 
     let { PlacesUtils } = ChromeUtils.importESModule(
-      "resource://gre/modules/PlacesUtils.sys.mjs"
+      "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs"
     );
     Assert.ok(
       PlacesUtils.history.databaseStatus <= 1,

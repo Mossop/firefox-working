@@ -5,7 +5,7 @@ const { Service } = ChromeUtils.importESModule(
   "resource://services-sync/service.sys.mjs"
 );
 const { PlacesTransactions } = ChromeUtils.importESModule(
-  "resource://gre/modules/PlacesTransactions.sys.mjs"
+  "moz-src:///toolkit/components/places/PlacesTransactions.sys.mjs"
 );
 
 let engine;

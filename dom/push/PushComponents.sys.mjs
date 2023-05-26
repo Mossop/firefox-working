@@ -7,7 +7,7 @@
  * interact with the Push service.
  */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 var isParent =
   Services.appinfo.processType === Ci.nsIXULRuntime.PROCESS_TYPE_DEFAULT;
@@ -18,7 +18,7 @@ const lazy = {};
 XPCOMUtils.defineLazyGetter(lazy, "PushService", function() {
   if (Services.prefs.getBoolPref("dom.push.enabled")) {
     const { PushService } = ChromeUtils.importESModule(
-      "resource://gre/modules/PushService.sys.mjs"
+      "moz-src:///dom/push/PushService.sys.mjs"
     );
     PushService.init();
     return PushService;

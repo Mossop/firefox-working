@@ -8,10 +8,10 @@
 
 function setup_crash() {
   const { AsyncShutdown } = ChromeUtils.importESModule(
-    "resource://gre/modules/AsyncShutdown.sys.mjs"
+    "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs"
   );
   const { PromiseUtils } = ChromeUtils.importESModule(
-    "resource://gre/modules/PromiseUtils.sys.mjs"
+    "moz-src:///toolkit/modules/PromiseUtils.sys.mjs"
   );
 
   Services.prefs.setBoolPref("toolkit.asyncshutdown.testing", true);
@@ -44,7 +44,7 @@ function after_crash(mdump, extra) {
 
 function setup_ioutils_crash() {
   const { PromiseUtils } = ChromeUtils.importESModule(
-    "resource://gre/modules/PromiseUtils.sys.mjs"
+    "moz-src:///toolkit/modules/PromiseUtils.sys.mjs"
   );
 
   Services.prefs.setIntPref("toolkit.asyncshutdown.crash_timeout", 1);

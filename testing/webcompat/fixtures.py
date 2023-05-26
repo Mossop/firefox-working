@@ -171,13 +171,13 @@ def install_addon(session, addon_file_path):
         const addon_file_path = arguments[0];
         const cb = arguments[1];
         const { AddonManager } = ChromeUtils.import(
-            "resource://gre/modules/AddonManager.jsm"
+            "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
         );
         const { ExtensionPermissions } = ChromeUtils.import(
-            "resource://gre/modules/ExtensionPermissions.jsm"
+            "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm"
         );
         const { FileUtils } = ChromeUtils.importESModule(
-            "resource://gre/modules/FileUtils.sys.mjs"
+            "moz-src:///toolkit/modules/FileUtils.sys.mjs"
         );
         const file = new FileUtils.File(arguments[0]);
         AddonManager.installTemporaryAddon(file).then(addon => {

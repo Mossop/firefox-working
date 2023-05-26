@@ -53,11 +53,11 @@ let { PromiseTestUtils: _PromiseTestUtils } = ChromeUtils.importESModule(
 );
 
 let { NetUtil: _NetUtil } = ChromeUtils.import(
-  "resource://gre/modules/NetUtil.jsm"
+  "moz-src:///netwerk/base/NetUtil.jsm"
 );
 
 let { XPCOMUtils: _XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 // Support a common assertion library, Assert.sys.mjs.
@@ -1863,7 +1863,7 @@ try {
     let {
       TelemetryController: _TelemetryController,
     } = ChromeUtils.importESModule(
-      "resource://gre/modules/TelemetryController.sys.mjs"
+      "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs"
     );
 
     let complete = false;

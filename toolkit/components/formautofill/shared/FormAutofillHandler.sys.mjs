@@ -3,14 +3,14 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { FormAutofill } from "resource://autofill/FormAutofill.sys.mjs";
-import { FormAutofillUtils } from "resource://gre/modules/shared/FormAutofillUtils.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { FormAutofillUtils } from "moz-src:///toolkit/components/formautofill/shared/FormAutofillUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
   FormAutofillHeuristics:
-    "resource://gre/modules/shared/FormAutofillHeuristics.sys.mjs",
-  FormLikeFactory: "resource://gre/modules/FormLikeFactory.sys.mjs",
+    "moz-src:///toolkit/components/formautofill/shared/FormAutofillHeuristics.sys.mjs",
+  FormLikeFactory: "moz-src:///toolkit/modules/FormLikeFactory.sys.mjs",
   FormAutofillAddressSection: "resource://autofill/FormAutofillSection.sys.mjs",
   FormAutofillCreditCardSection:
     "resource://autofill/FormAutofillSection.sys.mjs",

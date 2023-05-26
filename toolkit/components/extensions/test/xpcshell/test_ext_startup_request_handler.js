@@ -8,7 +8,7 @@ function delay(time) {
 }
 
 const { Extension } = ChromeUtils.import(
-  "resource://gre/modules/Extension.jsm"
+  "moz-src:///toolkit/components/extensions/Extension.jsm"
 );
 
 add_task(async function test_startup_request_handler() {

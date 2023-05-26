@@ -104,7 +104,7 @@ const EXPECTED_REQUESTS = [
     // NOTE: The line number can be an arbitrary number greater than 0.
     stack: [
       {
-        file: "resource:///modules/FaviconLoader.jsm",
+        file: "moz-src:///browser/modules/FaviconLoader.jsm",
         line: Number.MAX_SAFE_INTEGER,
       },
     ],

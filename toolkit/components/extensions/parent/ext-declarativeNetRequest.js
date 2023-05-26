@@ -7,7 +7,7 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  ExtensionDNR: "resource://gre/modules/ExtensionDNR.sys.mjs",
+  ExtensionDNR: "moz-src:///toolkit/components/extensions/ExtensionDNR.sys.mjs",
 });
 
 var { ExtensionError } = ExtensionUtils;

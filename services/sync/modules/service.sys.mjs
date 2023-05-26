@@ -5,9 +5,9 @@
 const CRYPTO_COLLECTION = "crypto";
 const KEYS_WBO = "keys";
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { Log } from "resource://gre/modules/Log.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
 
 import { Async } from "resource://services-common/async.sys.mjs";
 import { CommonUtils } from "resource://services-common/utils.sys.mjs";
@@ -62,7 +62,7 @@ import { Status } from "resource://services-sync/status.sys.mjs";
 ChromeUtils.importESModule("resource://services-sync/telemetry.sys.mjs");
 import { Svc, Utils } from "resource://services-sync/util.sys.mjs";
 
-import { getFxAccountsSingleton } from "resource://gre/modules/FxAccounts.sys.mjs";
+import { getFxAccountsSingleton } from "moz-src:///services/fxaccounts/FxAccounts.sys.mjs";
 
 const fxAccounts = getFxAccountsSingleton();
 

@@ -1,10 +1,10 @@
 "use strict";
 
 const { TelemetryArchive } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryArchive.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryArchive.sys.mjs"
 );
 const { TelemetryUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryUtils.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryUtils.sys.mjs"
 );
 const { TelemetryTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/TelemetryTestUtils.sys.mjs"

@@ -8,7 +8,7 @@
 
 ChromeUtils.defineESModuleGetters(this, {
   ExtensionSearchHandler:
-    "resource://gre/modules/ExtensionSearchHandler.sys.mjs",
+    "moz-src:///toolkit/components/places/ExtensionSearchHandler.sys.mjs",
 });
 
 this.omnibox = class extends ExtensionAPIPersistent {

@@ -41,10 +41,10 @@ This tutorial was tested against Firefox 58 Beta and Nightly. It does not work i
   .. code-block:: javascript
 
     const { addDebuggerToGlobal } = ChromeUtils.importESModule(
-      "resource://gre/modules/jsdebugger.sys.mjs"
+      "moz-src:///devtools/platform/jsdebugger.sys.mjs"
     );
     const { console } = ChromeUtils.importESModule(
-      "resource://gre/modules/Console.sys.mjs"
+      "moz-src:///toolkit/modules/Console.sys.mjs"
     );
 
     // This defines 'Debugger' in this Scratchpad;

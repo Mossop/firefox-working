@@ -10,7 +10,7 @@ const DELAY = 2 * 1000; // Delay two seconds before completing the request.
 // what eslint might think applies for browser tests.
 // eslint-disable-next-line mozilla/no-redeclare-with-import-autofix
 let { setTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 
 function handleRequest(request, response) {

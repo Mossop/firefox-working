@@ -3,10 +3,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const { PrivateBrowsingUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PrivateBrowsingUtils.sys.mjs"
+  "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs"
 );
 const { EnableDelayHelper } = ChromeUtils.importESModule(
-  "resource://gre/modules/PromptUtils.sys.mjs"
+  "moz-src:///toolkit/components/prompts/src/PromptUtils.sys.mjs"
 );
 
 class MozHandler extends window.MozElements.MozRichlistitem {

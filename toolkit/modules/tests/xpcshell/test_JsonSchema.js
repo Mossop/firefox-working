@@ -2,7 +2,7 @@
  * http://creativecommons.org/publicdomain/zero/1.0/ */
 
 const { JsonSchema } = ChromeUtils.importESModule(
-  "resource://gre/modules/JsonSchema.sys.mjs"
+  "moz-src:///toolkit/modules/JsonSchema.sys.mjs"
 );
 
 add_task(function test_basicSchema() {

@@ -4,27 +4,27 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { EXIT_CODE } from "resource://gre/modules/BackgroundTasksManager.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { EXIT_CODE } from "moz-src:///toolkit/components/backgroundtasks/BackgroundTasksManager.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  BackgroundTasksUtils: "resource://gre/modules/BackgroundTasksUtils.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
-  JSONFile: "resource://gre/modules/JSONFile.sys.mjs",
-  TaskScheduler: "resource://gre/modules/TaskScheduler.sys.mjs",
-  UpdateUtils: "resource://gre/modules/UpdateUtils.sys.mjs",
+  BackgroundTasksUtils: "moz-src:///toolkit/components/backgroundtasks/BackgroundTasksUtils.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
+  JSONFile: "moz-src:///toolkit/modules/JSONFile.sys.mjs",
+  TaskScheduler: "moz-src:///toolkit/components/taskscheduler/TaskScheduler.sys.mjs",
+  UpdateUtils: "moz-src:///toolkit/modules/UpdateUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
   ASRouterTargeting: "resource://activity-stream/lib/ASRouterTargeting.jsm",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "log", () => {
   let { ConsoleAPI } = ChromeUtils.importESModule(
-    "resource://gre/modules/Console.sys.mjs"
+    "moz-src:///toolkit/modules/Console.sys.mjs"
   );
   let consoleOptions = {
     // tip: set maxLogLevel to "debug" and use log.debug() to create detailed

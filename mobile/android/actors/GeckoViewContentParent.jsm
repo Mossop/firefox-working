@@ -16,7 +16,7 @@ const { GeckoViewActorParent } = ChromeUtils.importESModule(
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  SessionHistory: "resource://gre/modules/sessionstore/SessionHistory.sys.mjs",
+  SessionHistory: "moz-src:///toolkit/modules/sessionstore/SessionHistory.sys.mjs",
 });
 
 const { debug, warn } = GeckoViewUtils.initLogging("GeckoViewContentParent");

@@ -6,7 +6,7 @@
 
 ChromeUtils.defineESModuleGetters(this, {
   UrlbarProviderQuickActions:
-    "resource:///modules/UrlbarProviderQuickActions.sys.mjs",
+    "moz-src:///browser/components/urlbar/UrlbarProviderQuickActions.sys.mjs",
 });
 
 let expectedMatch = (key, inputLength) => ({

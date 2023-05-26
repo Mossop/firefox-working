@@ -2,21 +2,21 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  GMPInstallManager: "resource://gre/modules/GMPInstallManager.sys.mjs",
-  Log: "resource://gre/modules/Log.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  GMPInstallManager: "moz-src:///toolkit/modules/GMPInstallManager.sys.mjs",
+  Log: "moz-src:///toolkit/modules/Log.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  AddonManagerPrivate: "resource://gre/modules/AddonManager.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  AddonManagerPrivate: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
 });
 
 import {
@@ -24,7 +24,7 @@ import {
   GMPUtils,
   OPEN_H264_ID,
   WIDEVINE_ID,
-} from "resource://gre/modules/GMPUtils.sys.mjs";
+} from "moz-src:///toolkit/modules/GMPUtils.sys.mjs";
 
 const SEC_IN_A_DAY = 24 * 60 * 60;
 // How long to wait after a user enabled EME before attempting to download CDMs.

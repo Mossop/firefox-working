@@ -7,21 +7,21 @@ const { AddonTestUtils } = ChromeUtils.import(
 );
 
 const { AddonManager } = ChromeUtils.import(
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 const { AboutNewTab } = ChromeUtils.import(
-  "resource:///modules/AboutNewTab.jsm"
+  "moz-src:///browser/modules/AboutNewTab.jsm"
 );
 
 // Lazy load to avoid having Services.appinfo cached first.
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionParent",
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 
-const { HomePage } = ChromeUtils.import("resource:///modules/HomePage.jsm");
+const { HomePage } = ChromeUtils.import("moz-src:///browser/modules/HomePage.jsm");
 
 AddonTestUtils.init(this);
 

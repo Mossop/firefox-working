@@ -3,7 +3,7 @@
 "use strict";
 
 const { Management } = ChromeUtils.import(
-  "resource://gre/modules/Extension.jsm"
+  "moz-src:///toolkit/components/extensions/Extension.jsm"
 );
 function getNextContext() {
   return new Promise(resolve => {

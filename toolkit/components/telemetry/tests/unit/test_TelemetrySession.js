@@ -9,19 +9,19 @@
  */
 
 const { ClientID } = ChromeUtils.importESModule(
-  "resource://gre/modules/ClientID.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/ClientID.sys.mjs"
 );
 const { TelemetrySession } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetrySession.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/pings/TelemetrySession.sys.mjs"
 );
 const { TelemetryEnvironment } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryEnvironment.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryEnvironment.sys.mjs"
 );
 const { TelemetryReportingPolicy } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryReportingPolicy.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryReportingPolicy.sys.mjs"
 );
 const { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 
 const PING_FORMAT_VERSION = 4;
@@ -72,7 +72,7 @@ function sendPing() {
 
 function fakeGenerateUUID(sessionFunc, subsessionFunc) {
   const { Policy } = ChromeUtils.importESModule(
-    "resource://gre/modules/TelemetrySession.sys.mjs"
+    "moz-src:///toolkit/components/telemetry/pings/TelemetrySession.sys.mjs"
   );
   Policy.generateSessionUUID = sessionFunc;
   Policy.generateSubsessionUUID = subsessionFunc;

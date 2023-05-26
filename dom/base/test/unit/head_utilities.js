@@ -30,7 +30,7 @@ var {
   HttpError,
   HttpServer,
 } = ChromeUtils.import("resource://testing-common/httpd.js");
-var { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+var { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 
 const nsIDocumentEncoder = Ci.nsIDocumentEncoder;
 const replacementChar =

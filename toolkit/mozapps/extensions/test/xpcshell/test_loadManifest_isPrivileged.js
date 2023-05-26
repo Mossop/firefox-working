@@ -4,7 +4,7 @@
 "use strict";
 
 const { XPIInstall } = ChromeUtils.import(
-  "resource://gre/modules/addons/XPIInstall.jsm"
+  "moz-src:///toolkit/mozapps/extensions/internal/XPIInstall.jsm"
 );
 const {
   XPIInternal: {
@@ -15,7 +15,7 @@ const {
     TemporaryInstallLocation,
     XPIStates,
   },
-} = ChromeUtils.import("resource://gre/modules/addons/XPIProvider.jsm");
+} = ChromeUtils.import("moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm");
 
 AddonTestUtils.init(this);
 AddonTestUtils.overrideCertDB();

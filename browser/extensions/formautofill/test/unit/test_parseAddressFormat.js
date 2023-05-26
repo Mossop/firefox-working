@@ -3,7 +3,7 @@
 var FormAutofillUtils;
 add_setup(async () => {
   ({ FormAutofillUtils } = ChromeUtils.importESModule(
-    "resource://gre/modules/shared/FormAutofillUtils.sys.mjs"
+    "moz-src:///toolkit/components/formautofill/shared/FormAutofillUtils.sys.mjs"
   ));
 });
 

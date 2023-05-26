@@ -2,7 +2,7 @@
  * http://creativecommons.org/publicdomain/zero/1.0/ */
 
 const { BinarySearch } = ChromeUtils.importESModule(
-  "resource://gre/modules/BinarySearch.sys.mjs"
+  "moz-src:///toolkit/modules/BinarySearch.sys.mjs"
 );
 
 function run_test() {

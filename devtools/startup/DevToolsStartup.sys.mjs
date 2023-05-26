@@ -29,7 +29,7 @@ const DEVTOOLS_F12_DISABLED_PREF = "devtools.experiment.f12.shortcut_disabled";
 
 const DEVTOOLS_POLICY_DISABLED_PREF = "devtools.policy.disabled";
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
@@ -37,12 +37,12 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "CustomizableUI",
-  "resource:///modules/CustomizableUI.jsm"
+  "moz-src:///browser/components/customizableui/CustomizableUI.jsm"
 );
 ChromeUtils.defineESModuleGetters(lazy, {
-  CustomizableWidgets: "resource:///modules/CustomizableWidgets.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
-  WebChannel: "resource://gre/modules/WebChannel.sys.mjs",
+  CustomizableWidgets: "moz-src:///browser/components/customizableui/CustomizableWidgets.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
+  WebChannel: "moz-src:///toolkit/modules/WebChannel.sys.mjs",
 });
 ChromeUtils.defineModuleGetter(
   lazy,
@@ -52,7 +52,7 @@ ChromeUtils.defineModuleGetter(
 ChromeUtils.defineModuleGetter(
   lazy,
   "PanelMultiView",
-  "resource:///modules/PanelMultiView.jsm"
+  "moz-src:///browser/components/customizableui/PanelMultiView.jsm"
 );
 
 // We don't want to spend time initializing the full loader here so we create

@@ -5,7 +5,7 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  DownloadPaths: "resource://gre/modules/DownloadPaths.sys.mjs",
+  DownloadPaths: "moz-src:///toolkit/components/downloads/DownloadPaths.sys.mjs",
   DownloadTracker: "resource://gre/modules/GeckoViewWebExtension.sys.mjs",
 });
 

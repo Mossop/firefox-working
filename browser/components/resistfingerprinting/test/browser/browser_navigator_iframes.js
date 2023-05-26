@@ -26,7 +26,7 @@
 ChromeUtils.defineESModuleGetters(this, {
   AppConstants: "resource://gre/modules/AppConstants.sys.mjs",
   WindowsVersionInfo:
-    "resource://gre/modules/components-utils/WindowsVersionInfo.sys.mjs",
+    "moz-src:///toolkit/components/utils/WindowsVersionInfo.sys.mjs",
 });
 
 let osVersion = Services.sysinfo.get("version");

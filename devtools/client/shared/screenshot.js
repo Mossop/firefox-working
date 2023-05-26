@@ -9,9 +9,9 @@ const { LocalizationHelper } = require("resource://devtools/shared/l10n.js");
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Downloads: "resource://gre/modules/Downloads.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  Downloads: "moz-src:///toolkit/components/downloads/Downloads.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
 const STRINGS_URI = "devtools/shared/locales/screenshot.properties";

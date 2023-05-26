@@ -12,20 +12,20 @@ var EXPORTED_SYMBOLS = ["AddonTestUtils", "MockAsyncShutdown"];
 const CERTDB_CONTRACTID = "@mozilla.org/security/x509certdb;1";
 
 const { AddonManager, AddonManagerPrivate } = ChromeUtils.import(
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 const { AsyncShutdown } = ChromeUtils.importESModule(
-  "resource://gre/modules/AsyncShutdown.sys.mjs"
+  "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs"
 );
 const { FileUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/FileUtils.sys.mjs"
+  "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 );
-const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+const { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { EventEmitter } = ChromeUtils.importESModule(
-  "resource://gre/modules/EventEmitter.sys.mjs"
+  "moz-src:///toolkit/modules/EventEmitter.sys.mjs"
 );
 
 const lazy = {};
@@ -41,8 +41,8 @@ ChromeUtils.defineESModuleGetters(lazy, {
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
   ExtensionTestCommon: "resource://testing-common/ExtensionTestCommon.jsm",
-  Management: "resource://gre/modules/Extension.jsm",
-  ExtensionAddonObserver: "resource://gre/modules/Extension.jsm",
+  Management: "moz-src:///toolkit/components/extensions/Extension.jsm",
+  ExtensionAddonObserver: "moz-src:///toolkit/components/extensions/Extension.jsm",
 });
 
 XPCOMUtils.defineLazyServiceGetters(lazy, {
@@ -681,7 +681,7 @@ var AddonTestUtils = {
    */
   async loadBlocklistRawData(data) {
     const { BlocklistPrivate } = ChromeUtils.import(
-      "resource://gre/modules/Blocklist.jsm"
+      "moz-src:///toolkit/mozapps/extensions/Blocklist.jsm"
     );
     const blocklistMapping = {
       extensions: BlocklistPrivate.ExtensionBlocklistRS,
@@ -763,7 +763,7 @@ var AddonTestUtils = {
     lazy.ExtensionAddonObserver.init();
 
     const { XPIInternal, XPIProvider } = ChromeUtils.import(
-      "resource://gre/modules/addons/XPIProvider.jsm"
+      "moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm"
     );
     XPIInternal.overrideAsyncShutdown(MockAsyncShutdown);
 
@@ -825,10 +825,10 @@ var AddonTestUtils = {
     }
 
     const { XPIProvider } = ChromeUtils.import(
-      "resource://gre/modules/addons/XPIProvider.jsm"
+      "moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm"
     );
     const { XPIDatabase } = ChromeUtils.import(
-      "resource://gre/modules/addons/XPIDatabase.jsm"
+      "moz-src:///toolkit/mozapps/extensions/internal/XPIDatabase.jsm"
     );
 
     // Ensure some startup observers in XPIProvider are released.
@@ -875,9 +875,9 @@ var AddonTestUtils = {
     let shutdownError = XPIDatabase._saveError;
 
     AddonManagerPrivate.unregisterProvider(XPIProvider);
-    Cu.unload("resource://gre/modules/addons/XPIProvider.jsm");
-    Cu.unload("resource://gre/modules/addons/XPIDatabase.jsm");
-    Cu.unload("resource://gre/modules/addons/XPIInstall.jsm");
+    Cu.unload("moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm");
+    Cu.unload("moz-src:///toolkit/mozapps/extensions/internal/XPIDatabase.jsm");
+    Cu.unload("moz-src:///toolkit/mozapps/extensions/internal/XPIInstall.jsm");
 
     lazy.ExtensionAddonObserver.uninit();
 
@@ -928,7 +928,7 @@ var AddonTestUtils = {
   async loadAddonsList(flush = false) {
     if (flush) {
       const { XPIInternal } = ChromeUtils.import(
-        "resource://gre/modules/addons/XPIProvider.jsm"
+        "moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm"
       );
       XPIInternal.XPIStates.save();
       await XPIInternal.XPIStates._jsonFile._save();

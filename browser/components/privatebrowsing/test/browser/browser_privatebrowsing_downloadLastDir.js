@@ -7,10 +7,10 @@ function test() {
   waitForExplicitFinish();
 
   let { FileUtils } = ChromeUtils.importESModule(
-    "resource://gre/modules/FileUtils.sys.mjs"
+    "moz-src:///toolkit/modules/FileUtils.sys.mjs"
   );
   let { DownloadLastDir } = ChromeUtils.importESModule(
-    "resource://gre/modules/DownloadLastDir.sys.mjs"
+    "moz-src:///toolkit/mozapps/downloads/DownloadLastDir.sys.mjs"
   );
   let MockFilePicker = SpecialPowers.MockFilePicker;
   let launcher = {

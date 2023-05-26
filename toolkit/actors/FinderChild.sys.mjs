@@ -7,7 +7,7 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Finder: "resource://gre/modules/Finder.sys.mjs",
+  Finder: "moz-src:///toolkit/modules/Finder.sys.mjs",
 });
 
 export class FinderChild extends JSWindowActorChild {

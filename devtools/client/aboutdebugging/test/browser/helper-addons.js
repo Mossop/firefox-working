@@ -49,7 +49,7 @@ async function installRegularExtension(pathOrFile) {
  */
 async function installTemporaryExtension(pathOrFile, name, document) {
   const { Management } = ChromeUtils.import(
-    "resource://gre/modules/Extension.jsm"
+    "moz-src:///toolkit/components/extensions/Extension.jsm"
   );
 
   info("Install temporary extension named " + name);
@@ -187,7 +187,7 @@ function prepareMockFilePicker(pathOrFile) {
 
 function promiseBackgroundContextEvent(extensionId, eventName) {
   const { Management } = ChromeUtils.import(
-    "resource://gre/modules/Extension.jsm"
+    "moz-src:///toolkit/components/extensions/Extension.jsm"
   );
 
   return new Promise(resolve => {

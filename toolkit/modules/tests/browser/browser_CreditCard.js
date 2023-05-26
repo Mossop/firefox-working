@@ -4,10 +4,10 @@
 "use strict";
 
 const { CreditCard } = ChromeUtils.importESModule(
-  "resource://gre/modules/CreditCard.sys.mjs"
+  "moz-src:///toolkit/modules/CreditCard.sys.mjs"
 );
 const { OSKeyStore } = ChromeUtils.importESModule(
-  "resource://gre/modules/OSKeyStore.sys.mjs"
+  "moz-src:///toolkit/modules/OSKeyStore.sys.mjs"
 );
 const { OSKeyStoreTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/OSKeyStoreTestUtils.sys.mjs"

@@ -5,13 +5,13 @@
 "use strict";
 
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 var { ObjectUtils } = ChromeUtils.import(
-  "resource://gre/modules/ObjectUtils.jsm"
+  "moz-src:///toolkit/modules/ObjectUtils.jsm"
 );
 var { FormLikeFactory } = ChromeUtils.importESModule(
-  "resource://gre/modules/FormLikeFactory.sys.mjs"
+  "moz-src:///toolkit/modules/FormLikeFactory.sys.mjs"
 );
 var { AddonTestUtils, MockAsyncShutdown } = ChromeUtils.import(
   "resource://testing-common/AddonTestUtils.jsm"
@@ -35,21 +35,21 @@ var { TestUtils } = ChromeUtils.importESModule(
 ChromeUtils.defineModuleGetter(
   this,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 ChromeUtils.defineModuleGetter(
   this,
   "AddonManagerPrivate",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 ChromeUtils.defineESModuleGetters(this, {
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
 });
 
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionParent",
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 
 {
@@ -281,13 +281,13 @@ function autofillFieldSelector(doc) {
 async function runHeuristicsTest(patterns, fixturePathPrefix) {
   add_setup(async () => {
     ({ FormAutofillHeuristics } = ChromeUtils.importESModule(
-      "resource://gre/modules/shared/FormAutofillHeuristics.sys.mjs"
+      "moz-src:///toolkit/components/formautofill/shared/FormAutofillHeuristics.sys.mjs"
     ));
     ({ AddressDataLoader, FormAutofillUtils } = ChromeUtils.importESModule(
-      "resource://gre/modules/shared/FormAutofillUtils.sys.mjs"
+      "moz-src:///toolkit/components/formautofill/shared/FormAutofillUtils.sys.mjs"
     ));
     ({ LabelUtils } = ChromeUtils.importESModule(
-      "resource://gre/modules/shared/LabelUtils.sys.mjs"
+      "moz-src:///toolkit/components/formautofill/shared/LabelUtils.sys.mjs"
     ));
   });
 

@@ -3,7 +3,7 @@
 
 "use strict";
 ChromeUtils.defineESModuleGetters(this, {
-  UpdateUtils: "resource://gre/modules/UpdateUtils.sys.mjs",
+  UpdateUtils: "moz-src:///toolkit/modules/UpdateUtils.sys.mjs",
 });
 
 async function test_app_update_auto(expectedEnabled, expectedLocked) {

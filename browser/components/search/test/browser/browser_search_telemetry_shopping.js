@@ -13,7 +13,7 @@ const {
   SearchSERPTelemetry,
   SearchSERPTelemetryUtils,
 } = ChromeUtils.importESModule(
-  "resource:///modules/SearchSERPTelemetry.sys.mjs"
+  "moz-src:///browser/components/search/SearchSERPTelemetry.sys.mjs"
 );
 
 // The setup for each test is the same, the only differences are the various

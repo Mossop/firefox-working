@@ -4,9 +4,9 @@
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  FormLikeFactory: "resource://gre/modules/FormLikeFactory.sys.mjs",
+  FormLikeFactory: "moz-src:///toolkit/modules/FormLikeFactory.sys.mjs",
   FormAutofillHandler:
-    "resource://gre/modules/shared/FormAutofillHandler.sys.mjs",
+    "moz-src:///toolkit/components/formautofill/shared/FormAutofillHandler.sys.mjs",
 });
 
 export class FormStateManager {

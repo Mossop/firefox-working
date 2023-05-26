@@ -7,22 +7,22 @@
 "use strict";
 
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 // Note: we get loaded in dialogs so we need to define our
 // own getters, separate from preferences.js .
 ChromeUtils.defineESModuleGetters(this, {
-  BrowserUtils: "resource://gre/modules/BrowserUtils.sys.mjs",
-  DeferredTask: "resource://gre/modules/DeferredTask.sys.mjs",
+  BrowserUtils: "moz-src:///toolkit/modules/BrowserUtils.sys.mjs",
+  DeferredTask: "moz-src:///toolkit/modules/DeferredTask.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
   ExtensionPreferencesManager:
-    "resource://gre/modules/ExtensionPreferencesManager.jsm",
-  ExtensionSettingsStore: "resource://gre/modules/ExtensionSettingsStore.jsm",
-  Management: "resource://gre/modules/Extension.jsm",
+    "moz-src:///toolkit/components/extensions/ExtensionPreferencesManager.jsm",
+  ExtensionSettingsStore: "moz-src:///toolkit/components/extensions/ExtensionSettingsStore.jsm",
+  Management: "moz-src:///toolkit/components/extensions/Extension.jsm",
 });
 
 const PREF_SETTING_TYPE = "prefs";

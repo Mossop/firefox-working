@@ -10,7 +10,7 @@
 /* eslint-env browser */
 
 const { DevToolsStartup } = ChromeUtils.importESModule(
-  "resource:///modules/DevToolsStartup.sys.mjs"
+  "moz-src:///devtools/startup/DevToolsStartup.sys.mjs"
 );
 
 const { require } = ChromeUtils.importESModule(

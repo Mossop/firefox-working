@@ -9,7 +9,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionShortcuts",
-  "resource://gre/modules/ExtensionShortcuts.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionShortcuts.jsm"
 );
 
 this.commands = class extends ExtensionAPIPersistent {

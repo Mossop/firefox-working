@@ -24,7 +24,7 @@ import {
   type,
   element,
   utils,
-} from "resource://gre/modules/third_party/fathom/fathom.mjs";
+} from "moz-src:///toolkit/modules/third_party/fathom/fathom.mjs";
 
 let { isVisible, attributesMatch, setDefault } = utils;
 

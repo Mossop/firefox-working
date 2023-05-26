@@ -8,11 +8,11 @@ const { sinon } = ChromeUtils.importESModule(
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  ScreenshotsUtils: "resource:///modules/ScreenshotsUtils.sys.mjs",
+  ScreenshotsUtils: "moz-src:///browser/components/screenshots/ScreenshotsUtils.sys.mjs",
 });
 XPCOMUtils.defineLazyGetter(this, "ExtensionManagement", () => {
   const { Management } = ChromeUtils.import(
-    "resource://gre/modules/Extension.jsm"
+    "moz-src:///toolkit/components/extensions/Extension.jsm"
   );
   return Management;
 });

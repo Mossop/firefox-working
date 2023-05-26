@@ -15,7 +15,7 @@ var { AppConstants } = ChromeUtils.importESModule(
 ChromeUtils.defineModuleGetter(
   this,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 const SIMPLETEST_OVERRIDES = [
@@ -234,7 +234,7 @@ function Tester(aTests, structuredLogger, aCallback) {
   this._coverageCollector = null;
 
   const { XPCOMUtils } = ChromeUtils.importESModule(
-    "resource://gre/modules/XPCOMUtils.sys.mjs"
+    "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
   );
 
   // Avoid failing tests when XPCOMUtils.defineLazyScriptGetter is used.
@@ -1041,7 +1041,7 @@ Tester.prototype = {
 
           // Destroy BackgroundPageThumbs resources.
           let { BackgroundPageThumbs } = ChromeUtils.importESModule(
-            "resource://gre/modules/BackgroundPageThumbs.sys.mjs"
+            "moz-src:///toolkit/components/thumbnails/BackgroundPageThumbs.sys.mjs"
           );
           BackgroundPageThumbs._destroy();
 
@@ -1069,7 +1069,7 @@ Tester.prototype = {
         };
 
         let { AsyncShutdown } = ChromeUtils.importESModule(
-          "resource://gre/modules/AsyncShutdown.sys.mjs"
+          "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs"
         );
 
         let barrier = new AsyncShutdown.Barrier(

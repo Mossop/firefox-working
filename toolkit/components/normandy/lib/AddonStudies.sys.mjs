@@ -51,15 +51,15 @@ ChromeUtils.defineESModuleGetters(lazy, {
   BranchedAddonStudyAction:
     "resource://normandy/actions/BranchedAddonStudyAction.sys.mjs",
   CleanupManager: "resource://normandy/lib/CleanupManager.sys.mjs",
-  IndexedDB: "resource://gre/modules/IndexedDB.sys.mjs",
-  TelemetryEnvironment: "resource://gre/modules/TelemetryEnvironment.sys.mjs",
+  IndexedDB: "moz-src:///toolkit/modules/IndexedDB.sys.mjs",
+  TelemetryEnvironment: "moz-src:///toolkit/components/telemetry/app/TelemetryEnvironment.sys.mjs",
   TelemetryEvents: "resource://normandy/lib/TelemetryEvents.sys.mjs",
 });
 
 ChromeUtils.defineModuleGetter(
   lazy,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 const DB_NAME = "shield";

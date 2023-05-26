@@ -5,10 +5,10 @@
 "use strict";
 
 var { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 var { TelemetryReportingPolicy } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryReportingPolicy.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryReportingPolicy.sys.mjs"
 );
 
 const PREF_BRANCH = "datareporting.policy.";
@@ -27,7 +27,7 @@ const TEST_POLICY_VERSION = 37;
 
 function fakeShowPolicyTimeout(set, clear) {
   let reportingPolicy = ChromeUtils.importESModule(
-    "resource://gre/modules/TelemetryReportingPolicy.sys.mjs"
+    "moz-src:///toolkit/components/telemetry/app/TelemetryReportingPolicy.sys.mjs"
   ).Policy;
   reportingPolicy.setShowInfobarTimeout = set;
   reportingPolicy.clearShowInfobarTimeout = clear;
@@ -35,7 +35,7 @@ function fakeShowPolicyTimeout(set, clear) {
 
 function sendSessionRestoredNotification() {
   let reportingPolicy = ChromeUtils.importESModule(
-    "resource://gre/modules/TelemetryReportingPolicy.sys.mjs"
+    "moz-src:///toolkit/components/telemetry/app/TelemetryReportingPolicy.sys.mjs"
   ).Policy;
 
   reportingPolicy.fakeSessionRestoreNotification();

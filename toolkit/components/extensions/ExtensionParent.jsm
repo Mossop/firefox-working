@@ -16,7 +16,7 @@
 var EXPORTED_SYMBOLS = ["ExtensionParent"];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
@@ -25,23 +25,23 @@ const { AppConstants } = ChromeUtils.importESModule(
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.sys.mjs",
-  DeferredTask: "resource://gre/modules/DeferredTask.sys.mjs",
+  AsyncShutdown: "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs",
+  DeferredTask: "moz-src:///toolkit/modules/DeferredTask.sys.mjs",
   DevToolsShim: "chrome://devtools-startup/content/DevToolsShim.sys.mjs",
   GeckoViewConnection: "resource://gre/modules/GeckoViewWebExtension.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  BroadcastConduit: "resource://gre/modules/ConduitsParent.jsm",
-  ExtensionData: "resource://gre/modules/Extension.jsm",
-  ExtensionActivityLog: "resource://gre/modules/ExtensionActivityLog.jsm",
-  MessageManagerProxy: "resource://gre/modules/MessageManagerProxy.jsm",
-  NativeApp: "resource://gre/modules/NativeMessaging.jsm",
-  PerformanceCounters: "resource://gre/modules/PerformanceCounters.jsm",
-  Schemas: "resource://gre/modules/Schemas.jsm",
-  getErrorNameForTelemetry: "resource://gre/modules/ExtensionTelemetry.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  BroadcastConduit: "moz-src:///toolkit/components/extensions/ConduitsParent.jsm",
+  ExtensionData: "moz-src:///toolkit/components/extensions/Extension.jsm",
+  ExtensionActivityLog: "moz-src:///toolkit/components/extensions/ExtensionActivityLog.jsm",
+  MessageManagerProxy: "moz-src:///toolkit/components/extensions/MessageManagerProxy.jsm",
+  NativeApp: "moz-src:///toolkit/components/extensions/NativeMessaging.jsm",
+  PerformanceCounters: "moz-src:///toolkit/components/extensions/PerformanceCounters.jsm",
+  Schemas: "moz-src:///toolkit/components/extensions/Schemas.jsm",
+  getErrorNameForTelemetry: "moz-src:///toolkit/components/extensions/ExtensionTelemetry.jsm",
 });
 
 XPCOMUtils.defineLazyServiceGetters(lazy, {
@@ -59,10 +59,10 @@ XPCOMUtils.defineLazyPreferenceGetter(
   false
 );
 const { ExtensionCommon } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionCommon.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm"
 );
 const { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
 );
 
 const DUMMY_PAGE_URI = Services.io.newURI(

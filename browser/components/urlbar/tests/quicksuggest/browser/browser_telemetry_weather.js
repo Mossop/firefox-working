@@ -8,7 +8,7 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  UrlbarProviderWeather: "resource:///modules/UrlbarProviderWeather.sys.mjs",
+  UrlbarProviderWeather: "moz-src:///browser/components/urlbar/UrlbarProviderWeather.sys.mjs",
 });
 
 const suggestion_type = "weather";

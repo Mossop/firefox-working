@@ -9,18 +9,18 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AttributionCode: "resource:///modules/AttributionCode.sys.mjs",
+  AttributionCode: "moz-src:///browser/components/attribution/AttributionCode.sys.mjs",
   NormandyUtils: "resource://normandy/lib/NormandyUtils.sys.mjs",
-  ShellService: "resource:///modules/ShellService.sys.mjs",
-  TelemetryArchive: "resource://gre/modules/TelemetryArchive.sys.mjs",
-  TelemetryController: "resource://gre/modules/TelemetryController.sys.mjs",
-  UpdateUtils: "resource://gre/modules/UpdateUtils.sys.mjs",
+  ShellService: "moz-src:///browser/components/shell/ShellService.sys.mjs",
+  TelemetryArchive: "moz-src:///toolkit/components/telemetry/app/TelemetryArchive.sys.mjs",
+  TelemetryController: "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs",
+  UpdateUtils: "moz-src:///toolkit/modules/UpdateUtils.sys.mjs",
   WindowsVersionInfo:
-    "resource://gre/modules/components-utils/WindowsVersionInfo.sys.mjs",
+    "moz-src:///toolkit/components/utils/WindowsVersionInfo.sys.mjs",
 });
 
 /**

@@ -11,7 +11,7 @@ ChromeUtils.defineESModuleGetters(lazy, {
   ClientEnvironment: "resource://normandy/lib/ClientEnvironment.sys.mjs",
   PreferenceExperiments:
     "resource://normandy/lib/PreferenceExperiments.sys.mjs",
-  Sampling: "resource://gre/modules/components-utils/Sampling.sys.mjs",
+  Sampling: "moz-src:///toolkit/components/utils/Sampling.sys.mjs",
 });
 
 /**

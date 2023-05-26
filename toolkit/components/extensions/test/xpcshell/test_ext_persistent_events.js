@@ -4,7 +4,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 const { ExtensionAPI } = ExtensionCommon;
@@ -1415,7 +1415,7 @@ add_task(async function test_migrate_startupData_to_new_format() {
 
   function getXPIStatesFilePath() {
     let { path } = ChromeUtils.import(
-      "resource://gre/modules/addons/XPIProvider.jsm"
+      "moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm"
     ).XPIInternal.XPIStates._jsonFile;
     ok(
       typeof path === "string" && !!path.length,
@@ -1440,7 +1440,7 @@ add_task(async function test_migrate_startupData_to_new_format() {
     testExtensionWrapper.extension.saveStartupData();
     await AddonTestUtils.loadAddonsList(/* flush */ true);
     const { XPIInternal } = ChromeUtils.import(
-      "resource://gre/modules/addons/XPIProvider.jsm"
+      "moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm"
     );
     XPIInternal.XPIStates.save();
     await XPIInternal.XPIStates._jsonFile._save();
@@ -1596,7 +1596,7 @@ add_task(async function test_migrate_startupData_to_new_format() {
   info("Verify backward compatibility with old format");
 
   const { ExtensionUtils } = ChromeUtils.import(
-    "resource://gre/modules/ExtensionUtils.jsm"
+    "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
   );
   const { DefaultMap } = ExtensionUtils;
   const loadedListeners = new DefaultMap(() => new DefaultMap(() => new Map()));

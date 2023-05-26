@@ -5,7 +5,7 @@
  * Tests PlacesPreviews.jsm
  */
 const { PlacesPreviews } = ChromeUtils.importESModule(
-  "resource://gre/modules/PlacesPreviews.sys.mjs"
+  "moz-src:///toolkit/components/places/PlacesPreviews.sys.mjs"
 );
 const { PlacesTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/PlacesTestUtils.sys.mjs"

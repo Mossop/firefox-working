@@ -9,7 +9,7 @@
  * See https://github.com/mozilla/fxa-auth-server/wiki/onepw-protocol
  */
 
-import { Log } from "resource://gre/modules/Log.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
 
 import { CryptoUtils } from "resource://services-crypto/utils.sys.mjs";
 

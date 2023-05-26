@@ -85,7 +85,7 @@ add_task(async function test_ContentScriptContextChild_in_child_frame() {
 
   await contentPage.spawn(extension.id, async extensionId => {
     const { ExtensionContent } = ChromeUtils.import(
-      "resource://gre/modules/ExtensionContent.jsm"
+      "moz-src:///toolkit/components/extensions/ExtensionContent.jsm"
     );
     let frame = this.content.document.querySelector(
       "iframe[src*='file_iframe.html']"
@@ -137,7 +137,7 @@ add_task(async function test_ContentScriptContextChild_in_toplevel() {
 
   await contentPage.spawn(extension.id, async extensionId => {
     const { ExtensionContent } = ChromeUtils.import(
-      "resource://gre/modules/ExtensionContent.jsm"
+      "moz-src:///toolkit/components/extensions/ExtensionContent.jsm"
     );
     let context = ExtensionContent.getContextByExtensionId(
       extensionId,
@@ -189,7 +189,7 @@ add_task(async function test_ExtensionPageContextChild_in_child_frame() {
 
   await contentPage.spawn(extension.id, async extensionId => {
     let { ExtensionPageChild } = ChromeUtils.import(
-      "resource://gre/modules/ExtensionPageChild.jsm"
+      "moz-src:///toolkit/components/extensions/ExtensionPageChild.jsm"
     );
 
     let frame = this.content.document.querySelector(
@@ -239,7 +239,7 @@ add_task(async function test_ExtensionPageContextChild_in_toplevel() {
 
   await contentPage.spawn(extension.id, async extensionId => {
     let { ExtensionPageChild } = ChromeUtils.import(
-      "resource://gre/modules/ExtensionPageChild.jsm"
+      "moz-src:///toolkit/components/extensions/ExtensionPageChild.jsm"
     );
 
     let innerWindowID = this.content.windowGlobalChild.innerWindowId;

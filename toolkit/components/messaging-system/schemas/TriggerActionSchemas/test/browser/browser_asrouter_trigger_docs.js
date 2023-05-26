@@ -8,7 +8,7 @@ const { CFRMessageProvider } = ChromeUtils.import(
   "resource://activity-stream/lib/CFRMessageProvider.jsm"
 );
 const { JsonSchema } = ChromeUtils.importESModule(
-  "resource://gre/modules/JsonSchema.sys.mjs"
+  "moz-src:///toolkit/modules/JsonSchema.sys.mjs"
 );
 
 XPCOMUtils.defineLazyGetter(this, "fetchTriggerActionSchema", async () => {

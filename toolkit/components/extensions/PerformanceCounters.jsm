@@ -13,13 +13,13 @@
 var EXPORTED_SYMBOLS = ["PerformanceCounters"];
 
 const { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
 );
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { DeferredTask } = ChromeUtils.importESModule(
-  "resource://gre/modules/DeferredTask.sys.mjs"
+  "moz-src:///toolkit/modules/DeferredTask.sys.mjs"
 );
 
 const { DefaultMap } = ExtensionUtils;

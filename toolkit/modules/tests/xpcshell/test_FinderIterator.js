@@ -1,5 +1,5 @@
 const { FinderIterator } = ChromeUtils.importESModule(
-  "resource://gre/modules/FinderIterator.sys.mjs"
+  "moz-src:///toolkit/modules/FinderIterator.sys.mjs"
 );
 
 let finderIterator = new FinderIterator();

@@ -8,7 +8,7 @@
 
 const { Constructor: ctor } = Components;
 
-const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+const { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 
 const ios = Services.io;
 const dirSvc = Services.dirsvc;

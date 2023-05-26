@@ -8,7 +8,7 @@
 //    are no longer the only one that's opened it.
 
 const { Subprocess } = ChromeUtils.importESModule(
-  "resource://gre/modules/Subprocess.sys.mjs"
+  "moz-src:///toolkit/modules/subprocess/Subprocess.sys.mjs"
 );
 
 // Save off the real GRE directory and binary path before we register our

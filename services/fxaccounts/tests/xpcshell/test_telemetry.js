@@ -4,7 +4,7 @@
 "use strict";
 
 const { getFxAccountsSingleton } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccounts.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
 );
 const fxAccounts = getFxAccountsSingleton();
 

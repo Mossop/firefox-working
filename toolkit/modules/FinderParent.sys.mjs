@@ -8,14 +8,14 @@ const kModalHighlightPref = "findbar.modalHighlight";
 const kSoundEnabledPref = "accessibility.typeaheadfind.enablesound";
 const kNotFoundSoundPref = "accessibility.typeaheadfind.soundURL";
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  GetClipboardSearchString: "resource://gre/modules/Finder.sys.mjs",
-  RFPHelper: "resource://gre/modules/RFPHelper.sys.mjs",
-  Rect: "resource://gre/modules/Geometry.sys.mjs",
+  GetClipboardSearchString: "moz-src:///toolkit/modules/Finder.sys.mjs",
+  RFPHelper: "moz-src:///toolkit/components/resistfingerprinting/RFPHelper.sys.mjs",
+  Rect: "moz-src:///toolkit/modules/Geometry.sys.mjs",
 });
 
 const kPrefLetterboxing = "privacy.resistFingerprinting.letterboxing";

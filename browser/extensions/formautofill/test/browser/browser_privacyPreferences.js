@@ -223,7 +223,7 @@ add_task(async function test_reauth() {
     set: [[AUTOFILL_CREDITCARDS_AVAILABLE_PREF, "on"]],
   });
   let { OSKeyStore } = ChromeUtils.importESModule(
-    "resource://gre/modules/OSKeyStore.sys.mjs"
+    "moz-src:///toolkit/modules/OSKeyStore.sys.mjs"
   );
 
   let finalPrefPaneLoaded = TestUtils.topicObserved(

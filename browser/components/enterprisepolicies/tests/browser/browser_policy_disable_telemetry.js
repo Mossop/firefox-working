@@ -5,7 +5,7 @@
 
 add_task(async function test_policy_disable_telemetry() {
   const { TelemetryReportingPolicy } = ChromeUtils.importESModule(
-    "resource://gre/modules/TelemetryReportingPolicy.sys.mjs"
+    "moz-src:///toolkit/components/telemetry/app/TelemetryReportingPolicy.sys.mjs"
   );
 
   ok(TelemetryReportingPolicy, "TelemetryReportingPolicy exists");

@@ -7,13 +7,13 @@
 var EXPORTED_SYMBOLS = ["YandexTranslator"];
 
 const { PromiseUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PromiseUtils.sys.mjs"
+  "moz-src:///toolkit/modules/PromiseUtils.sys.mjs"
 );
 const { Async } = ChromeUtils.importESModule(
   "resource://services-common/async.sys.mjs"
 );
 const { httpRequest } = ChromeUtils.importESModule(
-  "resource://gre/modules/Http.sys.mjs"
+  "moz-src:///toolkit/modules/Http.sys.mjs"
 );
 
 // The maximum amount of net data allowed per request on Bing's API.

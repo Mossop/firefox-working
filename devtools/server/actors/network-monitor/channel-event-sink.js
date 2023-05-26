@@ -5,7 +5,7 @@
 "use strict";
 
 const { ComponentUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/ComponentUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/ComponentUtils.sys.mjs"
 );
 
 /**

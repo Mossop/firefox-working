@@ -6,7 +6,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "WebNavigationFrames",
-  "resource://gre/modules/WebNavigationFrames.jsm"
+  "moz-src:///toolkit/components/extensions/WebNavigationFrames.jsm"
 );
 
 /* eslint-disable jsdoc/check-param-names */

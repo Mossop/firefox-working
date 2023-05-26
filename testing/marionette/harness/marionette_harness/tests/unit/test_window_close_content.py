@@ -110,7 +110,7 @@ class TestCloseWindow(WindowManagerMixin, MarionetteTestCase):
             self.marionette.execute_async_script(
                 """
               const { BrowserWindowTracker } = ChromeUtils.import(
-                "resource:///modules/BrowserWindowTracker.jsm"
+                "moz-src:///browser/modules/BrowserWindowTracker.jsm"
               );
 
               let win = BrowserWindowTracker.getTopWindow();

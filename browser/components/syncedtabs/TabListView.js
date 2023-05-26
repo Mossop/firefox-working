@@ -7,15 +7,15 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
 let { getChromeWindow } = ChromeUtils.import(
-  "resource:///modules/syncedtabs/util.js"
+  "moz-src:///browser/components/syncedtabs/util.js"
 );
 
 let log = ChromeUtils.importESModule(
-  "resource://gre/modules/Log.sys.mjs"
+  "moz-src:///toolkit/modules/Log.sys.mjs"
 ).Log.repository.getLogger("Sync.RemoteTabs");
 
 var EXPORTED_SYMBOLS = ["TabListView"];

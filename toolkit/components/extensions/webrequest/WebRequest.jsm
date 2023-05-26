@@ -13,17 +13,17 @@ const EXPORTED_SYMBOLS = ["WebRequest"];
 const { nsIHttpActivityObserver, nsISocketTransport } = Ci;
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const lazy = {};
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  ExtensionDNR: "resource://gre/modules/ExtensionDNR.jsm",
-  ExtensionParent: "resource://gre/modules/ExtensionParent.jsm",
-  ExtensionUtils: "resource://gre/modules/ExtensionUtils.jsm",
-  WebRequestUpload: "resource://gre/modules/WebRequestUpload.jsm",
-  SecurityInfo: "resource://gre/modules/SecurityInfo.jsm",
+  ExtensionDNR: "moz-src:///toolkit/components/extensions/ExtensionDNR.jsm",
+  ExtensionParent: "moz-src:///toolkit/components/extensions/ExtensionParent.jsm",
+  ExtensionUtils: "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm",
+  WebRequestUpload: "moz-src:///toolkit/components/extensions/webrequest/WebRequestUpload.jsm",
+  SecurityInfo: "moz-src:///toolkit/components/extensions/webrequest/SecurityInfo.jsm",
 });
 
 // WebRequest.jsm's only consumer is ext-webRequest.js, so we can depend on

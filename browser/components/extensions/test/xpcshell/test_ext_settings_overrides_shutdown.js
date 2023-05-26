@@ -11,7 +11,7 @@ const { AddonTestUtils } = ChromeUtils.import(
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionParent",
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 
 AddonTestUtils.init(this);

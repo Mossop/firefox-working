@@ -6,7 +6,7 @@
 var EXPORTED_SYMBOLS = ["CustomizableUI"];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
@@ -15,18 +15,18 @@ const { AppConstants } = ChromeUtils.importESModule(
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  CustomizableWidgets: "resource:///modules/CustomizableWidgets.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
-  SearchWidgetTracker: "resource:///modules/SearchWidgetTracker.sys.mjs",
-  ShortcutUtils: "resource://gre/modules/ShortcutUtils.sys.mjs",
+  CustomizableWidgets: "moz-src:///browser/components/customizableui/CustomizableWidgets.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
+  SearchWidgetTracker: "moz-src:///browser/components/customizableui/SearchWidgetTracker.sys.mjs",
+  ShortcutUtils: "moz-src:///toolkit/modules/ShortcutUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  AddonManagerPrivate: "resource://gre/modules/AddonManager.jsm",
-  PanelMultiView: "resource:///modules/PanelMultiView.jsm",
-  BrowserUsageTelemetry: "resource:///modules/BrowserUsageTelemetry.jsm",
-  HomePage: "resource:///modules/HomePage.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  AddonManagerPrivate: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  PanelMultiView: "moz-src:///browser/components/customizableui/PanelMultiView.jsm",
+  BrowserUsageTelemetry: "moz-src:///browser/modules/BrowserUsageTelemetry.jsm",
+  HomePage: "moz-src:///browser/modules/HomePage.jsm",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "gWidgetsBundle", function() {
@@ -197,7 +197,7 @@ XPCOMUtils.defineLazyPreferenceGetter(
 
 XPCOMUtils.defineLazyGetter(lazy, "log", () => {
   let { ConsoleAPI } = ChromeUtils.importESModule(
-    "resource://gre/modules/Console.sys.mjs"
+    "moz-src:///toolkit/modules/Console.sys.mjs"
   );
   let consoleOptions = {
     maxLogLevel: lazy.gDebuggingEnabled ? "all" : "log",

@@ -4,7 +4,7 @@
 "use strict";
 
 const { ExtensionStorageIDB } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionStorageIDB.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionStorageIDB.jsm"
 );
 
 // Detect if the current build is still using the legacy storage.sync Kinto-based backend

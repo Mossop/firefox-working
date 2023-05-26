@@ -2,9 +2,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { Preferences } from "resource://gre/modules/Preferences.sys.mjs";
-import { TelemetryController } from "resource://gre/modules/TelemetryController.sys.mjs";
-import { clearTimeout, setTimeout } from "resource://gre/modules/Timer.sys.mjs";
+import { Preferences } from "moz-src:///toolkit/modules/Preferences.sys.mjs";
+import { TelemetryController } from "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs";
+import { clearTimeout, setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 import { CleanupManager } from "resource://normandy/lib/CleanupManager.sys.mjs";
 import { EventEmitter } from "resource://normandy/lib/EventEmitter.sys.mjs";
 import { LogManager } from "resource://normandy/lib/LogManager.sys.mjs";

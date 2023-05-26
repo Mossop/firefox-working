@@ -5,14 +5,14 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  LoginHelper: "resource://gre/modules/LoginHelper.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  LoginHelper: "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  ServiceWorkerCleanUp: "resource://gre/modules/ServiceWorkerCleanUp.jsm",
+  ServiceWorkerCleanUp: "moz-src:///toolkit/components/cleardata/ServiceWorkerCleanUp.jsm",
   // This helper contains the platform-specific bits of browsingData.
-  BrowsingDataDelegate: "resource:///modules/ExtensionBrowsingData.jsm",
+  BrowsingDataDelegate: "moz-src:///browser/components/extensions/ExtensionBrowsingData.jsm",
 });
 
 /**

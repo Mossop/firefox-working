@@ -5,7 +5,7 @@
 "use strict";
 
 const { clearInterval, setInterval } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 
 const EventEmitter = require("resource://devtools/shared/event-emitter.js");

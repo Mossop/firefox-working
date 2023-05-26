@@ -4,10 +4,10 @@
 "use strict";
 
 const { FxAccountsPairingFlow } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccountsPairing.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccountsPairing.sys.mjs"
 );
 const { EventEmitter } = ChromeUtils.importESModule(
-  "resource://gre/modules/EventEmitter.sys.mjs"
+  "moz-src:///toolkit/modules/EventEmitter.sys.mjs"
 );
 ChromeUtils.defineESModuleGetters(this, {
   jwcrypto: "resource://services-crypto/jwcrypto.sys.mjs",

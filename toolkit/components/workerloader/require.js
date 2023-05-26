@@ -7,7 +7,7 @@
  *
  * Use:
  * // in the .js file loaded by the constructor of the worker
- * importScripts("resource://gre/modules/workers/require.js");
+ * importScripts("moz-src:///toolkit/components/workerloader/require.js");
  * let module = require("resource://gre/modules/worker/myModule.js");
  *
  * // in myModule.js

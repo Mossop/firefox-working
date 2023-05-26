@@ -6,7 +6,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionStorageIDB",
-  "resource://gre/modules/ExtensionStorageIDB.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionStorageIDB.jsm"
 );
 
 const LEAVE_STORAGE_PREF = "extensions.webextensions.keepStorageOnUninstall";

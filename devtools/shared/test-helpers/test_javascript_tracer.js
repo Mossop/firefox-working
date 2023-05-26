@@ -17,7 +17,7 @@ const { traceAllJSCalls } = ChromeUtils.importESModule(
 // test and so `setTimeout` isn't available out of the box.
 // eslint-disable-next-line mozilla/no-redeclare-with-import-autofix
 const { setTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 
 add_task(async function sanityCheck() {

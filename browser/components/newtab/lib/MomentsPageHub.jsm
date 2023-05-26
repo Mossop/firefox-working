@@ -6,8 +6,8 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  setInterval: "resource://gre/modules/Timer.sys.mjs",
-  clearInterval: "resource://gre/modules/Timer.sys.mjs",
+  setInterval: "moz-src:///toolkit/modules/Timer.sys.mjs",
+  clearInterval: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 // Frequency at which to check for new messages

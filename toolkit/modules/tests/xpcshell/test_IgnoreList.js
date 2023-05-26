@@ -4,8 +4,8 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  IgnoreLists: "resource://gre/modules/IgnoreLists.sys.mjs",
-  PromiseUtils: "resource://gre/modules/PromiseUtils.sys.mjs",
+  IgnoreLists: "moz-src:///toolkit/modules/IgnoreLists.sys.mjs",
+  PromiseUtils: "moz-src:///toolkit/modules/PromiseUtils.sys.mjs",
   RemoteSettings: "resource://services-settings/remote-settings.sys.mjs",
   RemoteSettingsClient:
     "resource://services-settings/RemoteSettingsClient.sys.mjs",

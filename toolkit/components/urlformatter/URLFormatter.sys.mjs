@@ -13,7 +13,7 @@
  *   http[s]://%SERVICE%.mozilla.[com|org]/%LOCALE%/
  */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
@@ -23,8 +23,8 @@ const PREF_APP_DISTRIBUTION_VERSION = "distribution.version";
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Region: "resource://gre/modules/Region.sys.mjs",
-  UpdateUtils: "resource://gre/modules/UpdateUtils.sys.mjs",
+  Region: "moz-src:///toolkit/modules/Region.sys.mjs",
+  UpdateUtils: "moz-src:///toolkit/modules/UpdateUtils.sys.mjs",
 });
 
 export function nsURLFormatterService() {

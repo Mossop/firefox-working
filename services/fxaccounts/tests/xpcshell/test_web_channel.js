@@ -7,7 +7,7 @@ const {
   ON_PROFILE_CHANGE_NOTIFICATION,
   WEBCHANNEL_ID,
   log,
-} = ChromeUtils.import("resource://gre/modules/FxAccountsCommon.js");
+} = ChromeUtils.import("moz-src:///services/fxaccounts/FxAccountsCommon.js");
 const { CryptoUtils } = ChromeUtils.importESModule(
   "resource://services-crypto/utils.sys.mjs"
 );
@@ -15,7 +15,7 @@ const {
   FxAccountsWebChannel,
   FxAccountsWebChannelHelpers,
 } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccountsWebChannel.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccountsWebChannel.sys.mjs"
 );
 
 const URL_STRING = "https://example.com";

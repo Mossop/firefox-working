@@ -19,7 +19,7 @@
 //   * babel-plugin-jsm-to-esmodules ignores the first parameter of the lazy
 //     getter API, and the result is wrong
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const lazy = {};
 XPCOMUtils.defineLazyModuleGetters(lazy, {

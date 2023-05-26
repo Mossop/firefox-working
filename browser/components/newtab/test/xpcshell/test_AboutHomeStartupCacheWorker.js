@@ -29,7 +29,7 @@ AddonTestUtils.createAppInfo(
 );
 
 const { AboutNewTab } = ChromeUtils.import(
-  "resource:///modules/AboutNewTab.jsm"
+  "moz-src:///browser/modules/AboutNewTab.jsm"
 );
 const { PREFS_CONFIG } = ChromeUtils.import(
   "resource://activity-stream/lib/ActivityStream.jsm"
@@ -38,7 +38,7 @@ const { PREFS_CONFIG } = ChromeUtils.import(
 ChromeUtils.defineModuleGetter(
   this,
   "BasePromiseWorker",
-  "resource://gre/modules/PromiseWorker.jsm"
+  "moz-src:///toolkit/components/promiseworker/PromiseWorker.jsm"
 );
 
 const CACHE_WORKER_URL = "resource://activity-stream/lib/cache-worker.js";

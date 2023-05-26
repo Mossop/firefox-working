@@ -2,10 +2,10 @@
 
 /* exported Schemas, LocalAPIImplementation, SchemaAPIInterface, getContextWrapper */
 
-const { Schemas } = ChromeUtils.import("resource://gre/modules/Schemas.jsm");
+const { Schemas } = ChromeUtils.import("moz-src:///toolkit/components/extensions/Schemas.jsm");
 
 const { ExtensionCommon } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionCommon.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm"
 );
 
 let { LocalAPIImplementation, SchemaAPIInterface } = ExtensionCommon;

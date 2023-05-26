@@ -7,7 +7,7 @@
  * the display of the help panel on invalid elements.
  */
 
-import { LayoutUtils } from "resource://gre/modules/LayoutUtils.sys.mjs";
+import { LayoutUtils } from "moz-src:///toolkit/modules/LayoutUtils.sys.mjs";
 
 export class FormValidationChild extends JSWindowActorChild {
   constructor() {

@@ -9,7 +9,7 @@ const systemPrincipal = Components.Constructor(
   "nsIPrincipal"
 )();
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
@@ -23,7 +23,7 @@ XPCOMUtils.defineLazyServiceGetter(
 ChromeUtils.defineModuleGetter(
   lazy,
   "NetUtil",
-  "resource://gre/modules/NetUtil.jsm"
+  "moz-src:///netwerk/base/NetUtil.jsm"
 );
 
 // Define some shortcuts.

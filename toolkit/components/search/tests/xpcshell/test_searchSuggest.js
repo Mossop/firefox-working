@@ -12,13 +12,13 @@ const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 const { FormHistory } = ChromeUtils.importESModule(
-  "resource://gre/modules/FormHistory.sys.mjs"
+  "moz-src:///toolkit/components/satchel/FormHistory.sys.mjs"
 );
 const { SearchSuggestionController } = ChromeUtils.importESModule(
-  "resource://gre/modules/SearchSuggestionController.sys.mjs"
+  "moz-src:///toolkit/components/search/SearchSuggestionController.sys.mjs"
 );
 const { PromiseUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PromiseUtils.sys.mjs"
+  "moz-src:///toolkit/modules/PromiseUtils.sys.mjs"
 );
 const { TelemetryTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/TelemetryTestUtils.sys.mjs"

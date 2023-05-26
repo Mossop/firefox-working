@@ -5,7 +5,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionParent",
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 
 AddonTestUtils.usePrivilegedSignatures = id => id === "privileged@ext";

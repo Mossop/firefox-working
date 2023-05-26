@@ -7,7 +7,7 @@
 "use strict";
 
 const { ContentSessionStore } = ChromeUtils.importESModule(
-  "resource:///modules/sessionstore/ContentSessionStore.sys.mjs"
+  "moz-src:///browser/components/sessionstore/ContentSessionStore.sys.mjs"
 );
 
 void new ContentSessionStore(this);

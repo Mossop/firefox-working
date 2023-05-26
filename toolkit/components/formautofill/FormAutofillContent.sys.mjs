@@ -8,16 +8,16 @@
 
 /* eslint-disable no-use-before-define */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   FormAutofill: "resource://autofill/FormAutofill.sys.mjs",
-  FormAutofillUtils: "resource://gre/modules/shared/FormAutofillUtils.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
-  FormStateManager: "resource://gre/modules/shared/FormStateManager.sys.mjs",
+  FormAutofillUtils: "moz-src:///toolkit/components/formautofill/shared/FormAutofillUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
+  FormStateManager: "moz-src:///toolkit/components/formautofill/shared/FormStateManager.sys.mjs",
   ProfileAutocomplete:
     "resource://autofill/AutofillProfileAutoComplete.sys.mjs",
   AutofillTelemetry: "resource://autofill/AutofillTelemetry.sys.mjs",

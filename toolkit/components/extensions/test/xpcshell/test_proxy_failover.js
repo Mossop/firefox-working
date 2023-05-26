@@ -21,7 +21,7 @@ XPCOMUtils.defineLazyGetter(this, "directFailoverDisabled", () => {
 });
 
 const { ServiceRequest } = ChromeUtils.importESModule(
-  "resource://gre/modules/ServiceRequest.sys.mjs"
+  "moz-src:///toolkit/modules/ServiceRequest.sys.mjs"
 );
 
 // Prevent the request from reaching out to the network.

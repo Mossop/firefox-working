@@ -5,7 +5,7 @@
 "use strict";
 
 let { EventEmitter } = ChromeUtils.import(
-  "resource:///modules/syncedtabs/EventEmitter.jsm"
+  "moz-src:///browser/components/syncedtabs/EventEmitter.jsm"
 );
 
 var EXPORTED_SYMBOLS = ["SyncedTabsListStore"];

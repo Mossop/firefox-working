@@ -12,11 +12,11 @@ if (AppConstants.platform === "macosx") {
 }
 
 const { XPCOMUtils } = ChromeUtils.import(
-  "resource://gre/modules/XPCOMUtils.jsm"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.jsm"
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  NewTabUtils: "resource://gre/modules/NewTabUtils.sys.mjs",
+  NewTabUtils: "moz-src:///toolkit/modules/NewTabUtils.sys.mjs",
   TelemetryTestUtils: "resource://testing-common/TelemetryTestUtils.sys.mjs",
 });
 

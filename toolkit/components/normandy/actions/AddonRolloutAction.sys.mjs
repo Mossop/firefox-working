@@ -12,7 +12,7 @@ ChromeUtils.defineESModuleGetters(lazy, {
   NormandyAddonManager: "resource://normandy/lib/NormandyAddonManager.sys.mjs",
   NormandyApi: "resource://normandy/lib/NormandyApi.sys.mjs",
   NormandyUtils: "resource://normandy/lib/NormandyUtils.sys.mjs",
-  TelemetryEnvironment: "resource://gre/modules/TelemetryEnvironment.sys.mjs",
+  TelemetryEnvironment: "moz-src:///toolkit/components/telemetry/app/TelemetryEnvironment.sys.mjs",
   TelemetryEvents: "resource://normandy/lib/TelemetryEvents.sys.mjs",
 });
 

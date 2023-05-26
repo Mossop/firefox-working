@@ -1,6 +1,6 @@
 function handleRequest(request, response) {
   Cu.importGlobalProperties(["URLSearchParams"]);
-  let { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+  let { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
   let query = new URLSearchParams(request.queryString);
 
   response.setHeader("Cross-Origin-Opener-Policy", "same-origin", false);

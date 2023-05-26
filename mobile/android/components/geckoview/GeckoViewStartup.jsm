@@ -12,14 +12,14 @@ const { GeckoViewUtils } = ChromeUtils.importESModule(
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  ActorManagerParent: "resource://gre/modules/ActorManagerParent.sys.mjs",
+  ActorManagerParent: "moz-src:///toolkit/modules/ActorManagerParent.sys.mjs",
   EventDispatcher: "resource://gre/modules/Messaging.sys.mjs",
   PdfJs: "resource://pdf.js/PdfJs.sys.mjs",
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
 });
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const { debug, warn } = GeckoViewUtils.initLogging("Startup");
@@ -243,7 +243,7 @@ class GeckoViewStartup {
           ged: ["GeckoView:WebExtension:DownloadChanged"],
         });
 
-        ChromeUtils.import("resource://gre/modules/NotificationDB.jsm");
+        ChromeUtils.import("moz-src:///dom/notification/new/NotificationDB.jsm");
 
         // Listen for global EventDispatcher messages
         lazy.EventDispatcher.instance.registerListener(this, [

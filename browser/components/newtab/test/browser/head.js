@@ -3,7 +3,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "ObjectUtils",
-  "resource://gre/modules/ObjectUtils.jsm"
+  "moz-src:///toolkit/modules/ObjectUtils.jsm"
 );
 ChromeUtils.defineESModuleGetters(this, {
   PlacesTestUtils: "resource://testing-common/PlacesTestUtils.sys.mjs",
@@ -15,7 +15,7 @@ ChromeUtils.defineModuleGetter(
 );
 // eslint-disable-next-line no-unused-vars
 const { FxAccounts } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccounts.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
 );
 // We import sinon here to make it available across all mochitest test files
 // eslint-disable-next-line no-unused-vars

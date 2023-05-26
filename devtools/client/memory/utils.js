@@ -10,7 +10,7 @@ const L10N = (exports.L10N = new LocalizationHelper(STRINGS_URI));
 
 const { assert } = require("resource://devtools/shared/DevToolsUtils.js");
 const { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 const CUSTOM_CENSUS_DISPLAY_PREF = "devtools.memory.custom-census-displays";
 const CUSTOM_LABEL_DISPLAY_PREF = "devtools.memory.custom-label-displays";

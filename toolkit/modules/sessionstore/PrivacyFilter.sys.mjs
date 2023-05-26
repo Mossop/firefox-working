@@ -5,7 +5,7 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  PrivacyLevel: "resource://gre/modules/sessionstore/PrivacyLevel.sys.mjs",
+  PrivacyLevel: "moz-src:///toolkit/modules/sessionstore/PrivacyLevel.sys.mjs",
 });
 
 /**

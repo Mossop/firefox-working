@@ -10,7 +10,7 @@ import {
   cbHandleError,
   cbHandleResult,
   safeCallback,
-} from "resource://gre/modules/ContentPrefUtils.sys.mjs";
+} from "moz-src:///toolkit/components/contentprefs/ContentPrefUtils.sys.mjs";
 
 // We only need one bit of information out of the context.
 function contextArg(context) {

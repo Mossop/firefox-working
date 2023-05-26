@@ -8,7 +8,7 @@ const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   ContextualIdentityService:
-    "resource://gre/modules/ContextualIdentityService.sys.mjs",
+    "moz-src:///toolkit/components/contextualidentity/ContextualIdentityService.sys.mjs",
   TabManager: "chrome://remote/content/shared/TabManager.sys.mjs",
   TabSession: "chrome://remote/content/cdp/sessions/TabSession.sys.mjs",
   windowManager: "chrome://remote/content/shared/WindowManager.sys.mjs",

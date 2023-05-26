@@ -2,7 +2,7 @@
    http://creativecommons.org/publicdomain/zero/1.0/ */
 
 const { TabUnloader } = ChromeUtils.import(
-  "resource:///modules/TabUnloader.jsm"
+  "moz-src:///browser/modules/TabUnloader.jsm"
 );
 
 const BASE_URL = "https://example.com/browser/browser/modules/test/browser/";

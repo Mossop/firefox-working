@@ -1,10 +1,10 @@
 "use strict";
 
 const { PlacesUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PlacesUtils.sys.mjs"
+  "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs"
 );
 const { NewTabUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/NewTabUtils.sys.mjs"
+  "moz-src:///toolkit/modules/NewTabUtils.sys.mjs"
 );
 const { PlacesTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/PlacesTestUtils.sys.mjs"

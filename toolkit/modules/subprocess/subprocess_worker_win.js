@@ -12,9 +12,9 @@
 /* import-globals-from subprocess_shared_win.js */
 /* import-globals-from subprocess_worker_common.js */
 importScripts(
-  "resource://gre/modules/subprocess/subprocess_shared.js",
+  "moz-src:///toolkit/modules/subprocess/subprocess_shared.js",
   "resource://gre/modules/subprocess/subprocess_shared_win.js",
-  "resource://gre/modules/subprocess/subprocess_worker_common.js"
+  "moz-src:///toolkit/modules/subprocess/subprocess_worker_common.js"
 );
 
 const POLL_TIMEOUT = 5000;

@@ -2,7 +2,7 @@
    http://creativecommons.org/publicdomain/zero/1.0/ */
 
 const { httpRequest } = ChromeUtils.importESModule(
-  "resource://gre/modules/Http.sys.mjs"
+  "moz-src:///toolkit/modules/Http.sys.mjs"
 );
 const { HttpServer } = ChromeUtils.import("resource://testing-common/httpd.js");
 

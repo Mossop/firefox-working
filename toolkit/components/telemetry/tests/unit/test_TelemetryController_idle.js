@@ -4,7 +4,7 @@
 // Check that TelemetrySession notifies correctly on idle-daily.
 
 const { TelemetrySession } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetrySession.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/pings/TelemetrySession.sys.mjs"
 );
 
 var gHttpServer = null;
@@ -57,7 +57,7 @@ add_task(async function testSendPendingOnIdleDaily() {
 
   // Check that the pending ping is correctly received.
   let { TelemetrySendImpl } = ChromeUtils.importESModule(
-    "resource://gre/modules/TelemetrySend.sys.mjs"
+    "moz-src:///toolkit/components/telemetry/app/TelemetrySend.sys.mjs"
   );
   TelemetrySendImpl.observe(null, "idle-daily", null);
   let request = await pendingPromise;

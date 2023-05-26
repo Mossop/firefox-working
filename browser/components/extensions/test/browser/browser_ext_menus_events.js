@@ -4,7 +4,7 @@
 "use strict";
 
 const { ExtensionPermissions } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionPermissions.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm"
 );
 
 const PAGE =
@@ -658,7 +658,7 @@ add_task(async function test_show_hide_frame() {
         [],
         function() {
           const { WebNavigationFrames } = ChromeUtils.import(
-            "resource://gre/modules/WebNavigationFrames.jsm"
+            "moz-src:///toolkit/components/extensions/WebNavigationFrames.jsm"
           );
 
           let { contentWindow } = content.document.getElementById("frame");

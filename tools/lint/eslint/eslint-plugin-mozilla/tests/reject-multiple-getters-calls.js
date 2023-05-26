@@ -25,7 +25,7 @@ ruleTester.run("reject-multiple-getters-calls", rule, {
     `
       ChromeUtils.defineESModuleGetters(lazy, {
         AppConstants: "resource://gre/modules/AppConstants.sys.mjs",
-        PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
+        PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
       });
     `,
     `
@@ -33,7 +33,7 @@ ruleTester.run("reject-multiple-getters-calls", rule, {
         AppConstants: "resource://gre/modules/AppConstants.sys.mjs",
       });
       ChromeUtils.defineESModuleGetters(window, {
-        PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
+        PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
       });
     `,
     `
@@ -42,7 +42,7 @@ ruleTester.run("reject-multiple-getters-calls", rule, {
       });
       if (cond) {
         ChromeUtils.defineESModuleGetters(lazy, {
-          PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
+          PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
         });
       }
     `,
@@ -53,7 +53,7 @@ ruleTester.run("reject-multiple-getters-calls", rule, {
         AppConstants: "resource://gre/modules/AppConstants.sys.mjs",
       });
       ChromeUtils.defineESModuleGetters(lazy, {
-        PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
+        PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
       });
     `),
   ],

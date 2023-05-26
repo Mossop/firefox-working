@@ -2,7 +2,7 @@
  * http://creativecommons.org/publicdomain/zero/1.0/ */
 
 const { Sqlite } = ChromeUtils.importESModule(
-  "resource://gre/modules/Sqlite.sys.mjs"
+  "moz-src:///toolkit/modules/Sqlite.sys.mjs"
 );
 
 XPCOMUtils.defineLazyServiceGetter(
@@ -18,7 +18,7 @@ XPCOMUtils.defineLazyGetter(this, "TRACK_DB_PATH", function() {
 
 ChromeUtils.defineESModuleGetters(this, {
   ContentBlockingAllowList:
-    "resource://gre/modules/ContentBlockingAllowList.sys.mjs",
+    "moz-src:///toolkit/components/antitracking/ContentBlockingAllowList.sys.mjs",
 });
 
 var { UrlClassifierTestUtils } = ChromeUtils.import(

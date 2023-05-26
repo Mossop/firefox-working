@@ -12,7 +12,7 @@ add_task(async () => {
       await SpecialPowers.spawn(browser, [], async () => {
         const doc = content.document;
         const { LoginManagerChild } = ChromeUtils.importESModule(
-          "resource://gre/modules/LoginManagerChild.sys.mjs"
+          "moz-src:///toolkit/components/passwordmgr/LoginManagerChild.sys.mjs"
         );
         const loginManagerChild = new LoginManagerChild();
         const docState = loginManagerChild.stateForDocument(doc);

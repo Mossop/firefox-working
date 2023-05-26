@@ -6,9 +6,9 @@
 
 // Globals
 ChromeUtils.defineESModuleGetters(this, {
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.sys.mjs",
+  AsyncShutdown: "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs",
   FileTestUtils: "resource://testing-common/FileTestUtils.sys.mjs",
-  JSONFile: "resource://gre/modules/JSONFile.sys.mjs",
+  JSONFile: "moz-src:///toolkit/modules/JSONFile.sys.mjs",
 });
 
 /**

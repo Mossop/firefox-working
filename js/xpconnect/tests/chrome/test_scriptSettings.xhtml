@@ -24,7 +24,7 @@ https://bugzilla.mozilla.org/show_bug.cgi?id=937317
   SpecialPowers.pushPrefEnv({"set": [["security.allow_eval_with_system_principal",
                                       true]]});
   addLoadEvent(function() {
-    const {PromiseUtils} = ChromeUtils.import("resource://gre/modules/PromiseUtils.jsm");
+    const {PromiseUtils} = ChromeUtils.import("moz-src:///toolkit/modules/PromiseUtils.jsm");
     let iwin = window[0];
 
     // Smoketest.

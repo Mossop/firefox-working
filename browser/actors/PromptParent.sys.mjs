@@ -6,10 +6,10 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  PromptUtils: "resource://gre/modules/PromptUtils.sys.mjs",
-  BrowserUtils: "resource://gre/modules/BrowserUtils.sys.mjs",
+  PromptUtils: "moz-src:///toolkit/components/prompts/src/PromptUtils.sys.mjs",
+  BrowserUtils: "moz-src:///toolkit/modules/BrowserUtils.sys.mjs",
 });
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 XPCOMUtils.defineLazyPreferenceGetter(
   lazy,

@@ -4,9 +4,9 @@
 
 // Constants
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
-import { E10SUtils } from "resource://gre/modules/E10SUtils.sys.mjs";
+import { E10SUtils } from "moz-src:///toolkit/modules/E10SUtils.sys.mjs";
 
 const DIALOG_URL_APP_CHOOSER =
   "chrome://mozapps/content/handling/appChooser.xhtml";

@@ -7,7 +7,7 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  TelemetryHealthPing: "resource://gre/modules/HealthPing.sys.mjs",
+  TelemetryHealthPing: "moz-src:///toolkit/components/telemetry/pings/HealthPing.sys.mjs",
 });
 
 function checkHealthPingStructure(ping, expectedFailuresDict) {
@@ -29,7 +29,7 @@ function checkHealthPingStructure(ping, expectedFailuresDict) {
 
 function fakeHealthSchedulerTimer(set, clear) {
   let { Policy } = ChromeUtils.importESModule(
-    "resource://gre/modules/HealthPing.sys.mjs"
+    "moz-src:///toolkit/components/telemetry/pings/HealthPing.sys.mjs"
   );
   Policy.setSchedulerTickTimeout = set;
   Policy.clearSchedulerTickTimeout = clear;

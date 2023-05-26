@@ -5,10 +5,10 @@
 // these as they're somewhat private, but we want to run the pings through our
 // validation machinery which is here in the sync test code.
 const { extensionStorageSync: rustImpl } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionStorageSync.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionStorageSync.jsm"
 );
 const { extensionStorageSyncKinto: kintoImpl } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionStorageSyncKinto.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionStorageSyncKinto.jsm"
 );
 
 const { Service } = ChromeUtils.importESModule(

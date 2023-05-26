@@ -12,18 +12,18 @@
   );
 
   const { XPCOMUtils } = ChromeUtils.importESModule(
-    "resource://gre/modules/XPCOMUtils.sys.mjs"
+    "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
   );
 
   let lazy = {};
 
   ChromeUtils.defineESModuleGetters(lazy, {
-    BrowserUtils: "resource://gre/modules/BrowserUtils.sys.mjs",
-    Finder: "resource://gre/modules/Finder.sys.mjs",
-    FinderParent: "resource://gre/modules/FinderParent.sys.mjs",
+    BrowserUtils: "moz-src:///toolkit/modules/BrowserUtils.sys.mjs",
+    Finder: "moz-src:///toolkit/modules/Finder.sys.mjs",
+    FinderParent: "moz-src:///toolkit/modules/FinderParent.sys.mjs",
     PopupBlocker: "resource://gre/actors/PopupBlockingParent.sys.mjs",
     SelectParentHelper: "resource://gre/actors/SelectParent.sys.mjs",
-    RemoteWebNavigation: "resource://gre/modules/RemoteWebNavigation.sys.mjs",
+    RemoteWebNavigation: "moz-src:///toolkit/components/remotebrowserutils/RemoteWebNavigation.sys.mjs",
   });
 
   XPCOMUtils.defineLazyGetter(lazy, "blankURI", () =>
@@ -43,7 +43,7 @@
       // available, in which case we return null. We replace this getter
       // when the module becomes available (should be on delayed startup
       // when the first browser window loads, via BrowserGlue.sys.mjs).
-      const kURL = "resource:///modules/ProcessHangMonitor.jsm";
+      const kURL = "moz-src:///browser/modules/ProcessHangMonitor.jsm";
       if (Cu.isModuleLoaded(kURL)) {
         let { ProcessHangMonitor } = ChromeUtils.import(kURL);
         // eslint-disable-next-line mozilla/valid-lazy
@@ -60,7 +60,7 @@
   Object.defineProperty(lazy, "SessionStore", {
     configurable: true,
     get() {
-      const kURL = "resource:///modules/sessionstore/SessionStore.sys.mjs";
+      const kURL = "moz-src:///browser/components/sessionstore/SessionStore.sys.mjs";
       if (Cu.isESModuleLoaded(kURL)) {
         let { SessionStore } = ChromeUtils.importESModule(kURL);
         // eslint-disable-next-line mozilla/valid-lazy

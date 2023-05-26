@@ -58,7 +58,7 @@ function test() {
   Cc["@mozilla.org/net/osfileconstantsservice;1"].
     getService(Ci.nsIOSFileConstantsService).
     init();
-  ({ctypes} = ChromeUtils.import("resource://gre/modules/ctypes.jsm"));
+  ({ctypes} = ChromeUtils.import("moz-src:///toolkit/components/ctypes/ctypes.jsm"));
   test_libc();
   test_Win();
 

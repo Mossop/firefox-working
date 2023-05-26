@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { EXIT_CODE } from "resource://gre/modules/BackgroundTasksManager.sys.mjs";
+import { EXIT_CODE } from "moz-src:///toolkit/components/backgroundtasks/BackgroundTasksManager.sys.mjs";
 
 // Increase the minimum runtime before shutdown
 export const backgroundTaskMinRuntimeMS = 2000;

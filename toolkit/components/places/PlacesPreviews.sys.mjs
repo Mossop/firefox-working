@@ -2,18 +2,18 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { EventEmitter } from "resource://gre/modules/EventEmitter.sys.mjs";
+import { EventEmitter } from "moz-src:///toolkit/modules/EventEmitter.sys.mjs";
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  BackgroundPageThumbs: "resource://gre/modules/BackgroundPageThumbs.sys.mjs",
-  PageThumbsStorage: "resource://gre/modules/PageThumbs.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
-  clearTimeout: "resource://gre/modules/Timer.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  BackgroundPageThumbs: "moz-src:///toolkit/components/thumbnails/BackgroundPageThumbs.sys.mjs",
+  PageThumbsStorage: "moz-src:///toolkit/components/thumbnails/PageThumbs.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
+  clearTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "logConsole", function() {

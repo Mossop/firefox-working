@@ -5,7 +5,7 @@
 "use strict";
 
 const { LoginManagerParent: LMP } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginManagerParent.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginManagerParent.sys.mjs"
 );
 
 const DOMAIN1_HTTP_ORIGIN = "http://www3.example.com";

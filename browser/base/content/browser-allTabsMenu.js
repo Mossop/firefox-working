@@ -8,7 +8,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "TabsPanel",
-  "resource:///modules/TabsList.jsm"
+  "moz-src:///browser/modules/TabsList.jsm"
 );
 
 var gTabsPanel = {

@@ -3,11 +3,11 @@
 
 "use strict";
 
-const { Schemas } = ChromeUtils.import("resource://gre/modules/Schemas.jsm");
+const { Schemas } = ChromeUtils.import("moz-src:///toolkit/components/extensions/Schemas.jsm");
 
 ChromeUtils.defineESModuleGetters(this, {
-  ExtensionDNR: "resource://gre/modules/ExtensionDNR.sys.mjs",
-  ExtensionDNRStore: "resource://gre/modules/ExtensionDNRStore.sys.mjs",
+  ExtensionDNR: "moz-src:///toolkit/components/extensions/ExtensionDNR.sys.mjs",
+  ExtensionDNRStore: "moz-src:///toolkit/components/extensions/ExtensionDNRStore.sys.mjs",
   sinon: "resource://testing-common/Sinon.sys.mjs",
 });
 

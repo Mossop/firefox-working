@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 // Android tests don't import these properly, so guard against that
 let shortURL = {};
@@ -21,9 +21,9 @@ try {
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  BinarySearch: "resource://gre/modules/BinarySearch.sys.mjs",
-  PageThumbs: "resource://gre/modules/PageThumbs.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
+  BinarySearch: "moz-src:///toolkit/modules/BinarySearch.sys.mjs",
+  PageThumbs: "moz-src:///toolkit/components/thumbnails/PageThumbs.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
   Pocket: "chrome://pocket/content/Pocket.sys.mjs",
   pktApi: "chrome://pocket/content/pktApi.sys.mjs",
 });
@@ -31,7 +31,7 @@ ChromeUtils.defineESModuleGetters(lazy, {
 let BrowserWindowTracker;
 try {
   BrowserWindowTracker = ChromeUtils.import(
-    "resource:///modules/BrowserWindowTracker.jsm"
+    "moz-src:///browser/modules/BrowserWindowTracker.jsm"
   ).BrowserWindowTracker;
 } catch (e) {
   // BrowserWindowTracker is used to determine devicePixelRatio in

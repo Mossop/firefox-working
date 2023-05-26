@@ -15,7 +15,7 @@ const SCALAR_SEARCHMODE = "browser.engagement.navigation.urlbar_searchmode";
 const SUGGEST_URLBAR_PREF = "browser.urlbar.suggest.searches";
 
 ChromeUtils.defineESModuleGetters(this, {
-  SearchSERPTelemetry: "resource:///modules/SearchSERPTelemetry.sys.mjs",
+  SearchSERPTelemetry: "moz-src:///browser/components/search/SearchSERPTelemetry.sys.mjs",
   UrlbarTestUtils: "resource://testing-common/UrlbarTestUtils.sys.mjs",
 });
 

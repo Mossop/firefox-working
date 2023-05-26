@@ -7,9 +7,9 @@ import { LogManager } from "resource://normandy/lib/LogManager.sys.mjs";
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
   CleanupManager: "resource://normandy/lib/CleanupManager.sys.mjs",
-  IndexedDB: "resource://gre/modules/IndexedDB.sys.mjs",
+  IndexedDB: "moz-src:///toolkit/modules/IndexedDB.sys.mjs",
   PrefUtils: "resource://normandy/lib/PrefUtils.sys.mjs",
-  TelemetryEnvironment: "resource://gre/modules/TelemetryEnvironment.sys.mjs",
+  TelemetryEnvironment: "moz-src:///toolkit/components/telemetry/app/TelemetryEnvironment.sys.mjs",
   TelemetryEvents: "resource://normandy/lib/TelemetryEvents.sys.mjs",
 });
 

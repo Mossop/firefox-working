@@ -10,7 +10,7 @@
 /* import-globals-from security.js */
 
 ChromeUtils.defineESModuleGetters(this, {
-  E10SUtils: "resource://gre/modules/E10SUtils.sys.mjs",
+  E10SUtils: "moz-src:///toolkit/modules/E10SUtils.sys.mjs",
 });
 
 // Inherit color scheme overrides from parent window. This is to inherit the

@@ -8,7 +8,7 @@ const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   JsonSchemaValidator:
-    "resource://gre/modules/components-utils/JsonSchemaValidator.sys.mjs",
+    "moz-src:///toolkit/components/utils/JsonSchemaValidator.sys.mjs",
   LogManager: "resource://normandy/lib/LogManager.sys.mjs",
 });
 

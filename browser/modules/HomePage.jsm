@@ -7,21 +7,21 @@
 var EXPORTED_SYMBOLS = ["HomePage"];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  IgnoreLists: "resource://gre/modules/IgnoreLists.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  IgnoreLists: "moz-src:///toolkit/modules/IgnoreLists.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  CustomizableUI: "resource:///modules/CustomizableUI.jsm",
-  ExtensionParent: "resource://gre/modules/ExtensionParent.jsm",
+  CustomizableUI: "moz-src:///browser/components/customizableui/CustomizableUI.jsm",
+  ExtensionParent: "moz-src:///toolkit/components/extensions/ExtensionParent.jsm",
   ExtensionPreferencesManager:
-    "resource://gre/modules/ExtensionPreferencesManager.jsm",
+    "moz-src:///toolkit/components/extensions/ExtensionPreferencesManager.jsm",
 });
 
 const kPrefName = "browser.startup.homepage";

@@ -14,12 +14,12 @@
 /* global JSDOMParser */
 /* import-globals-from /toolkit/components/reader/Readability.js */
 importScripts(
-  "resource://gre/modules/workers/require.js",
-  "resource://gre/modules/reader/JSDOMParser.js",
-  "resource://gre/modules/reader/Readability.js"
+  "moz-src:///toolkit/components/workerloader/require.js",
+  "moz-src:///toolkit/components/reader/JSDOMParser.js",
+  "moz-src:///toolkit/components/reader/Readability.js"
 );
 
-var PromiseWorker = require("resource://gre/modules/workers/PromiseWorker.js");
+var PromiseWorker = require("moz-src:///toolkit/components/promiseworker/worker/PromiseWorker.js");
 
 const DEBUG = false;
 

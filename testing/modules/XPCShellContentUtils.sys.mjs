@@ -5,18 +5,18 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
 );
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 // Windowless browsers can create documents that rely on XUL Custom Elements:
 ChromeUtils.importESModule(
-  "resource://gre/modules/CustomElementsListener.sys.mjs"
+  "moz-src:///toolkit/components/processsingleton/CustomElementsListener.sys.mjs"
 );
 
 // Need to import ActorManagerParent.sys.mjs so that the actors are initialized
 // before running extension XPCShell tests.
-ChromeUtils.importESModule("resource://gre/modules/ActorManagerParent.sys.mjs");
+ChromeUtils.importESModule("moz-src:///toolkit/modules/ActorManagerParent.sys.mjs");
 
 const lazy = {};
 

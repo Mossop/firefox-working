@@ -2,8 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
-import { Region } from "resource://gre/modules/Region.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
+import { Region } from "moz-src:///toolkit/modules/Region.sys.mjs";
 
 const ADDRESSES_FIRST_TIME_USE_PREF = "extensions.formautofill.firstTimeUse";
 const AUTOFILL_ADDRESSES_AVAILABLE_PREF =
@@ -157,7 +157,7 @@ export const FormAutofill = {
     };
 
     let { ConsoleAPI } = ChromeUtils.importESModule(
-      "resource://gre/modules/Console.sys.mjs"
+      "moz-src:///toolkit/modules/Console.sys.mjs"
     );
     return new ConsoleAPI({
       maxLogLevelPref: "extensions.formautofill.loglevel",

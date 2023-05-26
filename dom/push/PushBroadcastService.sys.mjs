@@ -2,12 +2,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  JSONFile: "resource://gre/modules/JSONFile.sys.mjs",
-  PushService: "resource://gre/modules/PushService.sys.mjs",
+  JSONFile: "moz-src:///toolkit/modules/JSONFile.sys.mjs",
+  PushService: "moz-src:///dom/push/PushService.sys.mjs",
 });
 
 // BroadcastService is exported for test purposes.
@@ -16,7 +16,7 @@ const DUMMY_VERSION_STRING = "____NOP____";
 
 XPCOMUtils.defineLazyGetter(lazy, "console", () => {
   let { ConsoleAPI } = ChromeUtils.importESModule(
-    "resource://gre/modules/Console.sys.mjs"
+    "moz-src:///toolkit/modules/Console.sys.mjs"
   );
   return new ConsoleAPI({
     maxLogLevelPref: "dom.push.loglevel",

@@ -1,11 +1,11 @@
 /* eslint-env mozilla/chrome-script */
 
 const { ComponentUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/ComponentUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/ComponentUtils.sys.mjs"
 );
 
 const { Downloads } = ChromeUtils.importESModule(
-  "resource://gre/modules/Downloads.sys.mjs"
+  "moz-src:///toolkit/components/downloads/Downloads.sys.mjs"
 );
 
 let gMIMEService = Cc["@mozilla.org/mime;1"].getService(Ci.nsIMIMEService);

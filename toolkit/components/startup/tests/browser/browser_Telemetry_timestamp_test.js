@@ -1,10 +1,10 @@
 "use strict";
 
 const { TelemetryController } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryController.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs"
 );
 const { TelemetrySession } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetrySession.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/pings/TelemetrySession.sys.mjs"
 );
 
 add_task(async function test() {

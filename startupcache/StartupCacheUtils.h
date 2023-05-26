@@ -55,7 +55,7 @@ nsresult ResolveURI(nsIURI* in, nsIURI** out);
 // passed in.
 //
 // For example, in the js loader (loaderType = "jsloader"):
-//  resource://gre/modules/XPCOMUtils.sys.mjs or
+//  moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs or
 //  file://$GRE_DIR/modules/XPCOMUtils.sys.mjs or
 //  jar:file://$GRE_DIR/omni.jar!/modules/XPCOMUtils.sys.mjs becomes
 //     jsloader/resource/gre/modules/XPCOMUtils.sys.mjs

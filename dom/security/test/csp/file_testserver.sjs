@@ -1,6 +1,6 @@
 // SJS file for CSP mochitests
 "use strict";
-const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+const { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 Components.utils.importGlobalProperties(["URLSearchParams"]);
 
 function loadHTMLFromFile(path) {

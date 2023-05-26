@@ -8,10 +8,10 @@
  */
 
 const { AttributionIOUtils } = ChromeUtils.importESModule(
-  "resource:///modules/AttributionCode.sys.mjs"
+  "moz-src:///browser/components/attribution/AttributionCode.sys.mjs"
 );
 const { ProvenanceData } = ChromeUtils.importESModule(
-  "resource:///modules/ProvenanceData.sys.mjs"
+  "moz-src:///browser/components/attribution/ProvenanceData.sys.mjs"
 );
 const { TelemetryTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/TelemetryTestUtils.sys.mjs"

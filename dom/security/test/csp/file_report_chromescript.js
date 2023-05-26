@@ -1,6 +1,6 @@
 /* eslint-env mozilla/chrome-script */
 
-const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+const { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 
 Cu.importGlobalProperties(["TextDecoder"]);
 

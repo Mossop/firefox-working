@@ -8,7 +8,7 @@
 /* import-globals-from /testing/mochitest/tests/SimpleTest/WorkerSimpleTest.js */
 importScripts("chrome://mochikit/content/tests/SimpleTest/WorkerSimpleTest.js");
 /* import-globals-from /toolkit/modules/ObjectUtils.jsm */
-importScripts("resource://gre/modules/ObjectUtils.jsm");
+importScripts("moz-src:///toolkit/modules/ObjectUtils.jsm");
 
 importScripts("file_ioutils_test_fixtures.js");
 

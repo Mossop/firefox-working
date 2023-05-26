@@ -4,7 +4,7 @@
 "use strict";
 
 const { SitePermissions } = ChromeUtils.import(
-  "resource:///modules/SitePermissions.jsm"
+  "moz-src:///browser/modules/SitePermissions.jsm"
 );
 
 const RESIST_FINGERPRINTING_ENABLED = Services.prefs.getBoolPref(

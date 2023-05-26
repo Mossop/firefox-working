@@ -4,19 +4,19 @@
 "use strict";
 
 const { GMPTestUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/addons/GMPProvider.sys.mjs"
+  "moz-src:///toolkit/mozapps/extensions/internal/GMPProvider.sys.mjs"
 );
 const { GMPInstallManager } = ChromeUtils.importESModule(
-  "resource://gre/modules/GMPInstallManager.sys.mjs"
+  "moz-src:///toolkit/modules/GMPInstallManager.sys.mjs"
 );
 const {
   GMPPrefs,
   GMP_PLUGIN_IDS,
   OPEN_H264_ID,
   WIDEVINE_ID,
-} = ChromeUtils.importESModule("resource://gre/modules/GMPUtils.sys.mjs");
+} = ChromeUtils.importESModule("moz-src:///toolkit/modules/GMPUtils.sys.mjs");
 const { UpdateUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/UpdateUtils.sys.mjs"
+  "moz-src:///toolkit/modules/UpdateUtils.sys.mjs"
 );
 
 XPCOMUtils.defineLazyGetter(

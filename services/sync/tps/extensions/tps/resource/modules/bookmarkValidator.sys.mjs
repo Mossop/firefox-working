@@ -7,7 +7,7 @@
 // It used to have a test before it was moved:
 // https://searchfox.org/mozilla-central/rev/b1a5802e0f73bfd6d2096e5fefc2b47831a50b2d/services/sync/tests/unit/test_bookmark_validator.js
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 import { CommonUtils } from "resource://services-common/utils.sys.mjs";
 import { Utils } from "resource://services-sync/util.sys.mjs";
@@ -16,8 +16,8 @@ const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   Async: "resource://services-common/async.sys.mjs",
-  PlacesSyncUtils: "resource://gre/modules/PlacesSyncUtils.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
+  PlacesSyncUtils: "moz-src:///toolkit/components/places/PlacesSyncUtils.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
 });
 
 const QUERY_PROTOCOL = "place:";

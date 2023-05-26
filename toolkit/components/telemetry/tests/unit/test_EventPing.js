@@ -5,7 +5,7 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  TelemetryEventPing: "resource://gre/modules/EventPing.sys.mjs",
+  TelemetryEventPing: "moz-src:///toolkit/components/telemetry/pings/EventPing.sys.mjs",
 });
 
 function checkPingStructure(type, payload, options) {
@@ -28,7 +28,7 @@ function checkPingStructure(type, payload, options) {
 
 function fakePolicy(set, clear, send) {
   let { Policy } = ChromeUtils.importESModule(
-    "resource://gre/modules/EventPing.sys.mjs"
+    "moz-src:///toolkit/components/telemetry/pings/EventPing.sys.mjs"
   );
   Policy.setTimeout = set;
   Policy.clearTimeout = clear;

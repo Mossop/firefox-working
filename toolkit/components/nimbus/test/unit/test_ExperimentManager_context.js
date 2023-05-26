@@ -5,7 +5,7 @@ const { ExperimentFakes } = ChromeUtils.importESModule(
 );
 
 const { FirstStartup } = ChromeUtils.importESModule(
-  "resource://gre/modules/FirstStartup.sys.mjs"
+  "moz-src:///toolkit/modules/FirstStartup.sys.mjs"
 );
 
 add_task(async function test_createTargetingContext() {

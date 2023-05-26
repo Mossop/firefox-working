@@ -14,8 +14,8 @@ import { RemoteSettings } from "resource://services-settings/remote-settings.sys
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
-  Region: "resource://gre/modules/Region.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
+  Region: "moz-src:///toolkit/modules/Region.sys.mjs",
 });
 
 const kGlobalPrefBranch = "doh-rollout";

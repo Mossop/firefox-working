@@ -2,7 +2,7 @@
 "use strict";
 
 const { setTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 
 const MAX_ROUND_TRIP_TIME_MS = AppConstants.DEBUG || AppConstants.ASAN ? 18 : 9;
@@ -455,7 +455,7 @@ if (AppConstants.isPlatformAndVersionAtLeast("win", "6")) {
       "resource://gre/modules/subprocess/subprocess_win.sys.mjs"
     );
     const { ctypes } = ChromeUtils.importESModule(
-      "resource://gre/modules/ctypes.sys.mjs"
+      "moz-src:///toolkit/components/ctypes/ctypes.sys.mjs"
     );
 
     let secAttr = new win32.SECURITY_ATTRIBUTES();
@@ -790,7 +790,7 @@ add_task(async function test_subprocess_environmentAppend() {
 if (AppConstants.platform !== "win") {
   add_task(async function test_subprocess_nonASCII() {
     const { libc } = ChromeUtils.importESModule(
-      "resource://gre/modules/subprocess/subprocess_unix.sys.mjs"
+      "moz-src:///toolkit/modules/subprocess/subprocess_unix.sys.mjs"
     );
 
     // Use TextDecoder rather than a string with a \xff escape, since
@@ -858,7 +858,7 @@ add_task(async function test_bad_executable() {
 
 add_task(async function test_cleanup() {
   let { getSubprocessImplForTest } = ChromeUtils.importESModule(
-    "resource://gre/modules/Subprocess.sys.mjs"
+    "moz-src:///toolkit/modules/subprocess/Subprocess.sys.mjs"
   );
 
   let worker = getSubprocessImplForTest().Process.getWorker();

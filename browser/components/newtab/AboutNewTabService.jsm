@@ -31,13 +31,13 @@ const EXPORTED_SYMBOLS = [
  */
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 const { E10SUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/E10SUtils.sys.mjs"
+  "moz-src:///toolkit/modules/E10SUtils.sys.mjs"
 );
 
 const lazy = {};
@@ -63,7 +63,7 @@ const ABOUT_WELCOME_URL =
 ChromeUtils.defineModuleGetter(
   lazy,
   "BasePromiseWorker",
-  "resource://gre/modules/PromiseWorker.jsm"
+  "moz-src:///toolkit/components/promiseworker/PromiseWorker.jsm"
 );
 
 const CACHE_WORKER_URL = "resource://activity-stream/lib/cache-worker.js";

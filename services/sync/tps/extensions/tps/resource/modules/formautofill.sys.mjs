@@ -12,7 +12,7 @@ import { Logger } from "resource://tps/logger.sys.mjs";
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  OSKeyStore: "resource://gre/modules/OSKeyStore.sys.mjs",
+  OSKeyStore: "moz-src:///toolkit/modules/OSKeyStore.sys.mjs",
   formAutofillStorage: "resource://autofill/FormAutofillStorage.sys.mjs",
 });
 

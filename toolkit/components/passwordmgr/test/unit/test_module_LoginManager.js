@@ -9,7 +9,7 @@
 "use strict";
 
 const { LoginManager } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginManager.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginManager.sys.mjs"
 );
 
 add_task(async function test_ensureCurrentSyncID() {

@@ -5,10 +5,10 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
 });
 const { CreditCard } = ChromeUtils.importESModule(
-  "resource://gre/modules/CreditCard.sys.mjs"
+  "moz-src:///toolkit/modules/CreditCard.sys.mjs"
 );
 
 let FormAutofillStorage;

@@ -4,10 +4,10 @@ http://creativecommons.org/publicdomain/zero/1.0/ */
 "use strict";
 
 const { PasswordFileMigrator } = ChromeUtils.importESModule(
-  "resource:///modules/FileMigrators.sys.mjs"
+  "moz-src:///browser/components/migration/FileMigrators.sys.mjs"
 );
 const { LoginCSVImport } = ChromeUtils.import(
-  "resource://gre/modules/LoginCSVImport.jsm"
+  "moz-src:///toolkit/components/passwordmgr/LoginCSVImport.jsm"
 );
 const { sinon } = ChromeUtils.importESModule(
   "resource://testing-common/Sinon.sys.mjs"

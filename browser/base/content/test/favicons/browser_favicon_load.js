@@ -23,7 +23,7 @@ const THIRD_PARTY_FAVICON_URI =
 
 ChromeUtils.defineESModuleGetters(this, {
   PlacesTestUtils: "resource://testing-common/PlacesTestUtils.sys.mjs",
-  PromiseUtils: "resource://gre/modules/PromiseUtils.sys.mjs",
+  PromiseUtils: "moz-src:///toolkit/modules/PromiseUtils.sys.mjs",
 });
 
 let systemPrincipal = Services.scriptSecurityManager.getSystemPrincipal();

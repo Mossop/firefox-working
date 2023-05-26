@@ -48,7 +48,7 @@ add_task(async function test_contentscript_cache() {
   let scriptUrl = `${origin}/content_script.js`;
 
   const { ExtensionProcessScript } = SpecialPowers.ChromeUtils.import(
-    "resource://gre/modules/ExtensionProcessScript.jsm"
+    "moz-src:///toolkit/components/extensions/ExtensionProcessScript.jsm"
   );
   let ext = ExtensionProcessScript.getExtensionChild(extension.id);
 
@@ -71,7 +71,7 @@ add_task(async function test_contentscript_cache() {
       /* eslint-env mozilla/chrome-script */
       addMessageListener("check-script-cache", extensionId => {
         const { ExtensionProcessScript } = ChromeUtils.import(
-          "resource://gre/modules/ExtensionProcessScript.jsm"
+          "moz-src:///toolkit/components/extensions/ExtensionProcessScript.jsm"
         );
         let ext = ExtensionProcessScript.getExtensionChild(extensionId);
 

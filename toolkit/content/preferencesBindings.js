@@ -8,12 +8,12 @@
 // have access to it.
 const Preferences = (window.Preferences = (function() {
   const { EventEmitter } = ChromeUtils.importESModule(
-    "resource://gre/modules/EventEmitter.sys.mjs"
+    "moz-src:///toolkit/modules/EventEmitter.sys.mjs"
   );
 
   const lazy = {};
   ChromeUtils.defineESModuleGetters(lazy, {
-    DeferredTask: "resource://gre/modules/DeferredTask.sys.mjs",
+    DeferredTask: "moz-src:///toolkit/modules/DeferredTask.sys.mjs",
   });
 
   function getElementsByAttribute(name, value) {

@@ -11,7 +11,7 @@ const PREF_ROOT = "testpermissions.";
 const TEST_PERM = "test-permission";
 
 const { PermissionsUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PermissionsUtils.sys.mjs"
+  "moz-src:///toolkit/modules/PermissionsUtils.sys.mjs"
 );
 const { PermissionTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/PermissionTestUtils.sys.mjs"

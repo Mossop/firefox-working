@@ -6,11 +6,11 @@
 
 ChromeUtils.defineESModuleGetters(this, {
   TalosParentProfiler: "resource://talos-powers/TalosParentProfiler.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
+  BrowserWindowTracker: "moz-src:///browser/modules/BrowserWindowTracker.jsm",
 });
 
 const SCALAR_KEY = "timestamps.about_home_topsites_first_paint";

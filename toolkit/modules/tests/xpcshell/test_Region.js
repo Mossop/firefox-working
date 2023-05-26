@@ -5,10 +5,10 @@ const { AppConstants } = ChromeUtils.importESModule(
 );
 const { HttpServer } = ChromeUtils.import("resource://testing-common/httpd.js");
 const { Region } = ChromeUtils.importESModule(
-  "resource://gre/modules/Region.sys.mjs"
+  "moz-src:///toolkit/modules/Region.sys.mjs"
 );
 const { setTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 const { TestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/TestUtils.sys.mjs"

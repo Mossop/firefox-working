@@ -192,7 +192,7 @@ add_task(async function overrideContext_permissions() {
     [],
     () => {
       const { ExtensionCommon } = ChromeUtils.import(
-        "resource://gre/modules/ExtensionCommon.jsm"
+        "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm"
       );
       Cu.exportFunction(
         fn => {

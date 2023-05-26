@@ -44,7 +44,7 @@ async function installSystemAddons(xml, waitIDs = []) {
     xml,
     async function() {
       let { XPIProvider } = ChromeUtils.import(
-        "resource://gre/modules/addons/XPIProvider.jsm"
+        "moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm"
       );
       await Promise.all([
         XPIProvider.updateSystemAddons(),

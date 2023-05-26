@@ -3,8 +3,8 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  FormHistory: "resource://gre/modules/FormHistory.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
+  FormHistory: "moz-src:///toolkit/components/satchel/FormHistory.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
 });
 
 const REFERENCE_DATE = Date.now();

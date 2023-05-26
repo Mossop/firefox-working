@@ -7,7 +7,7 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "FaviconLoader",
-  "resource:///modules/FaviconLoader.jsm"
+  "moz-src:///browser/modules/FaviconLoader.jsm"
 );
 
 export class LinkHandlerChild extends JSWindowActorChild {

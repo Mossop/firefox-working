@@ -7,7 +7,7 @@ const { AddonTestUtils } = ChromeUtils.import(
 );
 
 const { ExtensionPermissions } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionPermissions.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm"
 );
 
 const SUPPORT_URL = Services.urlFormatter.formatURL(

@@ -142,7 +142,7 @@ var whitelist = [
   { file: "chrome://global/content/third_party/d3/d3.js" },
 
   // SpiderMonkey parser API, currently unused in browser/ and toolkit/
-  { file: "resource://gre/modules/reflect.sys.mjs" },
+  { file: "moz-src:///toolkit/components/reflect/reflect.sys.mjs" },
 
   // extensions/pref/autoconfig/src/nsReadConfig.cpp
   { file: "resource://gre/defaults/autoconfig/prefcalls.js" },
@@ -219,9 +219,9 @@ var whitelist = [
   { file: "resource://pdf.js/web/debugger.css" },
 
   // resource://app/modules/translation/TranslationContentHandler.jsm
-  { file: "resource://app/modules/translation/BingTranslator.jsm" },
-  { file: "resource://app/modules/translation/GoogleTranslator.jsm" },
-  { file: "resource://app/modules/translation/YandexTranslator.jsm" },
+  { file: "moz-src:///browser/components/translation/BingTranslator.jsm" },
+  { file: "moz-src:///browser/components/translation/GoogleTranslator.jsm" },
+  { file: "moz-src:///browser/components/translation/YandexTranslator.jsm" },
 
   // Starting from here, files in the whitelist are bugs that need fixing.
   // Bug 1339424 (wontfix?)
@@ -238,7 +238,7 @@ var whitelist = [
   // Bug 1348559
   { file: "chrome://pippki/content/resetpassword.xhtml" },
   // Bug 1337345
-  { file: "resource://gre/modules/Manifest.sys.mjs" },
+  { file: "moz-src:///dom/manifest/Manifest.sys.mjs" },
   // Bug 1494170
   // (The references to these files are dynamically generated, so the test can't
   // find the references)
@@ -295,7 +295,7 @@ var whitelist = [
   { file: "resource://gre/localization/en-US/toolkit/global/run-from-dmg.ftl" },
 
   // References to esm generated from jsm programmatically
-  { file: "resource://gre/modules/LangPackMatcher.sys.mjs" },
+  { file: "moz-src:///intl/locale/LangPackMatcher.sys.mjs" },
 
   // Referenced by screenshots extension
   { file: "chrome://browser/content/screenshots/cancel.svg" },
@@ -304,7 +304,7 @@ var whitelist = [
   { file: "chrome://browser/content/screenshots/download-white.svg" },
 
   // Bug 1824826 - Implement a view of history in Firefox View
-  { file: "resource://gre/modules/PlacesQuery.sys.mjs" },
+  { file: "moz-src:///toolkit/components/places/PlacesQuery.sys.mjs" },
 
   // Should be removed in bug 1824826 when moz-tab-list is used in Firefox View
   { file: "resource://app/localization/en-US/browser/mozTabList.ftl" },
@@ -332,7 +332,7 @@ if (AppConstants.platform == "android") {
 if (AppConstants.MOZ_UPDATE_AGENT && !AppConstants.MOZ_BACKGROUNDTASKS) {
   // Task scheduling is only used for background updates right now.
   whitelist.push({
-    file: "resource://gre/modules/TaskScheduler.jsm",
+    file: "moz-src:///toolkit/components/taskscheduler/TaskScheduler.jsm",
   });
 }
 
@@ -381,7 +381,7 @@ if (!isDevtools) {
   // resource://devtools/shared/worker/loader.js,
   // resource://devtools/shared/loader/builtin-modules.js
   if (!AppConstants.ENABLE_WEBDRIVER) {
-    whitelist.add("resource://gre/modules/jsdebugger.sys.mjs");
+    whitelist.add("moz-src:///devtools/platform/jsdebugger.sys.mjs");
   }
 }
 

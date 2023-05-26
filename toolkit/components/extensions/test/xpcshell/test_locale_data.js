@@ -10,7 +10,7 @@ AddonTestUtils.createAppInfo(
 );
 
 const { ExtensionData } = ChromeUtils.import(
-  "resource://gre/modules/Extension.jsm"
+  "moz-src:///toolkit/components/extensions/Extension.jsm"
 );
 
 async function generateAddon(data) {

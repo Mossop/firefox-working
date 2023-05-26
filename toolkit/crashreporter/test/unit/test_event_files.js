@@ -18,7 +18,7 @@ add_task(async function test_main_process_crash() {
       function() {
         // TelemetrySession setup will trigger the session annotation
         let { TelemetryController } = ChromeUtils.importESModule(
-          "resource://gre/modules/TelemetryController.sys.mjs"
+          "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs"
         );
         TelemetryController.testSetup();
         crashType = CrashTestUtils.CRASH_MOZ_CRASH;

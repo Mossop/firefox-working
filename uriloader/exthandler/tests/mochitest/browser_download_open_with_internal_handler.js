@@ -6,10 +6,10 @@
 requestLongerTimeout(2);
 
 const { Downloads } = ChromeUtils.importESModule(
-  "resource://gre/modules/Downloads.sys.mjs"
+  "moz-src:///toolkit/components/downloads/Downloads.sys.mjs"
 );
 const { DownloadIntegration } = ChromeUtils.importESModule(
-  "resource://gre/modules/DownloadIntegration.sys.mjs"
+  "moz-src:///toolkit/components/downloads/DownloadIntegration.sys.mjs"
 );
 
 const TEST_PATH = getRootDirectory(gTestPath).replace(

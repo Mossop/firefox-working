@@ -38,7 +38,7 @@ add_task(async function test_all_webRequest_ResourceTypes() {
 
   await extension.startup();
 
-  const { Schemas } = ChromeUtils.import("resource://gre/modules/Schemas.jsm");
+  const { Schemas } = ChromeUtils.import("moz-src:///toolkit/components/extensions/Schemas.jsm");
   const webRequestSchema = Schemas.privilegedSchemaJSON
     .get("chrome://extensions/content/schemas/web_request.json")
     .deserialize({});

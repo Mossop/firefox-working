@@ -1,12 +1,12 @@
 /* Any copyright is dedicated to the Public Domain.
  * http://creativecommons.org/publicdomain/zero/1.0/ */
 
-import { OSKeyStore } from "resource://gre/modules/OSKeyStore.sys.mjs";
+import { OSKeyStore } from "moz-src:///toolkit/modules/OSKeyStore.sys.mjs";
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  UpdateUtils: "resource://gre/modules/UpdateUtils.sys.mjs",
+  UpdateUtils: "moz-src:///toolkit/modules/UpdateUtils.sys.mjs",
 });
 import { TestUtils } from "resource://testing-common/TestUtils.sys.mjs";
 

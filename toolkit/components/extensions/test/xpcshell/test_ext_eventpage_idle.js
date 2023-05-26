@@ -3,7 +3,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionPreferencesManager",
-  "resource://gre/modules/ExtensionPreferencesManager.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPreferencesManager.jsm"
 );
 
 AddonTestUtils.init(this);

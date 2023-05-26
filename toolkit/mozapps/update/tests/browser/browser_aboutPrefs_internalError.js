@@ -4,7 +4,7 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  AppUpdater: "resource://gre/modules/AppUpdater.sys.mjs",
+  AppUpdater: "moz-src:///toolkit/mozapps/update/AppUpdater.sys.mjs",
   sinon: "resource://testing-common/Sinon.sys.mjs",
 });
 

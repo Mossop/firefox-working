@@ -7,13 +7,13 @@
  * which aren't necessarily marked up with a <form> element.
  */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  FormLikeFactory: "resource://gre/modules/FormLikeFactory.sys.mjs",
-  LoginHelper: "resource://gre/modules/LoginHelper.sys.mjs",
+  FormLikeFactory: "moz-src:///toolkit/modules/FormLikeFactory.sys.mjs",
+  LoginHelper: "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "log", () => {

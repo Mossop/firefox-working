@@ -4,7 +4,7 @@ ChromeUtils.defineModuleGetter(
   "resource://activity-stream/lib/ASRouterTriggerListeners.jsm"
 );
 ChromeUtils.defineESModuleGetters(this, {
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
   TestUtils: "resource://testing-common/TestUtils.sys.mjs",
 });
 

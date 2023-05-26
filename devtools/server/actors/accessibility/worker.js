@@ -8,7 +8,7 @@
 /**
  * Import `createTask` to communicate with `devtools/shared/worker`.
  */
-importScripts("resource://gre/modules/workers/require.js");
+importScripts("moz-src:///toolkit/components/workerloader/require.js");
 const { createTask } = require("resource://devtools/shared/worker/helper.js");
 
 /**

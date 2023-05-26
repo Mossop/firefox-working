@@ -55,7 +55,7 @@ function checkChange(XS, aPath, aChange) {
 // Get a reference to the XPIState (loaded by startupManager) so we can unit test it.
 function getXS() {
   const { XPIInternal } = ChromeUtils.import(
-    "resource://gre/modules/addons/XPIProvider.jsm"
+    "moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm"
   );
   return XPIInternal.XPIStates;
 }

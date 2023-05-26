@@ -25,8 +25,8 @@ https://bugzilla.mozilla.org/show_bug.cgi?id=963835
 
 SimpleTest.waitForExplicitFinish();
 
-const {FxAccounts} = ChromeUtils.import("resource://gre/modules/FxAccounts.jsm");
-const {FxAccountsClient} = ChromeUtils.import("resource://gre/modules/FxAccountsClient.jsm");
+const {FxAccounts} = ChromeUtils.import("moz-src:///services/fxaccounts/FxAccounts.jsm");
+const {FxAccountsClient} = ChromeUtils.import("moz-src:///services/fxaccounts/FxAccountsClient.jsm");
 ChromeUtils.import("resource://services-common/hawkclient.js");
 
 const TEST_SERVER =

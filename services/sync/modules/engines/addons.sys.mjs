@@ -35,7 +35,7 @@
  * See the documentation in all.js for the behavior of these prefs.
  */
 
-import { Preferences } from "resource://gre/modules/Preferences.sys.mjs";
+import { Preferences } from "moz-src:///toolkit/modules/Preferences.sys.mjs";
 
 import { AddonUtils } from "resource://services-sync/addonutils.sys.mjs";
 import { AddonsReconciler } from "resource://services-sync/addonsreconciler.sys.mjs";
@@ -55,12 +55,12 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
   "AddonRepository",
-  "resource://gre/modules/addons/AddonRepository.jsm"
+  "moz-src:///toolkit/mozapps/extensions/internal/AddonRepository.jsm"
 );
 
 // 7 days in milliseconds.

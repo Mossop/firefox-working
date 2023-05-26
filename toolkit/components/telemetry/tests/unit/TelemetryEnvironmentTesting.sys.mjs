@@ -1,7 +1,7 @@
 /* Any copyright is dedicated to the Public Domain.
    http://creativecommons.org/publicdomain/zero/1.0/ */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
@@ -10,12 +10,12 @@ const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
   Assert: "resource://testing-common/Assert.sys.mjs",
   // AttributionCode is only needed for Firefox
-  AttributionCode: "resource:///modules/AttributionCode.sys.mjs",
+  AttributionCode: "moz-src:///browser/components/attribution/AttributionCode.sys.mjs",
   MockRegistrar: "resource://testing-common/MockRegistrar.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
 });
 
 const gIsWindows = AppConstants.platform == "win";

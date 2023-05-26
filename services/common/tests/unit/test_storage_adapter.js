@@ -2,7 +2,7 @@
    http://creativecommons.org/publicdomain/zero/1.0/ */
 
 const { Sqlite } = ChromeUtils.importESModule(
-  "resource://gre/modules/Sqlite.sys.mjs"
+  "moz-src:///toolkit/modules/Sqlite.sys.mjs"
 );
 const { FirefoxAdapter } = ChromeUtils.importESModule(
   "resource://services-common/kinto-storage-adapter.sys.mjs"

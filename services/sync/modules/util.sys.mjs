@@ -16,12 +16,12 @@ import {
   WEAVE_VERSION,
 } from "resource://services-sync/constants.sys.mjs";
 
-import { Preferences } from "resource://gre/modules/Preferences.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { Preferences } from "moz-src:///toolkit/modules/Preferences.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 const FxAccountsCommon = ChromeUtils.import(
-  "resource://gre/modules/FxAccountsCommon.js"
+  "moz-src:///services/fxaccounts/FxAccountsCommon.js"
 );
 
 XPCOMUtils.defineLazyServiceGetter(

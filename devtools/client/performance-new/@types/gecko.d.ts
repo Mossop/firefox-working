@@ -23,8 +23,8 @@ declare namespace MockedExports {
   interface KnownModules {
     Services: typeof import("Services");
     "resource://gre/modules/AppConstants.sys.mjs": typeof import("resource://gre/modules/AppConstants.sys.mjs");
-    "resource:///modules/CustomizableUI.jsm": typeof import("resource:///modules/CustomizableUI.jsm");
-    "resource:///modules/CustomizableWidgets.sys.mjs": typeof import("resource:///modules/CustomizableWidgets.sys.mjs");
+    "moz-src:///browser/components/customizableui/CustomizableUI.jsm": typeof import("moz-src:///browser/components/customizableui/CustomizableUI.jsm");
+    "moz-src:///browser/components/customizableui/CustomizableWidgets.sys.mjs": typeof import("moz-src:///browser/components/customizableui/CustomizableWidgets.sys.mjs");
     "resource://devtools/shared/loader/Loader.sys.mjs": typeof import("resource://devtools/shared/loader/Loader.sys.mjs");
     "resource://devtools/client/performance-new/shared/background.jsm.js": typeof import("resource://devtools/client/performance-new/shared/background.jsm.js");
     "resource://devtools/client/performance-new/shared/symbolication.jsm.js": typeof import("resource://devtools/client/performance-new/shared/symbolication.jsm.js");
@@ -32,7 +32,7 @@ declare namespace MockedExports {
     "resource://devtools/client/performance-new/popup/menu-button.jsm.js": typeof import("resource://devtools/client/performance-new/popup/menu-button.jsm.js");
     "resource://devtools/client/performance-new/shared/typescript-lazy-load.jsm.js": typeof import("resource://devtools/client/performance-new/shared/typescript-lazy-load.jsm.js");
     "resource://devtools/client/performance-new/popup/logic.jsm.js": typeof import("resource://devtools/client/performance-new/popup/logic.jsm.js");
-    "resource:///modules/PanelMultiView.jsm": typeof import("resource:///modules/PanelMultiView.jsm");
+    "moz-src:///browser/components/customizableui/PanelMultiView.jsm": typeof import("moz-src:///browser/components/customizableui/PanelMultiView.jsm");
   }
 
   interface ChromeUtils {
@@ -348,15 +348,15 @@ declare module "resource://devtools/client/performance-new/shared/symbolication.
   export = PerfSymbolication;
 }
 
-declare module "resource:///modules/CustomizableUI.jsm" {
+declare module "moz-src:///browser/components/customizableui/CustomizableUI.jsm" {
   export = MockedExports.CustomizableUIJSM;
 }
 
-declare module "resource:///modules/CustomizableWidgets.sys.mjs" {
+declare module "moz-src:///browser/components/customizableui/CustomizableWidgets.sys.mjs" {
   export = MockedExports.CustomizableWidgetsSYSMJS;
 }
 
-declare module "resource:///modules/PanelMultiView.jsm" {
+declare module "moz-src:///browser/components/customizableui/PanelMultiView.jsm" {
   export = MockedExports.PanelMultiViewJSM;
 }
 

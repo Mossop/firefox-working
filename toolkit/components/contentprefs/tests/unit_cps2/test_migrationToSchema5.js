@@ -3,7 +3,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 ChromeUtils.defineESModuleGetters(this, {
-  Sqlite: "resource://gre/modules/Sqlite.sys.mjs",
+  Sqlite: "moz-src:///toolkit/modules/Sqlite.sys.mjs",
 });
 
 const MAX_LENGTH = Ci.nsIContentPrefService2.GROUP_NAME_MAX_LENGTH;

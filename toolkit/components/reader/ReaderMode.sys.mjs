@@ -28,14 +28,14 @@ const CLASSES_TO_PRESERVE = [
   "wp-smiley",
 ];
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   LanguageDetector:
-    "resource://gre/modules/translation/LanguageDetector.sys.mjs",
-  ReaderWorker: "resource://gre/modules/reader/ReaderWorker.sys.mjs",
+    "moz-src:///toolkit/components/translation/LanguageDetector.sys.mjs",
+  ReaderWorker: "moz-src:///toolkit/components/reader/ReaderWorker.sys.mjs",
   Readerable: "resource://gre/modules/Readerable.sys.mjs",
 });
 

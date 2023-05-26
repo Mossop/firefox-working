@@ -7,7 +7,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "WebRequest",
-  "resource://gre/modules/WebRequest.jsm"
+  "moz-src:///toolkit/components/extensions/webrequest/WebRequest.jsm"
 );
 
 var { parseMatchPatterns } = ExtensionUtils;

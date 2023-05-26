@@ -22,12 +22,12 @@ const {
     keyToId,
     KeyRingEncryptionRemoteTransformer,
   },
-} = ChromeUtils.import("resource://gre/modules/ExtensionStorageSyncKinto.jsm");
+} = ChromeUtils.import("moz-src:///toolkit/components/extensions/ExtensionStorageSyncKinto.jsm");
 const { BulkKeyBundle } = ChromeUtils.importESModule(
   "resource://services-sync/keys.sys.mjs"
 );
 const { FxAccountsKeys } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccountsKeys.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccountsKeys.sys.mjs"
 );
 const { Utils } = ChromeUtils.importESModule(
   "resource://services-sync/util.sys.mjs"

@@ -8,7 +8,7 @@ ChromeUtils.defineESModuleGetters(this, {
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  extensionStorageSync: "resource://gre/modules/ExtensionStorageSync.jsm",
+  extensionStorageSync: "moz-src:///toolkit/components/extensions/ExtensionStorageSync.jsm",
 });
 
 const {

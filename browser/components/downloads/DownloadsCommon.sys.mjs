@@ -26,21 +26,21 @@
 
 // Globals
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  DownloadHistory: "resource://gre/modules/DownloadHistory.sys.mjs",
-  DownloadUtils: "resource://gre/modules/DownloadUtils.sys.mjs",
-  Downloads: "resource://gre/modules/Downloads.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  DownloadHistory: "moz-src:///toolkit/components/downloads/DownloadHistory.sys.mjs",
+  DownloadUtils: "moz-src:///toolkit/mozapps/downloads/DownloadUtils.sys.mjs",
+  Downloads: "moz-src:///toolkit/components/downloads/Downloads.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  NetUtil: "resource://gre/modules/NetUtil.jsm",
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
+  NetUtil: "moz-src:///netwerk/base/NetUtil.jsm",
+  BrowserWindowTracker: "moz-src:///browser/modules/BrowserWindowTracker.jsm",
 });
 
 XPCOMUtils.defineLazyServiceGetters(lazy, {
@@ -53,7 +53,7 @@ XPCOMUtils.defineLazyServiceGetters(lazy, {
 
 XPCOMUtils.defineLazyGetter(lazy, "DownloadsLogger", () => {
   let { ConsoleAPI } = ChromeUtils.importESModule(
-    "resource://gre/modules/Console.sys.mjs"
+    "moz-src:///toolkit/modules/Console.sys.mjs"
   );
   let consoleOptions = {
     maxLogLevelPref: "browser.download.loglevel",

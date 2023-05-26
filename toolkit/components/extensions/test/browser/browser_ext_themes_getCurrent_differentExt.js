@@ -136,7 +136,7 @@ add_task(async function test_getcurrent_privateBrowsing() {
   });
 
   const { ExtensionCommon } = ChromeUtils.import(
-    "resource://gre/modules/ExtensionCommon.jsm"
+    "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm"
   );
   const { makeWidgetId } = ExtensionCommon;
   privateWin.SidebarUI.show(`${makeWidgetId(extension.id)}-sidebar-action`);

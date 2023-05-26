@@ -7,7 +7,7 @@
 /* eslint-disable mozilla/no-arbitrary-setTimeout */
 
 const { EveryWindow } = ChromeUtils.import(
-  "resource:///modules/EveryWindow.jsm"
+  "moz-src:///browser/modules/EveryWindow.jsm"
 );
 
 async function windowInited(aId, aWin) {

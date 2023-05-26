@@ -5,33 +5,33 @@
 "use strict";
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const { SyncedTabsDeckStore } = ChromeUtils.import(
-  "resource:///modules/syncedtabs/SyncedTabsDeckStore.js"
+  "moz-src:///browser/components/syncedtabs/SyncedTabsDeckStore.js"
 );
 const { SyncedTabsDeckView } = ChromeUtils.import(
-  "resource:///modules/syncedtabs/SyncedTabsDeckView.js"
+  "moz-src:///browser/components/syncedtabs/SyncedTabsDeckView.js"
 );
 const { SyncedTabsListStore } = ChromeUtils.import(
-  "resource:///modules/syncedtabs/SyncedTabsListStore.js"
+  "moz-src:///browser/components/syncedtabs/SyncedTabsListStore.js"
 );
 const { TabListComponent } = ChromeUtils.import(
-  "resource:///modules/syncedtabs/TabListComponent.js"
+  "moz-src:///browser/components/syncedtabs/TabListComponent.js"
 );
 const { TabListView } = ChromeUtils.import(
-  "resource:///modules/syncedtabs/TabListView.js"
+  "moz-src:///browser/components/syncedtabs/TabListView.js"
 );
 let { getChromeWindow } = ChromeUtils.import(
-  "resource:///modules/syncedtabs/util.js"
+  "moz-src:///browser/components/syncedtabs/util.js"
 );
 const { UIState } = ChromeUtils.importESModule(
   "resource://services-sync/UIState.sys.mjs"
 );
 
 let log = ChromeUtils.importESModule(
-  "resource://gre/modules/Log.sys.mjs"
+  "moz-src:///toolkit/modules/Log.sys.mjs"
 ).Log.repository.getLogger("Sync.RemoteTabs");
 
 var EXPORTED_SYMBOLS = ["SyncedTabsDeckComponent"];

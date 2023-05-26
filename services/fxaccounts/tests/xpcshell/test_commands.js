@@ -4,15 +4,15 @@
 "use strict";
 
 const { FxAccountsCommands, SendTab } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccountsCommands.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccountsCommands.sys.mjs"
 );
 
 const { FxAccountsClient } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccountsClient.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccountsClient.sys.mjs"
 );
 
 const { COMMAND_SENDTAB, COMMAND_SENDTAB_TAIL } = ChromeUtils.import(
-  "resource://gre/modules/FxAccountsCommon.js"
+  "moz-src:///services/fxaccounts/FxAccountsCommon.js"
 );
 
 class TelemetryMock {

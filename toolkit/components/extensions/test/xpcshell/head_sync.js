@@ -7,7 +7,7 @@
 /* exported withSyncContext */
 
 const { ExtensionCommon } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionCommon.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm"
 );
 
 class KintoExtContext extends ExtensionCommon.BaseContext {

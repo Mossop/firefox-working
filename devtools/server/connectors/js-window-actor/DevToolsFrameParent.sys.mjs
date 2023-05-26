@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { loader } from "resource://devtools/shared/loader/Loader.sys.mjs";
-import { EventEmitter } from "resource://gre/modules/EventEmitter.sys.mjs";
+import { EventEmitter } from "moz-src:///toolkit/modules/EventEmitter.sys.mjs";
 
 const { WatcherRegistry } = ChromeUtils.importESModule(
   "resource://devtools/server/actors/watcher/WatcherRegistry.sys.mjs",

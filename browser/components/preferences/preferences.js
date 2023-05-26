@@ -22,20 +22,20 @@ var { AppConstants } = ChromeUtils.importESModule(
 );
 
 var { Downloads } = ChromeUtils.importESModule(
-  "resource://gre/modules/Downloads.sys.mjs"
+  "moz-src:///toolkit/components/downloads/Downloads.sys.mjs"
 );
 var { Integration } = ChromeUtils.importESModule(
-  "resource://gre/modules/Integration.sys.mjs"
+  "moz-src:///toolkit/modules/Integration.sys.mjs"
 );
 /* global DownloadIntegration */
 Integration.downloads.defineESModuleGetter(
   this,
   "DownloadIntegration",
-  "resource://gre/modules/DownloadIntegration.sys.mjs"
+  "moz-src:///toolkit/components/downloads/DownloadIntegration.sys.mjs"
 );
 
 var { PrivateBrowsingUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PrivateBrowsingUtils.sys.mjs"
+  "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs"
 );
 
 var { Weave } = ChromeUtils.importESModule(
@@ -43,11 +43,11 @@ var { Weave } = ChromeUtils.importESModule(
 );
 
 var { FirefoxRelayTelemetry } = ChromeUtils.importESModule(
-  "resource://gre/modules/FirefoxRelayTelemetry.mjs"
+  "moz-src:///toolkit/components/passwordmgr/FirefoxRelayTelemetry.mjs"
 );
 
 var { FxAccounts, getFxAccountsSingleton } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccounts.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
 );
 var fxAccounts = getFxAccountsSingleton();
 
@@ -80,41 +80,41 @@ if (Cc["@mozilla.org/gio-service;1"]) {
 }
 
 ChromeUtils.defineESModuleGetters(this, {
-  BrowserUtils: "resource://gre/modules/BrowserUtils.sys.mjs",
+  BrowserUtils: "moz-src:///toolkit/modules/BrowserUtils.sys.mjs",
   ContextualIdentityService:
-    "resource://gre/modules/ContextualIdentityService.sys.mjs",
-  DownloadUtils: "resource://gre/modules/DownloadUtils.sys.mjs",
+    "moz-src:///toolkit/components/contextualidentity/ContextualIdentityService.sys.mjs",
+  DownloadUtils: "moz-src:///toolkit/mozapps/downloads/DownloadUtils.sys.mjs",
   FeatureGate: "resource://featuregates/FeatureGate.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
-  FirefoxRelay: "resource://gre/modules/FirefoxRelay.sys.mjs",
-  LoginHelper: "resource://gre/modules/LoginHelper.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
+  FirefoxRelay: "moz-src:///toolkit/components/passwordmgr/FirefoxRelay.sys.mjs",
+  LoginHelper: "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs",
   NimbusFeatures: "resource://nimbus/ExperimentAPI.sys.mjs",
-  OSKeyStore: "resource://gre/modules/OSKeyStore.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
-  QuickSuggest: "resource:///modules/QuickSuggest.sys.mjs",
-  ShortcutUtils: "resource://gre/modules/ShortcutUtils.sys.mjs",
+  OSKeyStore: "moz-src:///toolkit/modules/OSKeyStore.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
+  QuickSuggest: "moz-src:///browser/components/urlbar/QuickSuggest.sys.mjs",
+  ShortcutUtils: "moz-src:///toolkit/modules/ShortcutUtils.sys.mjs",
   UIState: "resource://services-sync/UIState.sys.mjs",
-  UpdateUtils: "resource://gre/modules/UpdateUtils.sys.mjs",
-  UrlbarPrefs: "resource:///modules/UrlbarPrefs.sys.mjs",
+  UpdateUtils: "moz-src:///toolkit/modules/UpdateUtils.sys.mjs",
+  UrlbarPrefs: "moz-src:///browser/components/urlbar/UrlbarPrefs.sys.mjs",
   UrlbarProviderQuickActions:
-    "resource:///modules/UrlbarProviderQuickActions.sys.mjs",
-  UrlbarUtils: "resource:///modules/UrlbarUtils.sys.mjs",
+    "moz-src:///browser/components/urlbar/UrlbarProviderQuickActions.sys.mjs",
+  UrlbarUtils: "moz-src:///browser/components/urlbar/UrlbarUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
   ExtensionPreferencesManager:
-    "resource://gre/modules/ExtensionPreferencesManager.jsm",
-  ExtensionSettingsStore: "resource://gre/modules/ExtensionSettingsStore.jsm",
-  HomePage: "resource:///modules/HomePage.jsm",
-  LangPackMatcher: "resource://gre/modules/LangPackMatcher.jsm",
-  SelectionChangedMenulist: "resource:///modules/SelectionChangedMenulist.jsm",
-  SiteDataManager: "resource:///modules/SiteDataManager.jsm",
-  TransientPrefs: "resource:///modules/TransientPrefs.jsm",
+    "moz-src:///toolkit/components/extensions/ExtensionPreferencesManager.jsm",
+  ExtensionSettingsStore: "moz-src:///toolkit/components/extensions/ExtensionSettingsStore.jsm",
+  HomePage: "moz-src:///browser/modules/HomePage.jsm",
+  LangPackMatcher: "moz-src:///intl/locale/LangPackMatcher.jsm",
+  SelectionChangedMenulist: "moz-src:///browser/modules/SelectionChangedMenulist.jsm",
+  SiteDataManager: "moz-src:///browser/modules/SiteDataManager.jsm",
+  TransientPrefs: "moz-src:///browser/modules/TransientPrefs.jsm",
 });
 
 XPCOMUtils.defineLazyGetter(this, "gSubDialog", function() {
   const { SubDialogManager } = ChromeUtils.importESModule(
-    "resource://gre/modules/SubDialog.sys.mjs"
+    "moz-src:///toolkit/modules/SubDialog.sys.mjs"
   );
   return new SubDialogManager({
     dialogStack: document.getElementById("dialogStack"),

@@ -10,18 +10,18 @@
 
 const Cm = Components.manager;
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   AddressResult: "resource://autofill/ProfileAutoCompleteResult.sys.mjs",
-  ComponentUtils: "resource://gre/modules/ComponentUtils.sys.mjs",
+  ComponentUtils: "moz-src:///js/xpconnect/loader/ComponentUtils.sys.mjs",
   CreditCardResult: "resource://autofill/ProfileAutoCompleteResult.sys.mjs",
   FormAutofill: "resource://autofill/FormAutofill.sys.mjs",
-  FormAutofillUtils: "resource://gre/modules/shared/FormAutofillUtils.sys.mjs",
+  FormAutofillUtils: "moz-src:///toolkit/components/formautofill/shared/FormAutofillUtils.sys.mjs",
   FormAutofillContent: "resource://autofill/FormAutofillContent.sys.mjs",
-  InsecurePasswordUtils: "resource://gre/modules/InsecurePasswordUtils.sys.mjs",
+  InsecurePasswordUtils: "moz-src:///toolkit/components/passwordmgr/InsecurePasswordUtils.sys.mjs",
 });
 
 const autocompleteController = Cc[

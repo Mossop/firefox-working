@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { Log } from "resource://gre/modules/Log.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
 
 import { Svc } from "resource://services-sync/util.sys.mjs";
 
@@ -11,12 +11,12 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
   "AddonRepository",
-  "resource://gre/modules/addons/AddonRepository.jsm"
+  "moz-src:///toolkit/mozapps/extensions/internal/AddonRepository.jsm"
 );
 
 function AddonUtilsInternal() {

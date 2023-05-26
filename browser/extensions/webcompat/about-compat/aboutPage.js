@@ -8,7 +8,7 @@
 
 const Services =
   globalThis.Services ||
-  ChromeUtils.import("resource://gre/modules/Services.jsm").Services;
+  ChromeUtils.import("moz-src:///toolkit/modules/Services.jsm").Services;
 
 XPCOMUtils.defineLazyServiceGetter(
   this,

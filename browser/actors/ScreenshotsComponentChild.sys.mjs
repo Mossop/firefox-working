@@ -6,9 +6,9 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  DeferredTask: "resource://gre/modules/DeferredTask.sys.mjs",
+  DeferredTask: "moz-src:///toolkit/modules/DeferredTask.sys.mjs",
   ScreenshotsOverlayChild:
-    "resource:///modules/ScreenshotsOverlayChild.sys.mjs",
+    "moz-src:///browser/components/screenshots/ScreenshotsOverlayChild.sys.mjs",
 });
 
 export class ScreenshotsComponentChild extends JSWindowActorChild {

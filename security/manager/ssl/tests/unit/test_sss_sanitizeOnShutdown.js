@@ -11,7 +11,7 @@ ChromeUtils.defineESModuleGetters(this, {
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  Sanitizer: "resource:///modules/Sanitizer.jsm",
+  Sanitizer: "moz-src:///browser/modules/Sanitizer.jsm",
 });
 
 Sanitizer.onStartup();

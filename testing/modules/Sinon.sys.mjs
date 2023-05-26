@@ -12,7 +12,7 @@ import {
   setIntervalWithTarget,
   setTimeout,
   setTimeoutWithTarget,
-} from "resource://gre/modules/Timer.sys.mjs";
+} from "moz-src:///toolkit/modules/Timer.sys.mjs";
 
 const obj = {
   global: {

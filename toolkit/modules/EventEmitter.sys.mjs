@@ -5,7 +5,7 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  console: "resource://gre/modules/Console.sys.mjs",
+  console: "moz-src:///toolkit/modules/Console.sys.mjs",
 });
 
 export function EventEmitter() {}

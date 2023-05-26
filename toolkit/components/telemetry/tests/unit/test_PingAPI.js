@@ -7,10 +7,10 @@
 "use strict";
 
 const { ClientID } = ChromeUtils.importESModule(
-  "resource://gre/modules/ClientID.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/ClientID.sys.mjs"
 );
 const { TelemetryArchive } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryArchive.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryArchive.sys.mjs"
 );
 
 XPCOMUtils.defineLazyGetter(this, "gPingsArchivePath", function() {
@@ -23,7 +23,7 @@ XPCOMUtils.defineLazyGetter(this, "gPingsArchivePath", function() {
  */
 function fakeStorageQuota(aArchiveQuota) {
   let { Policy } = ChromeUtils.importESModule(
-    "resource://gre/modules/TelemetryStorage.sys.mjs"
+    "moz-src:///toolkit/components/telemetry/app/TelemetryStorage.sys.mjs"
   );
   Policy.getArchiveQuota = () => aArchiveQuota;
 }

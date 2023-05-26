@@ -13,10 +13,10 @@
  *          PREF_UI_LASTCATEGORY */
 
 const { AddonSettings } = ChromeUtils.import(
-  "resource://gre/modules/addons/AddonSettings.jsm"
+  "moz-src:///toolkit/mozapps/extensions/internal/AddonSettings.jsm"
 );
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const HTML_NS = "http://www.w3.org/1999/xhtml";
@@ -24,7 +24,7 @@ const HTML_NS = "http://www.w3.org/1999/xhtml";
 ChromeUtils.defineModuleGetter(
   this,
   "Extension",
-  "resource://gre/modules/Extension.jsm"
+  "moz-src:///toolkit/components/extensions/Extension.jsm"
 );
 
 XPCOMUtils.defineLazyPreferenceGetter(

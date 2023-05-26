@@ -4,7 +4,7 @@
 "use strict";
 
 const { AppMenuNotifications } = ChromeUtils.importESModule(
-  "resource://gre/modules/AppMenuNotifications.sys.mjs"
+  "moz-src:///toolkit/modules/AppMenuNotifications.sys.mjs"
 );
 
 add_task(async function test_unconfigured_no_badge() {

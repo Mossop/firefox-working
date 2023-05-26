@@ -1,7 +1,7 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
 });
 
 AddonTestUtils.init(this);
@@ -19,7 +19,7 @@ Services.prefs.setBoolPref("extensions.eventPages.enabled", true);
 ChromeUtils.defineModuleGetter(
   this,
   "AboutNewTab",
-  "resource:///modules/AboutNewTab.jsm"
+  "moz-src:///browser/modules/AboutNewTab.jsm"
 );
 
 add_task(async function setup() {

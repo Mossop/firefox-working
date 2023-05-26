@@ -17,7 +17,7 @@ var EXPORTED_SYMBOLS = ["ExtensionChild", "ExtensionActivityLogChild"];
  */
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
@@ -33,15 +33,15 @@ XPCOMUtils.defineLazyServiceGetter(
 );
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  PromiseUtils: "resource://gre/modules/PromiseUtils.sys.mjs",
+  PromiseUtils: "moz-src:///toolkit/modules/PromiseUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  ExtensionContent: "resource://gre/modules/ExtensionContent.jsm",
-  ExtensionPageChild: "resource://gre/modules/ExtensionPageChild.jsm",
-  ExtensionProcessScript: "resource://gre/modules/ExtensionProcessScript.jsm",
-  NativeApp: "resource://gre/modules/NativeMessaging.jsm",
-  PerformanceCounters: "resource://gre/modules/PerformanceCounters.jsm",
+  ExtensionContent: "moz-src:///toolkit/components/extensions/ExtensionContent.jsm",
+  ExtensionPageChild: "moz-src:///toolkit/components/extensions/ExtensionPageChild.jsm",
+  ExtensionProcessScript: "moz-src:///toolkit/components/extensions/ExtensionProcessScript.jsm",
+  NativeApp: "moz-src:///toolkit/components/extensions/NativeMessaging.jsm",
+  PerformanceCounters: "moz-src:///toolkit/components/extensions/PerformanceCounters.jsm",
 });
 
 // We're using the pref to avoid loading PerformanceCounters.jsm for nothing.
@@ -52,10 +52,10 @@ XPCOMUtils.defineLazyPreferenceGetter(
   false
 );
 const { ExtensionCommon } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionCommon.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm"
 );
 const { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
 );
 
 const { DefaultMap, ExtensionError, LimitedSet, getUniqueId } = ExtensionUtils;

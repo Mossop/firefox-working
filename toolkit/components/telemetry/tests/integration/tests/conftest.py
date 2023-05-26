@@ -128,7 +128,7 @@ class Browser(object):
             return self.marionette.execute_script(
                 """\
                 const { ClientID } = ChromeUtils.import(
-                  "resource://gre/modules/ClientID.jsm"
+                  "moz-src:///toolkit/components/telemetry/app/ClientID.jsm"
                 );
                 return ClientID.getCachedClientID();
             """
@@ -166,7 +166,7 @@ class Browser(object):
             script = """\
                     let [resolve] = arguments;
             const { TelemetryEnvironment } = ChromeUtils.import(
-              "resource://gre/modules/TelemetryEnvironment.jsm"
+              "moz-src:///toolkit/components/telemetry/app/TelemetryEnvironment.jsm"
             );
             TelemetryEnvironment.onInitialized().then(resolve);
             """

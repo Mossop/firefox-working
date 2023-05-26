@@ -5,7 +5,7 @@
 /* import-globals-from allDownloadsView.js */
 
 const { PrivateBrowsingUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PrivateBrowsingUtils.sys.mjs"
+  "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs"
 );
 
 var ContentAreaDownloadsView = {

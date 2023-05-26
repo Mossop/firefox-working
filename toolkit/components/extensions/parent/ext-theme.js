@@ -11,7 +11,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "LightweightThemeManager",
-  "resource://gre/modules/LightweightThemeManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/LightweightThemeManager.jsm"
 );
 
 const onUpdatedEmitter = new EventEmitter();

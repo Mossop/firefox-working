@@ -27,7 +27,7 @@ XPCOMUtils.defineLazyPreferenceGetter(
 ChromeUtils.defineModuleGetter(
   this,
   "PanelMultiView",
-  "resource:///modules/PanelMultiView.jsm"
+  "moz-src:///browser/components/customizableui/PanelMultiView.jsm"
 );
 
 var StarUI = {
@@ -577,7 +577,7 @@ var PlacesCommandHook = {
 
 ChromeUtils.defineESModuleGetters(this, {
   RecentlyClosedTabsAndWindowsMenuUtils:
-    "resource:///modules/sessionstore/RecentlyClosedTabsAndWindowsMenuUtils.sys.mjs",
+    "moz-src:///browser/components/sessionstore/RecentlyClosedTabsAndWindowsMenuUtils.sys.mjs",
 });
 
 // View for the history menu.
@@ -1419,7 +1419,7 @@ var BookmarkingUI = {
   isOnNewTabPage({ currentURI }) {
     // Prevent loading AboutNewTab.jsm during startup path if it
     // is only the newTabURL getter we are interested in.
-    let newTabURL = Cu.isModuleLoaded("resource:///modules/AboutNewTab.jsm")
+    let newTabURL = Cu.isModuleLoaded("moz-src:///browser/modules/AboutNewTab.jsm")
       ? AboutNewTab.newTabURL
       : "about:newtab";
     // Don't treat a custom "about:blank" new tab URL as the "New Tab Page"

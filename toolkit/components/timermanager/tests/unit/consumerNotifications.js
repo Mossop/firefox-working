@@ -10,7 +10,7 @@
 const Cm = Components.manager;
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const CATEGORY_UPDATE_TIMER = "update-timer";

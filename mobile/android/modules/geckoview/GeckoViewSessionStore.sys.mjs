@@ -7,7 +7,7 @@ import { GeckoViewUtils } from "resource://gre/modules/GeckoViewUtils.sys.mjs";
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  SessionHistory: "resource://gre/modules/sessionstore/SessionHistory.sys.mjs",
+  SessionHistory: "moz-src:///toolkit/modules/sessionstore/SessionHistory.sys.mjs",
 });
 
 const { debug, warn } = GeckoViewUtils.initLogging("SessionStore");

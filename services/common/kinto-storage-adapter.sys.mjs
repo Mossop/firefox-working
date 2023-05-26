@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Sqlite } from "resource://gre/modules/Sqlite.sys.mjs";
+import { Sqlite } from "moz-src:///toolkit/modules/Sqlite.sys.mjs";
 
 const { Kinto } = ChromeUtils.import(
   "resource://services-common/kinto-offline-client.js"

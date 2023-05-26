@@ -1,7 +1,7 @@
 /* import-globals-from ../../../common/tests/unit/head_helpers.js */
 
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 try {

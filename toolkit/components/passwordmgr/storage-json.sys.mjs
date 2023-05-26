@@ -6,18 +6,18 @@
  * nsILoginManagerStorage implementation for the JSON back-end.
  */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  LoginHelper: "resource://gre/modules/LoginHelper.sys.mjs",
-  LoginStore: "resource://gre/modules/LoginStore.sys.mjs",
+  LoginHelper: "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs",
+  LoginStore: "moz-src:///toolkit/components/passwordmgr/LoginStore.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  FXA_PWDMGR_HOST: "resource://gre/modules/FxAccountsCommon.js",
-  FXA_PWDMGR_REALM: "resource://gre/modules/FxAccountsCommon.js",
+  FXA_PWDMGR_HOST: "moz-src:///services/fxaccounts/FxAccountsCommon.js",
+  FXA_PWDMGR_REALM: "moz-src:///services/fxaccounts/FxAccountsCommon.js",
 });
 
 export class LoginManagerStorage_json {

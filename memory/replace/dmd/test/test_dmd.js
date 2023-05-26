@@ -7,7 +7,7 @@
 "use strict";
 
 const { FileUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/FileUtils.sys.mjs"
+  "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 );
 
 // The xpcshell test harness sets PYTHON so we can read it here.

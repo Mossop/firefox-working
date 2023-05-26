@@ -15,7 +15,7 @@ const classID = Components.ID("{97bf9550-2a7b-11e9-b56e-0800200c9a66}");
 
 if (!Cm.isCIDRegistered(classID)) {
   const { ComponentUtils } = ChromeUtils.importESModule(
-    "resource://gre/modules/ComponentUtils.sys.mjs"
+    "moz-src:///js/xpconnect/loader/ComponentUtils.sys.mjs"
   );
 
   const factory = ComponentUtils.generateSingletonFactory(function() {

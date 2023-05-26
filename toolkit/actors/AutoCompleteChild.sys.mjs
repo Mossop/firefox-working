@@ -8,9 +8,9 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  ContentDOMReference: "resource://gre/modules/ContentDOMReference.sys.mjs",
-  LayoutUtils: "resource://gre/modules/LayoutUtils.sys.mjs",
-  LoginHelper: "resource://gre/modules/LoginHelper.sys.mjs",
+  ContentDOMReference: "moz-src:///toolkit/modules/ContentDOMReference.sys.mjs",
+  LayoutUtils: "moz-src:///toolkit/modules/LayoutUtils.sys.mjs",
+  LoginHelper: "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs",
 });
 
 let autoCompleteListeners = new Set();

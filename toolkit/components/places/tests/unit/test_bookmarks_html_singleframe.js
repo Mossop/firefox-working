@@ -8,7 +8,7 @@
 
 // Get Services
 const { BookmarkHTMLUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/BookmarkHTMLUtils.sys.mjs"
+  "moz-src:///toolkit/components/places/BookmarkHTMLUtils.sys.mjs"
 );
 
 add_task(async function test_bookmarks_html_singleframe() {

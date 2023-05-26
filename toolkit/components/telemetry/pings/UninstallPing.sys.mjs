@@ -7,7 +7,7 @@ const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   WindowsInstallsInfo:
-    "resource://gre/modules/components-utils/WindowsInstallsInfo.sys.mjs",
+    "moz-src:///toolkit/components/utils/WindowsInstallsInfo.sys.mjs",
 });
 
 /**

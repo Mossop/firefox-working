@@ -5,7 +5,7 @@
 // This verifies that AddonUpdateChecker works correctly
 
 const { AddonUpdateChecker } = ChromeUtils.import(
-  "resource://gre/modules/addons/AddonUpdateChecker.jsm"
+  "moz-src:///toolkit/mozapps/extensions/internal/AddonUpdateChecker.jsm"
 );
 
 createAppInfo("xpcshell@tests.mozilla.org", "XPCShell", "1", "1");

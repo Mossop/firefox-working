@@ -6,7 +6,7 @@
 const appStartup = Services.startup;
 
 const { ResetProfile } = ChromeUtils.importESModule(
-  "resource://gre/modules/ResetProfile.sys.mjs"
+  "moz-src:///toolkit/modules/ResetProfile.sys.mjs"
 );
 
 var defaultToReset = false;

@@ -24,12 +24,12 @@ if (typeof Components != "undefined") {
 }
 if (typeof require == "undefined" || typeof module == "undefined") {
   throw new Error(
-    "this module is meant to be imported using the implementation of require() at resource://gre/modules/workers/require.js"
+    "this module is meant to be imported using the implementation of require() at moz-src:///toolkit/components/workerloader/require.js"
   );
 }
 
 /* import-globals-from /toolkit/components/workerloader/require.js */
-importScripts("resource://gre/modules/workers/require.js");
+importScripts("moz-src:///toolkit/components/workerloader/require.js");
 
 /**
  * Built-in JavaScript exceptions that may be serialized without

@@ -33,7 +33,7 @@ export default class MozSupportLink extends HTMLAnchorElement {
       let { XPCOMUtils } = window.XPCOMUtils
         ? window
         : ChromeUtils.importESModule(
-            "resource://gre/modules/XPCOMUtils.sys.mjs"
+            "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
           );
       XPCOMUtils.defineLazyPreferenceGetter(
         MozSupportLink,

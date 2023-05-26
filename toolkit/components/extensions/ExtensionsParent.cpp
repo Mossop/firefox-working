@@ -22,7 +22,7 @@ ExtensionsParent::~ExtensionsParent() {}
 
 extIWebNavigation* ExtensionsParent::WebNavigation() {
   if (!mWebNavigation) {
-    mWebNavigation = do_ImportModule("resource://gre/modules/WebNavigation.jsm",
+    mWebNavigation = do_ImportModule("moz-src:///toolkit/components/extensions/WebNavigation.jsm",
                                      "WebNavigationManager");
   }
   return mWebNavigation;

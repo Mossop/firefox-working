@@ -3,16 +3,16 @@
 */
 
 const { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 const { TelemetryArchive } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryArchive.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryArchive.sys.mjs"
 );
 const { TelemetryController } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryController.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs"
 );
 const { TelemetryEnvironment } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryEnvironment.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryEnvironment.sys.mjs"
 );
 
 const MS_IN_ONE_HOUR = 60 * 60 * 1000;

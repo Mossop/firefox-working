@@ -22,7 +22,7 @@ let {
 } = AddonTestUtils;
 
 const { Management } = ChromeUtils.import(
-  "resource://gre/modules/Extension.jsm"
+  "moz-src:///toolkit/components/extensions/Extension.jsm"
 );
 
 // Crashes a <browser>'s remote process.

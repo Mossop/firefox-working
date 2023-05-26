@@ -481,7 +481,7 @@ async function waitForSystemAddonStagingDirReleased() {
   // method may still being executed asynchronously).
 
   const { XPIInternal } = ChromeUtils.import(
-    "resource://gre/modules/addons/XPIProvider.jsm"
+    "moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm"
   );
   let systemAddonLocation = XPIInternal.XPIStates.getLocation(
     XPIInternal.KEY_APP_SYSTEM_ADDONS

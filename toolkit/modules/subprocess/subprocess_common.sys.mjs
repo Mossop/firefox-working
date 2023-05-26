@@ -9,13 +9,13 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  AsyncShutdown: "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 var obj = {};
 Services.scriptloader.loadSubScript(
-  "resource://gre/modules/subprocess/subprocess_shared.js",
+  "moz-src:///toolkit/modules/subprocess/subprocess_shared.js",
   obj
 );
 

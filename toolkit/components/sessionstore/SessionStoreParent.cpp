@@ -147,7 +147,7 @@ static void DoSessionStoreUpdate(CanonicalBrowsingContext* aBrowsingContext,
   }
 
   nsCOMPtr<nsISessionStoreFunctions> funcs = do_ImportESModule(
-      "resource://gre/modules/SessionStoreFunctions.sys.mjs", fallible);
+      "moz-src:///toolkit/components/sessionstore/SessionStoreFunctions.sys.mjs", fallible);
   nsCOMPtr<nsIXPConnectWrappedJS> wrapped = do_QueryInterface(funcs);
   if (!wrapped) {
     return;

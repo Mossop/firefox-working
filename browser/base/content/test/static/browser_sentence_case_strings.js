@@ -16,7 +16,7 @@ const { CustomizableUITestUtils } = ChromeUtils.import(
 );
 
 const { AppMenuNotifications } = ChromeUtils.importESModule(
-  "resource://gre/modules/AppMenuNotifications.sys.mjs"
+  "moz-src:///toolkit/modules/AppMenuNotifications.sys.mjs"
 );
 
 // These are brand names, proper names, or other things that we expect to

@@ -199,7 +199,7 @@ add_task(
       expectClientInitialized = true
     ) {
       const { AMRemoteSettings } = ChromeUtils.import(
-        "resource://gre/modules/AddonManager.jsm"
+        "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
       );
       let client;
       if (expectClientInitialized) {

@@ -22,7 +22,7 @@ add_setup(async () => {
 
   // Install a spy on WebRequest.getTabIdForChannelWrapper.
   const { WebRequest } = ChromeUtils.import(
-    "resource://gre/modules/WebRequest.jsm"
+    "moz-src:///toolkit/components/extensions/webrequest/WebRequest.jsm"
   );
   const { sinon } = ChromeUtils.importESModule(
     "resource://testing-common/Sinon.sys.mjs"

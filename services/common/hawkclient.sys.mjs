@@ -25,8 +25,8 @@
 import { HAWKAuthenticatedRESTRequest } from "resource://services-common/hawkrequest.sys.mjs";
 
 import { Observers } from "resource://services-common/observers.sys.mjs";
-import { Log } from "resource://gre/modules/Log.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 // log.appender.dump should be one of "Fatal", "Error", "Warn", "Info", "Config",
 // "Debug", "Trace" or "All". If none is specified, "Error" will be used by

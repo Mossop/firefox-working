@@ -2,16 +2,16 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   JsonSchemaValidator:
-    "resource://gre/modules/components-utils/JsonSchemaValidator.sys.mjs",
-  OpenGraphPageData: "resource:///modules/pagedata/OpenGraphPageData.sys.mjs",
-  SchemaOrgPageData: "resource:///modules/pagedata/SchemaOrgPageData.sys.mjs",
-  TwitterPageData: "resource:///modules/pagedata/TwitterPageData.sys.mjs",
+    "moz-src:///toolkit/components/utils/JsonSchemaValidator.sys.mjs",
+  OpenGraphPageData: "moz-src:///browser/components/pagedata/OpenGraphPageData.sys.mjs",
+  SchemaOrgPageData: "moz-src:///browser/components/pagedata/SchemaOrgPageData.sys.mjs",
+  TwitterPageData: "moz-src:///browser/components/pagedata/TwitterPageData.sys.mjs",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "logConsole", function() {

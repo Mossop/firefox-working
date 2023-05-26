@@ -8,20 +8,20 @@
 var EXPORTED_SYMBOLS = ["ExtensionStorage", "extensionStorageSession"];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const {
   ExtensionUtils: { ExtensionError, DefaultWeakMap },
-} = ChromeUtils.import("resource://gre/modules/ExtensionUtils.jsm");
+} = ChromeUtils.import("moz-src:///toolkit/components/extensions/ExtensionUtils.jsm");
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  JSONFile: "resource://gre/modules/JSONFile.sys.mjs",
+  JSONFile: "moz-src:///toolkit/modules/JSONFile.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  ExtensionCommon: "resource://gre/modules/ExtensionCommon.jsm",
+  ExtensionCommon: "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm",
 });
 
 function isStructuredCloneHolder(value) {

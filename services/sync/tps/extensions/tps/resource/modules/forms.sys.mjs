@@ -9,7 +9,7 @@
 
 import { Logger } from "resource://tps/logger.sys.mjs";
 
-import { FormHistory } from "resource://gre/modules/FormHistory.sys.mjs";
+import { FormHistory } from "moz-src:///toolkit/components/satchel/FormHistory.sys.mjs";
 
 /**
  * FormDB

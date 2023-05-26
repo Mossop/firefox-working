@@ -9,18 +9,18 @@
 ChromeUtils.defineModuleGetter(
   this,
   "BrowserUIUtils",
-  "resource:///modules/BrowserUIUtils.jsm"
+  "moz-src:///browser/modules/BrowserUIUtils.jsm"
 );
 ChromeUtils.defineESModuleGetters(this, {
-  DownloadPaths: "resource://gre/modules/DownloadPaths.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
-  PromiseUtils: "resource://gre/modules/PromiseUtils.sys.mjs",
-  SessionStore: "resource:///modules/sessionstore/SessionStore.sys.mjs",
+  DownloadPaths: "moz-src:///toolkit/components/downloads/DownloadPaths.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
+  PromiseUtils: "moz-src:///toolkit/modules/PromiseUtils.sys.mjs",
+  SessionStore: "moz-src:///browser/components/sessionstore/SessionStore.sys.mjs",
 });
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionControlledPopup",
-  "resource:///modules/ExtensionControlledPopup.jsm"
+  "moz-src:///browser/components/extensions/ExtensionControlledPopup.jsm"
 );
 
 XPCOMUtils.defineLazyGetter(this, "strBundle", function() {

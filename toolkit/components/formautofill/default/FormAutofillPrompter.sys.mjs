@@ -9,8 +9,8 @@
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 import { FormAutofill } from "resource://autofill/FormAutofill.sys.mjs";
-import { FormAutofillUtils } from "resource://gre/modules/shared/FormAutofillUtils.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { FormAutofillUtils } from "moz-src:///toolkit/components/formautofill/shared/FormAutofillUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const { AutofillTelemetry } = ChromeUtils.import(
   "resource://autofill/AutofillTelemetry.jsm"
@@ -19,7 +19,7 @@ const { AutofillTelemetry } = ChromeUtils.import(
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  CreditCard: "resource://gre/modules/CreditCard.sys.mjs",
+  CreditCard: "moz-src:///toolkit/modules/CreditCard.sys.mjs",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "log", () =>

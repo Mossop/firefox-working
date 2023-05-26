@@ -29,7 +29,7 @@ Services.scriptloader.loadSubScript(
 // safely serialized and run remotely by ContentTask.spawn.
 function callExec(args) {
   const { ctypes } = ChromeUtils.importESModule(
-    "resource://gre/modules/ctypes.sys.mjs"
+    "moz-src:///toolkit/components/ctypes/ctypes.sys.mjs"
   );
   let { lib, cmd } = args;
   let libc = ctypes.open(lib);
@@ -47,7 +47,7 @@ function callExec(args) {
 // Calls the native fork syscall.
 function callFork(args) {
   const { ctypes } = ChromeUtils.importESModule(
-    "resource://gre/modules/ctypes.sys.mjs"
+    "moz-src:///toolkit/components/ctypes/ctypes.sys.mjs"
   );
   let { lib } = args;
   let libc = ctypes.open(lib);
@@ -60,7 +60,7 @@ function callFork(args) {
 // Calls the native sysctl syscall.
 function callSysctl(args) {
   const { ctypes } = ChromeUtils.importESModule(
-    "resource://gre/modules/ctypes.sys.mjs"
+    "moz-src:///toolkit/components/ctypes/ctypes.sys.mjs"
   );
   let { lib, name } = args;
   let libc = ctypes.open(lib);
@@ -81,7 +81,7 @@ function callSysctl(args) {
 
 function callPrctl(args) {
   const { ctypes } = ChromeUtils.importESModule(
-    "resource://gre/modules/ctypes.sys.mjs"
+    "moz-src:///toolkit/components/ctypes/ctypes.sys.mjs"
   );
   let { lib, option } = args;
   let libc = ctypes.open(lib);
@@ -106,7 +106,7 @@ function callPrctl(args) {
 // Calls the native open/close syscalls.
 function callOpen(args) {
   const { ctypes } = ChromeUtils.importESModule(
-    "resource://gre/modules/ctypes.sys.mjs"
+    "moz-src:///toolkit/components/ctypes/ctypes.sys.mjs"
   );
   let { lib, path, flags } = args;
   let libc = ctypes.open(lib);
@@ -127,7 +127,7 @@ function callOpen(args) {
 // Verify faccessat2
 function callFaccessat2(args) {
   const { ctypes } = ChromeUtils.importESModule(
-    "resource://gre/modules/ctypes.sys.mjs"
+    "moz-src:///toolkit/components/ctypes/ctypes.sys.mjs"
   );
   let { lib, dirfd, path, mode, flag } = args;
   let libc = ctypes.open(lib);
@@ -198,7 +198,7 @@ function computeKernelVersion(major, minor, dot) {
 
 function getGlibcVersion() {
   const { ctypes } = ChromeUtils.importESModule(
-    "resource://gre/modules/ctypes.sys.mjs"
+    "moz-src:///toolkit/components/ctypes/ctypes.sys.mjs"
   );
   let libc = ctypes.open(getOSLib());
   let gnu_get_libc_version = libc.declare(

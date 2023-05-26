@@ -11,7 +11,7 @@ var BinaryOutputStream = CC(
 );
 
 const { HttpServer } = ChromeUtils.import("resource://testing-common/httpd.js");
-const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+const { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 
 var httpserver = new HttpServer();
 

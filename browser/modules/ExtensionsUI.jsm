@@ -6,25 +6,25 @@
 var EXPORTED_SYMBOLS = ["ExtensionsUI"];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { EventEmitter } = ChromeUtils.importESModule(
-  "resource://gre/modules/EventEmitter.sys.mjs"
+  "moz-src:///toolkit/modules/EventEmitter.sys.mjs"
 );
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AppMenuNotifications: "resource://gre/modules/AppMenuNotifications.sys.mjs",
+  AppMenuNotifications: "moz-src:///toolkit/modules/AppMenuNotifications.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  AddonManagerPrivate: "resource://gre/modules/AddonManager.jsm",
-  AMTelemetry: "resource://gre/modules/AddonManager.jsm",
-  ExtensionData: "resource://gre/modules/Extension.jsm",
-  ExtensionPermissions: "resource://gre/modules/ExtensionPermissions.jsm",
-  OriginControls: "resource://gre/modules/ExtensionPermissions.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  AddonManagerPrivate: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  AMTelemetry: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  ExtensionData: "moz-src:///toolkit/components/extensions/Extension.jsm",
+  ExtensionPermissions: "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm",
+  OriginControls: "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm",
 });
 
 const DEFAULT_EXTENSION_ICON =

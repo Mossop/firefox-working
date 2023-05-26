@@ -3,9 +3,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
-import { ContentDOMReference } from "resource://gre/modules/ContentDOMReference.sys.mjs";
+import { ContentDOMReference } from "moz-src:///toolkit/modules/ContentDOMReference.sys.mjs";
 
 // Preference containing the list (space separated) of origins that are
 // allowed to send non-string values through a WebChannel, mainly for

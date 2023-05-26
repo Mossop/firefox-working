@@ -7,7 +7,7 @@
 // the temporary profile created during background tasks.  This will
 // be a dumping ground for functionality that writes to the profile.
 
-import { EXIT_CODE } from "resource://gre/modules/BackgroundTasksManager.sys.mjs";
+import { EXIT_CODE } from "moz-src:///toolkit/components/backgroundtasks/BackgroundTasksManager.sys.mjs";
 
 export async function runBackgroundTask(commandLine) {
   console.error("runBackgroundTask: is_profile_slim");

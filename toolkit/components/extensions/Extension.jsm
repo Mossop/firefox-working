@@ -42,7 +42,7 @@ var EXPORTED_SYMBOLS = [
  */
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
@@ -51,33 +51,33 @@ const { AppConstants } = ChromeUtils.importESModule(
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.sys.mjs",
-  E10SUtils: "resource://gre/modules/E10SUtils.sys.mjs",
-  ExtensionDNR: "resource://gre/modules/ExtensionDNR.sys.mjs",
-  ExtensionDNRStore: "resource://gre/modules/ExtensionDNRStore.sys.mjs",
-  Log: "resource://gre/modules/Log.sys.mjs",
+  AsyncShutdown: "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs",
+  E10SUtils: "moz-src:///toolkit/modules/E10SUtils.sys.mjs",
+  ExtensionDNR: "moz-src:///toolkit/components/extensions/ExtensionDNR.sys.mjs",
+  ExtensionDNRStore: "moz-src:///toolkit/components/extensions/ExtensionDNRStore.sys.mjs",
+  Log: "moz-src:///toolkit/modules/Log.sys.mjs",
   SITEPERMS_ADDON_TYPE:
-    "resource://gre/modules/addons/siteperms-addon-utils.sys.mjs",
+    "moz-src:///toolkit/mozapps/extensions/internal/siteperms-addon-utils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  AddonManagerPrivate: "resource://gre/modules/AddonManager.jsm",
-  AddonSettings: "resource://gre/modules/addons/AddonSettings.jsm",
-  ExtensionPermissions: "resource://gre/modules/ExtensionPermissions.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  AddonManagerPrivate: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  AddonSettings: "moz-src:///toolkit/mozapps/extensions/internal/AddonSettings.jsm",
+  ExtensionPermissions: "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm",
   ExtensionPreferencesManager:
-    "resource://gre/modules/ExtensionPreferencesManager.jsm",
-  ExtensionProcessScript: "resource://gre/modules/ExtensionProcessScript.jsm",
-  ExtensionScriptingStore: "resource://gre/modules/ExtensionScriptingStore.jsm",
-  ExtensionStorage: "resource://gre/modules/ExtensionStorage.jsm",
-  ExtensionStorageIDB: "resource://gre/modules/ExtensionStorageIDB.jsm",
-  extensionStorageSync: "resource://gre/modules/ExtensionStorageSync.jsm",
-  ExtensionTelemetry: "resource://gre/modules/ExtensionTelemetry.jsm",
-  LightweightThemeManager: "resource://gre/modules/LightweightThemeManager.jsm",
-  NetUtil: "resource://gre/modules/NetUtil.jsm",
-  PluralForm: "resource://gre/modules/PluralForm.jsm",
-  Schemas: "resource://gre/modules/Schemas.jsm",
-  ServiceWorkerCleanUp: "resource://gre/modules/ServiceWorkerCleanUp.jsm",
+    "moz-src:///toolkit/components/extensions/ExtensionPreferencesManager.jsm",
+  ExtensionProcessScript: "moz-src:///toolkit/components/extensions/ExtensionProcessScript.jsm",
+  ExtensionScriptingStore: "moz-src:///toolkit/components/extensions/ExtensionScriptingStore.jsm",
+  ExtensionStorage: "moz-src:///toolkit/components/extensions/ExtensionStorage.jsm",
+  ExtensionStorageIDB: "moz-src:///toolkit/components/extensions/ExtensionStorageIDB.jsm",
+  extensionStorageSync: "moz-src:///toolkit/components/extensions/ExtensionStorageSync.jsm",
+  ExtensionTelemetry: "moz-src:///toolkit/components/extensions/ExtensionTelemetry.jsm",
+  LightweightThemeManager: "moz-src:///toolkit/mozapps/extensions/LightweightThemeManager.jsm",
+  NetUtil: "moz-src:///netwerk/base/NetUtil.jsm",
+  PluralForm: "moz-src:///intl/locale/PluralForm.jsm",
+  Schemas: "moz-src:///toolkit/components/extensions/Schemas.jsm",
+  ServiceWorkerCleanUp: "moz-src:///toolkit/components/cleardata/ServiceWorkerCleanUp.jsm",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "resourceProtocol", () =>
@@ -87,13 +87,13 @@ XPCOMUtils.defineLazyGetter(lazy, "resourceProtocol", () =>
 );
 
 const { ExtensionCommon } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionCommon.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm"
 );
 const { ExtensionParent } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 const { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
 );
 
 XPCOMUtils.defineLazyServiceGetters(lazy, {

@@ -1,7 +1,7 @@
 "use strict";
 
 let { setTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 
 // A tall 1x1000 black png.

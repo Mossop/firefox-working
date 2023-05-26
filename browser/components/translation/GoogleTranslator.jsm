@@ -7,10 +7,10 @@
 var EXPORTED_SYMBOLS = ["GoogleTranslator"];
 
 const { PromiseUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PromiseUtils.sys.mjs"
+  "moz-src:///toolkit/modules/PromiseUtils.sys.mjs"
 );
 const { httpRequest } = ChromeUtils.importESModule(
-  "resource://gre/modules/Http.sys.mjs"
+  "moz-src:///toolkit/modules/Http.sys.mjs"
 );
 
 // The maximum amount of net data allowed per request on Google's API.

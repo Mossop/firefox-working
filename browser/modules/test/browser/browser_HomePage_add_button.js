@@ -6,7 +6,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "HomePage",
-  "resource:///modules/HomePage.jsm"
+  "moz-src:///browser/modules/HomePage.jsm"
 );
 
 const kPrefHomePage = "browser.startup.homepage";

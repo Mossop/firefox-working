@@ -4,10 +4,10 @@
 
 // Import the rust-based and kinto-based implementations
 const { extensionStorageSync: rustImpl } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionStorageSync.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionStorageSync.jsm"
 );
 const { extensionStorageSyncKinto: kintoImpl } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionStorageSyncKinto.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionStorageSyncKinto.jsm"
 );
 
 Services.prefs.setBoolPref("webextensions.storage.sync.kinto", false);

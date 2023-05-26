@@ -74,34 +74,34 @@ const AMO_ATTRIBUTION_DATA_KEYS = [
 const AMO_ATTRIBUTION_DATA_MAX_LENGTH = 40;
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 // This global is overridden by xpcshell tests, and therefore cannot be
 // a const.
 var { AsyncShutdown } = ChromeUtils.importESModule(
-  "resource://gre/modules/AsyncShutdown.sys.mjs"
+  "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs"
 );
 const { PromiseUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PromiseUtils.sys.mjs"
+  "moz-src:///toolkit/modules/PromiseUtils.sys.mjs"
 );
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   RemoteSettings: "resource://services-settings/remote-settings.sys.mjs",
-  TelemetryTimestamps: "resource://gre/modules/TelemetryTimestamps.sys.mjs",
+  TelemetryTimestamps: "moz-src:///toolkit/components/telemetry/app/TelemetryTimestamps.sys.mjs",
   isGatedPermissionType:
-    "resource://gre/modules/addons/siteperms-addon-utils.sys.mjs",
+    "moz-src:///toolkit/mozapps/extensions/internal/siteperms-addon-utils.sys.mjs",
   isKnownPublicSuffix:
-    "resource://gre/modules/addons/siteperms-addon-utils.sys.mjs",
+    "moz-src:///toolkit/mozapps/extensions/internal/siteperms-addon-utils.sys.mjs",
   isPrincipalInSitePermissionsBlocklist:
-    "resource://gre/modules/addons/siteperms-addon-utils.sys.mjs",
+    "moz-src:///toolkit/mozapps/extensions/internal/siteperms-addon-utils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonRepository: "resource://gre/modules/addons/AddonRepository.jsm",
-  AbuseReporter: "resource://gre/modules/AbuseReporter.jsm",
-  Extension: "resource://gre/modules/Extension.jsm",
+  AddonRepository: "moz-src:///toolkit/mozapps/extensions/internal/AddonRepository.jsm",
+  AbuseReporter: "moz-src:///toolkit/mozapps/extensions/AbuseReporter.jsm",
+  Extension: "moz-src:///toolkit/components/extensions/Extension.jsm",
 });
 
 XPCOMUtils.defineLazyPreferenceGetter(
@@ -115,7 +115,7 @@ XPCOMUtils.defineLazyPreferenceGetter(
 // since it needs to be able to track things like new frameLoader globals that
 // are created before other framework code has been initialized.
 Services.ppmm.loadProcessScript(
-  "resource://gre/modules/extensionProcessScriptLoader.js",
+  "moz-src:///toolkit/components/extensions/extensionProcessScriptLoader.js",
   true
 );
 
@@ -131,7 +131,7 @@ var EXPORTED_SYMBOLS = [
 const CATEGORY_PROVIDER_MODULE = "addon-provider-module";
 
 const { Log } = ChromeUtils.importESModule(
-  "resource://gre/modules/Log.sys.mjs"
+  "moz-src:///toolkit/modules/Log.sys.mjs"
 );
 // Configure a logger at the parent 'addons' level to format
 // messages for all the modules under addons.*
@@ -713,7 +713,7 @@ var AddonManagerInternal = {
 
       // Ensure all default providers have had a chance to register themselves
       ({ XPIProvider: gXPIProvider } = ChromeUtils.import(
-        "resource://gre/modules/addons/XPIProvider.jsm"
+        "moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm"
       ));
 
       // Load any providers registered in the category manager

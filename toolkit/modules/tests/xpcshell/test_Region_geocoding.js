@@ -1,7 +1,7 @@
 "use strict";
 
 const { Region } = ChromeUtils.importESModule(
-  "resource://gre/modules/Region.sys.mjs"
+  "moz-src:///toolkit/modules/Region.sys.mjs"
 );
 const { sinon } = ChromeUtils.importESModule(
   "resource://testing-common/Sinon.sys.mjs"

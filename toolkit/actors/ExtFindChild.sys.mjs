@@ -8,7 +8,7 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "FindContent",
-  "resource://gre/modules/FindContent.jsm"
+  "moz-src:///toolkit/components/extensions/FindContent.jsm"
 );
 
 export class ExtFindChild extends JSWindowActorChild {

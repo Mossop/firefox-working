@@ -15,7 +15,7 @@ const {
   viewState,
 } = require("resource://devtools/client/memory/constants.js");
 const { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 
 add_task(async function() {

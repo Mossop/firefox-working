@@ -6,7 +6,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "PageActions",
-  "resource:///modules/PageActions.jsm"
+  "moz-src:///browser/modules/PageActions.jsm"
 );
 
 const { AddonTestUtils } = ChromeUtils.import(

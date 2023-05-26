@@ -11,10 +11,10 @@ var { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 var { LoginHelper } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginHelper.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs"
 );
 var { LoginManagerParent } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginManagerParent.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginManagerParent.sys.mjs"
 );
 const { LoginTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/LoginTestUtils.sys.mjs"

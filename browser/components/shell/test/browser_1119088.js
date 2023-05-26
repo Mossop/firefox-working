@@ -14,7 +14,7 @@ const kDefaultBackgroundImage_10_15 =
   "/System/Library/Desktop Pictures/Solid Colors/Teal.png";
 
 ChromeUtils.defineESModuleGetters(this, {
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
 });
 
 function getPythonExecutableFile() {

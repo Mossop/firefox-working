@@ -1,7 +1,7 @@
 "use strict";
 
 const { TelemetryUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryUtils.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryUtils.sys.mjs"
 );
 const { Normandy } = ChromeUtils.importESModule(
   "resource://normandy/Normandy.sys.mjs"

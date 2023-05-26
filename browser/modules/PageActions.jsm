@@ -15,9 +15,9 @@ var EXPORTED_SYMBOLS = [
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.sys.mjs",
-  BinarySearch: "resource://gre/modules/BinarySearch.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  AsyncShutdown: "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs",
+  BinarySearch: "moz-src:///toolkit/modules/BinarySearch.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
 const ACTION_ID_BOOKMARK = "bookmark";

@@ -8,7 +8,7 @@
 
 function getSandboxWithDebuggerSymbol() {
   const { addDebuggerToGlobal } = ChromeUtils.import(
-    "resource://gre/modules/jsdebugger.jsm"
+    "moz-src:///devtools/platform/jsdebugger.jsm"
   );
   const systemPrincipal = Services.scriptSecurityManager.getSystemPrincipal();
 

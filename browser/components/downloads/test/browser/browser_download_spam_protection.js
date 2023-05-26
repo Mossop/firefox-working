@@ -5,12 +5,12 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  DownloadSpamProtection: "resource:///modules/DownloadSpamProtection.sys.mjs",
+  DownloadSpamProtection: "moz-src:///browser/components/downloads/DownloadSpamProtection.sys.mjs",
   PermissionTestUtils: "resource://testing-common/PermissionTestUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
+  BrowserWindowTracker: "moz-src:///browser/modules/BrowserWindowTracker.jsm",
 });
 
 const TEST_URI = "https://example.com";

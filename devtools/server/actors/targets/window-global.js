@@ -38,10 +38,10 @@ const { TargetActorRegistry } = ChromeUtils.importESModule(
   }
 );
 const { PrivateBrowsingUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PrivateBrowsingUtils.sys.mjs"
+  "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs"
 );
 
-const EXTENSION_CONTENT_JSM = "resource://gre/modules/ExtensionContent.jsm";
+const EXTENSION_CONTENT_JSM = "moz-src:///toolkit/components/extensions/ExtensionContent.jsm";
 
 const { Pool } = require("resource://devtools/shared/protocol.js");
 const {

@@ -2,8 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-const { HomePage } = ChromeUtils.import("resource:///modules/HomePage.jsm");
-import { PrivateBrowsingUtils } from "resource://gre/modules/PrivateBrowsingUtils.sys.mjs";
+const { HomePage } = ChromeUtils.import("moz-src:///browser/modules/HomePage.jsm");
+import { PrivateBrowsingUtils } from "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs";
 
 export class AboutHttpsOnlyErrorParent extends JSWindowActorParent {
   get browser() {

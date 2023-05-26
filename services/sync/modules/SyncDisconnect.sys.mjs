@@ -5,29 +5,29 @@
 // This module provides a facility for disconnecting Sync and FxA, optionally
 // sanitizing profile data as part of the process.
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.sys.mjs",
-  Log: "resource://gre/modules/Log.sys.mjs",
+  AsyncShutdown: "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs",
+  Log: "moz-src:///toolkit/modules/Log.sys.mjs",
   Utils: "resource://services-sync/util.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  Sanitizer: "resource:///modules/Sanitizer.jsm",
+  Sanitizer: "moz-src:///browser/modules/Sanitizer.jsm",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "fxAccounts", () => {
   return ChromeUtils.importESModule(
-    "resource://gre/modules/FxAccounts.sys.mjs"
+    "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
   ).getFxAccountsSingleton();
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "FxAccountsCommon", function() {
-  return ChromeUtils.import("resource://gre/modules/FxAccountsCommon.js");
+  return ChromeUtils.import("moz-src:///services/fxaccounts/FxAccountsCommon.js");
 });
 
 export const SyncDisconnectInternal = {

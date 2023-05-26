@@ -19,10 +19,10 @@ const {
   ON_PROFILE_UPDATED_NOTIFICATION,
   ON_VERIFY_LOGIN_NOTIFICATION,
   log,
-} = ChromeUtils.import("resource://gre/modules/FxAccountsCommon.js");
+} = ChromeUtils.import("moz-src:///services/fxaccounts/FxAccountsCommon.js");
 
 const { FxAccountsPushService } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccountsPush.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccountsPush.sys.mjs"
 );
 
 XPCOMUtils.defineLazyServiceGetter(
@@ -213,7 +213,7 @@ add_task(async function observePushTopicDeviceDisconnected_current_device() {
 
   let signoutCalled = false;
   let { FxAccounts } = ChromeUtils.importESModule(
-    "resource://gre/modules/FxAccounts.sys.mjs"
+    "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
   );
   const fxAccountsMock = new FxAccounts({
     newAccountState() {
@@ -269,7 +269,7 @@ add_task(async function observePushTopicDeviceDisconnected_another_device() {
 
   let signoutCalled = false;
   let { FxAccounts } = ChromeUtils.importESModule(
-    "resource://gre/modules/FxAccounts.sys.mjs"
+    "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
   );
   const fxAccountsMock = new FxAccounts({
     newAccountState() {

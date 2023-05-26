@@ -347,7 +347,7 @@ void webrtc::DesktopDeviceInfoImpl::InitializeTabList() {
   nsCOMPtr<nsIRunnable> runnable = NS_NewRunnableFunction(__func__, [&] {
     nsresult rv;
     nsCOMPtr<nsIBrowserWindowTracker> bwt =
-        do_ImportModule("resource:///modules/BrowserWindowTracker.jsm",
+        do_ImportModule("moz-src:///browser/modules/BrowserWindowTracker.jsm",
                         "BrowserWindowTracker", &rv);
     if (NS_FAILED(rv)) {
       return;

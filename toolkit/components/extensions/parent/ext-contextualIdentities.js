@@ -6,7 +6,7 @@
 
 ChromeUtils.defineESModuleGetters(this, {
   ContextualIdentityService:
-    "resource://gre/modules/ContextualIdentityService.sys.mjs",
+    "moz-src:///toolkit/components/contextualidentity/ContextualIdentityService.sys.mjs",
 });
 XPCOMUtils.defineLazyPreferenceGetter(
   this,
@@ -15,7 +15,7 @@ XPCOMUtils.defineLazyPreferenceGetter(
 );
 
 var { ExtensionPreferencesManager } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionPreferencesManager.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPreferencesManager.jsm"
 );
 
 var { ExtensionError } = ExtensionUtils;

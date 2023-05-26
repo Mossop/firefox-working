@@ -602,14 +602,14 @@ bool nsContentSecurityUtils::IsEvalAllowed(JSContext* cx,
       "resource://testing-common/content-task.js"_ns,
 
       // Tracked by Bug 1584605
-      "resource://gre/modules/translation/cld-worker.js"_ns,
+      "moz-src:///toolkit/components/translation/cld2/cld-worker.js"_ns,
 
       // require.js implements a script loader for workers. It uses eval
       // to load the script; but injection is only possible in situations
       // that you could otherwise control script that gets executed, so
       // it is okay to allow eval() as it adds no additional attack surface.
       // Bug 1584564 tracks requiring safe usage of require.js
-      "resource://gre/modules/workers/require.js"_ns,
+      "moz-src:///toolkit/components/workerloader/require.js"_ns,
 
       // The profiler's symbolication code uses a wasm module to extract symbols
       // from the binary files result of local builds.

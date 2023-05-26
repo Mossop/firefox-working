@@ -4,7 +4,7 @@
 "use strict";
 
 const { JsonSchemaValidator } = ChromeUtils.importESModule(
-  "resource://gre/modules/components-utils/JsonSchemaValidator.sys.mjs"
+  "moz-src:///toolkit/components/utils/JsonSchemaValidator.sys.mjs"
 );
 
 add_task(async function test_boolean_values() {

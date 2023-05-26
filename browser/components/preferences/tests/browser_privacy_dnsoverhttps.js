@@ -13,8 +13,8 @@ const {
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  DoHConfigController: "resource:///modules/DoHConfig.sys.mjs",
-  DoHController: "resource:///modules/DoHController.sys.mjs",
+  DoHConfigController: "moz-src:///browser/components/doh/DoHConfig.sys.mjs",
+  DoHController: "moz-src:///browser/components/doh/DoHController.sys.mjs",
   DoHTestUtils: "resource://testing-common/DoHTestUtils.sys.mjs",
 });
 

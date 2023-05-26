@@ -12,7 +12,7 @@ const BASE = getRootDirectory(gTestPath).replace(
 XPCOMUtils.defineLazyGetter(this, "Management", () => {
   // eslint-disable-next-line no-shadow
   const { Management } = ChromeUtils.import(
-    "resource://gre/modules/Extension.jsm"
+    "moz-src:///toolkit/components/extensions/Extension.jsm"
   );
   return Management;
 });
@@ -56,7 +56,7 @@ function promisePopupNotificationShown(name) {
 
 function promiseAppMenuNotificationShown(id) {
   const { AppMenuNotifications } = ChromeUtils.importESModule(
-    "resource://gre/modules/AppMenuNotifications.sys.mjs"
+    "moz-src:///toolkit/modules/AppMenuNotifications.sys.mjs"
   );
   return new Promise(resolve => {
     function popupshown() {

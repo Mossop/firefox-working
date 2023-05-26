@@ -12,7 +12,7 @@
 "use strict";
 
 /* import-globals-from /toolkit/components/workerloader/require.js */
-importScripts("resource://gre/modules/workers/require.js");
+importScripts("moz-src:///toolkit/components/workerloader/require.js");
 /* import-globals-from ../worker/helper.js */
 importScripts("resource://devtools/shared/worker/helper.js");
 const {

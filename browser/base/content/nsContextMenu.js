@@ -269,7 +269,7 @@ class nsContextMenu {
       this.actor = this.contentData.actor;
     } else {
       const { SelectionUtils } = ChromeUtils.importESModule(
-        "resource://gre/modules/SelectionUtils.sys.mjs"
+        "moz-src:///toolkit/modules/SelectionUtils.sys.mjs"
       );
 
       this.browser = this.ownerDoc.defaultView.docShell.chromeEventHandler;
@@ -327,7 +327,7 @@ class nsContextMenu {
     InlineSpellCheckerUI.clearDictionaryListFromMenu();
     InlineSpellCheckerUI.uninit();
     if (
-      Cu.isModuleLoaded("resource://gre/modules/LoginManagerContextMenu.jsm")
+      Cu.isModuleLoaded("moz-src:///toolkit/components/passwordmgr/LoginManagerContextMenu.jsm")
     ) {
       nsContextMenu.LoginManagerContextMenu.clearLoginsFromMenu(document);
     }
@@ -2538,11 +2538,11 @@ class nsContextMenu {
 ChromeUtils.defineESModuleGetters(nsContextMenu, {
   DevToolsShim: "chrome://devtools-startup/content/DevToolsShim.sys.mjs",
   LoginManagerContextMenu:
-    "resource://gre/modules/LoginManagerContextMenu.sys.mjs",
+    "moz-src:///toolkit/components/passwordmgr/LoginManagerContextMenu.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(nsContextMenu, {
-  WebNavigationFrames: "resource://gre/modules/WebNavigationFrames.jsm",
+  WebNavigationFrames: "moz-src:///toolkit/components/extensions/WebNavigationFrames.jsm",
 });
 
 XPCOMUtils.defineLazyPreferenceGetter(

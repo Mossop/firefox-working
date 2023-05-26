@@ -16,7 +16,7 @@
 // simplified, but the risk of regressing its behavior is high.
 /* eslint complexity: ["error", 43] */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 

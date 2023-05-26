@@ -5,20 +5,20 @@
 /* globals ExtensionAPI, Services, XPCOMUtils */
 
 const { ComponentUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/ComponentUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/ComponentUtils.sys.mjs"
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  AboutHomeStartupCache: "resource:///modules/BrowserGlue.sys.mjs",
+  AboutHomeStartupCache: "moz-src:///browser/components/BrowserGlue.sys.mjs",
   PerTestCoverageUtils:
     "resource://testing-common/PerTestCoverageUtils.sys.mjs",
-  SessionStore: "resource:///modules/sessionstore/SessionStore.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  SessionStore: "moz-src:///browser/components/sessionstore/SessionStore.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  AboutNewTab: "resource:///modules/AboutNewTab.jsm",
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
+  AboutNewTab: "moz-src:///browser/modules/AboutNewTab.jsm",
+  BrowserWindowTracker: "moz-src:///browser/modules/BrowserWindowTracker.jsm",
 });
 
 XPCOMUtils.defineLazyServiceGetter(
@@ -277,7 +277,7 @@ TalosPowersService.prototype = {
       // the getInfo.html step for Talos so that subsequent runs don't
       // have to do things like re-request the SafeBrowsing list.
       let { SafeBrowsing } = ChromeUtils.import(
-        "resource://gre/modules/SafeBrowsing.jsm"
+        "moz-src:///toolkit/components/url-classifier/SafeBrowsing.jsm"
       );
 
       // Speed things up in case nobody else called this:
@@ -407,7 +407,7 @@ TalosPowersService.prototype = {
 
     dumpAboutSupport(arg, callback, win) {
       const { Troubleshoot } = ChromeUtils.importESModule(
-        "resource://gre/modules/Troubleshoot.sys.mjs"
+        "moz-src:///toolkit/modules/Troubleshoot.sys.mjs"
       );
       Troubleshoot.snapshot().then(snapshot => {
         dump("about:support\t" + JSON.stringify(snapshot) + "\n");

@@ -53,7 +53,7 @@ async function openAboutWelcome() {
   // Stub out the doesAppNeedPin to false so the about:welcome pages do not attempt
   // to pin the app.
   const { ShellService } = ChromeUtils.importESModule(
-    "resource:///modules/ShellService.sys.mjs"
+    "moz-src:///browser/components/shell/ShellService.sys.mjs"
   );
   sandbox.stub(ShellService, "doesAppNeedPin").returns(false);
 

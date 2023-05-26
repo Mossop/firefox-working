@@ -15,7 +15,7 @@ var gDataNotificationInfoBar = {
 
   get _log() {
     let { Log } = ChromeUtils.importESModule(
-      "resource://gre/modules/Log.sys.mjs"
+      "moz-src:///toolkit/modules/Log.sys.mjs"
     );
     delete this._log;
     return (this._log = Log.repository.getLoggerWithMessagePrefix(

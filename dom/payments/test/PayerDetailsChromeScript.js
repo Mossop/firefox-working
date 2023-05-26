@@ -5,7 +5,7 @@
 /* eslint-env mozilla/chrome-script */
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const paymentSrv = Cc[

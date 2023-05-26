@@ -11,9 +11,9 @@
  */
 
 const { ON_PROFILE_CHANGE_NOTIFICATION, log } = ChromeUtils.import(
-  "resource://gre/modules/FxAccountsCommon.js"
+  "moz-src:///services/fxaccounts/FxAccountsCommon.js"
 );
-import { getFxAccountsSingleton } from "resource://gre/modules/FxAccounts.sys.mjs";
+import { getFxAccountsSingleton } from "moz-src:///services/fxaccounts/FxAccounts.sys.mjs";
 
 const fxAccounts = getFxAccountsSingleton();
 
@@ -21,7 +21,7 @@ const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   FxAccountsProfileClient:
-    "resource://gre/modules/FxAccountsProfileClient.sys.mjs",
+    "moz-src:///services/fxaccounts/FxAccountsProfileClient.sys.mjs",
 });
 
 export var FxAccountsProfile = function(options = {}) {

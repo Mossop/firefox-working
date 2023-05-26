@@ -58,7 +58,7 @@ function createTestExtPageScript(name) {
 
 const getExtensionContextIdAndURL = ([extensionId]) => {
   const { ExtensionProcessScript } = ChromeUtils.import(
-    "resource://gre/modules/ExtensionProcessScript.jsm"
+    "moz-src:///toolkit/components/extensions/ExtensionProcessScript.jsm"
   );
   let extWindow = this.content.window;
   let extChild = ExtensionProcessScript.getExtensionChild(extensionId);
@@ -83,7 +83,7 @@ const getExtensionContextStatusByContextId = ([
   extPageContextId,
 ]) => {
   const { ExtensionProcessScript } = ChromeUtils.import(
-    "resource://gre/modules/ExtensionProcessScript.jsm"
+    "moz-src:///toolkit/components/extensions/ExtensionProcessScript.jsm"
   );
   let extChild = ExtensionProcessScript.getExtensionChild(extensionId);
 

@@ -7,14 +7,14 @@ const {
   COMMAND_SENDTAB_TAIL,
   SCOPE_OLD_SYNC,
   log,
-} = ChromeUtils.import("resource://gre/modules/FxAccountsCommon.js");
+} = ChromeUtils.import("moz-src:///services/fxaccounts/FxAccountsCommon.js");
 const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "PushCrypto",
-  "resource://gre/modules/PushCrypto.jsm"
+  "moz-src:///dom/push/PushCrypto.jsm"
 );
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 import { Observers } from "resource://services-common/observers.sys.mjs";
 

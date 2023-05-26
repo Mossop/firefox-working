@@ -7,14 +7,14 @@ const { AddonTestUtils } = ChromeUtils.import(
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  PromiseUtils: "resource://gre/modules/PromiseUtils.sys.mjs",
+  PromiseUtils: "moz-src:///toolkit/modules/PromiseUtils.sys.mjs",
   RemoteSettings: "resource://services-settings/remote-settings.sys.mjs",
   sinon: "resource://testing-common/Sinon.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  HomePage: "resource:///modules/HomePage.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  HomePage: "moz-src:///browser/modules/HomePage.jsm",
 });
 
 AddonTestUtils.init(this);
@@ -518,7 +518,7 @@ async function test_default_search_on_updating_addons_installed_before_bug175776
   };
 
   const { ExtensionSettingsStore } = ChromeUtils.import(
-    "resource://gre/modules/ExtensionSettingsStore.jsm"
+    "moz-src:///toolkit/components/extensions/ExtensionSettingsStore.jsm"
   );
 
   async function assertExtensionSettingsStore(

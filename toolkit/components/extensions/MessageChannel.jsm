@@ -104,7 +104,7 @@ const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 const { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
 );
 
 const lazy = {};
@@ -112,7 +112,7 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "MessageManagerProxy",
-  "resource://gre/modules/MessageManagerProxy.jsm"
+  "moz-src:///toolkit/components/extensions/MessageManagerProxy.jsm"
 );
 
 function getMessageManager(target) {

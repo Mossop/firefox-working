@@ -13,7 +13,7 @@ AntiTracking.runTest(
         /* eslint-env mozilla/chrome-script */
         addMessageListener("go", _ => {
           const { Services } = ChromeUtils.import(
-            "resource://gre/modules/Services.jsm"
+            "moz-src:///toolkit/modules/Services.jsm"
           );
 
           function ok(what, msg) {

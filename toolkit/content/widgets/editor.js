@@ -51,7 +51,7 @@
         }
 
         let { Finder } = ChromeUtils.importESModule(
-          "resource://gre/modules/Finder.sys.mjs"
+          "moz-src:///toolkit/modules/Finder.sys.mjs"
         );
         this._finder = new Finder(this.docShell);
       }

@@ -48,10 +48,10 @@ add_task(async function test_default_bookmark_toolbar_visibility() {
  */
 add_task(async function test_bookmark_toolbar_visible_when_populated() {
   const { Bookmarks } = ChromeUtils.importESModule(
-    "resource://gre/modules/Bookmarks.sys.mjs"
+    "moz-src:///toolkit/components/places/Bookmarks.sys.mjs"
   );
   const { PlacesUIUtils } = ChromeUtils.importESModule(
-    "resource:///modules/PlacesUIUtils.sys.mjs"
+    "moz-src:///browser/components/places/PlacesUIUtils.sys.mjs"
   );
 
   let bookmark = {

@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { computeSha256HashAsString } from "resource://gre/modules/addons/crypto-utils.sys.mjs";
+import { computeSha256HashAsString } from "moz-src:///toolkit/mozapps/extensions/internal/crypto-utils.sys.mjs";
 import {
   GATED_PERMISSIONS,
   SITEPERMS_ADDON_PROVIDER_PREF,
@@ -10,16 +10,16 @@ import {
   isGatedPermissionType,
   isKnownPublicSuffix,
   isPrincipalInSitePermissionsBlocklist,
-} from "resource://gre/modules/addons/siteperms-addon-utils.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+} from "moz-src:///toolkit/mozapps/extensions/internal/siteperms-addon-utils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
-const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+const { Services } = ChromeUtils.import("moz-src:///toolkit/modules/Services.jsm");
 
 const lazy = {};
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  AddonManagerPrivate: "resource://gre/modules/AddonManager.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  AddonManagerPrivate: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
 });
 XPCOMUtils.defineLazyGetter(
   lazy,

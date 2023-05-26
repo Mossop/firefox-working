@@ -2,17 +2,17 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "PingCentre",
-  "resource:///modules/PingCentre.jsm"
+  "moz-src:///browser/modules/PingCentre.jsm"
 );
 ChromeUtils.defineESModuleGetters(lazy, {
   pktApi: "chrome://pocket/content/pktApi.sys.mjs",
-  TelemetryEnvironment: "resource://gre/modules/TelemetryEnvironment.sys.mjs",
+  TelemetryEnvironment: "moz-src:///toolkit/components/telemetry/app/TelemetryEnvironment.sys.mjs",
 });
 
 // List of namespaces for the structured ingestion system.

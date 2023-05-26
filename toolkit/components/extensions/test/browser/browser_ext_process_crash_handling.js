@@ -8,7 +8,7 @@ const { AddonTestUtils } = ChromeUtils.import(
 );
 
 const { ExtensionProcessCrashObserver, Management } = ChromeUtils.import(
-  "resource://gre/modules/Extension.jsm"
+  "moz-src:///toolkit/components/extensions/Extension.jsm"
 );
 
 AddonTestUtils.initMochitest(this);

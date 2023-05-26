@@ -1,7 +1,7 @@
 "use strict";
 
 let { SyncedTabsDeckStore } = ChromeUtils.import(
-  "resource:///modules/syncedtabs/SyncedTabsDeckStore.js"
+  "moz-src:///browser/components/syncedtabs/SyncedTabsDeckStore.js"
 );
 
 add_task(async function testSelectUnkownPanel() {

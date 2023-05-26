@@ -35,7 +35,7 @@ add_task(setup);
 
 add_task(async function test_parentalControls() {
   let DoHHeuristics = ChromeUtils.importESModule(
-    "resource:///modules/DoHHeuristics.sys.mjs"
+    "moz-src:///browser/components/doh/DoHHeuristics.sys.mjs"
   );
 
   let parentalControls = DoHHeuristics.parentalControls;

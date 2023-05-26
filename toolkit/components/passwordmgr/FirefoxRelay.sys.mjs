@@ -2,16 +2,16 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { FirefoxRelayTelemetry } from "resource://gre/modules/FirefoxRelayTelemetry.mjs";
+import { FirefoxRelayTelemetry } from "moz-src:///toolkit/components/passwordmgr/FirefoxRelayTelemetry.mjs";
 import {
   LoginHelper,
   OptInFeature,
   ParentAutocompleteOption,
-} from "resource://gre/modules/LoginHelper.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+} from "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const { TelemetryUtils } = ChromeUtils.import(
-  "resource://gre/modules/TelemetryUtils.jsm"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryUtils.jsm"
 );
 
 const lazy = {};
@@ -47,7 +47,7 @@ XPCOMUtils.defineLazyGetter(lazy, "log", () =>
 );
 XPCOMUtils.defineLazyGetter(lazy, "fxAccounts", () =>
   ChromeUtils.importESModule(
-    "resource://gre/modules/FxAccounts.sys.mjs"
+    "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
   ).getFxAccountsSingleton()
 );
 XPCOMUtils.defineLazyGetter(lazy, "strings", function() {

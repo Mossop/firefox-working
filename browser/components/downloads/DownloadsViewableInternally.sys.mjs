@@ -8,7 +8,7 @@
  * inconsistency.
  */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
@@ -26,7 +26,7 @@ XPCOMUtils.defineLazyServiceGetter(
 );
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Integration: "resource://gre/modules/Integration.sys.mjs",
+  Integration: "moz-src:///toolkit/modules/Integration.sys.mjs",
 });
 
 const PREF_BRANCH = "browser.download.viewableInternally.";

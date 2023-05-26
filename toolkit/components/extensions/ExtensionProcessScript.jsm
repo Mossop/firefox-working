@@ -13,7 +13,7 @@
 var EXPORTED_SYMBOLS = ["ExtensionProcessScript", "ExtensionAPIRequestHandler"];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
@@ -22,16 +22,16 @@ const { AppConstants } = ChromeUtils.importESModule(
 const lazy = {};
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  ExtensionChild: "resource://gre/modules/ExtensionChild.jsm",
-  ExtensionCommon: "resource://gre/modules/ExtensionCommon.jsm",
-  ExtensionContent: "resource://gre/modules/ExtensionContent.jsm",
-  ExtensionPageChild: "resource://gre/modules/ExtensionPageChild.jsm",
-  ExtensionWorkerChild: "resource://gre/modules/ExtensionWorkerChild.jsm",
-  Schemas: "resource://gre/modules/Schemas.jsm",
+  ExtensionChild: "moz-src:///toolkit/components/extensions/ExtensionChild.jsm",
+  ExtensionCommon: "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm",
+  ExtensionContent: "moz-src:///toolkit/components/extensions/ExtensionContent.jsm",
+  ExtensionPageChild: "moz-src:///toolkit/components/extensions/ExtensionPageChild.jsm",
+  ExtensionWorkerChild: "moz-src:///toolkit/components/extensions/ExtensionWorkerChild.jsm",
+  Schemas: "moz-src:///toolkit/components/extensions/Schemas.jsm",
 });
 
 const { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
 );
 
 const { DefaultWeakMap } = ExtensionUtils;

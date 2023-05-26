@@ -10,7 +10,7 @@ var EXPORTED_SYMBOLS = ["ExtensionStorageSync", "extensionStorageSync"];
 const STORAGE_SYNC_ENABLED_PREF = "webextensions.storage.sync.enabled";
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const NS_ERROR_DOM_QUOTA_EXCEEDED_ERR = 0x80530016;
@@ -18,8 +18,8 @@ const NS_ERROR_DOM_QUOTA_EXCEEDED_ERR = 0x80530016;
 const lazy = {};
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  ExtensionCommon: "resource://gre/modules/ExtensionCommon.jsm",
-  ExtensionUtils: "resource://gre/modules/ExtensionUtils.jsm",
+  ExtensionCommon: "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm",
+  ExtensionUtils: "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm",
 });
 
 XPCOMUtils.defineLazyPreferenceGetter(
@@ -42,7 +42,7 @@ XPCOMUtils.defineLazyGetter(lazy, "storageSvc", () =>
 ChromeUtils.defineModuleGetter(
   lazy,
   "extensionStorageSyncKinto",
-  "resource://gre/modules/ExtensionStorageSyncKinto.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionStorageSyncKinto.jsm"
 );
 
 // The interfaces which define the callbacks used by the bridge. There's a

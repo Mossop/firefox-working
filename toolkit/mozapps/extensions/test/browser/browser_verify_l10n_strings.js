@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 ChromeUtils.defineESModuleGetters(this, {
-  BuiltInThemes: "resource:///modules/BuiltInThemes.sys.mjs",
+  BuiltInThemes: "moz-src:///browser/themes/BuiltInThemes.sys.mjs",
 });
 
 // Maps add-on descriptors to updated Fluent IDs. Keep it in sync

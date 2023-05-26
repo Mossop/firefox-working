@@ -18,17 +18,17 @@ const MAX_THUMBNAIL_AGE_SECS = 172800; // 2 days == 60*60*24*2 == 172800 secs.
  */
 const THUMBNAIL_DIRECTORY = "thumbnails";
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const { BasePromiseWorker } = ChromeUtils.import(
-  "resource://gre/modules/PromiseWorker.jsm"
+  "moz-src:///toolkit/components/promiseworker/PromiseWorker.jsm"
 );
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  PageThumbUtils: "resource://gre/modules/PageThumbUtils.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  PageThumbUtils: "moz-src:///toolkit/components/thumbnails/PageThumbUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyServiceGetter(
@@ -889,5 +889,5 @@ export var PageThumbsExpiration = {
  * Interface to a dedicated thread handling I/O
  */
 var PageThumbsWorker = new BasePromiseWorker(
-  "resource://gre/modules/PageThumbsWorker.js"
+  "moz-src:///toolkit/components/thumbnails/PageThumbsWorker.js"
 );

@@ -5,7 +5,7 @@
 
 // eslint-disable-next-line mozilla/no-redeclare-with-import-autofix
 const { setTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 
 async function handleRequest(request, response) {

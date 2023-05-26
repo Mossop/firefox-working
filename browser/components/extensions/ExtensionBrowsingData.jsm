@@ -6,25 +6,25 @@
 const EXPORTED_SYMBOLS = ["BrowsingDataDelegate"];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 const lazy = {};
 
 XPCOMUtils.defineLazyGetter(lazy, "makeRange", () => {
   const { ExtensionParent } = ChromeUtils.import(
-    "resource://gre/modules/ExtensionParent.jsm"
+    "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
   );
   // Defined in ext-browsingData.js
   return ExtensionParent.apiManager.global.makeRange;
 });
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  Sanitizer: "resource:///modules/Sanitizer.jsm",
+  Sanitizer: "moz-src:///browser/modules/Sanitizer.jsm",
 });
 
 class BrowsingDataDelegate {

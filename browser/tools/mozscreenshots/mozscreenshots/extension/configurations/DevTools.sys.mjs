@@ -6,7 +6,7 @@ import { require } from "resource://devtools/shared/loader/Loader.sys.mjs";
 
 const { gDevTools } = require("devtools/client/framework/devtools");
 
-import { setTimeout } from "resource://gre/modules/Timer.sys.mjs";
+import { setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 
 async function showToolboxForSelectedTab(toolId, hostType) {
   const browserWindow = Services.wm.getMostRecentWindow("navigator:browser");

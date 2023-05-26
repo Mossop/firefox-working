@@ -6,7 +6,7 @@
 
 "use strict";
 
-importScripts("resource://gre/modules/workers/require.js");
+importScripts("moz-src:///toolkit/components/workerloader/require.js");
 
 const {
   getOriginalURLs,

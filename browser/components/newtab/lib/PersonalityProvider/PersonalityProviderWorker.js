@@ -14,7 +14,7 @@
 /* import-globals-from RecipeExecutor.jsm */
 /* import-globals-from PersonalityProviderWorkerClass.jsm */
 importScripts(
-  "resource://gre/modules/workers/require.js",
+  "moz-src:///toolkit/components/workerloader/require.js",
   "resource://activity-stream/lib/PersonalityProvider/Tokenize.jsm",
   "resource://activity-stream/lib/PersonalityProvider/NaiveBayesTextTagger.jsm",
   "resource://activity-stream/lib/PersonalityProvider/NmfTextTagger.jsm",
@@ -22,7 +22,7 @@ importScripts(
   "resource://activity-stream/lib/PersonalityProvider/PersonalityProviderWorkerClass.jsm"
 );
 
-const PromiseWorker = require("resource://gre/modules/workers/PromiseWorker.js");
+const PromiseWorker = require("moz-src:///toolkit/components/promiseworker/worker/PromiseWorker.js");
 
 const personalityProviderWorker = new PersonalityProviderWorker();
 

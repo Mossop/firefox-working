@@ -43,7 +43,7 @@ MockFilePicker.init(window);
 MockFilePicker.returnValue = MockFilePicker.returnOK;
 
 var FileUtils = ChromeUtils.importESModule(
-  "resource://gre/modules/FileUtils.sys.mjs"
+  "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 ).FileUtils;
 
 // Test the export visible messages to clipboard of the webconsole copies the expected

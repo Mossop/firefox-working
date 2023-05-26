@@ -10,7 +10,7 @@ const {
   ExtensionScriptingStore,
   makeInternalContentScript,
   makePublicContentScript,
-} = ChromeUtils.import("resource://gre/modules/ExtensionScriptingStore.jsm");
+} = ChromeUtils.import("moz-src:///toolkit/components/extensions/ExtensionScriptingStore.jsm");
 
 var { ExtensionError, parseMatchPatterns } = ExtensionUtils;
 

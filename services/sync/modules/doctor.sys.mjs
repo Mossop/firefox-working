@@ -7,7 +7,7 @@
 // attempt to cure, or may decide she is overworked and underpaid.
 // Or something - naming is hard :)
 
-import { Log } from "resource://gre/modules/Log.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
 
 import { Async } from "resource://services-common/async.sys.mjs";
 import { Observers } from "resource://services-common/observers.sys.mjs";

@@ -24,22 +24,22 @@ ruleTester.run("reject-eager-module-in-lazy-getter", rule, {
   valid: [
     `
     XPCOMUtils.defineLazyModuleGetter(
-      lazy, "Integration", "resource://gre/modules/Integration.jsm"
+      lazy, "Integration", "moz-src:///toolkit/modules/Integration.jsm"
     );
 `,
     `
     ChromeUtils.defineModuleGetter(
-      lazy, "Integration", "resource://gre/modules/Integration.jsm"
+      lazy, "Integration", "moz-src:///toolkit/modules/Integration.jsm"
     );
 `,
     `
     XPCOMUtils.defineLazyModuleGetters(lazy, {
-      Integration: "resource://gre/modules/Integration.jsm",
+      Integration: "moz-src:///toolkit/modules/Integration.jsm",
     });
 `,
     `
     ChromeUtils.defineESModuleGetters(lazy, {
-      Integration: "resource://gre/modules/Integration.sys.mjs",
+      Integration: "moz-src:///toolkit/modules/Integration.sys.mjs",
     });
 `,
   ],
@@ -55,10 +55,10 @@ ruleTester.run("reject-eager-module-in-lazy-getter", rule, {
     invalidCode(
       `
     ChromeUtils.defineModuleGetter(
-      lazy, "XPCOMUtils", "resource://gre/modules/XPCOMUtils.jsm"
+      lazy, "XPCOMUtils", "moz-src:///js/xpconnect/loader/XPCOMUtils.jsm"
     );
 `,
-      "resource://gre/modules/XPCOMUtils.jsm"
+      "moz-src:///js/xpconnect/loader/XPCOMUtils.jsm"
     ),
     invalidCode(
       `

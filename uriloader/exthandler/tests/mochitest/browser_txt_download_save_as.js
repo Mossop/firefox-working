@@ -4,7 +4,7 @@
 "use strict";
 
 const { DownloadIntegration } = ChromeUtils.importESModule(
-  "resource://gre/modules/DownloadIntegration.sys.mjs"
+  "moz-src:///toolkit/components/downloads/DownloadIntegration.sys.mjs"
 );
 const HandlerService = Cc[
   "@mozilla.org/uriloader/handler-service;1"

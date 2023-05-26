@@ -7,7 +7,7 @@
 SimpleTest.ignoreAllUncaughtExceptions(true);
 
 const { AppMenuNotifications } = ChromeUtils.importESModule(
-  "resource://gre/modules/AppMenuNotifications.sys.mjs"
+  "moz-src:///toolkit/modules/AppMenuNotifications.sys.mjs"
 );
 
 function waitForDocshellActivated() {

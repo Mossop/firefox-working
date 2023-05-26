@@ -4,12 +4,12 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { AsyncShutdown } from "resource://gre/modules/AsyncShutdown.sys.mjs";
-import { PromiseUtils } from "resource://gre/modules/PromiseUtils.sys.mjs";
-import { DeferredTask } from "resource://gre/modules/DeferredTask.sys.mjs";
+import { AsyncShutdown } from "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs";
+import { PromiseUtils } from "moz-src:///toolkit/modules/PromiseUtils.sys.mjs";
+import { DeferredTask } from "moz-src:///toolkit/modules/DeferredTask.sys.mjs";
 
-import { TelemetryUtils } from "resource://gre/modules/TelemetryUtils.sys.mjs";
-import { TelemetryControllerBase } from "resource://gre/modules/TelemetryControllerBase.sys.mjs";
+import { TelemetryUtils } from "moz-src:///toolkit/components/telemetry/app/TelemetryUtils.sys.mjs";
+import { TelemetryControllerBase } from "moz-src:///toolkit/components/telemetry/app/TelemetryControllerBase.sys.mjs";
 
 const Utils = TelemetryUtils;
 
@@ -37,23 +37,23 @@ const REASON_GATHER_SUBSESSION_PAYLOAD = "gather-subsession-payload";
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  ClientID: "resource://gre/modules/ClientID.sys.mjs",
-  CoveragePing: "resource://gre/modules/CoveragePing.sys.mjs",
-  ProvenanceData: "resource:///modules/ProvenanceData.sys.mjs",
-  TelemetryArchive: "resource://gre/modules/TelemetryArchive.sys.mjs",
-  TelemetryEnvironment: "resource://gre/modules/TelemetryEnvironment.sys.mjs",
-  TelemetryEventPing: "resource://gre/modules/EventPing.sys.mjs",
-  TelemetryHealthPing: "resource://gre/modules/HealthPing.sys.mjs",
-  TelemetryModules: "resource://gre/modules/ModulesPing.sys.mjs",
+  ClientID: "moz-src:///toolkit/components/telemetry/app/ClientID.sys.mjs",
+  CoveragePing: "moz-src:///toolkit/components/telemetry/pings/CoveragePing.sys.mjs",
+  ProvenanceData: "moz-src:///browser/components/attribution/ProvenanceData.sys.mjs",
+  TelemetryArchive: "moz-src:///toolkit/components/telemetry/app/TelemetryArchive.sys.mjs",
+  TelemetryEnvironment: "moz-src:///toolkit/components/telemetry/app/TelemetryEnvironment.sys.mjs",
+  TelemetryEventPing: "moz-src:///toolkit/components/telemetry/pings/EventPing.sys.mjs",
+  TelemetryHealthPing: "moz-src:///toolkit/components/telemetry/pings/HealthPing.sys.mjs",
+  TelemetryModules: "moz-src:///toolkit/components/telemetry/pings/ModulesPing.sys.mjs",
   TelemetryReportingPolicy:
-    "resource://gre/modules/TelemetryReportingPolicy.sys.mjs",
-  TelemetrySend: "resource://gre/modules/TelemetrySend.sys.mjs",
-  TelemetrySession: "resource://gre/modules/TelemetrySession.sys.mjs",
-  TelemetryStorage: "resource://gre/modules/TelemetryStorage.sys.mjs",
+    "moz-src:///toolkit/components/telemetry/app/TelemetryReportingPolicy.sys.mjs",
+  TelemetrySend: "moz-src:///toolkit/components/telemetry/app/TelemetrySend.sys.mjs",
+  TelemetrySession: "moz-src:///toolkit/components/telemetry/pings/TelemetrySession.sys.mjs",
+  TelemetryStorage: "moz-src:///toolkit/components/telemetry/app/TelemetryStorage.sys.mjs",
   TelemetryUntrustedModulesPing:
-    "resource://gre/modules/UntrustedModulesPing.sys.mjs",
+    "moz-src:///toolkit/components/telemetry/pings/UntrustedModulesPing.sys.mjs",
   UninstallPing: "resource://gre/modules/UninstallPing.sys.mjs",
-  UpdatePing: "resource://gre/modules/UpdatePing.sys.mjs",
+  UpdatePing: "moz-src:///toolkit/components/telemetry/pings/UpdatePing.sys.mjs",
   jwcrypto: "resource://services-crypto/jwcrypto.sys.mjs",
 });
 

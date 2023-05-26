@@ -13,7 +13,7 @@ const TOOLKIT_MINVERSION = "42.0a1";
 createAppInfo("xpcshell@tests.mozilla.org", "XPCShell", "42.0a2", "42.0a2");
 
 const { AddonUpdateChecker } = ChromeUtils.import(
-  "resource://gre/modules/addons/AddonUpdateChecker.jsm"
+  "moz-src:///toolkit/mozapps/extensions/internal/AddonUpdateChecker.jsm"
 );
 
 let testserver = createHttpServer();

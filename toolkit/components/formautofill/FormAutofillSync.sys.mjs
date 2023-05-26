@@ -16,7 +16,7 @@ import { SCORE_INCREMENT_XLARGE } from "resource://services-sync/constants.sys.m
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Log: "resource://gre/modules/Log.sys.mjs",
+  Log: "moz-src:///toolkit/modules/Log.sys.mjs",
   formAutofillStorage: "resource://autofill/FormAutofillStorage.sys.mjs",
 });
 

@@ -4,8 +4,8 @@
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
-import { clearTimeout, setTimeout } from "resource://gre/modules/Timer.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { clearTimeout, setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 export var PushServiceWebSocket;
 export var PushServiceHttp2;
@@ -19,17 +19,17 @@ XPCOMUtils.defineLazyServiceGetter(
   "nsIPushNotifier"
 );
 ChromeUtils.defineESModuleGetters(lazy, {
-  PushCrypto: "resource://gre/modules/PushCrypto.sys.mjs",
-  pushBroadcastService: "resource://gre/modules/PushBroadcastService.sys.mjs",
+  PushCrypto: "moz-src:///dom/push/PushCrypto.sys.mjs",
+  pushBroadcastService: "moz-src:///dom/push/PushBroadcastService.sys.mjs",
 });
 
 const CONNECTION_PROTOCOLS = (function() {
   if ("android" != AppConstants.MOZ_WIDGET_TOOLKIT) {
     ({ PushServiceWebSocket } = ChromeUtils.importESModule(
-      "resource://gre/modules/PushServiceWebSocket.sys.mjs"
+      "moz-src:///dom/push/PushServiceWebSocket.sys.mjs"
     ));
     ({ PushServiceHttp2 } = ChromeUtils.importESModule(
-      "resource://gre/modules/PushServiceHttp2.sys.mjs"
+      "moz-src:///dom/push/PushServiceHttp2.sys.mjs"
     ));
     return [PushServiceWebSocket, PushServiceHttp2];
   }
@@ -38,7 +38,7 @@ const CONNECTION_PROTOCOLS = (function() {
 
 XPCOMUtils.defineLazyGetter(lazy, "console", () => {
   let { ConsoleAPI } = ChromeUtils.importESModule(
-    "resource://gre/modules/Console.sys.mjs"
+    "moz-src:///toolkit/modules/Console.sys.mjs"
   );
   return new ConsoleAPI({
     maxLogLevelPref: "dom.push.loglevel",

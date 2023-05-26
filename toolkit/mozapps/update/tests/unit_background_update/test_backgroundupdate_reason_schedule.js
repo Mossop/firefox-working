@@ -7,7 +7,7 @@
 "use strict";
 
 const { BackgroundUpdate } = ChromeUtils.importESModule(
-  "resource://gre/modules/BackgroundUpdate.sys.mjs"
+  "moz-src:///toolkit/mozapps/update/BackgroundUpdate.sys.mjs"
 );
 let reasons = () => BackgroundUpdate._reasonsToNotScheduleUpdates();
 let REASON = BackgroundUpdate.REASON;

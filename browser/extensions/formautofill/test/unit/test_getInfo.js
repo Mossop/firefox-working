@@ -1,14 +1,14 @@
 "use strict";
 
 const { FieldScanner } = ChromeUtils.importESModule(
-  "resource://gre/modules/shared/FieldScanner.sys.mjs"
+  "moz-src:///toolkit/components/formautofill/shared/FieldScanner.sys.mjs"
 );
 
 var { FormAutofillHeuristics } = ChromeUtils.importESModule(
-  "resource://gre/modules/shared/FormAutofillHeuristics.sys.mjs"
+  "moz-src:///toolkit/components/formautofill/shared/FormAutofillHeuristics.sys.mjs"
 );
 var { LabelUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/shared/LabelUtils.sys.mjs"
+  "moz-src:///toolkit/components/formautofill/shared/LabelUtils.sys.mjs"
 );
 var { FormAutofill } = ChromeUtils.importESModule(
   "resource://autofill/FormAutofill.sys.mjs"

@@ -58,8 +58,8 @@ Example:
 
 * File: `/toolkit/mozapps/extensions/AddonManager.jsm`
 * Usage (prefer lazy in most cases):
-  * `const lazy = {}; ChromeUtils.defineModuleGetter(lazy, "AddonManager", "resource://gre/modules/AddonManager.jsm")`
-  * `const { AddonManager } = ChromeUtils.import("resource://gre/modules/AddonManager.jsm")`
+  * `const lazy = {}; ChromeUtils.defineModuleGetter(lazy, "AddonManager", "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm")`
+  * `const { AddonManager } = ChromeUtils.import("moz-src:///toolkit/mozapps/extensions/AddonManager.jsm")`
 
 ## Chrome Content
 

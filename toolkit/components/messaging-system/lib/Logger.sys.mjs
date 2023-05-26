@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { ConsoleAPI } from "resource://gre/modules/Console.sys.mjs";
+import { ConsoleAPI } from "moz-src:///toolkit/modules/Console.sys.mjs";
 
 const LOGGING_PREF = "messaging-system.log";
 

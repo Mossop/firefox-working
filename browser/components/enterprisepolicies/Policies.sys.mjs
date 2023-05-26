@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
@@ -22,16 +22,16 @@ XPCOMUtils.defineLazyServiceGetters(lazy, {
 });
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  BookmarksPolicies: "resource:///modules/policies/BookmarksPolicies.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
+  BookmarksPolicies: "moz-src:///browser/components/enterprisepolicies/helpers/BookmarksPolicies.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
   PdfJsDefaultPreferences: "resource://pdf.js/PdfJsDefaultPreferences.sys.mjs",
-  ProxyPolicies: "resource:///modules/policies/ProxyPolicies.sys.mjs",
-  WebsiteFilter: "resource:///modules/policies/WebsiteFilter.sys.mjs",
+  ProxyPolicies: "moz-src:///browser/components/enterprisepolicies/helpers/ProxyPolicies.sys.mjs",
+  WebsiteFilter: "moz-src:///browser/components/enterprisepolicies/helpers/WebsiteFilter.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  CustomizableUI: "resource:///modules/CustomizableUI.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  CustomizableUI: "moz-src:///browser/components/customizableui/CustomizableUI.jsm",
 });
 
 const PREF_LOGLEVEL = "browser.policies.loglevel";
@@ -42,7 +42,7 @@ const isXpcshell = Services.env.exists("XPCSHELL_TEST_PROFILE_DIR");
 
 XPCOMUtils.defineLazyGetter(lazy, "log", () => {
   let { ConsoleAPI } = ChromeUtils.importESModule(
-    "resource://gre/modules/Console.sys.mjs"
+    "moz-src:///toolkit/modules/Console.sys.mjs"
   );
   return new ConsoleAPI({
     prefix: "Policies.jsm",

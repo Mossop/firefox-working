@@ -5,7 +5,7 @@
 const EXPORTED_SYMBOLS = ["AbuseReporter", "AbuseReportError"];
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
@@ -35,12 +35,12 @@ const SUPPORTED_ADDON_TYPES = [
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  ClientID: "resource://gre/modules/ClientID.sys.mjs",
+  ClientID: "moz-src:///toolkit/components/telemetry/app/ClientID.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  AMTelemetry: "resource://gre/modules/AddonManager.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  AMTelemetry: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
 });
 
 XPCOMUtils.defineLazyPreferenceGetter(

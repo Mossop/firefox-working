@@ -10,9 +10,9 @@
  */
 
 const {AppConstants} = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
-const {ComponentUtils} = ChromeUtils.importESModule("resource://gre/modules/ComponentUtils.sys.mjs");
-const {Preferences} = ChromeUtils.importESModule("resource://gre/modules/Preferences.sys.mjs");
-const {XPCOMUtils} = ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
+const {ComponentUtils} = ChromeUtils.importESModule("moz-src:///js/xpconnect/loader/ComponentUtils.sys.mjs");
+const {Preferences} = ChromeUtils.importESModule("moz-src:///toolkit/modules/Preferences.sys.mjs");
+const {XPCOMUtils} = ChromeUtils.importESModule("moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs");
 
 ////////////////////////////////////////////////////////////////////////////////
 //// Tests

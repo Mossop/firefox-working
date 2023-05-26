@@ -5,7 +5,7 @@
 "use strict";
 
 const { CreditCard } = ChromeUtils.importESModule(
-  "resource://gre/modules/CreditCard.sys.mjs"
+  "moz-src:///toolkit/modules/CreditCard.sys.mjs"
 );
 
 let FormAutofillParent, FormAutofillStatus;
@@ -15,7 +15,7 @@ add_setup(async () => {
     "resource://autofill/FormAutofillParent.sys.mjs"
   ));
   ({ OSKeyStore } = ChromeUtils.importESModule(
-    "resource://gre/modules/OSKeyStore.sys.mjs"
+    "moz-src:///toolkit/modules/OSKeyStore.sys.mjs"
   ));
 });
 

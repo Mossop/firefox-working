@@ -1,10 +1,10 @@
 "use strict";
 
 const { BuiltInThemes } = ChromeUtils.importESModule(
-  "resource:///modules/BuiltInThemes.sys.mjs"
+  "moz-src:///browser/themes/BuiltInThemes.sys.mjs"
 );
 const { BuiltInThemeConfig } = ChromeUtils.importESModule(
-  "resource:///modules/BuiltInThemeConfig.sys.mjs"
+  "moz-src:///browser/themes/BuiltInThemeConfig.sys.mjs"
 );
 
 const { sinon } = ChromeUtils.importESModule(

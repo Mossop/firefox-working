@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { addDebuggerToGlobal } from "resource://gre/modules/jsdebugger.sys.mjs";
+import { addDebuggerToGlobal } from "moz-src:///devtools/platform/jsdebugger.sys.mjs";
 
 // eslint-disable-next-line mozilla/reject-globalThis-modification
 addDebuggerToGlobal(globalThis);

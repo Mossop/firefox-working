@@ -8,14 +8,14 @@
 
 // We expose a singleton from this module. Some tests may import the
 // constructor via a backstage pass.
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 import {
   FormAutofillStorageBase,
   CreditCardsBase,
   AddressesBase,
 } from "resource://autofill/FormAutofillStorageBase.sys.mjs";
-import { JSONFile } from "resource://gre/modules/JSONFile.sys.mjs";
+import { JSONFile } from "moz-src:///toolkit/modules/JSONFile.sys.mjs";
 
 const lazy = {};
 

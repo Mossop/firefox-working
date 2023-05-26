@@ -25,7 +25,7 @@ const { createLazyLoaders } = ChromeUtils.import(
 
 const lazy = createLazyLoaders({
   PanelMultiView: () =>
-    ChromeUtils.import("resource:///modules/PanelMultiView.jsm"),
+    ChromeUtils.import("moz-src:///browser/components/customizableui/PanelMultiView.jsm"),
   Background: () =>
     ChromeUtils.import(
       "resource://devtools/client/performance-new/shared/background.jsm.js"

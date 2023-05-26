@@ -30,7 +30,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "AboutNewTab",
-  "resource:///modules/AboutNewTab.jsm"
+  "moz-src:///browser/modules/AboutNewTab.jsm"
 );
 
 /* globals res:true, sequenceArray:true */

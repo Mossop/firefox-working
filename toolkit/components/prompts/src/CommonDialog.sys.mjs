@@ -4,7 +4,7 @@
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  EnableDelayHelper: "resource://gre/modules/PromptUtils.sys.mjs",
+  EnableDelayHelper: "moz-src:///toolkit/components/prompts/src/PromptUtils.sys.mjs",
 });
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";

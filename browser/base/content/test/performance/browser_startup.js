@@ -28,13 +28,13 @@ const startupPhases = {
   "before profile selection": {
     allowlist: {
       modules: new Set([
-        "resource:///modules/BrowserGlue.sys.mjs",
-        "resource:///modules/StartupRecorder.sys.mjs",
+        "moz-src:///browser/components/BrowserGlue.sys.mjs",
+        "moz-src:///browser/components/StartupRecorder.sys.mjs",
         "resource://gre/modules/AppConstants.sys.mjs",
-        "resource://gre/modules/ActorManagerParent.sys.mjs",
-        "resource://gre/modules/CustomElementsListener.sys.mjs",
-        "resource://gre/modules/MainProcessSingleton.sys.mjs",
-        "resource://gre/modules/XPCOMUtils.sys.mjs",
+        "moz-src:///toolkit/modules/ActorManagerParent.sys.mjs",
+        "moz-src:///toolkit/components/processsingleton/CustomElementsListener.sys.mjs",
+        "moz-src:///toolkit/components/processsingleton/MainProcessSingleton.sys.mjs",
+        "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs",
       ]),
     },
   },
@@ -56,16 +56,16 @@ const startupPhases = {
   "before first paint": {
     denylist: {
       modules: new Set([
-        "resource:///modules/AboutNewTab.jsm",
-        "resource:///modules/BrowserUsageTelemetry.jsm",
-        "resource:///modules/ContentCrashHandlers.jsm",
-        "resource:///modules/ShellService.sys.mjs",
-        "resource://gre/modules/NewTabUtils.sys.mjs",
-        "resource://gre/modules/PageThumbs.sys.mjs",
-        "resource://gre/modules/PlacesUtils.sys.mjs",
-        "resource://gre/modules/Preferences.sys.mjs",
-        "resource://gre/modules/SearchService.sys.mjs",
-        "resource://gre/modules/Sqlite.sys.mjs",
+        "moz-src:///browser/modules/AboutNewTab.jsm",
+        "moz-src:///browser/modules/BrowserUsageTelemetry.jsm",
+        "moz-src:///browser/modules/ContentCrashHandlers.jsm",
+        "moz-src:///browser/components/shell/ShellService.sys.mjs",
+        "moz-src:///toolkit/modules/NewTabUtils.sys.mjs",
+        "moz-src:///toolkit/components/thumbnails/PageThumbs.sys.mjs",
+        "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
+        "moz-src:///toolkit/modules/Preferences.sys.mjs",
+        "moz-src:///toolkit/components/search/SearchService.sys.mjs",
+        "moz-src:///toolkit/modules/Sqlite.sys.mjs",
       ]),
       services: new Set(["@mozilla.org/browser/search-service;1"]),
     },
@@ -77,18 +77,18 @@ const startupPhases = {
   "before handling user events": {
     denylist: {
       modules: new Set([
-        "resource://gre/modules/Blocklist.jsm",
+        "moz-src:///toolkit/mozapps/extensions/Blocklist.jsm",
         // Bug 1391495 - BrowserWindowTracker.jsm is intermittently used.
-        // "resource:///modules/BrowserWindowTracker.jsm",
-        "resource://gre/modules/BookmarkHTMLUtils.sys.mjs",
-        "resource://gre/modules/Bookmarks.sys.mjs",
-        "resource://gre/modules/ContextualIdentityService.sys.mjs",
-        "resource://gre/modules/FxAccounts.sys.mjs",
-        "resource://gre/modules/FxAccountsStorage.sys.mjs",
-        "resource://gre/modules/PlacesBackups.sys.mjs",
-        "resource://gre/modules/PlacesExpiration.sys.mjs",
-        "resource://gre/modules/PlacesSyncUtils.sys.mjs",
-        "resource://gre/modules/PushComponents.sys.mjs",
+        // "moz-src:///browser/modules/BrowserWindowTracker.jsm",
+        "moz-src:///toolkit/components/places/BookmarkHTMLUtils.sys.mjs",
+        "moz-src:///toolkit/components/places/Bookmarks.sys.mjs",
+        "moz-src:///toolkit/components/contextualidentity/ContextualIdentityService.sys.mjs",
+        "moz-src:///services/fxaccounts/FxAccounts.sys.mjs",
+        "moz-src:///services/fxaccounts/FxAccountsStorage.sys.mjs",
+        "moz-src:///toolkit/components/places/PlacesBackups.sys.mjs",
+        "moz-src:///toolkit/components/places/PlacesExpiration.sys.mjs",
+        "moz-src:///toolkit/components/places/PlacesSyncUtils.sys.mjs",
+        "moz-src:///dom/push/PushComponents.sys.mjs",
       ]),
       services: new Set(["@mozilla.org/browser/nav-bookmarks-service;1"]),
     },
@@ -100,8 +100,8 @@ const startupPhases = {
   "before becoming idle": {
     denylist: {
       modules: new Set([
-        "resource://gre/modules/AsyncPrefs.sys.mjs",
-        "resource://gre/modules/LoginManagerContextMenu.sys.mjs",
+        "moz-src:///toolkit/modules/AsyncPrefs.sys.mjs",
+        "moz-src:///toolkit/components/passwordmgr/LoginManagerContextMenu.sys.mjs",
         "resource://pdf.js/PdfStreamConverter.sys.mjs",
       ]),
     },
@@ -116,13 +116,13 @@ if (
   ) == "default-theme@mozilla.org"
 ) {
   startupPhases["before profile selection"].allowlist.modules.add(
-    "resource://gre/modules/XULStore.sys.mjs"
+    "moz-src:///toolkit/components/xulstore/XULStore.sys.mjs"
   );
 }
 
 if (AppConstants.MOZ_CRASHREPORTER) {
   startupPhases["before handling user events"].denylist.modules.add(
-    "resource://gre/modules/CrashSubmit.sys.mjs"
+    "moz-src:///toolkit/crashreporter/CrashSubmit.sys.mjs"
   );
 }
 

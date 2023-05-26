@@ -1,7 +1,7 @@
 "use strict";
 
 const { TelemetrySession } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetrySession.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/pings/TelemetrySession.sys.mjs"
 );
 
 const DUMMY_PAGE_DATA_URI = `data:text/html,

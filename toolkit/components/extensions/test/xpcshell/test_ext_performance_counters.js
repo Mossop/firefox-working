@@ -3,7 +3,7 @@
 "use strict";
 
 const { ExtensionParent } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 
 const ENABLE_COUNTER_PREF =

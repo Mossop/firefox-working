@@ -5,7 +5,7 @@
 // Note: This test may cause intermittents if run at exactly midnight.
 
 const { Sqlite } = ChromeUtils.importESModule(
-  "resource://gre/modules/Sqlite.sys.mjs"
+  "moz-src:///toolkit/modules/Sqlite.sys.mjs"
 );
 const { AboutProtectionsParent } = ChromeUtils.importESModule(
   "resource:///actors/AboutProtectionsParent.sys.mjs"

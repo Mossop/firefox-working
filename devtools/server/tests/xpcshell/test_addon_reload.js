@@ -4,7 +4,7 @@
 "use strict";
 
 const { AddonManager } = ChromeUtils.import(
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 function promiseAddonEvent(event) {
@@ -22,7 +22,7 @@ function promiseAddonEvent(event) {
 
 function promiseWebExtensionStartup() {
   const { Management } = ChromeUtils.import(
-    "resource://gre/modules/Extension.jsm"
+    "moz-src:///toolkit/components/extensions/Extension.jsm"
   );
 
   return new Promise(resolve => {

@@ -8,19 +8,19 @@
 "use strict";
 
 const { PromiseUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PromiseUtils.sys.mjs"
+  "moz-src:///toolkit/modules/PromiseUtils.sys.mjs"
 );
 const { TelemetrySend } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetrySend.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetrySend.sys.mjs"
 );
 const { TelemetryStorage } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryStorage.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryStorage.sys.mjs"
 );
 const { TelemetryUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryUtils.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryUtils.sys.mjs"
 );
 const { setTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 
 function generateTestPingData() {

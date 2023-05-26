@@ -8,7 +8,7 @@ const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 const { ProcessType } = ChromeUtils.importESModule(
-  "resource://gre/modules/ProcessType.sys.mjs"
+  "moz-src:///toolkit/modules/ProcessType.sys.mjs"
 );
 
 let AboutThirdParty = null;

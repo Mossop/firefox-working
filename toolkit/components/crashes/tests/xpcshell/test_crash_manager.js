@@ -13,7 +13,7 @@ const { configureLogging, getManager, sleep } = ChromeUtils.importESModule(
   "resource://testing-common/CrashManagerTest.sys.mjs"
 );
 const { TelemetryEnvironment } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryEnvironment.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryEnvironment.sys.mjs"
 );
 
 const DUMMY_DATE = new Date(Date.now() - 10 * 24 * 60 * 60 * 1000);

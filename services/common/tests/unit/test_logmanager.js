@@ -8,7 +8,7 @@ const { LogManager } = ChromeUtils.importESModule(
   "resource://services-common/logmanager.sys.mjs"
 );
 const { FileUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/FileUtils.sys.mjs"
+  "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 );
 
 // Returns an array of [consoleAppender, dumpAppender, [fileAppenders]] for

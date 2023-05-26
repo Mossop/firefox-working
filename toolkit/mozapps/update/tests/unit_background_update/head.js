@@ -32,10 +32,10 @@ async function checkGleanPing() {
   let ping_submitted = false;
 
   const { maybeSubmitBackgroundUpdatePing } = ChromeUtils.importESModule(
-    "resource://gre/modules/backgroundtasks/BackgroundTask_backgroundupdate.sys.mjs"
+    "moz-src:///toolkit/mozapps/update/BackgroundTask_backgroundupdate.sys.mjs"
   );
   const { BackgroundUpdate } = ChromeUtils.importESModule(
-    "resource://gre/modules/BackgroundUpdate.sys.mjs"
+    "moz-src:///toolkit/mozapps/update/BackgroundUpdate.sys.mjs"
   );
 
   GleanPings.backgroundUpdate.testBeforeNextSubmit(_ => {

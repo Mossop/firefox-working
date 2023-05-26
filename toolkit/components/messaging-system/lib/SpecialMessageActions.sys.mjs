@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const DOH_DOORHANGER_DECISION_PREF = "doh-rollout.doorhanger-decision";
 const NETWORK_TRR_MODE_PREF = "network.trr.mode";
@@ -10,14 +10,14 @@ const NETWORK_TRR_MODE_PREF = "network.trr.mode";
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  FxAccounts: "resource://gre/modules/FxAccounts.sys.mjs",
-  MigrationUtils: "resource:///modules/MigrationUtils.sys.mjs",
+  FxAccounts: "moz-src:///services/fxaccounts/FxAccounts.sys.mjs",
+  MigrationUtils: "moz-src:///browser/components/migration/MigrationUtils.sys.mjs",
   UIState: "resource://services-sync/UIState.sys.mjs",
-  UITour: "resource:///modules/UITour.sys.mjs",
+  UITour: "moz-src:///browser/components/uitour/UITour.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
   Spotlight: "resource://activity-stream/lib/Spotlight.jsm",
 });
 

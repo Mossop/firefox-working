@@ -2,13 +2,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { PromiseUtils } from "resource://gre/modules/PromiseUtils.sys.mjs";
+import { PromiseUtils } from "moz-src:///toolkit/modules/PromiseUtils.sys.mjs";
 
 import { CryptoUtils } from "resource://services-crypto/utils.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
-import { clearTimeout, setTimeout } from "resource://gre/modules/Timer.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
+import { clearTimeout, setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 
-import { FxAccountsStorageManager } from "resource://gre/modules/FxAccountsStorage.sys.mjs";
+import { FxAccountsStorageManager } from "moz-src:///services/fxaccounts/FxAccountsStorage.sys.mjs";
 
 const {
   ERRNO_INVALID_AUTH_TOKEN,
@@ -35,19 +35,19 @@ const {
   log,
   logPII,
   logManager,
-} = ChromeUtils.import("resource://gre/modules/FxAccountsCommon.js");
+} = ChromeUtils.import("moz-src:///services/fxaccounts/FxAccountsCommon.js");
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  FxAccountsClient: "resource://gre/modules/FxAccountsClient.sys.mjs",
-  FxAccountsCommands: "resource://gre/modules/FxAccountsCommands.sys.mjs",
-  FxAccountsConfig: "resource://gre/modules/FxAccountsConfig.sys.mjs",
-  FxAccountsDevice: "resource://gre/modules/FxAccountsDevice.sys.mjs",
-  FxAccountsKeys: "resource://gre/modules/FxAccountsKeys.sys.mjs",
-  FxAccountsProfile: "resource://gre/modules/FxAccountsProfile.sys.mjs",
-  FxAccountsTelemetry: "resource://gre/modules/FxAccountsTelemetry.sys.mjs",
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
+  FxAccountsClient: "moz-src:///services/fxaccounts/FxAccountsClient.sys.mjs",
+  FxAccountsCommands: "moz-src:///services/fxaccounts/FxAccountsCommands.sys.mjs",
+  FxAccountsConfig: "moz-src:///services/fxaccounts/FxAccountsConfig.sys.mjs",
+  FxAccountsDevice: "moz-src:///services/fxaccounts/FxAccountsDevice.sys.mjs",
+  FxAccountsKeys: "moz-src:///services/fxaccounts/FxAccountsKeys.sys.mjs",
+  FxAccountsProfile: "moz-src:///services/fxaccounts/FxAccountsProfile.sys.mjs",
+  FxAccountsTelemetry: "moz-src:///services/fxaccounts/FxAccountsTelemetry.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "mpLocked", () => {

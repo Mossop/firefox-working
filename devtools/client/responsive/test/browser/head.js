@@ -539,13 +539,13 @@ function getSessionHistory(browser) {
       return docShell.document.body;
     });
     const { SessionHistory } = ChromeUtils.importESModule(
-      "resource://gre/modules/sessionstore/SessionHistory.sys.mjs"
+      "moz-src:///toolkit/modules/sessionstore/SessionHistory.sys.mjs"
     );
     return SessionHistory.collectFromParent(uri, body, history);
   }
   return ContentTask.spawn(browser, null, function() {
     const { SessionHistory } = ChromeUtils.importESModule(
-      "resource://gre/modules/sessionstore/SessionHistory.sys.mjs"
+      "moz-src:///toolkit/modules/sessionstore/SessionHistory.sys.mjs"
     );
     return SessionHistory.collect(docShell);
   });

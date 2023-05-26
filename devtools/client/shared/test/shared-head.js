@@ -1527,7 +1527,7 @@ let allDownloads = [];
  */
 async function waitUntilScreenshot({ isWindowPrivate = false } = {}) {
   const { Downloads } = ChromeUtils.importESModule(
-    "resource://gre/modules/Downloads.sys.mjs"
+    "moz-src:///toolkit/components/downloads/Downloads.sys.mjs"
   );
   const list = await Downloads.getList(Downloads.ALL);
 
@@ -1563,7 +1563,7 @@ async function waitUntilScreenshot({ isWindowPrivate = false } = {}) {
 async function resetDownloads() {
   info("Reset downloads");
   const { Downloads } = ChromeUtils.importESModule(
-    "resource://gre/modules/Downloads.sys.mjs"
+    "moz-src:///toolkit/components/downloads/Downloads.sys.mjs"
   );
   const downloadList = await Downloads.getList(Downloads.ALL);
   const downloads = await downloadList.getAll();

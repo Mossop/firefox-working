@@ -3,7 +3,7 @@
 "use strict";
 
 const { ExtensionShortcutKeyMap } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionShortcuts.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionShortcuts.jsm"
 );
 
 add_task(function test_ExtensionShortcutKeymap() {

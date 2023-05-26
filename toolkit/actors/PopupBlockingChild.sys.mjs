@@ -8,7 +8,7 @@
 // The maximum number of popup information we'll send to the parent.
 const MAX_SENT_POPUPS = 15;
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 export class PopupBlockingChild extends JSWindowActorChild {
   constructor() {

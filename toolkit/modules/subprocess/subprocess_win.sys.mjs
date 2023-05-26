@@ -8,13 +8,13 @@ import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 import {
   BaseProcess,
   PromiseWorker,
-} from "resource://gre/modules/subprocess/subprocess_common.sys.mjs";
+} from "moz-src:///toolkit/modules/subprocess/subprocess_common.sys.mjs";
 
-import { ctypes } from "resource://gre/modules/ctypes.sys.mjs";
+import { ctypes } from "moz-src:///toolkit/components/ctypes/ctypes.sys.mjs";
 
 var obj = { ctypes };
 Services.scriptloader.loadSubScript(
-  "resource://gre/modules/subprocess/subprocess_shared.js",
+  "moz-src:///toolkit/modules/subprocess/subprocess_shared.js",
   obj
 );
 Services.scriptloader.loadSubScript(

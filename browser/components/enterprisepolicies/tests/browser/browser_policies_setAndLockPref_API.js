@@ -4,7 +4,7 @@
 "use strict";
 
 let { Policies, setAndLockPref, PoliciesUtils } = ChromeUtils.importESModule(
-  "resource:///modules/policies/Policies.sys.mjs"
+  "moz-src:///browser/components/enterprisepolicies/Policies.sys.mjs"
 );
 
 add_task(async function test_API_directly() {

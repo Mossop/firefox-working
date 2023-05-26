@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { WebChannelBroker } from "resource://gre/modules/WebChannel.sys.mjs";
+import { WebChannelBroker } from "moz-src:///toolkit/modules/WebChannel.sys.mjs";
 
 const ERRNO_MISSING_PRINCIPAL = 1;
 const ERRNO_NO_SUCH_CHANNEL = 2;

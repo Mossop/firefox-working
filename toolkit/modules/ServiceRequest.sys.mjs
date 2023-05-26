@@ -7,7 +7,7 @@
  * can be set, Telemetry collected, etc. in a central place.
  */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
@@ -20,7 +20,7 @@ XPCOMUtils.defineLazyServiceGetter(
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
   ExtensionPreferencesManager:
-    "resource://gre/modules/ExtensionPreferencesManager.jsm",
+    "moz-src:///toolkit/components/extensions/ExtensionPreferencesManager.jsm",
 });
 
 XPCOMUtils.defineLazyServiceGetter(

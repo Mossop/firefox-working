@@ -7,7 +7,7 @@
 // Test that the Shutdown Terminator records durations correctly
 
 const { setTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 
 var PATH;

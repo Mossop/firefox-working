@@ -19,7 +19,7 @@
 const kDeleteTempFileOnExit = "browser.helperApps.deleteTempFileOnExit";
 
 ChromeUtils.defineESModuleGetters(this, {
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
 });
 
 /* global OS */

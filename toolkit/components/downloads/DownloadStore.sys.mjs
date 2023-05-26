@@ -30,12 +30,12 @@
 // get removed (5 minutes).
 const MAX_INSECURE_DOWNLOAD_AGE_MS = 5 * 60 * 1000;
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  Downloads: "resource://gre/modules/Downloads.sys.mjs",
+  Downloads: "moz-src:///toolkit/components/downloads/Downloads.sys.mjs",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "gTextDecoder", function() {

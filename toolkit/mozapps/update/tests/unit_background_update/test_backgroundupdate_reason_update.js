@@ -7,7 +7,7 @@
 "use strict";
 
 const { BackgroundUpdate } = ChromeUtils.importESModule(
-  "resource://gre/modules/BackgroundUpdate.sys.mjs"
+  "moz-src:///toolkit/mozapps/update/BackgroundUpdate.sys.mjs"
 );
 let reasons = () => BackgroundUpdate._reasonsToNotUpdateInstallation();
 let REASON = BackgroundUpdate.REASON;
@@ -15,7 +15,7 @@ const { EnterprisePolicyTesting } = ChromeUtils.importESModule(
   "resource://testing-common/EnterprisePolicyTesting.sys.mjs"
 );
 const { UpdateService } = ChromeUtils.importESModule(
-  "resource://gre/modules/UpdateService.sys.mjs"
+  "moz-src:///toolkit/mozapps/update/UpdateService.sys.mjs"
 );
 
 const { sinon } = ChromeUtils.importESModule(

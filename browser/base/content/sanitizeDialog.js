@@ -6,7 +6,7 @@
 /* import-globals-from /toolkit/content/preferencesBindings.js */
 
 var { Sanitizer } = ChromeUtils.importESModule(
-  "resource:///modules/Sanitizer.sys.mjs"
+  "moz-src:///browser/modules/Sanitizer.sys.mjs"
 );
 
 Preferences.addAll([

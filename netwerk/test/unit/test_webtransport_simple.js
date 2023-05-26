@@ -10,7 +10,7 @@ var h3Port;
 var host;
 
 var { setTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 
 registerCleanupFunction(async () => {

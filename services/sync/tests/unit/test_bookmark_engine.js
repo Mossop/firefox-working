@@ -2,10 +2,10 @@
    http://creativecommons.org/publicdomain/zero/1.0/ */
 
 const { BookmarkHTMLUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/BookmarkHTMLUtils.sys.mjs"
+  "moz-src:///toolkit/components/places/BookmarkHTMLUtils.sys.mjs"
 );
 const { BookmarkJSONUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/BookmarkJSONUtils.sys.mjs"
+  "moz-src:///toolkit/components/places/BookmarkJSONUtils.sys.mjs"
 );
 const {
   Bookmark,

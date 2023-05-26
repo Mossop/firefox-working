@@ -5,7 +5,7 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  EventEmitter: "resource://gre/modules/EventEmitter.sys.mjs",
+  EventEmitter: "moz-src:///toolkit/modules/EventEmitter.sys.mjs",
 
   EventPromise: "chrome://remote/content/shared/Sync.sys.mjs",
 });

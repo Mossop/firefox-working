@@ -24,7 +24,7 @@ add_task(async function() {
   setupTest();
 
   let { DistributionCustomizer } = ChromeUtils.import(
-    "resource:///modules/distribution.js"
+    "moz-src:///browser/components/distribution.js"
   );
   let distribution = new DistributionCustomizer();
 

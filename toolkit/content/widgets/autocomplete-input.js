@@ -11,7 +11,7 @@
     "resource://gre/modules/AppConstants.sys.mjs"
   );
   const { XPCOMUtils } = ChromeUtils.importESModule(
-    "resource://gre/modules/XPCOMUtils.sys.mjs"
+    "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
   );
 
   class AutocompleteInput extends HTMLInputElement {
@@ -22,7 +22,7 @@
 
       ChromeUtils.defineESModuleGetters(this, {
         PrivateBrowsingUtils:
-          "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+          "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
       });
 
       XPCOMUtils.defineLazyPreferenceGetter(

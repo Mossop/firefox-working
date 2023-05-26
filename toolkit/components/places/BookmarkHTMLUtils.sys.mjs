@@ -56,14 +56,14 @@
  * both require the content (= title) before actually creating it.
  */
 
-const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
-import { FileUtils } from "resource://gre/modules/FileUtils.sys.mjs";
-import { PlacesUtils } from "resource://gre/modules/PlacesUtils.sys.mjs";
+const { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
+import { FileUtils } from "moz-src:///toolkit/modules/FileUtils.sys.mjs";
+import { PlacesUtils } from "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  PlacesBackups: "resource://gre/modules/PlacesBackups.sys.mjs",
+  PlacesBackups: "moz-src:///toolkit/components/places/PlacesBackups.sys.mjs",
 });
 
 const Container_Normal = 0;

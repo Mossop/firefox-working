@@ -8,24 +8,24 @@ var { DelayedInit } = ChromeUtils.import(
   "resource://gre/modules/DelayedInit.jsm"
 );
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  E10SUtils: "resource://gre/modules/E10SUtils.sys.mjs",
+  E10SUtils: "moz-src:///toolkit/modules/E10SUtils.sys.mjs",
   EventDispatcher: "resource://gre/modules/Messaging.sys.mjs",
   GeckoViewActorManager: "resource://gre/modules/GeckoViewActorManager.sys.mjs",
   GeckoViewSettings: "resource://gre/modules/GeckoViewSettings.sys.mjs",
   GeckoViewUtils: "resource://gre/modules/GeckoViewUtils.sys.mjs",
   RemoteSecuritySettings:
-    "resource://gre/modules/psm/RemoteSecuritySettings.sys.mjs",
+    "moz-src:///security/manager/ssl/RemoteSecuritySettings.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  Blocklist: "resource://gre/modules/Blocklist.jsm",
+  Blocklist: "moz-src:///toolkit/mozapps/extensions/Blocklist.jsm",
   HistogramStopwatch: "resource://gre/modules/GeckoViewTelemetry.jsm",
   InitializationTracker: "resource://gre/modules/GeckoViewTelemetry.jsm",
-  SafeBrowsing: "resource://gre/modules/SafeBrowsing.jsm",
+  SafeBrowsing: "moz-src:///toolkit/components/url-classifier/SafeBrowsing.jsm",
 });
 
 XPCOMUtils.defineLazyGetter(this, "WindowEventDispatcher", () =>

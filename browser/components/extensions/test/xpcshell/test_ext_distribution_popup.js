@@ -6,12 +6,12 @@
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionSettingsStore",
-  "resource://gre/modules/ExtensionSettingsStore.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionSettingsStore.jsm"
 );
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionControlledPopup",
-  "resource:///modules/ExtensionControlledPopup.jsm"
+  "moz-src:///browser/components/extensions/ExtensionControlledPopup.jsm"
 );
 
 /*

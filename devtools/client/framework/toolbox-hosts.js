@@ -15,7 +15,7 @@ loader.lazyRequireGetter(
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
 /* A host should always allow this much space for the page to be displayed.

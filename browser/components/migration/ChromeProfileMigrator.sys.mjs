@@ -10,22 +10,22 @@ const AUTH_TYPE = {
   SCHEME_DIGEST: 2,
 };
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { MigrationUtils } from "resource:///modules/MigrationUtils.sys.mjs";
-import { MigratorBase } from "resource:///modules/MigratorBase.sys.mjs";
+import { MigrationUtils } from "moz-src:///browser/components/migration/MigrationUtils.sys.mjs";
+import { MigratorBase } from "moz-src:///browser/components/migration/MigratorBase.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  ChromeMigrationUtils: "resource:///modules/ChromeMigrationUtils.sys.mjs",
-  FormHistory: "resource://gre/modules/FormHistory.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
+  ChromeMigrationUtils: "moz-src:///browser/components/migration/ChromeMigrationUtils.sys.mjs",
+  FormHistory: "moz-src:///toolkit/components/satchel/FormHistory.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
   Qihoo360seMigrationUtils: "resource:///modules/360seMigrationUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  NetUtil: "resource://gre/modules/NetUtil.jsm",
+  NetUtil: "moz-src:///netwerk/base/NetUtil.jsm",
 });
 
 /**
@@ -284,7 +284,7 @@ export class ChromeProfileMigrator extends MigratorBase {
             crypto = new ChromeWindowsLoginCrypto(_chromeUserDataPathSuffix);
           } else if (AppConstants.platform == "macosx") {
             let { ChromeMacOSLoginCrypto } = ChromeUtils.importESModule(
-              "resource:///modules/ChromeMacOSLoginCrypto.sys.mjs"
+              "moz-src:///browser/components/migration/ChromeMacOSLoginCrypto.sys.mjs"
             );
             crypto = new ChromeMacOSLoginCrypto(
               _keychainServiceName,

@@ -5,12 +5,12 @@
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  ReaderMode: "resource://gre/modules/ReaderMode.sys.mjs",
-  Region: "resource://gre/modules/Region.sys.mjs",
+  ReaderMode: "moz-src:///toolkit/components/reader/ReaderMode.sys.mjs",
+  Region: "moz-src:///toolkit/modules/Region.sys.mjs",
 });
 
 XPCOMUtils.defineLazyPreferenceGetter(
@@ -112,7 +112,7 @@ export var BrowserUtils = {
   },
 
   isFindbarVisible(docShell) {
-    const FINDER_SYS_MJS = "resource://gre/modules/Finder.sys.mjs";
+    const FINDER_SYS_MJS = "moz-src:///toolkit/modules/Finder.sys.mjs";
     return (
       Cu.isESModuleLoaded(FINDER_SYS_MJS) &&
       ChromeUtils.importESModule(FINDER_SYS_MJS).Finder.isFindbarVisible(

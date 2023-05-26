@@ -2,8 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { E10SUtils } from "resource://gre/modules/E10SUtils.sys.mjs";
-import { HiddenFrame } from "resource://gre/modules/HiddenFrame.sys.mjs";
+import { E10SUtils } from "moz-src:///toolkit/modules/E10SUtils.sys.mjs";
+import { HiddenFrame } from "moz-src:///toolkit/modules/HiddenFrame.sys.mjs";
 
 // Refrences to the progress listeners to keep them from being gc'ed
 // before they are called.
@@ -17,10 +17,10 @@ export class ScreenshotParent extends JSWindowActorParent {
 
 ChromeUtils.registerWindowActor("Screenshot", {
   parent: {
-    esModuleURI: "resource:///modules/HeadlessShell.sys.mjs",
+    esModuleURI: "moz-src:///browser/components/shell/HeadlessShell.sys.mjs",
   },
   child: {
-    esModuleURI: "resource:///modules/ScreenshotChild.sys.mjs",
+    esModuleURI: "moz-src:///browser/components/shell/ScreenshotChild.sys.mjs",
   },
 });
 

@@ -17,7 +17,7 @@ AddonManager.addExternalExtensionLoader({
     // addon manager is restarted.  Work around that by just importing
     // it every time we need to create an AddonInternal.
     const { AddonInternal } = ChromeUtils.import(
-      "resource://gre/modules/addons/XPIDatabase.jsm"
+      "moz-src:///toolkit/mozapps/extensions/internal/XPIDatabase.jsm"
     );
     let addon = new AddonInternal();
     let manifest = JSON.parse(await pkg.readString(MANIFEST));

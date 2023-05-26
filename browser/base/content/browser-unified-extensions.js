@@ -9,7 +9,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "OriginControls",
-  "resource://gre/modules/ExtensionPermissions.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm"
 );
 
 /**

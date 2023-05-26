@@ -5,32 +5,32 @@
 "use strict";
 
 var { ExtensionPreferencesManager } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionPreferencesManager.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPreferencesManager.jsm"
 );
 var { ExtensionParent } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionPermissions",
-  "resource://gre/modules/ExtensionPermissions.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm"
 );
 
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionSettingsStore",
-  "resource://gre/modules/ExtensionSettingsStore.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionSettingsStore.jsm"
 );
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionControlledPopup",
-  "resource:///modules/ExtensionControlledPopup.jsm"
+  "moz-src:///browser/components/extensions/ExtensionControlledPopup.jsm"
 );
 ChromeUtils.defineModuleGetter(
   this,
   "HomePage",
-  "resource:///modules/HomePage.jsm"
+  "moz-src:///browser/modules/HomePage.jsm"
 );
 
 const DEFAULT_SEARCH_STORE_TYPE = "default_search";

@@ -22,23 +22,23 @@
  *    await triggerSync(username, password, "https://accounts.stage.mozaws.net");
  *
  */
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  FxAccountsClient: "resource://gre/modules/FxAccountsClient.sys.mjs",
-  FxAccountsConfig: "resource://gre/modules/FxAccountsConfig.sys.mjs",
-  Log: "resource://gre/modules/Log.sys.mjs",
+  FxAccountsClient: "moz-src:///services/fxaccounts/FxAccountsClient.sys.mjs",
+  FxAccountsConfig: "moz-src:///services/fxaccounts/FxAccountsConfig.sys.mjs",
+  Log: "moz-src:///toolkit/modules/Log.sys.mjs",
   Svc: "resource://services-sync/util.sys.mjs",
   Weave: "resource://services-sync/main.sys.mjs",
-  clearTimeout: "resource://gre/modules/Timer.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  clearTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "fxAccounts", () => {
   return ChromeUtils.importESModule(
-    "resource://gre/modules/FxAccounts.sys.mjs"
+    "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
   ).getFxAccountsSingleton();
 });
 

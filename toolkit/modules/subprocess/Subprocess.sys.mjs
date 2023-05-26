@@ -11,7 +11,7 @@
  */
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { SubprocessConstants } from "resource://gre/modules/subprocess/subprocess_common.sys.mjs";
+import { SubprocessConstants } from "moz-src:///toolkit/modules/subprocess/subprocess_common.sys.mjs";
 
 const lazy = {};
 
@@ -24,7 +24,7 @@ if (AppConstants.platform == "win") {
   // in the "win" block above.
   // eslint-disable-next-line mozilla/valid-lazy
   ChromeUtils.defineESModuleGetters(lazy, {
-    SubprocessImpl: "resource://gre/modules/subprocess/subprocess_unix.sys.mjs",
+    SubprocessImpl: "moz-src:///toolkit/modules/subprocess/subprocess_unix.sys.mjs",
   });
 }
 

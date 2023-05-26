@@ -5,7 +5,7 @@
 "use strict";
 
 const { LoginManagerContextMenu } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginManagerContextMenu.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginManagerContextMenu.sys.mjs"
 );
 
 const dateAndTimeFormatter = new Services.intl.DateTimeFormat(undefined, {

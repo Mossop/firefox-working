@@ -3,7 +3,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
@@ -15,7 +15,7 @@ XPCOMUtils.defineLazyGetter(lazy, "MigrationUtils", () => {
 
   try {
     let { MigrationUtils } = ChromeUtils.importESModule(
-      "resource:///modules/MigrationUtils.sys.mjs"
+      "moz-src:///browser/components/migration/MigrationUtils.sys.mjs"
     );
     return MigrationUtils;
   } catch (e) {

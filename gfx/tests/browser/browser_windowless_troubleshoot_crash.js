@@ -40,7 +40,7 @@ add_task(async function test_windowlessBrowserTroubleshootCrash() {
   ok(true, "not crashed");
 
   var { Troubleshoot } = ChromeUtils.importESModule(
-    "resource://gre/modules/Troubleshoot.sys.mjs"
+    "moz-src:///toolkit/modules/Troubleshoot.sys.mjs"
   );
   var data = await Troubleshoot.snapshot();
 

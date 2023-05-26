@@ -3,15 +3,15 @@
  */
 
 XPCOMUtils.defineLazyGetter(this, "FxAccountsCommon", function() {
-  return ChromeUtils.import("resource://gre/modules/FxAccountsCommon.js");
+  return ChromeUtils.import("moz-src:///services/fxaccounts/FxAccountsCommon.js");
 });
 
 ChromeUtils.defineESModuleGetters(this, {
-  WebChannel: "resource://gre/modules/WebChannel.sys.mjs",
+  WebChannel: "moz-src:///toolkit/modules/WebChannel.sys.mjs",
 });
 
 var { FxAccountsWebChannel } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccountsWebChannel.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccountsWebChannel.sys.mjs"
 );
 
 // eslint-disable-next-line @microsoft/sdl/no-insecure-url

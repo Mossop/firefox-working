@@ -11,7 +11,7 @@ Services.prefs.setBoolPref(
 );
 
 const { PlacesDBUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PlacesDBUtils.sys.mjs"
+  "moz-src:///toolkit/components/places/PlacesDBUtils.sys.mjs"
 );
 
 const histograms = {

@@ -3,21 +3,21 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  HiddenFrame: "resource://gre/modules/HiddenFrame.sys.mjs",
+  HiddenFrame: "moz-src:///toolkit/modules/HiddenFrame.sys.mjs",
   PerTestCoverageUtils:
     "resource://testing-common/PerTestCoverageUtils.sys.mjs",
   SpecialPowersSandbox: "resource://specialpowers/SpecialPowersSandbox.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  ExtensionData: "resource://gre/modules/Extension.jsm",
+  ExtensionData: "moz-src:///toolkit/components/extensions/Extension.jsm",
   ExtensionTestCommon: "resource://testing-common/ExtensionTestCommon.jsm",
-  ServiceWorkerCleanUp: "resource://gre/modules/ServiceWorkerCleanUp.jsm",
+  ServiceWorkerCleanUp: "moz-src:///toolkit/components/cleardata/ServiceWorkerCleanUp.jsm",
 });
 
 class SpecialPowersError extends Error {
@@ -63,7 +63,7 @@ async function createWindowlessBrowser({ isPrivate = false } = {}) {
     promiseEvent,
     promiseObserved,
   } = ChromeUtils.import(
-    "resource://gre/modules/ExtensionUtils.jsm"
+    "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
   ).ExtensionUtils;
 
   let windowlessBrowser = Services.appShell.createWindowlessBrowser(true);

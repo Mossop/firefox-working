@@ -7,7 +7,7 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  ExtensionDNRLimits: "resource://gre/modules/ExtensionDNRLimits.sys.mjs",
+  ExtensionDNRLimits: "moz-src:///toolkit/components/extensions/ExtensionDNRLimits.sys.mjs",
 });
 
 this.declarativeNetRequest = class extends ExtensionAPI {

@@ -9,8 +9,8 @@
 
 ChromeUtils.defineESModuleGetters(this, {
   CONTEXTUAL_SERVICES_PING_TYPES:
-    "resource:///modules/PartnerLinkAttribution.sys.mjs",
-  UrlbarView: "resource:///modules/UrlbarView.sys.mjs",
+    "moz-src:///browser/modules/PartnerLinkAttribution.sys.mjs",
+  UrlbarView: "moz-src:///browser/components/urlbar/UrlbarView.sys.mjs",
   sinon: "resource://testing-common/Sinon.sys.mjs",
 });
 

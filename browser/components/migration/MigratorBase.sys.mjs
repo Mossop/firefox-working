@@ -11,12 +11,12 @@ const TOPIC_PLACES_DEFAULTS_FINISHED = "places-browser-init-complete";
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  BookmarkHTMLUtils: "resource://gre/modules/BookmarkHTMLUtils.sys.mjs",
-  FirefoxProfileMigrator: "resource:///modules/FirefoxProfileMigrator.sys.mjs",
-  MigrationUtils: "resource:///modules/MigrationUtils.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
-  PromiseUtils: "resource://gre/modules/PromiseUtils.sys.mjs",
-  ResponsivenessMonitor: "resource://gre/modules/ResponsivenessMonitor.sys.mjs",
+  BookmarkHTMLUtils: "moz-src:///toolkit/components/places/BookmarkHTMLUtils.sys.mjs",
+  FirefoxProfileMigrator: "moz-src:///browser/components/migration/FirefoxProfileMigrator.sys.mjs",
+  MigrationUtils: "moz-src:///browser/components/migration/MigrationUtils.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
+  PromiseUtils: "moz-src:///toolkit/modules/PromiseUtils.sys.mjs",
+  ResponsivenessMonitor: "moz-src:///toolkit/modules/ResponsivenessMonitor.sys.mjs",
 });
 
 /**

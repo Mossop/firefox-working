@@ -4,7 +4,7 @@
 "use strict";
 
 let { macOSPoliciesParser } = ChromeUtils.importESModule(
-  "resource://gre/modules/policies/macOSPoliciesParser.sys.mjs"
+  "moz-src:///toolkit/components/enterprisepolicies/macOSPoliciesParser.sys.mjs"
 );
 
 add_task(async function test_object_unflatten() {

@@ -4,7 +4,7 @@
 /* eslint-disable mozilla/no-arbitrary-setTimeout */
 
 const { setTimeout } = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 
 function getProfileFile(name) {

@@ -1,13 +1,13 @@
 var { NewTabUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/NewTabUtils.sys.mjs"
+  "moz-src:///toolkit/modules/NewTabUtils.sys.mjs"
 );
 Cu.importGlobalProperties(["btoa"]);
 
 ChromeUtils.defineESModuleGetters(this, {
   PlacesTestUtils: "resource://testing-common/PlacesTestUtils.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
-  PromiseUtils: "resource://gre/modules/PromiseUtils.sys.mjs",
-  Sqlite: "resource://gre/modules/Sqlite.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
+  PromiseUtils: "moz-src:///toolkit/modules/PromiseUtils.sys.mjs",
+  Sqlite: "moz-src:///toolkit/modules/Sqlite.sys.mjs",
 });
 
 const PREF_NEWTAB_ENHANCED = "browser.newtabpage.enhanced";

@@ -5,7 +5,7 @@
 /* import-globals-from pageInfo.js */
 
 const { SitePermissions } = ChromeUtils.import(
-  "resource:///modules/SitePermissions.jsm"
+  "moz-src:///browser/modules/SitePermissions.jsm"
 );
 
 var gPermPrincipal;

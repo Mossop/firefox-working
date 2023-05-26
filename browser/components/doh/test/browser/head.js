@@ -1,11 +1,11 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  DoHConfigController: "resource:///modules/DoHConfig.sys.mjs",
-  DoHController: "resource:///modules/DoHController.sys.mjs",
+  DoHConfigController: "moz-src:///browser/components/doh/DoHConfig.sys.mjs",
+  DoHController: "moz-src:///browser/components/doh/DoHController.sys.mjs",
   DoHTestUtils: "resource://testing-common/DoHTestUtils.sys.mjs",
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
-  Region: "resource://gre/modules/Region.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
+  Region: "moz-src:///toolkit/modules/Region.sys.mjs",
   RegionTestUtils: "resource://testing-common/RegionTestUtils.sys.mjs",
   RemoteSettings: "resource://services-settings/remote-settings.sys.mjs",
 });

@@ -3,7 +3,7 @@
 /* exported createHttpServer, promiseConsoleOutput, assertPersistentListeners  */
 
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
@@ -11,17 +11,17 @@ const { AppConstants } = ChromeUtils.importESModule(
 
 // eslint-disable-next-line no-unused-vars
 ChromeUtils.defineESModuleGetters(this, {
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
   TestUtils: "resource://testing-common/TestUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  Extension: "resource://gre/modules/Extension.jsm",
-  ExtensionData: "resource://gre/modules/Extension.jsm",
+  Extension: "moz-src:///toolkit/components/extensions/Extension.jsm",
+  ExtensionData: "moz-src:///toolkit/components/extensions/Extension.jsm",
   ExtensionTestUtils: "resource://testing-common/ExtensionXPCShellUtils.jsm",
   HttpServer: "resource://testing-common/httpd.js",
-  NetUtil: "resource://gre/modules/NetUtil.jsm",
-  Schemas: "resource://gre/modules/Schemas.jsm",
+  NetUtil: "moz-src:///netwerk/base/NetUtil.jsm",
+  Schemas: "moz-src:///toolkit/components/extensions/Schemas.jsm",
 });
 
 ExtensionTestUtils.init(this);

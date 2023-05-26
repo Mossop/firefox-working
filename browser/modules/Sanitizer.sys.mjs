@@ -9,10 +9,10 @@ const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   ContextualIdentityService:
-    "resource://gre/modules/ContextualIdentityService.sys.mjs",
-  FormHistory: "resource://gre/modules/FormHistory.sys.mjs",
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
-  PrincipalsCollector: "resource://gre/modules/PrincipalsCollector.sys.mjs",
+    "moz-src:///toolkit/components/contextualidentity/ContextualIdentityService.sys.mjs",
+  FormHistory: "moz-src:///toolkit/components/satchel/FormHistory.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
+  PrincipalsCollector: "moz-src:///toolkit/components/cleardata/PrincipalsCollector.sys.mjs",
 });
 
 var logConsole;

@@ -90,7 +90,7 @@ ExtensionAPIRequestForwarder::APIRequestHandler() {
 
   if (MOZ_UNLIKELY(!sAPIRequestHandler)) {
     sAPIRequestHandler =
-        do_ImportModule("resource://gre/modules/ExtensionProcessScript.jsm",
+        do_ImportModule("moz-src:///toolkit/components/extensions/ExtensionProcessScript.jsm",
                         "ExtensionAPIRequestHandler");
     MOZ_RELEASE_ASSERT(sAPIRequestHandler);
     ClearOnShutdown(&sAPIRequestHandler);

@@ -3,18 +3,18 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 const { FxAccounts } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccounts.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccounts.sys.mjs"
 );
 const { Weave } = ChromeUtils.importESModule(
   "resource://services-sync/main.sys.mjs"
 );
 
 ChromeUtils.defineESModuleGetters(this, {
-  EventEmitter: "resource://gre/modules/EventEmitter.sys.mjs",
-  FxAccountsPairingFlow: "resource://gre/modules/FxAccountsPairing.sys.mjs",
+  EventEmitter: "moz-src:///toolkit/modules/EventEmitter.sys.mjs",
+  FxAccountsPairingFlow: "moz-src:///services/fxaccounts/FxAccountsPairing.sys.mjs",
 });
 
 const { require } = ChromeUtils.importESModule(

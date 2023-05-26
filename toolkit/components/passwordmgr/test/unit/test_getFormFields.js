@@ -5,11 +5,11 @@
 "use strict";
 
 const { LoginFormFactory } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginFormFactory.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginFormFactory.sys.mjs"
 );
 
 const { LoginManagerChild } = ChromeUtils.importESModule(
-  "resource://gre/modules/LoginManagerChild.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginManagerChild.sys.mjs"
 );
 
 const TESTENVIRONMENTS = {

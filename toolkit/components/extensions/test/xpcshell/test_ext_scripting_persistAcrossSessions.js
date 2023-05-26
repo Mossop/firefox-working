@@ -12,7 +12,7 @@ AddonTestUtils.createAppInfo(
 );
 
 const { ExtensionScriptingStore } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionScriptingStore.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionScriptingStore.jsm"
 );
 const { TestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/TestUtils.sys.mjs"

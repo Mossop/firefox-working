@@ -11,7 +11,7 @@ function mockServicesChromeScript() {
   const ALERTS_SERVICE_CONTRACT_ID = "@mozilla.org/alerts-service;1";
 
   const { setTimeout } = ChromeUtils.importESModule(
-    "resource://gre/modules/Timer.sys.mjs"
+    "moz-src:///toolkit/modules/Timer.sys.mjs"
   );
   const registrar = Components.manager.QueryInterface(Ci.nsIComponentRegistrar);
 

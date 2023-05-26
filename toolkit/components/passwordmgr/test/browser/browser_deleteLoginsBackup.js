@@ -3,8 +3,8 @@
  */
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  FXA_PWDMGR_HOST: "resource://gre/modules/FxAccountsCommon.js",
-  FXA_PWDMGR_REALM: "resource://gre/modules/FxAccountsCommon.js",
+  FXA_PWDMGR_HOST: "moz-src:///services/fxaccounts/FxAccountsCommon.js",
+  FXA_PWDMGR_REALM: "moz-src:///services/fxaccounts/FxAccountsCommon.js",
 });
 
 const nsLoginInfo = new Components.Constructor(

@@ -5,9 +5,9 @@
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  EventEmitter: "resource://gre/modules/EventEmitter.sys.mjs",
+  EventEmitter: "moz-src:///toolkit/modules/EventEmitter.sys.mjs",
   RemoteSettings: "resource://services-settings/remote-settings.sys.mjs",
-  UrlbarUtils: "resource:///modules/UrlbarUtils.sys.mjs",
+  UrlbarUtils: "moz-src:///browser/components/urlbar/UrlbarUtils.sys.mjs",
 });
 
 const RS_COLLECTION = "quicksuggest";

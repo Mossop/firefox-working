@@ -11,7 +11,7 @@ function debug(aStr) {
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  DateTimePickerPanel: "resource://gre/modules/DateTimePickerPanel.sys.mjs",
+  DateTimePickerPanel: "moz-src:///toolkit/modules/DateTimePickerPanel.sys.mjs",
 });
 
 /*

@@ -6,7 +6,7 @@ const {
 } = ChromeUtils.importESModule("resource://nimbus/ExperimentAPI.sys.mjs");
 
 const { JsonSchema } = ChromeUtils.importESModule(
-  "resource://gre/modules/JsonSchema.sys.mjs"
+  "moz-src:///toolkit/modules/JsonSchema.sys.mjs"
 );
 
 Cu.importGlobalProperties(["fetch"]);

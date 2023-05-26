@@ -2,19 +2,19 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
   PreferenceFilters:
-    "resource://gre/modules/components-utils/PreferenceFilters.sys.mjs",
-  Sampling: "resource://gre/modules/components-utils/Sampling.sys.mjs",
+    "moz-src:///toolkit/components/utils/PreferenceFilters.sys.mjs",
+  Sampling: "moz-src:///toolkit/components/utils/Sampling.sys.mjs",
 });
 ChromeUtils.defineModuleGetter(
   lazy,
   "mozjexl",
-  "resource://gre/modules/components-utils/mozjexl.js"
+  "moz-src:///toolkit/components/utils/mozjexl.js"
 );
 
 XPCOMUtils.defineLazyGetter(lazy, "jexl", () => {

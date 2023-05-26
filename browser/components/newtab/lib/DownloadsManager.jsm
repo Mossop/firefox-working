@@ -9,10 +9,10 @@ const { actionTypes: at } = ChromeUtils.importESModule(
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  DownloadsCommon: "resource:///modules/DownloadsCommon.sys.mjs",
-  DownloadsViewUI: "resource:///modules/DownloadsViewUI.sys.mjs",
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
-  NewTabUtils: "resource://gre/modules/NewTabUtils.sys.mjs",
+  DownloadsCommon: "moz-src:///browser/components/downloads/DownloadsCommon.sys.mjs",
+  DownloadsViewUI: "moz-src:///browser/components/downloads/DownloadsViewUI.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
+  NewTabUtils: "moz-src:///toolkit/modules/NewTabUtils.sys.mjs",
 });
 
 const DOWNLOAD_CHANGED_DELAY_TIME = 1000; // time in ms to delay timer for downloads changed events

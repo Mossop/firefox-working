@@ -6,10 +6,10 @@
 // Tests for the FxA storage manager.
 
 const { FxAccountsStorageManager } = ChromeUtils.importESModule(
-  "resource://gre/modules/FxAccountsStorage.sys.mjs"
+  "moz-src:///services/fxaccounts/FxAccountsStorage.sys.mjs"
 );
 const { DATA_FORMAT_VERSION, log } = ChromeUtils.import(
-  "resource://gre/modules/FxAccountsCommon.js"
+  "moz-src:///services/fxaccounts/FxAccountsCommon.js"
 );
 
 initTestLogging("Trace");

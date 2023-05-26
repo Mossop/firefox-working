@@ -7,7 +7,7 @@ const { GeckoViewActorChild } = ChromeUtils.importESModule(
 );
 
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 // This needs to match ScreenLength.java
@@ -27,9 +27,9 @@ const SCREEN_ORIENTATION_LANDSCAPE = 1;
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  PrivacyFilter: "resource://gre/modules/sessionstore/PrivacyFilter.sys.mjs",
-  SessionHistory: "resource://gre/modules/sessionstore/SessionHistory.sys.mjs",
-  Utils: "resource://gre/modules/sessionstore/Utils.sys.mjs",
+  PrivacyFilter: "moz-src:///toolkit/modules/sessionstore/PrivacyFilter.sys.mjs",
+  SessionHistory: "moz-src:///toolkit/modules/sessionstore/SessionHistory.sys.mjs",
+  Utils: "moz-src:///toolkit/modules/sessionstore/Utils.sys.mjs",
 });
 
 var EXPORTED_SYMBOLS = ["GeckoViewContentChild"];

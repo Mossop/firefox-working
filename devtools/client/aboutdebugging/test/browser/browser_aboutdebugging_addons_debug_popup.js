@@ -210,7 +210,7 @@ async function installTestAddon(doc) {
  */
 async function waitForExtension(addonName) {
   const { Management } = ChromeUtils.import(
-    "resource://gre/modules/Extension.jsm"
+    "moz-src:///toolkit/components/extensions/Extension.jsm"
   );
 
   return new Promise(resolve => {

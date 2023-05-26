@@ -31,7 +31,7 @@ loader.lazyGetter(this, "indexedDBForStorage", () => {
 });
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  Sqlite: "resource://gre/modules/Sqlite.sys.mjs",
+  Sqlite: "moz-src:///toolkit/modules/Sqlite.sys.mjs",
 });
 
 /**

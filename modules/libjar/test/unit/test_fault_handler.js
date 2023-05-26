@@ -24,7 +24,7 @@ function wrapInputStream(input) {
 }
 
 const { Subprocess } = ChromeUtils.importESModule(
-  "resource://gre/modules/Subprocess.sys.mjs"
+  "moz-src:///toolkit/modules/subprocess/Subprocess.sys.mjs"
 );
 
 const XPI_NAME = "testjar.xpi";

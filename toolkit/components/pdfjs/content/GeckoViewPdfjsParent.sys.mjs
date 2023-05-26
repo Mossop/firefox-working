@@ -17,7 +17,7 @@ import { GeckoViewActorParent } from "resource://gre/modules/GeckoViewActorParen
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
 class FindHandler {

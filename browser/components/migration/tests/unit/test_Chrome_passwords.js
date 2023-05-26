@@ -213,7 +213,7 @@ add_task(async function setup() {
   };
   if (AppConstants.platform == "macosx") {
     const { ChromeMacOSLoginCrypto } = ChromeUtils.importESModule(
-      "resource:///modules/ChromeMacOSLoginCrypto.sys.mjs"
+      "moz-src:///browser/components/migration/ChromeMacOSLoginCrypto.sys.mjs"
     );
     loginCrypto = new ChromeMacOSLoginCrypto(
       mockMacOSKeychain.serviceName,

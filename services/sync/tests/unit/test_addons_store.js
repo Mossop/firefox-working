@@ -4,7 +4,7 @@
 "use strict";
 
 const { Preferences } = ChromeUtils.importESModule(
-  "resource://gre/modules/Preferences.sys.mjs"
+  "moz-src:///toolkit/modules/Preferences.sys.mjs"
 );
 const { AddonsEngine } = ChromeUtils.importESModule(
   "resource://services-sync/engines/addons.sys.mjs"
@@ -13,7 +13,7 @@ const { Service } = ChromeUtils.importESModule(
   "resource://services-sync/service.sys.mjs"
 );
 const { FileUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/FileUtils.sys.mjs"
+  "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 );
 const { SyncedRecordsTelemetry } = ChromeUtils.importESModule(
   "resource://services-sync/telemetry.sys.mjs"

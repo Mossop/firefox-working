@@ -12,10 +12,10 @@
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  AsyncPrefs: "resource://gre/modules/AsyncPrefs.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  AsyncPrefs: "moz-src:///toolkit/modules/AsyncPrefs.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
   RemotePageAccessManager:
-    "resource://gre/modules/RemotePageAccessManager.sys.mjs",
+    "moz-src:///toolkit/modules/RemotePageAccessManager.sys.mjs",
 });
 
 export class RemotePageChild extends JSWindowActorChild {

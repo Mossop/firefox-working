@@ -43,7 +43,7 @@ function getClipboardCacheFDCount() {
     // file is actually removed when the handle is closed.
 
     let { FileUtils } = ChromeUtils.importESModule(
-      "resource://gre/modules/FileUtils.sys.mjs"
+      "moz-src:///toolkit/modules/FileUtils.sys.mjs"
     );
     // Path from nsAnonymousTemporaryFile.cpp, GetTempDir.
     dir = FileUtils.getFile("TmpD", ["mozilla-temp-files"]);

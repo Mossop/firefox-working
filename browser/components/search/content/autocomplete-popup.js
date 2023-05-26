@@ -7,7 +7,7 @@
 // Wrap in a block to prevent leaking to window scope.
 {
   ChromeUtils.defineESModuleGetters(this, {
-    SearchOneOffs: "resource:///modules/SearchOneOffs.sys.mjs",
+    SearchOneOffs: "moz-src:///browser/components/search/SearchOneOffs.sys.mjs",
   });
 
   /**

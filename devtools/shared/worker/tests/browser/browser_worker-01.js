@@ -35,7 +35,7 @@ async function testWorker(context, workerFactory) {
   const blob = new Blob(
     [
       `
-importScripts("resource://gre/modules/workers/require.js");
+importScripts("moz-src:///toolkit/components/workerloader/require.js");
 const { createTask } = require("resource://devtools/shared/worker/helper.js");
 
 createTask(self, "groupByField", function({

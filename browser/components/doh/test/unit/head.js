@@ -4,9 +4,9 @@
 
 "use strict";
 
-const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+const { NetUtil } = ChromeUtils.import("moz-src:///netwerk/base/NetUtil.jsm");
 const { PromiseUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PromiseUtils.sys.mjs"
+  "moz-src:///toolkit/modules/PromiseUtils.sys.mjs"
 );
 
 const { TestUtils } = ChromeUtils.importESModule(
@@ -82,7 +82,7 @@ function setup() {
   );
 
   let TRRPerformance = ChromeUtils.importESModule(
-    "resource:///modules/TRRPerformance.sys.mjs"
+    "moz-src:///browser/components/doh/TRRPerformance.sys.mjs"
   );
 
   DNSLookup = TRRPerformance.DNSLookup;

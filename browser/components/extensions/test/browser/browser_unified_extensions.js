@@ -8,7 +8,7 @@ requestLongerTimeout(2);
 /* import-globals-from ../../../../../toolkit/mozapps/extensions/test/browser/head.js */
 
 const { ExtensionPermissions } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionPermissions.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm"
 );
 
 loadTestSubscript("head_unified_extensions.js");

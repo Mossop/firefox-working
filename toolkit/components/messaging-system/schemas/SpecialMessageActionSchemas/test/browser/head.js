@@ -7,7 +7,7 @@ const { sinon } = ChromeUtils.importESModule(
   "resource://testing-common/Sinon.sys.mjs"
 );
 const { JsonSchema } = ChromeUtils.importESModule(
-  "resource://gre/modules/JsonSchema.sys.mjs"
+  "moz-src:///toolkit/modules/JsonSchema.sys.mjs"
 );
 
 ChromeUtils.defineESModuleGetters(this, {

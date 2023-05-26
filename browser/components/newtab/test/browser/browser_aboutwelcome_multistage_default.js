@@ -511,7 +511,7 @@ add_task(async function test_AWMultistage_Themes() {
 
 add_task(async function test_AWMultistage_can_restore_theme() {
   const { XPIProvider } = ChromeUtils.import(
-    "resource://gre/modules/addons/XPIProvider.jsm"
+    "moz-src:///toolkit/mozapps/extensions/internal/XPIProvider.jsm"
   );
   const sandbox = sinon.createSandbox();
   registerCleanupFunction(() => sandbox.restore());

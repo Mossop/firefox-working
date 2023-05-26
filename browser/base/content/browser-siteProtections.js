@@ -6,7 +6,7 @@
 
 ChromeUtils.defineESModuleGetters(this, {
   ContentBlockingAllowList:
-    "resource://gre/modules/ContentBlockingAllowList.sys.mjs",
+    "moz-src:///toolkit/components/antitracking/ContentBlockingAllowList.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {

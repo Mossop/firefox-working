@@ -8,7 +8,7 @@
 ChromeUtils.defineModuleGetter(
   this,
   "NetUtil",
-  "resource://gre/modules/NetUtil.jsm"
+  "moz-src:///netwerk/base/NetUtil.jsm"
 );
 
 const gAppRep = Cc[

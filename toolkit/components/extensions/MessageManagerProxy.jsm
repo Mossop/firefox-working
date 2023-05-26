@@ -8,7 +8,7 @@
 var EXPORTED_SYMBOLS = ["MessageManagerProxy"];
 
 const { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
 );
 
 const { DefaultMap } = ExtensionUtils;

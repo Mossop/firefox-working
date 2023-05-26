@@ -7,13 +7,13 @@
 "use strict";
 
 var { ExtensionParent } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 
 ChromeUtils.defineModuleGetter(
   this,
   "BroadcastConduit",
-  "resource://gre/modules/ConduitsParent.jsm"
+  "moz-src:///toolkit/components/extensions/ConduitsParent.jsm"
 );
 
 var { watchExtensionProxyContextLoad } = ExtensionParent;

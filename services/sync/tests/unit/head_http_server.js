@@ -5,7 +5,7 @@
 var Cm = Components.manager;
 
 // Shared logging for all HTTP server functions.
-var { Log } = ChromeUtils.importESModule("resource://gre/modules/Log.sys.mjs");
+var { Log } = ChromeUtils.importESModule("moz-src:///toolkit/modules/Log.sys.mjs");
 var { CommonUtils } = ChromeUtils.importESModule(
   "resource://services-common/utils.sys.mjs"
 );

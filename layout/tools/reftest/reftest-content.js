@@ -16,14 +16,14 @@ const IO_SERVICE_CONTRACTID = "@mozilla.org/network/io-service;1"
 const BLANK_URL_FOR_CLEARING = "data:text/html;charset=UTF-8,%3C%21%2D%2DCLEAR%2D%2D%3E";
 
 const { setTimeout, clearTimeout } = ChromeUtils.importESModule(
-    "resource://gre/modules/Timer.sys.mjs"
+    "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 const { onSpellCheck } = ChromeUtils.importESModule(
     "resource://reftest/AsyncSpellCheckTestHelper.sys.mjs"
 );
 
 // This will load chrome Custom Elements inside chrome documents:
-ChromeUtils.importESModule("resource://gre/modules/CustomElementsListener.sys.mjs");
+ChromeUtils.importESModule("moz-src:///toolkit/components/processsingleton/CustomElementsListener.sys.mjs");
 
 var gBrowserIsRemote;
 var gHaveCanvasSnapshot = false;

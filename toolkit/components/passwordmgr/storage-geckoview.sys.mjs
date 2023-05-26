@@ -6,14 +6,14 @@
  * nsILoginManagerStorage implementation for GeckoView
  */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
-import { LoginManagerStorage_json } from "resource://gre/modules/storage-json.sys.mjs";
+import { LoginManagerStorage_json } from "moz-src:///toolkit/components/passwordmgr/storage-json.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  LoginHelper: "resource://gre/modules/LoginHelper.sys.mjs",
+  LoginHelper: "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {

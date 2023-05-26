@@ -127,16 +127,16 @@
  */
 
 import { FormAutofill } from "resource://autofill/FormAutofill.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  CreditCard: "resource://gre/modules/CreditCard.sys.mjs",
+  CreditCard: "moz-src:///toolkit/modules/CreditCard.sys.mjs",
   FormAutofillNameUtils:
-    "resource://gre/modules/shared/FormAutofillNameUtils.sys.mjs",
-  FormAutofillUtils: "resource://gre/modules/shared/FormAutofillUtils.sys.mjs",
-  OSKeyStore: "resource://gre/modules/OSKeyStore.sys.mjs",
+    "moz-src:///toolkit/components/formautofill/shared/FormAutofillNameUtils.sys.mjs",
+  FormAutofillUtils: "moz-src:///toolkit/components/formautofill/shared/FormAutofillUtils.sys.mjs",
+  OSKeyStore: "moz-src:///toolkit/modules/OSKeyStore.sys.mjs",
   PhoneNumber: "resource://autofill/phonenumberutils/PhoneNumber.sys.mjs",
 });
 

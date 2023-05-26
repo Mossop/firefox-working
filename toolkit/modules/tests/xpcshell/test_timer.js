@@ -6,7 +6,7 @@
 // Tests exports from Timer.sys.mjs
 
 var imported = ChromeUtils.importESModule(
-  "resource://gre/modules/Timer.sys.mjs"
+  "moz-src:///toolkit/modules/Timer.sys.mjs"
 );
 
 add_task(async function test_setTimeout() {

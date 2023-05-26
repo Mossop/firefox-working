@@ -12,8 +12,8 @@
 // Globals
 
 ChromeUtils.defineESModuleGetters(this, {
-  DownloadError: "resource://gre/modules/DownloadCore.sys.mjs",
-  DownloadStore: "resource://gre/modules/DownloadStore.sys.mjs",
+  DownloadError: "moz-src:///toolkit/components/downloads/DownloadCore.sys.mjs",
+  DownloadStore: "moz-src:///toolkit/components/downloads/DownloadStore.sys.mjs",
 });
 
 /**

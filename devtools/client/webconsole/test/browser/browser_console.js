@@ -194,7 +194,7 @@ async function testMessages() {
   // Check messages logged in content with Log.sys.mjs
   await SpecialPowers.spawn(gBrowser.selectedBrowser, [], () => {
     const { Log } = ChromeUtils.importESModule(
-      "resource://gre/modules/Log.sys.mjs"
+      "moz-src:///toolkit/modules/Log.sys.mjs"
     );
     const logger = Log.repository.getLogger("TEST_LOGGER_" + Date.now());
     logger.addAppender(new Log.ConsoleAppender(new Log.BasicFormatter()));

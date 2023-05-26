@@ -2,7 +2,7 @@
  * http://creativecommons.org/publicdomain/zero/1.0/ */
 
 const { jsesc } = ChromeUtils.import(
-  "resource://gre/modules/third_party/jsesc/jsesc.js"
+  "moz-src:///toolkit/modules/third_party/jsesc/jsesc.js"
 );
 
 function run_test() {

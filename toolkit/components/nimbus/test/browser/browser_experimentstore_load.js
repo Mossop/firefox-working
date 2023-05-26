@@ -13,7 +13,7 @@ const { ExperimentFeatures } = ChromeUtils.importESModule(
   "resource://nimbus/ExperimentAPI.sys.mjs"
 );
 ChromeUtils.defineESModuleGetters(this, {
-  JSONFile: "resource://gre/modules/JSONFile.sys.mjs",
+  JSONFile: "moz-src:///toolkit/modules/JSONFile.sys.mjs",
 });
 
 function getPath() {

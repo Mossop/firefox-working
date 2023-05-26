@@ -36,8 +36,8 @@ ChromeUtils.defineModuleGetter(
   "resource://activity-stream/lib/LinksCache.jsm"
 );
 ChromeUtils.defineESModuleGetters(lazy, {
-  NewTabUtils: "resource://gre/modules/NewTabUtils.sys.mjs",
-  PageThumbs: "resource://gre/modules/PageThumbs.sys.mjs",
+  NewTabUtils: "moz-src:///toolkit/modules/NewTabUtils.sys.mjs",
+  PageThumbs: "moz-src:///toolkit/components/thumbnails/PageThumbs.sys.mjs",
 });
 ChromeUtils.defineModuleGetter(
   lazy,

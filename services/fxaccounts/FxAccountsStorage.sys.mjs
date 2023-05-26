@@ -10,7 +10,7 @@ const {
   FXA_PWDMGR_REALM,
   FXA_PWDMGR_SECURE_FIELDS,
   log,
-} = ChromeUtils.import("resource://gre/modules/FxAccountsCommon.js");
+} = ChromeUtils.import("moz-src:///services/fxaccounts/FxAccountsCommon.js");
 
 // A helper function so code can check what fields are able to be stored by
 // the storage manager without having a reference to a manager instance.

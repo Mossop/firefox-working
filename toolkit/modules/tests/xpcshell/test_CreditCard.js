@@ -4,7 +4,7 @@
 "use strict";
 
 const { CreditCard } = ChromeUtils.importESModule(
-  "resource://gre/modules/CreditCard.sys.mjs"
+  "moz-src:///toolkit/modules/CreditCard.sys.mjs"
 );
 
 add_task(function isValidNumber() {

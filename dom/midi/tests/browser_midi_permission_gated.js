@@ -728,7 +728,7 @@ function alwaysAcceptAddonPostInstallDialogs() {
   const abortController = new AbortController();
 
   const { AppMenuNotifications } = ChromeUtils.importESModule(
-    "resource://gre/modules/AppMenuNotifications.sys.mjs"
+    "moz-src:///toolkit/modules/AppMenuNotifications.sys.mjs"
   );
   info("Start listening and accept addon post-install notifications");
   PanelUI.notificationPanel.addEventListener(

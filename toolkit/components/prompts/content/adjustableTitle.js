@@ -5,7 +5,7 @@
 "use strict";
 
 let { PromptUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/PromptUtils.sys.mjs"
+  "moz-src:///toolkit/components/prompts/src/PromptUtils.sys.mjs"
 );
 
 const AdjustableTitle = {

@@ -15,10 +15,10 @@ const { updateAppInfo } = ChromeUtils.importESModule(
 updateAppInfo();
 
 const { TaskScheduler } = ChromeUtils.importESModule(
-  "resource://gre/modules/TaskScheduler.sys.mjs"
+  "moz-src:///toolkit/components/taskscheduler/TaskScheduler.sys.mjs"
 );
 const { MacOSImpl } = ChromeUtils.importESModule(
-  "resource://gre/modules/TaskSchedulerMacOSImpl.sys.mjs"
+  "moz-src:///toolkit/components/taskscheduler/TaskSchedulerMacOSImpl.sys.mjs"
 );
 
 function getFirefoxExecutableFilename() {

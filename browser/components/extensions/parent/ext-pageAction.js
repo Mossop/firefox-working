@@ -9,31 +9,31 @@
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionTelemetry",
-  "resource://gre/modules/ExtensionTelemetry.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionTelemetry.jsm"
 );
 ChromeUtils.defineModuleGetter(
   this,
   "PageActions",
-  "resource:///modules/PageActions.jsm"
+  "moz-src:///browser/modules/PageActions.jsm"
 );
 ChromeUtils.defineModuleGetter(
   this,
   "PanelPopup",
-  "resource:///modules/ExtensionPopups.jsm"
+  "moz-src:///browser/components/extensions/ExtensionPopups.jsm"
 );
 ChromeUtils.defineModuleGetter(
   this,
   "BrowserUsageTelemetry",
-  "resource:///modules/BrowserUsageTelemetry.jsm"
+  "moz-src:///browser/modules/BrowserUsageTelemetry.jsm"
 );
 
 var { DefaultWeakMap } = ExtensionUtils;
 
 var { ExtensionParent } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 var { PageActionBase } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionActions.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionActions.jsm"
 );
 
 // WeakMap[Extension -> PageAction]

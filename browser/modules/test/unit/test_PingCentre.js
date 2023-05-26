@@ -5,16 +5,16 @@
 "use strict";
 
 const { PingCentre, PingCentreConstants } = ChromeUtils.import(
-  "resource:///modules/PingCentre.jsm"
+  "moz-src:///browser/modules/PingCentre.jsm"
 );
 const { TelemetryEnvironment } = ChromeUtils.importESModule(
-  "resource://gre/modules/TelemetryEnvironment.sys.mjs"
+  "moz-src:///toolkit/components/telemetry/app/TelemetryEnvironment.sys.mjs"
 );
 const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 const { UpdateUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/UpdateUtils.sys.mjs"
+  "moz-src:///toolkit/modules/UpdateUtils.sys.mjs"
 );
 
 const { sinon } = ChromeUtils.importESModule(

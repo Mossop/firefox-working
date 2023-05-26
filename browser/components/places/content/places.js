@@ -9,14 +9,14 @@
 
 /* Shared Places Import - change other consumers if you change this: */
 var { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 ChromeUtils.defineESModuleGetters(this, {
-  BookmarkJSONUtils: "resource://gre/modules/BookmarkJSONUtils.sys.mjs",
-  MigrationUtils: "resource:///modules/MigrationUtils.sys.mjs",
-  PlacesBackups: "resource://gre/modules/PlacesBackups.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
-  DownloadUtils: "resource://gre/modules/DownloadUtils.sys.mjs",
+  BookmarkJSONUtils: "moz-src:///toolkit/components/places/BookmarkJSONUtils.sys.mjs",
+  MigrationUtils: "moz-src:///browser/components/migration/MigrationUtils.sys.mjs",
+  PlacesBackups: "moz-src:///toolkit/components/places/PlacesBackups.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
+  DownloadUtils: "moz-src:///toolkit/mozapps/downloads/DownloadUtils.sys.mjs",
 });
 XPCOMUtils.defineLazyScriptGetter(
   this,
@@ -488,7 +488,7 @@ var PlacesOrganizer = {
     let fpCallback = function fpCallback_done(aResult) {
       if (aResult != Ci.nsIFilePicker.returnCancel && fp.fileURL) {
         var { BookmarkHTMLUtils } = ChromeUtils.importESModule(
-          "resource://gre/modules/BookmarkHTMLUtils.sys.mjs"
+          "moz-src:///toolkit/components/places/BookmarkHTMLUtils.sys.mjs"
         );
         BookmarkHTMLUtils.importFromURL(fp.fileURL.spec).catch(console.error);
       }
@@ -513,7 +513,7 @@ var PlacesOrganizer = {
     let fpCallback = function fpCallback_done(aResult) {
       if (aResult != Ci.nsIFilePicker.returnCancel) {
         var { BookmarkHTMLUtils } = ChromeUtils.importESModule(
-          "resource://gre/modules/BookmarkHTMLUtils.sys.mjs"
+          "moz-src:///toolkit/components/places/BookmarkHTMLUtils.sys.mjs"
         );
         BookmarkHTMLUtils.exportToFile(fp.file.path).catch(console.error);
       }

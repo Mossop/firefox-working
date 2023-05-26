@@ -23,7 +23,7 @@ add_task(async function test_shutdown_timeout() {
     // it doesn't respond to requests to the cache streams.
     await SpecialPowers.spawn(browser, [], async () => {
       let { AboutHomeStartupCacheChild } = ChromeUtils.import(
-        "resource:///modules/AboutNewTabService.jsm"
+        "moz-src:///browser/components/newtab/AboutNewTabService.jsm"
       );
       AboutHomeStartupCacheChild.uninit();
     });

@@ -7,7 +7,7 @@
 "use strict";
 
 var { ExtensionParent } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionParent.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
 );
 
 var { ExtensionError } = ExtensionUtils;

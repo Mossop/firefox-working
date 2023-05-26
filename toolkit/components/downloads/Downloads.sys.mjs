@@ -6,25 +6,25 @@
  * Main entry point to get references to all the back-end objects.
  */
 
-import { Integration } from "resource://gre/modules/Integration.sys.mjs";
+import { Integration } from "moz-src:///toolkit/modules/Integration.sys.mjs";
 
 import {
   Download,
   DownloadError,
-} from "resource://gre/modules/DownloadCore.sys.mjs";
+} from "moz-src:///toolkit/components/downloads/DownloadCore.sys.mjs";
 
 const lazy = {};
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  DownloadCombinedList: "resource://gre/modules/DownloadList.sys.mjs",
-  DownloadList: "resource://gre/modules/DownloadList.sys.mjs",
-  DownloadSummary: "resource://gre/modules/DownloadList.sys.mjs",
+  DownloadCombinedList: "moz-src:///toolkit/components/downloads/DownloadList.sys.mjs",
+  DownloadList: "moz-src:///toolkit/components/downloads/DownloadList.sys.mjs",
+  DownloadSummary: "moz-src:///toolkit/components/downloads/DownloadList.sys.mjs",
 });
 
 Integration.downloads.defineESModuleGetter(
   lazy,
   "DownloadIntegration",
-  "resource://gre/modules/DownloadIntegration.sys.mjs"
+  "moz-src:///toolkit/components/downloads/DownloadIntegration.sys.mjs"
 );
 
 /**

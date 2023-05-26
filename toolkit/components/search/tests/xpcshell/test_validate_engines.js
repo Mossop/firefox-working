@@ -7,7 +7,7 @@
 "use strict";
 
 const { SearchService } = ChromeUtils.importESModule(
-  "resource://gre/modules/SearchService.sys.mjs"
+  "moz-src:///toolkit/components/search/SearchService.sys.mjs"
 );
 
 const ss = new SearchService();

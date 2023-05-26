@@ -2,11 +2,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { Log } from "resource://gre/modules/Log.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
 
 import { RESTRequest } from "resource://services-common/rest.sys.mjs";
 import { CommonUtils } from "resource://services-common/utils.sys.mjs";
-import { Credentials } from "resource://gre/modules/Credentials.sys.mjs";
+import { Credentials } from "moz-src:///services/fxaccounts/Credentials.sys.mjs";
 
 const lazy = {};
 

@@ -575,7 +575,7 @@ export class FormAutoComplete {
     // import the module here, out of the way of the other uses of
     // FormAutoCompleteResult.
     const { FormAutoCompleteResult } = ChromeUtils.importESModule(
-      "resource://gre/modules/nsFormAutoCompleteResult.sys.mjs"
+      "moz-src:///toolkit/components/satchel/nsFormAutoCompleteResult.sys.mjs"
     );
     return new FormAutoCompleteResult(
       datalistResult.searchString,

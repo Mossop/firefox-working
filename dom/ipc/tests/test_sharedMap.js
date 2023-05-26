@@ -4,7 +4,7 @@ const { AppConstants } = ChromeUtils.importESModule(
   "resource://gre/modules/AppConstants.sys.mjs"
 );
 const { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
 );
 const { XPCShellContentUtils } = ChromeUtils.importESModule(
   "resource://testing-common/XPCShellContentUtils.sys.mjs"
@@ -106,7 +106,7 @@ async function loadContentPage() {
   registerCleanupFunction(() => page.close());
 
   page.addFrameScriptHelper(`
-    var {ExtensionUtils} = ChromeUtils.import("resource://gre/modules/ExtensionUtils.jsm");
+    var {ExtensionUtils} = ChromeUtils.import("moz-src:///toolkit/components/extensions/ExtensionUtils.jsm");
     Cu.importGlobalProperties(["FileReader"]);
   `);
   return page;

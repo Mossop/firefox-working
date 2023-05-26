@@ -4,7 +4,7 @@
  */
 
 ChromeUtils.defineESModuleGetters(this, {
-  BackgroundUpdate: "resource://gre/modules/BackgroundUpdate.sys.mjs",
+  BackgroundUpdate: "moz-src:///toolkit/mozapps/update/BackgroundUpdate.sys.mjs",
 });
 
 const transitionPerformedPref = "app.update.background.rolledout";

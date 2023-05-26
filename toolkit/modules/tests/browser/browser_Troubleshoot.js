@@ -7,7 +7,7 @@
 // and the "@mozilla.org/xre/app-info;1" component.
 
 const { Troubleshoot } = ChromeUtils.importESModule(
-  "resource://gre/modules/Troubleshoot.sys.mjs"
+  "moz-src:///toolkit/modules/Troubleshoot.sys.mjs"
 );
 const { sinon } = ChromeUtils.importESModule(
   "resource://testing-common/Sinon.sys.mjs"

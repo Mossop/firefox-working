@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const { BookmarkJSONUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/BookmarkJSONUtils.sys.mjs"
+  "moz-src:///toolkit/components/places/BookmarkJSONUtils.sys.mjs"
 );
 
 // An object representing the contents of bookmarks.json.

@@ -18,11 +18,11 @@ import {
 } from "resource://services-sync/collection_validator.sys.mjs";
 
 import { Async } from "resource://services-common/async.sys.mjs";
-import { Log } from "resource://gre/modules/Log.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  FormHistory: "resource://gre/modules/FormHistory.sys.mjs",
+  FormHistory: "moz-src:///toolkit/components/satchel/FormHistory.sys.mjs",
 });
 
 const FORMS_TTL = 3 * 365 * 24 * 60 * 60; // Three years in seconds.

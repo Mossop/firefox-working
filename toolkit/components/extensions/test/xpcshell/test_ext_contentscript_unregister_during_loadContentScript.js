@@ -42,7 +42,7 @@ add_task(async function content_script_unregistered_during_loadContentScript() {
 
   const promiseDone = contentPage.spawn([extension.id], extensionId => {
     const { ExtensionProcessScript } = ChromeUtils.import(
-      "resource://gre/modules/ExtensionProcessScript.jsm"
+      "moz-src:///toolkit/components/extensions/ExtensionProcessScript.jsm"
     );
 
     return new Promise(resolve => {

@@ -4,17 +4,17 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const { SiteDataManager } = ChromeUtils.import(
-  "resource:///modules/SiteDataManager.jsm"
+  "moz-src:///browser/modules/SiteDataManager.jsm"
 );
 const { DownloadUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/DownloadUtils.sys.mjs"
+  "moz-src:///toolkit/mozapps/downloads/DownloadUtils.sys.mjs"
 );
 
 /* import-globals-from pageInfo.js */
 
 ChromeUtils.defineESModuleGetters(this, {
-  LoginHelper: "resource://gre/modules/LoginHelper.sys.mjs",
-  PluralForm: "resource://gre/modules/PluralForm.sys.mjs",
+  LoginHelper: "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs",
+  PluralForm: "moz-src:///intl/locale/PluralForm.sys.mjs",
 });
 
 var security = {

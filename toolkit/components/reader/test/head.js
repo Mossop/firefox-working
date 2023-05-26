@@ -1,5 +1,5 @@
 ChromeUtils.defineESModuleGetters(this, {
-  PromiseUtils: "resource://gre/modules/PromiseUtils.sys.mjs",
+  PromiseUtils: "moz-src:///toolkit/modules/PromiseUtils.sys.mjs",
 });
 
 /* exported promiseTabLoadEvent, is_element_visible, is_element_hidden */

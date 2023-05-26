@@ -19,7 +19,7 @@ const { AddonTestUtils } = ChromeUtils.import(
 
 const {
   ExtensionUtils: { promiseEvent, promiseObserved },
-} = ChromeUtils.import("resource://gre/modules/ExtensionUtils.jsm");
+} = ChromeUtils.import("moz-src:///toolkit/components/extensions/ExtensionUtils.jsm");
 
 AddonTestUtils.initMochitest(this);
 

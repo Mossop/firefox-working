@@ -10,19 +10,19 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  BuiltInThemes: "resource:///modules/BuiltInThemes.sys.mjs",
-  ClientID: "resource://gre/modules/ClientID.sys.mjs",
-  DeferredTask: "resource://gre/modules/DeferredTask.sys.mjs",
-  E10SUtils: "resource://gre/modules/E10SUtils.sys.mjs",
-  PrivateBrowsingUtils: "resource://gre/modules/PrivateBrowsingUtils.sys.mjs",
+  BuiltInThemes: "moz-src:///browser/themes/BuiltInThemes.sys.mjs",
+  ClientID: "moz-src:///toolkit/components/telemetry/app/ClientID.sys.mjs",
+  DeferredTask: "moz-src:///toolkit/modules/DeferredTask.sys.mjs",
+  E10SUtils: "moz-src:///toolkit/modules/E10SUtils.sys.mjs",
+  PrivateBrowsingUtils: "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(this, {
-  AddonManager: "resource://gre/modules/AddonManager.jsm",
-  AddonRepository: "resource://gre/modules/addons/AddonRepository.jsm",
-  ExtensionCommon: "resource://gre/modules/ExtensionCommon.jsm",
-  ExtensionParent: "resource://gre/modules/ExtensionParent.jsm",
-  ExtensionPermissions: "resource://gre/modules/ExtensionPermissions.jsm",
+  AddonManager: "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm",
+  AddonRepository: "moz-src:///toolkit/mozapps/extensions/internal/AddonRepository.jsm",
+  ExtensionCommon: "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm",
+  ExtensionParent: "moz-src:///toolkit/components/extensions/ExtensionParent.jsm",
+  ExtensionPermissions: "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm",
 });
 
 XPCOMUtils.defineLazyGetter(this, "browserBundle", () => {
@@ -37,7 +37,7 @@ XPCOMUtils.defineLazyGetter(this, "brandBundle", () => {
 });
 XPCOMUtils.defineLazyGetter(this, "extensionStylesheets", () => {
   const { ExtensionParent } = ChromeUtils.import(
-    "resource://gre/modules/ExtensionParent.jsm"
+    "moz-src:///toolkit/components/extensions/ExtensionParent.jsm"
   );
   return ExtensionParent.extensionStylesheets;
 });

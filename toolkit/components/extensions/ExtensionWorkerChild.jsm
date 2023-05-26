@@ -15,19 +15,19 @@ var EXPORTED_SYMBOLS = ["ExtensionWorkerChild"];
  */
 
 const { ExtensionChild, ExtensionActivityLogChild } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionChild.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionChild.jsm"
 );
 
 const { ExtensionCommon } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionCommon.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm"
 );
 
 const { ExtensionPageChild, getContextChildManagerGetter } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionPageChild.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPageChild.jsm"
 );
 
 const { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
 );
 
 const { BaseContext, defineLazyGetter } = ExtensionCommon;

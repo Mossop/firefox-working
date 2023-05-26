@@ -1,7 +1,7 @@
 "use strict";
 
 const { AddonSettings } = ChromeUtils.import(
-  "resource://gre/modules/addons/AddonSettings.jsm"
+  "moz-src:///toolkit/mozapps/extensions/internal/AddonSettings.jsm"
 );
 
 // This test checks that theme warnings are properly emitted.

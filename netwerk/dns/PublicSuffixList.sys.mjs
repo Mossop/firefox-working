@@ -5,7 +5,7 @@
 import { RemoteSettings } from "resource://services-settings/remote-settings.sys.mjs";
 
 const FileUtils = ChromeUtils.importESModule(
-  "resource://gre/modules/FileUtils.sys.mjs"
+  "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 ).FileUtils;
 
 const RECORD_ID = "tld-dafsa";

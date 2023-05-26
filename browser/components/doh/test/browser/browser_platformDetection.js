@@ -5,7 +5,7 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  Heuristics: "resource:///modules/DoHHeuristics.sys.mjs",
+  Heuristics: "moz-src:///browser/components/doh/DoHHeuristics.sys.mjs",
 });
 
 add_task(setup);

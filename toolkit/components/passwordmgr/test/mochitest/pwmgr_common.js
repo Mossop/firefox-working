@@ -17,7 +17,7 @@ LoginTestUtils.setAssertReporter(
 );
 
 const { LoginHelper } = SpecialPowers.ChromeUtils.importESModule(
-  "resource://gre/modules/LoginHelper.sys.mjs"
+  "moz-src:///toolkit/components/passwordmgr/LoginHelper.sys.mjs"
 );
 
 const {
@@ -926,7 +926,7 @@ SimpleTest.registerCleanupFunction(() => {
     /* eslint-env mozilla/chrome-script */
     // eslint-disable-next-line no-shadow
     const { LoginManagerParent } = ChromeUtils.importESModule(
-      "resource://gre/modules/LoginManagerParent.sys.mjs"
+      "moz-src:///toolkit/components/passwordmgr/LoginManagerParent.sys.mjs"
     );
 
     // Remove all logins and disabled hosts

@@ -6,15 +6,15 @@ const {
   RKV_DIRNAME,
   VERSION_KEY,
   VERSION_VALUE,
-} = ChromeUtils.import("resource://gre/modules/ExtensionPermissions.jsm");
+} = ChromeUtils.import("moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm");
 const { FileTestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/FileTestUtils.sys.mjs"
 );
 const { FileUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/FileUtils.sys.mjs"
+  "moz-src:///toolkit/modules/FileUtils.sys.mjs"
 );
 const { KeyValueService } = ChromeUtils.importESModule(
-  "resource://gre/modules/kvstore.sys.mjs"
+  "moz-src:///toolkit/components/kvstore/kvstore.sys.mjs"
 );
 
 add_setup(async () => {

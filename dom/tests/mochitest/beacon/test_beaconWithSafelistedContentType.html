@@ -22,7 +22,7 @@ SpecialPowers.pushPrefEnv({'set': [["beacon.enabled", true]]}, beginTest);
 
 const {BrowserTestUtils} = ChromeUtils.import("resource://testing-common/BrowserTestUtils.jsm");
 const { clearInterval, setInterval } = ChromeUtils.import(
-  "resource://gre/modules/Timer.jsm"
+  "moz-src:///toolkit/modules/Timer.jsm"
 );
 
 function whenDelayedStartupFinished(aWindow, aCallback) {

@@ -213,12 +213,12 @@ const BROWSER_STARTUP_RESUME_SESSION = 3;
 const kNoIndex = Number.MAX_SAFE_INTEGER;
 const kLastIndex = Number.MAX_SAFE_INTEGER - 1;
 
-import { PrivateBrowsingUtils } from "resource://gre/modules/PrivateBrowsingUtils.sys.mjs";
+import { PrivateBrowsingUtils } from "moz-src:///toolkit/modules/PrivateBrowsingUtils.sys.mjs";
 
-import { TelemetryTimestamps } from "resource://gre/modules/TelemetryTimestamps.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { TelemetryTimestamps } from "moz-src:///toolkit/components/telemetry/app/TelemetryTimestamps.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { GlobalState } from "resource:///modules/sessionstore/GlobalState.sys.mjs";
+import { GlobalState } from "moz-src:///browser/components/sessionstore/GlobalState.sys.mjs";
 
 const lazy = {};
 
@@ -227,28 +227,28 @@ XPCOMUtils.defineLazyServiceGetters(lazy, {
 });
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  AsyncShutdown: "resource://gre/modules/AsyncShutdown.sys.mjs",
+  AsyncShutdown: "moz-src:///toolkit/components/asyncshutdown/AsyncShutdown.sys.mjs",
   DevToolsShim: "chrome://devtools-startup/content/DevToolsShim.sys.mjs",
-  E10SUtils: "resource://gre/modules/E10SUtils.sys.mjs",
-  PrivacyFilter: "resource://gre/modules/sessionstore/PrivacyFilter.sys.mjs",
-  PromiseUtils: "resource://gre/modules/PromiseUtils.sys.mjs",
-  RunState: "resource:///modules/sessionstore/RunState.sys.mjs",
-  SessionCookies: "resource:///modules/sessionstore/SessionCookies.sys.mjs",
-  SessionFile: "resource:///modules/sessionstore/SessionFile.sys.mjs",
-  SessionHistory: "resource://gre/modules/sessionstore/SessionHistory.sys.mjs",
-  SessionSaver: "resource:///modules/sessionstore/SessionSaver.sys.mjs",
-  SessionStartup: "resource:///modules/sessionstore/SessionStartup.sys.mjs",
-  TabAttributes: "resource:///modules/sessionstore/TabAttributes.sys.mjs",
-  TabState: "resource:///modules/sessionstore/TabState.sys.mjs",
-  TabStateCache: "resource:///modules/sessionstore/TabStateCache.sys.mjs",
-  TabStateFlusher: "resource:///modules/sessionstore/TabStateFlusher.sys.mjs",
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
+  E10SUtils: "moz-src:///toolkit/modules/E10SUtils.sys.mjs",
+  PrivacyFilter: "moz-src:///toolkit/modules/sessionstore/PrivacyFilter.sys.mjs",
+  PromiseUtils: "moz-src:///toolkit/modules/PromiseUtils.sys.mjs",
+  RunState: "moz-src:///browser/components/sessionstore/RunState.sys.mjs",
+  SessionCookies: "moz-src:///browser/components/sessionstore/SessionCookies.sys.mjs",
+  SessionFile: "moz-src:///browser/components/sessionstore/SessionFile.sys.mjs",
+  SessionHistory: "moz-src:///toolkit/modules/sessionstore/SessionHistory.sys.mjs",
+  SessionSaver: "moz-src:///browser/components/sessionstore/SessionSaver.sys.mjs",
+  SessionStartup: "moz-src:///browser/components/sessionstore/SessionStartup.sys.mjs",
+  TabAttributes: "moz-src:///browser/components/sessionstore/TabAttributes.sys.mjs",
+  TabState: "moz-src:///browser/components/sessionstore/TabState.sys.mjs",
+  TabStateCache: "moz-src:///browser/components/sessionstore/TabStateCache.sys.mjs",
+  TabStateFlusher: "moz-src:///browser/components/sessionstore/TabStateFlusher.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
 });
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
-  HomePage: "resource:///modules/HomePage.jsm",
-  TabCrashHandler: "resource:///modules/ContentCrashHandlers.jsm",
+  BrowserWindowTracker: "moz-src:///browser/modules/BrowserWindowTracker.jsm",
+  HomePage: "moz-src:///browser/modules/HomePage.jsm",
+  TabCrashHandler: "moz-src:///browser/modules/ContentCrashHandlers.jsm",
 });
 
 XPCOMUtils.defineLazyGetter(lazy, "blankURI", () => {

@@ -5,17 +5,17 @@
 "use strict";
 
 const { XPCOMUtils } = ChromeUtils.importESModule(
-  "resource://gre/modules/XPCOMUtils.sys.mjs"
+  "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs"
 );
 
 let log = ChromeUtils.importESModule(
-  "resource://gre/modules/Log.sys.mjs"
+  "moz-src:///toolkit/modules/Log.sys.mjs"
 ).Log.repository.getLogger("Sync.RemoteTabs");
 
 const lazy = {};
 
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  OpenInTabsUtils: "resource:///modules/OpenInTabsUtils.jsm",
+  OpenInTabsUtils: "moz-src:///browser/modules/OpenInTabsUtils.jsm",
 });
 
 var EXPORTED_SYMBOLS = ["TabListComponent"];

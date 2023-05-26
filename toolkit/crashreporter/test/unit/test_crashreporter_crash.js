@@ -65,7 +65,7 @@ add_task(async function run_test() {
 
       // TelemetrySession setup will trigger the session annotation
       let { TelemetryController } = ChromeUtils.importESModule(
-        "resource://gre/modules/TelemetryController.sys.mjs"
+        "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs"
       );
       TelemetryController.testSetup();
     },
@@ -121,10 +121,10 @@ add_task(async function run_test() {
 
       // TelemetrySession setup will trigger the session annotation
       let { TelemetryController } = ChromeUtils.importESModule(
-        "resource://gre/modules/TelemetryController.sys.mjs"
+        "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs"
       );
       let { TelemetrySend } = ChromeUtils.importESModule(
-        "resource://gre/modules/TelemetrySend.sys.mjs"
+        "moz-src:///toolkit/components/telemetry/app/TelemetrySend.sys.mjs"
       );
       TelemetrySend.setTestModeEnabled(true);
       TelemetryController.testSetup();
@@ -165,10 +165,10 @@ add_task(async function run_test() {
 
       // TelemetrySession setup will trigger the session annotation
       let { TelemetryController } = ChromeUtils.importESModule(
-        "resource://gre/modules/TelemetryController.sys.mjs"
+        "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs"
       );
       let { TelemetrySend } = ChromeUtils.importESModule(
-        "resource://gre/modules/TelemetrySend.sys.mjs"
+        "moz-src:///toolkit/components/telemetry/app/TelemetrySend.sys.mjs"
       );
       TelemetrySend.setTestModeEnabled(true);
       TelemetryController.testSetup();
@@ -200,10 +200,10 @@ add_task(async function run_test() {
 
       // TelemetrySession setup will trigger the session annotation
       let { TelemetryController } = ChromeUtils.importESModule(
-        "resource://gre/modules/TelemetryController.sys.mjs"
+        "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs"
       );
       let { TelemetrySend } = ChromeUtils.importESModule(
-        "resource://gre/modules/TelemetrySend.sys.mjs"
+        "moz-src:///toolkit/components/telemetry/app/TelemetrySend.sys.mjs"
       );
       TelemetrySend.setTestModeEnabled(true);
       TelemetryController.testSetup();

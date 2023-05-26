@@ -11,7 +11,7 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "BrowserWindowTracker",
-  "resource:///modules/BrowserWindowTracker.jsm"
+  "moz-src:///browser/modules/BrowserWindowTracker.jsm"
 );
 
 class PopupShownObserver {

@@ -51,7 +51,7 @@ function contentScript(token) {
     }
 
     // FIXME: Removing this line causes the test to fail:
-    // resource://gre/modules/ExtensionUtils.jsm, line 651: NS_ERROR_NOT_INITIALIZED
+    // moz-src:///toolkit/components/extensions/ExtensionUtils.jsm, line 651: NS_ERROR_NOT_INITIALIZED
     port.disconnect();
     browser.runtime.sendMessage("done");
   });

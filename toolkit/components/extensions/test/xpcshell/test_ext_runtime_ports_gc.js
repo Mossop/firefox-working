@@ -52,7 +52,7 @@ let gcExperimentFiles = {
   ]),
   "child.js": () => {
     let { setTimeout } = ChromeUtils.importESModule(
-      "resource://gre/modules/Timer.sys.mjs"
+      "moz-src:///toolkit/modules/Timer.sys.mjs"
     );
     /* globals ExtensionAPI */
     this.gcHelper = class extends ExtensionAPI {

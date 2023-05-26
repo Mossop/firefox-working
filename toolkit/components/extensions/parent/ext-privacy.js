@@ -7,7 +7,7 @@
 "use strict";
 
 var { ExtensionPreferencesManager } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionPreferencesManager.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionPreferencesManager.jsm"
 );
 
 var { ExtensionError } = ExtensionUtils;

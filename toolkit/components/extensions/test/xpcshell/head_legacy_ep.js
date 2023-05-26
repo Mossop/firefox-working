@@ -5,7 +5,7 @@
 
 {
   const { ExtensionPermissions } = ChromeUtils.import(
-    "resource://gre/modules/ExtensionPermissions.jsm"
+    "moz-src:///toolkit/components/extensions/ExtensionPermissions.jsm"
   );
 
   ExtensionPermissions._useLegacyStorageBackend = true;

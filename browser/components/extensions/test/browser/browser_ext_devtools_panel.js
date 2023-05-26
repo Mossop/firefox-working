@@ -9,7 +9,7 @@ requestLongerTimeout(4);
 loadTestSubscript("head_devtools.js");
 
 ChromeUtils.defineESModuleGetters(this, {
-  Preferences: "resource://gre/modules/Preferences.sys.mjs",
+  Preferences: "moz-src:///toolkit/modules/Preferences.sys.mjs",
 });
 
 const DEVTOOLS_THEME_PREF = "devtools.theme";

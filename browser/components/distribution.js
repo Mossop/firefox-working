@@ -15,12 +15,12 @@ const { AppConstants } = ChromeUtils.importESModule(
 );
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
-  PlacesUtils: "resource://gre/modules/PlacesUtils.sys.mjs",
+  PlacesUtils: "moz-src:///toolkit/components/places/PlacesUtils.sys.mjs",
 });
 ChromeUtils.defineModuleGetter(
   lazy,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 function DistributionCustomizer() {}
@@ -357,7 +357,7 @@ DistributionCustomizer.prototype = {
     }
 
     let { ProfileAge } = ChromeUtils.importESModule(
-      "resource://gre/modules/ProfileAge.sys.mjs"
+      "moz-src:///toolkit/modules/ProfileAge.sys.mjs"
     );
     let profileAge = await ProfileAge();
     let resetDate = await profileAge.reset;

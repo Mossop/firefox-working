@@ -5,9 +5,9 @@
 ChromeUtils.defineESModuleGetters(this, {
   AppConstants: "resource://gre/modules/AppConstants.sys.mjs",
   ClientEnvironmentBase:
-    "resource://gre/modules/components-utils/ClientEnvironment.sys.mjs",
+    "moz-src:///toolkit/components/utils/ClientEnvironment.sys.mjs",
   NormandyTestUtils: "resource://testing-common/NormandyTestUtils.sys.mjs",
-  TelemetryController: "resource://gre/modules/TelemetryController.sys.mjs",
+  TelemetryController: "moz-src:///toolkit/components/telemetry/app/TelemetryController.sys.mjs",
   updateAppInfo: "resource://testing-common/AppInfo.sys.mjs",
 });
 

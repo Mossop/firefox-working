@@ -4,10 +4,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { Log } from "resource://gre/modules/Log.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
-import { TelemetryUtils } from "resource://gre/modules/TelemetryUtils.sys.mjs";
-import { Preferences } from "resource://gre/modules/Preferences.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
+import { TelemetryUtils } from "moz-src:///toolkit/components/telemetry/app/TelemetryUtils.sys.mjs";
+import { Preferences } from "moz-src:///toolkit/modules/Preferences.sys.mjs";
 
 const LOGGER_NAME = "Toolkit.Telemetry";
 const LOGGER_PREFIX = "TelemetryStorage::";
@@ -33,7 +33,7 @@ XPCOMUtils.defineLazyGetter(lazy, "gAbortedSessionFilePath", function() {
   return PathUtils.join(lazy.gDataReportingDir, ABORTED_SESSION_FILE_NAME);
 });
 ChromeUtils.defineESModuleGetters(lazy, {
-  TelemetryHealthPing: "resource://gre/modules/HealthPing.sys.mjs",
+  TelemetryHealthPing: "moz-src:///toolkit/components/telemetry/pings/HealthPing.sys.mjs",
 });
 // Maxmimum time, in milliseconds, archive pings should be retained.
 const MAX_ARCHIVED_PINGS_RETENTION_MS = 60 * 24 * 60 * 60 * 1000; // 60 days

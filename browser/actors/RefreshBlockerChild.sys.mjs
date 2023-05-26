@@ -8,7 +8,7 @@
  * actor that enables refresh blocking on each docshell that is created.
  */
 
-import { setTimeout } from "resource://gre/modules/Timer.sys.mjs";
+import { setTimeout } from "moz-src:///toolkit/modules/Timer.sys.mjs";
 
 const REFRESHBLOCKING_PREF = "accessibility.blockautorefresh";
 

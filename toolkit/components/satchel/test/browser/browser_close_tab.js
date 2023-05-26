@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const { FormHistory } = ChromeUtils.importESModule(
-  "resource://gre/modules/FormHistory.sys.mjs"
+  "moz-src:///toolkit/components/satchel/FormHistory.sys.mjs"
 );
 
 add_task(async function test() {

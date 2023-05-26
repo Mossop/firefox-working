@@ -4,7 +4,7 @@
 "use strict";
 
 const { PublicSuffixList } = ChromeUtils.importESModule(
-  "resource://gre/modules/netwerk-dns/PublicSuffixList.sys.mjs"
+  "moz-src:///netwerk/dns/PublicSuffixList.sys.mjs"
 );
 const { TestUtils } = ChromeUtils.importESModule(
   "resource://testing-common/TestUtils.sys.mjs"

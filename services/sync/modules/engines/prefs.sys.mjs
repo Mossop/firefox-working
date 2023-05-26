@@ -25,8 +25,8 @@ const PREF_SYNC_PREFS_PREFIX = "services.sync.prefs.sync.";
 // this special control pref at the same time they flip the default.
 const PREF_SYNC_SEEN_PREFIX = "services.sync.prefs.sync-seen.";
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
-import { Preferences } from "resource://gre/modules/Preferences.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
+import { Preferences } from "moz-src:///toolkit/modules/Preferences.sys.mjs";
 
 import {
   Store,
@@ -47,7 +47,7 @@ XPCOMUtils.defineLazyGetter(lazy, "PREFS_GUID", () =>
 ChromeUtils.defineModuleGetter(
   lazy,
   "AddonManager",
-  "resource://gre/modules/AddonManager.jsm"
+  "moz-src:///toolkit/mozapps/extensions/AddonManager.jsm"
 );
 
 // In bug 1538015, we decided that it isn't always safe to allow all "incoming"

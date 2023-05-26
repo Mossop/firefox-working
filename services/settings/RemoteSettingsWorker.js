@@ -16,11 +16,11 @@
 /* import-globals-from SharedUtils.jsm */
 /* import-globals-from /toolkit/modules/third_party/jsesc/jsesc.js */
 importScripts(
-  "resource://gre/modules/workers/require.js",
-  "resource://gre/modules/CanonicalJSON.jsm",
+  "moz-src:///toolkit/components/workerloader/require.js",
+  "moz-src:///toolkit/modules/CanonicalJSON.jsm",
   "resource://services-settings/IDBHelpers.jsm",
   "resource://services-settings/SharedUtils.jsm",
-  "resource://gre/modules/third_party/jsesc/jsesc.js"
+  "moz-src:///toolkit/modules/third_party/jsesc/jsesc.js"
 );
 
 const IDB_RECORDS_STORE = "records";

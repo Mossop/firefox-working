@@ -19,25 +19,25 @@ const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "ExtensionChildDevToolsUtils",
-  "resource://gre/modules/ExtensionChildDevToolsUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionChildDevToolsUtils.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
   "Schemas",
-  "resource://gre/modules/Schemas.jsm"
+  "moz-src:///toolkit/components/extensions/Schemas.jsm"
 );
 
 const CATEGORY_EXTENSION_SCRIPTS_ADDON = "webextension-scripts-addon";
 const CATEGORY_EXTENSION_SCRIPTS_DEVTOOLS = "webextension-scripts-devtools";
 
 const { ExtensionCommon } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionCommon.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm"
 );
 const { ExtensionChild, ExtensionActivityLogChild } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionChild.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionChild.jsm"
 );
 const { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionUtils.jsm"
 );
 
 const { getInnerWindowID, promiseEvent } = ExtensionUtils;

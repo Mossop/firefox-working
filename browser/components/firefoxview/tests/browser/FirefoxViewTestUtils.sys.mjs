@@ -76,7 +76,7 @@ async function withFirefoxView(
     : Services.wm.getMostRecentBrowserWindow();
   if (resetFlowManager) {
     const { TabsSetupFlowManager } = ChromeUtils.importESModule(
-      "resource:///modules/firefox-view-tabs-setup-manager.sys.mjs"
+      "moz-src:///browser/components/firefoxview/firefox-view-tabs-setup-manager.sys.mjs"
     );
     // reset internal state so we aren't reacting to whatever state the last invocation left behind
     TabsSetupFlowManager.resetInternalState();

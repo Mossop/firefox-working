@@ -2,22 +2,22 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { FormAutoCompleteResult } from "resource://gre/modules/nsFormAutoCompleteResult.sys.mjs";
+import { FormAutoCompleteResult } from "moz-src:///toolkit/components/satchel/nsFormAutoCompleteResult.sys.mjs";
 
 const lazy = {};
 ChromeUtils.defineESModuleGetters(lazy, {
   SearchSuggestionController:
-    "resource://gre/modules/SearchSuggestionController.sys.mjs",
+    "moz-src:///toolkit/components/search/SearchSuggestionController.sys.mjs",
 });
 ChromeUtils.defineModuleGetter(
   lazy,
   "FormHistoryClient",
-  "resource://gre/modules/FormAutoComplete.jsm"
+  "moz-src:///toolkit/components/satchel/FormAutoComplete.jsm"
 );
 ChromeUtils.defineModuleGetter(
   lazy,
   "FormAutoCompleteResult",
-  "resource://gre/modules/FormAutoComplete.jsm"
+  "moz-src:///toolkit/components/satchel/FormAutoComplete.jsm"
 );
 
 /**

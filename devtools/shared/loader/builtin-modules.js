@@ -125,7 +125,7 @@ defineLazyGetter(exports.modules, "Debugger", () => {
     return global.Debugger;
   }
   const { addDebuggerToGlobal } = ChromeUtils.importESModule(
-    "resource://gre/modules/jsdebugger.sys.mjs"
+    "moz-src:///devtools/platform/jsdebugger.sys.mjs"
   );
   addDebuggerToGlobal(global);
   return global.Debugger;
@@ -141,7 +141,7 @@ defineLazyGetter(exports.modules, "ChromeDebugger", () => {
   });
 
   const { addDebuggerToGlobal } = ChromeUtils.importESModule(
-    "resource://gre/modules/jsdebugger.sys.mjs"
+    "moz-src:///devtools/platform/jsdebugger.sys.mjs"
   );
   addDebuggerToGlobal(debuggerSandbox);
   return debuggerSandbox.Debugger;
@@ -183,19 +183,19 @@ function lazyGlobal(name, getter) {
 // Lazily define a few things so that the corresponding modules are only loaded
 // when used.
 lazyGlobal("clearTimeout", () => {
-  return ChromeUtils.importESModule("resource://gre/modules/Timer.sys.mjs")
+  return ChromeUtils.importESModule("moz-src:///toolkit/modules/Timer.sys.mjs")
     .clearTimeout;
 });
 lazyGlobal("setTimeout", () => {
-  return ChromeUtils.importESModule("resource://gre/modules/Timer.sys.mjs")
+  return ChromeUtils.importESModule("moz-src:///toolkit/modules/Timer.sys.mjs")
     .setTimeout;
 });
 lazyGlobal("clearInterval", () => {
-  return ChromeUtils.importESModule("resource://gre/modules/Timer.sys.mjs")
+  return ChromeUtils.importESModule("moz-src:///toolkit/modules/Timer.sys.mjs")
     .clearInterval;
 });
 lazyGlobal("setInterval", () => {
-  return ChromeUtils.importESModule("resource://gre/modules/Timer.sys.mjs")
+  return ChromeUtils.importESModule("moz-src:///toolkit/modules/Timer.sys.mjs")
     .setInterval;
 });
 lazyGlobal("WebSocket", () => {

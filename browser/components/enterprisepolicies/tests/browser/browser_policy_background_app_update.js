@@ -3,7 +3,7 @@
 "use strict";
 
 ChromeUtils.defineESModuleGetters(this, {
-  UpdateUtils: "resource://gre/modules/UpdateUtils.sys.mjs",
+  UpdateUtils: "moz-src:///toolkit/modules/UpdateUtils.sys.mjs",
 });
 
 const PREF_NAME = "app.update.background.enabled";

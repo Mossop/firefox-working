@@ -58,7 +58,7 @@ function waitForTerminatedWorkers(swRegInfo) {
 function unmockHandleAPIRequest(extPage) {
   return extPage.spawn([], () => {
     const { ExtensionAPIRequestHandler } = ChromeUtils.import(
-      "resource://gre/modules/ExtensionProcessScript.jsm"
+      "moz-src:///toolkit/components/extensions/ExtensionProcessScript.jsm"
     );
 
     // Unmock ExtensionAPIRequestHandler.
@@ -87,7 +87,7 @@ function mockHandleAPIRequest(extPage, mockHandleAPIRequest) {
     [ExtensionTestCommon.serializeFunction(mockHandleAPIRequest)],
     mockFnText => {
       const { ExtensionAPIRequestHandler } = ChromeUtils.import(
-        "resource://gre/modules/ExtensionProcessScript.jsm"
+        "moz-src:///toolkit/components/extensions/ExtensionProcessScript.jsm"
       );
 
       mockFnText = `(() => {

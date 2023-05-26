@@ -6,12 +6,12 @@
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionCommon",
-  "resource://gre/modules/ExtensionCommon.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionCommon.jsm"
 );
 ChromeUtils.defineModuleGetter(
   this,
   "ExtensionActivityLog",
-  "resource://gre/modules/ExtensionActivityLog.jsm"
+  "moz-src:///toolkit/components/extensions/ExtensionActivityLog.jsm"
 );
 
 this.activityLog = class extends ExtensionAPI {

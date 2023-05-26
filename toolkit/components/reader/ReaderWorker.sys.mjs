@@ -7,9 +7,9 @@
  */
 
 const { BasePromiseWorker } = ChromeUtils.import(
-  "resource://gre/modules/PromiseWorker.jsm"
+  "moz-src:///toolkit/components/promiseworker/PromiseWorker.jsm"
 );
 
 export var ReaderWorker = new BasePromiseWorker(
-  "resource://gre/modules/reader/ReaderWorker.js"
+  "moz-src:///toolkit/components/reader/ReaderWorker.js"
 );

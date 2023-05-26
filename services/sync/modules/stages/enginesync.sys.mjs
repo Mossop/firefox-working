@@ -6,7 +6,7 @@
  * This file contains code for synchronizing engines.
  */
 
-import { Log } from "resource://gre/modules/Log.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
 
 import {
   ABORT_SYNC_COMMAND,

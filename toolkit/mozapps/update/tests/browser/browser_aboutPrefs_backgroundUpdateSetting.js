@@ -9,7 +9,7 @@
  */
 
 ChromeUtils.defineESModuleGetters(this, {
-  UpdateUtils: "resource://gre/modules/UpdateUtils.sys.mjs",
+  UpdateUtils: "moz-src:///toolkit/modules/UpdateUtils.sys.mjs",
 });
 
 const BACKGROUND_UPDATE_PREF = "app.update.background.enabled";

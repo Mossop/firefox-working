@@ -16,17 +16,17 @@ import {
   useDistinctSystemPrincipalLoader,
   releaseDistinctSystemPrincipalLoader,
 } from "resource://devtools/shared/loader/DistinctSystemPrincipalLoader.sys.mjs";
-import { Subprocess } from "resource://gre/modules/Subprocess.sys.mjs";
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { Subprocess } from "moz-src:///toolkit/modules/subprocess/Subprocess.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 ChromeUtils.defineModuleGetter(
   lazy,
   "BackgroundTasksUtils",
-  "resource://gre/modules/BackgroundTasksUtils.jsm"
+  "moz-src:///toolkit/components/backgroundtasks/BackgroundTasksUtils.jsm"
 );
 ChromeUtils.defineESModuleGetters(lazy, {
-  FileUtils: "resource://gre/modules/FileUtils.sys.mjs",
+  FileUtils: "moz-src:///toolkit/modules/FileUtils.sys.mjs",
 });
 
 XPCOMUtils.defineLazyServiceGetters(lazy, {
@@ -148,7 +148,7 @@ export class BrowserToolboxLauncher extends EventEmitter {
       // A special root actor, just for background tasks invoked with
       // `--backgroundtask TASK --jsdebugger`.
       const { createRootActor } = this.#loader.require(
-        "resource://gre/modules/backgroundtasks/dbg-actors.js"
+        "moz-src:///toolkit/components/backgroundtasks/dbg-actors.js"
       );
       this.#devToolsServer.setRootActor(createRootActor);
     }

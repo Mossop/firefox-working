@@ -4,7 +4,7 @@ http://creativecommons.org/publicdomain/zero/1.0/ */
 "use strict";
 
 const { PlacesQuery } = ChromeUtils.importESModule(
-  "resource://gre/modules/PlacesQuery.sys.mjs"
+  "moz-src:///toolkit/components/places/PlacesQuery.sys.mjs"
 );
 
 add_task(async function test_visits_cache_is_updated() {

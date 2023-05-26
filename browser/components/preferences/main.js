@@ -9,8 +9,8 @@
 /* global MozXULElement */
 
 ChromeUtils.defineESModuleGetters(this, {
-  BackgroundUpdate: "resource://gre/modules/BackgroundUpdate.sys.mjs",
-  MigrationUtils: "resource:///modules/MigrationUtils.sys.mjs",
+  BackgroundUpdate: "moz-src:///toolkit/mozapps/update/BackgroundUpdate.sys.mjs",
+  MigrationUtils: "moz-src:///browser/components/migration/MigrationUtils.sys.mjs",
 });
 
 // Constants & Enumeration Values
@@ -525,7 +525,7 @@ var gMainPane = {
       row.removeAttribute("hidden");
       // Showing attribution only for Bing Translator.
       var { Translation } = ChromeUtils.import(
-        "resource:///modules/translation/TranslationParent.jsm"
+        "moz-src:///browser/components/translation/TranslationParent.jsm"
       );
       if (Translation.translationEngine == "Bing") {
         document.getElementById("bingAttribution").removeAttribute("hidden");
@@ -1924,7 +1924,7 @@ var gMainPane = {
 
   openTranslationProviderAttribution() {
     var { Translation } = ChromeUtils.import(
-      "resource:///modules/translation/TranslationParent.jsm"
+      "moz-src:///browser/components/translation/TranslationParent.jsm"
     );
     Translation.openProviderAttribution();
   },

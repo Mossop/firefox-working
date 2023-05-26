@@ -24,7 +24,7 @@
  * way is to configure that with extensions or through a company firewall.
  */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const LIST_LENGTH_LIMIT = 1000;
 
@@ -34,7 +34,7 @@ const lazy = {};
 
 XPCOMUtils.defineLazyGetter(lazy, "log", () => {
   let { ConsoleAPI } = ChromeUtils.importESModule(
-    "resource://gre/modules/Console.sys.mjs"
+    "moz-src:///toolkit/modules/Console.sys.mjs"
   );
   return new ConsoleAPI({
     prefix: "WebsiteFilter Policy",

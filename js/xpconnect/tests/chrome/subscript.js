@@ -1,3 +1,3 @@
 var ns = {};
-Services.scriptloader.loadSubScript("resource://gre/modules/NetUtil.jsm", ns);
+Services.scriptloader.loadSubScript("moz-src:///netwerk/base/NetUtil.jsm", ns);
 var NetUtil = ns.NetUtil;

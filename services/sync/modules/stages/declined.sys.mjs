@@ -7,7 +7,7 @@
  * in conjunction with EngineManager.
  */
 
-import { Log } from "resource://gre/modules/Log.sys.mjs";
+import { Log } from "moz-src:///toolkit/modules/Log.sys.mjs";
 
 import { CommonUtils } from "resource://services-common/utils.sys.mjs";
 import { Observers } from "resource://services-common/observers.sys.mjs";

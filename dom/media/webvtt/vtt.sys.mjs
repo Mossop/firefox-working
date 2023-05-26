@@ -24,7 +24,7 @@
  * limitations under the License.
  */
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 const lazy = {};
 XPCOMUtils.defineLazyPreferenceGetter(lazy, "supportPseudo",

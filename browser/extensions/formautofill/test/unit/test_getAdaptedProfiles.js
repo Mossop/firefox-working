@@ -7,7 +7,7 @@
 var FormAutofillHandler;
 add_task(async function() {
   ({ FormAutofillHandler } = ChromeUtils.importESModule(
-    "resource://gre/modules/shared/FormAutofillHandler.sys.mjs"
+    "moz-src:///toolkit/components/formautofill/shared/FormAutofillHandler.sys.mjs"
   ));
 });
 

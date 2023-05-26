@@ -43,11 +43,11 @@ const DOC_LANGUAGE_DETECTION_THRESHOLD = 0.65;
  */
 const DOC_TEXT_TO_IDENTIFY_LENGTH = 1024;
 
-import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
+import { XPCOMUtils } from "moz-src:///js/xpconnect/loader/XPCOMUtils.sys.mjs";
 
 ChromeUtils.defineESModuleGetters(lazy, {
-  setTimeout: "resource://gre/modules/Timer.sys.mjs",
-  clearTimeout: "resource://gre/modules/Timer.sys.mjs",
+  setTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
+  clearTimeout: "moz-src:///toolkit/modules/Timer.sys.mjs",
   TranslationsDocument:
     "chrome://global/content/translations/translations-document.sys.mjs",
 });
