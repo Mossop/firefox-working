@@ -1383,6 +1383,10 @@ bool nsContentSecurityUtils::ValidateScriptFilename(JSContext* cx,
     // If it's a resource:// url, allow it
     return true;
   }
+  if (StringBeginsWith(filenameU, u"moz-src://"_ns)) {
+    // If it's a resource:// url, allow it
+    return true;
+  }
   if (StringBeginsWith(filenameU, u"file://"_ns)) {
     // We will temporarily allow all file:// URIs through for now
     return true;

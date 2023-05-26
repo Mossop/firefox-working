@@ -1484,7 +1484,7 @@ nsresult mozJSModuleLoader::ExtractExports(JSContext* aCx,
 
 /* static */
 bool mozJSModuleLoader::IsTrustedScheme(nsIURI* aURI) {
-  return aURI->SchemeIs("resource") || aURI->SchemeIs("chrome");
+  return aURI->SchemeIs("resource") || aURI->SchemeIs("chrome") || aURI->SchemeIs("moz-src");
 }
 
 nsresult mozJSModuleLoader::Import(JSContext* aCx, const nsACString& aLocation,
