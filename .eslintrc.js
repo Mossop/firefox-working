@@ -64,6 +64,10 @@ module.exports = {
   },
   settings: {
     "import/extensions": [".mjs"],
+    "import/resolver": {
+      [path.resolve(__dirname, "srcdir-resolver.js")]: {},
+      node: {},
+    },
   },
   ignorePatterns,
   // Ignore eslint configurations in parent directories.
