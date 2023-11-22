@@ -60,6 +60,7 @@ module.exports = {
     "no-define-cc-etc": require("../lib/rules/no-define-cc-etc"),
     "no-redeclare-with-import-autofix": require("../lib/rules/no-redeclare-with-import-autofix"),
     "no-throw-cr-literal": require("../lib/rules/no-throw-cr-literal"),
+    "no-unused-args": require("../lib/rules/no-unused-args"),
     "no-useless-parameters": require("../lib/rules/no-useless-parameters"),
     "no-useless-removeEventListener": require("../lib/rules/no-useless-removeEventListener"),
     "no-useless-run-test": require("../lib/rules/no-useless-run-test"),

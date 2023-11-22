@@ -599,6 +599,7 @@ module.exports = {
         "no-unreachable": "off",
         "no-unsafe-negation": "off",
         "no-unused-vars": "off",
+        "mozilla/no-unused-args": "off",
         "no-useless-return": "off",
       },
     },
@@ -694,6 +695,7 @@ module.exports = {
       rules: {
         "no-undef": "off",
         "no-unused-vars": "off",
+        "mozilla/no-unused-args": "off",
       },
     },
     {
