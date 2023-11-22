@@ -178,6 +178,7 @@ module.exports = {
     "mozilla/no-cu-reportError": "error",
     "mozilla/no-define-cc-etc": "error",
     "mozilla/no-throw-cr-literal": "error",
+    "mozilla/no-unused-args": ["error", true],
     "mozilla/no-useless-parameters": "error",
     "mozilla/no-useless-removeEventListener": "error",
     "mozilla/prefer-boolean-length-check": "error",
