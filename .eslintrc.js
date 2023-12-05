@@ -11,6 +11,7 @@ const chromeTestConfig = require("eslint-plugin-mozilla/lib/configs/chrome-test.
 const { testPaths } = require("./.eslintrc-test-paths.js");
 const fs = require("fs");
 const path = require("path");
+const { compile } = require("./ts.js");
 
 /**
  * Some configurations have overrides, which can't be specified within overrides,
@@ -92,6 +93,11 @@ module.exports = {
     },
     {
       files: ["*.mjs"],
+      parser: "@typescript-eslint/parser",
+      parserOptions: {
+        sourceType: "module",
+        programs: compile(),
+      },
       rules: {
         "import/default": "error",
         "import/export": "error",

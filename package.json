@@ -33,5 +33,8 @@
     "yarn": "1.22.19"
   },
   "notes(private)": "We don't want to publish to npm, so this is marked as private",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@typescript-eslint/parser": "^6.13.1"
+  }
 }
