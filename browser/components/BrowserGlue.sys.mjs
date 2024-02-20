@@ -5,9 +5,9 @@
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
 import { XPCOMUtils } from "resource://gre/modules/XPCOMUtils.sys.mjs";
 
-const lazy = {};
+let lazy = {};
 
-ChromeUtils.defineESModuleGetters(lazy, {
+lazy = ChromeUtils.defineESModuleGetters(lazy, {
   AboutNewTab: "resource:///modules/AboutNewTab.sys.mjs",
   ASRouter: "resource:///modules/asrouter/ASRouter.sys.mjs",
   ASRouterDefaultConfig:
@@ -117,7 +117,7 @@ XPCOMUtils.defineLazyServiceGetters(lazy, {
   PushService: ["@mozilla.org/push/Service;1", "nsIPushService"],
 });
 
-ChromeUtils.defineLazyGetter(
+lazy = ChromeUtils.defineLazyGetter(
   lazy,
   "accountsL10n",
   () =>
