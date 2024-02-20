@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "lib": ["ESNext"],
+    "paths": {
+      "resource:///modules/BrowserGlue.sys.mjs": ["./browser/components/BrowserGlue.sys.mjs"],
+      "resource://gre/modules/XPCOMUtils.sys.mjs": ["./js/xpconnect/loader/XPCOMUtils.sys.mjs"]
+    }
+  },
+  "include": [
+    "types/*.ts",
+    "browser/**/*.sys.mjs"
+  ]
+}
