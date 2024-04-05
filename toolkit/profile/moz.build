@@ -11,6 +11,8 @@ XPCSHELL_TESTS_MANIFESTS += ["xpcshell/xpcshell.toml"]
 if CONFIG["ENABLE_TESTS"]:
     DIRS += ["gtest"]
 
+DIRS += ["macapp"]
+
 XPIDL_SOURCES += [
     "nsIProfileMigrator.idl",
     "nsIProfileUnlocker.idl",

@@ -86,6 +86,8 @@ class Bootstrap {
  public:
   typedef mozilla::UniquePtr<Bootstrap, BootstrapDelete> UniquePtr;
 
+  virtual void XRE_SetBinaryPath(const char* exePath) = 0;
+
   virtual void NS_LogInit() = 0;
 
   virtual void NS_LogTerm() = 0;

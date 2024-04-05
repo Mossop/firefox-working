@@ -1928,6 +1928,7 @@ nsresult AppInfoConstructor(REFNSIID aIID, void** aResult) {
 }  // namespace mozilla
 
 bool gLogConsoleErrors = false;
+char* gBinaryPath = nullptr;
 
 #define NS_ENSURE_TRUE_LOG(x, ret)               \
   PR_BEGIN_MACRO                                 \
@@ -2183,7 +2184,15 @@ void XRE_InitOmnijar(nsIFile* greOmni, nsIFile* appOmni) {
   mozilla::Omnijar::Init(greOmni, appOmni);
 }
 
+void XRE_SetBinaryPath(const char* exePath) {
+  gBinaryPath = strdup(exePath);
+}
+
 nsresult XRE_GetBinaryPath(nsIFile** aResult) {
+  if (gBinaryPath) {
+    return NS_NewNativeLocalFile(nsDependentCString(gBinaryPath), true, aResult);
+  }
+
   return mozilla::BinaryPath::GetFile(aResult);
 }
 
