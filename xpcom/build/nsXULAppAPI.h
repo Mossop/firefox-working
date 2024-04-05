@@ -214,6 +214,8 @@ int XRE_main(int argc, char* argv[], const mozilla::BootstrapConfig& aConfig);
  */
 nsresult XRE_GetFileFromPath(const char* aPath, nsIFile** aResult);
 
+void XRE_SetBinaryPath(const char* exePath);
+
 /**
  * Get the path of the running application binary and store it in aResult.
  */

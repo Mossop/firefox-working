@@ -27,6 +27,10 @@ class BootstrapImpl final : public Bootstrap {
 
   ~BootstrapImpl() = default;
 
+  virtual void XRE_SetBinaryPath(const char* exePath) override {
+    ::XRE_SetBinaryPath(exePath);
+  }
+
   virtual void NS_LogInit() override { ::NS_LogInit(); }
 
   virtual void NS_LogTerm() override { ::NS_LogTerm(); }

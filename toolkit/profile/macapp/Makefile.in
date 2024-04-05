@@ -1,0 +1,13 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+dist_dest   = $(DIST)/FirefoxProfile.app
+
+tools repackage:: $(DIST)/bin/firefox-profile
+	rm -rf $(dist_dest)
+	$(MKDIR) -p '$(dist_dest)/Contents/MacOS'
+	rsync -aL $(DIST)/bin/firefox-profile '$(dist_dest)/Contents/MacOS'
+	rsync -aL $(DIST)/bin/libmozglue.dylib '$(dist_dest)/Contents/MacOS'
+	$(call py_action,preprocessor Info.plist,-Fsubstitution -DAPP_VERSION='$(MOZ_APP_VERSION)' -DMOZ_APP_NAME='$(MOZ_APP_NAME)' -DMAC_APP_NAME='$(MAC_APP_NAME)' -DMOZ_MACBUNDLE_ID='$(MOZ_MACBUNDLE_ID)' -DMAC_BUNDLE_VERSION='$(MAC_BUNDLE_VERSION)' -DMOZ_DEVELOPER_REPO_PATH='$(topsrcdir)' -DMOZ_DEVELOPER_OBJ_PATH='$(topobjdir)' $(srcdir)/Info.plist.in -o '$(dist_dest)/Contents/Info.plist')
+	printf APPLMOZB > '$(dist_dest)/Contents/PkgInfo'
