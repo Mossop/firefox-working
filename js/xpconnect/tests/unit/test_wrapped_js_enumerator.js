@@ -3,11 +3,15 @@
 // Tests that JS iterators are automatically wrapped into
 // equivalent nsISimpleEnumerator objects.
 
-const Variant = Components.Constructor("@mozilla.org/variant;1",
-                                       "nsIWritableVariant",
-                                       "setFromVariant");
+const Variant = Components.Constructor(
+  "@mozilla.org/variant;1",
+  "nsIWritableVariant",
+  "setFromVariant"
+);
 const SupportsInterfacePointer = Components.Constructor(
-  "@mozilla.org/supports-interface-pointer;1", "nsISupportsInterfacePointer");
+  "@mozilla.org/supports-interface-pointer;1",
+  "nsISupportsInterfacePointer"
+);
 
 function wrapEnumerator1(iter) {
   var ip = SupportsInterfacePointer();
@@ -25,7 +29,6 @@ function wrapEnumerator2(iter) {
   };
   return ip.data.QueryInterface(Ci.nsIFilePicker).files;
 }
-
 
 function enumToArray(iter) {
   let result = [];

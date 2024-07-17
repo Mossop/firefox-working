@@ -3,8 +3,9 @@
 
 function run_test() {
   var Cu = Components.utils;
-  var sb = new Cu.Sandbox('http://www.example.com',
-                          { wantGlobalProperties: ["DOMException"] });
+  var sb = new Cu.Sandbox("http://www.example.com", {
+    wantGlobalProperties: ["DOMException"],
+  });
   sb.notEqual = Assert.notEqual.bind(Assert);
-  Cu.evalInSandbox('notEqual(DOMException, undefined);', sb);
+  Cu.evalInSandbox("notEqual(DOMException, undefined);", sb);
 }

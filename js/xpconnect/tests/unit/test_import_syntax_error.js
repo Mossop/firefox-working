@@ -1,8 +1,7 @@
 /* Any copyright is dedicated to the Public Domain.
  * http://creativecommons.org/publicdomain/zero/1.0/ */
 
-
-add_task(async function() {
+add_task(async function () {
   Assert.throws(
     () => ChromeUtils.import("resource://test/error_import.sys.mjs"),
     /use ChromeUtils.importESModule instead/,

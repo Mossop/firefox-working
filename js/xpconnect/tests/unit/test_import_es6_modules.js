@@ -1,7 +1,7 @@
 /* Any copyright is dedicated to the Public Domain.
  * http://creativecommons.org/publicdomain/zero/1.0/ */
 
-add_task(async function() {
+add_task(async function () {
   // Test basic import.
   let ns = ChromeUtils.importESModule("resource://test/es6module.js");
   Assert.equal(ns.loadCount, 1);
@@ -14,7 +14,9 @@ add_task(async function() {
 
   // Test imports with absolute and relative URIs return the same thing.
   let ns3 = ChromeUtils.importESModule("resource://test/es6module_absolute.js");
-  let ns4 = ChromeUtils.importESModule("resource://test/es6module_absolute2.js");
+  let ns4 = ChromeUtils.importESModule(
+    "resource://test/es6module_absolute2.js"
+  );
   Assert.ok(ns3.absoluteX === ns3.relativeX);
   Assert.ok(ns3.absoluteX === ns4.x);
 
@@ -111,7 +113,9 @@ add_task(async function() {
 
 add_task(async function testDynamicImport() {
   // Dynamic import while and after evaluating top-level script.
-  let ns = ChromeUtils.importESModule("resource://test/es6module_dynamic_import.js");
+  let ns = ChromeUtils.importESModule(
+    "resource://test/es6module_dynamic_import.js"
+  );
   let ns2 = await ns.result;
   Assert.equal(ns2.x, 10);
 
@@ -130,7 +134,9 @@ add_task(async function testDynamicImport() {
   Assert.equal(ns.callGetCounter(), 8);
 
   // Dynamic import for missing file.
-  ns = ChromeUtils.importESModule("resource://test/es6module_dynamic_import_missing.js");
+  ns = ChromeUtils.importESModule(
+    "resource://test/es6module_dynamic_import_missing.js"
+  );
   let e = await ns.result;
   checkException(e, {
     type: "TypeError",
@@ -150,7 +156,9 @@ add_task(async function testDynamicImport() {
   });
 
   // Syntax error in dynamic import.
-  ns = ChromeUtils.importESModule("resource://test/es6module_dynamic_import_syntax_error.js");
+  ns = ChromeUtils.importESModule(
+    "resource://test/es6module_dynamic_import_syntax_error.js"
+  );
   e = await ns.result;
   checkException(e, {
     type: "SyntaxError",
@@ -170,7 +178,9 @@ add_task(async function testDynamicImport() {
   });
 
   // Runtime error in dynamic import.
-  ns = ChromeUtils.importESModule("resource://test/es6module_dynamic_import_runtime_error.js");
+  ns = ChromeUtils.importESModule(
+    "resource://test/es6module_dynamic_import_runtime_error.js"
+  );
   e = await ns.result;
   checkException(e, {
     type: "ReferenceError",
@@ -219,16 +229,22 @@ function checkException(exception, expected, importLine, importColumn) {
     Assert.equal(exception.constructor.name, expected.type, "error type");
   }
   if ("message" in expected) {
-    Assert.ok(exception.message.includes(expected.message),
-              `Message "${exception.message}" should contain "${expected.message}"`);
+    Assert.ok(
+      exception.message.includes(expected.message),
+      `Message "${exception.message}" should contain "${expected.message}"`
+    );
   }
   if ("stack" in expected) {
-    Assert.ok(exception.stack.includes(expected.stack),
-              `Stack "${exception.stack}" should contain "${expected.stack}"`);
+    Assert.ok(
+      exception.stack.includes(expected.stack),
+      `Stack "${exception.stack}" should contain "${expected.stack}"`
+    );
   }
   if ("fileName" in expected) {
-    Assert.ok(exception.fileName.includes(expected.fileName),
-              `fileName "${exception.fileName}" should contain "${expected.fileName}"`);
+    Assert.ok(
+      exception.fileName.includes(expected.fileName),
+      `fileName "${exception.fileName}" should contain "${expected.fileName}"`
+    );
   }
   if ("lineNumber" in expected) {
     let expectedLine = expected.lineNumber;

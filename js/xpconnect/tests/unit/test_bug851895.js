@@ -5,5 +5,7 @@ function run_test() {
 
   // Even for classes without |this| fixup, make sure that we don't crash.
   var isSuccessCode = Components.isSuccessCode;
-  try { isSuccessCode(Cr.NS_OK); } catch (e) {};
+  try {
+    isSuccessCode(Cr.NS_OK);
+  } catch (e) {}
 }

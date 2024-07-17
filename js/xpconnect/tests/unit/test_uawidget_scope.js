@@ -2,8 +2,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-const {NetUtil} = ChromeUtils.importESModule("resource://gre/modules/NetUtil.sys.mjs");
-const {TestUtils} = ChromeUtils.importESModule("resource://testing-common/TestUtils.sys.mjs");
+const { NetUtil } = ChromeUtils.importESModule(
+  "resource://gre/modules/NetUtil.sys.mjs"
+);
+const { TestUtils } = ChromeUtils.importESModule(
+  "resource://testing-common/TestUtils.sys.mjs"
+);
 
 function getWindowlessBrowser(url) {
   let ssm = Services.scriptSecurityManager;
@@ -21,8 +25,11 @@ function getWindowlessBrowser(url) {
   let shadowRoot = video.openOrClosedShadowRoot;
   ok(shadowRoot, "should have shadowRoot");
   ok(shadowRoot.isUAWidget(), "ShadowRoot should be a UAWidget");
-  equal(Cu.getGlobalForObject(shadowRoot), Cu.getUAWidgetScope(principal),
-        "shadowRoot should be in UAWidget scope");
+  equal(
+    Cu.getGlobalForObject(shadowRoot),
+    Cu.getUAWidgetScope(principal),
+    "shadowRoot should be in UAWidget scope"
+  );
 
   return webnav;
 }
@@ -38,7 +45,7 @@ function StubPolicy(id) {
 }
 
 // See https://bugzilla.mozilla.org/show_bug.cgi?id=1588356
-add_task(async function() {
+add_task(async function () {
   let policy = StubPolicy("foo");
   policy.active = true;
 

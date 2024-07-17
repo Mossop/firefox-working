@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 add_task(async function run_test() {
-  let sb = new Cu.Sandbox('http://www.example.com');
+  let sb = new Cu.Sandbox("http://www.example.com");
 
   let done = false;
   let iterator = {
@@ -12,11 +12,14 @@ add_task(async function run_test() {
     },
 
     next() {
-      let promise = Cu.evalInSandbox(`Promise.resolve({done: ${done}, value: {hello: "world"}})`, sb);
+      let promise = Cu.evalInSandbox(
+        `Promise.resolve({done: ${done}, value: {hello: "world"}})`,
+        sb
+      );
       done = true;
       return promise;
-    }
-  }
+    },
+  };
 
   let stream = ReadableStream.from(iterator);
   let reader = stream.getReader();

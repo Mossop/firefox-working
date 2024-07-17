@@ -4,12 +4,12 @@
 
 function run_test() {
   var file = do_get_file("bug451678_subscript.js");
-  var ios = Cc["@mozilla.org/network/io-service;1"]
-              .getService(Ci.nsIIOService);
+  var ios = Cc["@mozilla.org/network/io-service;1"].getService(Ci.nsIIOService);
   var uri = ios.newFileURI(file);
-  var scriptLoader = Cc["@mozilla.org/moz/jssubscript-loader;1"]
-                       .getService(Ci.mozIJSSubScriptLoader);
+  var scriptLoader = Cc["@mozilla.org/moz/jssubscript-loader;1"].getService(
+    Ci.mozIJSSubScriptLoader
+  );
   var srvScope = {};
   scriptLoader.loadSubScript(uri.spec, srvScope);
-  Assert.ok('makeTags' in srvScope && srvScope.makeTags instanceof Function);
+  Assert.ok("makeTags" in srvScope && srvScope.makeTags instanceof Function);
 }

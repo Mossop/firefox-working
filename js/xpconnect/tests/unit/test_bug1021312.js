@@ -6,10 +6,19 @@ function run_test() {
   let sb = new Cu.Sandbox(this);
   var called = false;
 
-  Cu.exportFunction(function(str) { Assert.ok(/someString/.test(str)); called = true; },
-                    sb, { defineAs: "func" });
+  Cu.exportFunction(
+    function (str) {
+      Assert.ok(/someString/.test(str));
+      called = true;
+    },
+    sb,
+    { defineAs: "func" }
+  );
   // Do something weird with the string to make sure that it doesn't get interned.
-  Cu.evalInSandbox("var str = 'someString'; for (var i = 0; i < 10; ++i) str += i;", sb);
+  Cu.evalInSandbox(
+    "var str = 'someString'; for (var i = 0; i < 10; ++i) str += i;",
+    sb
+  );
   Cu.evalInSandbox("func(str);", sb);
   Assert.ok(called);
 }

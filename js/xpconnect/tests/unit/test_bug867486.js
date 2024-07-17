@@ -3,6 +3,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 function run_test() {
-  var sb = new Cu.Sandbox('http://www.example.com', { wantComponents: true } );
+  var sb = new Cu.Sandbox("http://www.example.com", { wantComponents: true });
   Assert.ok(!Cu.evalInSandbox('"Components" in this', sb));
 }

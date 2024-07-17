@@ -4,8 +4,7 @@
 
 /* See https://bugzilla.mozilla.org/show_bug.cgi?id=898559 */
 
-function run_test()
-{
+function run_test() {
   let sandbox = Cu.Sandbox("http://www.blah.com", {
     metadata: "test metadata",
   });
@@ -15,7 +14,7 @@ function run_test()
   Assert.equal(Cu.getSandboxMetadata(sandbox), "test metadata");
 
   sandbox = Cu.Sandbox("http://www.blah.com", {
-    metadata: { foopy: { bar: 2 }, baz: "hi" }
+    metadata: { foopy: { bar: 2 }, baz: "hi" },
   });
 
   let metadata = Cu.getSandboxMetadata(sandbox);
@@ -37,21 +36,23 @@ function run_test()
 
   try {
     Cu.setSandboxMetadata(sandbox, { foo: reflector });
-  } catch(e) {
+  } catch (e) {
     thrown = true;
   }
 
   Assert.equal(thrown, true);
 
   sandbox = Cu.Sandbox(this, {
-    metadata: { foopy: { bar: 2 }, baz: "hi" }
+    metadata: { foopy: { bar: 2 }, baz: "hi" },
   });
 
-  let inner = Cu.evalInSandbox("Components.utils.Sandbox('http://www.blah.com')", sandbox);
+  let inner = Cu.evalInSandbox(
+    "Components.utils.Sandbox('http://www.blah.com')",
+    sandbox
+  );
 
   metadata = Cu.getSandboxMetadata(inner);
   Assert.equal(metadata.baz, "hi");
   Assert.equal(metadata.foopy.bar, 2);
   metadata.baz = "foo";
 }
-

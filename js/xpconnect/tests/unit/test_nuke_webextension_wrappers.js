@@ -1,7 +1,11 @@
 // See https://bugzilla.mozilla.org/show_bug.cgi?id=1273251
 
-const {NetUtil} = ChromeUtils.importESModule("resource://gre/modules/NetUtil.sys.mjs");
-const {TestUtils} = ChromeUtils.importESModule("resource://testing-common/TestUtils.sys.mjs");
+const { NetUtil } = ChromeUtils.importESModule(
+  "resource://gre/modules/NetUtil.sys.mjs"
+);
+const { TestUtils } = ChromeUtils.importESModule(
+  "resource://testing-common/TestUtils.sys.mjs"
+);
 
 function getWindowlessBrowser(url) {
   let ssm = Services.scriptSecurityManager;
@@ -30,7 +34,7 @@ function StubPolicy(id) {
   });
 }
 
-add_task(async function() {
+add_task(async function () {
   let policy = StubPolicy("foo");
   policy.active = true;
 
@@ -43,13 +47,15 @@ add_task(async function() {
   winB.winA = winA;
   winB.eval(`winA.thing = {foo: "bar"};`);
 
-  let getThing = winA.eval(String(() => {
-    try {
-      return thing.foo;
-    } catch (e) {
-      return String(e);
-    }
-  }));
+  let getThing = winA.eval(
+    String(() => {
+      try {
+        return thing.foo;
+      } catch (e) {
+        return String(e);
+      }
+    })
+  );
 
   // Check that the object can be accessed normally before windowB is closed.
   equal(getThing(), "bar");
@@ -61,8 +67,10 @@ add_task(async function() {
 
   // Check that it can't be accessed after he window has been closed.
   let result = getThing();
-  ok(/dead object/.test(result),
-     `Result should show a dead wrapper error: ${result}`);
+  ok(
+    /dead object/.test(result),
+    `Result should show a dead wrapper error: ${result}`
+  );
 
   webnavA.close();
 

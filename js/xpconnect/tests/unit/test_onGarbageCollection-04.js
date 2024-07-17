@@ -32,7 +32,7 @@ function run_test() {
   do_test_pending();
 
   const debuggeree = newGlobal();
-  const debuggee = debuggeree.debuggee = newGlobal();
+  const debuggee = (debuggeree.debuggee = newGlobal());
 
   debuggeree.eval(
     `
@@ -55,10 +55,8 @@ function run_test() {
 
   // Let first onGarbageCollection runnable get run.
   executeSoon(() => {
-
     // Let second onGarbageCollection runnable get run.
     executeSoon(() => {
-
       // Even though we request GC'ing a single zone, we can't rely on that
       // behavior and both zones could have been scheduled for gc for both
       // gc(this) calls.

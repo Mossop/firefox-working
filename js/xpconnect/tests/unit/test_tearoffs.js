@@ -4,15 +4,17 @@
 
 function TestInterfaceAll() {}
 TestInterfaceAll.prototype = {
-  QueryInterface: ChromeUtils.generateQI(["nsIXPCTestInterfaceA",
-                                          "nsIXPCTestInterfaceB",
-                                          "nsIXPCTestInterfaceC"]),
+  QueryInterface: ChromeUtils.generateQI([
+    "nsIXPCTestInterfaceA",
+    "nsIXPCTestInterfaceB",
+    "nsIXPCTestInterfaceC",
+  ]),
 
   /* nsIXPCTestInterfaceA / nsIXPCTestInterfaceB */
   name: "TestInterfaceAllDefaultName",
 
   /* nsIXPCTestInterfaceC */
-  someInteger: 42
+  someInteger: 42,
 };
 
 function newWrappedJS() {
@@ -22,18 +24,16 @@ function newWrappedJS() {
 function run_test() {
   // Shortcut the interfaces we're using.
   var ifs = {
-    a: Ci['nsIXPCTestInterfaceA'],
-    b: Ci['nsIXPCTestInterfaceB'],
-    c: Ci['nsIXPCTestInterfaceC']
+    a: Ci["nsIXPCTestInterfaceA"],
+    b: Ci["nsIXPCTestInterfaceB"],
+    c: Ci["nsIXPCTestInterfaceC"],
   };
 
   // Run through the logic a few times.
-  for (let i = 0; i < 2; ++i)
-    play_with_tearoffs(ifs);
+  for (let i = 0; i < 2; ++i) play_with_tearoffs(ifs);
 }
 
 function play_with_tearoffs(ifs) {
-
   // Allocate a bunch of objects, QI-ed to B.
   var instances = [];
   for (var i = 0; i < 300; ++i)
@@ -43,46 +43,51 @@ function play_with_tearoffs(ifs) {
   gc();
 
   // QI them to A.
-  instances.forEach(function(v, i, a) { v.QueryInterface(ifs.a); });
+  instances.forEach(function (v, i, a) {
+    v.QueryInterface(ifs.a);
+  });
 
   // QI them to C.
-  instances.forEach(function(v, i, a) { v.QueryInterface(ifs.c); });
+  instances.forEach(function (v, i, a) {
+    v.QueryInterface(ifs.c);
+  });
 
   // Check
-  Assert.ok('name' in instances[10], 'Have the prop from A/B');
-  Assert.ok('someInteger' in instances[10], 'Have the prop from C');
+  Assert.ok("name" in instances[10], "Have the prop from A/B");
+  Assert.ok("someInteger" in instances[10], "Have the prop from C");
 
   // Grab tearoff reflections for a and b.
-  var aTearOffs = instances.map(function(v, i, a) { return v.nsIXPCTestInterfaceA; } );
-  var bTearOffs = instances.map(function(v, i, a) { return v.nsIXPCTestInterfaceB; } );
+  var aTearOffs = instances.map(function (v, i, a) {
+    return v.nsIXPCTestInterfaceA;
+  });
+  var bTearOffs = instances.map(function (v, i, a) {
+    return v.nsIXPCTestInterfaceB;
+  });
 
   // Check
-  Assert.ok('name' in aTearOffs[1], 'Have the prop from A');
-  Assert.ok(!('someInteger' in aTearOffs[1]), 'Dont have the prop from C');
+  Assert.ok("name" in aTearOffs[1], "Have the prop from A");
+  Assert.ok(!("someInteger" in aTearOffs[1]), "Dont have the prop from C");
 
   // Nothing to collect.
   gc();
 
   // Null out every even instance pointer.
   for (var i = 0; i < instances.length; ++i)
-    if (i % 2 == 0)
-        instances[i] = null;
+    if (i % 2 == 0) instances[i] = null;
 
   // Nothing to collect, since we still have the A and B tearoff reflections.
   gc();
 
   // Null out A tearoff reflections that are a multiple of 3.
   for (var i = 0; i < aTearOffs.length; ++i)
-    if (i % 3 == 0)
-        aTearOffs[i] = null;
+    if (i % 3 == 0) aTearOffs[i] = null;
 
   // Nothing to collect, since we still have the B tearoff reflections.
   gc();
 
   // Null out B tearoff reflections that are a multiple of 5.
   for (var i = 0; i < bTearOffs.length; ++i)
-    if (i % 5 == 0)
-        bTearOffs[i] = null;
+    if (i % 5 == 0) bTearOffs[i] = null;
 
   // This should collect every 30th object (indices that are multiples of 2, 3, and 5).
   gc();
@@ -94,11 +99,13 @@ function play_with_tearoffs(ifs) {
   gc();
 
   // Get C tearoffs.
-  var cTearOffs = instances.map(function(v, i, a) { return v ? v.nsIXPCTestInterfaceC : null; } );
+  var cTearOffs = instances.map(function (v, i, a) {
+    return v ? v.nsIXPCTestInterfaceC : null;
+  });
 
   // Check.
-  Assert.ok(!('name' in cTearOffs[1]), 'Dont have the prop from A');
-  Assert.ok('someInteger' in cTearOffs[1], 'have the prop from C');
+  Assert.ok(!("name" in cTearOffs[1]), "Dont have the prop from A");
+  Assert.ok("someInteger" in cTearOffs[1], "have the prop from C");
 
   // Null out the a tearoffs.
   aTearOffs = null;

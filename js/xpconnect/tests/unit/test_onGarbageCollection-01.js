@@ -2,9 +2,9 @@
 
 const root = newGlobal();
 const dbg = new Debugger();
-const wrappedRoot = dbg.addDebuggee(root)
+const wrappedRoot = dbg.addDebuggee(root);
 
-const NUM_SLICES = root.NUM_SLICES = 10;
+const NUM_SLICES = (root.NUM_SLICES = 10);
 
 let fired = false;
 let slicesFound = 0;
@@ -20,8 +20,11 @@ dbg.memory.onGarbageCollection = data => {
   print("Got onGarbageCollection: " + JSON.stringify(data, null, 2));
 
   equal(typeof data.reason, "string");
-  equal(typeof data.nonincrementalReason == "string" || data.nonincrementalReason === null,
-        true);
+  equal(
+    typeof data.nonincrementalReason == "string" ||
+      data.nonincrementalReason === null,
+    true
+  );
 
   let lastStartTimestamp = 0;
   for (let i = 0; i < data.collections.length; i++) {
@@ -35,7 +38,7 @@ dbg.memory.onGarbageCollection = data => {
 
   equal(data.collections.length >= 1, true);
   slicesFound += data.collections.length;
-}
+};
 
 function run_test() {
   do_test_pending();

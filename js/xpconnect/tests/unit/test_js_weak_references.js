@@ -4,8 +4,7 @@
 
 /* See https://bugzilla.mozilla.org/show_bug.cgi?id=317304 */
 
-function run_test()
-{
+function run_test() {
   // Bug 712649: Calling getWeakReference(null) should work.
   try {
     var nullWeak = Cu.getWeakReference(null);
@@ -14,12 +13,12 @@ function run_test()
     Assert.ok(false);
   }
 
-  var obj = { num: 5, str: 'foo' };
+  var obj = { num: 5, str: "foo" };
   var weak = Cu.getWeakReference(obj);
 
   Assert.ok(weak.get() === obj);
   Assert.ok(weak.get().num == 5);
-  Assert.ok(weak.get().str == 'foo');
+  Assert.ok(weak.get().str == "foo");
 
   // Force garbage collection
   Cu.forceGC();
@@ -27,13 +26,13 @@ function run_test()
   // obj still references the object, so it should still be accessible via weak
   Assert.ok(weak.get() === obj);
   Assert.ok(weak.get().num == 5);
-  Assert.ok(weak.get().str == 'foo');
+  Assert.ok(weak.get().str == "foo");
 
   // Clear obj's reference to the object and force garbage collection. To make
   // sure that there are no instances of obj stored in the registers or on the
   // native stack and the conservative GC would not find it we force the same
   // code paths that we used for the initial allocation.
-  obj = { num: 6, str: 'foo2' };
+  obj = { num: 6, str: "foo2" };
   var weak2 = Cu.getWeakReference(obj);
   Assert.ok(weak2.get() === obj);
 

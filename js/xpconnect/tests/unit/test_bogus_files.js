@@ -13,8 +13,7 @@ function test_BrokenFile(path, shouldThrow, expectedName) {
   }
 
   Assert.equal(didThrow, shouldThrow);
-  if (didThrow)
-    Assert.equal(exceptionName, expectedName);
+  if (didThrow) Assert.equal(exceptionName, expectedName);
 }
 
 function run_test() {
@@ -22,11 +21,15 @@ function run_test() {
 
   test_BrokenFile("resource://test/bogus_element_type.jsm", true, "Error");
 
-  test_BrokenFile("resource://test/non_existing.jsm",
-                  true,
-                  "NS_ERROR_FILE_NOT_FOUND");
+  test_BrokenFile(
+    "resource://test/non_existing.jsm",
+    true,
+    "NS_ERROR_FILE_NOT_FOUND"
+  );
 
-  test_BrokenFile("chrome://test/content/test.jsm",
-                  true,
-                  "NS_ERROR_FILE_NOT_FOUND");
+  test_BrokenFile(
+    "chrome://test/content/test.jsm",
+    true,
+    "NS_ERROR_FILE_NOT_FOUND"
+  );
 }

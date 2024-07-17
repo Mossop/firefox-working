@@ -1,23 +1,32 @@
 function run_test() {
-
   // Make sure we don't throw for primitive values.
   var result = "threw";
-  try { result = XPCNativeWrapper.unwrap(2); } catch (e) {}
+  try {
+    result = XPCNativeWrapper.unwrap(2);
+  } catch (e) {}
   Assert.equal(result, 2);
   result = "threw";
-  try { result = XPCNativeWrapper(2); } catch (e) {}
+  try {
+    result = XPCNativeWrapper(2);
+  } catch (e) {}
   Assert.equal(result, 2);
 
   // Make sure we throw when using `new` with primitives.
   result = null;
-  try { result = new XPCNativeWrapper(2); } catch (e) { result = "catch"; }
+  try {
+    result = new XPCNativeWrapper(2);
+  } catch (e) {
+    result = "catch";
+  }
   Assert.equal(result, "catch");
 
   // Make sure that we can waive on a non-Xrayable object, and that we preserve
   // transitive waiving behavior.
-  var sb = new Cu.Sandbox('http://www.example.com', { wantGlobalProperties: ["XMLHttpRequest"] });
-  Cu.evalInSandbox('this.xhr = new XMLHttpRequest();', sb);
-  Cu.evalInSandbox('this.jsobj = {mynative: xhr};', sb);
+  var sb = new Cu.Sandbox("http://www.example.com", {
+    wantGlobalProperties: ["XMLHttpRequest"],
+  });
+  Cu.evalInSandbox("this.xhr = new XMLHttpRequest();", sb);
+  Cu.evalInSandbox("this.jsobj = {mynative: xhr};", sb);
   Assert.ok(!Cu.isXrayWrapper(XPCNativeWrapper.unwrap(sb.xhr)));
   Assert.ok(Cu.isXrayWrapper(sb.jsobj.mynative));
   Assert.ok(!Cu.isXrayWrapper(XPCNativeWrapper.unwrap(sb.jsobj).mynative));

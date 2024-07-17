@@ -4,13 +4,16 @@
 
 /* See https://bugzilla.mozilla.org/show_bug.cgi?id=1298597 */
 
-function run_test()
-{
+function run_test() {
   var sb = Cu.Sandbox("http://www.blah.com");
   var resolveFun;
-  var p1 = new sb.Promise((res, rej) => {resolveFun = res});
+  var p1 = new sb.Promise((res, rej) => {
+    resolveFun = res;
+  });
   var rejectFun;
-  var p2 = new sb.Promise((res, rej) => {rejectFun = rej});
+  var p2 = new sb.Promise((res, rej) => {
+    rejectFun = rej;
+  });
   Cu.nukeSandbox(sb);
   Assert.ok(Cu.isDeadWrapper(sb), "sb should be dead");
   Assert.ok(Cu.isDeadWrapper(p1), "p1 should be dead");
@@ -18,22 +21,26 @@ function run_test()
 
   var exception;
 
-  try{
+  try {
     resolveFun(1);
     Assert.ok(false);
   } catch (e) {
     exception = e;
   }
-  Assert.ok(exception.toString().includes("can't access dead object"),
-            "Resolving dead wrapped promise should throw");
+  Assert.ok(
+    exception.toString().includes("can't access dead object"),
+    "Resolving dead wrapped promise should throw"
+  );
 
   exception = undefined;
-  try{
+  try {
     rejectFun(1);
     Assert.ok(false);
   } catch (e) {
     exception = e;
   }
-  Assert.ok(exception.toString().includes("can't access dead object"),
-            "Rejecting dead wrapped promise should throw");
+  Assert.ok(
+    exception.toString().includes("can't access dead object"),
+    "Rejecting dead wrapped promise should throw"
+  );
 }

@@ -2,25 +2,22 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-function TestCEnums() {
-}
+function TestCEnums() {}
 
 TestCEnums.prototype = {
   /* Boilerplate */
   QueryInterface: ChromeUtils.generateQI(["nsIXPCTestCEnums"]),
 
-  testCEnumInput: function(input) {
-    if (input != Ci.nsIXPCTestCEnums.shouldBe12Explicit)
-    {
+  testCEnumInput: function (input) {
+    if (input != Ci.nsIXPCTestCEnums.shouldBe12Explicit) {
       throw new Error("Enum values do not match expected value");
     }
   },
 
-  testCEnumOutput: function() {
+  testCEnumOutput: function () {
     return Ci.nsIXPCTestCEnums.shouldBe8Explicit;
   },
 };
-
 
 function run_test() {
   // Load the component manifests.
@@ -28,7 +25,9 @@ function run_test() {
 
   // Test for each component.
   test_interface_consts();
-  test_component(Cc["@mozilla.org/js/xpc/test/native/CEnums;1"].createInstance());
+  test_component(
+    Cc["@mozilla.org/js/xpc/test/native/CEnums;1"].createInstance()
+  );
   test_component(xpcWrap(new TestCEnums()));
 }
 
@@ -51,8 +50,10 @@ function test_interface_consts() {
 function test_component(obj) {
   var o = obj.QueryInterface(Ci.nsIXPCTestCEnums);
   o.testCEnumInput(Ci.nsIXPCTestCEnums.shouldBe12Explicit);
-  o.testCEnumInput(Ci.nsIXPCTestCEnums.shouldBe8Explicit | Ci.nsIXPCTestCEnums.shouldBe4Explicit);
+  o.testCEnumInput(
+    Ci.nsIXPCTestCEnums.shouldBe8Explicit |
+      Ci.nsIXPCTestCEnums.shouldBe4Explicit
+  );
   var a = o.testCEnumOutput();
   Assert.equal(a, Ci.nsIXPCTestCEnums.shouldBe8Explicit);
 }
-

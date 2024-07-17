@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const { addDebuggerToGlobal } = ChromeUtils.importESModule(
   "resource://gre/modules/jsdebugger.sys.mjs"
@@ -47,18 +47,26 @@ function newGlobal(args) {
 add_task(function test_json_parse_with_source_xrays() {
   let sandbox = new Cu.Sandbox("about:blank");
 
-  var sourceWrapper = Cu.evalInSandbox("JSON.parse('5.0', (k,v,{source}) => ({src: source, val: v}));", sandbox);
-  Assert.deepEqual(sourceWrapper, {src: "5.0", val: 5});
-  sandbox.reviver = (k,v,{source}) => { return { orig: source }};
+  var sourceWrapper = Cu.evalInSandbox(
+    "JSON.parse('5.0', (k,v,{source}) => ({src: source, val: v}));",
+    sandbox
+  );
+  Assert.deepEqual(sourceWrapper, { src: "5.0", val: 5 });
+  sandbox.reviver = (k, v, { source }) => {
+    return { orig: source };
+  };
   sourceWrapper = Cu.evalInSandbox("JSON.parse('2.4', reviver);", sandbox);
-  Assert.deepEqual(sourceWrapper, { orig: "2.4"});
+  Assert.deepEqual(sourceWrapper, { orig: "2.4" });
 
   // Get rid of the extra global when experimental.json_parse_with_source pref is removed
   var g = newGlobal({ newCompartment: true });
-  Cu.evalInSandbox(`
+  Cu.evalInSandbox(
+    `
     let other = new Cu.Sandbox("about:blank");
     let rawWrapper = other.eval('JSON.rawJSON(4.32)');
-  `, g);
+  `,
+    g
+  );
   Assert.ok(g.eval("JSON.isRawJSON(rawWrapper);"));
   Assert.equal(Cu.evalInSandbox("JSON.stringify(rawWrapper)", g), "4.32");
 
@@ -66,9 +74,12 @@ add_task(function test_json_parse_with_source_xrays() {
   Assert.equal(g.eval("rawWrapper.wrappedJSObject.rawJSON"), "4.32");
   Assert.equal(g.eval("rawWrapper.rawJSON"), undefined);
 
-  let src = Cu.evalInSandbox(`
+  let src = Cu.evalInSandbox(
+    `
     other.eval('JSON.parse("4.32", (k,v,{source}) => { return {source,v}})');
-  `, g);
+  `,
+    g
+  );
   Assert.ok(Cu.isXrayWrapper(src));
-  Assert.deepEqual(src, {source:"4.32", v:4.32});
+  Assert.deepEqual(src, { source: "4.32", v: 4.32 });
 });

@@ -7,10 +7,13 @@
 // Use a COW to expose a function from a standard prototype, and make we deny
 // access to it.
 
-function run_test()
-{
+function run_test() {
   var sb = Cu.Sandbox("http://www.example.com");
   sb.obj = { foo: 42 };
-  Assert.equal(Cu.evalInSandbox('typeof obj.foo', sb), 'undefined', "COW works as expected");
-  Assert.equal(Cu.evalInSandbox('obj.hasOwnProperty', sb), undefined);
+  Assert.equal(
+    Cu.evalInSandbox("typeof obj.foo", sb),
+    "undefined",
+    "COW works as expected"
+  );
+  Assert.equal(Cu.evalInSandbox("obj.hasOwnProperty", sb), undefined);
 }

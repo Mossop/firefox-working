@@ -3,7 +3,7 @@
 
 const root = newGlobal();
 const dbg = new Debugger();
-const wrappedRoot = dbg.addDebuggee(root)
+const wrappedRoot = dbg.addDebuggee(root);
 
 Services.prefs.setBoolPref("security.allow_eval_with_system_principal", true);
 registerCleanupFunction(() => {
@@ -38,5 +38,5 @@ function run_test() {
     };
 
     root.eval("gc(this)");
-  }());
+  })();
 }

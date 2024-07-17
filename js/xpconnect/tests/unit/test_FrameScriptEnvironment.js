@@ -6,18 +6,19 @@ registerCleanupFunction(() => {
 });
 
 add_task(async function test_bindings() {
-    let {strict, bound} = await new Promise(function(resolve) {
-        // Use a listener to get results from child
-        ppmm.addMessageListener("results", function listener(msg) {
-            ppmm.removeMessageListener("results", listener);
-            resolve(msg.data);
-        });
+  let { strict, bound } = await new Promise(function (resolve) {
+    // Use a listener to get results from child
+    ppmm.addMessageListener("results", function listener(msg) {
+      ppmm.removeMessageListener("results", listener);
+      resolve(msg.data);
+    });
 
-        // Bind vars in first process script
-        ppmm.loadProcessScript("resource://test/environment_script.js", false);
+    // Bind vars in first process script
+    ppmm.loadProcessScript("resource://test/environment_script.js", false);
 
-        // Check visibility in second process script
-        ppmm.loadProcessScript(`data:,
+    // Check visibility in second process script
+    ppmm.loadProcessScript(
+      `data:,
             let strict = (function() { return this; })() === undefined;
             var bound = "";
 
@@ -32,15 +33,17 @@ add_task(async function test_bindings() {
             try { void fd; bound += "fd,"; } catch (e) {}
 
             sendAsyncMessage("results", { strict, bound });
-            `, false);
-    });
+            `,
+      false
+    );
+  });
 
-    // FrameScript loader should share |this| access
-    if (strict) {
-        if (bound != "gt,ed,ei,fo,")
-            throw new Error("Unexpected global binding set - " + bound);
-    } else {
-        if (bound != "gt,ed,ei,fo,fi,fd,")
-            throw new Error("Unexpected global binding set - " + bound);
-    }
+  // FrameScript loader should share |this| access
+  if (strict) {
+    if (bound != "gt,ed,ei,fo,")
+      throw new Error("Unexpected global binding set - " + bound);
+  } else {
+    if (bound != "gt,ed,ei,fo,fi,fd,")
+      throw new Error("Unexpected global binding set - " + bound);
+  }
 });

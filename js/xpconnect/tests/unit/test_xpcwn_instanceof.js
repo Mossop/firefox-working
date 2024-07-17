@@ -19,5 +19,8 @@ add_task(function id_instanceof() {
   // Test error handling when calling this function with unexpected values.
   Assert.throws(() => desc.value.call(null), /At least 1 argument required/);
   Assert.throws(() => desc.value.call(null, 1), /unexpected this value/);
-  Assert.throws(() => desc.value.call({}, {}), /NS_ERROR_XPC_BAD_OP_ON_WN_PROTO/);
+  Assert.throws(
+    () => desc.value.call({}, {}),
+    /NS_ERROR_XPC_BAD_OP_ON_WN_PROTO/
+  );
 });

@@ -9,13 +9,15 @@ registerCleanupFunction(() => {
 
 var TestUtils = {
   QueryInterface: ChromeUtils.generateQI(["nsIXPCTestUtils"]),
-  doubleWrapFunction(fun) { return fun }
+  doubleWrapFunction(fun) {
+    return fun;
+  },
 };
 
 function run_test() {
   // Generate a CCW to a function.
   var sb = new Cu.Sandbox(this);
-  sb.eval('function fun(x) { return x; }');
+  sb.eval("function fun(x) { return x; }");
   Assert.equal(sb.fun("foo"), "foo");
 
   // Double-wrap the CCW.

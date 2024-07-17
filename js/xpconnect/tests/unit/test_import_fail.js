@@ -1,5 +1,4 @@
-function run_test()
-{
+function run_test() {
   try {
     ChromeUtils.import("resource://test/importer.jsm");
     Assert.ok(false, "import should not succeed.");

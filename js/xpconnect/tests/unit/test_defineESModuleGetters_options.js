@@ -10,11 +10,15 @@ add_task(async function testShared() {
     GetX: "resource://test/esm_lazy-1.sys.mjs",
   });
 
-  ChromeUtils.defineESModuleGetters(lazy2, {
-    GetX: "resource://test/esm_lazy-1.sys.mjs",
-  }, {
-    global: "shared",
-  });
+  ChromeUtils.defineESModuleGetters(
+    lazy2,
+    {
+      GetX: "resource://test/esm_lazy-1.sys.mjs",
+    },
+    {
+      global: "shared",
+    }
+  );
 
   Assert.equal(lazy1.GetX, lazy2.GetX);
 
@@ -27,11 +31,15 @@ add_task(async function testShared() {
 add_task(async function testDevTools() {
   const lazy = {};
 
-  ChromeUtils.defineESModuleGetters(lazy, {
-    GetX: "resource://test/esm_lazy-1.sys.mjs",
-  }, {
-    global: "devtools",
-  });
+  ChromeUtils.defineESModuleGetters(
+    lazy,
+    {
+      GetX: "resource://test/esm_lazy-1.sys.mjs",
+    },
+    {
+      global: "devtools",
+    }
+  );
 
   lazy.GetX; // delazify before import.
 
@@ -51,7 +59,8 @@ add_task(async function testSandbox() {
   };
   const sb = new Cu.Sandbox(uri, sandboxOpts);
 
-  const result = Cu.evalInSandbox(`
+  const result = Cu.evalInSandbox(
+    `
   const lazy = {};
 
   ChromeUtils.defineESModuleGetters(lazy, {
@@ -67,7 +76,9 @@ add_task(async function testSandbox() {
   });
 
   ns.GetX == lazy.GetX;
-`, sb);
+`,
+    sb
+  );
 
   Assert.ok(result);
 });
