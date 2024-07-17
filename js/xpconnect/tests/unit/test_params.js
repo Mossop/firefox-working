@@ -2,38 +2,35 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-function TestParams() {
-}
+function TestParams() {}
 
 /* For once I'm happy that JS is weakly typed. */
 function f(a, b) {
-    var rv = b.value;
-    b.value = a;
-    return rv;
-};
+  var rv = b.value;
+  b.value = a;
+  return rv;
+}
 
 /* Implementation for size_is and iid_is methods. */
 function f_is(aIs, a, bIs, b, rvIs) {
+  // Set up the return value and its 'is' parameter.
+  var rv = b.value;
+  rvIs.value = bIs.value;
 
-    // Set up the return value and its 'is' parameter.
-    var rv = b.value;
-    rvIs.value = bIs.value;
+  // Set up b and its 'is' parameter.
+  b.value = a;
+  bIs.value = aIs;
 
-    // Set up b and its 'is' parameter.
-    b.value = a;
-    bIs.value = aIs;
-
-    return rv;
+  return rv;
 }
 
 function f_size_and_iid(aSize, aIID, a, bSize, bIID, b, rvSize, rvIID) {
+  // Copy the iids.
+  rvIID.value = bIID.value;
+  bIID.value = aIID;
 
-    // Copy the iids.
-    rvIID.value = bIID.value;
-    bIID.value = aIID;
-
-    // Now that we've reduced the problem to one dependent variable, use f_is.
-    return f_is(aSize, a, bSize, b, rvSize);
+  // Now that we've reduced the problem to one dependent variable, use f_is.
+  return f_is(aSize, a, bSize, b, rvSize);
 }
 
 TestParams.prototype = {
@@ -65,11 +62,15 @@ TestParams.prototype = {
   testInterfaceSequence: f,
   testJsvalSequence: f,
   testInterfaceIsSequence: f_is,
-  testOptionalSequence: function (arr) { return arr; },
+  testOptionalSequence: function (arr) {
+    return arr;
+  },
   testShortArray: f_is,
   testDoubleArray: f_is,
   testStringArray: f_is,
-  testByteArrayOptionalLength(arr) { return arr.length; },
+  testByteArrayOptionalLength(arr) {
+    return arr.length;
+  },
   testWstringArray: f_is,
   testInterfaceArray: f_is,
   testJsvalArray: f_is,
@@ -77,11 +78,15 @@ TestParams.prototype = {
   testSizedWstring: f_is,
   testInterfaceIs: f_is,
   testInterfaceIsArray: f_size_and_iid,
-  testOutAString: function(o) { o.value = "out"; },
-  testStringArrayOptionalSize: function(arr, size) {
-    if (arr.length != size) { throw "bad size passed to test method"; }
+  testOutAString: function (o) {
+    o.value = "out";
+  },
+  testStringArrayOptionalSize: function (arr, size) {
+    if (arr.length != size) {
+      throw "bad size passed to test method";
+    }
     var rv = "";
-    arr.forEach((x) => rv += x);
+    arr.forEach(x => (rv += x));
     return rv;
   },
   testOmittedOptionalOut(jsObj, o) {
@@ -103,7 +108,7 @@ TestInterfaceA.prototype = {
   QueryInterface: ChromeUtils.generateQI(["nsIXPCTestInterfaceA"]),
 
   /* nsIXPCTestInterfaceA */
-  name: "TestInterfaceADefaultName"
+  name: "TestInterfaceADefaultName",
 };
 
 function TestInterfaceB() {}
@@ -111,16 +116,17 @@ TestInterfaceB.prototype = {
   QueryInterface: ChromeUtils.generateQI(["nsIXPCTestInterfaceB"]),
 
   /* nsIXPCTestInterfaceA */
-  name: "TestInterfaceADefaultName"
+  name: "TestInterfaceADefaultName",
 };
 
 function run_test() {
-
   // Load the component manifests.
   registerXPCTestComponents();
 
   // Test for each component.
-  test_component(Cc["@mozilla.org/js/xpc/test/native/Params;1"].createInstance());
+  test_component(
+    Cc["@mozilla.org/js/xpc/test/native/Params;1"].createInstance()
+  );
   test_component(xpcWrap(new TestParams()));
 }
 
@@ -128,17 +134,23 @@ function test_component(obj) {
   var o = obj.QueryInterface(Ci.nsIXPCTestParams);
 
   // Possible comparator functions.
-  var standardComparator = function(a,b) {return a == b;};
-  var dotEqualsComparator = function(a,b) {return a.equals(b); }
-  var fuzzComparator = function(a,b) {return Math.abs(a - b) < 0.1;};
-  var interfaceComparator = function(a,b) {return a.name == b.name; }
-  var arrayComparator = function(innerComparator) {
-    return function(a,b) {
-      if (a.length != b.length)
-        return false;
+  var standardComparator = function (a, b) {
+    return a == b;
+  };
+  var dotEqualsComparator = function (a, b) {
+    return a.equals(b);
+  };
+  var fuzzComparator = function (a, b) {
+    return Math.abs(a - b) < 0.1;
+  };
+  var interfaceComparator = function (a, b) {
+    return a.name == b.name;
+  };
+  var arrayComparator = function (innerComparator) {
+    return function (a, b) {
+      if (a.length != b.length) return false;
       for (var i = 0; i < a.length; ++i)
-        if (!innerComparator(a[i], b[i]))
-          return false;
+        if (!innerComparator(a[i], b[i])) return false;
       return true;
     };
   };
@@ -149,22 +161,28 @@ function test_component(obj) {
   // The optional comparator argument can be used for alternative notions of
   // equality. The comparator should return true on equality.
   function doTest(name, val1, val2, comparator) {
-    if (!comparator)
-      comparator = standardComparator;
+    if (!comparator) comparator = standardComparator;
     var a = val1;
-    var b = {value: val2};
+    var b = { value: val2 };
     var rv = o[name].call(o, a, b);
     Assert.ok(comparator(rv, val2));
     Assert.ok(comparator(val1, b.value));
-  };
+  }
 
-  function doIsTest(name, val1, val1Is, val2, val2Is, valComparator, isComparator) {
-    if (!isComparator)
-      isComparator = standardComparator;
+  function doIsTest(
+    name,
+    val1,
+    val1Is,
+    val2,
+    val2Is,
+    valComparator,
+    isComparator
+  ) {
+    if (!isComparator) isComparator = standardComparator;
     var a = val1;
     var aIs = val1Is;
-    var b = {value: val2};
-    var bIs = {value: val2Is};
+    var b = { value: val2 };
+    var bIs = { value: val2Is };
     var rvIs = {};
     var rv = o[name].call(o, aIs, a, bIs, b, rvIs);
     Assert.ok(valComparator(rv, val2));
@@ -179,9 +197,9 @@ function test_component(obj) {
     var a = val1;
     var aSize = val1Size;
     var aIID = val1IID;
-    var b = {value: val2};
-    var bSize = {value: val2Size};
-    var bIID = {value: val2IID};
+    var b = { value: val2 };
+    var bSize = { value: val2Size };
+    var bIID = { value: val2IID };
     var rvSize = {};
     var rvIID = {};
     var rv = o[name].call(o, aSize, aIID, a, bSize, bIID, b, rvSize, rvIID);
@@ -199,11 +217,10 @@ function test_component(obj) {
     var error = false;
     try {
       doIsTest(name, val1, val1Size, val2, val2Size, comparator);
-      
+
       // An exception was not thrown as would have been expected.
       Assert.ok(false);
-    }
-    catch (e) {
+    } catch (e) {
       // An exception was thrown as expected.
       Assert.ok(true);
     }
@@ -213,7 +230,7 @@ function test_component(obj) {
   // We do a simple test of copying a into b, and ignore the rv.
   function doTestWorkaround(name, val1) {
     var a = val1;
-    var b = {value: ""};
+    var b = { value: "" };
     o[name].call(o, a, b);
     Assert.equal(val1, b.value);
   }
@@ -236,95 +253,228 @@ function test_component(obj) {
   doTestWorkaround("testAString", "Frosty the ☃ ;-)");
   doTestWorkaround("testAUTF8String", "We deliver 〠!");
   doTestWorkaround("testACString", "Just a regular C string.");
-  doTest("testJsval", {aprop: 12, bprop: "str"}, 4.22);
+  doTest("testJsval", { aprop: 12, bprop: "str" }, 4.22);
 
   // Test out dipper parameters, since they're special and we can't really test
   // inouts.
   let outAString = {};
   o.testOutAString(outAString);
   Assert.equal(outAString.value, "out");
-  try { o.testOutAString(undefined); } catch (e) {} // Don't crash
-  try { o.testOutAString(null); } catch (e) {} // Don't crash
-  try { o.testOutAString("string"); } catch (e) {} // Don't crash
+  try {
+    o.testOutAString(undefined);
+  } catch (e) {} // Don't crash
+  try {
+    o.testOutAString(null);
+  } catch (e) {} // Don't crash
+  try {
+    o.testOutAString("string");
+  } catch (e) {} // Don't crash
 
   // Helpers to instantiate various test XPCOM objects.
   var numAsMade = 0;
   function makeA() {
     var a = xpcWrap(new TestInterfaceA(), Ci.nsIXPCTestInterfaceA);
-    a.name = 'testA' + numAsMade++;
+    a.name = "testA" + numAsMade++;
     return a;
-  };
+  }
   var numBsMade = 0;
   function makeB() {
     var b = xpcWrap(new TestInterfaceB(), Ci.nsIXPCTestInterfaceB);
-    b.name = 'testB' + numBsMade++;
+    b.name = "testB" + numBsMade++;
     return b;
-  };
+  }
 
   // Test arrays.
-  doIsTest("testShortArray", [2, 4, 6], 3, [1, 3, 5, 7], 4, arrayComparator(standardComparator));
-  doIsTest("testDoubleArray", [-10, -0.5], 2, [1, 3, 1e11, -8e-5 ], 4, arrayComparator(fuzzComparator));
+  doIsTest(
+    "testShortArray",
+    [2, 4, 6],
+    3,
+    [1, 3, 5, 7],
+    4,
+    arrayComparator(standardComparator)
+  );
+  doIsTest(
+    "testDoubleArray",
+    [-10, -0.5],
+    2,
+    [1, 3, 1e11, -8e-5],
+    4,
+    arrayComparator(fuzzComparator)
+  );
 
-  doIsTest("testStringArray", ["mary", "hat", "hey", "lid", "tell", "lam"], 6,
-                              ["ids", "fleas", "woes", "wide", "has", "know", "!"], 7, arrayComparator(standardComparator));
-  doIsTest("testWstringArray", ["沒有語言", "的偉大嗎?]"], 2,
-                               ["we", "are", "being", "sooo", "international", "right", "now"], 7, arrayComparator(standardComparator));
-  doIsTest("testInterfaceArray", [makeA(), makeA()], 2,
-                                 [makeA(), makeA(), makeA(), makeA(), makeA(), makeA()], 6, arrayComparator(interfaceComparator));
-  doIsTest("testJsvalArray", [{ cheese: 'whiz', apple: 8 }, [1, 5, '3'], /regex/], 3,
-                             ['apple', 2.2e10, 3.3e30, { only: "wheedle", except: {} }], 4, arrayComparator(standardComparator));
+  doIsTest(
+    "testStringArray",
+    ["mary", "hat", "hey", "lid", "tell", "lam"],
+    6,
+    ["ids", "fleas", "woes", "wide", "has", "know", "!"],
+    7,
+    arrayComparator(standardComparator)
+  );
+  doIsTest(
+    "testWstringArray",
+    ["沒有語言", "的偉大嗎?]"],
+    2,
+    ["we", "are", "being", "sooo", "international", "right", "now"],
+    7,
+    arrayComparator(standardComparator)
+  );
+  doIsTest(
+    "testInterfaceArray",
+    [makeA(), makeA()],
+    2,
+    [makeA(), makeA(), makeA(), makeA(), makeA(), makeA()],
+    6,
+    arrayComparator(interfaceComparator)
+  );
+  doIsTest(
+    "testJsvalArray",
+    [{ cheese: "whiz", apple: 8 }, [1, 5, "3"], /regex/],
+    3,
+    ["apple", 2.2e10, 3.3e30, { only: "wheedle", except: {} }],
+    4,
+    arrayComparator(standardComparator)
+  );
 
   // Test typed arrays and ArrayBuffer aliasing.
   var arrayBuffer = new ArrayBuffer(16);
   var int16Array = new Int16Array(arrayBuffer, 2, 3);
   int16Array.set([-32768, 0, 32767]);
-  doIsTest("testShortArray", int16Array, 3, new Int16Array([1773, -32768, 32767, 7]), 4, arrayComparator(standardComparator));
-  doIsTest("testDoubleArray", new Float64Array([-10, -0.5]), 2, new Float64Array([0, 3.2, 1.0e10, -8.33 ]), 4, arrayComparator(fuzzComparator));
+  doIsTest(
+    "testShortArray",
+    int16Array,
+    3,
+    new Int16Array([1773, -32768, 32767, 7]),
+    4,
+    arrayComparator(standardComparator)
+  );
+  doIsTest(
+    "testDoubleArray",
+    new Float64Array([-10, -0.5]),
+    2,
+    new Float64Array([0, 3.2, 1.0e10, -8.33]),
+    4,
+    arrayComparator(fuzzComparator)
+  );
 
   // Test sized strings.
-  var ssTests = ["Tis not possible, I muttered", "give me back my free hardcore!", "quoth the server:", "4〠4"];
-  doIsTest("testSizedString", ssTests[0], ssTests[0].length, ssTests[1], ssTests[1].length, standardComparator);
-  doIsTest("testSizedWstring", ssTests[2], ssTests[2].length, ssTests[3], ssTests[3].length, standardComparator);
+  var ssTests = [
+    "Tis not possible, I muttered",
+    "give me back my free hardcore!",
+    "quoth the server:",
+    "4〠4",
+  ];
+  doIsTest(
+    "testSizedString",
+    ssTests[0],
+    ssTests[0].length,
+    ssTests[1],
+    ssTests[1].length,
+    standardComparator
+  );
+  doIsTest(
+    "testSizedWstring",
+    ssTests[2],
+    ssTests[2].length,
+    ssTests[3],
+    ssTests[3].length,
+    standardComparator
+  );
 
   // Test iid_is.
-  doIsTest("testInterfaceIs", makeA(), Ci['nsIXPCTestInterfaceA'],
-                              makeB(), Ci['nsIXPCTestInterfaceB'],
-                              interfaceComparator, dotEqualsComparator);
+  doIsTest(
+    "testInterfaceIs",
+    makeA(),
+    Ci["nsIXPCTestInterfaceA"],
+    makeB(),
+    Ci["nsIXPCTestInterfaceB"],
+    interfaceComparator,
+    dotEqualsComparator
+  );
 
   // Test arrays of iids.
-  doIs2Test("testInterfaceIsArray", [makeA(), makeA(), makeA(), makeA(), makeA()], 5, Ci['nsIXPCTestInterfaceA'],
-                                    [makeB(), makeB(), makeB()], 3, Ci['nsIXPCTestInterfaceB']);
+  doIs2Test(
+    "testInterfaceIsArray",
+    [makeA(), makeA(), makeA(), makeA(), makeA()],
+    5,
+    Ci["nsIXPCTestInterfaceA"],
+    [makeB(), makeB(), makeB()],
+    3,
+    Ci["nsIXPCTestInterfaceB"]
+  );
 
   // Test optional array size.
-  Assert.equal(o.testStringArrayOptionalSize(["some", "string", "array"]), "somestringarray");
+  Assert.equal(
+    o.testStringArrayOptionalSize(["some", "string", "array"]),
+    "somestringarray"
+  );
 
   // Test incorrect (too big) array size parameter; this should throw NOT_ENOUGH_ELEMENTS.
-  doTypedArrayMismatchTest("testShortArray", new Int16Array([-3, 7, 4]), 4,
-                                             new Int16Array([1, -32, 6]), 3);
+  doTypedArrayMismatchTest(
+    "testShortArray",
+    new Int16Array([-3, 7, 4]),
+    4,
+    new Int16Array([1, -32, 6]),
+    3
+  );
 
   // Test type mismatch (int16 <-> uint16); this should throw BAD_CONVERT_JS.
-  doTypedArrayMismatchTest("testShortArray", new Uint16Array([0, 7, 4, 3]), 4,
-                                             new Uint16Array([1, 5, 6]), 3);
+  doTypedArrayMismatchTest(
+    "testShortArray",
+    new Uint16Array([0, 7, 4, 3]),
+    4,
+    new Uint16Array([1, 5, 6]),
+    3
+  );
 
   // Test Sequence<T> types.
-  doTest("testShortSequence", [2, 4, 6], [1, 3, 5, 7], arrayComparator(standardComparator));
-  doTest("testDoubleSequence", [-10, -0.5], [1, 3, 1e11, -8e-5 ], arrayComparator(fuzzComparator));
-  doTest("testACStringSequence", ["mary", "hat", "hey", "lid", "tell", "lam"],
-                                 ["ids", "fleas", "woes", "wide", "has", "know", "!"],
-                                 arrayComparator(standardComparator));
-  doTest("testAStringSequence", ["沒有語言", "的偉大嗎?]"],
-                                ["we", "are", "being", "sooo", "international", "right", "now"],
-                                arrayComparator(standardComparator));
+  doTest(
+    "testShortSequence",
+    [2, 4, 6],
+    [1, 3, 5, 7],
+    arrayComparator(standardComparator)
+  );
+  doTest(
+    "testDoubleSequence",
+    [-10, -0.5],
+    [1, 3, 1e11, -8e-5],
+    arrayComparator(fuzzComparator)
+  );
+  doTest(
+    "testACStringSequence",
+    ["mary", "hat", "hey", "lid", "tell", "lam"],
+    ["ids", "fleas", "woes", "wide", "has", "know", "!"],
+    arrayComparator(standardComparator)
+  );
+  doTest(
+    "testAStringSequence",
+    ["沒有語言", "的偉大嗎?]"],
+    ["we", "are", "being", "sooo", "international", "right", "now"],
+    arrayComparator(standardComparator)
+  );
 
-  doTest("testInterfaceSequence", [makeA(), makeA()],
-                                  [makeA(), makeA(), makeA(), makeA(), makeA(), makeA()], arrayComparator(interfaceComparator));
+  doTest(
+    "testInterfaceSequence",
+    [makeA(), makeA()],
+    [makeA(), makeA(), makeA(), makeA(), makeA(), makeA()],
+    arrayComparator(interfaceComparator)
+  );
 
-  doTest("testJsvalSequence", [{ cheese: 'whiz', apple: 8 }, [1, 5, '3'], /regex/],
-                              ['apple', 2.2e10, 3.3e30, { only: "wheedle", except: {} }], arrayComparator(standardComparator));
+  doTest(
+    "testJsvalSequence",
+    [{ cheese: "whiz", apple: 8 }, [1, 5, "3"], /regex/],
+    ["apple", 2.2e10, 3.3e30, { only: "wheedle", except: {} }],
+    arrayComparator(standardComparator)
+  );
 
-  doIsTest("testInterfaceIsSequence", [makeA(), makeA(), makeA(), makeA(), makeA()], Ci['nsIXPCTestInterfaceA'],
-                                      [makeB(), makeB(), makeB()], Ci['nsIXPCTestInterfaceB'],
-                                      arrayComparator(interfaceComparator), dotEqualsComparator);
+  doIsTest(
+    "testInterfaceIsSequence",
+    [makeA(), makeA(), makeA(), makeA(), makeA()],
+    Ci["nsIXPCTestInterfaceA"],
+    [makeB(), makeB(), makeB()],
+    Ci["nsIXPCTestInterfaceB"],
+    arrayComparator(interfaceComparator),
+    dotEqualsComparator
+  );
 
   var ret = o.testOptionalSequence();
   Assert.ok(Array.isArray(ret));
@@ -342,7 +492,7 @@ function test_component(obj) {
   o.testOmittedOptionalOut(jsObj);
   ret = {};
   o.testOmittedOptionalOut(jsObj, ret);
-  Assert.equal(ret.value.spec, "http://example.com/")
+  Assert.equal(ret.value.spec, "http://example.com/");
 
   // Tests for large ArrayBuffers.
   var ab = null;
@@ -361,7 +511,9 @@ function test_component(obj) {
     } catch (e) {
       ex = e;
     }
-    Assert.ok(ex.message.includes("Could not convert JavaScript argument arg 0"));
+    Assert.ok(
+      ex.message.includes("Could not convert JavaScript argument arg 0")
+    );
 
     // Test length check for optional length argument in GetArraySizeFromParam.
     ex = null;
@@ -370,7 +522,9 @@ function test_component(obj) {
     } catch (e) {
       ex = e;
     }
-    Assert.ok(ex.message.includes("Cannot convert JavaScript object into an array"));
+    Assert.ok(
+      ex.message.includes("Cannot convert JavaScript object into an array")
+    );
 
     // Smaller array views on the buffer are fine.
     uint8 = new Uint8Array(ab, ab.byteLength - 3);

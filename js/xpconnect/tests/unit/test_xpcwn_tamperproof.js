@@ -3,15 +3,17 @@
 
 function TestInterfaceAll() {}
 TestInterfaceAll.prototype = {
-  QueryInterface: ChromeUtils.generateQI(["nsIXPCTestInterfaceA",
-                                          "nsIXPCTestInterfaceB",
-                                          "nsIXPCTestInterfaceC"]),
+  QueryInterface: ChromeUtils.generateQI([
+    "nsIXPCTestInterfaceA",
+    "nsIXPCTestInterfaceB",
+    "nsIXPCTestInterfaceC",
+  ]),
 
   /* nsIXPCTestInterfaceA / nsIXPCTestInterfaceB */
   name: "TestInterfaceAllDefaultName",
 
   /* nsIXPCTestInterfaceC */
-  someInteger: 42
+  someInteger: 42,
 };
 
 function check_throws(f) {
@@ -33,26 +35,39 @@ function check_throws(f) {
  * So the second time we are testing that scripted proxies don't magically
  * bypass whatever mechanism enforces the expando policy on XPCWNs.
  */
-function test_tamperproof(realObj, accessObj, {method, constant, attribute}) {
+function test_tamperproof(realObj, accessObj, { method, constant, attribute }) {
   // Assignment can't create an expando property.
-  check_throws(function () { accessObj.expando = 14; });
+  check_throws(function () {
+    accessObj.expando = 14;
+  });
   Assert.equal(false, "expando" in realObj);
 
   // Strict assignment throws.
-  check_throws(function () { "use strict"; accessObj.expando = 14; });
+  check_throws(function () {
+    "use strict";
+    accessObj.expando = 14;
+  });
   Assert.equal(false, "expando" in realObj);
 
   // Assignment to an inherited method name doesn't work either.
-  check_throws(function () { accessObj.hasOwnProperty = () => "lies"; });
-  check_throws(function () { "use strict"; accessObj.hasOwnProperty = () => "lies"; });
+  check_throws(function () {
+    accessObj.hasOwnProperty = () => "lies";
+  });
+  check_throws(function () {
+    "use strict";
+    accessObj.hasOwnProperty = () => "lies";
+  });
   Assert.ok(!realObj.hasOwnProperty("hasOwnProperty"));
 
   // Assignment to a method name doesn't work either.
   let originalMethod;
   if (method) {
     originalMethod = accessObj[method];
-    accessObj[method] = "nope";  // non-writable data property, no exception in non-strict code
-    check_throws(function () { "use strict"; accessObj[method] = "nope"; });
+    accessObj[method] = "nope"; // non-writable data property, no exception in non-strict code
+    check_throws(function () {
+      "use strict";
+      accessObj[method] = "nope";
+    });
     Assert.ok(realObj[method] === originalMethod);
   }
 
@@ -62,7 +77,10 @@ function test_tamperproof(realObj, accessObj, {method, constant, attribute}) {
     originalConstantValue = accessObj[constant];
     accessObj[constant] = "nope";
     Assert.equal(realObj[constant], originalConstantValue);
-    check_throws(function () { "use strict"; accessObj[constant] = "nope"; });
+    check_throws(function () {
+      "use strict";
+      accessObj[constant] = "nope";
+    });
     Assert.equal(realObj[constant], originalConstantValue);
   }
 
@@ -73,8 +91,11 @@ function test_tamperproof(realObj, accessObj, {method, constant, attribute}) {
     Assert.ok("set" in originalAttributeDesc);
     Assert.ok(originalAttributeDesc.set === undefined);
 
-    accessObj[attribute] = "nope";  // accessor property with no setter: no exception in non-strict code
-    check_throws(function () { "use strict"; accessObj[attribute] = "nope"; });
+    accessObj[attribute] = "nope"; // accessor property with no setter: no exception in non-strict code
+    check_throws(function () {
+      "use strict";
+      accessObj[attribute] = "nope";
+    });
 
     let desc = Object.getOwnPropertyDescriptor(realObj, attribute);
     Assert.ok("set" in desc);
@@ -89,7 +110,10 @@ function test_tamperproof(realObj, accessObj, {method, constant, attribute}) {
   }
   if (attribute) {
     Assert.ok(!Reflect.set({}, attribute, "bad", accessObj));
-    Assert.equal(originalAttributeDesc.get, Object.getOwnPropertyDescriptor(realObj, attribute).get);
+    Assert.equal(
+      originalAttributeDesc.get,
+      Object.getOwnPropertyDescriptor(realObj, attribute).get
+    );
   }
 
   // Object.defineProperty can't do anything either.
@@ -100,16 +124,20 @@ function test_tamperproof(realObj, accessObj, {method, constant, attribute}) {
   for (let name of names) {
     let originalDesc = Object.getOwnPropertyDescriptor(realObj, name);
     check_throws(function () {
-      Object.defineProperty(accessObj, name, {configurable: true});
+      Object.defineProperty(accessObj, name, { configurable: true });
     });
     check_throws(function () {
-      Object.defineProperty(accessObj, name, {writable: true});
+      Object.defineProperty(accessObj, name, { writable: true });
     });
     check_throws(function () {
-      Object.defineProperty(accessObj, name, {get: function () { return "lies"; }});
+      Object.defineProperty(accessObj, name, {
+        get: function () {
+          return "lies";
+        },
+      });
     });
     check_throws(function () {
-      Object.defineProperty(accessObj, name, {value: "bad"});
+      Object.defineProperty(accessObj, name, { value: "bad" });
     });
     let desc = Object.getOwnPropertyDescriptor(realObj, name);
     if (originalDesc === undefined) {
@@ -127,17 +155,26 @@ function test_tamperproof(realObj, accessObj, {method, constant, attribute}) {
   // Existing properties can't be deleted.
   if (method) {
     Assert.equal(false, delete accessObj[method]);
-    check_throws(function () { "use strict"; delete accessObj[method]; });
+    check_throws(function () {
+      "use strict";
+      delete accessObj[method];
+    });
     Assert.equal(realObj[method], originalMethod);
   }
   if (constant) {
     Assert.equal(false, delete accessObj[constant]);
-    check_throws(function () { "use strict"; delete accessObj[constant]; });
+    check_throws(function () {
+      "use strict";
+      delete accessObj[constant];
+    });
     Assert.equal(realObj[constant], originalConstantValue);
   }
   if (attribute) {
     Assert.equal(false, delete accessObj[attribute]);
-    check_throws(function () { "use strict"; delete accessObj[attribute]; });
+    check_throws(function () {
+      "use strict";
+      delete accessObj[attribute];
+    });
     desc = Object.getOwnPropertyDescriptor(realObj, attribute);
     Assert.equal(originalAttributeDesc.get, desc.get);
   }
@@ -149,7 +186,7 @@ function test_twice(obj, options) {
   let handler = {
     getPrototypeOf(t) {
       return new Proxy(Object.getPrototypeOf(t), handler);
-    }
+    },
   };
   test_tamperproof(obj, new Proxy(obj, handler), options);
 }
@@ -159,22 +196,26 @@ function run_test() {
   test_twice(timer, {
     method: "init",
     constant: "TYPE_ONE_SHOT",
-    attribute: "callback"
+    attribute: "callback",
   });
 
-  let cmdline = Cu.createCommandLine([], null, Ci.nsICommandLine.STATE_INITIAL_LAUNCH);
+  let cmdline = Cu.createCommandLine(
+    [],
+    null,
+    Ci.nsICommandLine.STATE_INITIAL_LAUNCH
+  );
   test_twice(cmdline, {});
 
   test_twice(Object.getPrototypeOf(cmdline), {
     method: "getArgument",
     constant: "STATE_INITIAL_LAUNCH",
-    attribute: "length"
+    attribute: "length",
   });
 
   // Test a tearoff object.
   let b = xpcWrap(new TestInterfaceAll(), Ci.nsIXPCTestInterfaceB);
   let tearoff = b.nsIXPCTestInterfaceA;
   test_twice(tearoff, {
-    method: "QueryInterface"
+    method: "QueryInterface",
   });
 }

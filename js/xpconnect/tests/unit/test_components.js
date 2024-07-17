@@ -10,7 +10,7 @@ function run_test() {
   checkThrows("C.classes", sb1);
 
   // non-chrome accessing own Components: shouldn't exist.
-  Assert.equal(Cu.evalInSandbox("typeof Components", sb1), 'undefined');
+  Assert.equal(Cu.evalInSandbox("typeof Components", sb1), "undefined");
 
   // chrome accessing chrome
   sb2.C = Components;
@@ -19,6 +19,11 @@ function run_test() {
 }
 
 function checkThrows(expression, sb) {
-  var result = Cu.evalInSandbox('(function() { try { ' + expression + '; return "allowed"; } catch (e) { return e.toString(); }})();', sb);
+  var result = Cu.evalInSandbox(
+    "(function() { try { " +
+      expression +
+      '; return "allowed"; } catch (e) { return e.toString(); }})();',
+    sb
+  );
   Assert.ok(!!/denied/.exec(result));
 }

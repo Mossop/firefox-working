@@ -11,7 +11,7 @@ function run_test() {
     [{ notify: callback }, "callback[test_function_names.js]:JS"],
     [{ notify: { notify: callback } }, "callback[test_function_names.js]:JS"],
     [callback, "callback[test_function_names.js]:JS"],
-    [function() {}, "run_test/functions<[test_function_names.js]:JS"],
+    [function () {}, "run_test/functions<[test_function_names.js]:JS"],
     [function foobar() {}, "foobar[test_function_names.js]:JS"],
     [function Δ() {}, "Δ[test_function_names.js]:JS"],
     [{ notify1: callback, notify2: callback }, "nonfunction:JS"],
@@ -21,10 +21,11 @@ function run_test() {
   ];
 
   // Use the observer service so we can get double-wrapped functions.
-  var obs = Cc["@mozilla.org/observer-service;1"].getService(Ci.nsIObserverService);
+  var obs = Cc["@mozilla.org/observer-service;1"].getService(
+    Ci.nsIObserverService
+  );
 
-  function observer(subject, topic, data)
-  {
+  function observer(subject, topic, data) {
     let named = subject.QueryInterface(Ci.nsINamed);
     Assert.equal(named.name, data);
     dump(`name: ${named.name}\n`);

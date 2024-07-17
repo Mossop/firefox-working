@@ -1,14 +1,11 @@
 "use strict";
 
 function makeSandbox() {
-  return Cu.Sandbox(
-    Services.scriptSecurityManager.getSystemPrincipal(),
-    {
-      wantXrays: false,
-      wantGlobalProperties: ["ChromeUtils"],
-      sandboxName: `Sandbox type used for ext-*.js  ExtensionAPI subscripts`,
-    }
-  );
+  return Cu.Sandbox(Services.scriptSecurityManager.getSystemPrincipal(), {
+    wantXrays: false,
+    wantGlobalProperties: ["ChromeUtils"],
+    sandboxName: `Sandbox type used for ext-*.js  ExtensionAPI subscripts`,
+  });
 }
 
 // This test will fail (and should be removed) once the JSM shim is dropped.

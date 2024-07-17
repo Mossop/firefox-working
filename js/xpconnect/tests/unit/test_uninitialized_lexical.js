@@ -2,6 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-Assert.throws(() => ChromeUtils.import("resource://test/uninitialized_lexical.jsm"),
-              /Symbol 'foo' accessed before initialization/,
-              "Uninitialized lexicals result in an exception");
+Assert.throws(
+  () => ChromeUtils.import("resource://test/uninitialized_lexical.jsm"),
+  /Symbol 'foo' accessed before initialization/,
+  "Uninitialized lexicals result in an exception"
+);

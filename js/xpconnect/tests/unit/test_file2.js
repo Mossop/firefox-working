@@ -2,15 +2,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-Cu.importGlobalProperties(['File']);
+Cu.importGlobalProperties(["File"]);
 
-add_task(async function() {
+add_task(async function () {
   // throw if anything goes wrong
 
   // find the current directory path
   var file = Cc["@mozilla.org/file/directory_service;1"]
-             .getService(Ci.nsIProperties)
-             .get("CurWorkD", Ci.nsIFile);
+    .getService(Ci.nsIProperties)
+    .get("CurWorkD", Ci.nsIFile);
   file.append("xpcshell.toml");
 
   // should be able to construct a file
@@ -46,13 +46,13 @@ add_task(async function() {
   }
   Assert.ok(threw, "Passing a random object should fail");
 
-  var threw = false
+  var threw = false;
   try {
     // Directories fail
     var dir = Cc["@mozilla.org/file/directory_service;1"]
-                .getService(Ci.nsIProperties)
-                .get("CurWorkD", Ci.nsIFile);
-    var f7 = await File.createFromNsIFile(dir)
+      .getService(Ci.nsIProperties)
+      .get("CurWorkD", Ci.nsIFile);
+    var f7 = await File.createFromNsIFile(dir);
   } catch (e) {
     threw = true;
   }

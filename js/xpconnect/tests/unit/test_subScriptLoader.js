@@ -1,7 +1,9 @@
 "use strict";
 
 add_task(async function test_executeScriptAfterNuked() {
-  let scriptUrl = Services.io.newFileURI(do_get_file("file_simple_script.js")).spec;
+  let scriptUrl = Services.io.newFileURI(
+    do_get_file("file_simple_script.js")
+  ).spec;
 
   // Load the script for the first time into a sandbox, and then nuke
   // that sandbox.

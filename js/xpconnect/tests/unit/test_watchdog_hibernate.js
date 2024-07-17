@@ -3,7 +3,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 async function testBody() {
-
   setWatchdogEnabled(true);
 
   // It's unlikely that we've ever hibernated at this point, but the timestamps
@@ -42,8 +41,24 @@ async function testBody() {
   // making sure this behavior is roughly as expected on the macro scale,
   // so we add a 1 second fuzz factor here.
   const FUZZ_FACTOR = 1 * 1000 * 1000;
-  Assert.greater(stateChange, now + 10*1000*1000 - FUZZ_FACTOR, "stateChange ok");
-  Assert.greater(startHibernation, now + 2*1000*1000 - FUZZ_FACTOR, "startHibernation ok");
-  Assert.less(startHibernation, now + 5*1000*1000 + FUZZ_FACTOR, "startHibernation ok");
-  Assert.greater(stopHibernation, now + 10*1000*1000 - FUZZ_FACTOR, "stopHibernation ok");
+  Assert.greater(
+    stateChange,
+    now + 10 * 1000 * 1000 - FUZZ_FACTOR,
+    "stateChange ok"
+  );
+  Assert.greater(
+    startHibernation,
+    now + 2 * 1000 * 1000 - FUZZ_FACTOR,
+    "startHibernation ok"
+  );
+  Assert.less(
+    startHibernation,
+    now + 5 * 1000 * 1000 + FUZZ_FACTOR,
+    "startHibernation ok"
+  );
+  Assert.greater(
+    stopHibernation,
+    now + 10 * 1000 * 1000 - FUZZ_FACTOR,
+    "stopHibernation ok"
+  );
 }

@@ -14,7 +14,9 @@ add_task(async function testInNonShared() {
 });
 
 add_task(async function testInShared() {
-  const { ns: ns1 } = ChromeUtils.importESModule("resource://test/contextual.sys.mjs");
+  const { ns: ns1 } = ChromeUtils.importESModule(
+    "resource://test/contextual.sys.mjs"
+  );
 
   const ns2 = ChromeUtils.importESModule("resource://test/esmified-1.sys.mjs", {
     global: "shared",
@@ -25,9 +27,12 @@ add_task(async function testInShared() {
 });
 
 add_task(async function testInShared() {
-  const { ns: ns1 } = ChromeUtils.importESModule("resource://test/contextual.sys.mjs", {
-    global: "devtools",
-  });
+  const { ns: ns1 } = ChromeUtils.importESModule(
+    "resource://test/contextual.sys.mjs",
+    {
+      global: "devtools",
+    }
+  );
 
   const ns2 = ChromeUtils.importESModule("resource://test/esmified-1.sys.mjs", {
     global: "devtools",

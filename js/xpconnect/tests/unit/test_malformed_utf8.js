@@ -8,7 +8,9 @@
 // Mixing them results in unexpected string, but it should perform lossy
 // conversion, and not throw.
 
-const gPrefs = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefBranch);
+const gPrefs = Cc["@mozilla.org/preferences-service;1"].getService(
+  Ci.nsIPrefBranch
+);
 
 const tests = [
   // Latin-1 to Latin-1 and UTF-8 to UTF-8 should preserve the string.
@@ -42,7 +44,7 @@ const tests = [
 ];
 
 add_task(function testLatin1ToLatin1() {
-  for (const [input, ] of tests) {
+  for (const [input] of tests) {
     gPrefs.setCharPref("test.malformed_utf8_data", input);
     const result = gPrefs.getCharPref("test.malformed_utf8_data");
     Assert.equal(result, input);
@@ -66,7 +68,7 @@ add_task(function testUTF8ToLatin1() {
 });
 
 add_task(function testUTF8ToUTF8() {
-  for (const [input, ] of tests) {
+  for (const [input] of tests) {
     gPrefs.setStringPref("test.malformed_utf8_data", input);
     const result = gPrefs.getStringPref("test.malformed_utf8_data");
     Assert.equal(result, input);

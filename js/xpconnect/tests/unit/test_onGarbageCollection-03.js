@@ -10,7 +10,7 @@ function run_test() {
 
   const root = newGlobal();
   const dbg = new Debugger();
-  const wrappedRoot = dbg.addDebuggee(root)
+  const wrappedRoot = dbg.addDebuggee(root);
 
   let fired = true;
   let depth = 0;
@@ -26,7 +26,7 @@ function run_test() {
       equal(depth, 1);
       depth--;
     }
-  }
+  };
 
   root.eval(`gc()`);
 

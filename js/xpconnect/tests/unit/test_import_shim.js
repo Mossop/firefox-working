@@ -19,7 +19,8 @@ add_task(function test_Cu_import_shim_first() {
 
   const exports2 = {};
   const global2 = Components.utils.import(
-    "resource://test/esmified-1.jsm", exports2
+    "resource://test/esmified-1.jsm",
+    exports2
   );
   Assert.equal(global2.loadCount, 1);
   Assert.equal(global2.obj.value, 10);
@@ -31,7 +32,8 @@ add_task(function test_Cu_import_shim_first() {
   // Also test with *.js extension.
   const exports3 = {};
   const global3 = Components.utils.import(
-    "resource://test/esmified-1.js", exports3
+    "resource://test/esmified-1.js",
+    exports3
   );
   Assert.equal(global3.loadCount, 1);
   Assert.equal(global3.obj.value, 10);
@@ -43,7 +45,8 @@ add_task(function test_Cu_import_shim_first() {
   // Also test with *.jsm.js extension.
   const exports4 = {};
   const global4 = Components.utils.import(
-    "resource://test/esmified-1.js", exports4
+    "resource://test/esmified-1.js",
+    exports4
   );
   Assert.equal(global4.loadCount, 1);
   Assert.equal(global4.obj.value, 10);
@@ -62,7 +65,8 @@ add_task(function test_Cu_import_no_shim_first() {
 
   const exports = {};
   const global = Components.utils.import(
-    "resource://test/esmified-2.jsm", exports
+    "resource://test/esmified-2.jsm",
+    exports
   );
   Assert.equal(global.loadCount, 1);
   Assert.equal(global.obj.value, 10);
@@ -80,9 +84,7 @@ add_task(function test_ChromeUtils_import_shim_first() {
   // Load and cache with shim.
 
   const exports = {};
-  const global = ChromeUtils.import(
-    "resource://test/esmified-3.jsm", exports
-  );
+  const global = ChromeUtils.import("resource://test/esmified-3.jsm", exports);
   Assert.equal(global.loadCount, 1);
   Assert.equal(global.obj.value, 10);
   Assert.equal(exports.loadCount, 1);
@@ -96,7 +98,8 @@ add_task(function test_ChromeUtils_import_shim_first() {
 
   const exports2 = {};
   const global2 = ChromeUtils.import(
-    "resource://test/esmified-3.jsm", exports2
+    "resource://test/esmified-3.jsm",
+    exports2
   );
   Assert.equal(global2.loadCount, 1);
   Assert.equal(global2.obj.value, 10);
@@ -114,9 +117,7 @@ add_task(function test_ChromeUtils_import_no_shim_first() {
   Assert.equal(ns.obj.value, 10);
 
   const exports = {};
-  const global = ChromeUtils.import(
-    "resource://test/esmified-4.jsm", exports
-  );
+  const global = ChromeUtils.import("resource://test/esmified-4.jsm", exports);
   Assert.equal(global.loadCount, 1);
   Assert.equal(global.obj.value, 10);
   Assert.equal(exports.loadCount, 1);
@@ -185,8 +186,11 @@ function testReadProxyOps(global, expectedNames, expectedDesc) {
 
   // enumerate
   const names = Object.keys(global).sort();
-  Assert.equal(JSON.stringify(names), JSON.stringify(expectedNames),
-              `enumerate`);
+  Assert.equal(
+    JSON.stringify(names),
+    JSON.stringify(expectedNames),
+    `enumerate`
+  );
 
   // has
   for (const name of expectedNames) {
@@ -197,12 +201,17 @@ function testReadProxyOps(global, expectedNames, expectedDesc) {
   for (const name of expectedNames) {
     const desc = Object.getOwnPropertyDescriptor(global, name);
     Assert.equal(desc.value, global[name]);
-    Assert.equal(desc.writable, expectedDesc.writable,
-                 `writable for ${name}`);
-    Assert.equal(desc.enumerable, expectedDesc.enumerable,
-                 `enumerable for ${name}`);
-    Assert.equal(desc.configurable, expectedDesc.configurable,
-                 `configurable for ${name}`);
+    Assert.equal(desc.writable, expectedDesc.writable, `writable for ${name}`);
+    Assert.equal(
+      desc.enumerable,
+      expectedDesc.enumerable,
+      `enumerable for ${name}`
+    );
+    Assert.equal(
+      desc.configurable,
+      expectedDesc.configurable,
+      `configurable for ${name}`
+    );
   }
 }
 
@@ -217,7 +226,7 @@ function testWriteProxyOps(global, expectedNames) {
   // delete: no-op
   for (const name of expectedNames) {
     const before = global[name];
-    Assert.ok(!(delete global[name]), `delete result for ${name}`);
+    Assert.ok(!delete global[name], `delete result for ${name}`);
     Assert.equal(global[name], before, `value after delete for ${name}`);
   }
 }
@@ -319,42 +328,72 @@ add_task(function test_Cu_import_not_exported_shim() {
 
   const desc = Object.getOwnPropertyDescriptor(global, "*namespace*");
   Assert.ok(!desc, `*namespace* special binding should not be exposed`);
-  Assert.equal("*namespace*" in global, false,
-               `*namespace* special binding should not be exposed`);
-  Assert.equal(global["*namespace*"], undefined,
-               `*namespace* special binding should not be exposed`);
+  Assert.equal(
+    "*namespace*" in global,
+    false,
+    `*namespace* special binding should not be exposed`
+  );
+  Assert.equal(
+    global["*namespace*"],
+    undefined,
+    `*namespace* special binding should not be exposed`
+  );
 });
 
 add_task(function test_Cu_isModuleLoaded_shim() {
   Assert.equal(Cu.isModuleLoaded("resource://test/esmified-5.jsm"), false);
   Assert.equal(Cu.isModuleLoaded("resource://test/esmified-5.js"), false);
   Assert.equal(Cu.isModuleLoaded("resource://test/esmified-5.jsm.js"), false);
-  Assert.equal(Cu.loadedModules.includes("resource://test/esmified-5.jsm"), false);
+  Assert.equal(
+    Cu.loadedModules.includes("resource://test/esmified-5.jsm"),
+    false
+  );
   Assert.equal(Cu.isModuleLoaded("resource://test/esmified-5.sys.mjs"), false);
-  Assert.equal(Cu.loadedModules.includes("resource://test/esmified-5.sys.mjs"), false);
+  Assert.equal(
+    Cu.loadedModules.includes("resource://test/esmified-5.sys.mjs"),
+    false
+  );
 
   Cu.import("resource://test/esmified-5.jsm", {});
 
   Assert.equal(Cu.isModuleLoaded("resource://test/esmified-5.jsm"), true);
   Assert.equal(Cu.isModuleLoaded("resource://test/esmified-5.js"), true);
   Assert.equal(Cu.isModuleLoaded("resource://test/esmified-5.jsm.js"), true);
-  Assert.equal(Cu.loadedModules.includes("resource://test/esmified-5.jsm"), true);
+  Assert.equal(
+    Cu.loadedModules.includes("resource://test/esmified-5.jsm"),
+    true
+  );
 
   // This is false because Cu.isModuleLoaded does not support ESM directly
   // (bug 1768819)
   Assert.equal(Cu.isModuleLoaded("resource://test/esmified-5.sys.mjs"), false);
-  Assert.equal(Cu.loadedModules.includes("resource://test/esmified-5.sys.mjs"), false);
+  Assert.equal(
+    Cu.loadedModules.includes("resource://test/esmified-5.sys.mjs"),
+    false
+  );
 });
 
 add_task(function test_Cu_isModuleLoaded_no_shim() {
   Assert.equal(Cu.isModuleLoaded("resource://test/esmified-6.jsm"), false);
   Assert.equal(Cu.isModuleLoaded("resource://test/esmified-6.js"), false);
   Assert.equal(Cu.isModuleLoaded("resource://test/esmified-6.jsm.js"), false);
-  Assert.equal(Cu.loadedModules.includes("resource://test/esmified-6.jsm"), false);
-  Assert.equal(Cu.loadedModules.includes("resource://test/esmified-6.js"), false);
-  Assert.equal(Cu.loadedModules.includes("resource://test/esmified-6.jsm.js"), false);
+  Assert.equal(
+    Cu.loadedModules.includes("resource://test/esmified-6.jsm"),
+    false
+  );
+  Assert.equal(
+    Cu.loadedModules.includes("resource://test/esmified-6.js"),
+    false
+  );
+  Assert.equal(
+    Cu.loadedModules.includes("resource://test/esmified-6.jsm.js"),
+    false
+  );
   Assert.equal(Cu.isModuleLoaded("resource://test/esmified-6.sys.mjs"), false);
-  Assert.equal(Cu.loadedModules.includes("resource://test/esmified-6.sys.mjs"), false);
+  Assert.equal(
+    Cu.loadedModules.includes("resource://test/esmified-6.sys.mjs"),
+    false
+  );
 
   ChromeUtils.importESModule("resource://test/esmified-6.sys.mjs");
 
@@ -364,14 +403,26 @@ add_task(function test_Cu_isModuleLoaded_no_shim() {
   Assert.equal(Cu.isModuleLoaded("resource://test/esmified-6.jsm"), true);
   Assert.equal(Cu.isModuleLoaded("resource://test/esmified-6.js"), true);
   Assert.equal(Cu.isModuleLoaded("resource://test/esmified-6.jsm.js"), true);
-  Assert.equal(Cu.loadedModules.includes("resource://test/esmified-6.jsm"), true);
+  Assert.equal(
+    Cu.loadedModules.includes("resource://test/esmified-6.jsm"),
+    true
+  );
 
   // This is false because shim always use *.jsm.
-  Assert.equal(Cu.loadedModules.includes("resource://test/esmified-6.js"), false);
-  Assert.equal(Cu.loadedModules.includes("resource://test/esmified-6.jsm.js"), false);
+  Assert.equal(
+    Cu.loadedModules.includes("resource://test/esmified-6.js"),
+    false
+  );
+  Assert.equal(
+    Cu.loadedModules.includes("resource://test/esmified-6.jsm.js"),
+    false
+  );
 
   // This is false because Cu.isModuleLoaded does not support ESM directly
   // (bug 1768819)
   Assert.equal(Cu.isModuleLoaded("resource://test/esmified-6.sys.mjs"), false);
-  Assert.equal(Cu.loadedModules.includes("resource://test/esmified-6.sys.mjs"), false);
+  Assert.equal(
+    Cu.loadedModules.includes("resource://test/esmified-6.sys.mjs"),
+    false
+  );
 });

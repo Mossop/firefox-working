@@ -4,8 +4,7 @@
 
 /* See https://bugzilla.mozilla.org/show_bug.cgi?id=1165807 */
 
-function run_test()
-{
+function run_test() {
   var bunnies = new String("bunnies");
   var lizards = new String("lizards");
 

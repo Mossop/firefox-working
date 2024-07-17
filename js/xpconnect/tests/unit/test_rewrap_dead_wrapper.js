@@ -6,8 +6,7 @@
 
 const global = this;
 
-function run_test()
-{
+function run_test() {
   var sb = Cu.Sandbox(global);
   let obj = new sb.Object();
   Cu.nukeSandbox(sb);
@@ -17,8 +16,9 @@ function run_test()
   // Create a new sandbox to wrap objects for.
 
   var sb = Cu.Sandbox(global);
-  Cu.evalInSandbox(function echo(val) { return val; },
-                   sb);
+  Cu.evalInSandbox(function echo(val) {
+    return val;
+  }, sb);
 
   let echoed = sb.echo(obj);
   ok(Cu.isDeadWrapper(echoed), "Rewrapped object should be a dead wrapper");
@@ -27,5 +27,8 @@ function run_test()
   ok(obj === obj, "Dead wrapper object should be equal to itself");
 
   let liveObj = {};
-  ok(liveObj === sb.echo(liveObj), "Rewrapped live object should be equal to itself");
+  ok(
+    liveObj === sb.echo(liveObj),
+    "Rewrapped live object should be equal to itself"
+  );
 }

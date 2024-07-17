@@ -23,6 +23,10 @@ function run_test() {
   // When the jsm was unloaded, the value of all its global's properties were
   // set to undefined. While it must be safe (not crash) to call into the
   // module, we expect it to throw an error (e.g., when trying to use Ci).
-  try { scope1.TestBlob.doTest(() => {}); } catch (e) {}
-  try { scope3.TestBlob.doTest(() => {}); } catch (e) {}
+  try {
+    scope1.TestBlob.doTest(() => {});
+  } catch (e) {}
+  try {
+    scope3.TestBlob.doTest(() => {});
+  } catch (e) {}
 }

@@ -6,16 +6,17 @@
 
 const global = this;
 
-function run_test()
-{
-  var ifacePointer = Cc["@mozilla.org/supports-interface-pointer;1"]
-      .createInstance(Ci.nsISupportsInterfacePointer);
+function run_test() {
+  var ifacePointer = Cc[
+    "@mozilla.org/supports-interface-pointer;1"
+  ].createInstance(Ci.nsISupportsInterfacePointer);
 
-  var sb = Cu.Sandbox(global, {wantGlobalProperties: ["ChromeUtils"]});
-  sb.prop = "prop"
-  sb.ifacePointer = ifacePointer
+  var sb = Cu.Sandbox(global, { wantGlobalProperties: ["ChromeUtils"] });
+  sb.prop = "prop";
+  sb.ifacePointer = ifacePointer;
 
-  var refToObjFromSb = Cu.evalInSandbox(`
+  var refToObjFromSb = Cu.evalInSandbox(
+    `
     ifacePointer.data = {
       QueryInterface: ChromeUtils.generateQI([]),
       wrappedJSObject: {foo: "bar"},
@@ -23,17 +24,24 @@ function run_test()
 
     var a = {prop2:'prop2'};
     a
-  `, sb);
+  `,
+    sb
+  );
 
-  equal(ifacePointer.data.wrappedJSObject.foo, "bar",
-        "Got expected wrapper into sandbox")
+  equal(
+    ifacePointer.data.wrappedJSObject.foo,
+    "bar",
+    "Got expected wrapper into sandbox"
+  );
 
   Cu.nukeSandbox(sb);
   ok(Cu.isDeadWrapper(sb), "sb should be dead");
-  ok(Cu.isDeadWrapper(ifacePointer.data.wrappedJSObject),
-     "Wrapper retrieved via XPConnect should be dead");
+  ok(
+    Cu.isDeadWrapper(ifacePointer.data.wrappedJSObject),
+    "Wrapper retrieved via XPConnect should be dead"
+  );
 
-  try{
+  try {
     sb.prop;
     Assert.ok(false);
   } catch (e) {
@@ -41,7 +49,7 @@ function run_test()
   }
 
   Cu.isDeadWrapper(refToObjFromSb, "ref to object from sb should be dead");
-  try{
+  try {
     refToObjFromSb.prop2;
     Assert.ok(false);
   } catch (e) {

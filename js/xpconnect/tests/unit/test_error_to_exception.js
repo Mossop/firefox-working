@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-add_task(async function() {
+add_task(async function () {
   // Throwing an error inside a JS callback in xpconnect should preserve
   // the columnNumber.
 
@@ -18,7 +18,8 @@ add_task(async function() {
     },
     // Runtime error.
     {
-      throwError() { // line = 21
+      throwError() {
+        // line = 21
         not_found();
       },
       messagePattern: /is not defined/,
@@ -34,15 +35,16 @@ add_task(async function() {
         if (msg instanceof Ci.nsIScriptError) {
           resolve(msg);
         }
-      }
+      },
     };
 
     try {
       Services.console.registerListener(listener);
 
       try {
-        const obs = Cc["@mozilla.org/observer-service;1"]
-              .getService(Ci.nsIObserverService);
+        const obs = Cc["@mozilla.org/observer-service;1"].getService(
+          Ci.nsIObserverService
+        );
         obs.addObserver(test.throwError, "test-obs", false);
         obs.notifyObservers(null, "test-obs");
       } catch {}

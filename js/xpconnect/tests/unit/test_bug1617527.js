@@ -7,11 +7,17 @@ function run_test() {
   let throwingFunc = Cu.evalInSandbox("new Function('throw new Error')", sb1);
   // NOTE: Different origin from the other sandbox.
   let sb2 = new Cu.Sandbox("https://example.com");
-  Cu.exportFunction(function() {
-    // Call a different-compartment throwing function.
-    throwingFunc();
-  }, sb2, { defineAs: "func" });
-  let threw = Cu.evalInSandbox("var threw; try { func(); threw = false; } catch (e) { threw = true } threw",
-                                sb2);
+  Cu.exportFunction(
+    function () {
+      // Call a different-compartment throwing function.
+      throwingFunc();
+    },
+    sb2,
+    { defineAs: "func" }
+  );
+  let threw = Cu.evalInSandbox(
+    "var threw; try { func(); threw = false; } catch (e) { threw = true } threw",
+    sb2
+  );
   Assert.ok(threw);
 }

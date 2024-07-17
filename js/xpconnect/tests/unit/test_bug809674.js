@@ -2,7 +2,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-
 var Bug809674 = {
   QueryInterface: ChromeUtils.generateQI(["nsIXPCTestBug809674"]),
 
@@ -29,7 +28,7 @@ var Bug809674 = {
   },
   methodNoArgsNoRetVal() {},
 
-  valProperty: {value: 42},
+  valProperty: { value: 42 },
   uintProperty: 123,
 };
 
@@ -41,7 +40,8 @@ function run_test() {
 
   Assert.equal(o.addArgs(12, 34), 46);
 
-  var subRes = {}, mulRes = {};
+  var subRes = {},
+    mulRes = {};
   Assert.equal(o.addSubMulArgs(9, 7, subRes, mulRes), 16);
   Assert.equal(subRes.value, 2);
   Assert.equal(mulRes.value, 63);
@@ -71,6 +71,6 @@ function run_test() {
     Assert.ok(false);
   } catch (e) {
     Assert.ok(true);
-    Assert.ok(/optional_argc/.test(e))
+    Assert.ok(/optional_argc/.test(e));
   }
 }

@@ -155,12 +155,7 @@ add_task(async function testSyncImportWhileAsyncImportTopLevelInWorker() {
   };
   worker.postMessage({ order: "sync-while-async", target: "top-level" });
 
-  const {
-    sync_error,
-    async_beforeInc,
-    async_afterInc,
-    loaded,
-  } = await promise;
+  const { sync_error, async_beforeInc, async_afterInc, loaded } = await promise;
 
   Assert.stringMatches(sync_error, /ChromeUtils.importESModule cannot be used/);
 
@@ -180,12 +175,7 @@ add_task(async function testSyncImportWhileAsyncImportDependencyInWorker() {
   };
   worker.postMessage({ order: "sync-while-async", target: "dependency" });
 
-  const {
-    sync_error,
-    async_beforeInc,
-    async_afterInc,
-    loaded,
-  } = await promise;
+  const { sync_error, async_beforeInc, async_afterInc, loaded } = await promise;
 
   Assert.stringMatches(sync_error, /ChromeUtils.importESModule cannot be used/);
 

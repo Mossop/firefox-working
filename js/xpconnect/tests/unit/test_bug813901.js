@@ -7,17 +7,21 @@
 // Make sure that we can't inject __exposedProps__ via the proto of a COW-ed object.
 
 function checkThrows(expression, sb, regexp) {
-  var result = Cu.evalInSandbox('(function() { try { ' + expression + '; return "allowed"; } catch (e) { return e.toString(); }})();', sb);
-  dump('result: ' + result + '\n\n\n');
+  var result = Cu.evalInSandbox(
+    "(function() { try { " +
+      expression +
+      '; return "allowed"; } catch (e) { return e.toString(); }})();',
+    sb
+  );
+  dump("result: " + result + "\n\n\n");
   Assert.ok(!!regexp.exec(result));
 }
 
 function run_test() {
-
-  var sb = new Cu.Sandbox('http://www.example.org');
-  sb.obj = {foo: 2};
-  checkThrows('obj.foo = 3;', sb, /denied/);
+  var sb = new Cu.Sandbox("http://www.example.org");
+  sb.obj = { foo: 2 };
+  checkThrows("obj.foo = 3;", sb, /denied/);
   Cu.evalInSandbox("var p = {};", sb);
   sb.obj.__proto__ = sb.p;
-  checkThrows('obj.foo = 4;', sb, /denied/);
+  checkThrows("obj.foo = 4;", sb, /denied/);
 }

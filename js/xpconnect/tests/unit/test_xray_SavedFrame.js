@@ -1,15 +1,19 @@
 // Bug 1117242: Test calling SavedFrame getters from globals that don't subsume
 // that frame's principals.
 
-const {addDebuggerToGlobal} = ChromeUtils.importESModule("resource://gre/modules/jsdebugger.sys.mjs");
+const { addDebuggerToGlobal } = ChromeUtils.importESModule(
+  "resource://gre/modules/jsdebugger.sys.mjs"
+);
 addDebuggerToGlobal(globalThis);
 
 const lowP = Services.scriptSecurityManager.createNullPrincipal({});
 const midP = [lowP, "http://other.com"];
-const highP = Cc["@mozilla.org/systemprincipal;1"].createInstance(Ci.nsIPrincipal);
+const highP = Cc["@mozilla.org/systemprincipal;1"].createInstance(
+  Ci.nsIPrincipal
+);
 
-const low  = new Cu.Sandbox(lowP);
-const mid  = new Cu.Sandbox(midP);
+const low = new Cu.Sandbox(lowP);
+const mid = new Cu.Sandbox(midP);
 const high = new Cu.Sandbox(highP);
 
 function run_test() {
@@ -42,17 +46,19 @@ function run_test() {
     },
     {
       sandbox: high,
-      frames: ["getSavedFrameInstanceFromSandbox",
-               "saveStack",
-               "highF",
-               "run_test/mid.highF",
-               "midF",
-               "run_test/low.midF",
-               "lowF",
-               "run_test",
-               "_execute_test",
-               null],
-    }
+      frames: [
+        "getSavedFrameInstanceFromSandbox",
+        "saveStack",
+        "highF",
+        "run_test/mid.highF",
+        "midF",
+        "run_test/low.midF",
+        "lowF",
+        "run_test",
+        "_execute_test",
+        null,
+      ],
+    },
   ];
 
   for (let { sandbox, frames } of expected) {
@@ -61,15 +67,23 @@ function run_test() {
     };
 
     const xrayStack = low.lowF();
-    equal(xrayStack.functionDisplayName, "getSavedFrameInstanceFromSandbox",
-          "Xrays should always be able to see everything.");
+    equal(
+      xrayStack.functionDisplayName,
+      "getSavedFrameInstanceFromSandbox",
+      "Xrays should always be able to see everything."
+    );
 
     let waived = Cu.waiveXrays(xrayStack);
     do {
-      ok(frames.length,
-         "There should still be more expected frames while we have actual frames.");
-      equal(waived.functionDisplayName, frames.shift(),
-            "The waived wrapper should give us the stack's compartment's view.");
+      ok(
+        frames.length,
+        "There should still be more expected frames while we have actual frames."
+      );
+      equal(
+        waived.functionDisplayName,
+        frames.shift(),
+        "The waived wrapper should give us the stack's compartment's view."
+      );
       waived = waived.parent;
     } while (waived);
   }
@@ -94,11 +108,12 @@ function getSavedFrameInstanceFromSandbox(sandbox) {
 
   if (sandbox !== high) {
     ok(Cu.isXrayWrapper(frame), "`frame` should be an xray...");
-    equal(Object.prototype.toString.call(Cu.waiveXrays(frame)),
-          "[object SavedFrame]",
-          "...and that xray should wrap a SavedFrame");
+    equal(
+      Object.prototype.toString.call(Cu.waiveXrays(frame)),
+      "[object SavedFrame]",
+      "...and that xray should wrap a SavedFrame"
+    );
   }
 
   return frame;
 }
-

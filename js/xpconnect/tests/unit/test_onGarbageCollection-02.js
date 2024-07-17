@@ -7,16 +7,16 @@
 
 const root1 = newGlobal();
 const dbg1 = new Debugger();
-dbg1.addDebuggee(root1)
+dbg1.addDebuggee(root1);
 
 const root2 = newGlobal();
 const dbg2 = new Debugger();
-dbg2.addDebuggee(root2)
+dbg2.addDebuggee(root2);
 
 let fired1 = false;
 let fired2 = false;
-dbg1.memory.onGarbageCollection = _ => fired1 = true;
-dbg2.memory.onGarbageCollection = _ => fired2 = true;
+dbg1.memory.onGarbageCollection = _ => (fired1 = true);
+dbg2.memory.onGarbageCollection = _ => (fired2 = true);
 
 Services.prefs.setBoolPref("security.allow_eval_with_system_principal", true);
 registerCleanupFunction(() => {

@@ -11,12 +11,15 @@ add_task(async function testSandbox() {
   };
   const sb = new Cu.Sandbox(uri, sandboxOpts);
 
-  Cu.evalInSandbox(`
+  Cu.evalInSandbox(
+    `
 globalThis["loaded"] = [];
 var ns = ChromeUtils.importESModule("resource://test/non_shared_1.mjs", {
   global: "current",
 });
-`, sb);
+`,
+    sb
+  );
 
   Assert.equal(Cu.evalInSandbox(`ns.getCounter();`, sb), 0);
   Cu.evalInSandbox(`ns.incCounter();`, sb);
@@ -40,11 +43,14 @@ add_task(async function testNoWindowSandbox() {
 
   let caught = false;
   try {
-  Cu.evalInSandbox(`
+    Cu.evalInSandbox(
+      `
 ChromeUtils.importESModule("resource://test/non_shared_1.mjs", {
   global: "current",
 });
-`, sb);
+`,
+      sb
+    );
   } catch (e) {
     caught = true;
     Assert.stringMatches(e.message, /No ModuleLoader found/);
@@ -80,12 +86,15 @@ add_task(async function testReImport() {
   };
   const sb = new Cu.Sandbox(uri, sandboxOpts);
 
-  Cu.evalInSandbox(`
+  Cu.evalInSandbox(
+    `
 globalThis["loaded"] = [];
 var ns = ChromeUtils.importESModule("resource://test/non_shared_1.mjs", {
   global: "current",
 });
-`, sb);
+`,
+    sb
+  );
 
   Assert.equal(Cu.evalInSandbox(`ns.getCounter();`, sb), 0);
   Cu.evalInSandbox(`ns.incCounter();`, sb);
@@ -93,11 +102,14 @@ var ns = ChromeUtils.importESModule("resource://test/non_shared_1.mjs", {
 
   Assert.equal(Cu.evalInSandbox(`globalThis["loaded"].join(",")`, sb), "2,1");
 
-  Cu.evalInSandbox(`
+  Cu.evalInSandbox(
+    `
 var ns2 = ChromeUtils.importESModule("resource://test/non_shared_1.mjs", {
   global: "current",
 });
-`, sb);
+`,
+    sb
+  );
 
   // The counter should be shared, and also not reset.
   Assert.equal(Cu.evalInSandbox(`ns2.getCounter();`, sb), 1);
@@ -122,11 +134,14 @@ add_task(async function testNotFound() {
 
   let caught = false;
   try {
-  Cu.evalInSandbox(`
+    Cu.evalInSandbox(
+      `
 ChromeUtils.importESModule("resource://test/not_found.mjs", {
   global: "current",
 });
-`, sb);
+`,
+      sb
+    );
   } catch (e) {
     caught = true;
     Assert.stringMatches(e.message, /Failed to load/);
@@ -147,11 +162,14 @@ add_task(async function testParseError() {
 
   let caught = false;
   try {
-  Cu.evalInSandbox(`
+    Cu.evalInSandbox(
+      `
 ChromeUtils.importESModule("resource://test/es6module_parse_error.js", {
   global: "current",
 });
-`, sb);
+`,
+      sb
+    );
   } catch (e) {
     caught = true;
     Assert.stringMatches(e.message, /unexpected token/);
@@ -172,11 +190,14 @@ add_task(async function testParseErrorInImport() {
 
   let caught = false;
   try {
-  Cu.evalInSandbox(`
+    Cu.evalInSandbox(
+      `
 ChromeUtils.importESModule("resource://test/es6module_parse_error_in_import.js", {
   global: "current",
 });
-`, sb);
+`,
+      sb
+    );
   } catch (e) {
     caught = true;
     Assert.stringMatches(e.message, /unexpected token/);
@@ -197,11 +218,14 @@ add_task(async function testImportError() {
 
   let caught = false;
   try {
-  Cu.evalInSandbox(`
+    Cu.evalInSandbox(
+      `
 ChromeUtils.importESModule("resource://test/es6module_import_error.js", {
   global: "current",
 });
-`, sb);
+`,
+      sb
+    );
   } catch (e) {
     caught = true;
     Assert.stringMatches(e.message, /doesn't provide an export named/);
@@ -222,11 +246,14 @@ add_task(async function testExecutionError() {
 
   let caught = false;
   try {
-  Cu.evalInSandbox(`
+    Cu.evalInSandbox(
+      `
 ChromeUtils.importESModule("resource://test/es6module_throws.js", {
   global: "current",
 });
-`, sb);
+`,
+      sb
+    );
   } catch (e) {
     caught = true;
     Assert.stringMatches(e.message, /foobar/);
@@ -237,11 +264,14 @@ ChromeUtils.importESModule("resource://test/es6module_throws.js", {
 
   caught = false;
   try {
-  Cu.evalInSandbox(`
+    Cu.evalInSandbox(
+      `
 ChromeUtils.importESModule("resource://test/es6module_throws.js", {
   global: "current",
 });
-`, sb);
+`,
+      sb
+    );
   } catch (e) {
     caught = true;
     Assert.stringMatches(e.message, /foobar/);
@@ -295,7 +325,7 @@ add_task(async function testImportNestNonSharedDifferent() {
 
   let caught = false;
   try {
-  win1.eval(`
+    win1.eval(`
 ChromeUtils.importESModule("resource://test/non_shared_nest_import_non_shared_2.mjs", {
   global: "current",
 });
@@ -347,18 +377,24 @@ add_task(async function testIsolationWithSandbox() {
 
   // Verify modules in 2 sandboxes are isolated.
 
-  Cu.evalInSandbox(`
+  Cu.evalInSandbox(
+    `
 globalThis["loaded"] = [];
 var ns = ChromeUtils.importESModule("resource://test/non_shared_1.mjs", {
   global: "current",
 });
-`, sb1);
-  Cu.evalInSandbox(`
+`,
+    sb1
+  );
+  Cu.evalInSandbox(
+    `
 globalThis["loaded"] = [];
 var ns = ChromeUtils.importESModule("resource://test/non_shared_1.mjs", {
   global: "current",
 });
-`, sb2);
+`,
+    sb2
+  );
 
   Assert.equal(Cu.evalInSandbox(`ns.getCounter();`, sb1), 0);
   Cu.evalInSandbox(`ns.incCounter();`, sb1);
@@ -374,12 +410,15 @@ var ns = ChromeUtils.importESModule("resource://test/non_shared_1.mjs", {
 
   // Verify importing after any modification to different global doesn't affect.
 
-  const ns3 = Cu.evalInSandbox(`
+  const ns3 = Cu.evalInSandbox(
+    `
 globalThis["loaded"] = [];
 var ns = ChromeUtils.importESModule("resource://test/non_shared_1.mjs", {
   global: "current",
 });
-`, sb3);
+`,
+    sb3
+  );
 
   Assert.equal(Cu.evalInSandbox(`ns.getCounter();`, sb3), 0);
   Cu.evalInSandbox(`ns.incCounter();`, sb3);
@@ -520,9 +559,8 @@ const nsPromise = import("resource://test/non_shared_1.mjs");
 nsPromise.then(v => { ns2 = v; });
 `);
 
-  Services.tm.spinEventLoopUntil(
-    "Wait until dynamic import finishes",
-    () => window.eval(`ns2 !== null`)
+  Services.tm.spinEventLoopUntil("Wait until dynamic import finishes", () =>
+    window.eval(`ns2 !== null`)
   );
 
   Assert.equal(window.eval(`ns2.getCounter();`), 1);
@@ -555,9 +593,8 @@ const nsPromise = import("resource://test/import_non_shared_1.mjs");
 nsPromise.then(v => { ns2 = v; });
 `);
 
-  Services.tm.spinEventLoopUntil(
-    "Wait until dynamic import finishes",
-    () => window.eval(`ns2 !== null`)
+  Services.tm.spinEventLoopUntil("Wait until dynamic import finishes", () =>
+    window.eval(`ns2 !== null`)
   );
 
   Assert.equal(window.eval(`ns2.getCounter();`), 1);
@@ -578,9 +615,8 @@ const nsPromise = import("resource://test/non_shared_1.mjs");
 nsPromise.then(v => { ns = v; });
 `);
 
-  Services.tm.spinEventLoopUntil(
-    "Wait until dynamic import finishes",
-    () => window.eval(`ns !== null`)
+  Services.tm.spinEventLoopUntil("Wait until dynamic import finishes", () =>
+    window.eval(`ns !== null`)
   );
 
   Assert.equal(window.eval(`ns.getCounter();`), 0);
@@ -613,9 +649,8 @@ const nsPromise = import("resource://test/non_shared_1.mjs");
 nsPromise.then(v => { ns = v; });
 `);
 
-  Services.tm.spinEventLoopUntil(
-    "Wait until dynamic import finishes",
-    () => window.eval(`ns !== null`)
+  Services.tm.spinEventLoopUntil("Wait until dynamic import finishes", () =>
+    window.eval(`ns !== null`)
   );
 
   Assert.equal(window.eval(`ns.getCounter();`), 0);
@@ -658,9 +693,8 @@ var ns2 = ChromeUtils.importESModule("resource://test/non_shared_1.mjs", {
   window.eval(`ns2.incCounter();`);
   Assert.equal(window.eval(`ns2.getCounter();`), 1);
 
-  Services.tm.spinEventLoopUntil(
-    "Wait until dynamic import finishes",
-    () => window.eval(`ns !== null`)
+  Services.tm.spinEventLoopUntil("Wait until dynamic import finishes", () =>
+    window.eval(`ns !== null`)
   );
 
   Assert.equal(window.eval(`ns.getCounter();`), 1);
@@ -691,9 +725,8 @@ var ns2 = ChromeUtils.importESModule("resource://test/import_non_shared_1.mjs", 
   window.eval(`ns2.incCounter();`);
   Assert.equal(window.eval(`ns2.getCounter();`), 1);
 
-  Services.tm.spinEventLoopUntil(
-    "Wait until dynamic import finishes",
-    () => window.eval(`ns !== null`)
+  Services.tm.spinEventLoopUntil("Wait until dynamic import finishes", () =>
+    window.eval(`ns !== null`)
   );
 
   Assert.equal(window.eval(`ns.getCounter();`), 1);
@@ -729,9 +762,8 @@ const nsPromise = import("resource://test/es6module_top_level_await.js");
 nsPromise.then(v => { ns2 = v; });
 `);
 
-  Services.tm.spinEventLoopUntil(
-    "Wait until dynamic import finishes",
-    () => window.eval(`ns2 !== null`)
+  Services.tm.spinEventLoopUntil("Wait until dynamic import finishes", () =>
+    window.eval(`ns2 !== null`)
   );
 
   Assert.equal(window.eval(`ns2.foo();`), 10);
@@ -749,9 +781,8 @@ const nsPromise = import("resource://test/es6module_top_level_await.js");
 nsPromise.then(v => { ns2 = v; });
 `);
 
-  Services.tm.spinEventLoopUntil(
-    "Wait until dynamic import finishes",
-    () => window.eval(`ns2 !== null`)
+  Services.tm.spinEventLoopUntil("Wait until dynamic import finishes", () =>
+    window.eval(`ns2 !== null`)
   );
 
   Assert.equal(window.eval(`ns2.foo();`), 10);
@@ -785,9 +816,8 @@ var ns = ChromeUtils.importESModule("resource://test/es6module_top_level_await.j
 });
 `);
 
-  Services.tm.spinEventLoopUntil(
-    "Wait until dynamic import finishes",
-    () => window.eval(`ns2 !== null`)
+  Services.tm.spinEventLoopUntil("Wait until dynamic import finishes", () =>
+    window.eval(`ns2 !== null`)
   );
 
   Assert.equal(window.eval(`ns2.foo();`), 10);

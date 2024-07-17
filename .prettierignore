@@ -1142,7 +1142,8 @@ js/src/Y.js
 
 # Changes to XPConnect tests must be carefully audited.
 js/xpconnect/tests/mochitest/
-js/xpconnect/tests/unit/
+js/xpconnect/tests/unit/*
+!js/xpconnect/tests/unit/test_*.js
 
 # Fuzzing code for testing only, targeting the JS shell
 js/src/fuzz-tests/

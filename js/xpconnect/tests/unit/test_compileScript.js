@@ -6,19 +6,31 @@ const { AddonTestUtils } = ChromeUtils.importESModule(
 
 AddonTestUtils.init(this);
 
-add_task(async function() {
-  let scriptUrl = Services.io.newFileURI(do_get_file("file_simple_script.js")).spec;
+add_task(async function () {
+  let scriptUrl = Services.io.newFileURI(
+    do_get_file("file_simple_script.js")
+  ).spec;
 
+  let script1 = await ChromeUtils.compileScript(scriptUrl, {
+    hasReturnValue: true,
+  });
+  let script2 = await ChromeUtils.compileScript(scriptUrl, {
+    hasReturnValue: false,
+  });
 
-  let script1 = await ChromeUtils.compileScript(scriptUrl, {hasReturnValue: true});
-  let script2 = await ChromeUtils.compileScript(scriptUrl, {hasReturnValue: false});
+  equal(script1.url, scriptUrl, "Script URL is correct");
+  equal(script2.url, scriptUrl, "Script URL is correct");
 
-  equal(script1.url, scriptUrl, "Script URL is correct")
-  equal(script2.url, scriptUrl, "Script URL is correct")
-
-  equal(script1.hasReturnValue, true, "Script hasReturnValue property is correct")
-  equal(script2.hasReturnValue, false, "Script hasReturnValue property is correct")
-
+  equal(
+    script1.hasReturnValue,
+    true,
+    "Script hasReturnValue property is correct"
+  );
+  equal(
+    script2.hasReturnValue,
+    false,
+    "Script hasReturnValue property is correct"
+  );
 
   // Test return-value version.
 
@@ -26,13 +38,20 @@ add_task(async function() {
   let sandbox2 = Cu.Sandbox("http://example.org");
 
   let obj = script1.executeInGlobal(sandbox1);
-  equal(Cu.getObjectPrincipal(obj).origin, "http://example.com", "Return value origin is correct");
+  equal(
+    Cu.getObjectPrincipal(obj).origin,
+    "http://example.com",
+    "Return value origin is correct"
+  );
   equal(obj.foo, "\u00ae", "Return value has the correct charset");
 
   obj = script1.executeInGlobal(sandbox2);
-  equal(Cu.getObjectPrincipal(obj).origin, "http://example.org", "Return value origin is correct");
+  equal(
+    Cu.getObjectPrincipal(obj).origin,
+    "http://example.org",
+    "Return value origin is correct"
+  );
   equal(obj.foo, "\u00ae", "Return value has the correct charset");
-
 
   // Test no-return-value version.
 
@@ -42,9 +61,12 @@ add_task(async function() {
   obj = script2.executeInGlobal(sandbox1);
   equal(obj, undefined, "No-return script has no return value");
 
-  equal(Cu.getObjectPrincipal(sandbox1.bar).origin, "http://example.com", "Object value origin is correct");
+  equal(
+    Cu.getObjectPrincipal(sandbox1.bar).origin,
+    "http://example.com",
+    "Object value origin is correct"
+  );
   equal(sandbox1.bar.foo, "\u00ae", "Object value has the correct charset");
-
 
   sandbox2.bar = null;
   equal(sandbox2.bar, null);
@@ -52,7 +74,11 @@ add_task(async function() {
   obj = script2.executeInGlobal(sandbox2);
   equal(obj, undefined, "No-return script has no return value");
 
-  equal(Cu.getObjectPrincipal(sandbox2.bar).origin, "http://example.org", "Object value origin is correct");
+  equal(
+    Cu.getObjectPrincipal(sandbox2.bar).origin,
+    "http://example.org",
+    "Object value origin is correct"
+  );
   equal(sandbox2.bar.foo, "\u00ae", "Object value has the correct charset");
 });
 
@@ -61,16 +87,12 @@ add_task(async function test_syntaxError() {
   // compilation.
   let scriptUrl = `data:,${";".repeat(1024 * 1024)}(`;
 
-  await Assert.rejects(
-    ChromeUtils.compileScript(scriptUrl),
-    SyntaxError);
+  await Assert.rejects(ChromeUtils.compileScript(scriptUrl), SyntaxError);
 
   // Generate a small script to force main thread compilation.
   scriptUrl = `data:,;(`;
 
-  await Assert.rejects(
-    ChromeUtils.compileScript(scriptUrl),
-    SyntaxError);
+  await Assert.rejects(ChromeUtils.compileScript(scriptUrl), SyntaxError);
 });
 
 add_task(async function test_Error_filename() {
@@ -84,8 +106,13 @@ add_task(async function test_Error_filename() {
   }
   const scriptUrl = `data:,(${encodeURIComponent(getMyError)})()`;
   const dummyFilename = "dummy filename";
-  let script1 = await ChromeUtils.compileScript(scriptUrl, { hasReturnValue: true });
-  let script2 = await ChromeUtils.compileScript(scriptUrl, { hasReturnValue: true, filename: dummyFilename });
+  let script1 = await ChromeUtils.compileScript(scriptUrl, {
+    hasReturnValue: true,
+  });
+  let script2 = await ChromeUtils.compileScript(scriptUrl, {
+    hasReturnValue: true,
+    filename: dummyFilename,
+  });
 
   equal(script1.url, scriptUrl, "Script URL is correct");
   equal(script2.url, "dummy filename", "Script URL overridden");
@@ -93,11 +120,19 @@ add_task(async function test_Error_filename() {
   let sandbox = Cu.Sandbox("http://example.com");
   let err1 = script1.executeInGlobal(sandbox);
   equal(err1.fileName, scriptUrl, "fileName is original script URL");
-  equal(err1.stackFirstLine, `getMyError@${scriptUrl}:2:15`, "Stack has original URL");
+  equal(
+    err1.stackFirstLine,
+    `getMyError@${scriptUrl}:2:15`,
+    "Stack has original URL"
+  );
 
   let err2 = script2.executeInGlobal(sandbox);
   equal(err2.fileName, dummyFilename, "fileName is overridden filename");
-  equal(err2.stackFirstLine, `getMyError@${dummyFilename}:2:15`, "Stack has overridden URL");
+  equal(
+    err2.stackFirstLine,
+    `getMyError@${dummyFilename}:2:15`,
+    "Stack has overridden URL"
+  );
 });
 
 add_task(async function test_invalid_url() {
@@ -110,7 +145,9 @@ add_task(async function test_invalid_url() {
   );
 
   await Assert.rejects(
-    ChromeUtils.compileScript("resource:///invalid.ftl", { filename: "bye bye" }),
+    ChromeUtils.compileScript("resource:///invalid.ftl", {
+      filename: "bye bye",
+    }),
     /^Unable to load script: bye bye$/
   );
 });
@@ -124,11 +161,15 @@ add_task(async function test_exceptions_in_webconsole() {
   const script = await ChromeUtils.compileScript(scriptUrl);
   const sandbox = Cu.Sandbox("http://example.com");
 
-  Assert.throws(() => script.executeInGlobal(sandbox),
+  Assert.throws(
+    () => script.executeInGlobal(sandbox),
     /Error: foo/,
-    "Without reportException set to true, executeInGlobal throws an exception");
+    "Without reportException set to true, executeInGlobal throws an exception"
+  );
 
-  info("With reportException, executeInGlobal doesn't throw, but notifies the console");
+  info(
+    "With reportException, executeInGlobal doesn't throw, but notifies the console"
+  );
   const { messages } = await AddonTestUtils.promiseConsoleOutput(() => {
     script.executeInGlobal(sandbox, { reportExceptions: true });
   });
@@ -136,6 +177,10 @@ add_task(async function test_exceptions_in_webconsole() {
   info("Wait for the console message related to the content script exception");
   equal(messages.length, 1, "Got one console message");
   messages[0].QueryInterface(Ci.nsIScriptError);
-  equal(messages[0].errorMessage, "Error: foo", "We are notified about the plain content script exception via the console");
+  equal(
+    messages[0].errorMessage,
+    "Error: foo",
+    "We are notified about the plain content script exception via the console"
+  );
   ok(messages[0].stack, "The message has a stack");
 });

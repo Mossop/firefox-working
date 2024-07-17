@@ -37,9 +37,13 @@ function run_test() {
   registerXPCTestComponents();
 
   // Test for each component.
-  test_component_readwrite(Cc["@mozilla.org/js/xpc/test/native/ObjectReadWrite;1"].createInstance());
+  test_component_readwrite(
+    Cc["@mozilla.org/js/xpc/test/native/ObjectReadWrite;1"].createInstance()
+  );
   test_component_readwrite(xpcWrap(ObjectReadWrite));
-  test_component_readonly(Cc["@mozilla.org/js/xpc/test/native/ObjectReadOnly;1"].createInstance());
+  test_component_readonly(
+    Cc["@mozilla.org/js/xpc/test/native/ObjectReadOnly;1"].createInstance()
+  );
   test_component_readonly(xpcWrap(ObjectReadOnly));
 }
 
@@ -79,7 +83,7 @@ function test_component_readwrite(obj) {
   function SetAndTestBooleanProperty(newValue, expectedValue) {
     o.booleanProperty = newValue;
     Assert.equal(expectedValue, o.booleanProperty);
-  };
+  }
   SetAndTestBooleanProperty(false, false);
   SetAndTestBooleanProperty(1, true);
   SetAndTestBooleanProperty(null, false);

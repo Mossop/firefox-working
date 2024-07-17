@@ -32,7 +32,8 @@ add_task(async function unique_scope() {
   const runInUniqueScope = true;
   const runInGlobalScope = !runInUniqueScope;
 
-  Services.mm.loadFrameScript(`data:,
+  Services.mm.loadFrameScript(
+    `data:,
 var unique_qualified = 10;
 unique_unqualified = 20;
 let unique_lexical = 30;
@@ -54,61 +55,82 @@ while (env) {
 }
 
 sendSyncMessage("unique-envs-result", envs);
-`, false, runInGlobalScope);
+`,
+    false,
+    runInGlobalScope
+  );
 
-  Services.mm.loadFrameScript(`data:,
+  Services.mm.loadFrameScript(
+    `data:,
 sendSyncMessage("unique-share-result", {
   unique_qualified: typeof unique_qualified,
   unique_unqualified: typeof unique_unqualified,
   unique_lexical: typeof unique_lexical,
   unique_prop: this.unique_prop,
 });
-`, false, runInGlobalScope);
+`,
+    false,
+    runInGlobalScope
+  );
 
   const envs = await envsPromise;
   const share = await sharePromise;
 
   Assert.equal(envs.length, 5);
 
-  let i = 0, env;
+  let i = 0,
+    env;
 
-  env = envs[i]; i++;
+  env = envs[i];
+  i++;
   Assert.equal(env.type, "NonSyntacticLexicalEnvironmentObject");
   Assert.equal(env.qualified, false);
   Assert.equal(env.unqualified, false);
   Assert.equal(env.lexical, true, "lexical must live in the NSLEO");
   Assert.equal(env.prop, false);
 
-  env = envs[i]; i++;
+  env = envs[i];
+  i++;
   Assert.equal(env.type, "WithEnvironmentObject");
   Assert.equal(env.qualified, false);
   Assert.equal(env.unqualified, false);
   Assert.equal(env.lexical, false);
   Assert.equal(env.prop, true, "this property must live in the with env");
 
-  env = envs[i]; i++;
+  env = envs[i];
+  i++;
   Assert.equal(env.type, "NonSyntacticVariablesObject");
   Assert.equal(env.qualified, true, "qualified var must live in the NSVO");
   Assert.equal(env.unqualified, true, "unqualified var must live in the NSVO");
   Assert.equal(env.lexical, false);
   Assert.equal(env.prop, false);
 
-  env = envs[i]; i++;
+  env = envs[i];
+  i++;
   Assert.equal(env.type, "GlobalLexicalEnvironmentObject");
   Assert.equal(env.qualified, false);
   Assert.equal(env.unqualified, false);
   Assert.equal(env.lexical, false);
   Assert.equal(env.prop, false);
 
-  env = envs[i]; i++;
+  env = envs[i];
+  i++;
   Assert.equal(env.type, "*BackstagePass*");
   Assert.equal(env.qualified, false);
   Assert.equal(env.unqualified, false);
   Assert.equal(env.lexical, false);
   Assert.equal(env.prop, false);
 
-  Assert.equal(share.unique_qualified, "undefined", "qualified var must not be shared");
-  Assert.equal(share.unique_unqualified, "undefined", "unqualified name must not be shared");
+  Assert.equal(
+    share.unique_qualified,
+    "undefined",
+    "qualified var must not be shared"
+  );
+  Assert.equal(
+    share.unique_unqualified,
+    "undefined",
+    "unqualified name must not be shared"
+  );
   Assert.equal(share.unique_lexical, "undefined", "lexical must not be shared");
   Assert.equal(share.unique_prop, 40, "this property must be shared");
 
@@ -134,7 +156,8 @@ add_task(async function non_unique_scope() {
   const runInUniqueScope = false;
   const runInGlobalScope = !runInUniqueScope;
 
-  Services.mm.loadFrameScript(`data:,
+  Services.mm.loadFrameScript(
+    `data:,
 var non_unique_qualified = 10;
 non_unique_unqualified = 20;
 let non_unique_lexical = 30;
@@ -156,54 +179,74 @@ while (env) {
 }
 
 sendSyncMessage("non-unique-envs-result", envs);
-`, false, runInGlobalScope);
+`,
+    false,
+    runInGlobalScope
+  );
 
-  Services.mm.loadFrameScript(`data:,
+  Services.mm.loadFrameScript(
+    `data:,
 sendSyncMessage("non-unique-share-result", {
   non_unique_qualified,
   non_unique_unqualified,
   non_unique_lexical,
   non_unique_prop,
 });
-`, false, runInGlobalScope);
+`,
+    false,
+    runInGlobalScope
+  );
 
   const envs = await envsPromise;
   const share = await sharePromise;
 
   Assert.equal(envs.length, 4);
 
-  let i = 0, env;
+  let i = 0,
+    env;
 
-  env = envs[i]; i++;
+  env = envs[i];
+  i++;
   Assert.equal(env.type, "NonSyntacticLexicalEnvironmentObject");
   Assert.equal(env.qualified, false);
   Assert.equal(env.unqualified, false);
   Assert.equal(env.lexical, true, "lexical must live in the NSLEO");
   Assert.equal(env.prop, false);
 
-  env = envs[i]; i++;
+  env = envs[i];
+  i++;
   Assert.equal(env.type, "WithEnvironmentObject");
   Assert.equal(env.qualified, true, "qualified var must live in the with env");
   Assert.equal(env.unqualified, false);
   Assert.equal(env.lexical, false);
   Assert.equal(env.prop, true, "this property must live in the with env");
 
-  env = envs[i]; i++;
+  env = envs[i];
+  i++;
   Assert.equal(env.type, "GlobalLexicalEnvironmentObject");
   Assert.equal(env.qualified, false);
   Assert.equal(env.unqualified, false);
   Assert.equal(env.lexical, false);
   Assert.equal(env.prop, false);
 
-  env = envs[i]; i++;
+  env = envs[i];
+  i++;
   Assert.equal(env.type, "*BackstagePass*");
   Assert.equal(env.qualified, false);
-  Assert.equal(env.unqualified, true, "unqualified name must live in the backstage pass");
+  Assert.equal(
+    env.unqualified,
+    true,
+    "unqualified name must live in the backstage pass"
+  );
   Assert.equal(env.lexical, false);
   Assert.equal(env.prop, false);
 
   Assert.equal(share.non_unique_qualified, 10, "qualified var must be shared");
-  Assert.equal(share.non_unique_unqualified, 20, "unqualified name must be shared");
+  Assert.equal(
+    share.non_unique_unqualified,
+    20,
+    "unqualified name must be shared"
+  );
   Assert.equal(share.non_unique_lexical, 30, "lexical must be shared");
   Assert.equal(share.non_unique_prop, 40, "this property must be shared");
 

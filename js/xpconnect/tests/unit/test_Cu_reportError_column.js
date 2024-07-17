@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-add_task(async function() {
+add_task(async function () {
   // Passing an Error with JSErrorReport to Cu.reportError should preserve
   // the columnNumber.
 
@@ -18,7 +18,8 @@ add_task(async function() {
     },
     // Runtime error.
     {
-      throwError() { // line = 21
+      throwError() {
+        // line = 21
         not_found();
       },
       messagePattern: /is not defined/,
@@ -34,7 +35,7 @@ add_task(async function() {
         if (msg instanceof Ci.nsIScriptError) {
           resolve(msg);
         }
-      }
+      },
     };
 
     try {

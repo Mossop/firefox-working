@@ -1,13 +1,17 @@
 // Test calling SavedFrame getters across wrappers from privileged and
 // un-privileged globals.
 
-const {addDebuggerToGlobal} = ChromeUtils.importESModule("resource://gre/modules/jsdebugger.sys.mjs");
+const { addDebuggerToGlobal } = ChromeUtils.importESModule(
+  "resource://gre/modules/jsdebugger.sys.mjs"
+);
 addDebuggerToGlobal(globalThis);
 
 const lowP = Services.scriptSecurityManager.createNullPrincipal({});
-const highP = Cc["@mozilla.org/systemprincipal;1"].createInstance(Ci.nsIPrincipal);
+const highP = Cc["@mozilla.org/systemprincipal;1"].createInstance(
+  Ci.nsIPrincipal
+);
 
-const low  = new Cu.Sandbox(lowP);
+const low = new Cu.Sandbox(lowP);
 const high = new Cu.Sandbox(highP);
 
 function run_test() {
@@ -16,22 +20,28 @@ function run_test() {
   Cu.evalInSandbox("this.parent = stack.parent", high);
   Cu.evalInSandbox("this.asyncParent = stack.asyncParent", high);
   Cu.evalInSandbox("this.source = stack.source", high);
-  Cu.evalInSandbox("this.functionDisplayName = stack.functionDisplayName", high);
+  Cu.evalInSandbox(
+    "this.functionDisplayName = stack.functionDisplayName",
+    high
+  );
 
   // Un-privileged compartment accessing privileged stack.
   low.stack = getSavedFrameInstanceFromSandbox(high);
   try {
     Cu.evalInSandbox("this.parent = stack.parent", low);
-  } catch (e) { }
+  } catch (e) {}
   try {
     Cu.evalInSandbox("this.asyncParent = stack.asyncParent", low);
-  } catch (e) { }
+  } catch (e) {}
   try {
     Cu.evalInSandbox("this.source = stack.source", low);
-  } catch (e) { }
+  } catch (e) {}
   try {
-    Cu.evalInSandbox("this.functionDisplayName = stack.functionDisplayName", low);
-  } catch (e) { }
+    Cu.evalInSandbox(
+      "this.functionDisplayName = stack.functionDisplayName",
+      low
+    );
+  } catch (e) {}
 
   // Privileged compartment accessing privileged stack.
   let stack = getSavedFrameInstanceFromSandbox(high);
@@ -54,7 +64,9 @@ function getSavedFrameInstanceFromSandbox(sandbox) {
 
   dbg.memory.trackingAllocationSites = true;
   Cu.evalInSandbox("(function iife() { return new RegExp }())", sandbox);
-  const allocs = dbg.memory.drainAllocationsLog().filter(e => e.class === "RegExp");
+  const allocs = dbg.memory
+    .drainAllocationsLog()
+    .filter(e => e.class === "RegExp");
   dbg.memory.trackingAllocationSites = false;
 
   ok(allocs[0], "We should observe the allocation");
@@ -62,9 +74,11 @@ function getSavedFrameInstanceFromSandbox(sandbox) {
 
   if (sandbox !== high) {
     ok(Cu.isXrayWrapper(frame), "`frame` should be an xray...");
-    equal(Object.prototype.toString.call(Cu.waiveXrays(frame)),
-          "[object SavedFrame]",
-          "...and that xray should wrap a SavedFrame");
+    equal(
+      Object.prototype.toString.call(Cu.waiveXrays(frame)),
+      "[object SavedFrame]",
+      "...and that xray should wrap a SavedFrame"
+    );
   }
 
   return frame;
