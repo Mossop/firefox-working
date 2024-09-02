@@ -90,6 +90,13 @@ static inline constexpr char toNarrow(CharT c) {
 #  error Character conversion functions not implemented for this platform.
 #endif
 
+// charimatch returns true if optionchar is the same as argchar with a case
+// insensitive comparison.
+template <typename CharT>
+static inline bool charimatch(const char lowerchar, const CharT mixedchar) {
+  return lowerchar == toLowercase(toNarrow(mixedchar));
+}
+
 // Case-insensitively compare a string taken from the command-line (`mixedstr`)
 // to the text of some known command-line option (`lowerstr`).
 template <typename CharT>
@@ -102,9 +109,7 @@ static inline bool strimatch(const char* lowerstr, const CharT* mixedstr) {
     // and simplicity.
     if (!isValidOptionCharacter(*lowerstr)) return false;
 
-    if (toLowercase(toNarrow(*mixedstr)) != *lowerstr) {
-      return false;  // no match
-    }
+    if (!charimatch(*lowerstr, *mixedstr)) return false;  // no match
 
     ++lowerstr;
     ++mixedstr;
@@ -112,6 +117,17 @@ static inline bool strimatch(const char* lowerstr, const CharT* mixedstr) {
 
   if (*mixedstr) return false;  // lowerstr is shorter
 
+  return true;
+}
+
+// isValidOptionName returns false if optionstr is a nullptr, is an empty
+// string, or at least one of its characters is an invalid option character.
+static inline bool isValidOptionName(const char* optionstr) {
+  if (!optionstr || !*optionstr) return false;
+  while (*optionstr) {
+    if (!isValidOptionCharacter(*optionstr)) return false;
+    ++optionstr;
+  }
   return true;
 }
 
@@ -137,6 +153,35 @@ mozilla::Maybe<const CharT*> ReadAsOption(const CharT* str) {
   return Nothing();
 }
 
+// optionMatch returns true if argstr is the optionstr option. The comparison
+// is case insensitive. On return, if the option has a parameter as in
+// ’--option=param’, param holds a pointer to the first character of the
+// parameter, otherwise param is set to nullptr. Requires that
+// isValidOption(optionstr) returns true.
+template <typename CharT>
+static inline bool optionMatch(const char* optionstr, const CharT* argstr,
+                               const CharT** param) {
+  MOZ_ASSERT(optionstr && param);
+
+  *param = nullptr;
+
+  const auto arg = ReadAsOption(argstr);
+  if (!arg) return false;
+  const CharT* opt = arg.value();
+
+  while (*optionstr) {
+    if (!*opt) return false;                          // opt is shorter
+    if (!charimatch(*optionstr, *opt)) return false;  // no match
+    ++optionstr;
+    ++opt;
+  }
+  if (*opt == '=') {  // has param after =
+    *param = ++opt;
+    return true;
+  }
+  return !*opt;
+}
+
 }  // namespace internal
 
 using internal::strimatch;
@@ -152,64 +197,63 @@ enum class CheckArgFlag : uint32_t {
 MOZ_MAKE_ENUM_CLASS_BITWISE_OPERATORS(CheckArgFlag)
 
 /**
- * Check for a commandline flag. If the flag takes a parameter, the
+ * Check for a command line flag. If the flag takes a parameter, the
  * parameter is returned in aParam. Flags may be in the form -arg or
  * --arg (or /arg on win32).
  *
  * @param aArgc The argc value.
  * @param aArgv The original argv.
- * @param aArg the parameter to check. Must be lowercase.
- * @param aParam if non-null, the -arg <data> will be stored in this pointer.
- *        This is *not* allocated, but rather a pointer to the argv data.
+ * @param aArg the parameter to check. Must be lowercase and non-empty.
+ * @param aParam if non-null, it is set to the first charT of <data> when
+          the argument is -arg=<data> or -arg <data>.
+          This is *not* allocated, but rather a pointer to the argv data.
  * @param aFlags Flags @see CheckArgFlag
  */
 template <typename CharT>
 inline ArgResult CheckArg(int& aArgc, CharT** aArgv, const char* aArg,
                           const CharT** aParam = nullptr,
                           CheckArgFlag aFlags = CheckArgFlag::RemoveArg) {
-  using internal::ReadAsOption;
-  MOZ_ASSERT(aArgv && aArg);
+  MOZ_ASSERT(aArgv && aArg && internal::isValidOptionName(aArg));
 
-  CharT** curarg = aArgv + 1;  // skip argv[0]
-  ArgResult ar = ARG_NONE;
-
+  CharT** curarg = aArgv + 1;
   while (*curarg) {
-    if (const auto arg = ReadAsOption(*curarg)) {
-      if (strimatch(aArg, arg.value())) {
-        if (aFlags & CheckArgFlag::RemoveArg) {
-          RemoveArg(aArgc, curarg);
+    const CharT* param;
+    if (internal::optionMatch(aArg, *curarg, &param)) {
+      // found argument with a matching option name
+
+      int nbrArgsToRemove = (aFlags & CheckArgFlag::RemoveArg) ? 1 : 0;
+
+      if (!aParam) {
+        // no param expected
+
+        if (param) return ARG_BAD;  // curarg is --option=param
+
+      } else {
+        // a param is expected
+
+        if (param) {  // curarg is --option=param
+
+          *aParam = param;
+
         } else {
-          ++curarg;
+          // the param is the next argv value
+
+          if (!curarg[1] || internal::ReadAsOption(curarg[1])) return ARG_BAD;
+
+          *aParam = curarg[1];
+
+          if (nbrArgsToRemove) ++nbrArgsToRemove;
         }
-
-        if (!aParam) {
-          ar = ARG_FOUND;
-          break;
-        }
-
-        if (*curarg) {
-          if (ReadAsOption(*curarg)) {
-            return ARG_BAD;
-          }
-
-          *aParam = *curarg;
-
-          if (aFlags & CheckArgFlag::RemoveArg) {
-            RemoveArg(aArgc, curarg);
-          }
-
-          ar = ARG_FOUND;
-          break;
-        }
-
-        return ARG_BAD;
       }
-    }
 
+      while (nbrArgsToRemove--) RemoveArg(aArgc, curarg);
+
+      return ARG_FOUND;
+    }
     ++curarg;
   }
 
-  return ar;
+  return ARG_NONE;
 }
 
 template <typename CharT>
