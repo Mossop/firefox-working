@@ -3,12 +3,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+#include <thread>
 #include "nsProfileLock.h"
 #include "nsCOMPtr.h"
 #include "nsQueryObject.h"
 #include "nsString.h"
 #include "nsPrintfCString.h"
 #include "nsDebug.h"
+#include "GeckoProfiler.h"
 
 #if defined(XP_WIN)
 #  include "ProfileUnlockerWin.h"
@@ -34,6 +36,10 @@
 #  include "prenv.h"
 #  include "mozilla/Printf.h"
 #endif
+
+#define START_TIMEOUT_MSEC 5000
+
+using namespace mozilla;
 
 // **********************************************************************
 // class nsProfileLock
@@ -290,6 +296,23 @@ static bool IsSymlinkStaleLock(struct in_addr* aAddr, const char* aFileName,
   return true;
 }
 
+// A refcounted in_addr shareable across threads. Defaults to the loopback address
+class InetAddr {
+ private:
+  ~InetAddr() = default;
+
+ public:
+  InetAddr() {
+    mAddr.s_addr = htonl(INADDR_LOOPBACK);
+  }
+
+  NS_INLINE_DECL_THREADSAFE_REFCOUNTING(InetAddr)
+
+  in_addr mAddr;
+  std::condition_variable condVar;
+  std::mutex addrMutex;
+};
+
 nsresult nsProfileLock::LockWithSymlink(nsIFile* aLockFile,
                                         bool aHaveFcntlLock) {
   nsresult rv;
@@ -304,8 +327,7 @@ nsresult nsProfileLock::LockWithSymlink(nsIFile* aLockFile,
   if (!mReplacedLockTime)
     aLockFile->GetLastModifiedTimeOfLink(&mReplacedLockTime);
 
-  struct in_addr inaddr;
-  inaddr.s_addr = htonl(INADDR_LOOPBACK);
+  RefPtr<InetAddr> inaddr = new InetAddr();
 
   // We still have not loaded the profile, so we may not have proxy information.
   // Avoiding a DNS lookup in this stage makes sure any proxy is not bypassed.
@@ -317,18 +339,39 @@ nsresult nsProfileLock::LockWithSymlink(nsIFile* aLockFile,
   //   2. The file system does not support fcntl() locking.
   //   3. The browser is run from two different computers at the same time.
 #  ifndef MOZ_PROXY_BYPASS_PROTECTION
-  char hostname[256];
-  PRStatus status = PR_GetSystemInfo(PR_SI_HOSTNAME, hostname, sizeof hostname);
-  if (status == PR_SUCCESS) {
-    char netdbbuf[PR_NETDB_BUF_SIZE];
+  // In some cases the system resolver can be slow enough that this causes a
+  // noticeable delay in starting. There doesn't appear to be a way to timeout
+  // the name lookup itself so instead we'll run on a background thread and
+  // just carry on if it takes too long.
+  std::unique_lock<std::mutex> lock(inaddr->addrMutex);
+
+  std::thread getIpThread([](RefPtr<InetAddr> aInetAddr) {
+    PROFILER_REGISTER_THREAD("nsProfileLock::GetIpAddress");
+
+    RefPtr<InetAddr> inaddr = aInetAddr;
+
     PRHostEnt hostent;
-    status = PR_GetHostByName(hostname, netdbbuf, sizeof netdbbuf, &hostent);
-    if (status == PR_SUCCESS) memcpy(&inaddr, hostent.h_addr, sizeof inaddr);
-  }
+    char hostname[256];
+    PRStatus status = PR_GetSystemInfo(PR_SI_HOSTNAME, hostname, sizeof hostname);
+    if (status == PR_SUCCESS) {
+      char netdbbuf[PR_NETDB_BUF_SIZE];
+      status = PR_GetHostByName(hostname, netdbbuf, sizeof netdbbuf, &hostent);
+      if (status == PR_SUCCESS) {
+        std::lock_guard<std::mutex> lock(inaddr->addrMutex);
+        memcpy(&inaddr->mAddr, hostent.h_addr, sizeof inaddr->mAddr);
+      }
+    }
+
+    inaddr->condVar.notify_all();
+  }, do_AddRef(inaddr));
+
+  getIpThread.detach();
+
+  inaddr->condVar.wait_for(lock, std::chrono::milliseconds(START_TIMEOUT_MSEC));
 #  endif
 
   mozilla::SmprintfPointer signature =
-      mozilla::Smprintf("%s:%s%lu", inet_ntoa(inaddr),
+      mozilla::Smprintf("%s:%s%lu", inet_ntoa(inaddr->mAddr),
                         aHaveFcntlLock ? "+" : "", (unsigned long)getpid());
   const char* fileName = lockFilePath.get();
   int symlink_rv, symlink_errno = 0, tries = 0;
@@ -338,7 +381,7 @@ nsresult nsProfileLock::LockWithSymlink(nsIFile* aLockFile,
     symlink_errno = errno;
     if (symlink_errno != EEXIST) break;
 
-    if (!IsSymlinkStaleLock(&inaddr, fileName, aHaveFcntlLock)) break;
+    if (!IsSymlinkStaleLock(&inaddr->mAddr, fileName, aHaveFcntlLock)) break;
 
     // Lock seems to be bogus: try to claim it.  Give up after a large
     // number of attempts (100 comes from the 4.x codebase).
