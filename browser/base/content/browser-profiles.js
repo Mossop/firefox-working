@@ -19,6 +19,8 @@ var gProfiles = {
       "chrome://browser/locale/browser.properties"
     );
 
+    Services.obs.addObserver(() => this.manageProfiles(), "macos-reopen");
+
     this.emptyProfilesButton = PanelMultiView.getViewNode(
       document,
       "appMenu-empty-profiles-button"

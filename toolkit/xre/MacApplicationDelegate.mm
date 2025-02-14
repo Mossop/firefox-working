@@ -180,12 +180,16 @@ nsTArray<nsCString> TakeStartupURLs() { return std::move(StartupURLs()); }
 // miniaturized, so we can't skip nsCocoaNativeReOpen() if 'flag' is 'true'.
 - (BOOL)applicationShouldHandleReopen:(NSApplication*)theApp
                     hasVisibleWindows:(BOOL)flag {
-  nsCOMPtr<nsINativeAppSupport> nas = NS_GetNativeAppSupport();
-  NS_ENSURE_TRUE(nas, NO);
+  // nsCOMPtr<nsINativeAppSupport> nas = NS_GetNativeAppSupport();
+  // NS_ENSURE_TRUE(nas, NO);
 
-  // Go to the common Carbon/Cocoa reopen method.
-  nsresult rv = nas->ReOpen();
-  NS_ENSURE_SUCCESS(rv, NO);
+  // // Go to the common Carbon/Cocoa reopen method.
+  // nsresult rv = nas->ReOpen();
+  // NS_ENSURE_SUCCESS(rv, NO);
+
+  nsCOMPtr<nsIObserverService> obsServ =
+      do_GetService("@mozilla.org/observer-service;1");
+  obsServ->NotifyObservers(nullptr, "macos-reopen", nullptr);
 
   // NO says we don't want NSApplication to do anything else for us.
   return NO;
