@@ -8954,6 +8954,11 @@ var TabContextMenu = {
       "context_moveTabToGroup"
     );
     let contextUngroupTab = document.getElementById("context_ungroupTab");
+    let contextSoloMode = document.getElementById("context_soloMode");
+    contextSoloMode.setAttribute(
+      "checked",
+      Services.prefs.getBoolPref("browser.tabs.groups.solo", false)
+    );
 
     if (gBrowser._tabGroupsEnabled) {
       let selectedGroupCount = new Set(
@@ -9019,10 +9024,12 @@ var TabContextMenu = {
         groupCount: selectedGroupCount,
       });
       contextUngroupTab.setAttribute("data-l10n-args", groupInfo);
+      contextSoloMode.hidden = !gBrowser.tabGroups.length;
     } else {
       contextMoveTabToNewGroup.hidden = true;
       contextMoveTabToGroup.hidden = true;
       contextUngroupTab.hidden = true;
+      contextSoloMode.hidden = true;
     }
 
     // Only one of Reload_Tab/Reload_Selected_Tabs should be visible.

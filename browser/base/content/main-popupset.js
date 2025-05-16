@@ -32,6 +32,12 @@ document.addEventListener(
         case "context_reloadSelectedTabs":
           gBrowser.reloadMultiSelectedTabs();
           break;
+        case "context_soloMode":
+          Services.prefs.setBoolPref(
+            "browser.tabs.groups.solo",
+            !Services.prefs.getBoolPref("browser.tabs.groups.solo", false)
+          );
+          break;
         case "context_playTab":
           TabContextMenu.contextTab.resumeDelayedMedia();
           break;
@@ -272,6 +278,12 @@ document.addEventListener(
           break;
         case "toolbar-context-selectAllTabs":
           gBrowser.selectAllTabs();
+          break;
+        case "toolbar-context-soloMode":
+          Services.prefs.setBoolPref(
+            "browser.tabs.groups.solo",
+            !Services.prefs.getBoolPref("browser.tabs.groups.solo", false)
+          );
           break;
         case "toolbar-context-customize":
           gCustomizeMode.enter();

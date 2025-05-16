@@ -44,6 +44,14 @@
       };
     }
 
+    static onSoloModeChanged() {
+      if (MozTabbrowserTabGroup.soloMode) {
+        for (let group of window.gBrowser.tabGroups) {
+          group.collapsed = window.gBrowser.selectedTab.parentNode !== group;
+        }
+      }
+    }
+
     connectedCallback() {
       // Always set the mutation observer to listen for tab change events, even
       // if we are already initialized.
@@ -97,9 +105,27 @@
 
     disconnectedCallback() {
       this.#tabChangeObserver?.disconnect();
+      window.gBrowser.tabContainer.removeEventListener(
+        "TabSelect",
+        this.tabSelected
+      );
     }
 
+    tabSelected = () => {
+      if (
+        MozTabbrowserTabGroup.soloMode &&
+        window.gBrowser.selectedTab.parentNode != this
+      ) {
+        this.collapsed = true;
+      }
+    };
+
     #observeTabChanges() {
+      window.gBrowser.tabContainer.addEventListener(
+        "TabSelect",
+        this.tabSelected
+      );
+
       if (!this.#tabChangeObserver) {
         this.#tabChangeObserver = new window.MutationObserver(mutationList => {
           for (let mutation of mutationList) {
@@ -245,6 +271,18 @@
       this.#updateCollapsedAriaAttributes();
       const eventName = val ? "TabGroupCollapse" : "TabGroupExpand";
       this.dispatchEvent(new CustomEvent(eventName, { bubbles: true }));
+
+      if (!val && MozTabbrowserTabGroup.soloMode) {
+        for (let group of window.gBrowser.tabGroups) {
+          if (group != this) {
+            if (window.gBrowser.selectedTab.parentNode === group) {
+              window.gBrowser.selectedTab = this.tabs[0];
+            }
+
+            group.collapsed = true;
+          }
+        }
+      }
     }
 
     #lastAddedTo = 0;
@@ -399,6 +437,16 @@
       gBrowser.selectedTab = this.tabs[0];
     }
   }
+
+  XPCOMUtils.defineLazyPreferenceGetter(
+    MozTabbrowserTabGroup,
+    "soloMode",
+    "browser.tabs.groups.solo",
+    false,
+    () => MozTabbrowserTabGroup.onSoloModeChanged()
+  );
+  // Make sure to start observing.
+  MozTabbrowserTabGroup.soloMode;
 
   customElements.define("tab-group", MozTabbrowserTabGroup);
 }

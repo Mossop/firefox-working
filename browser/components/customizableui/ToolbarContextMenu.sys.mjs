@@ -335,6 +335,14 @@ export var ToolbarContextMenu = {
         multipleTabsSelected;
       document.getElementById("toolbar-context-selectAllTabs").disabled =
         gBrowser.allTabsSelected();
+      document.getElementById("toolbar-context-soloMode").hidden =
+        !gBrowser.tabGroups.length;
+      document
+        .getElementById("toolbar-context-soloMode")
+        .setAttribute(
+          "checked",
+          Services.prefs.getBoolPref("browser.tabs.groups.solo", false)
+        );
       let closedCount = lazy.SessionStore.getLastClosedTabCount(window);
       document
         .getElementById("History:UndoCloseTab")

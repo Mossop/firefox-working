@@ -29,6 +29,8 @@ toolbar-context-menu-reopen-closed-tabs =
            *[other] Reopen Closed Tabs
         }
     .accesskey = o
+toolbar-context-menu-group-solo-mode =
+    .label = Solo mode
 
 toolbar-context-turn-on-vertical-tabs =
     .label = Turn on Vertical Tabs

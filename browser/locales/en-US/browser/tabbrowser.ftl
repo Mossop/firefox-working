@@ -306,6 +306,9 @@ tab-context-ungroup-tab =
         }
     .accesskey = R
 
+tab-context-group-solo-mode =
+    .label = Solo mode
+
 ## Open/saved tab group context menu
 
 # For right-click context menu use in the "all tabs"/"tab overflow menu" when
