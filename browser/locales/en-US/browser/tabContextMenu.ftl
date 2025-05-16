@@ -60,6 +60,13 @@ tab-context-unload-n-tabs =
            *[other] Unload { $tabCount } Tabs
         }
     .accesskey = U
+snooze-tabs =
+    .label =
+        { $tabCount ->
+            [1] Snooze Tab
+           *[other] Snooze Tabs
+        }
+    .accesskey = U
 reload-tabs =
     .label = Reload Tabs
     .accesskey = R

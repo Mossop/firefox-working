@@ -26,6 +26,11 @@ document.addEventListener(
         case "context_ungroupTab":
           TabContextMenu.ungroupTabs();
           break;
+        case "context_snoozeTabs":
+          document
+            .getElementById("snooze-menu")
+            .openModal(gBrowser.selectedTabs);
+          break;
         case "context_reloadTab":
           gBrowser.reloadTab(TabContextMenu.contextTab);
           break;

@@ -96,6 +96,7 @@
     init() {
       this.tabContainer = document.getElementById("tabbrowser-tabs");
       this.tabGroupMenu = document.getElementById("tab-group-editor");
+      this.snoozeMenu = document.getElementById("snooze-menu");
       this.tabbox = document.getElementById("tabbrowser-tabbox");
       this.tabpanels = document.getElementById("tabbrowser-tabpanels");
       this.pinnedTabsContainer = document.getElementById(
@@ -9044,6 +9045,12 @@ var TabContextMenu = {
     } else {
       unloadTabItem.hidden = true;
     }
+
+    let snoozeTabs = document.getElementById("context_snoozeTabs");
+    snoozeTabs.setAttribute(
+      "data-l10n-args",
+      JSON.stringify({ tabCount: gBrowser.selectedTabs.length })
+    );
 
     // Show Play Tab menu item if the tab has attribute activemedia-blocked
     document.getElementById("context_playTab").hidden = !(

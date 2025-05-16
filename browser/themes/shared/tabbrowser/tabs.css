@@ -1247,6 +1247,27 @@ tab-group {
   }
 }
 
+.snooze-panel {
+  --panel-padding: var(--space-large);
+  --panel-separator-margin: var(--panel-separator-margin-vertical) 0;
+  font: menu;
+
+  .panel-header {
+    min-height: auto;
+    > h1 {
+      margin-top: 0;
+    }
+  }
+
+  toolbarseparator {
+    margin-block: var(--space-medium);
+  }
+
+  .panel-body {
+    padding-block: var(--space-medium);
+  }
+}
+
 /* Tab Overflow */
 
 #tabbrowser-arrowscrollbox {
