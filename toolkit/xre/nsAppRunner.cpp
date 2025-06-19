@@ -2870,6 +2870,33 @@ static ReturnAbortOnError ProfileLockedDialog(nsIFile* aProfileDir,
   }
 }
 
+static ReturnAbortOnError DisplayFeltUI() {
+  nsresult rv;
+
+  // shutdown
+  nsCOMPtr<nsIWindowWatcher> windowWatcher(
+      do_GetService(NS_WINDOWWATCHER_CONTRACTID));
+  nsCOMPtr<nsIDialogParamBlock> ioParamBlock(
+      do_CreateInstance(NS_DIALOGPARAMBLOCK_CONTRACTID));
+  nsCOMPtr<nsIMutableArray> dlgArray(do_CreateInstance(NS_ARRAY_CONTRACTID));
+  NS_ENSURE_TRUE(windowWatcher && ioParamBlock && dlgArray, NS_ERROR_FAILURE);
+
+  ioParamBlock->SetObjects(dlgArray);
+
+  nsCOMPtr<nsIAppStartup> appStartup(components::AppStartup::Service());
+  NS_ENSURE_TRUE(appStartup, NS_ERROR_FAILURE);
+
+  nsAutoCString features("centerscreen,chrome,modal,titlebar");
+  nsCOMPtr<mozIDOMWindowProxy> newWindow;
+  rv = windowWatcher->OpenWindow(
+      nullptr, nsDependentCString("chrome://browser/content/feltui.xhtml"),
+      "_blank"_ns, features, ioParamBlock, getter_AddRefs(newWindow));
+
+  NS_ENSURE_SUCCESS_LOG(rv, rv);
+
+  return NS_OK;
+}
+
 static ReturnAbortOnError ShowProfileDialog(
     nsIToolkitProfileService* aProfileSvc, nsINativeAppSupport* aNative,
     const char* aDialogURL, const char* aTelemetryEnvVar) {
@@ -5439,6 +5466,8 @@ nsresult XREMain::XRE_mainRun() {
   nsresult rv = NS_OK;
   NS_ASSERTION(mScopedXPCOM, "Scoped xpcom not initialized.");
 
+  auto isFelt = CheckArg("felt");
+
 #if defined(XP_WIN)
   RefPtr<mozilla::DllServices> dllServices(mozilla::DllServices::Get());
   dllServices->StartUntrustedModulesProcessor(false);
@@ -5687,7 +5716,8 @@ nsresult XREMain::XRE_mainRun() {
     CrashReporter::RecordAnnotationNSCString(
         CrashReporter::Annotation::useragent_locale, userAgentLocale);
 
-    if (!AppShutdown::IsInOrBeyond(ShutdownPhase::AppShutdownConfirmed)) {
+    if (!isFelt &&
+        !AppShutdown::IsInOrBeyond(ShutdownPhase::AppShutdownConfirmed)) {
       /* Special-case services that need early access to the command
           line. */
       nsCOMPtr<nsIObserverService> obsService =
@@ -5816,7 +5846,8 @@ nsresult XREMain::XRE_mainRun() {
       AppShutdown::IsInOrBeyond(ShutdownPhase::AppShutdownConfirmed);
     }
 
-    if (!AppShutdown::IsInOrBeyond(ShutdownPhase::AppShutdownConfirmed)) {
+    if (!isFelt &&
+        !AppShutdown::IsInOrBeyond(ShutdownPhase::AppShutdownConfirmed)) {
       rv = cmdLine->Run();
       NS_ENSURE_SUCCESS_LOG(rv, NS_ERROR_FAILURE);
     }
@@ -5890,6 +5921,10 @@ nsresult XREMain::XRE_mainRun() {
     NS_ENSURE_SUCCESS(rv, rv);
   }
 #endif
+
+  if (isFelt) {
+    return DisplayFeltUI();
+  }
 
   {
     rv = appStartup->Run();

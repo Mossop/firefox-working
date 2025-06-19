@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
+   - You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  role="document"
+  class="system-font-size"
+  width="400"
+  height="800"
+  style="background: white; height: 100%; width: 100%"
+>
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Felt SSO</title>
+    <script src="chrome://global/content/customElements.js" />
+    <script>
+      async function init() {
+        const SOURCE_URI = "https://sso.mozilla.com/";
+
+        let { E10SUtils } = ChromeUtils.importESModule(
+          "resource://gre/modules/E10SUtils.sys.mjs"
+        );
+
+        let browser = document.getElementById("browser");
+        browser.setAttribute("remote", "true");
+        let oa = E10SUtils.predictOriginAttributes({ browser });
+        browser.setAttribute(
+          "remoteType",
+          E10SUtils.getRemoteTypeForURI(
+            SOURCE_URI,
+            /* remote */ true,
+            /* fission */ true,
+            E10SUtils.WEB_REMOTE_TYPE,
+            null,
+            oa
+          )
+        );
+        browser.setAttribute("maychangeremoteness", "true");
+
+        await new Promise(resolve => setTimeout(resolve, 200));
+
+        browser.fixupAndLoadURIString(SOURCE_URI, {
+          triggeringPrincipal:
+            Services.scriptSecurityManager.getSystemPrincipal(),
+        });
+      }
+
+      window.addEventListener(
+        "load",
+        () => {
+          init();
+        },
+        true
+      );
+    </script>
+  </head>
+  <body style="width: 100%; height: 100%">
+    <div
+      style="
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+      "
+    >
+      <browser
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        id="browser"
+        type="content"
+        disablehistory="true"
+        disableglobalhistory="true"
+        remote="true"
+        maychangeremoteness="true"
+        style="flex: 1"
+      ></browser>
+    </div>
+  </body>
+</html>

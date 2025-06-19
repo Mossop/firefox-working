@@ -1648,6 +1648,31 @@ nsresult nsToolkitProfileService::SelectStartupProfile(
     return NS_ERROR_SHOW_PROFILE_MANAGER;
   }
 
+  ArgResult isFelt =
+      CheckArg(*aArgc, aArgv, "felt", nullptr, CheckArgFlag::None);
+  if (isFelt == ARG_FOUND) {
+    nsCOMPtr<nsIFile> file;
+    rv = GetSpecialSystemDirectory(OS_TemporaryDirectory, getter_AddRefs(file));
+    NS_ENSURE_SUCCESS(rv, rv);
+
+    rv = file->AppendNative("felt"_ns);
+    NS_ENSURE_SUCCESS(rv, rv);
+
+    // Create a unique profile directory.  This can fail if there are too many
+    // (thousands) of existing directories, which is unlikely to happen.
+    rv = file->CreateUnique(nsIFile::DIRECTORY_TYPE, 0700);
+    NS_ENSURE_SUCCESS(rv, rv);
+
+    nsCOMPtr<nsIFile> localDir = file;
+    file.forget(aRootDir);
+    localDir.forget(aLocalDir);
+
+    // Background tasks never use profiles known to the profile service.
+    *aProfile = nullptr;
+
+    return NS_OK;
+  }
+
 #ifdef MOZ_BACKGROUNDTASKS
   if (BackgroundTasks::IsBackgroundTaskMode()) {
     // There are two cases:
