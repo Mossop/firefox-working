@@ -145,6 +145,7 @@ EXPORTS.mozilla += [
     "RLBoxUtils.h",
     "ShutdownPhase.h",
     "SizeOfState.h",
+    "StartupLog.h",
     "StaticLocalPtr.h",
     "StaticMonitor.h",
     "StaticMutex.h",
@@ -208,6 +209,7 @@ UNIFIED_SOURCES += [
     "nsVersionComparatorImpl.cpp",
     "nsWeakReference.cpp",
     "RLBoxSandboxPool.cpp",
+    "StartupLog.cpp",
 ]
 
 if CONFIG["OS_TARGET"] in ("Linux", "Android"):

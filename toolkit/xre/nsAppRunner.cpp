@@ -2,6 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+#include "mozilla/StartupLog.h"
 #include "mozilla/dom/ContentParent.h"
 #include "mozilla/dom/ContentChild.h"
 #include "mozilla/ipc/GeckoChildProcessHost.h"
@@ -305,6 +306,8 @@ constexpr nsLiteralCString kStartupTokenNames[] = {
 
 int gArgc;
 char** gArgv;
+
+static mozilla::LazyLogModule gAppRunnerLog("AppRunner");
 
 static const char gToolkitVersion[] = MOZ_STRINGIFY(GRE_MILESTONE);
 // The gToolkitBuildID global is defined to MOZ_BUILDID via gen_buildid.py
@@ -3616,6 +3619,10 @@ static ReturnAbortOnError HandleDetectedDowngrade(
   }
 
   if (result == nsIToolkitProfileService::createNewProfile) {
+    MOZ_STARTUP_LOG_FLUSH(
+        gAppRunnerLog, LogLevel::Warning,
+        ("User chose to create a new profile after downgrade detected."));
+
     // Create a new profile and start it.
     nsCString profileName;
     profileName.AssignLiteral("default");
@@ -3754,6 +3761,11 @@ static bool CheckCompatibility(nsIFile* aProfileDir, const nsCString& aVersion,
   }
 
   if (!aLastVersion.Equals(aVersion)) {
+    MOZ_STARTUP_LOG(
+        gAppRunnerLog, LogLevel::Debug,
+        ("App version in selected profiles differs, previous=%s, current=%s",
+         aLastVersion.get(), aVersion.get()));
+
     // The version is not the same. Whether it's a downgrade depends on an
     // actual comparison:
     *aIsDowngrade = 0 < CompareCompatVersions(aLastVersion, aVersion);
@@ -4573,6 +4585,14 @@ int XREMain::XRE_mainInit(bool* aExitFlag,
   // will be populated when we need it.
   if (mAppData->crashReporterURL) {
     CrashReporter::SetServerURL(nsDependentCString(mAppData->crashReporterURL));
+  }
+
+  {
+    nsCOMPtr<nsIFile> userAppDataDir;
+    if (NS_SUCCEEDED(
+            nsXREDirProvider::GetUserAppDataDirectory(getter_AddRefs(userAppDataDir)))) {
+      StartupLog::SetLogDirectory(userAppDataDir);
+    }
   }
 
   if ((mAppData->flags & NS_XRE_ENABLE_CRASH_REPORTER) &&
@@ -6337,6 +6357,8 @@ nsresult XREMain::XRE_mainRun() {
   // We're entering the main run loop now, so we don't need to keep holding onto
   // the `nsICommandLineRunner` anymore.
   cmdLine = nullptr;
+
+  StartupLog::StartupComplete();
 
   {
     rv = appStartup->Run();
