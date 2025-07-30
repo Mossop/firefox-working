@@ -17,4 +17,5 @@ from mozprofile.diff import *
 from mozprofile.permissions import *
 from mozprofile.prefs import *
 from mozprofile.profile import *
+from mozprofile.profilesdb import *
 from mozprofile.view import *

@@ -82,7 +82,7 @@ from mochitest_options import (
     get_default_valgrind_suppression_files,
 )
 from mozlog import commandline, get_proxy_logger
-from mozprofile import Profile
+from mozprofile import Profile, ProfilesIni
 from mozprofile.cli import KeyValueParseError, parse_key_value, parse_preferences
 from mozprofile.permissions import ServerLocations
 from mozrunner.utils import get_stack_fixer_function, test_environment
@@ -988,7 +988,7 @@ class MochitestDesktop:
         self.start_script_kwargs = {}
         self.extraArgs = []
         self.extraPrefs = {}
-        self.extraEnv = {}
+        self.extraEnv = []
         self.extraTestsDirs = []
         self.conditioned_profile_dir = None
         self.perfherder_data = []
@@ -2445,6 +2445,21 @@ toolbar#nav-bar {
                     "during setup of conditioned profile: %s" % e
                 )
 
+        if not options.profilePath:
+            # Create a temporary directory for the roaming and local app data
+            # Create a profile directory in the roaming app data directory
+            app_data = tempfile.mkdtemp(prefix="moz-appdata-")
+            roaming_app_data = os.path.join(app_data, "roaming")
+            local_app_data = os.path.join(app_data, "local")
+            options.profilePath = os.path.join(roaming_app_data, "default")
+
+            profiles_ini = ProfilesIni(roaming_app_data)
+            profiles_ini.add_profile("default", options.profilePath)
+            profiles_ini.write()
+
+            self.extraEnv.append("MOZ_APP_DATA={}".format(roaming_app_data))
+            self.extraEnv.append("MOZ_LOCAL_APP_DATA={}".format(local_app_data))
+
         # Create the profile
         self.profile = Profile(
             profile=options.profilePath,
@@ -3629,7 +3644,7 @@ toolbar#nav-bar {
                 self.extraPrefs.update(parse_preferences(prefs))
 
             envVars = list(self.env_vars_by_manifest[m])[0]
-            self.extraEnv = {}
+            self.extraEnv = []
             if envVars:
                 self.extraEnv = envVars.strip().split()
                 env_list = "\n  ".join(self.extraEnv)
