@@ -16,6 +16,7 @@ import codecs
 import io
 import json
 import os
+import shutil
 import sys
 import tempfile
 import time
@@ -23,7 +24,7 @@ import traceback
 from copy import deepcopy
 
 import mozversion
-from mozprofile import Profile
+from mozprofile import Profile, ProfilesIni
 from mozrunner import FennecEmulatorRunner, Runner
 
 from . import errors
@@ -609,6 +610,67 @@ class FennecInstance(GeckoInstance):
 
 
 class DesktopInstance(GeckoInstance):
+    r"""Support for a desktop Gecko instance.
+
+    This instance supports profiles and switching between them.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.app_data = tempfile.mkdtemp(
+            suffix=f".moz_app_data",
+            dir=self.workspace,
+        )
+        self.roaming_app_data = os.path.join(self.app_data, "roaming")
+        self.local_app_data = os.path.join(self.app_data, "local")
+        os.makedirs(self.roaming_app_data)
+
+    def _get_runner_args(self):
+        args = super()._get_runner_args()
+
+        # Override the application data directories
+        args["env"].update(
+            {
+                "MOZ_APP_DATA": self.roaming_app_data,
+                "MOZ_LOCAL_APP_DATA": self.local_app_data,
+            }
+        )
+
+        return args
+
+    def start(self):
+        if self.profile is not None:
+            self._update_profile(self.profile)
+            runner_args = self._get_runner_args()
+        else:
+            runner_args = self._get_runner_args()
+
+            profile_args = self.profile_args
+            profile_args["profile"] = tempfile.mkdtemp(
+                suffix=".{}".format("mozrunner"),
+                dir=self.roaming_app_data,
+            )
+            profile = Profile(**profile_args)
+            profile.create_new = True
+
+            profiles_ini = ProfilesIni(self.roaming_app_data)
+            profiles_ini.add_profile("mozrunner", profile.profile)
+            profiles_ini.write()
+
+            runner_args["env"]["XRE_PROFILE_PATH"] = profile.profile
+
+        self.runner = self.runner_class(**runner_args)
+        self.runner.start()
+
+    def close(self, clean=False):
+        super(DesktopInstance, self).close(clean)
+
+        if clean:
+            shutil.rmtree(self.app_data, ignore_errors=True)
+
+
+class FirefoxInstance(DesktopInstance):
     desktop_prefs = {
         # Disable Firefox old build background check
         "app.update.checkInstallTime": False,
@@ -694,7 +756,7 @@ class DesktopInstance(GeckoInstance):
     }
 
     def __init__(self, *args, **kwargs):
-        required_prefs = deepcopy(DesktopInstance.desktop_prefs)
+        required_prefs = deepcopy(FirefoxInstance.desktop_prefs)
         required_prefs.update(kwargs.get("prefs", {}))
 
         super().__init__(*args, **kwargs)
@@ -727,7 +789,7 @@ class NullOutput:
 
 apps = {
     "fennec": FennecInstance,
-    "fxdesktop": DesktopInstance,
+    "fxdesktop": FirefoxInstance,
     "thunderbird": ThunderbirdInstance,
 }
 

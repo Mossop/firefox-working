@@ -33,8 +33,8 @@ class TestPreferences(MarionetteTestCase):
                 "Preference {} hasn't been set to {}".format(key, repr(value)),
             )
 
-    def test_desktop_instance_preferences(self):
-        required_prefs = geckoinstance.DesktopInstance.desktop_prefs
+    def test_firefox_instance_preferences(self):
+        required_prefs = geckoinstance.FirefoxInstance.desktop_prefs
 
         for key, value in required_prefs.items():
             self.assertEqual(

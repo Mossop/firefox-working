@@ -228,6 +228,14 @@ class BackupTest(MarionetteTestCase):
         self.marionette.start_session()
         self.marionette.set_context("chrome")
 
+        currentProfile = self.marionette.execute_script(
+            """
+            return PathUtils.profileDir;
+            """
+        )
+
+        self.assertEqual(currentProfile, newProfilePath)
+
         # Ensure that all postRecovery actions have completed, and that
         # encryption is enabled.
         encryptionEnabled = self.marionette.execute_async_script(
@@ -390,6 +398,7 @@ class BackupTest(MarionetteTestCase):
           let [outerResolve] = arguments;
 
           (async () => {
+            await new Promise(() => {});
             // We'll just add a single cookie, and then make sure that it shows
             // up on the other side.
             Services.cookies.removeAll();
