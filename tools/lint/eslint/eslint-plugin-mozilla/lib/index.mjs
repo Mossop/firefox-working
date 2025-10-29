@@ -136,6 +136,9 @@ let plugin = {
     "rejects-requires-await": (
       await import("./rules/rejects-requires-await.mjs")
     ).default,
+    "require-snake-case-const": (
+      await import("./rules/require-snake-case-const.mjs")
+    ).default,
     "use-cc-etc": (await import("./rules/use-cc-etc.mjs")).default,
     "use-chromeutils-generateqi": (
       await import("./rules/use-chromeutils-generateqi.mjs")

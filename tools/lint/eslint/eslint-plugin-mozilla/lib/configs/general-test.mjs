@@ -43,6 +43,7 @@ export default {
     "mozilla/import-headjs-globals": "error",
     "mozilla/mark-test-function-used": "error",
     "mozilla/no-arbitrary-setTimeout": "error",
+    "mozilla/require-snake-case-const": "off",
 
     // Bug 1883707 - Turn off no-console in tests at the moment.
     "no-console": "off",

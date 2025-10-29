@@ -129,8 +129,6 @@ export default defineConfig([
 
       'new-parens': 'error',
 
-      'prefer-const': 'error',
-
       'max-len': [
         'error',
         {

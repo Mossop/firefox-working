@@ -110,8 +110,6 @@ export default [
         "error",
         { argsIgnorePattern: "^_", caughtErrors: "none", vars: "all" },
       ],
-      // Enforce using `let` only when variables are reassigned.
-      "prefer-const": ["error", { destructuring: "all" }],
       // Require use of the second argument for parseInt().
       radix: "error",
       // Require "use strict" to be defined globally in the script.

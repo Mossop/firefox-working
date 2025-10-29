@@ -28,7 +28,6 @@ export default [
     // Use const/let instead of var for tighter scoping, avoiding redeclaration
     rules: {
       "no-var": "error",
-      "prefer-const": "error",
     },
   },
 ];

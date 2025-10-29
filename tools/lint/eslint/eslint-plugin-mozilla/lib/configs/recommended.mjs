@@ -101,6 +101,7 @@ export default [
       "mozilla/reject-multiple-getters-calls": "error",
       "mozilla/reject-scriptableunicodeconverter": "warn",
       "mozilla/rejects-requires-await": "error",
+      "mozilla/require-snake-case-const": "error",
       "mozilla/use-cc-etc": "error",
       "mozilla/use-chromeutils-generateqi": "error",
       "mozilla/use-console-createInstance": "error",

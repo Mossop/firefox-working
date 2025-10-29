@@ -16,6 +16,7 @@ export default [
       // This rule is not compatible with the spidermonkey-js processor, and we
       // don't need it anyway, so turn it off.
       "mozilla/import-globals": "off",
+      "mozilla/require-snake-case-const": "off",
       // We should fix those at some point, but we use this to detect NaNs.
       "no-self-compare": "off",
       "no-lonely-if": "off",
