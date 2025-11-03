@@ -217,6 +217,27 @@ class MozlintParser(ArgumentParser):
             },
         ],
         [
+            ["--ignore-rollouts"],
+            {
+                "dest": "ignore_rollouts",
+                "default": False,
+                "action": "store_true",
+                "help": "Ignore any rollouts.",
+            },
+        ],
+        [
+            ["--update-rollouts"],
+            {
+                "dest": "update_rollouts",
+                "default": [],
+                "action": "append",
+                "nargs": "?",
+                "const": True,
+                "help": "Update the rollouts list for the specified lint rules.",
+                "metavar": "RULES",
+            },
+        ],
+        [
             ["extra_args"],
             {
                 "nargs": REMAINDER,
@@ -368,6 +389,8 @@ def run(
     rev,
     edit,
     check_exclude_list,
+    ignore_rollouts,
+    update_rollouts,
     setup=False,
     list_linters=False,
     num_procs=None,
@@ -500,6 +523,12 @@ def run(
 
     for every in linters_info["linters_not_found"]:
         result.failed_setup.add(every)
+
+    if update_rollouts:
+        result.update_rollouts(update_rollouts, linters)
+
+    if not ignore_rollouts:
+        result.strip_rollouts(linters)
 
     if check_exclude_list:
         # Get and display all those paths in the exclude list which are

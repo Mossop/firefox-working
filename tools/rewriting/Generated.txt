@@ -35,6 +35,7 @@ gradle/wrapper/
 intl/components/src/UnicodeScriptCodes.h
 intl/unicharutil/util/nsSpecialCasingData.cpp
 intl/unicharutil/util/nsUnicodePropertyData.cpp
+lint-rollouts.json
 mobile/android/**/.build-cache
 mobile/android/**/.gradle
 mobile/android/**/build
