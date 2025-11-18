@@ -63,14 +63,16 @@ export class ProfileSelector extends MozLitElement {
     // Set start offline to false.
     this.#startupParams.SetInt(1, 0);
     // Number of new arguments.
-    this.#startupParams.SetInt(2, args.length);
+    this.#startupParams.SetInt(2, args.length + 2);
 
     this.#startupParams.objects.insertElementAt(await profile.rootDir, 0);
     this.#startupParams.objects.insertElementAt(await profile.localDir, 1);
 
-    this.#startupParams.SetNumberStrings(args.length);
+    this.#startupParams.SetNumberStrings(args.length + 2);
+    this.#startupParams.SetString(0, "-profile-store-id");
+    this.#startupParams.SetString(1, this.selectableProfileService.storeID);
     for (let i = 0; i < args.length; i++) {
-      this.#startupParams.SetString(i, args[i]);
+      this.#startupParams.SetString(i + 2, args[i]);
     }
   }
 

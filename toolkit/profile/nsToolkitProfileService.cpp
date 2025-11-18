@@ -82,6 +82,7 @@ using namespace mozilla;
 #define INSTALL_PREFIX "Install"
 #define INSTALL_PREFIX_LENGTH 7
 #define STORE_ID_PREF "toolkit.profiles.storeID"
+#define COMMAND_LINE_STORE_ID "profile-store-id"
 
 struct KeyValue {
   KeyValue(const char* aKey, const char* aValue) : key(aKey), value(aValue) {}
@@ -678,7 +679,7 @@ void nsToolkitProfileService::UpdateCurrentProfile() {
     return;
   }
 
-  if (mCurrent && !hasStoreIdPref && !mCurrent->mStoreID.IsVoid()) {
+  if (mCurrent && !mCurrent->mStoreID.IsVoid()) {
     prefs->SetCharPref(STORE_ID_PREF, mCurrent->mStoreID);
   }
 }
@@ -1479,6 +1480,15 @@ nsresult nsToolkitProfileService::SelectStartupProfile(
   *aDidCreate = false;
   *aWasDefaultSelection = false;
 
+  const char* storeId;
+  ArgResult ar = CheckArg(*aArgc, aArgv, COMMAND_LINE_STORE_ID, &storeId);
+  if (ar == ARG_FOUND) {
+    // If the expected store ID was passed on the command line then we can use
+    // that as a first guess for the current toolkit profile. This may get
+    // overridden by other command line arguments.
+    mCurrent = GetProfileByStoreID(nsDependentCString(storeId));
+  }
+
   nsresult rv;
   const char* arg;
 
@@ -1557,18 +1567,18 @@ nsresult nsToolkitProfileService::SelectStartupProfile(
 
   // Check the -profile command line argument. It accepts a single argument that
   // gives the path to use for the profile.
-  ArgResult ar = CheckArg(*aArgc, aArgv, "profile", &arg);
+  ar = CheckArg(*aArgc, aArgv, "profile", &arg);
   if (ar == ARG_BAD) {
     PR_fprintf(PR_STDERR, "Error: argument --profile requires a path\n");
     return NS_ERROR_FAILURE;
   }
   if (ar) {
-    nsCOMPtr<nsIFile> lf;
-    rv = XRE_GetFileFromPath(arg, getter_AddRefs(lf));
+    nsCOMPtr<nsIFile> rootDir;
+    rv = XRE_GetFileFromPath(arg, getter_AddRefs(rootDir));
     NS_ENSURE_SUCCESS(rv, rv);
 
     // Make sure that the profile path exists and it's a directory.
-    rv = EnsureDirExists(lf);
+    rv = EnsureDirExists(rootDir);
     if (NS_FAILED(rv)) {
       PR_fprintf(PR_STDERR,
                  "Error: argument --profile requires a path to a directory\n");
@@ -1577,16 +1587,19 @@ nsresult nsToolkitProfileService::SelectStartupProfile(
 
     mStartupReason = "argument-profile"_ns;
 
-    GetProfileByDir(lf, nullptr, getter_AddRefs(mCurrent));
-    NS_ADDREF(*aRootDir = lf);
+    RefPtr<nsToolkitProfile> profile;
+    GetProfileByDir(rootDir, nullptr, getter_AddRefs(profile));
+    if (profile) {
+      mCurrent = profile;
+    }
 
     nsCOMPtr<nsIFile> localDir;
     rv = nsToolkitProfileService::gService->GetLocalDirFromRootDir(
-        lf, getter_AddRefs(localDir));
+        rootDir, getter_AddRefs(localDir));
     NS_ENSURE_SUCCESS(rv, rv);
 
-    NS_IF_ADDREF(*aProfile = mCurrent);
-
+    profile.forget(aProfile);
+    rootDir.forget(aRootDir);
     localDir.forget(aLocalDir);
 
     return NS_OK;
@@ -2053,6 +2066,7 @@ already_AddRefed<nsToolkitProfile> nsToolkitProfileService::GetProfileByStoreID(
 void nsToolkitProfileService::GetProfileByDir(nsIFile* aRootDir,
                                               nsIFile* aLocalDir,
                                               nsToolkitProfile** aResult) {
+  *aResult = nullptr;
   for (RefPtr<nsToolkitProfile> profile : mProfiles) {
     bool equal;
     nsresult rv = profile->mRootDir->Equals(aRootDir, &equal);

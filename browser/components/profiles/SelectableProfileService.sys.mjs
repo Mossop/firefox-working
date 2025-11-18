@@ -54,6 +54,7 @@ const PROFILES_CRYPTO_SALT_LENGTH_BYTES = 16;
 
 const COMMAND_LINE_UPDATE = "profiles-updated";
 const COMMAND_LINE_ACTIVATE = "profiles-activate";
+const COMMAND_LINE_STORE_ID = "-profile-store-id";
 
 const gSupportsBadging = "nsIMacDockSupport" in Ci || "nsIWinTaskbar" in Ci;
 
@@ -580,7 +581,12 @@ class SelectableProfileServiceClass extends EventEmitter {
       // This is expected to fail if no instance is running with the profile.
     }
 
-    args.unshift("--profile", aProfile.path);
+    args.unshift(
+      "--profile",
+      aProfile.path,
+      COMMAND_LINE_STORE_ID,
+      this.storeID
+    );
     if (Services.appinfo.OS === "Darwin") {
       args.unshift("-foreground");
     }

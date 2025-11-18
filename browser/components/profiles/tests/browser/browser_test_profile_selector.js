@@ -188,7 +188,12 @@ add_task(async function test_selector_window() {
     "Expected sendCommandLine arguments"
   );
 
-  expected.unshift("--profile", profile.path);
+  expected.unshift(
+    "--profile",
+    profile.path,
+    "-profile-store-id",
+    profileSelector.selectableProfileService.storeID
+  );
 
   if (Services.appinfo.OS === "Darwin") {
     expected.unshift("-foreground");
@@ -479,3 +484,86 @@ add_task(
     }
   }
 );
+
+add_task(async function test_startup_selector_window() {
+  await initGroupDatabase();
+
+  let paramBlock = Cc["@mozilla.org/embedcomp/dialogparam;1"].createInstance(
+    Ci.nsIDialogParamBlock
+  );
+  let argsObjects = Cc["@mozilla.org/array;1"].createInstance(
+    Ci.nsIMutableArray
+  );
+  paramBlock.objects = argsObjects;
+
+  let windowOpened = BrowserTestUtils.domWindowOpenedAndLoaded();
+
+  Services.ww.openWindow(
+    null,
+    "about:profilemanager",
+    "_blank",
+    "centerscreen,chrome,titlebar",
+    paramBlock
+  );
+
+  let dialog = await windowOpened;
+  await promiseFocus(dialog);
+  Assert.equal(dialog.location, "about:profilemanager");
+
+  let closed = BrowserTestUtils.domWindowClosed(dialog);
+
+  const profileSelector = dialog.document.querySelector("profile-selector");
+  await profileSelector.updateComplete;
+
+  const profiles = profileSelector.profileCards;
+
+  Assert.equal(profiles.length, 1, "There is one profile card");
+
+  await Services.fog.testFlushAllChildren();
+  Services.fog.testResetFOG();
+  Services.telemetry.clearEvents();
+  is(
+    null,
+    Glean.profilesSelectorWindow.launch.testGetValue(),
+    "We have not recorded any Glean data yet"
+  );
+
+  sendCommandLine.resetHistory();
+  execProcess.resetHistory();
+
+  profileSelector.profileCards[0].click();
+
+  await closed;
+
+  let expected = [
+    "-profile-store-id",
+    profileSelector.selectableProfileService.storeID,
+  ];
+
+  Assert.equal(
+    sendCommandLine.callCount,
+    0,
+    "Should not have attempted to remote"
+  );
+
+  Assert.equal(execProcess.callCount, 0, "Should not have called execProcess");
+
+  Assert.equal(
+    paramBlock.GetInt(0),
+    Ci.nsIToolkitProfileService.launchWithProfile
+  );
+  Assert.equal(paramBlock.GetInt(1), 0);
+
+  let returnedArgs = [];
+  for (let i = 0; i < paramBlock.GetInt(2); i++) {
+    returnedArgs.push(paramBlock.GetString(i));
+  }
+
+  Assert.deepEqual(
+    returnedArgs,
+    expected,
+    "Should have returned the expected command line arguments"
+  );
+
+  await assertGlean("profiles", "selector_window", "launch");
+});

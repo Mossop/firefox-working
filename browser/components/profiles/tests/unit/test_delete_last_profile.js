@@ -84,7 +84,12 @@ add_task(async function test_delete_last_profile() {
     "Expected sendCommandLine arguments to update other profiles"
   );
 
-  expected.unshift("--profile", profile.path);
+  expected.unshift(
+    "--profile",
+    profile.path,
+    "-profile-store-id",
+    SelectableProfileService.storeID
+  );
 
   if (Services.appinfo.OS === "Darwin") {
     expected.unshift("-foreground");
