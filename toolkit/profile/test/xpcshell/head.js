@@ -674,3 +674,25 @@ async function checkProfileSource(profile, expectedSource) {
     "Profile source should be correct"
   );
 }
+
+const { ProfilesDatastoreService } = ChromeUtils.importESModule(
+  "moz-src:///toolkit/profile/ProfilesDatastoreService.sys.mjs"
+);
+
+function getCurrentProfileRelativePath() {
+  let profD = ProfilesDatastoreService.constructor.getDirectory("ProfD");
+  let uAppData = ProfilesDatastoreService.constructor.getDirectory("UAppData");
+  let relativePath = profD.getRelativePath(uAppData);
+  if (AppConstants.platform === "win") {
+    relativePath = relativePath.replaceAll("/", "\\");
+  }
+  return relativePath;
+}
+
+async function insertProfile(conn, path, name) {
+  await conn.execute(
+    `INSERT INTO Profiles (path, name, avatar, themeId, themeFg, themeBg)
+     VALUES (:path, :name, '', '', '', '');`,
+    { path, name }
+  );
+}

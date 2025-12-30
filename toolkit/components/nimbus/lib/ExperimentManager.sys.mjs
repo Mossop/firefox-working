@@ -183,6 +183,12 @@ export const UnenrollmentCause = {
       reason: lazy.NimbusTelemetry.UnenrollReason.UNKNOWN,
     };
   },
+
+  StoreSwitch() {
+    return {
+      reason: lazy.NimbusTelemetry.UnenrollReason.STORE_SWITCH,
+    };
+  },
 };
 
 /**
@@ -1212,6 +1218,27 @@ export class ExperimentManager {
         ? cause
         : UnenrollmentCause.Unknown()
     );
+  }
+
+  /**
+   * Unenroll from all active experiments and rollouts.
+   *
+   * @param {object} cause
+   *        The cause of unenrollment. See `UnenrollmentCause` for details.
+   */
+  async unenrollAll(cause = UnenrollmentCause.Unknown()) {
+    const allEnrollments = [
+      ...this.store.getAllActiveExperiments(),
+      ...this.store.getAllActiveRollouts(),
+    ];
+
+    for (const enrollment of allEnrollments) {
+      try {
+        await this.unenroll(enrollment.slug, cause);
+      } catch (error) {
+        lazy.log.error(`Failed to unenroll from ${enrollment.slug}:`, error);
+      }
+    }
   }
 
   /**

@@ -135,6 +135,24 @@ skip-if = [
 
 ["test_storeid.js"]
 
+["test_switchStore_cleanup_promises.js"]
+firefox-appdir = "browser"
+
+["test_switchStore_deletes_old_store_when_only_profile.js"]
+firefox-appdir = "browser"
+
+["test_switchStore_events.js"]
+firefox-appdir = "browser"
+
+["test_switchStore_keeps_old_store_when_multiple_profiles.js"]
+firefox-appdir = "browser"
+
+["test_switchStore_keeps_old_store_when_no_matching_profile.js"]
+firefox-appdir = "browser"
+
+["test_switchStore_restore_on_failure.js"]
+firefox-appdir = "browser"
+
 ["test_update_paths.js"]
 
 ["test_update_selected_dedicated.js"]

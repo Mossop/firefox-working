@@ -4,9 +4,12 @@
 
 import { DeferredTask } from "resource://gre/modules/DeferredTask.sys.mjs";
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
+import { EventEmitter } from "resource://gre/modules/EventEmitter.sys.mjs";
 
 const NOTIFY_TIMEOUT = 200;
 const STOREID_PREF_NAME = "toolkit.profiles.storeID";
+const SHUTDOWN_BARRIER_NAME =
+  "ProfilesDatastoreService: waiting for clients to finish pending writes";
 
 const lazy = {};
 
@@ -143,6 +146,7 @@ class ProfilesDatastoreServiceClass {
   #initPromise = null;
   #notifyTask = null;
   #profileService = null;
+  #eventEmitter = new EventEmitter();
   static #dirSvc = null;
 
   /**
@@ -427,11 +431,23 @@ class ProfilesDatastoreServiceClass {
   constructor() {
     this.#asyncShutdownBlocker = () => this.uninit();
     this.#asyncShutdownBarrier = new lazy.AsyncShutdown.Barrier(
-      "ProfilesDatastoreService: waiting for clients to finish pending writes"
+      SHUTDOWN_BARRIER_NAME
     );
     this.#profileService = Cc[
       "@mozilla.org/toolkit/profile-service;1"
     ].getService(Ci.nsIToolkitProfileService);
+  }
+
+  on(event, listener) {
+    this.#eventEmitter.on(event, listener);
+  }
+
+  off(event, listener) {
+    this.#eventEmitter.off(event, listener);
+  }
+
+  getDirectory(id) {
+    return ProfilesDatastoreServiceClass.getDirectory(id);
   }
 
   /**
@@ -520,6 +536,11 @@ class ProfilesDatastoreServiceClass {
     this.#storeID = null;
 
     this.#initialized = false;
+    // Re-create the barrier so clients can register for the next init cycle
+    // (e.g. after a store switch).
+    this.#asyncShutdownBarrier = new lazy.AsyncShutdown.Barrier(
+      SHUTDOWN_BARRIER_NAME
+    );
   }
 
   async #initConnection() {
@@ -586,6 +607,121 @@ class ProfilesDatastoreServiceClass {
     );
 
     return getSharedProfilesStorePath(this.#storeID);
+  }
+
+  async _isLastProfileUsingStore() {
+    try {
+      let conn = await this.getConnection();
+      let profD = ProfilesDatastoreServiceClass.getDirectory("ProfD");
+      let uAppData = ProfilesDatastoreServiceClass.getDirectory("UAppData");
+      let relativePath = profD.getRelativePath(uAppData);
+      if (AppConstants.platform === "win") {
+        relativePath = relativePath.replaceAll("/", "\\");
+      }
+      let rows = await conn.execute("SELECT path FROM Profiles;");
+      return rows.length == 1 && rows[0].getResultByName("path") === relativePath;
+    } catch (error) {
+      console.error(
+        "ProfilesDatastoreService: Failed to check profile count:",
+        error
+      );
+      return false;
+    }
+  }
+
+  /**
+   * Switch the current profile to a different ProfilesDatastoreService store.
+   *
+   * Emits "store-will-switch" (with addCleanupPromise) before closing the old
+   * database, waits for all cleanup promises, then opens the new database and
+   * emits "store-switched". Deletes the old database files if no other profiles
+   * were using that store.
+   *
+   * @param {string} newStoreID
+   */
+  async switchStore(newStoreID) {
+    if (!newStoreID || typeof newStoreID !== "string") {
+      throw new Error("switchStore: newStoreID must be a non-empty string");
+    }
+
+    if (!this.#initialized) {
+      throw new Error(
+        "switchStore: ProfilesDatastoreService is not initialized"
+      );
+    }
+
+    let oldStoreID = this.#storeID;
+    let currentProfile = this.#profileService.currentProfile;
+    let oldCurrentProfileStoreID = currentProfile?.storeID ?? null;
+
+    if (newStoreID === oldStoreID) {
+      return;
+    }
+
+    try {
+      let oldDbPath = await this.getProfilesStorePath();
+      let shouldDelete = await this._isLastProfileUsingStore();
+
+      let cleanupPromises = [];
+      let eventData = {
+        oldStoreID,
+        newStoreID,
+        addCleanupPromise(promise) {
+          cleanupPromises.push(promise);
+        },
+      };
+
+      this.#eventEmitter.emit("store-will-switch", eventData);
+      await Promise.all(cleanupPromises);
+
+      await this.uninit();
+
+      if (shouldDelete) {
+        try {
+          await IOUtils.remove(oldDbPath, { ignoreAbsent: true });
+          await IOUtils.remove(`${oldDbPath}-wal`, { ignoreAbsent: true });
+          await IOUtils.remove(`${oldDbPath}-shm`, { ignoreAbsent: true });
+        } catch (deleteError) {
+          console.warn(
+            "ProfilesDatastoreService: Failed to delete old database:",
+            deleteError
+          );
+        }
+      }
+
+      this.#storeID = newStoreID;
+      Services.prefs.setStringPref(STOREID_PREF_NAME, newStoreID);
+
+      await this.init();
+
+      if (currentProfile) {
+        currentProfile.storeID = newStoreID;
+      }
+
+      this.#eventEmitter.emit("store-switched", { oldStoreID });
+      Services.obs.notifyObservers(null, "pds-store-switched", oldStoreID);
+    } catch (error) {
+      if (!this.#initialized) {
+        console.error(
+          "ProfilesDatastoreService: Switch failed, attempting to restore old store:",
+          error
+        );
+        try {
+          this.#storeID = oldStoreID;
+          Services.prefs.setStringPref(STOREID_PREF_NAME, oldStoreID);
+          if (currentProfile) {
+            currentProfile.storeID = oldCurrentProfileStoreID;
+          }
+          await this.init();
+        } catch (restoreError) {
+          console.error(
+            "ProfilesDatastoreService: Failed to restore old store:",
+            restoreError
+          );
+        }
+      }
+      throw error;
+    }
   }
 }
 

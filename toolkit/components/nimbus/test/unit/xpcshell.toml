@@ -42,6 +42,8 @@ skip-if = [
 
 ["test_ExperimentManager_unenroll.js"]
 
+["test_ExperimentManager_storeSwitch.js"]
+
 ["test_ExperimentStore.js"]
 
 ["test_FirefoxLabs.js"]

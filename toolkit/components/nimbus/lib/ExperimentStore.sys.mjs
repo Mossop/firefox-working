@@ -615,4 +615,17 @@ export class ExperimentStore extends SharedDataMap {
         : "jsonfile",
     });
   }
+
+  async clearSyncStore() {
+    for (const featureId of Object.keys(lazy.NimbusFeatures)) {
+      if (lazy.NimbusFeatures[featureId]?.manifest?.isEarlyStartup) {
+        try {
+          lazy.syncDataStore.delete(featureId);
+          lazy.syncDataStore.deleteDefault(featureId);
+        } catch (error) {
+          console.error(`Failed to clear sync store for ${featureId}:`, error);
+        }
+      }
+    }
+  }
 }

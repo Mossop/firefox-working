@@ -388,6 +388,8 @@ class SelectableProfileServiceClass extends EventEmitter {
     this.lookAndFeelChanged = this.lookAndFeelChanged.bind(this);
     this.prefObserver = (subject, topic, prefName) =>
       this.flushSharedPrefToDatabase(prefName);
+    this._handleStoreWillSwitch = this._handleStoreWillSwitch.bind(this);
+    this._handleStoreSwitched = this._handleStoreSwitched.bind(this);
 
     this.#observedPrefs = new Set();
 
@@ -580,6 +582,13 @@ class SelectableProfileServiceClass extends EventEmitter {
       Services.env.set("SELECTABLE_PROFILE_RESET_STORE_ID", "");
     }
 
+    // Register for ProfilesDatastoreService store switch events
+    ProfilesDatastoreService.on(
+      "store-will-switch",
+      this._handleStoreWillSwitch
+    );
+    ProfilesDatastoreService.on("store-switched", this._handleStoreSwitched);
+
     // When we launch into the startup window, the `ProfD` is not defined so
     // getting the directory will throw. Leaving the `currentProfile` as null
     // is fine for the startup window.
@@ -712,6 +721,12 @@ class SelectableProfileServiceClass extends EventEmitter {
       "look-and-feel-changed"
     );
 
+    ProfilesDatastoreService.off(
+      "store-will-switch",
+      this._handleStoreWillSwitch
+    );
+    ProfilesDatastoreService.off("store-switched", this._handleStoreSwitched);
+
     this.#currentProfile = null;
     this.#badge = null;
     this.#connection = null;
@@ -787,6 +802,54 @@ class SelectableProfileServiceClass extends EventEmitter {
         }
         break;
       }
+    }
+  }
+
+  _handleStoreWillSwitch(_event, { addCleanupPromise }) {
+    if (!this.#connection || !this.#currentProfile) {
+      return;
+    }
+
+    const cleanupPromise = (async () => {
+      try {
+        await this.#connection.execute("DELETE FROM Profiles WHERE id = :id;", {
+          id: this.#currentProfile.id,
+        });
+      } catch (error) {
+        console.error("Failed to handle store pre-switch cleanup:", error);
+      }
+    })();
+
+    addCleanupPromise(cleanupPromise);
+  }
+
+  async _handleStoreSwitched() {
+    if (!this.#currentProfile) {
+      return;
+    }
+
+    try {
+      this.#connection = await ProfilesDatastoreService.getConnection();
+
+      if (this.#connection) {
+        const existingProfile = await this.getProfileByPath(
+          ProfilesDatastoreService.constructor.getDirectory("ProfD")
+        );
+
+        if (existingProfile) {
+          await this.updateProfile(this.#currentProfile, existingProfile.id);
+
+          this.#currentProfile = await this.getProfileByPath(
+            ProfilesDatastoreService.constructor.getDirectory("ProfD")
+          );
+        } else {
+          this.#currentProfile = await this.insertProfile(
+            this.#currentProfile.toDbObject()
+          );
+        }
+      }
+    } catch (error) {
+      console.error("Failed to handle store post-switch re-insertion:", error);
     }
   }
 
@@ -1754,9 +1817,14 @@ class SelectableProfileServiceClass extends EventEmitter {
    * Write an updated profile to the DB.
    *
    * @param {SelectableProfile} aSelectableProfile The SelectableProfile to be updated
+   * @param {number} aOverrideId Optional ID to use instead of the profile's ID
    */
-  async updateProfile(aSelectableProfile) {
+  async updateProfile(aSelectableProfile, aOverrideId = null) {
     let profileObj = aSelectableProfile.toDbObject();
+
+    if (aOverrideId != null) {
+      profileObj.id = aOverrideId;
+    }
 
     await this.#connection.execute(
       `UPDATE Profiles
@@ -1764,6 +1832,10 @@ class SelectableProfileServiceClass extends EventEmitter {
        WHERE id = :id;`,
       profileObj
     );
+
+    if (aOverrideId != null) {
+      aSelectableProfile.id = aOverrideId;
+    }
 
     if (aSelectableProfile.id == this.#currentProfile.id) {
       // Force a rebuild of the taskbar icon.

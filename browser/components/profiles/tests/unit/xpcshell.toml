@@ -49,4 +49,6 @@ skip-if = [
 
 ["test_shared_prefs_lifecycles_methods.js"]
 
+["test_store_switch.js"]
+
 ["test_usageProfileGroupID.js"]
