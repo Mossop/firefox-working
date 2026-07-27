@@ -71,6 +71,7 @@
 #  include "mozilla/WinHeaderOnlyUtils.h"
 #  include "mozilla/WinTokenUtils.h"
 #  include <climits>
+#  include <io.h>
 #endif  // XP_WIN
 
 // Amount of the progress bar to use in each of the 4 update phases,
@@ -419,6 +420,7 @@ static bool sUpdateSilently = false;
 static NS_tchar gCallbackRelPath[MAXPATHLEN];
 static NS_tchar gCallbackBackupPath[MAXPATHLEN];
 static NS_tchar gDeleteDirPath[MAXPATHLEN];
+static HANDLE gCallbackFile = INVALID_HANDLE_VALUE;
 
 // Whether to copy the update-elevated.log and update.status file to the update
 // patch directory from a secure directory.
@@ -809,15 +811,8 @@ static bool is_read_only(const NS_tchar* flags) {
   return true;
 }
 
-static FILE* ensure_open(const NS_tchar* path, const NS_tchar* flags,
-                         unsigned int options) {
-  ensure_write_permissions(path);
-  FILE* f = NS_tfopen(path, flags);
-  if (is_read_only(flags)) {
-    // Don't attempt to modify the file permissions if the file is being opened
-    // in read-only mode.
-    return f;
-  }
+static FILE* apply_chmod_stat(const NS_tchar* path, FILE* f,
+                              unsigned int options) {
   if (NS_tchmod(path, options) != 0) {
     if (f != nullptr) {
       fclose(f);
@@ -833,6 +828,57 @@ static FILE* ensure_open(const NS_tchar* path, const NS_tchar* flags,
   }
   return f;
 }
+
+static FILE* ensure_open(const NS_tchar* path, const NS_tchar* flags,
+                         unsigned int options) {
+  ensure_write_permissions(path);
+  FILE* f = NS_tfopen(path, flags);
+  if (is_read_only(flags)) {
+    // Don't attempt to modify the file permissions if the file is being opened
+    // in read-only mode.
+    return f;
+  }
+  return apply_chmod_stat(path, f, options);
+}
+
+#ifdef XP_WIN
+// Opens a write-only FILE* on the file that is already open via aLockHandle
+// without FILE_SHARE_READ.
+static FILE* duplicate_handle_for_writing(HANDLE aLockHandle) {
+  HANDLE writeHandle = INVALID_HANDLE_VALUE;
+  if (!DuplicateHandle(GetCurrentProcess(), aLockHandle, GetCurrentProcess(),
+                       &writeHandle, 0, FALSE, DUPLICATE_SAME_ACCESS)) {
+    LOG(("duplicate_handle_for_writing: DuplicateHandle failed: %lu",
+         GetLastError()));
+    return nullptr;
+  }
+
+  int fd = _open_osfhandle(reinterpret_cast<intptr_t>(writeHandle),
+                           _O_WRONLY | _O_BINARY);
+  if (fd == -1) {
+    CloseHandle(writeHandle);
+    return nullptr;
+  }
+
+  // fd now owns writeHandle; closing the returned FILE* (or fd) closes
+  // writeHandle, not aLockHandle.
+  FILE* f = _fdopen(fd, "wb");
+  if (!f) {
+    _close(fd);
+    return nullptr;
+  }
+  return f;
+}
+
+// Same as ensure_open, but for a file that is already open via aLockHandle
+// without FILE_SHARE_READ. See duplicate_handle_for_writing.
+static FILE* ensure_open_locked(const NS_tchar* path, HANDLE aLockHandle,
+                                unsigned int options) {
+  ensure_write_permissions(path);
+  FILE* f = duplicate_handle_for_writing(aLockHandle);
+  return apply_chmod_stat(path, f, options);
+}
+#endif  // XP_WIN
 
 // Ensure that the directory containing this file exists.
 static int ensure_parent_dir(const NS_tchar* path) {
@@ -1347,6 +1393,27 @@ static void backup_finish(const NS_tchar* path, const NS_tchar* relPath,
   }
 }
 
+#ifdef XP_WIN
+// Post-processes the temporary backup of the callback file, transferring the
+// lock to gCallbackFile as necessary.
+static void backup_finish_callback(const NS_tchar* path,
+                                   const NS_tchar* relPath, int status,
+                                   nsAutoHandle& newCallbackLock) {
+  if (!newCallbackLock) {
+    backup_finish(path, relPath, status);
+    return;
+  }
+  if (status == OK) {
+    backup_discard(path, relPath);
+    CloseHandle(gCallbackFile);
+    gCallbackFile = newCallbackLock.disown();
+  } else {
+    backup_restore(path, relPath);
+    newCallbackLock.own(INVALID_HANDLE_VALUE);
+  }
+}
+#endif
+
 static int extract_file(const NS_tchar* itemPath, const NS_tchar* dstPath) {
 #ifdef XP_WIN
   char mbItemPath[MAXPATHLEN];
@@ -1663,6 +1730,13 @@ class AddFile : public Action {
   mozilla::UniquePtr<NS_tchar[]> mFile;
   mozilla::UniquePtr<NS_tchar[]> mRelPath;
   bool mAdded;
+#ifdef XP_WIN
+  // Holds a lock on the newly written callback executable between Execute and
+  // Finish. On success, transferred to gCallbackFile. On failure, discarded so
+  // gCallbackFile continues to track the original (restored via
+  // backup_restore).
+  nsAutoHandle mNewCallbackLock;
+#endif
 };
 
 int AddFile::Parse(NS_tchar* line) {
@@ -1755,10 +1829,49 @@ int AddFile::Execute() {
     return rv;
   }
 
+#ifdef XP_WIN
+  char sourcefile[MAXPATHLEN];
+  if (!WideCharToMultiByte(CP_UTF8, 0, mRelPath.get(), -1, sourcefile,
+                           MAXPATHLEN, nullptr, nullptr)) {
+    LOG(("error converting wchar to utf8: %lu", GetLastError()));
+    return STRING_CONVERSION_ERROR;
+  }
+
+  bool isCallback = gCallbackFile != INVALID_HANDLE_VALUE &&
+                    NS_tstrcmp(mRelPath.get(), gCallbackRelPath) == 0;
+  if (isCallback) {
+    // Pre-create the new file with lock-compatible sharing flags so there is
+    // no window in which it exists but can be launched. We hold gCallbackFile
+    // on the .moz-backup (original) until Finish so rollback can restore it.
+    mNewCallbackLock.own(CreateFileW(mFile.get(), DELETE | GENERIC_WRITE,
+                                     FILE_SHARE_WRITE | FILE_SHARE_DELETE,
+                                     nullptr, CREATE_ALWAYS,
+                                     FILE_ATTRIBUTE_NORMAL, nullptr));
+    if (!mNewCallbackLock) {
+      LOG(("AddFile: failed to pre-create callback lock: %lu", GetLastError()));
+      return WRITE_ERROR;
+    }
+    FILE* fp = duplicate_handle_for_writing(mNewCallbackLock);
+    if (!fp) {
+      mNewCallbackLock.own(INVALID_HANDLE_VALUE);
+      return WRITE_ERROR;
+    }
+    rv = gArchiveReader.ExtractFileToStream(sourcefile, fp);
+    fclose(fp);
+  } else {
+    rv = gArchiveReader.ExtractFile(sourcefile, mFile.get());
+  }
+#else
   rv = extract_file(mRelPath.get(), mFile.get());
+#endif
   if (!rv) {
     mAdded = true;
   }
+#ifdef XP_WIN
+  if (rv && mNewCallbackLock) {
+    mNewCallbackLock.own(INVALID_HANDLE_VALUE);
+  }
+#endif
   return rv;
 }
 
@@ -1782,7 +1895,12 @@ void AddFile::Finish(int status) {
 #endif
       }
     }
+#ifdef XP_WIN
+    backup_finish_callback(mFile.get(), mRelPath.get(), status,
+                           mNewCallbackLock);
+#else
     backup_finish(mFile.get(), mRelPath.get(), status);
+#endif
   }
 }
 
@@ -2024,6 +2142,13 @@ class PatchFile : public Action {
   size_t mBufSize;
   NS_tchar mPatchPath[MAXPATHLEN];
   AutoFile mPatchStream;
+#ifdef XP_WIN
+  // Holds a lock on the newly written callback executable between Execute and
+  // Finish. On success, transferred to gCallbackFile. On failure, discarded so
+  // gCallbackFile continues to track the original (restored via
+  // backup_restore).
+  nsAutoHandle mNewCallbackLock;
+#endif
 };
 
 int PatchFile::sPatchIndex = 0;
@@ -2296,6 +2421,15 @@ int PatchFile::ApplyPatchTo(PatchDest aDest) {
 #elif defined(XP_WIN)
   bool shouldTruncate = true;
 
+  // If this is the callback executable, acquire the lock at file creation time
+  // so there is no window in which the new file exists but is unlocked.
+  // We use FILE_SHARE_WRITE|FILE_SHARE_DELETE so that ensure_open_locked can
+  // open a compatible write handle below, and so the file can still be renamed
+  // for rollback if needed. FILE_SHARE_READ is intentionally omitted to
+  // prevent the new executable from being launched before the update completes.
+  bool isCallback = gCallbackFile != INVALID_HANDLE_VALUE &&
+                    NS_tstrcmp(mFileRelPath.get(), gCallbackRelPath) == 0;
+
   // Creating the file, setting the size, and then closing the file handle
   // lessens fragmentation more than any other method tested. Other methods that
   // have been tested are:
@@ -2303,8 +2437,13 @@ int PatchFile::ApplyPatchTo(PatchDest aDest) {
   // 2. _get_osfhandle and then setting the size reduced fragmentation though
   //    not completely. There are also reports of _get_osfhandle failing on
   //    mingw.
-  HANDLE hfile = CreateFileW(destPath, GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS,
-                             FILE_ATTRIBUTE_NORMAL, nullptr);
+  // Zucchini memory-maps the destination file with PAGE_READWRITE, which
+  // requires the handle to have been opened with GENERIC_READ in addition to
+  // GENERIC_WRITE. FILE_SHARE_READ is still omitted so other processes can't
+  // open the file for reading while we hold this handle.
+  HANDLE hfile = CreateFileW(destPath, DELETE | GENERIC_READ | GENERIC_WRITE,
+                             FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr,
+                             CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
 
   if (hfile != INVALID_HANDLE_VALUE) {
     if (SetFilePointer(hfile, dlen, nullptr, FILE_BEGIN) !=
@@ -2312,11 +2451,32 @@ int PatchFile::ApplyPatchTo(PatchDest aDest) {
         SetEndOfFile(hfile) != 0) {
       shouldTruncate = false;
     }
-    CloseHandle(hfile);
+    if (isCallback) {
+      // Hold the new lock in mNewCallbackLock rather than replacing
+      // gCallbackFile immediately. gCallbackFile continues to track the
+      // original file object (now at .moz-backup) so that if we roll back,
+      // backup_restore can rename it back to firefox.exe and the lock follows
+      // it. The transfer to gCallbackFile happens in Finish once we commit.
+      mNewCallbackLock.own(hfile);
+      hfile = INVALID_HANDLE_VALUE;
+    } else {
+      CloseHandle(hfile);
+    }
   }
 
-  AutoFile ofile(ensure_open(
-      destPath, shouldTruncate ? NS_T("wb+") : NS_T("rb+"), destMode));
+  if (isCallback && !mNewCallbackLock) {
+    LOG(("PatchFile: failed to pre-create callback lock: %lu", GetLastError()));
+    return WRITE_ERROR;
+  }
+
+  // When patching the callback file we must maintain a lock on the file to
+  // ensure nothing else can execute it until the update is complete and so the
+  // normal method of opening the file for writing will fail.
+  AutoFile ofile(
+      isCallback
+          ? ensure_open_locked(destPath, mNewCallbackLock, ss.st_mode)
+          : ensure_open(destPath, shouldTruncate ? NS_T("wb+") : NS_T("rb+"),
+                        ss.st_mode));
 #elif defined(XP_MACOSX)
   AutoFile ofile(ensure_open(destPath, NS_T("wb+"), destMode));
   if (ofile != nullptr) {
@@ -2346,7 +2506,11 @@ int PatchFile::ApplyPatchTo(PatchDest aDest) {
   }
 
 #ifdef XP_WIN
-  if (!shouldTruncate) {
+  // The callback path shares mNewCallbackLock's file position (a duplicated
+  // handle inherits it), which may have been left at dlen by the
+  // SetFilePointer/SetEndOfFile preallocation above, so always rewind it
+  // regardless of whether that preallocation fully succeeded.
+  if (!shouldTruncate || isCallback) {
     fseek(ofile, 0, SEEK_SET);
   }
 #endif
@@ -2386,7 +2550,12 @@ void PatchFile::Finish(int status) {
     // happens when the update failed before or during the Execute phase.
     draft_discard(mFile.get(), mFileRelPath.get());
 
+#ifdef XP_WIN
+    backup_finish_callback(mFile.get(), mFileRelPath.get(), status,
+                           mNewCallbackLock);
+#else
     backup_finish(mFile.get(), mFileRelPath.get(), status);
+#endif
   }
 }
 
@@ -4741,7 +4910,6 @@ int NS_main(int argc, NS_tchar** argv) {
       return 1;
     }
 
-    HANDLE callbackFile = INVALID_HANDLE_VALUE;
     if (argc > kCallbackIndex) {
       // If the callback executable is specified it must exist for a successful
       // update.  It is important we null out the whole buffer here because
@@ -4872,11 +5040,11 @@ int NS_main(int argc, NS_tchar** argv) {
           // By opening a file handle wihout FILE_SHARE_READ to the callback
           // executable, the OS will prevent launching the process while it is
           // being updated.
-          callbackFile = CreateFileW(targetPath, DELETE | GENERIC_WRITE,
-                                     // allow delete, rename, and write
-                                     FILE_SHARE_DELETE | FILE_SHARE_WRITE,
-                                     nullptr, OPEN_EXISTING, 0, nullptr);
-          if (callbackFile != INVALID_HANDLE_VALUE) {
+          gCallbackFile = CreateFileW(targetPath, DELETE | GENERIC_WRITE,
+                                      // allow delete, rename, and write
+                                      FILE_SHARE_DELETE | FILE_SHARE_WRITE,
+                                      nullptr, OPEN_EXISTING, 0, nullptr);
+          if (gCallbackFile != INVALID_HANDLE_VALUE) {
             break;
           }
 
@@ -4890,7 +5058,7 @@ int NS_main(int argc, NS_tchar** argv) {
         } while (++retries <= max_retries);
 
         // CreateFileW will fail if the callback executable is already in use.
-        if (callbackFile == INVALID_HANDLE_VALUE) {
+        if (gCallbackFile == INVALID_HANDLE_VALUE) {
           bool proceedWithoutExclusive = true;
 
           // Fail the update if the last error was not a sharing violation.
@@ -4984,8 +5152,8 @@ int NS_main(int argc, NS_tchar** argv) {
 
 #ifdef XP_WIN
     if (argc > kCallbackIndex && !sReplaceRequest) {
-      if (callbackFile != INVALID_HANDLE_VALUE) {
-        CloseHandle(callbackFile);
+      if (gCallbackFile != INVALID_HANDLE_VALUE) {
+        CloseHandle(gCallbackFile);
       }
       // Remove the copy of the callback executable.
       if (NS_tremove(gCallbackBackupPath) && errno != ENOENT) {

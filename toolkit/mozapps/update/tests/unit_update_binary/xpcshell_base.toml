@@ -129,6 +129,24 @@ run-if = [
 ]
 reason = "Unix only test"
 
+["marCallbackUpdatedSuccessComplete_win.js"]
+run-if = [
+  "os == 'win'",
+]
+reason = "Windows only test"
+
+["marCallbackUpdatedSuccessPartialZucchini_win.js"]
+run-if = [
+  "os == 'win'",
+]
+reason = "Windows only test"
+
+["marCallbackUpdatedSuccessPartial_win.js"]
+run-if = [
+  "os == 'win'",
+]
+reason = "Windows only test"
+
 ["marFailurePartial.js"]
 
 ["marFailurePartialZucchini.js"]
@@ -141,13 +159,13 @@ skip-if = [
 ]
 reason = "Windows only test, POSIX planned for bug 2043122"
 
-["marFailurePartialZucchiniCheck_win.js"]
+["marFailurePartialZucchiniCheckDestructor_win.js"]
 run-if = [
   "os == 'win'",
 ]
 reason = "Windows only test, POSIX planned for bug 2043122"
 
-["marFailurePartialZucchiniCheckDestructor_win.js"]
+["marFailurePartialZucchiniCheck_win.js"]
 run-if = [
   "os == 'win'",
 ]
