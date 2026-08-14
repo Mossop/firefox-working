@@ -2,9 +2,12 @@
  * http://creativecommons.org/publicdomain/zero/1.0/
  */
 
+#include <cinttypes>
+
 #include "gtest/gtest.h"
 #include "json/json.h"
 #include "mozilla/Preferences.h"
+#include "mozilla/Printf.h"
 #include "mozilla/XREAppData.h"
 #include "nsAppRunner.h"
 #include "nsDirectoryServiceDefs.h"
@@ -69,6 +72,10 @@ class DowngradePingTest : public ::testing::Test {
     Preferences::ClearUser("toolkit.telemetry.server");
     Preferences::ClearUser("toolkit.telemetry.cachedClientID");
     Preferences::ClearUser("toolkit.telemetry.cachedProfileGroupID");
+    RemoveUpdateTelemetryJson();
+#ifdef XP_WIN
+    RemoveInstallTelemetryJson();
+#endif
     if (mTmpAppDataDir) {
       nsCOMPtr<nsIProperties> dirSvc =
           do_GetService(NS_DIRECTORY_SERVICE_CONTRACTID);
@@ -98,6 +105,65 @@ class DowngradePingTest : public ::testing::Test {
     fclose(f);
     return true;
   }
+
+  bool WriteUpdateTelemetryJson(uint64_t aTimestampMs) {
+    nsCOMPtr<nsIFile> greDir;
+    if (NS_FAILED(NS_GetSpecialDirectory(NS_GRE_DIR, getter_AddRefs(greDir))))
+      return false;
+    nsCOMPtr<nsIFile> file;
+    if (NS_FAILED(greDir->Clone(getter_AddRefs(file)))) return false;
+    if (NS_FAILED(file->Append(u"update_telemetry.json"_ns))) return false;
+
+    FILE* f = nullptr;
+    if (NS_FAILED(file->OpenANSIFileDesc("w", &f)) || !f) return false;
+    fprintf(f, "{\"install_timestamp\":\"%" PRIu64 "\"}", aTimestampMs);
+    fclose(f);
+    return true;
+  }
+
+  void RemoveUpdateTelemetryJson() {
+    nsCOMPtr<nsIFile> greDir;
+    if (NS_FAILED(NS_GetSpecialDirectory(NS_GRE_DIR, getter_AddRefs(greDir))))
+      return;
+    nsCOMPtr<nsIFile> file;
+    if (NS_FAILED(greDir->Clone(getter_AddRefs(file)))) return;
+    if (NS_FAILED(file->Append(u"update_telemetry.json"_ns))) return;
+    file->Remove(false);
+  }
+
+#ifdef XP_WIN
+  bool WriteInstallTelemetryJson(uint64_t aFileTime) {
+    nsCOMPtr<nsIFile> greDir;
+    if (NS_FAILED(NS_GetSpecialDirectory(NS_GRE_DIR, getter_AddRefs(greDir))))
+      return false;
+    nsCOMPtr<nsIFile> file;
+    if (NS_FAILED(greDir->Clone(getter_AddRefs(file)))) return false;
+    if (NS_FAILED(file->Append(u"installation_telemetry.json"_ns)))
+      return false;
+
+    char json[128];
+    SprintfLiteral(json, "{\"install_timestamp\":\"%" PRIu64 "\"}", aFileTime);
+
+    nsAutoString utf16;
+    utf16.AppendASCII(json);
+
+    FILE* f = nullptr;
+    if (NS_FAILED(file->OpenANSIFileDesc("wb", &f)) || !f) return false;
+    fwrite(utf16.get(), sizeof(char16_t), utf16.Length(), f);
+    fclose(f);
+    return true;
+  }
+
+  void RemoveInstallTelemetryJson() {
+    nsCOMPtr<nsIFile> greDir;
+    if (NS_FAILED(NS_GetSpecialDirectory(NS_GRE_DIR, getter_AddRefs(greDir))))
+      return;
+    nsCOMPtr<nsIFile> file;
+    if (NS_FAILED(greDir->Clone(getter_AddRefs(file)))) return;
+    if (NS_FAILED(file->Append(u"installation_telemetry.json"_ns))) return;
+    file->Remove(false);
+  }
+#endif
 };
 
 TEST_F(DowngradePingTest, MissingClientId) {
@@ -105,19 +171,19 @@ TEST_F(DowngradePingTest, MissingClientId) {
 
   EXPECT_FALSE(GenerateDowngradeTelemetry(
       "test-ping-id"_ns, "131.0_20250201000000/20250201000000"_ns, false, 0,
-      "test-channel"_ns));
+      "test-channel"_ns, "default"_ns, mozilla::Nothing(), false));
 }
 
 TEST_F(DowngradePingTest, InvalidVersionFormat) {
-  EXPECT_FALSE(GenerateDowngradeTelemetry("test-ping-id"_ns,
-                                          "131.0-no-underscore"_ns, false, 0,
-                                          "test-channel"_ns));
+  EXPECT_FALSE(GenerateDowngradeTelemetry(
+      "test-ping-id"_ns, "131.0-no-underscore"_ns, false, 0, "test-channel"_ns,
+      "default"_ns, mozilla::Nothing(), false));
 }
 
 TEST_F(DowngradePingTest, FullPingStructure) {
   auto result = GenerateDowngradeTelemetry(
       "test-ping-id"_ns, "131.0_20250201000000/20250201000000"_ns, true, 1,
-      "test-channel"_ns);
+      "test-channel"_ns, "default"_ns, mozilla::Nothing(), true);
   ASSERT_TRUE(result);
   mCreatedPingPath = *result;
 
@@ -182,12 +248,14 @@ TEST_F(DowngradePingTest, FullPingStructure) {
   EXPECT_STREQ(payload["lastBuildId"].asCString(), "20250201000000");
   EXPECT_TRUE(payload["hasSync"].asBool());
   EXPECT_EQ(payload["button"].asInt(), 1);
+  EXPECT_TRUE(payload["isDifferentInstall"].asBool());
+  EXPECT_STREQ(payload["profileSelectionReason"].asCString(), "default");
 }
 
 TEST_F(DowngradePingTest, PayloadBooleansFalse) {
   auto result = GenerateDowngradeTelemetry(
       "test-ping-id"_ns, "131.0_20250201000000/20250201000000"_ns, false, 0,
-      "test-channel"_ns);
+      "test-channel"_ns, "restart"_ns, mozilla::Nothing(), false);
   ASSERT_TRUE(result);
   mCreatedPingPath = *result;
 
@@ -202,4 +270,109 @@ TEST_F(DowngradePingTest, PayloadBooleansFalse) {
   Json::Value payload = root["payload"];
   EXPECT_FALSE(payload["hasSync"].asBool());
   EXPECT_EQ(payload["button"].asInt(), 0);
+  EXPECT_FALSE(payload["isDifferentInstall"].asBool());
+  EXPECT_STREQ(payload["profileSelectionReason"].asCString(), "restart");
 }
+
+TEST_F(DowngradePingTest, SecondsSinceUpdate) {
+  uint64_t updateTimestampMs = 1701388800000ULL;
+
+  if (!WriteUpdateTelemetryJson(updateTimestampMs)) return;
+
+  auto result = GenerateDowngradeTelemetry(
+      "test-ping-id"_ns, "131.0_20250201000000/20250201000000"_ns, false, 0,
+      "test-channel"_ns, "default"_ns, mozilla::Nothing(), false);
+  ASSERT_TRUE(result);
+  mCreatedPingPath = *result;
+
+  nsCString contents;
+  ASSERT_TRUE(ReadPingFile(*result, contents));
+
+  Json::Value root;
+  Json::Reader reader;
+  ASSERT_TRUE(
+      reader.parse(contents.BeginReading(), contents.EndReading(), root));
+
+  Json::Value payload = root["payload"];
+  EXPECT_TRUE(payload.isMember("secondsSinceUpdate"));
+  int64_t expected = int64_t(time(nullptr)) - int64_t(updateTimestampMs / 1000);
+  int64_t actual = payload["secondsSinceUpdate"].asInt64();
+  EXPECT_GE(actual, expected - 5);
+  EXPECT_LE(actual, expected + 5);
+}
+
+TEST_F(DowngradePingTest, SecondsSinceLock) {
+  PRTime lockTime = PRTime(1700000000) * PR_USEC_PER_SEC;
+
+  auto result = GenerateDowngradeTelemetry(
+      "test-ping-id"_ns, "131.0_20250201000000/20250201000000"_ns, false, 0,
+      "test-channel"_ns, "default"_ns, mozilla::Some(lockTime), false);
+  ASSERT_TRUE(result);
+  mCreatedPingPath = *result;
+
+  nsCString contents;
+  ASSERT_TRUE(ReadPingFile(*result, contents));
+
+  Json::Value root;
+  Json::Reader reader;
+  ASSERT_TRUE(
+      reader.parse(contents.BeginReading(), contents.EndReading(), root));
+
+  Json::Value payload = root["payload"];
+  EXPECT_TRUE(payload.isMember("secondsSinceLock"));
+  int64_t expected = int64_t(time(nullptr)) - 1700000000;
+  int64_t actual = payload["secondsSinceLock"].asInt64();
+  EXPECT_GE(actual, expected - 5);
+  EXPECT_LE(actual, expected + 5);
+}
+
+#ifdef XP_WIN
+TEST_F(DowngradePingTest, SecondsSinceInstall) {
+  constexpr uint64_t kEpochOffset = 116444736000000000ULL;
+  int64_t installUnixSec = 1701388800;
+  uint64_t installFileTime =
+      uint64_t(installUnixSec) * PR_USEC_PER_SEC * 10 + kEpochOffset;
+
+  if (!WriteInstallTelemetryJson(installFileTime)) return;
+
+  auto result = GenerateDowngradeTelemetry(
+      "test-ping-id"_ns, "131.0_20250201000000/20250201000000"_ns, false, 0,
+      "test-channel"_ns, "default"_ns, mozilla::Nothing(), false);
+  ASSERT_TRUE(result);
+  mCreatedPingPath = *result;
+
+  nsCString contents;
+  ASSERT_TRUE(ReadPingFile(*result, contents));
+
+  Json::Value root;
+  Json::Reader reader;
+  ASSERT_TRUE(
+      reader.parse(contents.BeginReading(), contents.EndReading(), root));
+
+  Json::Value payload = root["payload"];
+  EXPECT_TRUE(payload.isMember("secondsSinceInstall"));
+  int64_t expected = int64_t(time(nullptr)) - installUnixSec;
+  int64_t actual = payload["secondsSinceInstall"].asInt64();
+  EXPECT_GE(actual, expected - 5);
+  EXPECT_LE(actual, expected + 5);
+}
+#else
+TEST_F(DowngradePingTest, SecondsSinceInstallNotPresentOnNonWindows) {
+  auto result = GenerateDowngradeTelemetry(
+      "test-ping-id"_ns, "131.0_20250201000000/20250201000000"_ns, false, 0,
+      "test-channel"_ns, "default"_ns, mozilla::Nothing(), false);
+  ASSERT_TRUE(result);
+  mCreatedPingPath = *result;
+
+  nsCString contents;
+  ASSERT_TRUE(ReadPingFile(*result, contents));
+
+  Json::Value root;
+  Json::Reader reader;
+  ASSERT_TRUE(
+      reader.parse(contents.BeginReading(), contents.EndReading(), root));
+
+  Json::Value payload = root["payload"];
+  EXPECT_FALSE(payload.isMember("secondsSinceInstall"));
+}
+#endif

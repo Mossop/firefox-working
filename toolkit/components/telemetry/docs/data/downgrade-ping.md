@@ -19,11 +19,17 @@ Structure:
   profileGroupId: <UUID>,
   payload: {
     lastVersion: "", // The last version of the application that ran this profile
+    lastBuildId: "", // The last build ID of the application that ran this profile
     hasSync: <bool>, // Whether the profile is signed in to sync
-    hasBinary: <bool>, // Whether the last version of the application is available to run
     button: <int> // The button the user chose to click from the UI:
                   //   0 - Quit
                   //   1 - Create new profile
+    isMSIX: <bool>, // Whether this install is an MSIX package
+    profileSelectionReason: "", // How the profile was selected during startup (see the startup.profile_selection_reason metric)
+    secondsSinceLock: <int>, // (optional) Seconds since the profile lock was last held
+    secondsSinceInstall: <int>, // (Windows only, optional) Seconds since the current installation was installed
+    secondsSinceUpdate: <int>, // (optional) Seconds since the last update was applied
+    isDifferentInstall: <bool>, // Whether the profile was last used by a different install of the application
   }
 }
 ```

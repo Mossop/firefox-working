@@ -776,6 +776,10 @@ void nsToolkitProfileService::CompleteStartup() {
   }
 }
 
+const nsACString& nsToolkitProfileService::ProfileSelectionReason() {
+  return mStartupReason;
+}
+
 NS_IMETHODIMP
 nsToolkitProfileService::Observe(nsISupports* aSubject, const char* aTopic,
                                  const char16_t* aData) {
