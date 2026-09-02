@@ -1220,8 +1220,8 @@ static nsINode* DetermineSelectstartEventTarget(const nsRange& aRange) {
 /**
  * @return true, iff the default action should be executed.
  */
-static bool MaybeDispatchSelectstartEvent(
-    const nsRange& aRange, Document* aDocument) MOZ_CAN_RUN_SCRIPT {
+static bool MaybeDispatchSelectstartEvent(const nsRange& aRange,
+                                          Document* aDocument) {
   nsCOMPtr<nsINode> selectstartEventTarget =
       DetermineSelectstartEventTarget(aRange);
 
@@ -1272,7 +1272,7 @@ nsresult Selection::AddRangesForUserSelectableNodes(
     aOutIndex->emplace(mStyledRanges.Length() - 1);
   }
 
-  const RefPtr<Document> doc = GetDocument();
+  Document* doc = GetDocument();
 
   if (aDispatchSelectstartEvent == DispatchSelectstartEvent::Maybe &&
       mSelectionType == SelectionType::eNormal && IsCollapsed() &&

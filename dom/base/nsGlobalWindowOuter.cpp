@@ -276,16 +276,6 @@ static inline nsGlobalWindowInner* GetCurrentInnerWindowInternal(
   return GetCurrentInnerWindowInternal(this)->method args; \
   PR_END_MACRO
 
-#define FORWARD_TO_INNER_SAFE(method, args, err_rval)          \
-  PR_BEGIN_MACRO                                               \
-  if (!mInnerWindow) {                                         \
-    NS_WARNING("No inner window available!");                  \
-    return err_rval;                                           \
-  }                                                            \
-  const RefPtr innerWin = GetCurrentInnerWindowInternal(this); \
-  return innerWin->method args;                                \
-  PR_END_MACRO
-
 #define FORWARD_TO_INNER_WITH_STRONG_REF(method, args, err_rval)           \
   PR_BEGIN_MACRO                                                           \
   if (!mInnerWindow) {                                                     \
@@ -2650,8 +2640,7 @@ void nsGlobalWindowOuter::DispatchDOMWindowCreated() {
   }
 
   // Fire DOMWindowCreated at chrome event listeners
-  const RefPtr<Document> doc = mDoc;
-  nsContentUtils::DispatchChromeEvent(doc, doc, u"DOMWindowCreated"_ns,
+  nsContentUtils::DispatchChromeEvent(mDoc, mDoc, u"DOMWindowCreated"_ns,
                                       CanBubble::eYes, Cancelable::eNo);
 
   nsCOMPtr<nsIObserverService> observerService =
@@ -3852,11 +3841,11 @@ bool nsGlobalWindowOuter::DispatchCustomEvent(
   bool defaultActionEnabled = true;
 
   if (aChromeOnlyDispatch == ChromeOnlyDispatch::eYes) {
-    nsContentUtils::DispatchEventOnlyToChrome(this, this, aEventName,
+    nsContentUtils::DispatchEventOnlyToChrome(mDoc, this, aEventName,
                                               CanBubble::eYes, Cancelable::eYes,
                                               &defaultActionEnabled);
   } else {
-    nsContentUtils::DispatchTrustedEvent(this, this, aEventName,
+    nsContentUtils::DispatchTrustedEvent(mDoc, this, aEventName,
                                          CanBubble::eYes, Cancelable::eYes,
                                          &defaultActionEnabled);
   }
@@ -3918,8 +3907,7 @@ nsresult nsGlobalWindowOuter::SetFullScreen(bool aFullscreen) {
                                aFullscreen);
 }
 
-MOZ_CAN_RUN_SCRIPT static void FinishDOMFullscreenChange(
-    Document* aDoc, bool aInDOMFullscreen) {
+static void FinishDOMFullscreenChange(Document* aDoc, bool aInDOMFullscreen) {
   if (aInDOMFullscreen) {
     // Ask the document to handle any pending DOM fullscreen change.
     if (!Document::HandlePendingFullscreenRequests(aDoc)) {
@@ -3967,7 +3955,7 @@ class FullscreenTransitionTask : public Runnable {
         mStage(eBeforeToggle),
         mFullscreen(aFullscreen) {}
 
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY NS_IMETHOD Run() override;
+  NS_IMETHOD Run() override;
 
  private:
   ~FullscreenTransitionTask() override = default;
@@ -4020,7 +4008,7 @@ class FullscreenTransitionTask : public Runnable {
    private:
     ~Observer() = default;
 
-    MOZ_KNOWN_LIVE const RefPtr<FullscreenTransitionTask> mTask;
+    RefPtr<FullscreenTransitionTask> mTask;
   };
 
   static const char* const kPaintedTopic;
@@ -4070,8 +4058,7 @@ FullscreenTransitionTask::Run() {
                                       mFullscreen, mWidget)) {
       // Fail to setup the widget, call FinishFullscreenChange to
       // complete fullscreen change directly.
-      const RefPtr<nsGlobalWindowOuter> win = mWindow;
-      win->FinishFullscreenChange(mFullscreen);
+      mWindow->FinishFullscreenChange(mFullscreen);
     }
     // Set observer for the next content paint.
     nsCOMPtr<nsIObserver> observer = new Observer(this);
@@ -4115,9 +4102,9 @@ FullscreenTransitionTask::Run() {
 NS_IMPL_ISUPPORTS(FullscreenTransitionTask::Observer, nsIObserver, nsINamed)
 
 NS_IMETHODIMP
-FullscreenTransitionTask::Observer::Observe(
-    nsISupports* aSubject, const char* aTopic,
-    const char16_t* aData) MOZ_CAN_RUN_SCRIPT_BOUNDARY {
+FullscreenTransitionTask::Observer::Observe(nsISupports* aSubject,
+                                            const char* aTopic,
+                                            const char16_t* aData) {
   bool shouldContinue = false;
   if (strcmp(aTopic, FullscreenTransitionTask::kPaintedTopic) == 0) {
     nsCOMPtr<nsPIDOMWindowInner> win(do_QueryInterface(aSubject));
@@ -4318,8 +4305,7 @@ nsresult nsGlobalWindowOuter::SetFullscreenInternal(FullscreenReason aReason,
       // If there is a in-process fullscreen request, FinishDOMFullscreenChange
       // will be called when the request is finished.
       if (!mInProcessFullscreenRequest.isSome()) {
-        const RefPtr<Document> doc = mDoc;
-        FinishDOMFullscreenChange(doc, false);
+        FinishDOMFullscreenChange(mDoc, false);
       }
       return NS_OK;
     }
@@ -4438,8 +4424,7 @@ void nsGlobalWindowOuter::FinishFullscreenChange(bool aIsFullscreen) {
   // of the document before dispatching the "fullscreen" event, so
   // that the chrome can distinguish between browser fullscreen mode
   // and DOM fullscreen.
-  const RefPtr<Document> doc = mDoc;
-  FinishDOMFullscreenChange(doc, aIsFullscreen);
+  FinishDOMFullscreenChange(mDoc, aIsFullscreen);
 
   // dispatch a "fullscreen" DOM event so that XUL apps can
   // respond visually if we are kicked into full screen mode
@@ -6739,8 +6724,8 @@ bool nsGlobalWindowOuter::IsFrozen() const {
 }
 
 nsresult nsGlobalWindowOuter::FireDelayedDOMEvents(bool aIncludeSubWindows) {
-  FORWARD_TO_INNER_SAFE(FireDelayedDOMEvents, (aIncludeSubWindows),
-                        NS_ERROR_UNEXPECTED);
+  FORWARD_TO_INNER(FireDelayedDOMEvents, (aIncludeSubWindows),
+                   NS_ERROR_UNEXPECTED);
 }
 
 //*****************************************************************************

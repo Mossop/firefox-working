@@ -7,7 +7,6 @@
 
 #include "mozilla/dom/Element.h"
 #include "mozilla/RefPtr.h"
-#include "nsContentUtils.h"
 
 namespace mozilla {
 
@@ -47,21 +46,21 @@ class ManualNACPtr final {
   // We use move semantics, and delete the copy-constructor and operator=.
   ManualNACPtr(ManualNACPtr&& aOther) : mPtr(std::move(aOther.mPtr)) {}
   ManualNACPtr(ManualNACPtr& aOther) = delete;
-  MOZ_CAN_RUN_SCRIPT ManualNACPtr& operator=(ManualNACPtr&& aOther) {
+  ManualNACPtr& operator=(ManualNACPtr&& aOther) {
     Reset();
     mPtr = std::move(aOther.mPtr);
     return *this;
   }
   ManualNACPtr& operator=(ManualNACPtr& aOther) = delete;
 
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY ~ManualNACPtr() { Reset(); }
+  ~ManualNACPtr() { Reset(); }
 
-  MOZ_CAN_RUN_SCRIPT void Reset() {
+  void Reset() {
     if (!mPtr) {
       return;
     }
-    RefPtr ptr = std::move(mPtr);
-    RemoveContentFromNACArray(ptr);
+    RemoveContentFromNACArray(mPtr);
+    mPtr = nullptr;
   }
 
   static bool IsManualNAC(nsIContent* aAnonContent) {
@@ -74,8 +73,7 @@ class ManualNACPtr final {
   }
 
   template <typename StrongNodePtr>
-  MOZ_CAN_RUN_SCRIPT static void RemoveContentFromNACArray(
-      StrongNodePtr& aAnonymousContent) {
+  static void RemoveContentFromNACArray(StrongNodePtr& aAnonymousContent) {
     static_assert(std::is_same_v<StrongNodePtr, RefPtr<dom::Element>> ||
                   std::is_same_v<StrongNodePtr, nsCOMPtr<nsIContent>>);
     // aAnonymousContent may be a class member. Let's move the ownership to
@@ -101,10 +99,6 @@ class ManualNACPtr final {
       }
     }
 
-    // If anonymousContent had a UA shadow, the call of UnbindFromTree() may
-    // have dispatched a chrome event. So, be careful if you want to refer
-    // something after the script blocker is destroyed.
-    const nsAutoScriptBlocker scriptBlocker;
     anonymousContent->UnbindFromTree();
   }
 
@@ -118,8 +112,7 @@ class ManualNACPtr final {
 
 }  // namespace mozilla
 
-inline void ImplCycleCollectionUnlink(mozilla::ManualNACPtr& field)
-    MOZ_CAN_RUN_SCRIPT_BOUNDARY {
+inline void ImplCycleCollectionUnlink(mozilla::ManualNACPtr& field) {
   field.Reset();
 }
 

@@ -83,10 +83,8 @@ class ScriptLoadHandler final : public nsIIncrementalStreamLoaderObserver,
  private:
   virtual ~ScriptLoadHandler();
 
-  MOZ_CAN_RUN_SCRIPT nsresult DoOnStreamComplete(nsIChannel* aChannel,
-                                                 nsresult aStatus,
-                                                 uint32_t aDataLength,
-                                                 const uint8_t* aData);
+  nsresult DoOnStreamComplete(nsIChannel* aChannel, nsresult aStatus,
+                              uint32_t aDataLength, const uint8_t* aData);
 
   /*
    * Discover the charset by looking at the stream data, the script tag, and

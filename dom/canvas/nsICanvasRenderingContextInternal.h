@@ -234,9 +234,8 @@ class nsICanvasRenderingContextInternal : public nsISupports,
   // Checking if fingerprinting protection is enable for the given target.
   bool ShouldResistFingerprinting(mozilla::RFPTarget aTarget) const;
 
-  MOZ_CAN_RUN_SCRIPT bool DispatchEvent(
-      const nsAString& eventName, mozilla::CanBubble aCanBubble,
-      mozilla::Cancelable aIsCancelable) const;
+  bool DispatchEvent(const nsAString& eventName, mozilla::CanBubble aCanBubble,
+                     mozilla::Cancelable aIsCancelable) const;
 
   void RecordCanvasUsage(mozilla::CanvasExtractionAPI aAPI,
                          mozilla::CSSIntSize size) const;

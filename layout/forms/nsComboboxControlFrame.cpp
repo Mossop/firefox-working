@@ -289,8 +289,7 @@ void nsComboboxControlFrame::Destroy(DestroyContext& aContext) {
   auto& select = Select();
   if (select.OpenInParentProcess()) {
     nsContentUtils::AddScriptRunner(NS_NewRunnableFunction(
-        "nsComboboxControlFrame::Destroy",
-        [element = RefPtr{&select}]() MOZ_CAN_RUN_SCRIPT_BOUNDARY_LAMBDA {
+        "nsComboboxControlFrame::Destroy", [element = RefPtr{&select}] {
           // Don't hide the dropdown if the element has another frame already,
           // this prevents closing dropdowns on reframe, see bug 1440506.
           //
@@ -298,9 +297,9 @@ void nsComboboxControlFrame::Destroy(DestroyContext& aContext) {
           // from DOM node removal. But perhaps we can be a bit smarter here.
           if (!element->IsCombobox() ||
               !element->GetPrimaryFrame(FlushType::Frames)) {
-            nsContentUtils::DispatchChromeEvent(element, u"mozhidedropdown"_ns,
-                                                CanBubble::eYes,
-                                                Cancelable::eNo);
+            nsContentUtils::DispatchChromeEvent(
+                element->OwnerDoc(), element, u"mozhidedropdown"_ns,
+                CanBubble::eYes, Cancelable::eNo);
           }
         }));
   }

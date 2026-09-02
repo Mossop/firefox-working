@@ -69,8 +69,7 @@ mozilla::ipc::IPCResult APZChild::RecvHideDynamicToolbar() {
 
 mozilla::ipc::IPCResult APZChild::RecvNotifyMozMouseScrollEvent(
     const ViewID& aScrollId, const nsString& aEvent) {
-  const RefPtr<GeckoContentController> controller = mController;
-  controller->NotifyMozMouseScrollEvent(aScrollId, aEvent);
+  mController->NotifyMozMouseScrollEvent(aScrollId, aEvent);
   return IPC_OK();
 }
 

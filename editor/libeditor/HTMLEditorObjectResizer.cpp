@@ -58,11 +58,9 @@ using namespace dom;
 
 ManualNACPtr HTMLEditor::CreateResizer(int16_t aLocation,
                                        nsIContent& aParentContent) {
-  // <span> won't create a UA shadow, so, CreateAnonymousElement() won't run
-  // script actually. (That asserts in this method call.)
   ManualNACPtr resizer = CreateAnonymousElement(nsGkAtoms::span, aParentContent,
                                                 u"mozResizer"_ns, false);
-  if (!resizer) [[unlikely]] {
+  if (!resizer) {
     NS_WARNING(
         "HTMLEditor::CreateAnonymousElement(nsGkAtoms::span, mozResizer) "
         "failed");
@@ -129,18 +127,12 @@ ManualNACPtr HTMLEditor::CreateShadow(nsIContent& aParentContent,
     name = nsGkAtoms::span;
   }
 
-  // Neither <span> nor <img> will create a UA shadow, so,
-  // CreateAnonymousElement() won't run script actually. (This method asserts
-  // that.)
   return CreateAnonymousElement(name, aParentContent, u"mozResizingShadow"_ns,
                                 true);
 }
 
 ManualNACPtr HTMLEditor::CreateResizingInfo(nsIContent& aParentContent) {
   // let's create an info box through the element factory
-
-  // <span> won't create a UA shadow, so, CreateAnonymousElement()
-  // won't run script actually. (This method asserts that.)
   return CreateAnonymousElement(nsGkAtoms::span, aParentContent,
                                 u"mozResizingInfo"_ns, true);
 }

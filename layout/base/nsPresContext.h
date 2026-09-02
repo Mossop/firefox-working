@@ -1103,7 +1103,7 @@ class nsPresContext : public nsISupports,
  protected:
   void DoUpdateHiddenByContentVisibilityForAnimations();
   friend class nsRunnableMethod<nsPresContext>;
-  MOZ_CAN_RUN_SCRIPT void ThemeChangedInternal();
+  void ThemeChangedInternal();
   void RefreshSystemMetrics();
 
   // Update device context's resolution from the widget

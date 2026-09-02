@@ -96,8 +96,7 @@ nsLayoutDebuggingTools::SetReflowCounts(bool aShow) {
 }
 
 NS_IMETHODIMP
-nsLayoutDebuggingTools::SetPagedMode(bool aPagedMode)
-    MOZ_CAN_RUN_SCRIPT_BOUNDARY {
+nsLayoutDebuggingTools::SetPagedMode(bool aPagedMode) {
   nsCOMPtr<nsIPrintSettingsService> printSettingsService =
       do_GetService("@mozilla.org/gfx/printsettings-service;1");
   nsCOMPtr<nsIPrintSettings> printSettings;

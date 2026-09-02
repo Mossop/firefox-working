@@ -54,16 +54,14 @@ class nsGenericHTMLFrameElement : public nsGenericHTMLElement,
   NS_DECL_CYCLE_COLLECTION_CLASS_INHERITED(nsGenericHTMLFrameElement,
                                            nsGenericHTMLElement)
 
-  MOZ_CAN_RUN_SCRIPT void SwapFrameLoaders(
-      mozilla::dom::HTMLIFrameElement& aOtherLoaderOwner,
-      mozilla::ErrorResult& aError);
+  void SwapFrameLoaders(mozilla::dom::HTMLIFrameElement& aOtherLoaderOwner,
+                        mozilla::ErrorResult& aError);
 
-  MOZ_CAN_RUN_SCRIPT void SwapFrameLoaders(
-      mozilla::dom::XULFrameElement& aOtherLoaderOwner,
-      mozilla::ErrorResult& aError);
+  void SwapFrameLoaders(mozilla::dom::XULFrameElement& aOtherLoaderOwner,
+                        mozilla::ErrorResult& aError);
 
-  MOZ_CAN_RUN_SCRIPT void SwapFrameLoaders(
-      nsFrameLoaderOwner* aOtherLoaderOwner, mozilla::ErrorResult& rv);
+  void SwapFrameLoaders(nsFrameLoaderOwner* aOtherLoaderOwner,
+                        mozilla::ErrorResult& rv);
 
   /**
    * Helper method to map a HTML 'scrolling' attribute value (which can be null)

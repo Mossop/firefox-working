@@ -471,7 +471,11 @@ void HTMLTrackElement::DispatchTrackRunnable(const nsString& aEventName) {
 }
 
 void HTMLTrackElement::DispatchTrustedEvent(const nsAString& aName) {
-  nsContentUtils::DispatchTrustedEvent(this, aName, CanBubble::eNo,
+  Document* doc = OwnerDoc();
+  if (!doc) {
+    return;
+  }
+  nsContentUtils::DispatchTrustedEvent(doc, this, aName, CanBubble::eNo,
                                        Cancelable::eNo);
 }
 

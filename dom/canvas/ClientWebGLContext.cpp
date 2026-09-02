@@ -260,17 +260,16 @@ bool ClientWebGLContext::DispatchEvent(const nsAString& eventName) const {
   bool useDefaultHandler = true;
 
   if (mCanvasElement) {
-    const RefPtr<dom::HTMLCanvasElement> canvasElement = mCanvasElement;
-    nsContentUtils::DispatchTrustedEvent(canvasElement, eventName, kCanBubble,
+    nsContentUtils::DispatchTrustedEvent(mCanvasElement->OwnerDoc(),
+                                         mCanvasElement, eventName, kCanBubble,
                                          kIsCancelable, &useDefaultHandler);
   } else if (mOffscreenCanvas) {
     // OffscreenCanvas case
-    const RefPtr<dom::Event> event =
+    RefPtr<dom::Event> event =
         new dom::Event(mOffscreenCanvas, nullptr, nullptr);
     event->InitEvent(eventName, kCanBubble, kIsCancelable);
     event->SetTrusted(true);
-    const RefPtr<dom::OffscreenCanvas> offscreenCanvas = mOffscreenCanvas;
-    useDefaultHandler = offscreenCanvas->DispatchEvent(
+    useDefaultHandler = mOffscreenCanvas->DispatchEvent(
         *event, dom::CallerType::System, IgnoreErrors());
   }
   return useDefaultHandler;
@@ -319,7 +318,7 @@ void ClientWebGLContext::OnContextLoss(
   }
 
   const auto weak = WeakPtr<const ClientWebGLContext>(this);
-  const auto fnRun = [weak]() MOZ_CAN_RUN_SCRIPT_BOUNDARY_LAMBDA {
+  const auto fnRun = [weak]() {
     const auto strong = RefPtr<const ClientWebGLContext>(weak);
     if (!strong) return;
     strong->Event_webglcontextlost();
@@ -357,7 +356,7 @@ void ClientWebGLContext::RestoreContext(
   mAwaitingRestore = true;
 
   const auto weak = WeakPtr<const ClientWebGLContext>(this);
-  const auto fnRun = [weak]() MOZ_CAN_RUN_SCRIPT_BOUNDARY {
+  const auto fnRun = [weak]() {
     const auto strong = RefPtr<const ClientWebGLContext>(weak);
     if (!strong) return;
     strong->Event_webglcontextrestored();

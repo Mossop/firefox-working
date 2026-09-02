@@ -53,8 +53,7 @@ class HTMLScriptElement final : public nsGenericHTMLElement,
   virtual mozilla::dom::ReferrerPolicy GetReferrerPolicy() override;
 
   // nsIContent
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY nsresult BindToTree(BindContext&,
-                                                  nsINode& aParent) override;
+  virtual nsresult BindToTree(BindContext&, nsINode& aParent) override;
   virtual void UnbindFromTree(UnbindContext&) override;
   virtual bool ParseAttribute(int32_t aNamespaceID, nsAtom* aAttribute,
                               const nsAString& aValue,

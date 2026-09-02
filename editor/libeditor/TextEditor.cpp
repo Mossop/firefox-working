@@ -1203,8 +1203,10 @@ MOZ_CAN_RUN_SCRIPT_BOUNDARY NS_IMETHODIMP TextEditor::Notify(nsITimer* aTimer) {
 
   if (StaticPrefs::editor_password_testing_mask_delay()) {
     if (RefPtr<Element> target = GetInputEventTargetElement()) {
+      RefPtr<Document> document = target->OwnerDoc();
       DebugOnly<nsresult> rvIgnored = nsContentUtils::DispatchTrustedEvent(
-          target, u"MozLastInputMasked"_ns, CanBubble::eYes, Cancelable::eNo);
+          document, target, u"MozLastInputMasked"_ns, CanBubble::eYes,
+          Cancelable::eNo);
       NS_WARNING_ASSERTION(NS_SUCCEEDED(rvIgnored),
                            "nsContentUtils::DispatchTrustedEvent("
                            "MozLastInputMasked) failed, but ignored");

@@ -67,7 +67,7 @@ class HTMLVideoElement final : public HTMLMediaElement {
 
   nsresult CopyInnerTo(Element* aDest);
 
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY void UnbindFromTree(UnbindContext&) override;
+  void UnbindFromTree(UnbindContext&) override;
 
   mozilla::Maybe<mozilla::CSSIntSize> GetVideoSize() const;
 
@@ -125,10 +125,10 @@ class HTMLVideoElement final : public HTMLMediaElement {
 
   already_AddRefed<VideoPlaybackQuality> GetVideoPlaybackQuality();
 
-  MOZ_CAN_RUN_SCRIPT already_AddRefed<Promise> CloneElementVisually(
-      HTMLVideoElement& aTarget, ErrorResult& rv);
+  already_AddRefed<Promise> CloneElementVisually(HTMLVideoElement& aTarget,
+                                                 ErrorResult& rv);
 
-  MOZ_CAN_RUN_SCRIPT void StopCloningElementVisually();
+  void StopCloningElementVisually();
 
   bool IsCloningElementVisually() const { return !!mVisualCloneTarget; }
 
@@ -257,7 +257,7 @@ class HTMLVideoElement final : public HTMLMediaElement {
   double TotalPlayTime() const;
 
   virtual void MaybeBeginCloningVisually() override;
-  MOZ_CAN_RUN_SCRIPT void EndCloningVisually();
+  void EndCloningVisually();
 };
 
 }  // namespace dom

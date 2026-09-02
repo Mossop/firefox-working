@@ -880,7 +880,7 @@ void nsDOMMutationObserver::HandleMutationsInternal(AutoSlowOperation& aAso) {
   // Fire slotchange event for each slot in signalLists.
   for (const nsTArray<RefPtr<HTMLSlotElement>>& signalList : signalLists) {
     for (const RefPtr<HTMLSlotElement>& signal : signalList) {
-      MOZ_KnownLive(signal)->FireSlotChangeEvent();
+      signal->FireSlotChangeEvent();
     }
   }
 }

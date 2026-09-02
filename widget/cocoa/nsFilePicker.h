@@ -24,8 +24,7 @@ class nsFilePicker final : public nsBaseFilePicker {
   NS_DECL_ISUPPORTS
 
   // nsIFilePicker (less what's in nsBaseFilePicker)
-  MOZ_CAN_RUN_SCRIPT NS_IMETHOD
-  Open(nsIFilePickerShownCallback* aCallback) override;
+  NS_IMETHOD Open(nsIFilePickerShownCallback* aCallback) override;
   NS_IMETHOD GetDefaultString(nsAString& aDefaultString) override;
   NS_IMETHOD SetDefaultString(const nsAString& aDefaultString) override;
   NS_IMETHOD GetDefaultExtension(nsAString& aDefaultExtension) override;

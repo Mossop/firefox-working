@@ -1255,9 +1255,9 @@ nsresult IOSView::GetInitData(JSContext* aCx,
     mWindow = nullptr;
   }
 
-  if (const nsCOMPtr<nsPIDOMWindowOuter> outerWin = std::move(mOuterWindow)) {
-    MOZ_ASSERT(!mOuterWindow);
-    outerWin->ForceClose();
+  if (mOuterWindow) {
+    mOuterWindow->ForceClose();
+    mOuterWindow = nullptr;
   }
 }
 @end

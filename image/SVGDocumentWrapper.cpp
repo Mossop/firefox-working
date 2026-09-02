@@ -54,8 +54,7 @@ SVGDocumentWrapper::~SVGDocumentWrapper() {
 void SVGDocumentWrapper::DestroyViewer() {
   MOZ_ASSERT(NS_IsMainThread());
   if (mViewer) {
-    const RefPtr<Document> doc = mViewer->GetDocument();
-    doc->OnPageHide(false, nullptr);
+    mViewer->GetDocument()->OnPageHide(false, nullptr);
     mViewer->Close();
     mViewer->Destroy();
     mViewer = nullptr;
@@ -218,8 +217,7 @@ SVGDocumentWrapper::OnDataAvailable(nsIRequest* aRequest, nsIInputStream* inStr,
 /** nsIRequestObserver methods **/
 
 NS_IMETHODIMP
-SVGDocumentWrapper::OnStartRequest(nsIRequest* aRequest)
-    MOZ_CAN_RUN_SCRIPT_BOUNDARY {
+SVGDocumentWrapper::OnStartRequest(nsIRequest* aRequest) {
   nsresult rv = SetupViewer(aRequest, getter_AddRefs(mViewer),
                             getter_AddRefs(mLoadGroup));
 
@@ -228,10 +226,9 @@ SVGDocumentWrapper::OnStartRequest(nsIRequest* aRequest)
     mViewer->GetDocument()->SetIsBeingUsedAsImage();
     StopAnimation();  // otherwise animations start automatically in helper doc
 
-    const nsCOMPtr<nsIDocumentViewer> viewer = mViewer;
-    rv = viewer->Init(nullptr, LayoutDeviceIntRect(), nullptr);
+    rv = mViewer->Init(nullptr, LayoutDeviceIntRect(), nullptr);
     if (NS_SUCCEEDED(rv)) {
-      rv = viewer->Open();
+      rv = mViewer->Open();
     }
   }
   return rv;
@@ -250,7 +247,7 @@ SVGDocumentWrapper::OnStopRequest(nsIRequest* aRequest, nsresult status) {
 /** nsIObserver Methods **/
 NS_IMETHODIMP
 SVGDocumentWrapper::Observe(nsISupports* aSubject, const char* aTopic,
-                            const char16_t* aData) MOZ_CAN_RUN_SCRIPT_BOUNDARY {
+                            const char16_t* aData) {
   if (!strcmp(aTopic, NS_XPCOM_SHUTDOWN_OBSERVER_ID)) {
     // Sever ties from rendering observers to helper-doc's root SVG node
     SVGSVGElement* svgElem = GetSVGRootElement();

@@ -94,9 +94,8 @@ void IDTracker::ResetToExternalResource(nsIURI* aURI,
   Unlink();
 
   RefPtr<Document::ExternalResourceLoad> load;
-  const RefPtr<Document> doc = aFrom.OwnerDoc();
-  Document* resourceDoc = doc->RequestExternalResource(
-      aURI, aReferrerInfo, MOZ_KnownLive(&aFrom), getter_AddRefs(load));
+  Document* resourceDoc = aFrom.OwnerDoc()->RequestExternalResource(
+      aURI, aReferrerInfo, &aFrom, getter_AddRefs(load));
   if (!resourceDoc) {
     if (!load) {
       // Nothing will ever happen here
@@ -174,8 +173,7 @@ void IDTracker::ResetToLocalFragmentID(Element& aFrom,
   }
 
   RefPtr<nsAtom> refAtom = NS_Atomize(unescaped);
-  if (const nsCOMPtr<nsIURI> resourceUri =
-          GetExternalResourceURIIfNeeded(aBaseURI, aFrom)) {
+  if (nsIURI* resourceUri = GetExternalResourceURIIfNeeded(aBaseURI, aFrom)) {
     return ResetToExternalResource(resourceUri, aReferrerInfo, refAtom, aFrom,
                                    aReferenceImage);
   }

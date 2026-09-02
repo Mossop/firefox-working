@@ -400,13 +400,10 @@ class AsyncPanZoomController {
 
   /**
    * Handler for events which should not be intercepted by the touch listener.
-   *
-   * FIXME: It seems that this method causes dispatching some DOM events. So,
-   * this method should be marked as MOZ_CAN_RUN_SCRIPT.
    */
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY nsEventStatus
-  HandleInputEvent(const InputData& aEvent,
-                   const ScreenToParentLayerMatrix4x4& aTransformToApzc);
+  nsEventStatus HandleInputEvent(
+      const InputData& aEvent,
+      const ScreenToParentLayerMatrix4x4& aTransformToApzc);
 
   /**
    * Handler for gesture events.
@@ -603,8 +600,7 @@ class AsyncPanZoomController {
   OuterCSSCoord ConvertScrollbarPoint(const ParentLayerPoint& aScrollbarPoint,
                                       const ScrollbarData& aThumbData) const;
 
-  MOZ_CAN_RUN_SCRIPT void NotifyMozMouseScrollEvent(
-      const nsString& aString) const;
+  void NotifyMozMouseScrollEvent(const nsString& aString) const;
 
   bool OverscrollBehaviorAllowsSwipe() const;
 
@@ -728,8 +724,7 @@ class AsyncPanZoomController {
   /**
    * Helper methods for handling scroll wheel events.
    */
-  MOZ_CAN_RUN_SCRIPT nsEventStatus
-  OnScrollWheel(const ScrollWheelInput& aEvent);
+  nsEventStatus OnScrollWheel(const ScrollWheelInput& aEvent);
 
   /**
    * Gets the scroll wheel delta's values in parent-layer pixels from the

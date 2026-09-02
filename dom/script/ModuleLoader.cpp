@@ -161,9 +161,8 @@ void ModuleLoader::ExecuteInlineModule(ModuleLoadRequest* aRequest) {
   if (aRequest->GetScriptLoadContext()->GetParserCreated() == NOT_FROM_PARSER) {
     GetScriptLoader()->RunScriptWhenSafe(aRequest);
   } else {
-    const RefPtr<ScriptLoader> scriptLoader = GetScriptLoader();
-    scriptLoader->MaybeMoveToLoadedList(aRequest);
-    scriptLoader->ProcessPendingRequests();
+    GetScriptLoader()->MaybeMoveToLoadedList(aRequest);
+    GetScriptLoader()->ProcessPendingRequests();
   }
 
   aRequest->GetScriptLoadContext()->MaybeUnblockOnload();

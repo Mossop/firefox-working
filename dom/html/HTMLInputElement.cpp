@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "HTMLInputElement.h"
+#include "mozilla/dom/HTMLInputElement.h"
 
 #include <algorithm>
 #include <cmath>
@@ -248,18 +248,21 @@ class DispatchChangeEventCallback final : public GetFilesCallback {
     (void)NS_WARN_IF(NS_FAILED(DispatchEvents()));
   }
 
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY nsresult DispatchEvents() {
-    nsresult rv = nsContentUtils::DispatchInputEvent(mInputElement);
+  MOZ_CAN_RUN_SCRIPT_BOUNDARY
+  nsresult DispatchEvents() {
+    RefPtr<HTMLInputElement> inputElement(mInputElement);
+    nsresult rv = nsContentUtils::DispatchInputEvent(inputElement);
     NS_WARNING_ASSERTION(NS_SUCCEEDED(rv), "Failed to dispatch input event");
     mInputElement->SetUserInteracted(true);
-    rv = nsContentUtils::DispatchTrustedEvent(mInputElement, u"change"_ns,
+    rv = nsContentUtils::DispatchTrustedEvent(mInputElement->OwnerDoc(),
+                                              mInputElement, u"change"_ns,
                                               CanBubble::eYes, Cancelable::eNo);
 
     return rv;
   }
 
  private:
-  MOZ_KNOWN_LIVE const RefPtr<HTMLInputElement> mInputElement;
+  RefPtr<HTMLInputElement> mInputElement;
 };
 
 struct HTMLInputElement::FileData {
@@ -331,8 +334,7 @@ HTMLInputElement::nsFilePickerShownCallback::nsFilePickerShownCallback(
 NS_IMPL_ISUPPORTS(UploadLastDir::ContentPrefCallback, nsIContentPrefCallback2)
 
 NS_IMETHODIMP
-UploadLastDir::ContentPrefCallback::HandleCompletion(uint16_t aReason)
-    MOZ_CAN_RUN_SCRIPT_BOUNDARY {
+UploadLastDir::ContentPrefCallback::HandleCompletion(uint16_t aReason) {
   nsCOMPtr<nsIFile> localFile;
   nsAutoString prefStr;
 
@@ -451,8 +453,10 @@ HTMLInputElement::nsFilePickerShownCallback::Done(
   mInput->PickerClosed();
 
   if (aResult == nsIFilePicker::returnCancel) {
+    RefPtr<HTMLInputElement> inputElement(mInput);
     return nsContentUtils::DispatchTrustedEvent(
-        mInput, u"cancel"_ns, CanBubble::eYes, Cancelable::eNo);
+        inputElement->OwnerDoc(), inputElement, u"cancel"_ns, CanBubble::eYes,
+        Cancelable::eNo);
   }
 
   mInput->OwnerDoc()->NotifyUserGestureActivation();
@@ -639,7 +643,7 @@ class nsColorPickerShownCallback final : public nsIColorPickerShownCallback {
   MOZ_CAN_RUN_SCRIPT
   nsresult UpdateInternal(const nsAString& aColor, bool aTrustedUpdate);
 
-  MOZ_KNOWN_LIVE const RefPtr<HTMLInputElement> mInput;
+  RefPtr<HTMLInputElement> mInput;
   nsCOMPtr<nsIColorPicker> mColorPicker;
   bool mValueChanged;
 };
@@ -701,8 +705,9 @@ nsColorPickerShownCallback::Done(const nsAString& aColor) {
 
   if (mValueChanged) {
     mInput->SetUserInteracted(true);
-    rv = nsContentUtils::DispatchTrustedEvent(mInput, u"change"_ns,
-                                              CanBubble::eYes, Cancelable::eNo);
+    rv = nsContentUtils::DispatchTrustedEvent(
+        mInput->OwnerDoc(), static_cast<Element*>(mInput.get()), u"change"_ns,
+        CanBubble::eYes, Cancelable::eNo);
   }
 
   return rv;
@@ -2470,7 +2475,8 @@ void HTMLInputElement::OpenDateTimePicker(const DateTimeValue& aInitialValue) {
   }
 
   mDateTimeInputBoxValue = MakeUnique<DateTimeValue>(aInitialValue);
-  nsContentUtils::DispatchChromeEvent(this, u"MozOpenDateTimePicker"_ns,
+  nsContentUtils::DispatchChromeEvent(OwnerDoc(), this,
+                                      u"MozOpenDateTimePicker"_ns,
                                       CanBubble::eYes, Cancelable::eYes);
 }
 
@@ -2478,7 +2484,9 @@ void HTMLInputElement::CloseDateTimePicker() {
   if (NS_WARN_IF(!IsDateTimeInputType(mType))) {
     return;
   }
-  nsContentUtils::DispatchChromeEvent(this, u"MozCloseDateTimePicker"_ns,
+
+  nsContentUtils::DispatchChromeEvent(OwnerDoc(), this,
+                                      u"MozCloseDateTimePicker"_ns,
                                       CanBubble::eYes, Cancelable::eYes);
 }
 
@@ -2490,8 +2498,10 @@ void HTMLInputElement::OpenColorPicker() {
   if (NS_WARN_IF(mType != FormControlType::InputColor)) {
     return;
   }
-  nsContentUtils::DispatchChromeEvent(this, u"MozOpenColorPicker"_ns,
-                                      CanBubble::eYes, Cancelable::eYes);
+
+  nsContentUtils::DispatchChromeEvent(OwnerDoc(), this,
+                                      u"MozOpenColorPicker"_ns, CanBubble::eYes,
+                                      Cancelable::eYes);
 }
 
 void HTMLInputElement::SetFocusState(bool aIsFocused) {
@@ -2800,9 +2810,9 @@ void HTMLInputElement::FireChangeEventIfNeeded() {
     return;
   }
   // Dispatch the change event.
-  nsContentUtils::DispatchTrustedEvent(static_cast<nsIContent*>(this),
-                                       u"change"_ns, CanBubble::eYes,
-                                       Cancelable::eNo);
+  nsContentUtils::DispatchTrustedEvent(
+      OwnerDoc(), static_cast<nsIContent*>(this), u"change"_ns, CanBubble::eYes,
+      Cancelable::eNo);
 }
 
 FileList* HTMLInputElement::GetFiles() {
@@ -4231,7 +4241,7 @@ nsresult HTMLInputElement::PostHandleEvent(EventChainPostVisitor& aVisitor) {
   return NS_OK;
 }
 
-MOZ_CAN_RUN_SCRIPT void EndSubmitClick(EventChainPostVisitor& aVisitor) {
+void EndSubmitClick(EventChainPostVisitor& aVisitor) {
   if (aVisitor.mItemFlags & NS_IN_SUBMIT_CLICK) {
     nsCOMPtr<nsIContent> content(do_QueryInterface(aVisitor.mItemData));
     RefPtr<HTMLFormElement> form = HTMLFormElement::FromNodeOrNull(content);
@@ -4251,8 +4261,7 @@ MOZ_CAN_RUN_SCRIPT void EndSubmitClick(EventChainPostVisitor& aVisitor) {
 void HTMLInputElement::ActivationBehavior(EventChainPostVisitor& aVisitor) {
   auto oldType = FormControlType(NS_CONTROL_TYPE(aVisitor.mItemFlags));
 
-  auto endSubmit = MakeScopeExit(
-      [&]() MOZ_CAN_RUN_SCRIPT_BOUNDARY { EndSubmitClick(aVisitor); });
+  auto endSubmit = MakeScopeExit([&] { EndSubmitClick(aVisitor); });
 
   if (IsDisabled() && oldType != FormControlType::InputCheckbox &&
       oldType != FormControlType::InputRadio) {
@@ -4275,7 +4284,7 @@ void HTMLInputElement::ActivationBehavior(EventChainPostVisitor& aVisitor) {
 
     // FIXME: Why is this different than every other change event?
     nsContentUtils::DispatchTrustedEvent<WidgetEvent>(
-        static_cast<Element*>(this), eFormChange, CanBubble::eYes,
+        OwnerDoc(), static_cast<Element*>(this), eFormChange, CanBubble::eYes,
         Cancelable::eNo);
   }
 
@@ -4707,8 +4716,6 @@ static bool SetRangeTextApplies(FormControlType aType) {
 
 void HTMLInputElement::HandleTypeChange(FormControlType aNewType,
                                         bool aNotify) {
-  MOZ_ASSERT(!nsContentUtils::IsSafeToRunScript());
-
   FormControlType oldType = mType;
   MOZ_ASSERT(oldType != aNewType);
 
@@ -4933,25 +4940,25 @@ void HTMLInputElement::HandleTypeChange(FormControlType aNewType,
 
   if (IsInComposedDoc()) {
     if (mDoneCreating) {
-      const auto notifiedOldUAWidget = NotifiesUAWidget(oldType);
+      const auto oldNotifiesUAWidget = NotifiesUAWidget(oldType);
       if (CreatesUAShadowTree()) {
         if (wasTextControl && isTextControl) {
           // Keep existing shadow
           UpdateTextEditorShadowTree();
         } else {
-          const auto notifyNewUAWidget = NotifiesUAWidget();
-          if (notifiedOldUAWidget == notifyNewUAWidget &&
-              notifyNewUAWidget == NotifyUAWidget::Yes) {
-            AddScriptRunnerToNotifyUAWidgetSetupOrChange();
+          const auto notifiesUAWidget = NotifiesUAWidget();
+          if (oldNotifiesUAWidget == notifiesUAWidget &&
+              notifiesUAWidget == NotifyUAWidget::Yes) {
+            NotifyUAWidgetSetupOrChange();
           } else {
-            TeardownUAShadowRoot(notifiedOldUAWidget);
-            if (notifyNewUAWidget == NotifyUAWidget::Yes) {
+            TeardownUAShadowRoot(oldNotifiesUAWidget);
+            if (notifiesUAWidget == NotifyUAWidget::Yes) {
               SetupShadowTree(aNotify);
             }
           }
         }
       } else {
-        TeardownUAShadowRoot(notifiedOldUAWidget);
+        TeardownUAShadowRoot(oldNotifiesUAWidget);
       }
     }
     // If we're becoming a text control and have focus, make sure to show focus
@@ -6075,7 +6082,8 @@ void HTMLInputElement::ShowPicker(ErrorResult& aRv) {
     if (CreatesDateTimeWidget()) {
       if (RefPtr<Element> dateTimeBoxElement = GetDateTimeBoxElement()) {
         // Event is dispatched to closed-shadow tree and doesn't bubble.
-        nsContentUtils::DispatchTrustedEvent(dateTimeBoxElement,
+        RefPtr<Document> doc = OwnerDoc();
+        nsContentUtils::DispatchTrustedEvent(doc, dateTimeBoxElement,
                                              u"MozDateTimeShowPickerForJS"_ns,
                                              CanBubble::eNo, Cancelable::eNo);
       }
@@ -6412,7 +6420,6 @@ void HTMLInputElement::DoneCreatingElement() {
   }
 
   if (CreatesDateTimeWidget() && IsInComposedDoc()) {
-    const nsAutoScriptBlocker scriptBlocker;
     SetupShadowTree(/* aNotify = */ false);
   }
 
@@ -7262,13 +7269,14 @@ void HTMLInputElement::SetRevealPassword(bool aValue) {
   if (aValue == State().HasState(ElementState::REVEALED)) {
     return;
   }
+  RefPtr doc = OwnerDoc();
   // We allow chrome code to prevent this. This is important for about:logins,
   // which may need to run some OS-dependent authentication code before
   // revealing the saved passwords.
   bool defaultAction = true;
-  nsContentUtils::DispatchEventOnlyToChrome(this, u"MozWillToggleReveal"_ns,
-                                            CanBubble::eYes, Cancelable::eYes,
-                                            &defaultAction);
+  nsContentUtils::DispatchEventOnlyToChrome(
+      doc, this, u"MozWillToggleReveal"_ns, CanBubble::eYes, Cancelable::eYes,
+      &defaultAction);
   if (NS_WARN_IF(!defaultAction)) {
     return;
   }

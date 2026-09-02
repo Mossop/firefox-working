@@ -320,14 +320,14 @@ class EventTargetChainItem {
    * Copies mItemFlags and moves mItemData to aVisitor.
    * Calls ActivationBehavior.
    */
-  MOZ_CAN_RUN_SCRIPT void ActivationBehavior(EventChainPostVisitor& aVisitor);
+  MOZ_CAN_RUN_SCRIPT
+  void ActivationBehavior(EventChainPostVisitor& aVisitor);
 
   /**
    * Copies mItemFlags and moves mItemData to aVisitor.
    * Calls LegacyCanceledActivationBehavior.
    */
-  MOZ_CAN_RUN_SCRIPT void LegacyCanceledActivationBehavior(
-      EventChainPostVisitor& aVisitor);
+  void LegacyCanceledActivationBehavior(EventChainPostVisitor& aVisitor);
 
   /**
    * Copies mItemFlags to aVisitor.
@@ -378,7 +378,7 @@ class EventTargetChainItem {
   MOZ_CAN_RUN_SCRIPT void PostHandleEvent(EventChainPostVisitor& aVisitor);
 
  private:
-  MOZ_KNOWN_LIVE const nsCOMPtr<EventTarget> mTarget;
+  const nsCOMPtr<EventTarget> mTarget;
   nsCOMPtr<EventTarget> mRetargetedRelatedTarget;
   Maybe<nsTArray<RefPtr<EventTarget>>> mRetargetedTouchTargets;
   Maybe<nsTArray<RefPtr<dom::Touch>>> mInitialTargetTouches;

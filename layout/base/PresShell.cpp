@@ -4591,23 +4591,21 @@ void PresShell::DoFlushPendingNotifications(mozilla::ChangesToFlush aFlush) {
     return;
   }
 
-  const RefPtr<Document> doc = mDocument;
-
   // We need to make sure external resource documents are flushed too (for
   // example, svg filters that reference a filter in an external document
   // need the frames in the external document to be constructed for the
   // filter to work). We only need external resources to be flushed when the
   // main document is flushing >= FlushType::Frames, so we flush external
   // resources here instead of Document::FlushPendingNotifications.
-  doc->FlushExternalResources(flushType);
+  mDocument->FlushExternalResources(flushType);
 
   // Force flushing of any pending content notifications that might have
   // queued up while our event was pending.  That will ensure that we don't
   // construct frames for content right now that's still waiting to be
   // notified on,
-  doc->FlushPendingNotifications(FlushType::ContentAndNotify);
+  mDocument->FlushPendingNotifications(FlushType::ContentAndNotify);
 
-  doc->UpdateSVGUseElementShadowTrees();
+  mDocument->UpdateSVGUseElementShadowTrees();
 
   // Process pending restyles, since any flush of the presshell wants
   // up-to-date style data.
@@ -4624,7 +4622,7 @@ void PresShell::DoFlushPendingNotifications(mozilla::ChangesToFlush aFlush) {
     // Flush any pending update of the user font set, since that could
     // cause style changes (for updating ex/ch units, and to cause a
     // reflow).
-    doc->FlushUserFontSet();
+    mDocument->FlushUserFontSet();
 
     mPresContext->FlushCounterStyles();
 
@@ -4633,8 +4631,8 @@ void PresShell::DoFlushPendingNotifications(mozilla::ChangesToFlush aFlush) {
     mPresContext->FlushFontPaletteValues();
 
     // Flush any requested SMIL samples.
-    if (doc->HasAnimationController()) {
-      doc->GetAnimationController()->FlushResampleRequests();
+    if (mDocument->HasAnimationController()) {
+      mDocument->GetAnimationController()->FlushResampleRequests();
     }
   }
 
@@ -4647,7 +4645,7 @@ void PresShell::DoFlushPendingNotifications(mozilla::ChangesToFlush aFlush) {
 
     nsAutoScriptBlocker scriptBlocker;
     Maybe<uint64_t> innerWindowID;
-    if (auto* window = doc->GetInnerWindow()) {
+    if (auto* window = mDocument->GetInnerWindow()) {
       innerWindowID = Some(window->WindowID());
     }
     AutoProfilerStyleMarker tracingStyleFlush(std::move(mStyleCause),
@@ -9621,8 +9619,7 @@ void PresShell::EventHandler::MaybeHandleKeyboardEventBeforeDispatch(
   Document* doc = mPresShell->GetCurrentEventContent()
                       ? mPresShell->mCurrentEventTarget.mContent->OwnerDoc()
                       : nullptr;
-  const RefPtr<Document> root =
-      nsContentUtils::GetInProcessSubtreeRootDocument(doc);
+  Document* root = nsContentUtils::GetInProcessSubtreeRootDocument(doc);
   if (root && root->GetFullscreenElement()) {
     Document* fullscreenLeaf = Document::GetFullscreenLeaf(root);
     if (fullscreenLeaf->HasFullscreenKeyboardLockEnabled()) {

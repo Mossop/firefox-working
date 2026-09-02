@@ -48,8 +48,7 @@ class DialogCloseWatcherListener : public nsIDOMEventListener {
   }
 
   // https://html.spec.whatwg.org/#set-the-dialog-close-watcher
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY NS_IMETHODIMP
-  HandleEvent(Event* aEvent) override {
+  NS_IMETHODIMP HandleEvent(Event* aEvent) override {
     RefPtr<nsINode> node = do_QueryReferent(mDialog);
     if (HTMLDialogElement* dialog = HTMLDialogElement::FromNodeOrNull(node)) {
       nsAutoString eventType;
@@ -61,7 +60,7 @@ class DialogCloseWatcherListener : public nsIDOMEventListener {
         bool defaultAction = true;
         auto cancelable =
             aEvent->Cancelable() ? Cancelable::eYes : Cancelable::eNo;
-        nsContentUtils::DispatchTrustedEvent(MOZ_KnownLive(dialog),
+        nsContentUtils::DispatchTrustedEvent(dialog->OwnerDoc(), dialog,
                                              u"cancel"_ns, CanBubble::eNo,
                                              cancelable, &defaultAction);
         if (!defaultAction) {
@@ -613,8 +612,9 @@ void HTMLDialogElement::RunCancelDialogSteps() {
   // 1) Let close be the result of firing an event named cancel at dialog,
   // with the cancelable attribute initialized to true.
   bool defaultAction = true;
-  nsContentUtils::DispatchTrustedEvent(this, u"cancel"_ns, CanBubble::eNo,
-                                       Cancelable::eYes, &defaultAction);
+  nsContentUtils::DispatchTrustedEvent(OwnerDoc(), this, u"cancel"_ns,
+                                       CanBubble::eNo, Cancelable::eYes,
+                                       &defaultAction);
 
   // 2) If close is true and dialog has an open attribute, then close the
   // dialog with ~~no return value.~~

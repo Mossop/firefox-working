@@ -68,7 +68,7 @@ class GeckoViewSupport final
                    jni::String::Param aChromeURI, bool aPrivateMode);
 
   // Close and destroy the nsWindow.
-  MOZ_CAN_RUN_SCRIPT void Close();
+  void Close();
 
   // Transfer this nsWindow to new GeckoSession objects.
   void Transfer(const java::GeckoSession::Window::LocalRef& inst,

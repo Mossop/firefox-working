@@ -2020,7 +2020,7 @@ class nsPrintCompletionEvent : public Runnable {
     NS_ASSERTION(mDocViewerPrint, "mDocViewerPrint is null.");
   }
 
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY NS_IMETHOD Run() override {
+  NS_IMETHOD Run() override {
     if (mDocViewerPrint) {
       mDocViewerPrint->OnDonePrinting();
     }
@@ -2028,7 +2028,7 @@ class nsPrintCompletionEvent : public Runnable {
   }
 
  private:
-  MOZ_KNOWN_LIVE const nsCOMPtr<nsIDocumentViewerPrint> mDocViewerPrint;
+  nsCOMPtr<nsIDocumentViewerPrint> mDocViewerPrint;
 };
 
 //-----------------------------------------------------------

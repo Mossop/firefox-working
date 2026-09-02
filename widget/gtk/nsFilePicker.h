@@ -23,8 +23,7 @@ class nsFilePicker final : public nsBaseFilePicker {
   NS_DECL_ISUPPORTS
 
   // nsIFilePicker (less what's in nsBaseFilePicker)
-  MOZ_CAN_RUN_SCRIPT NS_IMETHOD
-  Open(nsIFilePickerShownCallback* aCallback) override;
+  NS_IMETHOD Open(nsIFilePickerShownCallback* aCallback) override;
   NS_IMETHOD IsModeSupported(nsIFilePicker::Mode, JSContext*,
                              mozilla::dom::Promise**) override;
   NS_IMETHOD AppendFilters(int32_t aFilterMask) override;

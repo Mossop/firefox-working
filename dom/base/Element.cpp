@@ -8,7 +8,7 @@
  * utility methods for subclasses, and so forth.
  */
 
-#include "Element.h"
+#include "mozilla/dom/Element.h"
 
 #include <inttypes.h>
 
@@ -1605,10 +1605,10 @@ already_AddRefed<ShadowRoot> Element::AttachShadowWithoutNameChecks(
   return shadowRoot.forget();
 }
 
-void Element::AttachAndSetUAShadowRoot(
-    NotifyUAWidget aNotifyUAWidget, DelegatesFocus aDelegatesFocus /* = No */,
-    CustomSlotDispatch aCustomSlotDispatch /* = No */,
-    bool aNotify /* = true*/) {
+void Element::AttachAndSetUAShadowRoot(NotifyUAWidget aNotifyUAWidget,
+                                       DelegatesFocus aDelegatesFocus,
+                                       CustomSlotDispatch aCustomSlotDispatch,
+                                       bool aNotify) {
   MOZ_DIAGNOSTIC_ASSERT(!CanAttachShadowDOM(),
                         "Cannot be used to attach UA shadow DOM");
   if (OwnerDoc()->IsStaticDocument()) {
@@ -1625,34 +1625,13 @@ void Element::AttachAndSetUAShadowRoot(
   }
 
   MOZ_ASSERT(GetShadowRoot()->IsUAWidget());
-  if (aNotifyUAWidget == NotifyUAWidget::No) {
-    return;
+  if (aNotifyUAWidget == NotifyUAWidget::Yes) {
+    NotifyUAWidgetSetupOrChange();
   }
-
-  // Note that this method may be called during a BindToTree() or
-  // UnbindFromTree() calls. Then, we shouldn't run script synchronously.
-  // Therefore, we want to make this dispatch the chrome event asynchronously to
-  // avoid to mark this method, BindToTree() and UnbindFromTree() as
-  // MOZ_CAN_RUN_SCRIPT.
-  MOZ_ASSERT(!nsContentUtils::IsSafeToRunScript(),
-             "Block running script before calling "
-             "Element::AttachAndSetUAShadowRoot!");
-
-  AddScriptRunnerToNotifyUAWidgetSetupOrChange();
 }
 
-void Element::AddScriptRunnerToNotifyUAWidgetSetupOrChange() {
+void Element::NotifyUAWidgetSetupOrChange() {
   MOZ_ASSERT(IsInComposedDoc());
-
-  // Note that this method may be called during a BindToTree() or
-  // UnbindFromTree() calls. Then, we shouldn't run script synchronously.
-  // Therefore, we want to make this dispatch the chrome event asynchronously to
-  // avoid to mark this method, BindToTree() and UnbindFromTree() as
-  // MOZ_CAN_RUN_SCRIPT.
-  MOZ_ASSERT(!nsContentUtils::IsSafeToRunScript(),
-             "Block running script before calling "
-             "Element::AddScriptRunnerToNotifyUAWidgetSetupOrChange!");
-
   Document* doc = OwnerDoc();
   if (doc->IsStaticDocument()) {
     return;
@@ -1665,15 +1644,15 @@ void Element::AddScriptRunnerToNotifyUAWidgetSetupOrChange() {
   // UA Widget to re-init.
   nsContentUtils::AddScriptRunner(NS_NewRunnableFunction(
       "Element::NotifyUAWidgetSetupOrChange::UAWidgetSetupOrChange",
-      [self = RefPtr<Element>(this)]() MOZ_CAN_RUN_SCRIPT_BOUNDARY_LAMBDA {
-        nsContentUtils::DispatchChromeEvent(self, u"UAWidgetSetupOrChange"_ns,
+      [self = RefPtr<Element>(this), doc = RefPtr<Document>(doc)]() {
+        nsContentUtils::DispatchChromeEvent(doc, self,
+                                            u"UAWidgetSetupOrChange"_ns,
                                             CanBubble::eYes, Cancelable::eNo);
       }));
 }
 
-void Element::TeardownUAShadowRoot(
-    NotifyUAWidget aNotifyUAWidget,
-    UnattachShadowRoot aUnattachShadowRoot /* = Yes */) {
+void Element::TeardownUAShadowRoot(NotifyUAWidget aNotify,
+                                   UnattachShadowRoot aUnattachShadowRoot) {
   MOZ_ASSERT(IsInComposedDoc());
   if (!GetShadowRoot()) {
     return;
@@ -1683,18 +1662,9 @@ void Element::TeardownUAShadowRoot(
     UnattachShadow();
   }
 
-  if (aNotifyUAWidget == NotifyUAWidget::No) {
+  if (aNotify == NotifyUAWidget::No) {
     return;
   }
-
-  // Note that this method may be called during a BindToTree() or
-  // UnbindFromTree() calls. Then, we shouldn't run script synchronously.
-  // Therefore, we want to make this dispatch the chrome event asynchronously to
-  // avoid to mark this method, BindToTree() and UnbindFromTree() as
-  // MOZ_CAN_RUN_SCRIPT.
-  MOZ_ASSERT(!nsContentUtils::IsSafeToRunScript(),
-             "Block running script before calling "
-             "Element::TeardownUAShadowRoot!");
 
   Document* doc = OwnerDoc();
   if (doc->IsStaticDocument()) {
@@ -1704,20 +1674,19 @@ void Element::TeardownUAShadowRoot(
   // The runnable will dispatch an event to tear down UA Widget.
   nsContentUtils::AddScriptRunner(NS_NewRunnableFunction(
       "Element::NotifyUAWidgetTeardownAndUnattachShadow::UAWidgetTeardown",
-      [self = RefPtr<Element>(this), doc = RefPtr<Document>(doc)]()
-          MOZ_CAN_RUN_SCRIPT_BOUNDARY_LAMBDA {
-            // Bail out if the element is being collected by CC
-            bool hasHadScriptObject = true;
-            nsIScriptGlobalObject* scriptObject =
-                doc->GetScriptHandlingObject(hasHadScriptObject);
-            if (!scriptObject && hasHadScriptObject) {
-              return;
-            }
+      [self = RefPtr<Element>(this), doc = RefPtr<Document>(doc)]() {
+        // Bail out if the element is being collected by CC
+        bool hasHadScriptObject = true;
+        nsIScriptGlobalObject* scriptObject =
+            doc->GetScriptHandlingObject(hasHadScriptObject);
+        if (!scriptObject && hasHadScriptObject) {
+          return;
+        }
 
-            (void)nsContentUtils::DispatchChromeEvent(
-                doc, self, u"UAWidgetTeardown"_ns, CanBubble::eYes,
-                Cancelable::eNo);
-          }));
+        (void)nsContentUtils::DispatchChromeEvent(
+            doc, self, u"UAWidgetTeardown"_ns, CanBubble::eYes,
+            Cancelable::eNo);
+      }));
 }
 
 void Element::UnattachShadow() {
@@ -3894,8 +3863,7 @@ static MOZ_ALWAYS_INLINE void SetLifecycleCallbackNamespaceURI(
 
 nsresult Element::SetNoNameSpaceAttrOnNewlyCreatedElement(
     already_AddRefed<nsAtom> aName, nsHtml5String& aValue,
-    bool& aIsPendingMappedAttributeEvaluation,
-    const nsAutoScriptBlocker& aGuard) {
+    bool& aIsPendingMappedAttributeEvaluation) {
   MOZ_ASSERT(aValue);
   MOZ_ASSERT(IsHTMLElement());
   MOZ_ASSERT(!GetParentNode());
@@ -5164,8 +5132,7 @@ already_AddRefed<Promise> Element::RequestFullscreen(
   if (const char* error = GetFullscreenError(aCallerType, OwnerDoc())) {
     request->Reject(error);
   } else {
-    const RefPtr<Document> doc = OwnerDoc();
-    doc->RequestFullscreen(std::move(request));
+    OwnerDoc()->RequestFullscreen(std::move(request));
   }
   return promise.forget();
 }

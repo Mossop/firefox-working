@@ -46,8 +46,7 @@ class SVGScriptElement final : public SVGScriptElementBase,
   bool HasExternalScriptContent() override;
 
   // nsIContent specializations:
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY nsresult BindToTree(BindContext&,
-                                                  nsINode& aParent) override;
+  nsresult BindToTree(BindContext&, nsINode& aParent) override;
   bool ParseAttribute(int32_t aNamespaceID, nsAtom* aAttribute,
                       const nsAString& aValue,
                       nsIPrincipal* aMaybeScriptedPrincipal,

@@ -90,9 +90,8 @@ class nsContentSink : public nsICSSLoaderObserver,
   NS_DECL_NSINAMED
 
   // nsICSSLoaderObserver
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY NS_IMETHOD
-  StyleSheetLoaded(mozilla::StyleSheet* aSheet, bool aWasDeferred,
-                   nsresult aStatus) override;
+  NS_IMETHOD StyleSheetLoaded(mozilla::StyleSheet* aSheet, bool aWasDeferred,
+                              nsresult aStatus) override;
 
   // nsIContentSink implementation helpers
   nsresult WillParseImpl(void);
@@ -100,7 +99,7 @@ class nsContentSink : public nsICSSLoaderObserver,
   void WillResumeImpl();
   nsresult DidProcessATokenImpl(void);
   void WillBuildModelImpl(void);
-  MOZ_CAN_RUN_SCRIPT void DidBuildModelImpl(bool aTerminated);
+  void DidBuildModelImpl(bool aTerminated);
   void DropParserAndPerfHint(void);
   bool IsScriptExecutingImpl();
   void ContinueParsingDocumentAfterCurrentScriptImpl();
@@ -124,13 +123,13 @@ class nsContentSink : public nsICSSLoaderObserver,
 
   nsresult ProcessHTTPHeaders(nsIChannel* aChannel);
   // aEarlyHintPreloaderId zero means no early hint channel to connect back
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY nsresult ProcessLinkFromHeader(
-      const mozilla::net::LinkHeader& aHeader, uint64_t aEarlyHintPreloaderId);
+  nsresult ProcessLinkFromHeader(const mozilla::net::LinkHeader& aHeader,
+                                 uint64_t aEarlyHintPreloaderId);
 
   // @param aFetchPriority Accepts a case-insensitive fetch priority keyword and
   //                       other values too, see
   //                       <https://html.spec.whatwg.org/#fetch-priority-attribute>.
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY virtual nsresult ProcessStyleLinkFromHeader(
+  virtual nsresult ProcessStyleLinkFromHeader(
       const nsAString& aHref, bool aAlternate, const nsAString& aTitle,
       const nsAString& aIntegrity, const nsAString& aType,
       const nsAString& aMedia, const nsAString& aReferrerPolicy,
@@ -177,7 +176,7 @@ class nsContentSink : public nsICSSLoaderObserver,
  public:
   void StartLayout(bool aIgnorePendingSheets);
 
-  MOZ_CAN_RUN_SCRIPT static void NotifyDocElementCreated(Document* aDoc);
+  static void NotifyDocElementCreated(Document* aDoc);
 
   Document* GetDocument() { return mDocument; }
 

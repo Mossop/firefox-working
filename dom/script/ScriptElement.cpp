@@ -47,8 +47,6 @@ ScriptElement::ScriptAvailable(nsresult aResult, nsIScriptElement* aElement,
     if (parser) {
       parser->IncrementScriptNestingLevel();
     }
-    // XXX Cannot dispatch the error event asynchronously? Then, we can drop
-    // MOZ_CAN_RUN_SCRIPT from the script loaders.
     nsresult rv = FireErrorEvent();
     if (parser) {
       parser->DecrementScriptNestingLevel();
@@ -60,9 +58,10 @@ ScriptElement::ScriptAvailable(nsresult aResult, nsIScriptElement* aElement,
 
 /* virtual */
 nsresult ScriptElement::FireErrorEvent() {
-  const nsCOMPtr<nsIContent> cont = GetAsContent();
-  return nsContentUtils::DispatchTrustedEvent(cont, u"error"_ns, CanBubble::eNo,
-                                              Cancelable::eNo);
+  nsIContent* cont = GetAsContent();
+
+  return nsContentUtils::DispatchTrustedEvent(
+      cont->OwnerDoc(), cont, u"error"_ns, CanBubble::eNo, Cancelable::eNo);
 }
 
 NS_IMETHODIMP
@@ -88,8 +87,7 @@ ScriptElement::ScriptEvaluated(nsresult aResult, nsIScriptElement* aElement,
 }
 
 void ScriptElement::CharacterDataChanged(nsIContent* aContent,
-                                         const CharacterDataChangeInfo& aInfo)
-    MOZ_CAN_RUN_SCRIPT_BOUNDARY {
+                                         const CharacterDataChangeInfo& aInfo) {
   if (!nsContentUtils::IsInSameAnonymousTree(GetAsContent(), aContent)) {
     return;
   }
@@ -99,8 +97,7 @@ void ScriptElement::CharacterDataChanged(nsIContent* aContent,
 
 void ScriptElement::AttributeChanged(Element* aElement, int32_t aNameSpaceID,
                                      nsAtom* aAttribute, AttrModType aModType,
-                                     const nsAttrValue* aOldValue)
-    MOZ_CAN_RUN_SCRIPT_BOUNDARY {
+                                     const nsAttrValue* aOldValue) {
   if (aElement != GetAsContent()) {
     return;
   }
@@ -126,8 +123,7 @@ void ScriptElement::AttributeChanged(Element* aElement, int32_t aNameSpaceID,
 }
 
 void ScriptElement::ContentAppended(nsIContent* aFirstNewContent,
-                                    const ContentAppendInfo& aInfo)
-    MOZ_CAN_RUN_SCRIPT_BOUNDARY {
+                                    const ContentAppendInfo& aInfo) {
   if (!nsContentUtils::IsInSameAnonymousTree(GetAsContent(),
                                              aFirstNewContent)) {
     return;
@@ -141,8 +137,7 @@ void ScriptElement::ContentAppended(nsIContent* aFirstNewContent,
 }
 
 void ScriptElement::ContentInserted(nsIContent* aChild,
-                                    const ContentInsertInfo& aInfo)
-    MOZ_CAN_RUN_SCRIPT_BOUNDARY {
+                                    const ContentInsertInfo& aInfo) {
   if (!nsContentUtils::IsInSameAnonymousTree(GetAsContent(), aChild)) {
     return;
   }

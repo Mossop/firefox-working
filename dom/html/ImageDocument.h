@@ -39,9 +39,8 @@ class ImageDocument final : public MediaDocument,
 
   void SetScriptGlobalObject(nsIScriptGlobalObject*) override;
   void Destroy() override;
-  MOZ_CAN_RUN_SCRIPT void OnPageShow(bool aPersisted,
-                                     EventTarget* aDispatchStartTarget,
-                                     bool aOnlySystemGroup = false) override;
+  void OnPageShow(bool aPersisted, EventTarget* aDispatchStartTarget,
+                  bool aOnlySystemGroup = false) override;
 
   NS_DECL_IMGINOTIFICATIONOBSERVER
 

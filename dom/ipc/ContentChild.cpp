@@ -3881,8 +3881,7 @@ mozilla::ipc::IPCResult ContentChild::RecvWindowClose(
     return IPC_OK();
   }
 
-  const RefPtr<nsGlobalWindowOuter> window =
-      nsGlobalWindowOuter::Cast(aContext.get()->GetDOMWindow());
+  nsCOMPtr<nsPIDOMWindowOuter> window = aContext.get()->GetDOMWindow();
   if (!window) {
     MOZ_LOG(
         BrowsingContext::GetLog(), LogLevel::Debug,
@@ -3900,7 +3899,7 @@ mozilla::ipc::IPCResult ContentChild::RecvWindowClose(
     return IPC_OK();
   }
 
-  window->CloseOuter(aTrustedCaller);
+  nsGlobalWindowOuter::Cast(window)->CloseOuter(aTrustedCaller);
   return IPC_OK();
 }
 

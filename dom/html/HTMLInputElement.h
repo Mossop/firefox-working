@@ -100,8 +100,8 @@ class UploadLastDir final : public nsIObserver, public nsSupportsWeakReference {
     NS_DECL_ISUPPORTS
     NS_DECL_NSICONTENTPREFCALLBACK2
 
-    MOZ_KNOWN_LIVE const nsCOMPtr<nsIFilePicker> mFilePicker;
-    MOZ_KNOWN_LIVE const nsCOMPtr<nsIFilePickerShownCallback> mFpCallback;
+    nsCOMPtr<nsIFilePicker> mFilePicker;
+    nsCOMPtr<nsIFilePickerShownCallback> mFpCallback;
     nsCOMPtr<nsIContentPref> mResult;
   };
 };
@@ -185,9 +185,9 @@ class HTMLInputElement final : public TextControlElement,
 
   void GetEventTargetParent(EventChainPreVisitor& aVisitor) override;
   void LegacyPreActivationBehavior(EventChainVisitor& aVisitor) override;
-  MOZ_CAN_RUN_SCRIPT void ActivationBehavior(
-      EventChainPostVisitor& aVisitor) override;
-  MOZ_CAN_RUN_SCRIPT void LegacyCanceledActivationBehavior(
+  MOZ_CAN_RUN_SCRIPT
+  void ActivationBehavior(EventChainPostVisitor& aVisitor) override;
+  void LegacyCanceledActivationBehavior(
       EventChainPostVisitor& aVisitor) override;
   MOZ_CAN_RUN_SCRIPT_BOUNDARY
   nsresult PreHandleEvent(EventChainVisitor& aVisitor) override;
@@ -398,7 +398,7 @@ class HTMLInputElement final : public TextControlElement,
    * if a change event may be fired on bluring.
    * Sets mFocusedValue to value, if a change event is fired.
    */
-  MOZ_CAN_RUN_SCRIPT void FireChangeEventIfNeeded();
+  void FireChangeEventIfNeeded();
 
   /**
    * Returns the input element's value as a Decimal.
@@ -778,9 +778,8 @@ class HTMLInputElement final : public TextControlElement,
    * The following functions are called from the datetimebox element to control
    * and update the picker.
    */
-  MOZ_CAN_RUN_SCRIPT void OpenDateTimePicker(
-      const DateTimeValue& aInitialValue);
-  MOZ_CAN_RUN_SCRIPT void CloseDateTimePicker();
+  void OpenDateTimePicker(const DateTimeValue& aInitialValue);
+  void CloseDateTimePicker();
 
   /**
    * Sets open state for the input element, depending on whether the picker is
@@ -788,7 +787,7 @@ class HTMLInputElement final : public TextControlElement,
    */
   void SetOpenState(bool aIsOpen);
 
-  MOZ_CAN_RUN_SCRIPT void OpenColorPicker();
+  void OpenColorPicker();
 
   /*
    * Called from datetime input box binding when inner text fields are focused
@@ -828,7 +827,7 @@ class HTMLInputElement final : public TextControlElement,
 
   void StartNumberControlSpinnerSpin();
   enum SpinnerStopState { eAllowDispatchingEvents, eDisallowDispatchingEvents };
-  MOZ_CAN_RUN_SCRIPT void StopNumberControlSpinnerSpin(
+  void StopNumberControlSpinnerSpin(
       SpinnerStopState aState = eAllowDispatchingEvents);
   MOZ_CAN_RUN_SCRIPT
   void StepNumberControlForUserEvent(int32_t aDirection);
@@ -907,8 +906,6 @@ class HTMLInputElement final : public TextControlElement,
 
   // If needed, lazily sets up the shadow tree for this <input> element.
   // Returns the ShadowRoot _only if it was just created_!
-  // NOTE: This must be called with blocking script because this uses
-  // Element::SetupShadowTreeWithDispatchingChromeEventAsync().
   ShadowRoot* CreateShadowTreeFromLayoutIfNeeded();
 
  protected:
@@ -1411,7 +1408,7 @@ class HTMLInputElement final : public TextControlElement,
    * this function checks if it is needed, and if so, open the corresponding
    * picker (color picker or file picker).
    */
-  MOZ_CAN_RUN_SCRIPT nsresult MaybeInitPickers(EventChainPostVisitor& aVisitor);
+  nsresult MaybeInitPickers(EventChainPostVisitor& aVisitor);
 
   /**
    * Returns all valid colors in the <datalist> for the input with type=color.
@@ -1419,8 +1416,8 @@ class HTMLInputElement final : public TextControlElement,
   nsTArray<nsString> GetColorsFromList();
 
   enum FilePickerType { FILE_PICKER_FILE, FILE_PICKER_DIRECTORY };
-  MOZ_CAN_RUN_SCRIPT nsresult InitFilePicker(FilePickerType aType);
-  MOZ_CAN_RUN_SCRIPT nsresult InitColorPicker();
+  nsresult InitFilePicker(FilePickerType aType);
+  nsresult InitColorPicker();
 
   GetFilesHelper* GetOrCreateGetFilesHelper(bool aRecursiveFlag,
                                             ErrorResult& aRv);
@@ -1664,12 +1661,6 @@ class HTMLInputElement final : public TextControlElement,
            aType == FormControlType::InputRange ||
            aType == FormControlType::InputNumber;
   }
-
-  /**
-   * This method calls AddScriptRunnerToNotifyUAWidgetSetupOrChange().
-   * Therefore, any callers need to block running script before calling this
-   * method.
-   */
   void SetupShadowTree(bool aNotify);
 
   bool CheckActivationBehaviorPreconditions(EventChainVisitor& aVisitor) const;
@@ -1736,12 +1727,11 @@ class HTMLInputElement final : public TextControlElement,
                               nsIFilePicker* aFilePicker);
     NS_DECL_ISUPPORTS
 
-    MOZ_CAN_RUN_SCRIPT_BOUNDARY NS_IMETHOD
-        Done(nsIFilePicker::ResultCode) override;
+    NS_IMETHOD Done(nsIFilePicker::ResultCode aResult) override;
 
    private:
-    MOZ_KNOWN_LIVE const nsCOMPtr<nsIFilePicker> mFilePicker;
-    MOZ_KNOWN_LIVE const RefPtr<HTMLInputElement> mInput;
+    nsCOMPtr<nsIFilePicker> mFilePicker;
+    const RefPtr<HTMLInputElement> mInput;
   };
 };
 

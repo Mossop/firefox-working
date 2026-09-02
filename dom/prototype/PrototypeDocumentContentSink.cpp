@@ -649,20 +649,20 @@ nsresult PrototypeDocumentContentSink::DoneWalking() {
   MOZ_ASSERT(!mStillWalking, "walk not done");
   MOZ_ASSERT(!mDocument->HasPendingInitialTranslation(), "translation pending");
 
-  if (const RefPtr<Document> doc = mDocument) {
-    MOZ_ASSERT(doc->GetReadyStateEnum() == Document::READYSTATE_LOADING,
+  if (mDocument) {
+    MOZ_ASSERT(mDocument->GetReadyStateEnum() == Document::READYSTATE_LOADING,
                "Bad readyState");
-    doc->SetReadyStateInternal(Document::READYSTATE_INTERACTIVE);
-    doc->NotifyPossibleTitleChange(false);
+    mDocument->SetReadyStateInternal(Document::READYSTATE_INTERACTIVE);
+    mDocument->NotifyPossibleTitleChange(false);
 
-    nsContentUtils::DispatchEventOnlyToChrome(doc, doc,
+    nsContentUtils::DispatchEventOnlyToChrome(mDocument, mDocument,
                                               u"MozBeforeInitialXULLayout"_ns,
                                               CanBubble::eYes, Cancelable::eNo);
   }
 
-  if (const RefPtr<ScriptLoader> scriptLoader = mScriptLoader) {
-    scriptLoader->ParsingComplete(false);
-    scriptLoader->DeferCheckpointReached();
+  if (mScriptLoader) {
+    mScriptLoader->ParsingComplete(false);
+    mScriptLoader->DeferCheckpointReached();
   }
 
   StartLayout();

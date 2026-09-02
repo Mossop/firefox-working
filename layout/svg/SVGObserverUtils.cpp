@@ -353,7 +353,7 @@ class SVGIDRenderingObserver : public SVGRenderingObserver {
   // observer. Note that this may be called during construction, before the
   // deriving class is fully constructed.
   using TargetIsValidCallback = bool (*)(const Element&);
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY SVGIDRenderingObserver(
+  SVGIDRenderingObserver(
       SVGReference* aReference, Element* aObservingElement,
       bool aReferenceImage,
       uint32_t aCallbacks = kAttributeChanged | kContentAppended |
@@ -461,16 +461,14 @@ SVGIDRenderingObserver::SVGIDRenderingObserver(
       mTargetIsValidCallback(aTargetIsValidCallback) {
   // Start watching the target element
   if (aReference) {
-    const nsCOMPtr<nsIURI> uri = aReference->GetURI();
-    const nsCOMPtr<nsIReferrerInfo> referrerInfo =
-        aReference->GetReferrerInfo();
     if (aReference->IsLocalRef()) {
       mObservedElementTracker.ResetToLocalFragmentID(
-          *aObservingElement, aReference->GetLocalRef(), uri, referrerInfo,
-          aReferenceImage);
+          *aObservingElement, aReference->GetLocalRef(), aReference->GetURI(),
+          aReference->GetReferrerInfo(), aReferenceImage);
     } else {
       mObservedElementTracker.ResetToURIWithFragmentID(
-          *aObservingElement, uri, referrerInfo, aReferenceImage);
+          *aObservingElement, aReference->GetURI(),
+          aReference->GetReferrerInfo(), aReferenceImage);
     }
   } else {
     mObservedElementTracker.Unlink();

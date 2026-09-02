@@ -427,11 +427,10 @@ class XMLHttpRequestMainThread final : public XMLHttpRequest,
   virtual void SetOriginAttributes(
       const mozilla::dom::OriginAttributesDictionary& aAttrs) override;
 
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY void BlobStoreCompleted(
-      MutableBlobStorage* aBlobStorage, BlobImpl* aBlobImpl,
-      nsresult aResult) override;
+  void BlobStoreCompleted(MutableBlobStorage* aBlobStorage, BlobImpl* aBlobImpl,
+                          nsresult aResult) override;
 
-  MOZ_CAN_RUN_SCRIPT void LocalFileToBlobCompleted(BlobImpl* aBlobImpl);
+  void LocalFileToBlobCompleted(BlobImpl* aBlobImpl);
 
 #ifdef DEBUG
   // For logging when there's trouble
@@ -472,9 +471,9 @@ class XMLHttpRequestMainThread final : public XMLHttpRequest,
   bool IsSystemXHR() const;
   bool InUploadPhase() const;
 
-  MOZ_CAN_RUN_SCRIPT void OnBodyParseEnd();
-  MOZ_CAN_RUN_SCRIPT void ChangeStateToDone(bool aWasSync);
-  MOZ_CAN_RUN_SCRIPT void ChangeStateToDoneInternal();
+  void OnBodyParseEnd();
+  void ChangeStateToDone(bool aWasSync);
+  void ChangeStateToDoneInternal();
 
   void StartProgressEventTimer();
   void StopProgressEventTimer();
@@ -830,7 +829,7 @@ class XMLHttpRequestDoneNotifier : public Runnable {
   explicit XMLHttpRequestDoneNotifier(XMLHttpRequestMainThread* aXHR)
       : Runnable("XMLHttpRequestDoneNotifier"), mXHR(aXHR) {}
 
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY NS_IMETHOD Run() override {
+  NS_IMETHOD Run() override {
     if (mXHR) {
       RefPtr<XMLHttpRequestMainThread> xhr = mXHR;
       // ChangeStateToDoneInternal ends up calling Disconnect();
@@ -849,7 +848,7 @@ class XMLHttpRequestDoneNotifier : public Runnable {
 class nsXHRParseEndListener : public nsIDOMEventListener {
  public:
   NS_DECL_ISUPPORTS
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY NS_IMETHOD HandleEvent(Event* event) override {
+  NS_IMETHOD HandleEvent(Event* event) override {
     if (RefPtr<XMLHttpRequestMainThread> xhr = mXHR.get()) {
       xhr->OnBodyParseEnd();
     }

@@ -42,9 +42,8 @@ class APZChild final : public PAPZChild {
 
   mozilla::ipc::IPCResult RecvHideDynamicToolbar();
 
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY mozilla::ipc::IPCResult
-  RecvNotifyMozMouseScrollEvent(const ViewID& aScrollId,
-                                const nsString& aEvent);
+  mozilla::ipc::IPCResult RecvNotifyMozMouseScrollEvent(const ViewID& aScrollId,
+                                                        const nsString& aEvent);
 
   mozilla::ipc::IPCResult RecvNotifyAPZStateChange(
       const ScrollableLayerGuid& aGuid, const APZStateChange& aChange,

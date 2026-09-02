@@ -6720,8 +6720,7 @@ nsresult nsDocShell::CreateAboutBlankDocumentViewer(
         if (mLoadingEntry && mBrowsingContext->IsTop()) {
           mLoadingEntry->mInfo.SetTransient();
         }
-        const nsCOMPtr<nsIURI> uri = mCurrentURI;
-        rv = Embed(viewer, aActor, true, nullptr, uri);
+        rv = Embed(viewer, aActor, true, nullptr, mCurrentURI);
         NS_ENSURE_SUCCESS(rv, rv);
 
         SetCurrentURI(blankDoc->GetDocumentURI(), nullptr,
@@ -7259,8 +7258,7 @@ nsresult nsDocShell::SetupNewViewer(nsIDocumentViewer* aNewViewer,
 
   mDocumentViewer->SetNavigationTiming(mTiming);
 
-  nsresult rv =
-      MOZ_KnownLive(mDocumentViewer)->Init(widget, bounds, aWindowActor);
+  nsresult rv = mDocumentViewer->Init(widget, bounds, aWindowActor);
   if (NS_FAILED(rv)) {
     nsCOMPtr<nsIDocumentViewer> viewer = mDocumentViewer;
     viewer->Close();
@@ -9823,8 +9821,7 @@ nsresult nsDocShell::DoURILoad(nsDocShellLoadState* aLoadState,
     // - We also set IsDocumentPiP on chrome but the spec doesn't apply to it.
     if (Document* doc = GetExtantDocument()) {
       NS_DispatchToMainThread(NS_NewRunnableFunction(
-          "Close PIP window on navigate",
-          [doc = RefPtr(doc)]() MOZ_CAN_RUN_SCRIPT_BOUNDARY_LAMBDA {
+          "Close PIP window on navigate", [doc = RefPtr(doc)]() {
             doc->CloseAnyAssociatedDocumentPiPWindows();
           }));
     }

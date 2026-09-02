@@ -19,7 +19,6 @@
 #include <cstdint>
 #include <functional>
 #include <tuple>
-#include <utility>
 
 #include "ErrorList.h"
 #include "Units.h"
@@ -279,39 +278,6 @@ enum class PropertiesFile : uint8_t {
 namespace mozilla::dom {
 enum JSONBehavior { UndefinedIsNullStringLiteral, UndefinedIsVoidString };
 }  // namespace mozilla::dom
-
-/**
- * Declares the nsContentUtils::Dispatch*Event() overloads which don't take a
- * `Document`, but retrieve it from the event target or from a window instead.
- * The remaining arguments are forwarded to the overload taking a `Document`,
- * so its default arguments keep working.
- *
- * The `Document` is only used for creating the DOM event before dispatching
- * the event, i.e., it's not referred after that.  Therefore, the caller does
- * not need to hold it and using `MOZ_KnownLive()` here is safe, while doing so
- * at the callers may look like the `Document` won't be changed.
- */
-#define NS_INLINE_DECL_DISPATCH_EVENT_OVERLOADS(aMethodName)               \
-  template <typename... Args>                                              \
-  MOZ_CAN_RUN_SCRIPT static nsresult aMethodName(                          \
-      nsINode* aTarget, const nsAString& aEventName, Args&&... aArgs) {    \
-    return aMethodName(MOZ_KnownLive(DocumentForEventDispatch(aTarget)),   \
-                       aTarget, aEventName, std::forward<Args>(aArgs)...); \
-  }                                                                        \
-  template <typename... Args>                                              \
-  MOZ_CAN_RUN_SCRIPT static nsresult aMethodName(                          \
-      nsPIDOMWindowInner* aWindow, mozilla::dom::EventTarget* aTarget,     \
-      const nsAString& aEventName, Args&&... aArgs) {                      \
-    return aMethodName(MOZ_KnownLive(DocumentForEventDispatch(aWindow)),   \
-                       aTarget, aEventName, std::forward<Args>(aArgs)...); \
-  }                                                                        \
-  template <typename... Args>                                              \
-  MOZ_CAN_RUN_SCRIPT static nsresult aMethodName(                          \
-      nsPIDOMWindowOuter* aWindow, mozilla::dom::EventTarget* aTarget,     \
-      const nsAString& aEventName, Args&&... aArgs) {                      \
-    return aMethodName(MOZ_KnownLive(DocumentForEventDispatch(aWindow)),   \
-                       aTarget, aEventName, std::forward<Args>(aArgs)...); \
-  }
 
 class nsContentUtils {
   friend class nsAutoScriptBlockerSuppressNodeRemoved;
@@ -1651,17 +1617,18 @@ class nsContentUtils {
    * @param aCopmosed      Is the event composed.
    * @param aDefaultAction Set to true if default action should be taken,
    *                       see EventTarget::DispatchEvent.
-   *
-   * The overloads which do not take a `Document` compute it from the event
-   * target or from the given window, see `DocumentForEventDispatch()`.
    */
-  MOZ_CAN_RUN_SCRIPT static nsresult DispatchTrustedEvent(
+  // TODO: annotate with `MOZ_CAN_RUN_SCRIPT`
+  // (https://bugzilla.mozilla.org/show_bug.cgi?id=1625902).
+  static nsresult DispatchTrustedEvent(
       Document* aDoc, mozilla::dom::EventTarget* aTarget,
       const nsAString& aEventName, CanBubble, Cancelable,
       Composed aComposed = Composed::eDefault, bool* aDefaultAction = nullptr,
       SystemGroupOnly aSystemGroupOnly = SystemGroupOnly::eNo);
 
-  MOZ_CAN_RUN_SCRIPT static nsresult DispatchTrustedEvent(
+  // TODO: annotate with `MOZ_CAN_RUN_SCRIPT`
+  // (https://bugzilla.mozilla.org/show_bug.cgi?id=1625902).
+  static nsresult DispatchTrustedEvent(
       Document* aDoc, mozilla::dom::EventTarget* aTarget,
       const nsAString& aEventName, CanBubble aCanBubble, Cancelable aCancelable,
       bool* aDefaultAction,
@@ -1671,10 +1638,9 @@ class nsContentUtils {
                                 aSystemGroupOnly);
   }
 
-  NS_INLINE_DECL_DISPATCH_EVENT_OVERLOADS(DispatchTrustedEvent)
-
   /**
    * This method creates and dispatches a trusted event using an event message.
+   * @param aDoc           The document which will be used to create the event.
    * @param aTarget        The target of the event.
    * @param aEventMessage  The event message.
    * @param aCanBubble     Whether the event can bubble.
@@ -1683,15 +1649,16 @@ class nsContentUtils {
    *                       see EventTarget::DispatchEvent.
    */
   template <class WidgetEventType>
-  MOZ_CAN_RUN_SCRIPT static nsresult DispatchTrustedEvent(
-      mozilla::dom::EventTarget* aTarget, EventMessage aEventMessage,
-      CanBubble aCanBubble, Cancelable aCancelable,
+  static nsresult DispatchTrustedEvent(
+      Document* aDoc, mozilla::dom::EventTarget* aTarget,
+      EventMessage aEventMessage, CanBubble aCanBubble, Cancelable aCancelable,
       bool* aDefaultAction = nullptr,
       ChromeOnlyDispatch aOnlyChromeDispatch = ChromeOnlyDispatch::eNo) {
     WidgetEventType event(true, aEventMessage);
     MOZ_ASSERT(GetEventClassIDFromMessage(aEventMessage) == event.mClass);
-    return DispatchEvent(aTarget, event, aEventMessage, aCanBubble, aCancelable,
-                         Trusted::eYes, aDefaultAction, aOnlyChromeDispatch);
+    return DispatchEvent(aDoc, aTarget, event, aEventMessage, aCanBubble,
+                         aCancelable, Trusted::eYes, aDefaultAction,
+                         aOnlyChromeDispatch);
   }
 
   /**
@@ -1742,16 +1709,12 @@ class nsContentUtils {
    * @param aCancelable    Is the event cancelable.
    * @param aDefaultAction Set to true if default action should be taken,
    *                       see EventTarget::DispatchEvent.
-   *
-   * The overloads which do not take a `Document` compute it from the event
-   * target or from the given window, see `DocumentForEventDispatch()`.
    */
-  MOZ_CAN_RUN_SCRIPT static nsresult DispatchUntrustedEvent(
-      Document* aDoc, mozilla::dom::EventTarget* aTarget,
-      const nsAString& aEventName, CanBubble, Cancelable,
-      bool* aDefaultAction = nullptr);
-
-  NS_INLINE_DECL_DISPATCH_EVENT_OVERLOADS(DispatchUntrustedEvent)
+  static nsresult DispatchUntrustedEvent(Document* aDoc,
+                                         mozilla::dom::EventTarget* aTarget,
+                                         const nsAString& aEventName, CanBubble,
+                                         Cancelable,
+                                         bool* aDefaultAction = nullptr);
 
   /**
    * This method creates and dispatches a untrusted event using an event
@@ -1765,15 +1728,16 @@ class nsContentUtils {
    *                       see EventTarget::DispatchEvent.
    */
   template <class WidgetEventType>
-  MOZ_CAN_RUN_SCRIPT static nsresult DispatchUntrustedEvent(
-      mozilla::dom::EventTarget* aTarget, EventMessage aEventMessage,
-      CanBubble aCanBubble, Cancelable aCancelable,
+  static nsresult DispatchUntrustedEvent(
+      Document* aDoc, mozilla::dom::EventTarget* aTarget,
+      EventMessage aEventMessage, CanBubble aCanBubble, Cancelable aCancelable,
       bool* aDefaultAction = nullptr,
       ChromeOnlyDispatch aOnlyChromeDispatch = ChromeOnlyDispatch::eNo) {
     WidgetEventType event(false, aEventMessage);
     MOZ_ASSERT(GetEventClassIDFromMessage(aEventMessage) == event.mClass);
-    return DispatchEvent(aTarget, event, aEventMessage, aCanBubble, aCancelable,
-                         Trusted::eNo, aDefaultAction, aOnlyChromeDispatch);
+    return DispatchEvent(aDoc, aTarget, event, aEventMessage, aCanBubble,
+                         aCancelable, Trusted::eNo, aDefaultAction,
+                         aOnlyChromeDispatch);
   }
 
   /**
@@ -1793,16 +1757,12 @@ class nsContentUtils {
    * @param aCancelable    Is the event cancelable.
    * @param aDefaultAction Set to true if default action should be taken,
    *                       see EventTarget::DispatchEvent.
-   *
-   * The overloads which do not take a `Document` compute it from the event
-   * target or from the given window, see `DocumentForEventDispatch()`.
    */
-  MOZ_CAN_RUN_SCRIPT static nsresult DispatchChromeEvent(
-      Document* aDoc, mozilla::dom::EventTarget* aTarget,
-      const nsAString& aEventName, CanBubble, Cancelable,
-      bool* aDefaultAction = nullptr);
-
-  NS_INLINE_DECL_DISPATCH_EVENT_OVERLOADS(DispatchChromeEvent)
+  static nsresult DispatchChromeEvent(Document* aDoc,
+                                      mozilla::dom::EventTarget* aTarget,
+                                      const nsAString& aEventName, CanBubble,
+                                      Cancelable,
+                                      bool* aDefaultAction = nullptr);
 
   /**
    * Helper to dispatch a "framefocusrequested" event to chrome, which will only
@@ -1829,25 +1789,22 @@ class nsContentUtils {
    * @param aComposed      Is the event composed.
    * @param aDefaultAction Set to true if default action should be taken,
    *                       see EventTarget::DispatchEvent.
-   *
-   * The overloads which do not take a `Document` compute it from the event
-   * target or from the given window, see `DocumentForEventDispatch()`.
    */
-  MOZ_CAN_RUN_SCRIPT static nsresult DispatchEventOnlyToChrome(
+  static nsresult DispatchEventOnlyToChrome(
       Document* aDoc, mozilla::dom::EventTarget* aTarget,
       const nsAString& aEventName, CanBubble, Cancelable,
       Composed aComposed = Composed::eDefault, bool* aDefaultAction = nullptr);
 
-  MOZ_CAN_RUN_SCRIPT static nsresult DispatchEventOnlyToChrome(
-      Document* aDoc, mozilla::dom::EventTarget* aTarget,
-      const nsAString& aEventName, CanBubble aCanBubble, Cancelable aCancelable,
-      bool* aDefaultAction) {
+  static nsresult DispatchEventOnlyToChrome(Document* aDoc,
+                                            mozilla::dom::EventTarget* aTarget,
+                                            const nsAString& aEventName,
+                                            CanBubble aCanBubble,
+                                            Cancelable aCancelable,
+                                            bool* aDefaultAction) {
     return DispatchEventOnlyToChrome(aDoc, aTarget, aEventName, aCanBubble,
                                      aCancelable, Composed::eDefault,
                                      aDefaultAction);
   }
-
-  NS_INLINE_DECL_DISPATCH_EVENT_OVERLOADS(DispatchEventOnlyToChrome)
 
   /**
    * Determines if an event attribute name (such as onclick) is valid for
@@ -3181,12 +3138,12 @@ class nsContentUtils {
       const mozilla::dom::Optional<
           mozilla::OwningNonNull<mozilla::dom::VoidFunction>>& aCallback);
 
-  MOZ_CAN_RUN_SCRIPT static void FirePageShowEventForFrameLoaderSwap(
+  static void FirePageShowEventForFrameLoaderSwap(
       nsIDocShellTreeItem* aItem,
       mozilla::dom::EventTarget* aChromeEventHandler, bool aFireIfShowing,
       bool aOnlySystemGroup = false);
 
-  MOZ_CAN_RUN_SCRIPT static void FirePageHideEventForFrameLoaderSwap(
+  static void FirePageHideEventForFrameLoaderSwap(
       nsIDocShellTreeItem* aItem,
       mozilla::dom::EventTarget* aChromeEventHandler,
       bool aOnlySystemGroup = false);
@@ -3726,30 +3683,19 @@ class nsContentUtils {
                              JS::MutableHandle<JS::Value> vp,
                              bool aAllowWrapping);
 
-  // Used by NS_INLINE_DECL_DISPATCH_EVENT_OVERLOADS().  Note that after
-  // dispatching the event, the returned `Document` may have been destroyed
-  // and/or the event target may be owned by a different `Document`.
-  static Document* DocumentForEventDispatch(nsINode* aTarget) {
-    return aTarget->OwnerDoc();
-  }
-  static Document* DocumentForEventDispatch(nsPIDOMWindowInner* aWindow) {
-    return aWindow->GetExtantDoc();
-  }
-  static Document* DocumentForEventDispatch(nsPIDOMWindowOuter* aWindow) {
-    return aWindow->GetExtantDoc();
-  }
-
-  MOZ_CAN_RUN_SCRIPT static nsresult DispatchEvent(
+  // TODO: Convert this to MOZ_CAN_RUN_SCRIPT (bug 1415230)
+  MOZ_CAN_RUN_SCRIPT_BOUNDARY static nsresult DispatchEvent(
       Document* aDoc, mozilla::dom::EventTarget* aTarget,
       const nsAString& aEventName, CanBubble, Cancelable, Composed, Trusted,
       bool* aDefaultAction = nullptr,
       ChromeOnlyDispatch = ChromeOnlyDispatch::eNo,
       SystemGroupOnly = SystemGroupOnly::eNo);
 
-  MOZ_CAN_RUN_SCRIPT static nsresult DispatchEvent(
-      mozilla::dom::EventTarget* aTarget, mozilla::WidgetEvent& aWidgetEvent,
-      EventMessage aEventMessage, CanBubble, Cancelable, Trusted,
-      bool* aDefaultAction = nullptr,
+  // TODO: Convert this to MOZ_CAN_RUN_SCRIPT (bug 1415230)
+  MOZ_CAN_RUN_SCRIPT_BOUNDARY static nsresult DispatchEvent(
+      Document* aDoc, mozilla::dom::EventTarget* aTarget,
+      mozilla::WidgetEvent& aWidgetEvent, EventMessage aEventMessage, CanBubble,
+      Cancelable, Trusted, bool* aDefaultAction = nullptr,
       ChromeOnlyDispatch = ChromeOnlyDispatch::eNo);
 
   static void InitializeModifierStrings();
@@ -3930,8 +3876,6 @@ class nsContentUtils {
   static int32_t sInnerOrOuterWindowCount;
   static uint32_t sInnerOrOuterWindowSerialCounter;
 };
-
-#undef NS_INLINE_DECL_DISPATCH_EVENT_OVERLOADS
 
 /* static */ inline ExtContentPolicyType
 nsContentUtils::InternalContentPolicyTypeToExternal(nsContentPolicyType aType) {

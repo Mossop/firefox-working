@@ -4329,14 +4329,13 @@ class HTMLEditor final : public EditorBase,
    */
   [[nodiscard]] MOZ_CAN_RUN_SCRIPT nsresult RefreshResizersInternal();
 
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY ManualNACPtr
-  CreateResizer(int16_t aLocation, nsIContent& aParentContent);
+  ManualNACPtr CreateResizer(int16_t aLocation, nsIContent& aParentContent);
   [[nodiscard]] MOZ_CAN_RUN_SCRIPT nsresult
   SetAnonymousElementPositionWithoutTransaction(nsStyledElement& aStyledElement,
                                                 int32_t aX, int32_t aY);
 
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY ManualNACPtr
-  CreateShadow(nsIContent& aParentContent, Element& aOriginalObject);
+  ManualNACPtr CreateShadow(nsIContent& aParentContent,
+                            Element& aOriginalObject);
 
   /**
    * SetShadowPosition() moves the shadow element to proper position.
@@ -4350,8 +4349,7 @@ class HTMLEditor final : public EditorBase,
   SetShadowPosition(Element& aShadowElement, Element& aElement,
                     int32_t aElementLeft, int32_t aElementTop);
 
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY ManualNACPtr
-  CreateResizingInfo(nsIContent& aParentContent);
+  ManualNACPtr CreateResizingInfo(nsIContent& aParentContent);
   MOZ_CAN_RUN_SCRIPT nsresult SetResizingInfoPosition(int32_t aX, int32_t aY,
                                                       int32_t aW, int32_t aH);
 
@@ -4426,8 +4424,7 @@ class HTMLEditor final : public EditorBase,
    * always non-nullptr.  Otherwise, i.e., the grabber is hidden during
    * creation, this returns false.
    */
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY bool CreateGrabberInternal(
-      nsIContent& aParentContent);
+  bool CreateGrabberInternal(nsIContent& aParentContent);
 
   MOZ_CAN_RUN_SCRIPT nsresult StartMoving();
   MOZ_CAN_RUN_SCRIPT nsresult SetFinalPosition(int32_t aX, int32_t aY);
@@ -4480,9 +4477,9 @@ class HTMLEditor final : public EditorBase,
    *                              is to be added to the created anonymous
    *                              element
    */
-  MOZ_CAN_RUN_SCRIPT ManualNACPtr
-  CreateAnonymousElement(nsAtom* aTag, nsIContent& aParentContent,
-                         const nsAString& aClass, bool aIsCreatedHidden);
+  ManualNACPtr CreateAnonymousElement(nsAtom* aTag, nsIContent& aParentContent,
+                                      const nsAString& aClass,
+                                      bool aIsCreatedHidden);
 
   /**
    * Reads a blob into memory and notifies the BlobReader object when the read

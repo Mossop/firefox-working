@@ -42,13 +42,12 @@ class XULFrameElement final : public nsXULElement, public nsFrameLoaderOwner {
   nsIOpenWindowInfo* GetOpenWindowInfo() const;
   void SetOpenWindowInfo(nsIOpenWindowInfo* aInfo);
 
-  MOZ_CAN_RUN_SCRIPT void SwapFrameLoaders(
-      mozilla::dom::HTMLIFrameElement& aOtherLoaderOwner,
-      mozilla::ErrorResult& rv);
-  MOZ_CAN_RUN_SCRIPT void SwapFrameLoaders(XULFrameElement& aOtherLoaderOwner,
-                                           mozilla::ErrorResult& rv);
-  MOZ_CAN_RUN_SCRIPT void SwapFrameLoaders(
-      nsFrameLoaderOwner* aOtherLoaderOwner, mozilla::ErrorResult& rv);
+  void SwapFrameLoaders(mozilla::dom::HTMLIFrameElement& aOtherLoaderOwner,
+                        mozilla::ErrorResult& rv);
+  void SwapFrameLoaders(XULFrameElement& aOtherLoaderOwner,
+                        mozilla::ErrorResult& rv);
+  void SwapFrameLoaders(nsFrameLoaderOwner* aOtherLoaderOwner,
+                        mozilla::ErrorResult& rv);
 
   // nsIContent
   nsresult BindToTree(BindContext&, nsINode& aParent) override;

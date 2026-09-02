@@ -436,12 +436,10 @@ class nsGlobalWindowObserver final : public nsIObserver,
   explicit nsGlobalWindowObserver(nsGlobalWindowInner* aWindow)
       : mWindow(aWindow) {}
   NS_DECL_ISUPPORTS
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY NS_IMETHOD
-  Observe(nsISupports* aSubject, const char* aTopic,
-          const char16_t* aData) override {
+  NS_IMETHOD Observe(nsISupports* aSubject, const char* aTopic,
+                     const char16_t* aData) override {
     if (!mWindow) return NS_OK;
-    const RefPtr<nsGlobalWindowInner> win = mWindow;
-    return win->Observe(aSubject, aTopic, aData);
+    return mWindow->Observe(aSubject, aTopic, aData);
   }
   void Forget() { mWindow = nullptr; }
   NS_IMETHOD GetInterface(const nsIID& aIID, void** aResult) override {
@@ -5206,7 +5204,7 @@ void nsGlobalWindowInner::FireOfflineStatusEventIfChanged() {
   } else {
     name.AssignLiteral("online");
   }
-  nsContentUtils::DispatchTrustedEvent(this, this, name, CanBubble::eNo,
+  nsContentUtils::DispatchTrustedEvent(mDoc, this, name, CanBubble::eNo,
                                        Cancelable::eNo);
 }
 
@@ -6258,8 +6256,8 @@ nsresult nsGlobalWindowInner::FireDelayedDOMEvents(bool aIncludeSubWindows) {
     }
 
     for (const nsCOMPtr<nsIDocShellTreeItem>& childShell : children) {
-      if (const RefPtr<nsGlobalWindowOuter> win =
-              nsGlobalWindowOuter::Cast(childShell->GetWindow())) {
+      if (nsCOMPtr<nsPIDOMWindowOuter> pWin = childShell->GetWindow()) {
+        auto* win = nsGlobalWindowOuter::Cast(pWin);
         win->FireDelayedDOMEvents(true);
       }
     }

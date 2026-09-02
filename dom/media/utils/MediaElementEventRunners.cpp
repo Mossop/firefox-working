@@ -10,7 +10,6 @@
 #include "mozilla/Casting.h"
 #include "mozilla/FlowMarkers.h"
 #include "mozilla/ProfilerState.h"
-#include "mozilla/dom/Document.h"
 #include "mozilla/dom/HTMLMediaElement.h"
 #include "mozilla/dom/HTMLVideoElement.h"
 #include "mozilla/dom/MediaError.h"
@@ -176,9 +175,9 @@ NS_IMETHODIMP nsSourceErrorEventRunner::Run() {
                         {}, ErrorMarker{}, mErrorDetails,
                         Flow::FromPointer(mElement.get()));
   }
-  const nsCOMPtr<nsIContent> source = mSource;
-  return nsContentUtils::DispatchTrustedEvent(source, u"error"_ns,
-                                              CanBubble::eNo, Cancelable::eNo);
+  return nsContentUtils::DispatchTrustedEvent(mElement->OwnerDoc(), mSource,
+                                              u"error"_ns, CanBubble::eNo,
+                                              Cancelable::eNo);
 }
 
 NS_IMPL_CYCLE_COLLECTION_INHERITED(nsSourceErrorEventRunner, nsMediaEventRunner,

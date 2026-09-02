@@ -48,7 +48,7 @@ nsresult HTMLMarqueeElement::BindToTree(BindContext& aContext,
   NS_ENSURE_SUCCESS(rv, rv);
 
   if (IsInComposedDoc()) {
-    AttachAndSetUAShadowRoot(NotifyUAWidget::Yes);
+    AttachAndSetUAShadowRoot();
   }
 
   return rv;
@@ -57,7 +57,7 @@ nsresult HTMLMarqueeElement::BindToTree(BindContext& aContext,
 void HTMLMarqueeElement::UnbindFromTree(UnbindContext& aContext) {
   if (IsInComposedDoc()) {
     // We don't want to unattach the shadow root because it used to
-    // contain a <slot>.NotifyUAWidget
+    // contain a <slot>.
     TeardownUAShadowRoot(NotifyUAWidget::Yes, UnattachShadowRoot::No);
   }
 

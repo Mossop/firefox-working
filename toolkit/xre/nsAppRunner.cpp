@@ -4111,7 +4111,7 @@ class XREMain {
   int XRE_mainInit(bool* aExitFlag, AppRunnerTelemFlags& appRunnerTelemFlags);
   int XRE_mainStartup(bool* aExitFlag,
                       AppRunnerTelemFlags& appRunnerTelemFlags);
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY nsresult XRE_mainRun();
+  nsresult XRE_mainRun();
 
   bool CheckLastStartupWasCrash();
 
@@ -5818,7 +5818,7 @@ int XREMain::XRE_mainStartup(bool* aExitFlag,
 }
 
 #if defined(MOZ_SANDBOX)
-void AddSandboxAnnotations() MOZ_CAN_RUN_SCRIPT_BOUNDARY {
+void AddSandboxAnnotations() {
   CrashReporter::RecordAnnotationU32(
       CrashReporter::Annotation::ContentSandboxLevel,
       GetEffectiveContentSandboxLevel());
@@ -6032,9 +6032,8 @@ nsresult XREMain::XRE_mainRun() {
           initializedJSContext = true;
         }
 
-        const RefPtr<nsToolkitProfileService> profileSvc = mProfileSvc;
-        const nsCOMPtr<nsIToolkitProfile> oldProfile = gResetOldProfile;
-        nsresult backupCreated = ProfileResetCleanup(profileSvc, oldProfile);
+        nsresult backupCreated =
+            ProfileResetCleanup(mProfileSvc, gResetOldProfile);
         if (NS_FAILED(backupCreated)) {
           NS_WARNING("Could not cleanup the profile that was reset");
         }

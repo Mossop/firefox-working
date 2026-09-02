@@ -16,12 +16,12 @@ class nsDocElementCreatedNotificationRunner : public mozilla::Runnable {
       : mozilla::Runnable("nsDocElementCreatedNotificationRunner"),
         mDoc(aDoc) {}
 
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY NS_IMETHOD Run() override {
+  NS_IMETHOD Run() override {
     nsContentSink::NotifyDocElementCreated(mDoc);
     return NS_OK;
   }
 
-  MOZ_KNOWN_LIVE const RefPtr<mozilla::dom::Document> mDoc;
+  RefPtr<mozilla::dom::Document> mDoc;
 };
 
 #endif /* nsDocElementCreatedNotificationRunner_h */

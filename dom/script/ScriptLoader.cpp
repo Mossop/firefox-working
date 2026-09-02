@@ -274,8 +274,7 @@ ScriptLoader::~ScriptLoader() {
   mObservers.Clear();
 
   if (mParserBlockingRequest) {
-    const RefPtr<ScriptLoadRequest> parserBlockRequest = mParserBlockingRequest;
-    FireScriptAvailable(NS_ERROR_ABORT, parserBlockRequest);
+    FireScriptAvailable(NS_ERROR_ABORT, mParserBlockingRequest);
   }
 
   for (ScriptLoadRequest* req = mXSLTRequests.getFirst(); req;
@@ -641,17 +640,15 @@ nsIURI* ScriptLoader::GetBaseURI() const {
 
 class ScriptRequestProcessor : public Runnable {
  private:
-  MOZ_KNOWN_LIVE const RefPtr<ScriptLoader> mLoader;
-  MOZ_KNOWN_LIVE const RefPtr<ScriptLoadRequest> mRequest;
+  RefPtr<ScriptLoader> mLoader;
+  RefPtr<ScriptLoadRequest> mRequest;
 
  public:
   ScriptRequestProcessor(ScriptLoader* aLoader, ScriptLoadRequest* aRequest)
       : Runnable("dom::ScriptRequestProcessor"),
         mLoader(aLoader),
         mRequest(aRequest) {}
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY NS_IMETHOD Run() override {
-    return mLoader->ProcessRequest(mRequest);
-  }
+  NS_IMETHOD Run() override { return mLoader->ProcessRequest(mRequest); }
 };
 
 void ScriptLoader::RunScriptWhenSafe(ScriptLoadRequest* aRequest) {
@@ -1867,7 +1864,7 @@ bool ScriptLoader::ProcessInlineScript(nsIScriptElement* aElement,
       mModuleLoader->DisallowImportMaps();
     }
 
-    ModuleLoadRequest* const modReq = request->AsModuleRequest();
+    ModuleLoadRequest* modReq = request->AsModuleRequest();
     if (aElement->GetParserCreated() != NOT_FROM_PARSER) {
       if (aElement->GetScriptAsync()) {
         AddAsyncRequest(modReq);
@@ -1881,7 +1878,7 @@ bool ScriptLoader::ProcessInlineScript(nsIScriptElement* aElement,
     nsresult rv = modReq->OnFetchComplete(NS_OK);
     if (NS_FAILED(rv)) {
       ReportErrorToConsole(modReq, rv);
-      HandleLoadError(MOZ_KnownLive(modReq), rv);
+      HandleLoadError(modReq, rv);
     }
 
     return false;
@@ -2199,7 +2196,7 @@ class OffThreadCompilationCompleteTask : public Task {
   }
 #endif
 
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY TaskResult Run() override {
+  TaskResult Run() override {
     MOZ_ASSERT(NS_IsMainThread());
 
     RefPtr<ScriptLoadContext> context = mRequest->GetScriptLoadContext();
@@ -2227,9 +2224,10 @@ class OffThreadCompilationCompleteTask : public Task {
                            profilerLabelString);
     }
 
-    const RefPtr<ScriptLoadRequest> request = std::move(mRequest);
-    const RefPtr<ScriptLoader> loader = std::move(mLoader);
-    (void)loader->ProcessOffThreadRequest(request);
+    (void)mLoader->ProcessOffThreadRequest(mRequest);
+
+    mRequest = nullptr;
+    mLoader = nullptr;
     return TaskResult::Complete;
   }
 
@@ -2804,21 +2802,21 @@ nsresult ScriptLoader::ProcessRequest(ScriptLoadRequest* aRequest) {
 
 void ScriptLoader::FireScriptAvailable(nsresult aResult,
                                        ScriptLoadRequest* aRequest) {
-  const nsCOMPtr<nsIScriptElement> scriptElement =
-      aRequest->GetScriptLoadContext()->GetScriptElementForObserver();
-  const nsCOMPtr<nsIURI> uri = aRequest->URI();
   for (int32_t i = 0; i < mObservers.Count(); i++) {
     nsCOMPtr<nsIScriptLoaderObserver> obs = mObservers[i];
-    obs->ScriptAvailable(aResult, scriptElement,
-                         aRequest->GetScriptLoadContext()->mIsInline, uri,
-                         aRequest->GetScriptLoadContext()->mLineNo);
+    obs->ScriptAvailable(
+        aResult,
+        aRequest->GetScriptLoadContext()->GetScriptElementForObserver(),
+        aRequest->GetScriptLoadContext()->mIsInline, aRequest->URI(),
+        aRequest->GetScriptLoadContext()->mLineNo);
   }
 
-  const bool isInlineClassicScript =
-      aRequest->GetScriptLoadContext()->mIsInline &&
-      !aRequest->IsModuleRequest();
+  bool isInlineClassicScript = aRequest->GetScriptLoadContext()->mIsInline &&
+                               !aRequest->IsModuleRequest();
+  RefPtr<nsIScriptElement> scriptElement =
+      aRequest->GetScriptLoadContext()->GetScriptElementForObserver();
   scriptElement->ScriptAvailable(aResult, scriptElement, isInlineClassicScript,
-                                 uri,
+                                 aRequest->URI(),
                                  aRequest->GetScriptLoadContext()->mLineNo);
 }
 
@@ -4351,8 +4349,7 @@ void ScriptLoader::ProcessPendingRequestsAsync() {
   }
 }
 
-void ProcessPendingRequestsCallback(nsITimer* aTimer, void* aClosure)
-    MOZ_CAN_RUN_SCRIPT_BOUNDARY {
+void ProcessPendingRequestsCallback(nsITimer* aTimer, void* aClosure) {
   RefPtr<ScriptLoader> sl = static_cast<ScriptLoader*>(aClosure);
   sl->ProcessPendingRequests(true);
 }

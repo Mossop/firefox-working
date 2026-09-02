@@ -310,7 +310,7 @@ class HTMLTextAreaElement final : public TextControlElement,
   nsContentUtils::AutocompleteAttrState mAutocompleteAttrState;
   nsContentUtils::AutocompleteAttrState mAutocompleteInfoState;
 
-  MOZ_CAN_RUN_SCRIPT void FireChangeEventIfNeeded();
+  void FireChangeEventIfNeeded();
 
   nsString mFocusedValue;
 

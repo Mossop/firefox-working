@@ -383,8 +383,7 @@ class nsGlobalWindowInner final : public mozilla::dom::EventTarget,
 
   void NoteDOMContentLoaded();
 
-  MOZ_CAN_RUN_SCRIPT virtual nsresult FireDelayedDOMEvents(
-      bool aIncludeSubWindows) override;
+  virtual nsresult FireDelayedDOMEvents(bool aIncludeSubWindows) override;
 
   virtual void MaybeUpdateTouchState() override;
 
@@ -452,8 +451,8 @@ class nsGlobalWindowInner final : public mozilla::dom::EventTarget,
   // frame.
   mozilla::ScrollContainerFrame* GetScrollContainerFrame();
 
-  MOZ_CAN_RUN_SCRIPT nsresult Observe(nsISupports* aSubject, const char* aTopic,
-                                      const char16_t* aData);
+  nsresult Observe(nsISupports* aSubject, const char* aTopic,
+                   const char16_t* aData);
 
   void ObserveStorageNotification(mozilla::dom::StorageEvent* aEvent,
                                   const char16_t* aStorageType,
@@ -621,9 +620,9 @@ class nsGlobalWindowInner final : public mozilla::dom::EventTarget,
   mozilla::dom::BarProp* GetToolbar(mozilla::ErrorResult& aError);
   void GetStatus(nsAString& aStatus, mozilla::ErrorResult& aError);
   void SetStatus(const nsAString& aStatus, mozilla::ErrorResult& aError);
-  MOZ_CAN_RUN_SCRIPT void Close(mozilla::dom::CallerType aCallerType,
-                                mozilla::ErrorResult& aError);
-  MOZ_CAN_RUN_SCRIPT nsresult Close() override;
+  void Close(mozilla::dom::CallerType aCallerType,
+             mozilla::ErrorResult& aError);
+  nsresult Close() override;
   bool GetClosed(mozilla::ErrorResult& aError);
   void Stop(mozilla::ErrorResult& aError);
   void Focus(mozilla::dom::CallerType aCallerType,
@@ -874,9 +873,8 @@ class nsGlobalWindowInner final : public mozilla::dom::EventTarget,
   bool GetFullScreen(mozilla::dom::CallerType aCallerType,
                      mozilla::ErrorResult& aError);
   bool GetFullScreen() override;
-  MOZ_CAN_RUN_SCRIPT void SetFullScreen(bool aFullscreen,
-                                        mozilla::dom::CallerType aCallerType,
-                                        mozilla::ErrorResult& aError);
+  void SetFullScreen(bool aFullscreen, mozilla::dom::CallerType aCallerType,
+                     mozilla::ErrorResult& aError);
   bool Find(const nsAString& aString, bool aCaseSensitive, bool aBackwards,
             bool aWrapAround, bool aWholeWord, bool aSearchInFrames,
             bool aShowDialog, mozilla::ErrorResult& aError);
@@ -1113,7 +1111,7 @@ class nsGlobalWindowInner final : public mozilla::dom::EventTarget,
   already_AddRefed<nsIWebBrowserChrome> GetWebBrowserChrome();
   bool IsPrivateBrowsing();
 
-  MOZ_CAN_RUN_SCRIPT void FireOfflineStatusEventIfChanged();
+  void FireOfflineStatusEventIfChanged();
 
  public:
   // Inner windows only.

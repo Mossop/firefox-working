@@ -55,7 +55,6 @@
 #include "mozilla/dom/ContentChild.h"
 #include "mozilla/dom/ConvolverNodeBinding.h"
 #include "mozilla/dom/DelayNodeBinding.h"
-#include "mozilla/dom/Document.h"
 #include "mozilla/dom/DynamicsCompressorNodeBinding.h"
 #include "mozilla/dom/GainNodeBinding.h"
 #include "mozilla/dom/HTMLMediaElement.h"
@@ -823,13 +822,14 @@ class OnStateChangeTask final : public Runnable {
   explicit OnStateChangeTask(AudioContext* aAudioContext)
       : Runnable("dom::OnStateChangeTask"), mAudioContext(aAudioContext) {}
 
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY NS_IMETHODIMP Run() override {
+  NS_IMETHODIMP
+  Run() override {
     nsGlobalWindowInner* win = mAudioContext->GetOwnerWindow();
     if (!win) {
       return NS_ERROR_FAILURE;
     }
 
-    const RefPtr<Document> doc = win->GetExtantDoc();
+    Document* doc = win->GetExtantDoc();
     if (!doc) {
       return NS_ERROR_FAILURE;
     }
@@ -839,7 +839,7 @@ class OnStateChangeTask final : public Runnable {
   }
 
  private:
-  MOZ_KNOWN_LIVE const RefPtr<AudioContext> mAudioContext;
+  RefPtr<AudioContext> mAudioContext;
 };
 
 void AudioContext::Dispatch(already_AddRefed<nsIRunnable> aRunnable) {
@@ -1174,14 +1174,13 @@ void AudioContext::ReportBlocked() {
   }
 
   RefPtr<nsIRunnable> r = NS_NewRunnableFunction(
-      "AudioContext::AutoplayBlocked",
-      [self = RefPtr{this}]() MOZ_CAN_RUN_SCRIPT_BOUNDARY_LAMBDA {
+      "AudioContext::AutoplayBlocked", [self = RefPtr{this}]() {
         nsGlobalWindowInner* win = self->GetOwnerWindow();
         if (!win) {
           return;
         }
 
-        const RefPtr<Document> doc = win->GetExtantDoc();
+        Document* doc = win->GetExtantDoc();
         if (!doc) {
           return;
         }

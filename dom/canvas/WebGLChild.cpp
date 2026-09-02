@@ -157,8 +157,7 @@ mozilla::ipc::IPCResult WebGLChild::RecvJsWarning(
 mozilla::ipc::IPCResult WebGLChild::RecvOnContextLoss(
     const webgl::ContextLossReason reason) const {
   if (!mContext) return IPC_OK();
-  const RefPtr<ClientWebGLContext> context = mContext.get();
-  context->OnContextLoss(reason);
+  mContext->OnContextLoss(reason);
   return IPC_OK();
 }
 

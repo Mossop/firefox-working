@@ -171,7 +171,7 @@ class nsSourceErrorEventRunner : public nsMediaEventRunner {
       : nsMediaEventRunner("nsSourceErrorEventRunner", aElement),
         mSource(aSource),
         mErrorDetails(NS_ConvertUTF8toUTF16(aErrorDetails)) {}
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY NS_IMETHOD Run() override;
+  NS_IMETHOD Run() override;
 
  private:
   virtual ~nsSourceErrorEventRunner() = default;

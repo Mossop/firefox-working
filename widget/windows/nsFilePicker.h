@@ -91,8 +91,7 @@ class nsFilePicker final : public nsBaseWinFilePicker {
   virtual void InitNative(nsIWidget* aParent, const nsAString& aTitle) override;
   void GetFilterListArray(nsString& aFilterList);
 
-  MOZ_CAN_RUN_SCRIPT NS_IMETHOD
-  Open(nsIFilePickerShownCallback* aCallback) override;
+  NS_IMETHOD Open(nsIFilePickerShownCallback* aCallback) override;
 
  private:
   using Unit = mozilla::Ok;

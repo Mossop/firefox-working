@@ -51,10 +51,7 @@ class FetchDriverObserver {
       : mReporter(new ConsoleReportCollector()), mGotResponseAvailable(false) {}
 
   NS_INLINE_DECL_THREADSAFE_REFCOUNTING(FetchDriverObserver);
-  // FIXME: This should be marked as MOZ_CAN_RUN_SCRIPT, but SafeRefPtr is not
-  // treated as safe by the clang-plugin.
-  MOZ_CAN_RUN_SCRIPT_BOUNDARY void OnResponseAvailable(
-      SafeRefPtr<InternalResponse> aResponse);
+  void OnResponseAvailable(SafeRefPtr<InternalResponse> aResponse);
 
   enum EndReason {
     eAborted,
@@ -84,7 +81,7 @@ class FetchDriverObserver {
  protected:
   virtual ~FetchDriverObserver() = default;
 
-  MOZ_CAN_RUN_SCRIPT virtual void OnResponseAvailableInternal(
+  virtual void OnResponseAvailableInternal(
       SafeRefPtr<InternalResponse> aResponse) = 0;
 
   nsCOMPtr<nsIConsoleReportCollector> mReporter;
@@ -234,7 +231,7 @@ class FetchDriver final : public nsIChannelEventSink,
 
   nsresult HttpFetch(const nsACString& aPreferredAlternativeDataType = ""_ns);
   // Returns the filtered response sent to the observer.
-  MOZ_CAN_RUN_SCRIPT SafeRefPtr<InternalResponse> BeginAndGetFilteredResponse(
+  SafeRefPtr<InternalResponse> BeginAndGetFilteredResponse(
       SafeRefPtr<InternalResponse> aResponse, bool aFoundOpaqueRedirect);
   // Utility since not all cases need to do any post processing of the filtered
   // response.
@@ -243,8 +240,7 @@ class FetchDriver final : public nsIChannelEventSink,
   void SetRequestHeaders(nsIHttpChannel* aChannel, bool aStripRequestBodyHeader,
                          bool aStripAuthHeader) const;
 
-  MOZ_CAN_RUN_SCRIPT void FinishOnStopRequest(
-      AlternativeDataStreamListener* aAltDataListener);
+  void FinishOnStopRequest(AlternativeDataStreamListener* aAltDataListener);
 };
 
 }  // namespace dom
