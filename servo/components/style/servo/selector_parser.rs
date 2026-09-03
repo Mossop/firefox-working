@@ -316,12 +316,6 @@ impl PseudoElement {
         false
     }
 
-    /// Whether this pseudo-element takes an argument.
-    #[inline]
-    pub fn has_argument(&self) -> bool {
-        false
-    }
-
     /// Whether this pseudo-element is the ::target-text pseudo.
     #[inline]
     pub fn is_target_text(&self) -> bool {

@@ -45,8 +45,6 @@ class Pseudo(object):
             flags.append("ENABLED_IN_CHROME")
         if self.pref:
             flags.append("ENABLED_BY_PREF")
-        if self.argument:
-            flags.append("HAS_ARGUMENT")
         if isinstance(self, PseudoElement):
             flags.append("IS_PSEUDO_ELEMENT")
             if self.is_css2:
