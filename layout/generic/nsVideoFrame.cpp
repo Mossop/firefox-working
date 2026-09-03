@@ -173,15 +173,14 @@ class DispatchControlsResizeEvent final : public Runnable {
  public:
   explicit DispatchControlsResizeEvent(nsIContent* aContent)
       : Runnable("DispatchControlsResizeEvent"), mContent(aContent) {}
-  NS_IMETHOD Run() override {
+  MOZ_CAN_RUN_SCRIPT_BOUNDARY NS_IMETHOD Run() override {
     // This is ok-ish because we're dispatching it in the shadow dom so it
     // doesn't propagate up to the <video>.
-    nsContentUtils::DispatchTrustedEvent(mContent->OwnerDoc(), mContent,
-                                         u"resizevideocontrols"_ns,
+    nsContentUtils::DispatchTrustedEvent(mContent, u"resizevideocontrols"_ns,
                                          CanBubble::eNo, Cancelable::eNo);
     return NS_OK;
   }
-  nsCOMPtr<nsIContent> mContent;
+  MOZ_KNOWN_LIVE const nsCOMPtr<nsIContent> mContent;
 };
 
 bool nsVideoFrame::ReflowFinished() {
