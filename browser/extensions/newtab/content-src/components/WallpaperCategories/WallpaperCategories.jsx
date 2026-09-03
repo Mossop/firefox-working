@@ -19,38 +19,6 @@ const PREF_WALLPAPER_UPLOAD_MAX_FILE_SIZE =
 const PREF_WALLPAPER_UPLOAD_MAX_FILE_SIZE_ENABLED =
   "newtabWallpapers.customWallpaper.fileSize.enabled";
 
-const PREF_WALLPAPER_VISIBILITY_GROUPS = "newtabWallpapers.visibilityGroups";
-
-// The dedicated trainhopConfig.wallpapers object wins over the pref, so a group
-// can be activated without a release. The pref is never read at call sites.
-export function resolveWallpaperVisibilityGroups(prefs) {
-  // A trainhop payload is raw JSON from a Nimbus recipe, so a malformed value
-  // must fall back to the pref rather than throw while rendering the picker.
-  const trainhop = prefs.trainhopConfig?.wallpapers?.visibilityGroups;
-  if (trainhop !== undefined && typeof trainhop !== "string") {
-    console.warn(
-      `trainhopConfig.wallpapers.visibilityGroups is ${JSON.stringify(
-        trainhop
-      )}; expected a string. Ignoring it.`
-    );
-  }
-  const csv =
-    (typeof trainhop === "string" && trainhop) ||
-    prefs[PREF_WALLPAPER_VISIBILITY_GROUPS] ||
-    "";
-  return csv
-    .split(",")
-    .map(group => group.trim())
-    .filter(Boolean);
-}
-
-// Remote Settings records may omit either field. A missing `visible` means
-// visible; a missing `visibility_group` means ungated.
-export const isWallpaperOffered = (wallpaper, activeGroups) =>
-  wallpaper.visible !== false &&
-  (!wallpaper.visibility_group ||
-    activeGroups.includes(wallpaper.visibility_group));
-
 // Returns a function will not be continuously triggered when called. The
 // function will be triggered if called again after `wait` milliseconds.
 function debounce(func, wait) {
@@ -526,18 +494,15 @@ export class _WallpaperCategories extends React.PureComponent {
     }
     // Enable custom color select if pref'ed on
     let showColorPicker = prefs["newtabWallpapers.customColor.enabled"];
-    const activeGroups = resolveWallpaperVisibilityGroups(prefs);
     let filteredWallpapers = wallpaperList.filter(
-      wallpaper =>
-        wallpaper.category === activeCategory &&
-        isWallpaperOffered(wallpaper, activeGroups)
+      wallpaper => wallpaper.category === activeCategory
     );
     const wallpaperUploadMaxFileSize =
       this.props.Prefs.values[PREF_WALLPAPER_UPLOAD_MAX_FILE_SIZE];
 
     function reduceColorsToFitCustomColorInput(arr) {
       // Reduce the amount of custom colors to make space for the custom color picker
-      while (arr.length && arr.length % 3 !== 2) {
+      while (arr.length % 3 !== 2) {
         arr.pop();
       }
       return arr;
@@ -640,9 +605,7 @@ export class _WallpaperCategories extends React.PureComponent {
           <fieldset className="category-list">
             {categories.map((category, index) => {
               const filteredList = wallpaperList.filter(
-                wallpaper =>
-                  wallpaper.category === category &&
-                  isWallpaperOffered(wallpaper, activeGroups)
+                wallpaper => wallpaper.category === category
               );
               const sortedList = this.sortWallpapersByOrder(filteredList);
               const activeWallpaperObj =
