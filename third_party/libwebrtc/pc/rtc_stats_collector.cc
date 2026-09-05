@@ -667,7 +667,7 @@ CreateInboundRTPStreamStatsFromVideoReceiverInfo(
   }
   // TODO(bugs.webrtc.org/10529): When info's `content_info` is optional
   // support the "unspecified" value.
-  if (video_receiver_info.content_type == VideoContentType::SCREENSHARE)
+  if (videocontenttypehelpers::IsScreenshare(video_receiver_info.content_type))
     inbound_video->content_type = "screenshare";
   if (video_receiver_info.decoder_implementation_name.has_value()) {
     inbound_video->decoder_implementation =
@@ -676,6 +676,17 @@ CreateInboundRTPStreamStatsFromVideoReceiverInfo(
   if (video_receiver_info.power_efficient_decoder.has_value()) {
     inbound_video->power_efficient_decoder =
         *video_receiver_info.power_efficient_decoder;
+  }
+  for (const auto& ssrc_group : video_receiver_info.ssrc_groups) {
+    if (ssrc_group.semantics == cricket::kFidSsrcGroupSemantics &&
+        ssrc_group.ssrcs.size() == 2) {
+      inbound_video->rtx_ssrc = ssrc_group.ssrcs[1];
+    } else if (ssrc_group.semantics == cricket::kFecFrSsrcGroupSemantics &&
+               ssrc_group.ssrcs.size() == 2) {
+      // TODO(bugs.webrtc.org/15002): the ssrc-group might be >= 2 with
+      // multistream support.
+      inbound_video->fec_ssrc = ssrc_group.ssrcs[1];
+    }
   }
 
   return inbound_video;
@@ -809,7 +820,7 @@ CreateOutboundRTPStreamStatsFromVideoSenderInfo(
       video_sender_info.quality_limitation_resolution_changes;
   // TODO(https://crbug.com/webrtc/10529): When info's `content_info` is
   // optional, support the "unspecified" value.
-  if (video_sender_info.content_type == VideoContentType::SCREENSHARE)
+  if (videocontenttypehelpers::IsScreenshare(video_sender_info.content_type))
     outbound_video->content_type = "screenshare";
   if (video_sender_info.encoder_implementation_name.has_value()) {
     outbound_video->encoder_implementation =
@@ -825,6 +836,12 @@ CreateOutboundRTPStreamStatsFromVideoSenderInfo(
   if (video_sender_info.scalability_mode) {
     outbound_video->scalability_mode = std::string(
         ScalabilityModeToString(*video_sender_info.scalability_mode));
+  }
+  for (const auto& ssrc_group : video_sender_info.ssrc_groups) {
+    if (ssrc_group.semantics == cricket::kFidSsrcGroupSemantics &&
+        ssrc_group.ssrcs.size() == 2) {
+      outbound_video->rtx_ssrc = ssrc_group.ssrcs[1];
+    }
   }
   return outbound_video;
 }
