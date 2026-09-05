@@ -43,7 +43,6 @@
 #include "call/video_receive_stream.h"
 #include "common_video/include/quality_limitation_reason.h"
 #include "media/base/codec.h"
-#include "media/base/delayable.h"
 #include "media/base/media_constants.h"
 #include "media/base/stream_params.h"
 #include "modules/audio_processing/include/audio_processing_statistics.h"
@@ -71,7 +70,6 @@ class VideoFrame;
 namespace cricket {
 
 class AudioSource;
-class MediaChannel;  // TODO(bugs.webrtc.org/13931): Delete when irrelevant
 class VideoCapturer;
 struct RtpHeader;
 struct VideoFormat;
@@ -189,6 +187,9 @@ class MediaSendChannelInterface {
   virtual VoiceMediaSendChannelInterface* AsVoiceSendChannel() = 0;
   virtual cricket::MediaType media_type() const = 0;
 
+  // Gets the currently set codecs/payload types to be used for outgoing media.
+  virtual absl::optional<Codec> GetSendCodec() const = 0;
+
   // Creates a new outgoing media stream with SSRCs and CNAME as described
   // by sp.
   virtual bool AddSendStream(const StreamParams& sp) = 0;
@@ -253,7 +254,7 @@ class MediaSendChannelInterface {
       absl::AnyInvocable<void()> callback) = 0;
 };
 
-class MediaReceiveChannelInterface : public Delayable {
+class MediaReceiveChannelInterface {
  public:
   virtual ~MediaReceiveChannelInterface() = default;
 
@@ -305,6 +306,16 @@ class MediaReceiveChannelInterface : public Delayable {
       uint32_t ssrc,
       rtc::scoped_refptr<webrtc::FrameTransformerInterface>
           frame_transformer) = 0;
+
+  // Set base minimum delay of the receive stream with specified ssrc.
+  // Base minimum delay sets lower bound on minimum delay value which
+  // determines minimum delay until audio playout.
+  // Returns false if there is no stream with given ssrc.
+  virtual bool SetBaseMinimumPlayoutDelayMs(uint32_t ssrc, int delay_ms) = 0;
+
+  // Returns current value of base minimum delay in milliseconds.
+  virtual absl::optional<int> GetBaseMinimumPlayoutDelayMs(
+      uint32_t ssrc) const = 0;
 };
 
 // The stats information is structured as follows:
@@ -455,6 +466,12 @@ struct MediaReceiverInfo {
   absl::optional<int> codec_payload_type;
   std::vector<SsrcReceiverInfo> local_stats;
   std::vector<SsrcSenderInfo> remote_stats;
+  // https://w3c.github.io/webrtc-stats/#dom-rtcinboundrtpstreamstats-fecpacketsreceived
+  absl::optional<uint64_t> fec_packets_received;
+  // https://w3c.github.io/webrtc-stats/#dom-rtcinboundrtpstreamstats-fecpacketsdiscarded
+  absl::optional<uint64_t> fec_packets_discarded;
+  // https://w3c.github.io/webrtc-stats/#dom-rtcinboundrtpstreamstats-fecbytesreceived
+  absl::optional<uint64_t> fec_bytes_received;
 };
 
 struct VoiceSenderInfo : public MediaSenderInfo {
@@ -489,8 +506,6 @@ struct VoiceReceiverInfo : public MediaReceiverInfo {
   uint64_t concealment_events = 0;
   uint64_t inserted_samples_for_deceleration = 0;
   uint64_t removed_samples_for_acceleration = 0;
-  uint64_t fec_packets_received = 0;
-  uint64_t fec_packets_discarded = 0;
   // Stats below correspond to similarly-named fields in the WebRTC stats spec.
   // https://w3c.github.io/webrtc-stats/#dom-rtcreceivedrtpstreamstats
   uint64_t packets_discarded = 0;
@@ -548,7 +563,7 @@ struct VideoSenderInfo : public MediaSenderInfo {
   VideoSenderInfo();
   ~VideoSenderInfo();
   std::vector<SsrcGroup> ssrc_groups;
-  std::string encoder_implementation_name;
+  absl::optional<std::string> encoder_implementation_name;
   int firs_received = 0;
   int plis_received = 0;
   int send_frame_width = 0;
@@ -592,7 +607,7 @@ struct VideoReceiverInfo : public MediaReceiverInfo {
   VideoReceiverInfo();
   ~VideoReceiverInfo();
   std::vector<SsrcGroup> ssrc_groups;
-  std::string decoder_implementation_name;
+  absl::optional<std::string> decoder_implementation_name;
   absl::optional<bool> power_efficient_decoder;
   int packets_concealed = 0;
   int firs_sent = 0;
@@ -927,8 +942,6 @@ struct VideoRecvParameters : RtpParameters<VideoCodec> {};
 class VideoMediaSendChannelInterface : public MediaSendChannelInterface {
  public:
   virtual bool SetSendParameters(const VideoSendParameters& params) = 0;
-  // Gets the currently set codecs/payload types to be used for outgoing media.
-  virtual absl::optional<VideoCodec> GetSendCodec() = 0;
   // Starts or stops transmission (and potentially capture) of local video.
   virtual bool SetSend(bool send) = 0;
   // Configure stream for sending and register a source.
@@ -943,6 +956,14 @@ class VideoMediaSendChannelInterface : public MediaSendChannelInterface {
   // Enable network condition based codec switching.
   virtual void SetVideoCodecSwitchingEnabled(bool enabled) = 0;
   virtual bool GetStats(VideoMediaSendInfo* stats) = 0;
+  // This fills the "bitrate parts" (rtx, video bitrate) of the
+  // BandwidthEstimationInfo, since that part that isn't possible to get
+  // through webrtc::Call::GetStats, as they are statistics of the send
+  // streams.
+  // TODO(holmer): We should change this so that either BWE graphs doesn't
+  // need access to bitrates of the streams, or change the (RTC)StatsCollector
+  // so that it's getting the send stream stats separately by calling
+  // GetStats(), and merges with BandwidthEstimationInfo by itself.
   virtual void FillBitrateInfo(BandwidthEstimationInfo* bwe_info) = 0;
   // Information queries to support SetReceiverFeedbackParameters
   virtual webrtc::RtcpMode SendCodecRtcpMode() const = 0;
