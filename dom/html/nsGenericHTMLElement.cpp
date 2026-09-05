@@ -2295,7 +2295,7 @@ void nsGenericHTMLFormElement::UpdateFieldSet(bool aNotify) {
     MOZ_ASSERT(!GetFieldSetInternal());
     return;
   }
-  if (IsFormAssociatedCustomElements() &&
+  if (IsFormAssociatedCustomElement() &&
       GetCustomElementData()->mState != CustomElementData::State::eCustom) {
     MOZ_ASSERT(!GetFieldSetInternal());
     return;
