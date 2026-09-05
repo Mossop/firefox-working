@@ -406,7 +406,8 @@ void HTMLElement::UpdateFormOwner(bool aBindToTree, Element* aFormIdElement) {
 }
 
 bool HTMLElement::IsFormAssociatedElement() const {
-  return IsFormAssociatedCustomElement();
+  CustomElementData* data = GetCustomElementData();
+  return data && data->IsFormAssociated();
 }
 
 void HTMLElement::FieldSetDisabledChanged(bool aNotify) {
