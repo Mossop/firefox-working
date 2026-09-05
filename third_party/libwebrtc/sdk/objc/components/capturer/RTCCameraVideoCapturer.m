@@ -118,11 +118,15 @@ const int64_t kNanosecondsPerSecond = 1000000000;
 }
 
 + (NSArray<AVCaptureDevice *> *)captureDevices {
-  AVCaptureDeviceDiscoverySession *session = [AVCaptureDeviceDiscoverySession
-      discoverySessionWithDeviceTypes:@[ AVCaptureDeviceTypeBuiltInWideAngleCamera ]
-                            mediaType:AVMediaTypeVideo
-                             position:AVCaptureDevicePositionUnspecified];
-  return session.devices;
+  if (@available(macOS 10.15, *)) {
+    AVCaptureDeviceDiscoverySession *session = [AVCaptureDeviceDiscoverySession
+        discoverySessionWithDeviceTypes:@[ AVCaptureDeviceTypeBuiltInWideAngleCamera ]
+                              mediaType:AVMediaTypeVideo
+                               position:AVCaptureDevicePositionUnspecified];
+    return session.devices;
+  }
+
+  return [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
 }
 
 + (NSArray<AVCaptureDeviceFormat *> *)supportedFormatsForDevice:(AVCaptureDevice *)device {
